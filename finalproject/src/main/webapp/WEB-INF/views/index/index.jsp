@@ -7,27 +7,27 @@
 	<title>MARS</title>
 
 	<!--Bootstrap-->
-	<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
+	<link rel="stylesheet" href="assets_index/css/bootstrap.min.css" type="text/css">
 	<!--FontAwesome-->
-	<link rel="stylesheet" href="assets/css/font-awesome.min.css" type="text/css">
+	<link rel="stylesheet" href="assets_index/css/font-awesome.min.css" type="text/css">
 	<!--Fonts-->
 	<link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
 	<!--Owl Carousel-->
-	<link rel="stylesheet" href="assets/owl-carousel/owl.carousel.css" type="text/css">
-	<link rel="stylesheet" href="assets/owl-carousel/owl.theme.css" type="text/css">
+	<link rel="stylesheet" href="assets_index/owl-carousel/owl.carousel.css" type="text/css">
+	<link rel="stylesheet" href="assets_index/owl-carousel/owl.theme.css" type="text/css">
 	<!--<link rel="stylesheet" href="assets/owl-carousel/owl.transitions.css" type="text/css">-->
 	<!--Main Style-->
-	<link rel="stylesheet" href="style.css" type="text/css">
+	<link rel="stylesheet" href="stylecss/style_index.css" type="text/css">
 
 	<!--Responsive Style-->
-	<link rel="stylesheet" href="assets/css/responsive.css" type="text/css">
+	<link rel="stylesheet" href="assets_index/css/responsive.css" type="text/css">
 	<style>
 		[data-sr] {
 			visibility: hidden;
 		}
 		#home{
-		background-image:url("assets/images/indeximage3.jpg");
+		background-image:url("assets_index/images/indeximage3.jpg");
 		}
 		
 	</style>
@@ -250,26 +250,26 @@
 <!-- / Footer-->
 
 
-<script src="assets/js/jquery-1.11.3.min.js"></script>
+<script src="assets_index/js/jquery-1.11.3.min.js"></script>
 <!--<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>-->
 <!--Sticky -->
 <!--<script type="text/javascript" src="assets/js/jquery.sticky.js"></script>-->
-<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets_index/js/bootstrap.min.js"></script>
 <!--Owl Carousel-->
-<script type="text/javascript" src="assets/owl-carousel/owl.carousel.min.js"></script>
+<script type="text/javascript" src="assets_index/owl-carousel/owl.carousel.min.js"></script>
 <!--Parallax-->
-<script type="text/javascript" src="assets/js/jquery.stellar.min.js"></script>
+<script type="text/javascript" src="assets_index/js/jquery.stellar.min.js"></script>
 <!--IsoTop-->
-<script type="text/javascript" src="assets/js/isotope.pkgd.min.js"></script>
+<script type="text/javascript" src="assets_index/js/isotope.pkgd.min.js"></script>
 <!--Typed js-->
-<script type="text/javascript" src="assets/js/typed.js"></script>
+<script type="text/javascript" src="assets_index/js/typed.js"></script>
 <!--Smooth Scroll-->
-<script type="text/javascript" src="assets/js/smooth-scroll.js"></script>
+<script type="text/javascript" src="assets_index/js/smooth-scroll.js"></script>
 <!--Reveal JS-->
-<script type="text/javascript" src="assets/js/scrollReveal.min.js"></script>
+<script type="text/javascript" src="assets_index/js/scrollReveal.min.js"></script>
 
 <!--Main-->
-<script type="text/javascript" src="assets/js/main.js"></script>
+<script type="text/javascript" src="assets_index/js/main.js"></script>
 
 
 </body>
