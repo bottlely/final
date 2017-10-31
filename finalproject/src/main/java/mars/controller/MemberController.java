@@ -25,4 +25,9 @@ public class MemberController {
 		mav.setViewName("member/memberMsg");
 		return mav;
 	}
+	
+	@RequestMapping("/joinForm.do")
+	public String memberJoinForm() {
+		return "member/memberJoin";
+	}
 }
