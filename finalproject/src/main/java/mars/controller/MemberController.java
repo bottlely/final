@@ -18,8 +18,6 @@ public class MemberController {
 
 	@RequestMapping("/join.do")
 	public ModelAndView memberJoin(MemberDTO dto) {
-		String id = dto.getId();
-		System.out.println(id);
 		int result = mdao.memberJoin(dto);
 		String msg = result>0?"회원가입성공":"회원가입실패";
 		ModelAndView mav = new ModelAndView();
