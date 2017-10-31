@@ -37,7 +37,7 @@
 	
 	<!-- service -->
 	
-	<bean id="memberdao" class="mars.member.model.MemberDAOImple">
+	<bean id="mdao" class="mars.member.model.MemberDAOImple">
 		<constructor-arg>
 			<ref bean="sqlSessionTemplate"></ref>
 		</constructor-arg>

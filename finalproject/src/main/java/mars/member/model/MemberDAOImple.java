@@ -11,7 +11,10 @@ public class MemberDAOImple implements MemberDAO {
 		this.sqlMap = sqlMap;
 	}
 
+	/*회원가입*/
 	public int memberJoin(MemberDTO dto) {
+		String id = dto.getId();
+		System.out.println(id);
 		int result = sqlMap.insert("memberJoin", dto);
 		return result;
 	}
