@@ -5,10 +5,10 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" type="text/css">
-    <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
-	<link href="css/ct-navbar.css" rel="stylesheet" />  
+    <link href="assets_main/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets_main/css/style.css" type="text/css">
+    <link href="assets_main/css/pe-icon-7-stroke.css" rel="stylesheet" />
+	<link href="assets_main/css/ct-navbar.css" rel="stylesheet" />  
   <title>MARS</title>
     <!--     Font Awesome     -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -104,7 +104,7 @@
 <ul class="nav navbar-nav navbar-left">
 					 <li>
 					<a href="main.jsp">
-                          <img src="images/logo.svg" alt="" />
+                          <img src="assets_main/images/logo.svg" alt="" />
                            
                        </a>
 					 
@@ -180,7 +180,7 @@
   </ul>
         </div>
         <div class="col-md-9" style=" background-color: white; margin-top: 30px; height: auto;" id="choofr1_info">
-		<div style="padding: 10px; float:left;"><img src="images/아이유6.jpg" alt=""  style="width: 200px; height: auto;" class="img-thumbnail">
+		<div style="padding: 10px; float:left;"><img src="assets_main/images/아이유6.jpg" alt=""  style="width: 200px; height: auto;" class="img-thumbnail">
 		</div>
 		<div style="padding: 15px;">
  <p>Name : 양진모</p>
@@ -217,7 +217,7 @@
 				<div class="works-area" >
 				<div class="col-md-4 col-sm-6 col-xs-12  photo"  >
 					<div class="works">
-						<img src="images/아이유6.jpg" alt="">
+						<img src="assets_main/images/아이유6.jpg" alt="">
 
 						<div class="work-overlay text-center">
 							<div class="overlay-caption">
@@ -231,7 +231,7 @@
 				</div>
 				<div class="col-md-4 col-sm-6 col-xs-12 text" >
 					<div class="works">
-						<img src="images/아이유6.jpg" alt="">
+						<img src="assets_main/images/아이유6.jpg" alt="">
 
 						<div class="work-overlay text-center">
 							<div class="overlay-caption">
@@ -245,7 +245,7 @@
 				</div>
 				<div class="col-md-4 col-sm-6 col-xs-12 viedeo" >
 					<div class="works">
-						<img src="images/아이유6.jpg" alt="">
+						<img src="assets_main/images/아이유6.jpg" alt="">
 
 						<div class="work-overlay text-center">
 							<div class="overlay-caption">
@@ -259,7 +259,7 @@
 				</div>
 				<div class="col-md-4 col-sm-6 col-xs-12 viedeo" >
 					<div class="works">
-						<img src="images/아이유6.jpg" alt="">
+						<img src="assets_main/images/아이유6.jpg" alt="">
 
 						<div class="work-overlay text-center">
 							<div class="overlay-caption">
@@ -273,7 +273,7 @@
 				</div>
 				<div class="col-md-4 col-sm-6 col-xs-12 viedeo" >
 					<div class="works">
-						<img src="images/아이유6.jpg" alt="">
+						<img src="assets_main/images/아이유6.jpg" alt="">
 
 						<div class="work-overlay text-center">
 							<div class="overlay-caption">
@@ -305,20 +305,20 @@
 
 </body>
 
-    <script src="js/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="js/bootstrap.js" type="text/javascript"></script>
-	<script type="text/javascript" src="js/main.js"></script>
-	<script src="js/ct-navbar.js"></script>
-	<script type="text/javascript" src="assets/owl-carousel/owl.carousel.min.js"></script>
+    <script src="assets_main/js_1/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="assets_main/js_1/bootstrap.js" type="text/javascript"></script>
+	<script type="text/javascript" src="assets_main/js_1/main.js"></script>
+	<script src="assets_main/js_1/ct-navbar.js"></script>
+	<script type="text/javascript" src="assets_main/owl-carousel/owl.carousel.min.js"></script>
 
 <!--Parallax-->
-<script type="text/javascript" src="assets/js/jquery.stellar.min.js"></script>
+<script type="text/javascript" src="assets_main/js/jquery.stellar.min.js"></script>
 <!--IsoTop-->
-<script type="text/javascript" src="assets/js/isotope.pkgd.min.js"></script>
+<script type="text/javascript" src="assets_main/js/isotope.pkgd.min.js"></script>
 <!--Typed js-->
-<script type="text/javascript" src="assets/js/typed.js"></script>
+<script type="text/javascript" src="assets_main/js/typed.js"></script>
 <!--Smooth Scroll-->
-<script type="text/javascript" src="assets/js/smooth-scroll.js"></script>
+<script type="text/javascript" src="assets_main/js/smooth-scroll.js"></script>
 <!--Reveal JS-->
-<script type="text/javascript" src="assets/js/scrollReveal.min.js"></script>
+<script type="text/javascript" src="assets_main/js/scrollReveal.min.js"></script>
 </html>
