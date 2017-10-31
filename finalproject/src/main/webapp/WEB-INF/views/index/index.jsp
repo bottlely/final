@@ -44,7 +44,7 @@
 						<span class="sr-only">Toggle navigation</span>
 						
 					</button>
-					<a class="navbar-brand" href="index.jsp"><font style="color: white;">MARS</font></a>
+					<a class="navbar-brand" href="index.do"><font style="color: white;">MARS</font></a>
 				</div><!-- end navbar-header -->
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
@@ -125,50 +125,48 @@
 
 				<p class="sec-subtitle" id="contact1">MARS</p>
 			</div>
-			<div class="col-sm-4" data-sr="enter left, hustle 80px">
-				<div class="address">
-					<p class="address-title title"><i class="fa fa-map-marker"></i> Address</p>
-
-					<p class="address-content">312, 7th Ave, New York <br>
-						NY 101200, United States of America</p>
-				</div>
-				<div class="address">
-					<p class="address-title title"><i class="fa fa-mobile-phone"></i> Hotline (24x7)</p>
-
-					<p class="address-content">+65 0052 300, +65 88251 210 <br>
-						+88 01723 511 340</p>
-				</div>
+			<div class="col-sm-2" data-sr="enter left, hustle 80px">
+				
 			
 			</div>
 			<div class="col-sm-8" data-sr="enter right, hustle 80px">
-				<form class="st-form">
+				<form class="st-form" action="join.do">
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group ">
-								<input type="text" class="form-control" placeholder="YOUR NAME">
+								<input type="text" class="form-control" placeholder="YOUR NAME" name="name">
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group ">
-								<input type="email" class="form-control" placeholder="YOUR E-MAIL">
+								<input type="email" class="form-control" placeholder="YOUR E-MAIL" name="id">
 							</div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group ">
-								<input type="text" class="form-control" placeholder="YOUR PASSWORD">
+								<input type="password" class="form-control" placeholder="YOUR PASSWORD" name="pwd">
 							</div>
 						</div>
 						<div class="col-sm-6">
 							<div class="form-group ">
-								<input type="text" class="form-control" placeholder="COFIRM YOUR PASSWORD">
+								<input type="password" class="form-control" placeholder="COFIRM YOUR PASSWORD" name="checkpwd">
 							</div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-6" style="text-align:center; font-size:20px; color:black;">
+						가입하면 Mars의 약관 및 개인정보처리방침에 동의하게 됩니다.
+						<button type="submit" class="btn btn-send" >Sign Up</button>
+						</div>
+						<div class="col-sm-3"></div>
+					</div>
 
-
-					<button type="submit" class="btn btn-send">Sign Up</button>
+					
+					
+					
 				</form>
 			</div>
 		</div>
@@ -221,7 +219,7 @@
 					</div>
 
 
-					<button type="submit" class="btn btn-send">Login</button>
+					<a href="main.do"><button type="button" class="btn btn-send">Login</button></a>
 				</form>
 			</div>
 		</div>

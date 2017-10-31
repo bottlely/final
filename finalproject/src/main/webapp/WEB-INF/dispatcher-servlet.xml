@@ -31,6 +31,18 @@
 	<!-- controller -->
 	
 	<bean id="indexController" class="mars.controller.IndexController"></bean>
+	<bean id="memberController" class="mars.controller.MemberController"></bean>
+	<bean id="mainController" class="mars.controller.MainController"></bean>
+	
+	
+	<!-- service -->
+	
+	<bean id="memberdao" class="mars.member.model.MemberDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+	</bean>
+	
 	
 	<!-- views -->
 	<bean id="viewResolver"
