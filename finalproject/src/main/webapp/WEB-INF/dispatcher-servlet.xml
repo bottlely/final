@@ -32,11 +32,13 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean" />
 	</bean>
 	
+
+	
+
 	<!-- controller -->
 	
 	<bean id="indexController" class="mars.controller.IndexController"></bean>
-	<bean id="memberController" class="mars.controller.MemberController">
-	</bean>
+	<bean id="memberController" class="mars.controller.MemberController"></bean>
 	<bean id="mainController" class="mars.controller.MainController"></bean>
 	<bean id="adController" class="mars.controller.AdController"></bean>
 	<bean id="adminController" class="mars.controller.AdminController"></bean>
