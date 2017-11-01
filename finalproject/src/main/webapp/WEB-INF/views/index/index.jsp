@@ -61,6 +61,7 @@
 							<li><a data-scroll href="#login">Login</a></li>
 							<li><a href="joinForm.do">Sign Up</a></li>
 							<li><a data-scroll href="#about-us">About</a></li>
+							<li><a href="admin.do">admin</a></li>
 
 						</ul>
 					</div>
