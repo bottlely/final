@@ -122,6 +122,14 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         
               <ul class="nav navbar-nav navbar-right">
+              
+              <!-- 다운 광고 추가 임시 버튼 -->
+              <li>
+              <a href="applyAdForm.do">
+                           <i class="pe-7s-search"></i>       
+              </a>
+              </li>
+              
                     <li>
                         <a href="javascript:void(0);" data-toggle="search" class="hidden-xs">
                             <i class="pe-7s-search"></i>
