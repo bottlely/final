@@ -62,7 +62,7 @@
 							<li><a href="joinForm.do">Sign Up</a></li>
 							<li><a data-scroll href="#about-us">About</a></li>
 							<li><a href="admin.do">admin</a></li>
-
+							<li><a href="myHomeForm.do">MyPage</a></li>
 						</ul>
 					</div>
 					<!--/.nav-collapse -->

@@ -62,8 +62,7 @@
 	<bean id="adController" class="mars.controller.AdController"></bean>
 	<bean id="adminController" class="mars.controller.AdminController"></bean>
 	<bean id="settingController" class="mars.controller.SettingController"></bean>
-
-
+	<bean id="myHomeController" class="mars.controller.myHomeController"></bean>
 
 
 	<!-- service -->
