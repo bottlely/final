@@ -37,6 +37,7 @@
 	<bean id="indexController" class="mars.controller.IndexController"></bean>
 	<bean id="memberController" class="mars.controller.MemberController"></bean>
 	<bean id="mainController" class="mars.controller.MainController"></bean>
+	<bean id="adController" class="mars.controller.AdController"></bean>
 	
 	
 	<!-- service -->
