@@ -129,6 +129,13 @@
                            <i class="pe-7s-search"></i>       
               </a>
               </li>
+              <li>
+              <a href="#" onclick="window.open('checkCurAd.do', '광고 통계', 'scrollbars=no width=400, height=350')">
+                           <i class="pe-7s-search"></i>       
+              </a>
+              </li>
+              
+              <!--  -->
               
                     <li>
                         <a href="javascript:void(0);" data-toggle="search" class="hidden-xs">
