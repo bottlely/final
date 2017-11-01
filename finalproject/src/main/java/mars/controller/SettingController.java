@@ -14,9 +14,11 @@ public class SettingController {
 	@Autowired
 	private SettingDAO settingDao; 
 
-	@RequestMapping(value = "/infoSetting.do", method = RequestMethod.GET)
+//	@RequestMapping(value = "/infoSetting.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/infoSettingForm.do")
 	public ModelAndView infoSettingForm() {
-//		idx = 12;
+//		public ModelAndView infoSettingForm(int idx) {
+//		MemberDTO dto = settingDao.getMyInfo(idx);
 		MemberDTO dto = settingDao.getMyInfo(12);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
@@ -24,8 +26,10 @@ public class SettingController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/infoSetting.do", method = RequestMethod.POST)
-	public ModelAndView infoSetting(MemberDTO mdto) {
+//	@RequestMapping(value = "/infoSetting.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/infoSetting.do")
+	public ModelAndView infoSetting(MemberDTO dto) {
+		System.out.println(dto.getGender());
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("setting/settingMsg");
 		return mav;
