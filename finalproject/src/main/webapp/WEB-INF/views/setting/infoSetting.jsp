@@ -19,7 +19,7 @@
 			</tr>
 			<tr>
 				<th>E-Mail
-				<td><input type="text" name="email" value="${dto.emil}"></td>
+				<td><input type="text" name="email" value="${dto.id}"></td>
 			</tr>
 			<tr>
 				<th>Gender</th>

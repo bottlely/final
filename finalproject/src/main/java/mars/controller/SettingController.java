@@ -15,9 +15,9 @@ public class SettingController {
 	private SettingDAO settingDao; 
 
 	@RequestMapping(value = "/infoSetting.do", method = RequestMethod.GET)
-	public ModelAndView infoSettingForm(int idx) {
-		idx = 12;
-		MemberDTO dto = settingDao.getMyInfo(idx);
+	public ModelAndView infoSettingForm() {
+//		idx = 12;
+		MemberDTO dto = settingDao.getMyInfo(12);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
 		mav.setViewName("setting/infoSetting");
