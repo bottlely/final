@@ -16,7 +16,6 @@ function checkOne(gender){
 	        	chk[i].checked = false;
 	        }
 	    }
-
 }
 </script>
 <body>
