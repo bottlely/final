@@ -125,7 +125,7 @@
               
               <!-- 다운 광고 추가 임시 버튼 -->
               <li>
-              <a href="#" onclick="window.open('applyAdForm.do', '광고 주문서', 'scrollbars=no width=450, height=350')">
+              <a href="#" onclick="window.open('applyAdForm.do', '광고 주문서', 'scrollbars=no width=400, height=350')">
                            <i class="pe-7s-search"></i>       
               </a>
               </li>

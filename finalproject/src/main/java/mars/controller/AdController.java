@@ -12,5 +12,12 @@ public class AdController {
 		return "ad/applyAd";
 	}
 	
+	
+	@RequestMapping("/applyAdOk.do")
+	public String acceptJoinForm(){
+		//ÀúÀå
+		return "main/main";
+	}
+	
 
 }

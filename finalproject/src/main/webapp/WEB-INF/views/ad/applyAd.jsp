@@ -8,9 +8,9 @@
 </head>
 <body>
 
-<h2>광고 주문서</h2>
+<h2 align="center">광고 주문서</h2><hr>
 
-<form name="" action="">
+<form name="applyAd" action="applyAdOk.do">
 <table>
 <tr>
 	<th>Name</th>
