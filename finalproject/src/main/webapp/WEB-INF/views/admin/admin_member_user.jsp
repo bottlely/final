@@ -21,7 +21,7 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
   <!-- Navigation-->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-   <a class="navbar-brand" href="admin_main.jsp">MARS</a>
+   <a class="navbar-brand" href="admin.do">MARS</a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -34,10 +34,10 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseComponents">
             <li>
-              <a href="admin_member_user.jsp">User</a>
+              <a href="admin_m_u.do">User</a>
             </li>
             <li>
-              <a href="admin_member_busi.jsp">Business</a>
+              <a href="admin_m_b.do">Business</a>
             </li>
           </ul>
         </li>
@@ -48,25 +48,26 @@
           </a>
           <ul class="sidenav-second-level collapse" id="collapseExamplePages">
             <li>
-              <a href="admin_data_user.jsp">User</a>
+              <a href="admin_d_u.do">User</a>
             </li>
             <li>
-              <a href="admin_data_busi.jsp">Business</a>
+              <a href="admin_d_b.do">Business</a>
 
           </ul>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="admin_customer.jsp">
+          <a class="nav-link" href="admin_c.do">
             <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">Customer</span>
           </a>
         </li>
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="admin_profile.jsp">
+          <a class="nav-link" href="admin_p.do">
             <i class="fa fa-fw fa-table"></i>
             <span class="nav-link-text">Profile</span>
           </a>
         </li>
+
 
     
 
