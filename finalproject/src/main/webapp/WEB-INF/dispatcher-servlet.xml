@@ -39,14 +39,8 @@
 	<bean id="mainController" class="mars.controller.MainController"></bean>
 	<bean id="adController" class="mars.controller.AdController"></bean>
 	<bean id="adminController" class="mars.controller.AdminController"></bean>
-<<<<<<< HEAD
 	<bean id="settingController" class="mars.controller.SettingController"></bean>
-
-=======
-	<bean id="javaMailSender" class="mars.email.model.MailServiceImple">
-	
-	</bean>
->>>>>>> refs/remotes/origin/master
+	<bean id="javaMailSender" class="mars.email.model.MailServiceImple"></bean>
 	
 	<!-- service -->
 	
