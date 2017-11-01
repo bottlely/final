@@ -5,29 +5,59 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import mars.email.model.MailService;
 import mars.member.model.*;
 import java.util.*;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class MemberController {
 	
 	@Autowired
 	private MemberDAO mdao;
+	
+	@Autowired
+	private MailService mailService;
+	
+	@RequestMapping("/joinForm.do")
+	public String memberJoinForm() {
+		return "member/memberJoin";
+	}
+	
+	@RequestMapping("/emailCheck.do")
+	public String emailCheckForm() {
+		return "member/emailCheck";
+	}
+	
+	/*Sending Email*/
+	
+	public boolean sendEmail(HttpSession session, @RequestParam String email) {
+		int randomCode = new Random().nextInt(10000)+1000;
+		String joinCode = String.valueOf(randomCode);
+		session.setAttribute("joinCode", joinCode);
+		
+		String subject = "ì´ë©”ì¼ ì¸ì¦ ë²ˆí˜¸ìž…ë‹ˆë‹¤.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("ì´ë©”ì¼ ì¸ì¦ ë²ˆí˜¸ëŠ”").append(joinCode).append("ìž…ë‹ˆë‹¤.");
+		return mailService.send(subject, sb.toString(), "stillaway91@gmail.com", email);
+	}
+	
 
 	@RequestMapping("/join.do")
 	public ModelAndView memberJoin(MemberDTO dto) {
 		int result = mdao.memberJoin(dto);
-		String msg = result>0?"È¸¿ø°¡ÀÔ¼º°ø":"È¸¿ø°¡ÀÔ½ÇÆÐ";
+		String msg = result>0?"Success":"Fail";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.setViewName("member/memberMsg");
 		return mav;
 	}
 	
-	@RequestMapping("/joinForm.do")
-	public String memberJoinForm() {
-		return "member/memberJoin";
-	}
+
+	
+	
 }
