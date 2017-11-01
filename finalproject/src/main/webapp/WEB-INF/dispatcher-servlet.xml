@@ -2,15 +2,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+
 	<!-- configs -->
-	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
-	
-	
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+
+
 	<!-- 1.datasource -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
-		<property name="url" value="jdbc:oracle:thin:@yongstudy.iptime.org:9000:orcl" />
+		<property name="url"
+			value="jdbc:oracle:thin:@yongstudy.iptime.org:9000:orcl" />
 		<property name="username" value="project03_02" />
 		<property name="password" value="project03_02" />
 	</bean>
@@ -31,26 +33,48 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean" />
 	</bean>
-	
+
+	<!-- email인증 -->
+
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="stillaway91@gmail.com" />
+		<property name="password" value="qkrqhdud1" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.auth">true</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="mailService" class="mars.email.model.MailServiceImple">
+		<property name="javaMailSender" ref="javaMailSender" />
+	</bean>
+
+
 	<!-- controller -->
-	
+
 	<bean id="indexController" class="mars.controller.IndexController"></bean>
 	<bean id="memberController" class="mars.controller.MemberController"></bean>
 	<bean id="mainController" class="mars.controller.MainController"></bean>
 	<bean id="adController" class="mars.controller.AdController"></bean>
 	<bean id="adminController" class="mars.controller.AdminController"></bean>
 	<bean id="settingController" class="mars.controller.SettingController"></bean>
-	<bean id="javaMailSender" class="mars.email.model.MailServiceImple"></bean>
-	
+
+
+
+
 	<!-- service -->
-	
+
 	<bean id="mdao" class="mars.member.model.MemberDAOImple">
 		<constructor-arg>
 			<ref bean="sqlSessionTemplate"></ref>
 		</constructor-arg>
 	</bean>
-	
-	
+
+
 	<!-- views -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -58,5 +82,5 @@
 		<property name="suffix" value=".jsp"></property>
 		<property name="order" value="1"></property>
 	</bean>
-	
+
 </beans>
