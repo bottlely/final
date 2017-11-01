@@ -133,7 +133,7 @@ section {
 
 
 	<section>
-		<form name="join" action="join.do" method="post">
+		<form name="join" action="emailCheck.do" method="post">
 			<div
 				style='width: 900px; margin: 0 auto; height: 70px; padding-top: 20px; padding-bottom: 0px;'>
 				<h3 align="center">Sign in</h3>
@@ -141,22 +141,22 @@ section {
 			<table class="join">
 				<tr>
 					<th>이름 <span style="color: red; font-weight: bolder;">*</span></th>
-					<td><input type="text" name="name"></td>
+					<td><input type="text" name="name" required></td>
 				</tr>
 				<tr>
 					<th scope="row">아이디 <span
 						style="color: red; font-weight: bolder;">*</span></th>
-					<td><input type="text" name="id"> </td>
+					<td><input type="text" name="id" required>Email형식으로 입력</td>
 				</tr>
 				<tr>
 					<th>비밀번호 <span style="color: red; font-weight: bolder;">*</span></th>
-					<td><input type="password" name="pwd" onkeyup="checkpwd()">
-						<div id="checkpwd"></div></td>
+					<td><input type="password" name="pwd" onkeyup="checkpwd()" required>
+						<div id="checkpwd" ></div></td>
 				</tr>
 				<tr>
 					<th>비밀번호 확인 <span style="color: red; font-weight: bolder;">*</span></th>
 					<td><input type="password" name="pwd_check"
-						onkeyup="confirmPwd()">
+						onkeyup="confirmPwd()" required>
 						<div id="confirmpwd"></div></td>
 				</tr>
 				<tr>

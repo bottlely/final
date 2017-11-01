@@ -2,6 +2,7 @@ package mars.email.model;
 
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
@@ -9,7 +10,7 @@ public class MailServiceImple implements MailService {
 	
 	private JavaMailSender javaMailSender;
 	
-	
+	@Autowired
 	public MailServiceImple(JavaMailSender javaMailSender) {
 		super();
 		this.javaMailSender = javaMailSender;
