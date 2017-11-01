@@ -32,31 +32,10 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean" />
 	</bean>
 	
-	
- 	<!-- email인증 -->
- 	
- 	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
- 		<property name="host" value="smtp.gmail.com" />
- 	    <property name="port" value="587" />
- 	    <property name="username" value="stillaway91@gmail.com" />
- 	    <property name="password" value="qkrqhdud1" />
- 	    <property name="javaMailProperties">
- 	        <props>
- 	            <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
- 	            <prop key="mail.smtp.starttls.enable">true</prop>
- 	            <prop key="mail.smtp.auth">true</prop>
- 	        </props>
- 	    </property>
- 	</bean>
- 	<bean id="mailService" class="mars.email.model.MailServiceImple">
-     	<property name="javaMailSender" ref="javaMailSender" />
- 	</bean>
- 
 	<!-- controller -->
 	
 	<bean id="indexController" class="mars.controller.IndexController"></bean>
 	<bean id="memberController" class="mars.controller.MemberController">
-	<property name="mailService" ref="mailService"></property>
 	</bean>
 	<bean id="mainController" class="mars.controller.MainController"></bean>
 	<bean id="adController" class="mars.controller.AdController"></bean>
