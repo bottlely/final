@@ -47,7 +47,7 @@ public class MyHomeController{
 		mhdao.introUpload(info);
 	
 		ModelAndView mav = new ModelAndView();
-		String msg = "파일 업로드 성공!";
+		String msg = profile.getOriginalFilename()+"/ 파일 업로드 성공";
 		mav.addObject("msg", msg);
 		mav.setViewName("myPage/myHomeMsg");
 		return "myPage/myHome";
