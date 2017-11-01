@@ -7,6 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-myPage/myHome
+	<form action="profileUpload.do" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="user_idx" value="3">	
+		<input type="file" name="profile"><br>
+		<input type="submit" value="전송">
+	</form>
+</form>
 </body>
 </html>
