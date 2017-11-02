@@ -54,7 +54,7 @@
 			    $("#friends1").click(function(){
 			        var div = $("#friends2");
 			        div.animate({height: '100%'}, "slow");
-			        div.animate({width: '35%'}, "slow");
+			        div.animate({width:'toggle'}, "slow");
 			        
 			    });
 			});
@@ -133,9 +133,9 @@
 <div id="navbar-full">
 <span style="float: left;">
 
-				<div  id="friends2" style="background:#935d8c;height:0px;width:0px; position: absolute; float: left; display: block; z-index: 4">
+				<div  id="friends2" style="background:#935d8c;height:100%;width:25%; position: absolute; float: left; display: none; z-index: 4">
 		<div style="display: none;" id="friends3">닫기</div>
-	<iframe src="http://localhost:9090/finalproject/index/index.jsp" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+	<iframe src="main_frList.do" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
 	</div>
 		 </span>
