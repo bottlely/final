@@ -16,5 +16,9 @@
 	<form action="introUploadForm.do" method="post">
 		<input type="submit" value="내 소개">
 	</form>
+	<form action="myHomeForm.do" method="post">
+		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
+		<input type="submit" value="back">
+	</form>
 </body>
 </html>

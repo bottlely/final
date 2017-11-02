@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,7 +149,11 @@
 
 		 	<div  id="mypage2" style="background:#935d8c;height:0px;width:0px; position: absolute; float: right; z-index: 4">
 	<div style="display: none;" id="mypage3">닫기</div>
-	<iframe src="myHomeForm.do" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+	
+	<c:url var="myHomeUrl" value="myHomeForm.do">
+		<c:param name="useridx" value="${sessionScope.useridx}"/>
+	</c:url>
+	<iframe src="${myHomeUrl}" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
 	</div>
 		 

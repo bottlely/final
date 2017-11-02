@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-//********* member_idx_temp 수정 필요
-//********* 가입과 동시에 myPage생성 필요 (default 이미지 경로 삽입)
+//********* member_idx_temp �닔�젙 �븘�슂
+//********* 媛��엯怨� �룞�떆�뿉 myPage�깮�꽦 �븘�슂 (default �씠誘몄� 寃쎈줈 �궫�엯)
 
 @Controller
 public class MyHomeController{
@@ -30,14 +30,12 @@ public class MyHomeController{
 	@Autowired
 	private MyHomeDAO mhdao;
 	
-	String member_idx_temp = "3";
-	
-	@RequestMapping("/myHomeForm.do")
-	public ModelAndView myHomeForm(HttpServletRequest req) {
+	@RequestMapping(value="/myHomeForm.do")
+	public ModelAndView myHomeForm(@RequestParam("useridx")String member_idx,HttpServletRequest req) {
 		
-		mhdao.visitorUpdate(member_idx_temp);
+		mhdao.visitorUpdate(member_idx);
 		
-		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx_temp);
+		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
 		
 		String realPath = req.getSession().getServletContext().getRealPath("");
 		realPath = realPath.replaceAll("\\\\","/");
@@ -47,6 +45,7 @@ public class MyHomeController{
 		String intro = mhdto.getIntro();
 		
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("mhdto", mhdto);
 		mav.addObject("profile", profile);
 		mav.addObject("background",background);
 		mav.addObject("intro",intro);
@@ -58,7 +57,6 @@ public class MyHomeController{
 	public String moreMyHomeForm() {
 		return "myPage/more/moreMyHome";
 	}
-	
 	@RequestMapping("/profileUploadForm.do")
 	public String profileUploadForm() {
 		return "myPage/more/profileUpload";
@@ -72,16 +70,45 @@ public class MyHomeController{
 		return "myPage/more/introUpload";
 	}
 	
+	@RequestMapping("/moreFFHomeForm.do")
+	public ModelAndView moreMyHomeForm(@RequestParam("ffidx")int ffidx,@RequestParam("ffid")String ffid) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("ffidx", ffidx);
+		mav.addObject("ffid", ffid);
+		mav.setViewName("myPage/more/moreFFHome");
+		return mav;
+	}
+	
+	@RequestMapping("/reportUserForm.do")
+	public ModelAndView reportUserForm(@RequestParam("toIdx")int toIdx,@RequestParam("toId")String toId) {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("toIdx",toIdx);
+		mav.addObject("toId",toId);
+		mav.setViewName("myPage/more/reportUser");
+		return mav;
+	}
+	@RequestMapping("/reportUser.do")
+	public ModelAndView reportUser(@RequestParam("report")String report,
+			@RequestParam("toIdx")String toIdx,
+			@RequestParam("fromIdx")String fromIdx) {
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("ffIdx", toIdx);
+		mav.addObject("msg", "신고 로직 필요!");
+		mav.setViewName("myPage/myHomeMsg");
+		return mav;
+	}
+	
 	@RequestMapping(value="introUpload.do", method=RequestMethod.POST)
-	public ModelAndView introUpload(@RequestParam("member_idx")String member_idx, @RequestParam("intro")String intro){
+	public ModelAndView introUpload(@RequestParam("useridx")String member_idx, @RequestParam("intro")String intro){
 		
 		HashMap<String, String> info = new HashMap<String, String>();
-		info.put("member_idx",member_idx_temp);
+		info.put("member_idx",member_idx);
 		info.put("intro", intro);
 		int result = mhdao.introUpload(info);
 		
 		ModelAndView mav = new ModelAndView();
-		String msg = result > 0 ? "업로드 성공!" : "업로드 실패!";
+		String msg = result > 0 ? "�뾽濡쒕뱶 �꽦怨�!" : "�뾽濡쒕뱶 �떎�뙣!";
 		mav.addObject("msg", msg);
 		mav.setViewName("myPage/myHomeMsg");
 		return mav;
@@ -90,20 +117,20 @@ public class MyHomeController{
 	@RequestMapping("/profileUpload.do")
 	public ModelAndView profileUpload(MultipartHttpServletRequest req,HttpServletRequest req2) {
 		
-		String member_idx = req.getParameter("member_idx");
+		String member_idx = req.getParameter("useridx");
 		MultipartFile profile = req.getFile("profile");
 		String type = "profile_img";
 		
-		copyInto(member_idx_temp,type,profile,req2);
+		copyInto(member_idx,type,profile,req2);
 		
 		HashMap<String, String> info = new HashMap<String, String>();
-		info.put("member_idx",member_idx_temp);
+		info.put("member_idx",member_idx);
 		info.put("type", type);
 		info.put("path", profile.getOriginalFilename());
 		int result = mhdao.profileUpload(info);
 	
 		ModelAndView mav = new ModelAndView();
-		String msg = result > 0 ? "업로드 성공!" : "업로드 실패!";
+		String msg = result > 0 ? "�뾽濡쒕뱶 �꽦怨�!" : "�뾽濡쒕뱶 �떎�뙣!";
 		mav.addObject("msg", msg);
 		mav.setViewName("myPage/myHomeMsg");
 		return mav;
@@ -112,34 +139,34 @@ public class MyHomeController{
 	@RequestMapping("/backgroundUpload.do")
 	public ModelAndView backgroundUpload(MultipartHttpServletRequest req,HttpServletRequest req2) {
 		
-		String member_idx = req.getParameter("member_idx");
+		String member_idx = req.getParameter("useridx");
 		MultipartFile profile = req.getFile("background");
 		String type = "background_img";
 		
-		copyInto(member_idx_temp,type,profile,req2);
+		copyInto(member_idx,type,profile,req2);
 		
 		HashMap<String, String> info = new HashMap<String, String>();
-		info.put("member_idx",member_idx_temp);
+		info.put("member_idx",member_idx);
 		info.put("type", type);
 		info.put("path", profile.getOriginalFilename());
 		int result = mhdao.backgroundUpload(info);
 		
 		ModelAndView mav = new ModelAndView();
-		String msg = result > 0 ? "업로드 성공!" : "업로드 실패!";
+		String msg = result > 0 ? "�뾽濡쒕뱶 �꽦怨�!" : "�뾽濡쒕뱶 �떎�뙣!";
 		mav.addObject("msg", msg);
 		mav.setViewName("myPage/myHomeMsg");
 		return mav;
 	}
 
 	
-	/**蹂듭궗愿��젴硫붿꽌�뱶*/
+	/**癰귣벊沅쀦꽴占쏙옙�졃筌롫뗄苑뚳옙諭�*/
 	public void copyInto(String writer,String type,MultipartFile upload,HttpServletRequest req2){
 		
 		String filename= upload.getOriginalFilename();
-		System.out.println("�삱由곗씠:"+writer+"\n�삱由고뙆�씪紐�:"+filename);
+		System.out.println("占쎌궞�뵳怨쀬뵠:"+writer+"\n占쎌궞�뵳怨좊솁占쎌뵬筌륅옙:"+filename);
 		
 		try {
-			byte bytes[] = upload.getBytes(); //�뙆�씪 �썝蹂�
+			byte bytes[] = upload.getBytes(); //占쎈솁占쎌뵬 占쎌뜚癰귨옙
 			
 			String realPath = req2.getSession().getServletContext().getRealPath("");
 			realPath = realPath.replaceAll("\\\\","/");
@@ -147,7 +174,7 @@ public class MyHomeController{
 			File newfile = new File(realPath+"/myHomeFolder/"+type+"/"+filename);
 			
 			FileOutputStream fos = new FileOutputStream(newfile);
-			fos.write(bytes); //蹂듭궗
+			fos.write(bytes); //癰귣벊沅�
 			fos.close();
 		} catch (Exception e) {
 			e.printStackTrace();

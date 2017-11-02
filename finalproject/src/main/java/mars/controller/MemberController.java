@@ -72,6 +72,8 @@ public class MemberController {
 				MemberDTO dto = new MemberDTO();
 				dto = mdao.getUserInfo(userid);
 				String username = dto.getName();
+				String useridx = Integer.toString(dto.getIdx());
+				session.setAttribute("useridx",useridx);
 				session.setAttribute("userid", userid);
 				session.setAttribute("username", username);
 				
