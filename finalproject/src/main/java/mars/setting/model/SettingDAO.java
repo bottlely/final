@@ -10,4 +10,5 @@ public interface SettingDAO {
 	public int updateMyInfo(MemberDTO dto);
 	public String getMyPwd(int idx);
 	public int changePwd(HashMap<String, String> map);
+	public int leaveMars(int idx);
 }

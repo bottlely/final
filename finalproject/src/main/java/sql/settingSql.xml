@@ -17,4 +17,7 @@
 	<update id="changePwd" parameterType="HashMap">
 	update mars_member set pwd=#{pwd} where idx=#{idx}
 	</update>
+	<delete id="leaveMars" parameterType="Integer">
+	delete mars_member where idx=#{idx}
+	</delete>
 </mapper>

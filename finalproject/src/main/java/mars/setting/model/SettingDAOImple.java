@@ -38,4 +38,10 @@ public class SettingDAOImple implements SettingDAO{
 		int count = sqlMap.update("changePwd", map);
 		return count;
 	}
+	
+	/**계정 탈퇴 관련 메서드*/
+	public int leaveMars(int idx){
+		int count = sqlMap.delete("leaveMars", idx);
+		return count;
+	}
 }

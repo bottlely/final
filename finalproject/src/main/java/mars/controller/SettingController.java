@@ -70,4 +70,23 @@ public class SettingController {
 		mav.setViewName("setting/settingMsg");
 		return mav;
 	}
+
+	@RequestMapping(value = "leaveMars.do", method = RequestMethod.GET)
+	public String leaveMarsForm() {
+		return "setting/leaveMars";
+	}
+
+	@RequestMapping(value="leaveMars.do", method=RequestMethod.POST)
+	public ModelAndView leaveMars() {
+		// public ModelAndView leaveMars(int idx){
+		int idx = 12;
+		int count = settingDao.leaveMars(idx);
+		String msg = count>0? "Å»ÅðµÇ¾ú½À´Ï´Ù." : "Å»Åð¿¡ ½ÇÆÐÇÏ¿³½À´Ï´Ù.";
+		String gourl = count>0? "index.do" : "leaveMars.do";
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.addObject("gourl", gourl);
+		mav.setViewName("setting/settingMsg");
+		return mav;
+	}
 }
