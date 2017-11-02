@@ -5,8 +5,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="mars.myHome">
+
 	<update id="profileUpload" parameterType="HashMap">
 		update myPage set profile_img = #{path}  
 		where member_idx = #{member_idx}
 	</update>
+	<update id="backgroundUpload" parameterType="HashMap">
+		update myPage set background_img = #{path}  
+		where member_idx = #{member_idx}
+	</update>
+	<update id="introUpload" parameterType="HashMap">
+		update myPage set intro = #{intro}
+		where member_idx = #{member_idx}
+	</update>
+	
+	<update id="visitorUpdate" parameterType="String">
+		update myPage set visitor_today = visitor_today + 1, visitor_total = visitor_total + 1, entertime = sysdate
+		where member_idx = #{member_idx}
+	</update>
+	<update id="visitorTodayReset" parameterType="String">
+		update myPage set visitor_today = 0
+	</update>
+	
+	<select id="myHomeSource" parameterType="String" resultType="mars.myHome.model.MyHomeDTO">
+		select * from myPage where member_idx = #{member_idx}
+	</select>
+	
 </mapper>

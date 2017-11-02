@@ -12,14 +12,15 @@ public class MyHomeDTO {
 	private int visitor_today;
 	private int visitor_total;
 	private int open_coverage;
-	
+	private Date entertime;
 	
 	public MyHomeDTO() {
 		super();
 	}
 
+
 	public MyHomeDTO(int member_idx, String name, String intro, String profile_img, String background_img,
-			int visitor_today, int visitor_total, int open_coverage) {
+			int visitor_today, int visitor_total, int open_coverage, Date entertime) {
 		super();
 		this.member_idx = member_idx;
 		this.name = name;
@@ -29,7 +30,10 @@ public class MyHomeDTO {
 		this.visitor_today = visitor_today;
 		this.visitor_total = visitor_total;
 		this.open_coverage = open_coverage;
+		this.entertime = entertime;
 	}
+
+
 
 	public int getMember_idx() {
 		return member_idx;
@@ -93,6 +97,16 @@ public class MyHomeDTO {
 
 	public void setOpen_coverage(int open_coverage) {
 		this.open_coverage = open_coverage;
+	}
+
+
+	public Date getEntertime() {
+		return entertime;
+	}
+
+
+	public void setEntertime(Date entertime) {
+		this.entertime = entertime;
 	}
 	
 	
