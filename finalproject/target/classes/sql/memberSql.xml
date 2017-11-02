@@ -18,7 +18,7 @@
 		select pwd from mars_member where id = #{id}
 	</select>
 	
-	<select id="getUserInfo" parameterType="String" resultType="mars.member.medel.MemberDTO">
+	<select id="getUserInfo" parameterType="String" resultType="mars.member.model.MemberDTO">
 		select * from mars_member where = ${id}
 	</select>
 	
