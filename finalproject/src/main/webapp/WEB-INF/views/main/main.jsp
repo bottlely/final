@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="assets_main/css/style.css" type="text/css">
     <link href="assets_main/css/pe-icon-7-stroke.css" rel="stylesheet" />
 	<link href="assets_main/css/ct-navbar.css" rel="stylesheet" />  
+	
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
   <title>MARS</title>
     <!--     Font Awesome     -->
     <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -238,11 +243,11 @@
     <div class="row">
         <div class="col-md-3" style="margin-top: 3%;">
          <ul class="nav nav-pills nav-stacked">
-    <li class="active"><a href="#">Friends?</a></li>
-    <li><a href="#">양진모</a></li>
-    <li><a href="#">곽은지</a></li>
-    <li><a href="#">오현경</a></li>
-     <li><a href="#">박연수</a></li>
+    <li><a href="#">TEXT  <span class="glyphicon glyphicon-font"></span></a></li>
+    <li><a href="#">PHOTO  <span class="glyphicon glyphicon-camera"></span></a></li>
+    <li><a href="#">VIDEO  <span class="glyphicon glyphicon-facetime-video"></span></a></li>
+    <li><a href="#">LINK  <span class="glyphicon glyphicon-link"></span></a></li>
+    
   </ul>
         </div>
         <div class="col-md-9" style=" background-color: white; margin-top: 30px; height: auto; border-radius: 10%;" id="choofr1_info">
