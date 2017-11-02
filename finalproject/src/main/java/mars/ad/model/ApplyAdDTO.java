@@ -6,6 +6,7 @@ import java.util.*;
 
 public class ApplyAdDTO {
 	
+	private int ad_idx;
 	private int member_idx;
 	private String name;
 	private String type;
@@ -14,14 +15,14 @@ public class ApplyAdDTO {
 	private Date s_date;
 	private Date e_date;
 	private int fee;
-	private String favor_movie;
-	private String favor_sport;
-	private String favor_fashion;
-	private String favor_beauty;
-	private String favor_travel;
-	private String favor_music;
-	private String favor_dance;
-	private String favor_food;
+	private int favor_movie;
+	private int favor_sport;
+	private int favor_fashion;
+	private int favor_beauty;
+	private int favor_travel;
+	private int favor_music;
+	private int favor_dance;
+	private int favor_food;
 	private int status;
 	private String post;
 	private String follow;
@@ -39,11 +40,12 @@ public class ApplyAdDTO {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ApplyAdDTO(int member_idx, String name, String type, String link, String ad_content, Date s_date,
-			Date e_date, int fee, String favor_movie, String favor_sport, String favor_fashion, String favor_beauty,
-			String favor_travel, String favor_music, String favor_dance, String favor_food, int status, String post,
+	public ApplyAdDTO(int ad_idx, int member_idx, String name, String type, String link, String ad_content, Date s_date,
+			Date e_date, int fee, int favor_movie, int favor_sport, int favor_fashion, int favor_beauty,
+			int favor_travel, int favor_music, int favor_dance, int favor_food, int status, String post,
 			String follow, Date apply_date, int amount) {
 		super();
+		this.ad_idx = ad_idx;
 		this.member_idx = member_idx;
 		this.name = name;
 		this.type = type;
@@ -66,8 +68,15 @@ public class ApplyAdDTO {
 		this.apply_date = apply_date;
 		this.amount = amount;
 	}
+	
+	
+	public int getAd_idx() {
+		return ad_idx;
+	}
 
-
+	public void setAd_idx(int ad_idx) {
+		this.ad_idx = ad_idx;
+	}
 
 	public int getMember_idx() {
 		return member_idx;
@@ -117,52 +126,52 @@ public class ApplyAdDTO {
 	public void setFee(int fee) {
 		this.fee = fee;
 	}
-	public String getFavor_movie() {
+	public int getFavor_movie() {
 		return favor_movie;
 	}
-	public void setFavor_movie(String favor_movie) {
+	public void setFavor_movie(int favor_movie) {
 		this.favor_movie = favor_movie;
 	}
-	public String getFavor_sport() {
+	public int getFavor_sport() {
 		return favor_sport;
 	}
-	public void setFavor_sport(String favor_sport) {
+	public void setFavor_sport(int favor_sport) {
 		this.favor_sport = favor_sport;
 	}
-	public String getFavor_fashion() {
+	public int getFavor_fashion() {
 		return favor_fashion;
 	}
-	public void setFavor_fashion(String favor_fashion) {
+	public void setFavor_fashion(int favor_fashion) {
 		this.favor_fashion = favor_fashion;
 	}
-	public String getFavor_beauty() {
+	public int getFavor_beauty() {
 		return favor_beauty;
 	}
-	public void setFavor_beauty(String favor_beauty) {
+	public void setFavor_beauty(int favor_beauty) {
 		this.favor_beauty = favor_beauty;
 	}
-	public String getFavor_travel() {
+	public int getFavor_travel() {
 		return favor_travel;
 	}
-	public void setFavor_travel(String favor_travel) {
+	public void setFavor_travel(int favor_travel) {
 		this.favor_travel = favor_travel;
 	}
-	public String getFavor_music() {
+	public int getFavor_music() {
 		return favor_music;
 	}
-	public void setFavor_music(String favor_music) {
+	public void setFavor_music(int favor_music) {
 		this.favor_music = favor_music;
 	}
-	public String getFavor_dance() {
+	public int getFavor_dance() {
 		return favor_dance;
 	}
-	public void setFavor_dance(String favor_dance) {
+	public void setFavor_dance(int favor_dance) {
 		this.favor_dance = favor_dance;
 	}
-	public String getFavor_food() {
+	public int getFavor_food() {
 		return favor_food;
 	}
-	public void setFavor_food(String favor_food) {
+	public void setFavor_food(int favor_food) {
 		this.favor_food = favor_food;
 	}
 	public int getStatus() {
