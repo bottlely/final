@@ -26,7 +26,7 @@ public class AdController {
 		
 		
 		
-		return "ad/checkCurAd.do";
+		return "ad/checkCurAd";
 	}
 	
 
