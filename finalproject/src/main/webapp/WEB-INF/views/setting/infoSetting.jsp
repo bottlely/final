@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="dto" value="${dto }"></c:set>
+<c:set var="dto" value="${dto }"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +21,7 @@ function checkOne(gender){
 <body>
 	<h1>Info_Setting</h1>
 	<hr>
-	<form name="infoSetting" action="infoSetting.do">
+	<form name="infoSetting" action="infoSetting.do" method="post">
 	<input type="hidden" name="idx" value="${dto.idx }">
 		<table>
 			<tr>
