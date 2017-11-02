@@ -37,13 +37,6 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean" />
 	</bean>
-	
-	<!-- 4. websocket -->
-	<websocket:handlers>
-	    <websocket:mapping handler="echoHandler" path="/echo" />
-	    <websocket:sockjs />
-	</websocket:handlers>
-	
 
 	<!-- controller -->
 	
