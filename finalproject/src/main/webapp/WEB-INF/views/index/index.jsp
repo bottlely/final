@@ -63,6 +63,7 @@
 							<li><a data-scroll href="#about-us">About</a></li>
 							<li><a href="admin.do">admin</a></li>
 							<li><a href="myHomeForm.do">MyPage</a></li>
+							<li><a href="logout.do">Log-out</a></li>
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
@@ -194,57 +195,28 @@
 					<p class="sec-subtitle" id="login1">MARS</p>
 				</div>
 				<div class="col-sm-4" data-sr="enter left, hustle 80px">
-					<div class="address">
-						<p class="address-title title">
-							<i class="fa fa-map-marker"></i> Address
-						</p>
-
-						<p class="address-content">
-							312, 7th Ave, New York <br> NY 101200, United States of
-							America
-						</p>
-					</div>
-					<div class="address">
-						<p class="address-title title">
-							<i class="fa fa-mobile-phone"></i> Hotline (24x7)
-						</p>
-
-						<p class="address-content">
-							+65 0052 300, +65 88251 210 <br> +88 01723 511 340
-						</p>
-					</div>
-					<div class="address">
-						<p class="address-title title">
-							<i class="fa fa-envelope-o"></i> E-mail
-						</p>
-
-						<p class="address-content">
-							shapedtheme@gmail.com <br>hello@shapedtheme.com
-						</p>
-					</div>
+					
 				</div>
 				<div class="col-sm-8" data-sr="enter right, hustle 80px">
-					<form class="st-form">
+					<form class="st-form" action="login.do">
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-group ">
 									<input type="email" class="form-control"
-										placeholder="YOUR E-MAIL">
+										placeholder="YOUR E-MAIL" name="id">
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-group ">
-									<input type="text" class="form-control"
-										placeholder="YOUR PASSWORD">
+									<input type="password" class="form-control"
+										placeholder="YOUR PASSWORD" name="pwd">
 								</div>
 							</div>
 
 						</div>
-
-
-						<a href="main.do"><button type="button" class="btn btn-send">Login</button></a>
+						<input type="submit" class="btn btn-send" value="LOGIN">
 					</form>
 				</div>
 			</div>

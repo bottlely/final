@@ -50,8 +50,12 @@ public class MemberController {
 	
 	/*login Check*/
 	
+	@RequestMapping("/login.do")
 	public ModelAndView loginCheck(@RequestParam("id")String userid, @RequestParam("pwd")String userpwd,
 			HttpSession session, HttpServletResponse resp, HttpServletRequest req) {
+		
+		System.out.println(userid);
+		System.out.println(userpwd);
 		
 		ModelAndView mav = new ModelAndView();
 		int idCheckResult = mdao.loginIdCheck(userid);
@@ -94,6 +98,20 @@ public class MemberController {
 		mav.setViewName("member/loginMsg");
 		return mav;
 		
+	}
+	
+	/*Log-out*/
+	
+	@RequestMapping("/logout.do")
+	public ModelAndView logout(HttpSession session){
+		session.invalidate();
+		String msg = "로그아웃 합니다.";
+		String gourl = "index.do";
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg",msg);
+		mav.addObject("gourl",gourl);
+		mav.setViewName("member/loginMsg");
+		return mav;
 	}
 	
 	
