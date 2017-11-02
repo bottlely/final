@@ -148,7 +148,7 @@
 
 		 	<div  id="mypage2" style="background:#935d8c;height:0px;width:0px; position: absolute; float: right; z-index: 4">
 	<div style="display: none;" id="mypage3">닫기</div>
-	<iframe src="http://localhost:9090/finalproject/main/main.jsp" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+	<iframe src="myHomeForm.do" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
 	</div>
 		 
