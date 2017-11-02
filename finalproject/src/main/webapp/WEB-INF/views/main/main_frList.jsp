@@ -100,7 +100,7 @@
 												<h3><a href="#">강호동</a></h3>
 												<time class="published" datetime="2015-10-20">October 20, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
 										</article>
 									</li>
 									<li>
@@ -109,7 +109,7 @@
 												<h3><a href="#">이승기</a></h3>
 												<time class="published" datetime="2015-10-15">October 15, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic09.jpg" alt="" style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic09.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
 									<li>
@@ -118,7 +118,7 @@
 												<h3><a href="#">이수근</a></h3>
 												<time class="published" datetime="2015-10-10">October 10, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic10.jpg" alt="" style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic10.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
 									<li>
@@ -127,7 +127,7 @@
 												<h3><a href="#">김종민</a></h3>
 												<time class="published" datetime="2015-10-08">October 8, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic11.jpg" alt="" style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic11.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
 									<li>
@@ -136,7 +136,7 @@
 												<h3><a href="#">유재석</a></h3>
 												<time class="published" datetime="2015-10-06">October 7, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic12.jpg" alt="" style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic12.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
 								</ul>
@@ -151,7 +151,7 @@
 												<h3><a href="#">태연</a></h3>
 												<time class="published" datetime="2015-10-20">October 20, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
 										</article>
 									</li>
 									<li>
@@ -160,7 +160,7 @@
 												<h3><a href="#">윤아</a></h3>
 												<time class="published" datetime="2015-10-15">October 15, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic09.jpg" alt="" style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic09.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
 									<li>
@@ -169,7 +169,7 @@
 												<h3><a href="#">써니</a></h3>
 												<time class="published" datetime="2015-10-10">October 10, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic10.jpg" alt="" style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic10.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
 									<li>
@@ -178,7 +178,7 @@
 												<h3><a href="#">수영</a></h3>
 												<time class="published" datetime="2015-10-08">October 8, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic11.jpg" alt="" style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic11.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
 									<li>
@@ -187,7 +187,7 @@
 												<h3><a href="#">선미</a></h3>
 												<time class="published" datetime="2015-10-06">October 7, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic12.jpg" alt="" style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic12.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
 								</ul>
@@ -211,7 +211,7 @@
 												<h3><a href="#">양진모</a></h3>
 												<time class="published" datetime="2015-10-20">October 20, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic08.jpg" alt="" style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
 									<li>
@@ -220,7 +220,7 @@
 												<h3><a href="#">곽은지</a></h3>
 												<time class="published" datetime="2015-10-15">October 15, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic09.jpg" alt="" style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic09.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
 									<li>
@@ -229,7 +229,7 @@
 												<h3><a href="#">오현경</a></h3>
 												<time class="published" datetime="2015-10-10">October 10, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic10.jpg" alt="" style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic10.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
 									<li>
@@ -238,7 +238,7 @@
 												<h3><a href="#">박연수</a></h3>
 												<time class="published" datetime="2015-10-08">October 8, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic11.jpg" alt="" style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic11.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
 									<li>
@@ -247,7 +247,7 @@
 												<h3><a href="#">정다운</a></h3>
 												<time class="published" datetime="2015-10-06">October 7, 2015</time>
 											</header>
-											<a href="#" class="image"><img src="images/pic12.jpg" alt="" style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic12.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
 								</ul>
