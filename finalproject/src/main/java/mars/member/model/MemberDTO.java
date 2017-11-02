@@ -20,7 +20,7 @@ public class MemberDTO {
 	int favorite_beauty;
 	int favorite_travel;
 	int favorite_music;
-	int favorite_dacne;
+	int favorite_dance;
 	int favorite_food;
 	Date joindate;
 	int usertype;
@@ -37,7 +37,7 @@ public class MemberDTO {
 
 	public MemberDTO(int idx, String name, String id, String pwd, int gender, int birth_y, int birth_m, int birth_d,
 			String tel, String city, int favorite_movie, int favorite_sport, int favorite_fashion, int favorite_beauty,
-			int favorite_travel, int favorite_music, int favorite_dacne, int favorite_food, Date joindate, int usertype,
+			int favorite_travel, int favorite_music, int favorite_dance, int favorite_food, Date joindate, int usertype,
 			int company_number, String add1, String add2, String add3, String add4, String add5) {
 		super();
 		this.idx = idx;
@@ -56,7 +56,7 @@ public class MemberDTO {
 		this.favorite_beauty = favorite_beauty;
 		this.favorite_travel = favorite_travel;
 		this.favorite_music = favorite_music;
-		this.favorite_dacne = favorite_dacne;
+		this.favorite_dance = favorite_dance;
 		this.favorite_food = favorite_food;
 		this.joindate = joindate;
 		this.usertype = usertype;
@@ -196,12 +196,12 @@ public class MemberDTO {
 		this.favorite_music = favorite_music;
 	}
 
-	public int getFavorite_dacne() {
-		return favorite_dacne;
+	public int getFavorite_dance() {
+		return favorite_dance;
 	}
 
-	public void setFavorite_dacne(int favorite_dacne) {
-		this.favorite_dacne = favorite_dacne;
+	public void setFavorite_dance(int favorite_dance) {
+		this.favorite_dance = favorite_dance;
 	}
 
 	public int getFavorite_food() {

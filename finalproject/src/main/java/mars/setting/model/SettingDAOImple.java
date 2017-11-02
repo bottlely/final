@@ -18,4 +18,13 @@ public class SettingDAOImple implements SettingDAO{
 		MemberDTO dto = sqlMap.selectOne("getMyInfo", idx);
 		return dto;
 	}
+
+	/**자기 정보 수정 관련 메서드*/
+	public int updateMyInfo(MemberDTO dto) {
+		System.out.println("2222222222222222222222222222222");
+		System.out.println("food" + dto.getFavorite_food());
+		int count = sqlMap.update("updateMyInfo", dto);
+		System.out.println("count_" + count);
+		return count;
+	}
 }

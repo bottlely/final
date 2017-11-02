@@ -29,12 +29,12 @@ function checkOne(gender){
 			</tr>
 			<tr>
 				<th>E-Mail
-				<td><input type="text" name="email" value="${dto.id}"></td>
+				<td><input type="text" name="id" value="${dto.id}"></td>
 			</tr>
 			<tr>
 				<th>Gender</th>
-				<td><input type="checkbox" name="gender" value="1" onclick="checkOne(this);">Man
-					<input type="checkbox" name="gender" value="2" onclick="checkOne(this);">Woman
+				<td><input type="checkbox" name="gender" value="1" onclick="checkOne(this);" ${dto.gender==1? 'checked':'' }>Man
+					<input type="checkbox" name="gender" value="2" onclick="checkOne(this);" ${dto.gender==2? 'checked':''}>Woman
 				</td>
 			</tr>
 			<tr>
@@ -55,27 +55,27 @@ function checkOne(gender){
 				<th>City</th>
 				<td>
 					<select name="city" id="city">
-						<option value="seoul">Seoul</option>
-						<option value="Incheon">Incheon</option>
-						<option value="Suwon">Suwon</option>
-						<option value="Ilsan">Ilsan</option>
-						<option value="Daegu">Daegu</option>
-						<option value="Daejeon">Daejeon</option>
-						<option value="Busan">Busan</option>
+						<option value="seoul" ${dto.city eq 'Seoul'?'selected':'' }>Seoul</option>
+						<option value="Incheon" ${dto.city eq 'Incheon'?'selected':'' }>Incheon</option>
+						<option value="Suwon" ${dto.city eq 'Suwon'?'selected':'' }>Suwon</option>
+						<option value="Ilsan" ${dto.city eq 'Ilsan'?'selected':''} >Ilsan</option>
+						<option value="Daegu" ${dto.city eq 'Daegu'?'selected':'' }>Daegu</option>
+						<option value="Daejeon" ${dto.city eq 'Daejeon'?'selected':''} >Daejeon</option>
+						<option value="Busan" ${dto.city eq 'Busan'?'selected':'' }>Busan</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
 				<th>Favor</th>
 				<td>
-					<input type="checkbox" name="favor_movie" value="1">Movie
-					<input type="checkbox" name="favor_sport" value="1">Sport
-					<input type="checkbox" name="favor_fashion" value="1">Fashion
-					<input type="checkbox" name="favor_beauty" value="1">Beauty
-					<input type="checkbox" name="favor_travel" value="1">Travel
-					<input type="checkbox" name="favor_musin" value="1">Music
-					<input type="checkbox" name="favor_dance" value="1">Dance
-					<input type="checkbox" name="favor_food" value="1">Food
+					<input type="checkbox" name="favorite_movie" value="1">Movie
+					<input type="checkbox" name="favorite_sport" value="1">Sport
+					<input type="checkbox" name="favorite_fashion" value="1">Fashion
+					<input type="checkbox" name="favorite_beauty" value="1">Beauty
+					<input type="checkbox" name="favorite_travel" value="1">Travel
+					<input type="checkbox" name="favorite_musin" value="1">Music
+					<input type="checkbox" name="favorite_dance" value="1">Dance
+					<input type="checkbox" name="favorite_food" value="1">Food
 				</td>
 			</tr>
 		</table>

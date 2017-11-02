@@ -8,4 +8,7 @@
 	<select id="getMyInfo" parameterType="Integer" resultType="mars.member.model.MemberDTO">
 	select * from mars_member where idx=#{idx}
 	</select>
+	<update id="updateMyInfo" parameterType="mars.member.model.MemberDTO">
+	update mars_member set name=#{name}, id=#{id}, gender=#{gender}, birth_y=#{birth_y}, birth_m=#{birth_m}, birth_d=#{birth_d}, tel=#{tel}, city=#{city}, favorite_movie=#{favorite_movie}, favorite_sport=#{favorite_sport}, favorite_fashion=#{favorite_fashion}, favorite_beauty=#{favorite_beauty}, favorite_travel=#{favorite_travel}, favorite_music=#{favorite_music}, favorite_dance=#{favorite_dance}, favorite_food=#{favorite_food} where idx=#{idx}
+	</update>
 </mapper>

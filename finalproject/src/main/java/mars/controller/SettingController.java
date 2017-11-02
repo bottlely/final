@@ -11,6 +11,7 @@ import mars.setting.model.SettingDAO;
 
 @Controller
 public class SettingController {
+	
 	@Autowired
 	private SettingDAO settingDao; 
 
@@ -29,8 +30,10 @@ public class SettingController {
 //	@RequestMapping(value = "/infoSetting.do", method = RequestMethod.POST)
 	@RequestMapping(value = "/infoSetting.do")
 	public ModelAndView infoSetting(MemberDTO dto) {
-		System.out.println(dto.getGender());
+		System.out.println("111111111111111111111111111111111111111");
 		ModelAndView mav = new ModelAndView();
+		int count = settingDao.updateMyInfo(dto);
+		System.out.println("ctr_count = " + count);
 		mav.setViewName("setting/settingMsg");
 		return mav;
 	}
