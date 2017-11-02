@@ -30,10 +30,12 @@ public class SettingController {
 //	@RequestMapping(value = "/infoSetting.do", method = RequestMethod.POST)
 	@RequestMapping(value = "/infoSetting.do")
 	public ModelAndView infoSetting(MemberDTO dto) {
-		System.out.println("111111111111111111111111111111111111111");
 		ModelAndView mav = new ModelAndView();
 		int count = settingDao.updateMyInfo(dto);
-		System.out.println("ctr_count = " + count);
+		String msg = count>0? "수정되었습니다." : "수정에 실패하였습니다.";
+		String gourl="infoSettingForm.do";
+		mav.addObject("msg", msg);
+		mav.addObject("gourl", gourl);
 		mav.setViewName("setting/settingMsg");
 		return mav;
 	}

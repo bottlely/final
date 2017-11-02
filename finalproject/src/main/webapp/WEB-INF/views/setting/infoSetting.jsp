@@ -22,6 +22,7 @@ function checkOne(gender){
 	<h1>Info_Setting</h1>
 	<hr>
 	<form name="infoSetting" action="infoSetting.do">
+	<input type="hidden" name="idx" value="${dto.idx }">
 		<table>
 			<tr>
 				<th>Name</th>
@@ -68,14 +69,14 @@ function checkOne(gender){
 			<tr>
 				<th>Favor</th>
 				<td>
-					<input type="checkbox" name="favorite_movie" value="1">Movie
-					<input type="checkbox" name="favorite_sport" value="1">Sport
-					<input type="checkbox" name="favorite_fashion" value="1">Fashion
-					<input type="checkbox" name="favorite_beauty" value="1">Beauty
-					<input type="checkbox" name="favorite_travel" value="1">Travel
-					<input type="checkbox" name="favorite_musin" value="1">Music
-					<input type="checkbox" name="favorite_dance" value="1">Dance
-					<input type="checkbox" name="favorite_food" value="1">Food
+					<input type="checkbox" name="favorite_movie" value="1" ${dto.favorite_movie==1? 'checked':''}>Movie
+					<input type="checkbox" name="favorite_sport" value="1" ${dto.favorite_sport==1? 'checked':''}>Sport
+					<input type="checkbox" name="favorite_fashion" value="1" ${dto.favorite_fashion==1? 'checked':''}>Fashion
+					<input type="checkbox" name="favorite_beauty" value="1" ${dto.favorite_beauty==1? 'checked':''}>Beauty
+					<input type="checkbox" name="favorite_travel" value="1" ${dto.favorite_travel==1? 'checked':''}>Travel
+					<input type="checkbox" name="favorite_musin" value="1" ${dto.favorite_music==1? 'checked':''}>Music
+					<input type="checkbox" name="favorite_dance" value="1" ${dto.favorite_dance==1? 'checked':''}>Dance
+					<input type="checkbox" name="favorite_food" value="1" ${dto.favorite_food==1? 'checked':''}>Food
 				</td>
 			</tr>
 		</table>
