@@ -48,6 +48,7 @@
 	<bean id="settingController" class="mars.controller.SettingController"></bean>
 	<bean id="myHomeController" class="mars.controller.MyHomeController"></bean>
 	<bean id="echoHandler" class="mars.controller.EchoHandler"></bean>
+	<bean id="webcamController" class="mars.controlleer.WebcamController"></bean>
 
 
 	<!-- service -->
