@@ -16,5 +16,7 @@ public class MemberDAOImple implements MemberDAO {
 		int result = sqlMap.insert("memberJoin", dto);
 		return result;
 	}
+	
+	
 
 }

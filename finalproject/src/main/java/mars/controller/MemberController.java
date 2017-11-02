@@ -1,6 +1,9 @@
 package mars.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,8 @@ import mars.member.model.*;
 import java.util.*;
 
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class MemberController {
@@ -19,34 +24,17 @@ public class MemberController {
 	@Autowired
 	private MemberDAO mdao;
 	
-
-/*	@Autowired
-	private MailService mailService;*/
 	
 	@RequestMapping("/joinForm.do")
 	public String memberJoinForm() {
 		return "member/memberJoin";
 	}
 	
-/*	@RequestMapping("/emailCheck.do")
+	@RequestMapping("/emailCheck.do")
 	public String emailCheckForm() {
 		return "member/emailCheck";
-	}*/
-	
+	}
 
-	/*Sending Email*/
-	
-/*	public boolean sendEmail(HttpSession session, @RequestParam String email) {
-		int randomCode = new Random().nextInt(10000)+1000;
-		String joinCode = String.valueOf(randomCode);
-		session.setAttribute("joinCode", joinCode);
-		
-		String subject = "이메일 인증 번호입니다.";
-		StringBuilder sb = new StringBuilder();
-		sb.append("이메일 인증 번호는").append(joinCode).append("입니다.");
-		return mailService.send(subject, sb.toString(), "stillaway91@gmail.com", email);
-	}*/
-	
 
 	@RequestMapping("/join.do")
 	public ModelAndView memberJoin(MemberDTO dto) {
@@ -58,6 +46,7 @@ public class MemberController {
 		return mav;
 	}
 	
+
 
 	
 	
