@@ -1,6 +1,7 @@
 package mars.controller;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -45,6 +46,56 @@ public class MemberController {
 		mav.setViewName("member/memberMsg");
 		return mav;
 	}
+	
+	
+	/*login Check*/
+	
+	public ModelAndView loginCheck(@RequestParam("id")String userid, @RequestParam("pwd")String userpwd,
+			HttpSession session, HttpServletResponse resp, HttpServletRequest req) {
+		
+		ModelAndView mav = new ModelAndView();
+		int idCheckResult = mdao.loginIdCheck(userid);
+		
+		if(idCheckResult==1) {  // Id exist.
+			String dbpwd = mdao.pwdCheck(userid);
+			if(dbpwd.equals(userpwd)) {  //id&pwd correct!
+				String msg = "로그인 성공";
+				String gourl = "main.do";
+				mav.addObject("msg", msg);
+				mav.addObject("gourl", gourl);
+				
+				/*login info save*/
+				MemberDTO dto = new MemberDTO();
+				dto = mdao.getUserInfo(userid);
+				String username = dto.getName();
+				session.setAttribute("userid", userid);
+				session.setAttribute("username", username);
+				
+				
+			}else{ //id ok but pwd wrong
+				String msg = "ID or PWD 가 틀렸습니다.";
+				String gourl = "index.do";
+				mav.addObject("msg", msg);
+				mav.addObject("gourl", gourl);
+			}
+			
+		}else if(idCheckResult==0){ //id not exist
+			String msg = "ID or PWD 가 틀렸습니다.";
+			String gourl = "index.do";
+			mav.addObject("msg", msg);
+			mav.addObject("gourl", gourl);
+			
+		}else{
+			String msg = "알수없는 에러, 고객센터 연락바람.";
+			String gourl = "index.do";
+			mav.addObject("msg", msg);
+			mav.addObject("gourl", gourl);
+		}
+		mav.setViewName("member/loginMsg");
+		return mav;
+		
+	}
+	
 	
 
 

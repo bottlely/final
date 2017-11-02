@@ -10,8 +10,16 @@
 		(mars_member_idx.nextval, #{name}, #{id}, #{pwd}, 1, 2000, 10, 10, '111-111', 'seoul', 0,0,0,0,0,0,0,0,sysdate,0,0,0,0,0,0,0)
 	</insert>
 	
-	<select id="login" parameterType="String" resultType="String">
+	<select id="loginIdCheck" parameterType="String" resultType="int">
+		select * from mars_member where id = #{id}
+	</select>
+	
+	<select id="pwdCheck" parameterType="String" resultType="String">
 		select pwd from mars_member where id = #{id}
+	</select>
+	
+	<select id="getUserInfo" parameterType="String" resultType="mars.member.medel.MemberDTO">
+		select * from mars_member where = ${id}
 	</select>
 	
 </mapper>
