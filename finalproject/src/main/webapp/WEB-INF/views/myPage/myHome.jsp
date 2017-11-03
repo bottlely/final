@@ -15,6 +15,7 @@
     
     <c:if test="${sessionScope.useridx eq mhdto.getMember_idx()}">
 	    <form action="moreMyHomeForm.do" method="post">
+	    	<input type="hidden" name="useridx" value="${mhdto.getMember_idx()}">
 			<input type="submit" value="...">
 		</form>
 	</c:if>

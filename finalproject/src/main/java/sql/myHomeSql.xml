@@ -30,4 +30,8 @@
 	<select id="myHomeSource" parameterType="String" resultType="mars.myHome.model.MyHomeDTO">
 		select * from myPage where member_idx = #{member_idx}
 	</select>
+	
+	<update id="openCoverage" parameterType="HashMap">
+		update myPage set open_coverage = ${range} where member_idx = #{member_idx}
+	</update>
 </mapper>

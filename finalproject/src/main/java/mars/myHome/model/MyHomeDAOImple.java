@@ -52,4 +52,9 @@ public class MyHomeDAOImple implements MyHomeDAO {
 		return dto;
 	}
 
+	public int openCoverage(HashMap<String, Integer> info) {
+		int result = sqlMap.update("openCoverage", info);
+		return result;
+	}
+
 }

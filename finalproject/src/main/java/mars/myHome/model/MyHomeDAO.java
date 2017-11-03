@@ -10,6 +10,8 @@ public interface MyHomeDAO {
 	public int backgroundUpload(HashMap<String, String> info);
 	public int introUpload(HashMap<String, String> info);
 	
+	public int openCoverage(HashMap<String, Integer> info);
+	
 	public void visitorUpdate(String member_idx);
 	public void visitorTodayReset(String member_idx);
 	

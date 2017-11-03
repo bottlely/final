@@ -54,8 +54,12 @@ public class MyHomeController{
 	}
 	
 	@RequestMapping("/moreMyHomeForm.do")
-	public String moreMyHomeForm() {
-		return "myPage/more/moreMyHome";
+	public ModelAndView moreMyHomeForm(@RequestParam("useridx")String member_idx) {
+		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("mhdto", mhdto);
+		mav.setViewName("myPage/more/moreMyHome");
+		return mav;
 	}
 	@RequestMapping("/profileUploadForm.do")
 	public String profileUploadForm() {
@@ -180,6 +184,24 @@ public class MyHomeController{
 			e.printStackTrace();
 		}
 		
+	}
+	
+	/*비공개 설정하기*/
+	@RequestMapping("/openCoverage.do")
+	public ModelAndView openCoverage(@RequestParam("useridx")String useridx,@RequestParam("range")int range){
+		
+		int member_idx = Integer.parseInt(useridx);
+		
+		HashMap<String, Integer> info = new HashMap<String, Integer>();
+		info.put("member_idx",member_idx);
+		info.put("range", range);
+		int result = mhdao.openCoverage(info);
+		
+		ModelAndView mav = new ModelAndView();
+		String msg = result > 0 ? "변경 완료!" : "변경 실패!";
+		mav.addObject("msg", msg);
+		mav.setViewName("myPage/myHomeMsg");
+		return mav;
 	}
 
 }
