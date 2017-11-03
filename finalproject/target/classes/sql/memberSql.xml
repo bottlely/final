@@ -10,6 +10,15 @@
 		(mars_member_idx.nextval, #{name}, #{id}, #{pwd}, 1, 2000, 10, 10, '111-111', 'seoul', 0,0,0,0,0,0,0,0,sysdate,0,0,0,0,0,0,0)
 	</insert>
 	
+	<select id="idxSearch" parameterType="mars.member.model.MemberDTO" resultType="mars.member.model.MemberDTO">
+		select * from mars_member where id = #{id} and pwd = #{pwd}
+	</select>
+	
+	<insert id="myHomeCreate" parameterType="mars.member.model.MemberDTO">
+		insert into myPage values
+		(#{idx}, #{name}, 'My Intro' ,'default_profile.jpg','default_background.jpg', 0, 0, 0, sysdate)
+	</insert>
+	
 	<select id="loginIdCheck" parameterType="String" resultType="int">
 		select count(*) from mars_member where id = #{id}
 	</select>

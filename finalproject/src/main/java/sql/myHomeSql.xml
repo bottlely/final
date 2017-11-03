@@ -30,5 +30,4 @@
 	<select id="myHomeSource" parameterType="String" resultType="mars.myHome.model.MyHomeDTO">
 		select * from myPage where member_idx = #{member_idx}
 	</select>
-	
 </mapper>

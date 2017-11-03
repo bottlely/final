@@ -17,6 +17,18 @@ public class MemberDAOImple implements MemberDAO {
 		return result;
 	}
 	
+	/*Idx Search*/
+	public MemberDTO idxSearch(MemberDTO dto) {
+		MemberDTO dtoIdx = sqlMap.selectOne("idxSearch", dto);
+		return dtoIdx;
+	}
+	
+	/*MyHome Create*/
+	public int myHomeCreate(MemberDTO dto) {
+		int result = sqlMap.insert("myHomeCreate", dto);
+		return result;
+	}
+	
 	/*login-Id Check*/
 	public int loginIdCheck(String userid) {
 		System.out.println(userid);
@@ -39,6 +51,5 @@ public class MemberDAOImple implements MemberDAO {
 		dto = sqlMap.selectOne("getUserInfo", userid);
 		return dto;
 	}
-	
 
 }
