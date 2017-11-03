@@ -37,6 +37,26 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean" />
 	</bean>
+	
+	<!-- email 인증 -->
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+			<property name="port" value="587" />
+			<property name="username" value="stillaway91@gmail.com" />
+			<property name="password" value="qkrqhdud1" />
+			<property name="javaMailProperties">
+				<props>
+					<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+					<prop key="mail.smtp.starttls.enable">true</prop>
+					<prop key="mail.smtp.auth">true</prop>
+				</props>
+		</property>
+	</bean>
+	
+	<bean id="mailService" class="mars.email.model.MailServiceImple">
+		<property name="javaMailSender" ref="javaMailSender" />
+	</bean>
+	
 
 	<!-- controller -->
 	
@@ -49,6 +69,10 @@
 	<bean id="myHomeController" class="mars.controller.MyHomeController"></bean>
 	<bean id="echoHandler" class="mars.controller.EchoHandler"></bean>
 	<bean id="webcamController" class="mars.controller.WebcamController"></bean>
+	<bean id="mailController" class="mars.controller.MailController">
+		<property name="mailService" ref="mailService"></property>
+	</bean>
+	
 
 
 	<!-- service -->
@@ -83,5 +107,7 @@
 		<property name="suffix" value=".jsp"></property>
 		<property name="order" value="1"></property>
 	</bean>
+	
+
 	
 </beans>

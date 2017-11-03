@@ -133,7 +133,7 @@ section {
 
 
 	<section>
-		<form name="join" action="emailCheck.do" method="post">
+		<form name="join" action="ecForm.do" method="post">
 			<div
 				style='width: 900px; margin: 0 auto; height: 70px; padding-top: 20px; padding-bottom: 0px;'>
 				<h3 align="center">Sign in</h3>

@@ -118,6 +118,12 @@ public class MemberController {
 		return mav;
 	}
 	
+	/*Email-Check Form*/
+	
+	@RequestMapping("/ecForm.do")
+	public String EmailCheckForm() {
+		return "member/emailtest";
+	}
 	
 
 
