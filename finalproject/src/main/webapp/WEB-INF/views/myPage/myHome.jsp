@@ -18,7 +18,13 @@
 	    	<input type="hidden" name="useridx" value="${mhdto.getMember_idx()}">
 			<input type="submit" value="...">
 		</form>
+		
+		<form action="contentUploadForm.do" method="post">
+		<input type="hidden" name="useridx" value="${mhdto.getMember_idx()}">
+			<input type="submit" value="+">
+		</form>
 	</c:if>
+
 	
 	<c:if test="${sessionScope.useridx ne mhdto.getMember_idx()}">
 		<form action="moreFFHomeForm.do" method="post">
