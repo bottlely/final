@@ -68,6 +68,12 @@
 			<ref bean="sqlSessionTemplate"></ref>
 		</constructor-arg>
 	</bean>
+	<bean id="adao" class="mars.admin.model.AdminDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+	</bean>
+	
 	
 	
 	<!-- views -->

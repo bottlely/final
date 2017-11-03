@@ -8,5 +8,6 @@
 		<mapper resource="sql/memberSql.xml"/>
 		<mapper resource="sql/myHomeSql.xml"/>
 		<mapper resource="sql/settingSql.xml"/>
+		<mapper resource="sql/adminSql.xml"/>
 	</mappers>
 </configuration>

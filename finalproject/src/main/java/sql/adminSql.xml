@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mars.member">
+	<select id="admin_member" resultType="mars.member.model.MemberDTO">
+		select * from mars_member order by idx desc
+	</select>
+	<delete id="admin_memberDelete" parameterType="int">
+		delete mars_member where idx=#{idx}
+	</delete>
+	<select id="admin_nameSearch" resultType="mars.member.model.MemberDTO">
+		select * from mars_member where name=#{name} order by idx desc
+	</select>
+	<select id="admin_idSearch" resultType="mars.member.model.MemberDTO">
+		select * from mars_member where id=#{id} order by idx desc
+	</select>
+</mapper>
