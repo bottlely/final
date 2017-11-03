@@ -89,7 +89,7 @@
 <span style="float: left;">
 
 				<div  id="friends2" style="background:#935d8c;height:100%;width:25%; position: absolute; float: left; display: none; z-index: 4">
-		<div style="background-color: white; align-content:center; "><a href="#" id="cl1">Close</a></div>
+		<div style="background-color: white; align-content:center; "><a href="#" id="cl1">Close</a></div> 
 	<iframe src="main_frList.do" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
 	</div>
