@@ -67,7 +67,7 @@
 			        var div = $("#mypage2");
 			        div.animate({left: '35%'}, "fast");
 			        div.animate({height: '100%'}, "slow");
-			        div.animate({width: '65%'}, "slow");
+			        div.animate({width:'toggle'}, "slow");
 					
 			    });
 			});
@@ -77,6 +77,15 @@
 			$(document).ready(function(){
 			    $("#cl1").click(function(){
 			        var div = $("#friends2");
+			        div.animate({height: '100%'}, "slow");
+			        div.animate({width:'toggle'}, "slow");
+			        
+			    });
+			});
+			
+			$(document).ready(function(){
+			    $("#cl2").click(function(){
+			        var div = $("#mypage2");
 			        div.animate({height: '100%'}, "slow");
 			        div.animate({width:'toggle'}, "slow");
 			        
@@ -96,8 +105,8 @@
 		 </span>
 		 <span style="float: right;">
 
-		 	<div  id="mypage2" style="background:#935d8c;height:0px;width:0px; position: absolute; float: right; z-index: 4">
-	<div style="display: none;" id="mypage3">닫기</div>
+		 	<div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; z-index: 4" display: none;>
+		<div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
 	
 	<c:url var="myHomeUrl" value="myHomeForm.do">
 		<c:param name="useridx" value="${sessionScope.useridx}"/>
