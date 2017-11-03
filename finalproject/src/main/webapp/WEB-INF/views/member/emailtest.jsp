@@ -81,7 +81,7 @@ h2 {
 	}
 	
 	function checkJoinCode() {
-		var joinCode = ${sessionScope.joinCode};
+		var joinCode = '0';
 		var usercode = document.fm.usercode.value;
 		
 		if(joinCode==usercode) {
