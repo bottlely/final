@@ -11,9 +11,7 @@
     <link href="assets_main/css/pe-icon-7-stroke.css" rel="stylesheet" />
 	<link href="assets_main/css/ct-navbar.css" rel="stylesheet" />  
 	
-		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
   
   <title>MARS</title>
     <!--     Font Awesome     -->
@@ -244,92 +242,6 @@
 
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-3" style="margin-top: 3%;">
-         <ul class="nav nav-pills nav-stacked">
-    <li><a href="#">TEXT  <span class="glyphicon glyphicon-font"></span></a></li>
-    <li><a href="#">PHOTO  <span class="glyphicon glyphicon-camera"></span></a></li>
-    <li><a href="#">VIDEO  <span class="glyphicon glyphicon-facetime-video"></span></a></li>
-    <li><a href="#">LINK  <span class="glyphicon glyphicon-link"></span></a></li>
-    
-  </ul>
-        </div>
-        <div class="col-md-9" style=" background-color: white; margin-top: 30px; height: auto; border-radius: 10%;" id="choofr1_info">
-		<div style=" float:left;"><img src="assets_main/images/아이유6.jpg" alt=""  style="width: 200px; height: 200px; border-radius: 40%;" class="img-thumbnail" id="frc__1">
-		</div>
-		<div style=" float:left;"><img src="assets_main/images/아이유2.jpg" alt=""  style="width: 200px; height: 200px; border-radius: 40%; display: none;" class="img-thumbnail" id="frc__2">
-		
-		</div>
-		<div style=" float:left;"><img src="assets_main/images/아이유3.jpg" alt=""  style="width: 200px;  height: 200px; border-radius: 40%; display: none;" class="img-thumbnail" id="frc__3">
-		</div>
-		<div style=" float:left;"><img src="assets_main/images/아이유4.jpg" alt=""  style="width: 200px;  height: 200px; border-radius: 40%; display: none;" class="img-thumbnail" id="frc__4">
-		</div>
-		<div style="padding: 15px; display: block;" id="frc_1">
- 		  <h3 style="display: inline;">Name :<small>양 진모</small></h3>
- 		  <br>
- 		  <br>
-		   <h4 style="display: inline;">Age :<small>26</small></h4>
-		   <br>
-		  <h4 style="display: inline;">Favor :<small>패션</small></h4>
-		  <h4 style="display: inline;">City :<small>수원</small></h4>
-		 <br>
-		 <br>
-		 <br>
-		
-		 <h3>인생은 한방 로또복권당첨되자</h3>
-		 <hr>
-		 </div>
-		 		<div style="padding: 15px; display: none; " id="frc_2">
- 		  <h3 style="display: inline;">Name :<small>곽 은지</small></h3>
- 		  <br>
- 		  <br>
-		   <h4 style="display: inline;">Age :<small>26</small></h4>
-		   <br>
-		  <h4 style="display: inline;">Favor :<small>손펌프</small></h4>
-		  <h4 style="display: inline;">City :<small>서울</small></h4>
-		 <br>
-		 <br>
-		 <br>
-		 <h3>오락실 ㄱ</h3>
-		 <hr>
-		 </div>
-		 		<div style="padding: 15px; display: none;" id="frc_3">
- 		  <h4 style="display: inline;">Name :<small>오 현경</small></h4>
- 		  <br>
- 		  <br>
-		   <h4 style="display: inline;">Age :<small>25</small></h4>
-		   <br>
-		  <h4 style="display: inline;">Favor :<small>한라봉</small></h4>
-		  <h4 style="display: inline;">City :<small>제주도</small></h4>
-		 <br>
-		 <br>
-		 <br>
-	
-		  <h3>한라산 ㄱ</h3>
-		 <hr>
-		 </div>
-		 		<div style="padding: 15px; display: none;" id="frc_4">
- 		  <h4 style="display: inline;">Name :<small>박 연수</small></h4>
- 		  <br>
- 		  <br>
-		   <h4 style="display: inline;">Age :<small>25</small></h4>
-		   <br>
-		  <h4 style="display: inline;">Favor :<small>여행</small></h4>
-		  <h4 style="display: inline;">City :<small>뉴욕</small></h4>
-		 <br>
-		 <br>
-		 <br>
-	
-		 <h3>I am a good boy</h3>
-		 <hr>
-		 </div>
-</div>
-				
-
-       
-       </div>
-      </div>
    <section id="latest-works">
 	<div class="container">
 		<div class="row">
