@@ -14,8 +14,13 @@
 		<input type="submit" value="업로드">
 	</form>
 	
+	<form action="backgroundUpload.do" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
+		<input type="submit" value="기본 배경 사진 설정">
+	</form>
 	<form action="moreMyHomeForm.do" method="post">
-		<input type="submit" value="back">
+		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
+	<input type="submit" value="back">
 	</form>
 </body>
 </html>

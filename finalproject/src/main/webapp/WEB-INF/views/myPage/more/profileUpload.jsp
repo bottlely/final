@@ -9,13 +9,17 @@
 </head>
 <body>
 	<form action="profileUpload.do" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="useridx" value="${sessionScope.useridx}">	 <!-- 수정 필요 -->
+		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
 		프로필 :<input type="file" name="profile">
 		<input type="submit" value="업로드">
 	</form>
-	
+	<form action="profileUpload.do" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
+		<input type="submit" value="기본 프로필 설정">
+	</form>
 	<form action="moreMyHomeForm.do" method="post">
-		<input type="submit" value="back">
+		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
+	<input type="submit" value="back">
 	</form>
 </body>
 </html>

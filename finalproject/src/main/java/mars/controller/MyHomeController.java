@@ -21,9 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-//********* member_idx_temp �닔�젙 �븘�슂
-//********* 媛��엯怨� �룞�떆�뿉 myPage�깮�꽦 �븘�슂 (default �씠誘몄� 寃쎈줈 �궫�엯)
-
 @Controller
 public class MyHomeController{
 	
@@ -102,7 +99,7 @@ public class MyHomeController{
 		int result = mhdao.introUpload(info);
 		
 		ModelAndView mav = new ModelAndView();
-		String msg = result > 0 ? "�뾽濡쒕뱶 �꽦怨�!" : "�뾽濡쒕뱶 �떎�뙣!";
+		String msg = result > 0 ? "ok!" : "no!";
 		mav.addObject("msg", msg);
 		mav.setViewName("myPage/myHomeMsg");
 		return mav;
@@ -113,18 +110,29 @@ public class MyHomeController{
 		
 		String member_idx = req.getParameter("useridx");
 		MultipartFile profile = req.getFile("profile");
-		String type = "profile_img";
-		
-		copyInto(member_idx,type,profile,req2);
 		
 		HashMap<String, String> info = new HashMap<String, String>();
 		info.put("member_idx",member_idx);
-		info.put("type", type);
-		info.put("path", profile.getOriginalFilename());
+		
+		if(profile != null){
+		
+		String type = "profile_img";
+		
+		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
+		String filename= member_idx+mhdto.getName()+profile.getOriginalFilename();
+		
+		copyInto(filename,type,profile,req2);
+		
+		info.put("path", filename);
+		
+		}else{
+			info.put("path", "default_profile.jpg");
+		}
+		
 		int result = mhdao.profileUpload(info);
-	
+		
 		ModelAndView mav = new ModelAndView();
-		String msg = result > 0 ? "�뾽濡쒕뱶 �꽦怨�!" : "�뾽濡쒕뱶 �떎�뙣!";
+		String msg = result > 0 ? "ok!" : "no";
 		mav.addObject("msg", msg);
 		mav.setViewName("myPage/myHomeMsg");
 		return mav;
@@ -134,30 +142,35 @@ public class MyHomeController{
 	public ModelAndView backgroundUpload(MultipartHttpServletRequest req,HttpServletRequest req2) {
 		
 		String member_idx = req.getParameter("useridx");
-		MultipartFile profile = req.getFile("background");
-		String type = "background_img";
-		
-		copyInto(member_idx,type,profile,req2);
+		MultipartFile background = req.getFile("background");
 		
 		HashMap<String, String> info = new HashMap<String, String>();
 		info.put("member_idx",member_idx);
-		info.put("type", type);
-		info.put("path", profile.getOriginalFilename());
-		int result = mhdao.backgroundUpload(info);
 		
+		if(background != null){
+			
+			String type = "background_img";
+				
+			MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
+			String filename= member_idx+mhdto.getName()+background.getOriginalFilename();
+			
+			copyInto(filename,type,background,req2);
+			
+			info.put("path", filename);
+		}else{
+			info.put("path", "default_background.jpg");
+		}
+		
+		int result = mhdao.backgroundUpload(info);
 		ModelAndView mav = new ModelAndView();
-		String msg = result > 0 ? "�뾽濡쒕뱶 �꽦怨�!" : "�뾽濡쒕뱶 �떎�뙣!";
+		String msg = result > 0 ? "ok!" : "no!";
 		mav.addObject("msg", msg);
 		mav.setViewName("myPage/myHomeMsg");
 		return mav;
 	}
 
 	
-	/**癰귣벊沅쀦꽴占쏙옙�졃筌롫뗄苑뚳옙諭�*/
-	public void copyInto(String writer,String type,MultipartFile upload,HttpServletRequest req2){
-		
-		String filename= upload.getOriginalFilename();
-		System.out.println("占쎌궞�뵳怨쀬뵠:"+writer+"\n占쎌궞�뵳怨좊솁占쎌뵬筌륅옙:"+filename);
+	public void copyInto(String filename,String type,MultipartFile upload,HttpServletRequest req2){
 		
 		try {
 			byte bytes[] = upload.getBytes(); //占쎈솁占쎌뵬 占쎌뜚癰귨옙
