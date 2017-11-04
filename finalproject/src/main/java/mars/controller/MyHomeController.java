@@ -30,25 +30,15 @@ public class MyHomeController{
 	@Autowired
 	private MyHomeDAO mhdao;
 	
+	
 	@RequestMapping(value="/myHomeForm.do")
-	public ModelAndView myHomeForm(@RequestParam("useridx")String member_idx,HttpServletRequest req) {
+	public ModelAndView myHomeForm(@RequestParam("useridx")String member_idx) {
 		
 		mhdao.visitorUpdate(member_idx);
 		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
-		
-		String realPath = req.getSession().getServletContext().getRealPath("");
-		realPath = realPath.replaceAll("\\\\","/");
-		
-		String profile = realPath+"/myHomeFolder/profile_img/"+mhdto.getProfile_img();
-		String background = realPath+"/myHomeFolder/background_img/"+mhdto.getBackground_img();
-		String intro = mhdto.getIntro();
-		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("mhdto", mhdto);
-		mav.addObject("profile", profile);
-		mav.addObject("background",background);
-		mav.addObject("intro",intro);
 		mav.setViewName("myPage/myHome");
 		return mav;
 	}

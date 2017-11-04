@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-올리는 이 : 
+video
+<form action="myHomeForm.do" method="post">
+	<input type="hidden" name="useridx" value="${sessionScope.useridx}">
+	<input type="submit" value="back">
+</form>
 </body>
 </html>

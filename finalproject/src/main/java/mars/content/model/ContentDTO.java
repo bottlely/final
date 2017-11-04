@@ -6,7 +6,7 @@ public class ContentDTO {
 	
 	private int member_idx;
 	private int content_idx;
-	private String category;
+	private int category;
 	private Date writetime;
 	private String path;
 	private String content;
@@ -17,7 +17,8 @@ public class ContentDTO {
 		super();
 	}
 
-	public ContentDTO(int member_idx, int content_idx, String category, Date writetime, String path, String content,
+	
+	public ContentDTO(int member_idx, int content_idx, int category, Date writetime, String path, String content,
 			int coverage_idx, int coverage_state) {
 		super();
 		this.member_idx = member_idx;
@@ -29,6 +30,7 @@ public class ContentDTO {
 		this.coverage_idx = coverage_idx;
 		this.coverage_state = coverage_state;
 	}
+
 
 	public int getMember_idx() {
 		return member_idx;
@@ -46,11 +48,11 @@ public class ContentDTO {
 		this.content_idx = content_idx;
 	}
 
-	public String getCategory() {
+	public int getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(int category) {
 		this.category = category;
 	}
 
