@@ -196,27 +196,42 @@ function request(){
 		oneTag.innerHTML='Company';
 		twoTag.innerHTML='Request Date';
 		threeTag.innerHTML='show';
-		
-		var element = document.ok;
-		element.method="post";
-		element.submit();
-
 }
-function pay(){
+
+
+function payShow(){
 	
-			var oneTag = document.all.a;
-			var twoTag = document.all.b;
-			var threeTag = document.all.c;
+	var element = document.ok;
+	element.method="post";
+	element.submit();
+	
 			
-			oneTag.innerHTML='Company';
-			twoTag.innerHTML='Approval Date';
-			threeTag.innerHTML='Payment Status';
-			
-			var element = document.ok;
-			element.method="post";
-			element.submit();
 }
 
+
+function pay(){
+	var oneTag = document.all.a;
+	var twoTag = document.all.b;
+	var threeTag = document.all.c;
+	
+	oneTag.innerHTML='Company';
+	twoTag.innerHTML='Approval Date';
+	threeTag.innerHTML='Payment Status';
+	
+	sendRequest('getAdRequest.do', null, showResult, 'GET');
+}
+
+function showResult(){
+	
+	 if(XHR.readyState == 4){
+         if(XHR.status == 200){
+        	 alert('11');
+         //   var data = eval('('+XHR.responseText+')');
+            var da = XHR.responseText;
+            alert(da);
+         }
+      }
+}
 
 function total(){
 	var p1=document.all.p1;
@@ -239,19 +254,16 @@ function total(){
 </div>
 
 
-<form name="ok" action="getAdRequest.do">
-
-
   <table class="table table-striped">
-    <thead>
+  <thead>
       <tr>
         <th id="a">Company</th>
         <th id="b">Request Date</th>
         <th id="c">show</th>
       </tr>
-    </thead>
-    
-    
+   </thead>
+
+  
     <tbody>
     <c:if test="${empty list}">
     	<tr>
@@ -261,16 +273,14 @@ function total(){
     
     <c:forEach var="ad" items="${list }">
     	<tr>
-        	<td id="aa">${ad.name }</td>
-        	<td id="bb">${ad.apply_date }</td>
-        	<td id="cc">신청서 link</td>
+        	<td>${ad.name }</td>
+        	<td>${ad.apply_date }</td>
+        	<td>신청서 link</td>
         </tr>
     </c:forEach>
-    </tbody>
-    
+  </tbody>
   </table>
-
-</form>    
+   
     <!-- 다운 끝 -->
       
       
