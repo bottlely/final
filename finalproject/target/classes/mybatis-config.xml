@@ -5,6 +5,7 @@
 
 <configuration>
 	<mappers>
+		<mapper resource="sql/adSql.xml"/>
 		<mapper resource="sql/memberSql.xml"/>
 		<mapper resource="sql/myHomeSql.xml"/>
 		<mapper resource="sql/settingSql.xml"/>

@@ -188,11 +188,6 @@
 <script>
 
 function request(){
-//	if(XHR.readyState==4){
-//	if(XHR.status==200){
-//		var data = eval('('+XHR.responseText+')');
-		
-		
 		
 		var oneTag = document.all.a;
 		var twoTag = document.all.b;
@@ -202,18 +197,13 @@ function request(){
 		twoTag.innerHTML='Request Date';
 		threeTag.innerHTML='show';
 		
-//	}
-	
-//}
-	
-//	sendRequest('/ad/getAdRequest.jsp', null, adRequest, 'GET');
+		var element = document.ok;
+		element.method="post";
+		element.submit();
+
 }
 function pay(){
-//	if(XHR.readyState==4){
-//		if(XHR.status==200){
-//			var data = eval('('+XHR.responseText+')');
-			
-			
+	
 			var oneTag = document.all.a;
 			var twoTag = document.all.b;
 			var threeTag = document.all.c;
@@ -222,37 +212,11 @@ function pay(){
 			twoTag.innerHTML='Approval Date';
 			threeTag.innerHTML='Payment Status';
 			
-			sendRequest('getAdRequest.do', null, 'GET');
-			
-	//	}
-		
-//	}
+			var element = document.ok;
+			element.method="post";
+			element.submit();
 }
 
-function showPay(){
-	if(XHR.readyState==4){
-		
-		if(XHR.status==200){
-			
-			var data = eval('('+XHR.responseText+')');
-			var leng=data.students.length;
-			
-			for(var i=0; i<leng; i++){
-				var student = data.students[0];
-			}
-			
-			var oneTag = document.all.aa;
-			var twoTag = document.all.bb;
-			var threeTag = document.all.cc;
-			
-			oneTag.innerHTML=student.name;
-			twoTag.innerHTML=student.age;
-			threeTag.innerHTML=student.addr;
-		}
-	}
-	
-	
-}
 
 function total(){
 	var p1=document.all.p1;
@@ -275,6 +239,7 @@ function total(){
 </div>
 
 
+<form name="ok" action="getAdRequest.do">
 
 
   <table class="table table-striped">
@@ -285,14 +250,14 @@ function total(){
         <th id="c">show</th>
       </tr>
     </thead>
-    <tbody>
     
+    
+    <tbody>
     <c:if test="${empty list}">
     	<tr>
     		<td colspan="3" align="center">게시물 없음</td>
     	</tr>
     </c:if>
-    
     
     <c:forEach var="ad" items="${list }">
     	<tr>
@@ -302,9 +267,10 @@ function total(){
         </tr>
     </c:forEach>
     </tbody>
+    
   </table>
 
-    
+</form>    
     <!-- 다운 끝 -->
       
       

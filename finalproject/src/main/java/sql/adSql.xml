@@ -6,6 +6,6 @@
   <mapper namespace="mars.ad">
   
   	<select id="adList" parameterType="Map" resultType="mars.ad.model.ApplyAdDTO">
-  		select name, apply_date from ad where status=0;
+  		select * from ad where status=0
   	</select>
   </mapper>

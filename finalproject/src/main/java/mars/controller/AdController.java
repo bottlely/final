@@ -8,15 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import mars.ad.model.ApplyAdDAO;
-import mars.ad.model.ApplyAdDAOImple;
 import mars.ad.model.ApplyAdDTO;
 
 
 @Controller
 public class AdController {
 	
-	//@Autowired
-//	private ApplyAdDAO adDao;
+	@Autowired
+	private ApplyAdDAO adDao;
 	
 	@RequestMapping("/applyAdForm.do")
 	public String adJoinForm(){
@@ -44,12 +43,12 @@ public class AdController {
 	@RequestMapping("/getAdRequest.do")
 	public ModelAndView getAdRequest(){
 		
-		ApplyAdDAOImple adDao = new ApplyAdDAOImple();
-		
 		List<ApplyAdDTO> list = adDao.adList();
-		ModelAndView mav = new ModelAndView();
+		ModelAndView mav = new ModelAndView("jsonView");
 		mav.addObject("list", list);
-		mav.setViewName("ad/getRequest");
+	//	System.out.println("list = "+list.size());
+		mav.setViewName("admin/admin_member_busi");
+	//	System.out.println(mav.isEmpty());
 		return mav;
 	}
 	
