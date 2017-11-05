@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
  <title>MARS - Admin</title>
+ 
+ 
    <!-- Bootstrap core CSS-->
   <link href="assets_admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
@@ -180,23 +183,45 @@
       
       
       <!-- 다운 추가-->
-      <div class="container">
-  <h2>Split Buttons</h2>
-  <div class="btn-group">
-    <button type="button" class="btn btn-primary">Sony</button>
-    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" role="menu">
-      <li><a href="#">Tablet</a></li>
-      <li><a href="#">Smartphone</a></li>
-    </ul>
+
+<script>
+function show(){
+	var p1=document.all.p1;
+	//window.alert(p1.innerHTML);
+	p1.innerHTML='<font color="blue">앗! 화면이 바뀌었네~!</font>';
+}
+function red(){
+	var p1=document.all.p1;
+	//window.alert(p1.innerHTML);
+	p1.innerHTML='<font color="red">앗! 화면이 바뀌었네~!</font>';
+}
+function yellow(){
+	var p1=document.all.p1;
+	//window.alert(p1.innerHTML);
+	p1.innerHTML='<font color="yellow">앗! 화면이 바뀌었네~!</font>';
+}
+</script>
+
+
+
+<div class="container">
+  <br><br>
+  <h2>광고 관리</h2>
+  <br><br>
+  <div class="btn-group btn-group-justified">
+    <input type="button" value="광고주 관리" class="btn btn-primary" onclick="red()">
+    <input type="button" value="결제 관리" class="btn btn-primary" onclick="yellow()">
+    <input type="button" value="통계 보기" class="btn btn-primary" onclick="show()">
+    
   </div>
 </div>
 
 
+<p id="p1">
+<font color="blue">동적으로 화면 변경하기!</font>
+</p>
 
-		<div class="container">
+<div class="container">
   <table class="table table-striped">
     <thead>
       <tr>
@@ -224,7 +249,9 @@
     </tbody>
   </table>
 </div> 
-      
+ 
+    
+    <!-- 다운 끝 -->
       
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
