@@ -4,23 +4,46 @@ import javax.swing.JFrame;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.github.sarxos.webcam.*;
 
 @Controller
 public class WebcamController {
 
 	@RequestMapping("/webMain.do")
-	public String detectCam(){
+	public ModelAndView detectCam(){
 		Webcam webcam = Webcam.getDefault();
+		ModelAndView mav = new ModelAndView();
+		
 		if (webcam != null) {
 			System.out.println("Webcam: " + webcam.getName());
-//			playCam();
+			mav.setViewName("webcam/webcamMain");
+			return mav;
 		} else {
 			System.out.println("No webcam detected");
+			mav.addObject("msg", "사용가능한 카메라가 존재하지 않습니다.");
+			mav.addObject("gourl", "index.do");
+			mav.setViewName("webcam/webcamMsg");
+			return mav;
 		}
 		
-		return "webcam/webcamMain";
 	}
+	
+//	@RequestMapping("/playCam.do")
+//	public String playweb(){
+//		return "webcam/views/index";
+//	}
+//	
+//	@RequestMapping("/local.do")
+//	public String playlocal(){
+//		return "webcam/views/local-cam";
+//	}
+//	
+//	@RequestMapping("/remote.do")
+//	public String playremote(){
+//		return "webcam/views/remote-streams";
+//	}
 
 	public void playCam() {
 		Webcam webcam = Webcam.getDefault();
