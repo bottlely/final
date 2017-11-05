@@ -1,13 +1,11 @@
 package mars.ad.model;
 
-import java.sql.Date;
-import java.io.*;
-import java.util.*;
+import java.sql.*;
 
 public class ApplyAdDTO {
 	
 	private int ad_idx;
-	private int member_idx;
+	private int member_idx; //회원 가입시 idx
 	private String name;
 	private String type;
 	private String link;
@@ -23,10 +21,10 @@ public class ApplyAdDTO {
 	private int favor_music;
 	private int favor_dance;
 	private int favor_food;
-	private int status;
+	private int status; //0:신청&심사중 1:심사 완료/결제 2:결제완료 3:게시
 	private String post;
 	private String follow;
-	private Date apply_date;
+	private Date apply_date; //신청 날짜 -> 승인하면 승인날짜로
 	private int amount;
 	private int cnt1;
 	private int cnt2;

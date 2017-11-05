@@ -1,22 +1,33 @@
 package mars.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import mars.ad.model.ApplyAdDAO;
+import mars.ad.model.ApplyAdDAOImple;
+import mars.ad.model.ApplyAdDTO;
+
+
 @Controller
 public class AdController {
 	
+	//@Autowired
+//	private ApplyAdDAO adDao;
+	
 	@RequestMapping("/applyAdForm.do")
 	public String adJoinForm(){
-		//±¤°íÁÖ µî·ÏÀÌ µÇ¾î ÀÖ´ÂÁö È®ÀÎ!
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¾ï¿½ ï¿½Ö´ï¿½ï¿½ï¿½ È®ï¿½ï¿½!
 		return "ad/applyAd";
 	}
 	
 	
 	@RequestMapping("/applyAdOk.do")
 	public String acceptJoinForm(){
-		//ÀúÀå
+		//ï¿½ï¿½ï¿½ï¿½
 		return "main/main";
 	}
 	
@@ -27,6 +38,19 @@ public class AdController {
 		
 		
 		return "ad/checkCurAd";
+	}
+	
+	
+	@RequestMapping("/getAdRequest.do")
+	public ModelAndView getAdRequest(){
+		
+		ApplyAdDAOImple adDao = new ApplyAdDAOImple();
+		
+		List<ApplyAdDTO> list = adDao.adList();
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("ad/getRequest");
+		return mav;
 	}
 	
 

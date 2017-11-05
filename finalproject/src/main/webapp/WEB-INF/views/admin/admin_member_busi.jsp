@@ -183,21 +183,79 @@
       
       
       <!-- 다운 추가-->
-
+      
+<script type="text/javascript" src="js/httpRequest.js"></script>
 <script>
-function show(){
-	var p1=document.all.p1;
-	//window.alert(p1.innerHTML);
-	p1.innerHTML='<font color="blue">앗! 화면이 바뀌었네~!</font>';
+
+function request(){
+//	if(XHR.readyState==4){
+//	if(XHR.status==200){
+//		var data = eval('('+XHR.responseText+')');
+		
+		
+		
+		var oneTag = document.all.a;
+		var twoTag = document.all.b;
+		var threeTag = document.all.c;
+		
+		oneTag.innerHTML='Company';
+		twoTag.innerHTML='Request Date';
+		threeTag.innerHTML='show';
+		
+//	}
+	
+//}
+	
+//	sendRequest('/ad/getAdRequest.jsp', null, adRequest, 'GET');
 }
-function red(){
-	var p1=document.all.p1;
-	//window.alert(p1.innerHTML);
-	p1.innerHTML='<font color="red">앗! 화면이 바뀌었네~!</font>';
+function pay(){
+//	if(XHR.readyState==4){
+//		if(XHR.status==200){
+//			var data = eval('('+XHR.responseText+')');
+			
+			
+			var oneTag = document.all.a;
+			var twoTag = document.all.b;
+			var threeTag = document.all.c;
+			
+			oneTag.innerHTML='Company';
+			twoTag.innerHTML='Approval Date';
+			threeTag.innerHTML='Payment Status';
+			
+			sendRequest('getAdRequest.do', null, 'GET');
+			
+	//	}
+		
+//	}
 }
-function yellow(){
+
+function showPay(){
+	if(XHR.readyState==4){
+		
+		if(XHR.status==200){
+			
+			var data = eval('('+XHR.responseText+')');
+			var leng=data.students.length;
+			
+			for(var i=0; i<leng; i++){
+				var student = data.students[0];
+			}
+			
+			var oneTag = document.all.aa;
+			var twoTag = document.all.bb;
+			var threeTag = document.all.cc;
+			
+			oneTag.innerHTML=student.name;
+			twoTag.innerHTML=student.age;
+			threeTag.innerHTML=student.addr;
+		}
+	}
+	
+	
+}
+
+function total(){
 	var p1=document.all.p1;
-	//window.alert(p1.innerHTML);
 	p1.innerHTML='<font color="yellow">앗! 화면이 바뀌었네~!</font>';
 }
 </script>
@@ -209,49 +267,46 @@ function yellow(){
   <h2>광고 관리</h2>
   <br><br>
   <div class="btn-group btn-group-justified">
-    <input type="button" value="광고주 관리" class="btn btn-primary" onclick="red()">
-    <input type="button" value="결제 관리" class="btn btn-primary" onclick="yellow()">
-    <input type="button" value="통계 보기" class="btn btn-primary" onclick="show()">
+    <input type="button" value="광고주 관리" class="btn btn-primary" onclick="request()">
+    <input type="button" value="결제 관리" class="btn btn-primary" onclick="pay()">
+    <input type="button" value="통계 보기" class="btn btn-primary" onclick="total()">
     
   </div>
 </div>
 
 
-<p id="p1">
-<font color="blue">동적으로 화면 변경하기!</font>
-</p>
 
-<div class="container">
+
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
+        <th id="a">Company</th>
+        <th id="b">Request Date</th>
+        <th id="c">show</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
+    
+    <c:if test="${empty list}">
+    	<tr>
+    		<td colspan="3" align="center">게시물 없음</td>
+    	</tr>
+    </c:if>
+    
+    
+    <c:forEach var="ad" items="${list }">
+    	<tr>
+        	<td id="aa">${ad.name }</td>
+        	<td id="bb">${ad.apply_date }</td>
+        	<td id="cc">신청서 link</td>
+        </tr>
+    </c:forEach>
     </tbody>
   </table>
-</div> 
- 
+
     
     <!-- 다운 끝 -->
+      
       
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
