@@ -173,7 +173,7 @@ public class MyHomeController{
 	public void copyInto(String filename,String type,MultipartFile upload,HttpServletRequest req2){
 		
 		try {
-			byte bytes[] = upload.getBytes(); //占쎈솁占쎌뵬 占쎌뜚癰귨옙
+			byte bytes[] = upload.getBytes();
 			
 			String realPath = req2.getSession().getServletContext().getRealPath("");
 			realPath = realPath.replaceAll("\\\\","/");
@@ -181,7 +181,7 @@ public class MyHomeController{
 			File newfile = new File(realPath+"/myHomeFolder/"+type+"/"+filename);
 			
 			FileOutputStream fos = new FileOutputStream(newfile);
-			fos.write(bytes); //癰귣벊沅�
+			fos.write(bytes);
 			fos.close();
 		} catch (Exception e) {
 			e.printStackTrace();

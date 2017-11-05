@@ -1,5 +1,7 @@
 package mars.content.model;
 
+import java.util.HashMap;
+
 public interface ContentDAO {
 	
 	/*contentAddForm()
@@ -16,5 +18,6 @@ public interface ContentDAO {
 	pivacyExcept()
 	prePageGo()
 	*/
-
+	
+	public int photoUpload(HashMap<String, String> info);
 }

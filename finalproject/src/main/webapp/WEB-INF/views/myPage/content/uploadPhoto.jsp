@@ -84,31 +84,38 @@
         }
 
         function submitAction() {
-        	
-            console.log("업로드 파일 갯수 : "+sel_files.length);
-            var data = new FormData();
-
-            for(var i=0, len=sel_files.length; i<len; i++) {
-                var name = "image_"+i;
-                data.append(name, sel_files[i]);
-            }
-            data.append("image_count", sel_files.length);
-            
+             
             if(sel_files.length < 1) {
                 alert("한개이상의 파일을 선택해주세요.");
                 return;
-            }           
+            }   
+    			
+    			var data = new FormData();
+    			
+    			 for(var i=0, len=sel_files.length; i<len; i++) {
+    	                var name = "image_"+i;
+    	                data.append(name, sel_files[i]);
+    	            }
+    			 
+    			 data.append("image_count", sel_files.length);
+    			 data.append("useridx", '${sessionScope.useridx}');
+    			 
+    	        $.ajax({
+    	            type : 'post',
+    	            url : 'uploadContent.do',
+    	            data : data ,
+    	            processData : false,
+    	            contentType : false,
+    	            success : function(html) {
+    	                alert("파일 업로드하였습니다.");
 
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST","myHomeFolder/file/upload.php");
-            xhr.onload = function(e) {
-                if(this.status == 200) {
-                    console.log("Result : "+e.currentTarget.responseText);
-                }
-            }
-
-            xhr.send(data);
-
+    	            },
+    	            error : function(error) {
+    	                alert("파일 업로드에 실패하였습니다.");
+    	                console.log(error);
+    	                console.log(error.status);
+    	            }
+    	        });
         }
 
     </script>
@@ -116,7 +123,6 @@
 
 <body>
 	<h2>${writer}</h2>
-	${dir}
     <div>
         <div class="input_wrap">
             <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>

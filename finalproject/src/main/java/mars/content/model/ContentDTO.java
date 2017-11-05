@@ -10,16 +10,14 @@ public class ContentDTO {
 	private Date writetime;
 	private String path;
 	private String content;
-	private int coverage_idx;
-	private int coverage_state;
+	private String writer;
 	
 	public ContentDTO() {
 		super();
 	}
 
-	
 	public ContentDTO(int member_idx, int content_idx, int category, Date writetime, String path, String content,
-			int coverage_idx, int coverage_state) {
+			String writer) {
 		super();
 		this.member_idx = member_idx;
 		this.content_idx = content_idx;
@@ -27,10 +25,8 @@ public class ContentDTO {
 		this.writetime = writetime;
 		this.path = path;
 		this.content = content;
-		this.coverage_idx = coverage_idx;
-		this.coverage_state = coverage_state;
+		this.writer = writer;
 	}
-
 
 	public int getMember_idx() {
 		return member_idx;
@@ -80,21 +76,12 @@ public class ContentDTO {
 		this.content = content;
 	}
 
-	public int getCoverage_idx() {
-		return coverage_idx;
+	public String getWriter() {
+		return writer;
 	}
 
-	public void setCoverage_idx(int coverage_idx) {
-		this.coverage_idx = coverage_idx;
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
-
-	public int getCoverage_state() {
-		return coverage_state;
-	}
-
-	public void setCoverage_state(int coverage_state) {
-		this.coverage_state = coverage_state;
-	}
-	
 	
 }

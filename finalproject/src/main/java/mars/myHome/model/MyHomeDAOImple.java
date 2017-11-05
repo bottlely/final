@@ -43,7 +43,7 @@ public class MyHomeDAOImple implements MyHomeDAO {
 		sqlMap.update("visitorUpdate", member_idx);
 	}
 
-	public void visitorTodayReset(String member_idx) { //차후 관리자 페이지에 넣아야 함.  
+	public void visitorTodayReset(String member_idx) { //李⑦썑 愿�由ъ옄 �럹�씠吏��뿉 �꽔�븘�빞 �븿.  
 		sqlMap.update("visitorTodayReset", member_idx);
 	}
 

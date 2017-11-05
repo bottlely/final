@@ -1,9 +1,7 @@
 <?php
 
 $imageKind = array ('image/pjpeg', 'image/jpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/png', 'image/x-png');
-$dir = "./myHomeFolder/content/";
-
-echo "I'm in <br/>";
+$dir = $_POST['dir']. $_POST['idx'].$_POST['writer'];
 
 for($i=0; $i<$_POST['image_count']; $i++) {
 	
@@ -25,6 +23,4 @@ for($i=0; $i<$_POST['image_count']; $i++) {
 	}
 
 }
-
-
 ?>
