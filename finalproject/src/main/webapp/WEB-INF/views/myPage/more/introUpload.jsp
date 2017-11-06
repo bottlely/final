@@ -14,7 +14,8 @@
 		<input type="submit" value="업로드">
 	</form>
 	
-	<form action="moreMyHomeForm.do" method="post">
+	<form action="myHomeForm.do" method="post">
+		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
 		<input type="submit" value="back">
 	</form>
 	

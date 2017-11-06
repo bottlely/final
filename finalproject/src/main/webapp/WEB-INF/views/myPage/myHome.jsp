@@ -176,6 +176,7 @@ input:checked+.slider:before {
        	<tr><td><a href="backgroundUploadForm.do">커버사진</a></td></tr>
        	<tr><td><a href="profileUploadForm.do">프로필사진</a></td></tr>
        	<tr><td><a href="introUploadForm.do">소개글</a></td></tr>
+       	<tr><td><a href="contentCategory.do">게시물 추가(test용)</a></td></tr>
        	<tr><td>공개설정<label class="switch">
   			<input type="checkbox" checked>
   			<span class="slider round"></span>

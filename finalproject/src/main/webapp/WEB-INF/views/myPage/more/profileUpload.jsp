@@ -17,9 +17,9 @@
 		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
 		<input type="submit" value="기본 프로필 설정">
 	</form>
-	<form action="moreMyHomeForm.do" method="post">
+	<form action="myHomeForm.do" method="post">
 		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
-	<input type="submit" value="back">
+		<input type="submit" value="back">
 	</form>
 </body>
 </html>
