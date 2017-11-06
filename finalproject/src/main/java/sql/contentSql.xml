@@ -6,7 +6,7 @@
   
 <mapper namespace="mars.content">
 	<insert id="photoUpload" parameterType="HashMap">
-		insert into myPage values
+		insert into content values
 		(#{idx}, content_idx.nextval,1,sysdate,#{path},#{content},#{writer})
 	</insert>
 </mapper>

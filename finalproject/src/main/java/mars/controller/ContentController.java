@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import mars.content.model.*;
 import mars.myHome.model.*;
@@ -33,6 +34,7 @@ public class ContentController {
 	private boolean typeCheck;
 	
 	public ContentController() {
+		
 		super();
 		
 		photoType = new ArrayList<String>();
@@ -74,14 +76,21 @@ public class ContentController {
 		return mav;
 	}
 	
-	@RequestMapping("uploadContent.do")
-	public ModelAndView uploadContent(@RequestParam("useridx")String member_idx,
+	@RequestMapping("uploadPhoto.do")
+	public String uploadContent(@RequestParam("useridx")String member_idx,
+			@RequestParam("content")String content,
 			MultipartHttpServletRequest req,HttpServletRequest req2) {
+		
+		ModelAndView mav = new ModelAndView();
 		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
 		
+		String path = "";
+		
+		HashMap<String, String> info = new HashMap<String, String>();
+		info.put("idx",member_idx);
+		
 		Iterator<String> itr = req.getFileNames();
-		 
 		
         while(itr.hasNext()){
 
@@ -89,18 +98,41 @@ public class ContentController {
 
             MultipartFile mFile = req.getFile(uploadFile);
 
-            String fileName = mFile.getOriginalFilename();
+            String fileName = mhdto.getMember_idx()+mhdto.getName()+System.currentTimeMillis()+mFile.getOriginalFilename();
             
             typeCheck = photoType.contains(mFile.getContentType());
             
-            System.out.println("실제 파일 이름 : " +mhdto.getMember_idx()+mhdto.getName()+fileName +"////"+typeCheck);
-
+            if(typeCheck){
+            	copyInto(fileName,mFile,req2);
+            	path += fileName+"?";
+            	
+            }else{
+            	/*RedirectView redirectView = new RedirectView(); // redirect url 설정
+        		redirectView.setUrl("/uploadPhoto.do");
+        		redirectView.setExposeModelAttributes(false);
+        		mav.addObject("useridx", member_idx);
+        		mav.addObject("type",1);
+        		mav.setView(redirectView);*/
+        		return "-1";
+            }
         }
       
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("writer", "");
-		mav.setViewName("");
-		return mav;
+        info.put("path", path);	
+        info.put("content", content);
+        info.put("writer", mhdto.getName());
+        int result = cdao.photoUpload(info);
+
+		/*RedirectView redirectView = new RedirectView(); // redirect url 설정
+		redirectView.setUrl("/myHomeForm.do");
+		redirectView.setExposeModelAttributes(false);
+		mav.addObject("useridx", member_idx);
+		mav.setView(redirectView);
+		return mav;*/
+        
+		/*mav.addObject("useridx", member_idx);
+		mav.addObject("mhdto", mhdto);
+		mav.setViewName("myPage/myHome");*/
+		return "0";
 	}
 	
 	public void copyInto(String filename,MultipartFile upload,HttpServletRequest req2){

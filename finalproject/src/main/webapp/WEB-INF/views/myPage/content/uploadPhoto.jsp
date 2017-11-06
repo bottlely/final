@@ -90,7 +90,7 @@
                 return;
             }   
     			
-    			var data = new FormData();
+    			 var data = new FormData();
     			
     			 for(var i=0, len=sel_files.length; i<len; i++) {
     	                var name = "image_"+i;
@@ -100,29 +100,44 @@
     			 data.append("image_count", sel_files.length);
     			 data.append("useridx", '${sessionScope.useridx}');
     			 
-    	        $.ajax({
+    			 var content = document.getElementsByTagName("textarea");
+    			 data.append("content",content);
+    			 
+    	        /* $.ajax({
     	            type : 'post',
-    	            url : 'uploadContent.do',
+    	            url : 'uploadPhoto.do',
     	            data : data ,
     	            processData : false,
-    	            contentType : false,
-    	            success : function(html) {
-    	                alert("파일 업로드하였습니다.");
-
-    	            },
-    	            error : function(error) {
-    	                alert("파일 업로드에 실패하였습니다.");
-    	                console.log(error);
-    	                console.log(error.status);
+    	            contentType : false
+    	           }).error(function(msg) {
+    	            	alert('error: 업로드할 수 없습니다.');
+    	           }).done(function(msg) {
+    	           
+    	            if(msg==1){
+    	             	alert('정상적으로 취소처리가 되었습니다. 리스트 페이지로 이동합니다.');
+    	             	document.getElementById('frm').submit();
+    	            }else{
+    	             alert('취소처리가 되지 않았습니다. 잠시 후에 시도해 주십시오.');
     	            }
-    	        });
+
+    	           }); */
+    	           
+		            var xhr = new XMLHttpRequest();
+		            xhr.open("POST","uploadPhoto.do");
+		            xhr.send(data);
+		            xhr.onload = function(e) {
+		                if(this.status == 200) {
+		                    console.log("Result : "+e.currentTarget.responseText);
+		                }
+		            }
+
         }
 
     </script>
 </head>
 
 <body>
-	<h2>${writer}</h2>
+	<h2></h2>
     <div>
         <div class="input_wrap">
             <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
@@ -135,8 +150,14 @@
             <img id="img" />
         </div>
     </div>
+    
+    <textarea></textarea>
 
-    <a href="javascript:" class="my_button" onclick="submitAction();">업로드</a>
+	<a href="javascript:" class="my_button" onclick="submitAction();">업로드</a>
+	
+	<form id="myHome" action="myHomeForm.do" method="post">
+		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
+	</form>
 
 </body>
 </html>
