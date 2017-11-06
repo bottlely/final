@@ -55,38 +55,38 @@
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="#" class="simple-text">
+                <a href="infoSetting.do" class="simple-text">
                     MARS
                 </a>
             </div>
 
             <ul class="nav">
                 <li class="active">
-                    <a href="infoSetting.jsp">
+                    <a href="infoSetting.do">
                         <i class="ti-panel"></i>
                         <p>Setting</p>
                     </a>
                 </li>
                 <li>
-                    <a href="pwdSetting.jsp">
+                    <a href="pwdSetting.do">
                         <i class="ti-user"></i>
                         <p>Password Setting</p>
                     </a>
                 </li>
                 <li>
-                    <a href="friendSetting.jsp">
+                    <a href="friendSetting.do">
                         <i class="ti-view-list-alt"></i>
                         <p>Friends Setting</p>
                     </a>
                 </li>
                 <li>
-                    <a href="serviceCenter.jsp">
+                    <a href="serviceCenter.do">
                         <i class="ti-text"></i>
                         <p>Service Center</p>
                     </a>
                 </li>
                 <li>
-                    <a href="leaveMars.jsp">
+                    <a href="leaveMars.do">
                         <i class="ti-pencil-alt2"></i>
                         <p>Leave</p>
                     </a>
