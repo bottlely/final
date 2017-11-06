@@ -35,15 +35,13 @@
 	 }
 	 */
 	 
-	 function gonode(){
-		 alert("goNode");
-		 location.href="localhost:3000";
-	 }
 </script>
 </head>
 <body>
 	<h1>webMain.jsp</h1>
-	<video id="video" width="640" height="480" autoplay></video>
+	<iframe width="640" height="480" src="http://192.168.25.32:8888">
+	
+	</iframe>
 	<button id="start" onclick="gonode();">시작하기</button>
 </body>
 </html>
