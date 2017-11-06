@@ -105,7 +105,7 @@ public class ContentController {
             	path += fileName+"?";
             	
             }else{
-            	ModelAndView mav = new ModelAndView("marsJson","result","errorType");
+            	ModelAndView mav = new ModelAndView("marsJson","result",-1);
         		return mav;
             }
         }
@@ -115,7 +115,7 @@ public class ContentController {
         info.put("writer", mhdto.getName());
         int result = cdao.photoUpload(info);
 
-        ModelAndView mav = new ModelAndView("marsJson","result","ok");
+        ModelAndView mav = new ModelAndView("marsJson","result",0);
 		return mav;
 	}
 	

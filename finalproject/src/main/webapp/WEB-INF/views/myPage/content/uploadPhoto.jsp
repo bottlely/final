@@ -6,7 +6,6 @@
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
-<script src="js/previewmodule.js"></script>
  <style type="text/css">
  
 	input[type=file] {
@@ -127,7 +126,8 @@
 		            xhr.send(data);
 		            xhr.onload = function(e) {
 		                if(this.status == 200) {
-		                    if(e.currentTarget.responseText == "ok"){
+		                	var jsonResponse = JSON.parse(e.currentTarget.responseText);
+		                    if(jsonResponse["result"] == 0){
 		                    	alert('업로드 완료!');
 		                    	document.getElementById('myHome').submit();
 		                    }else{

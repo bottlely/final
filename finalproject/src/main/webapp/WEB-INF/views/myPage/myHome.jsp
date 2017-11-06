@@ -116,32 +116,38 @@ input:checked+.slider:before {
 	function openCoverage(){
 		
 		var data = new FormData();
+		data.append("useridx", '${sessionScope.useridx}');
+		
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST","openCoverage.do");
-		data.append("useridx", '${sessionScope.useridx}');
 		
 		 if(document.getElementById('openCoverage').checked){
 			 console.log("on");
 			 data.append("range", 1);
 	         xhr.send(data);
 	         xhr.onload = function(e) {
-	           if(this.status == 200)
-	               if(e.currentTarget.responseText == "ok"){
+	           if(this.status == 200){
+	        	   var jsonResponse = JSON.parse(e.currentTarget.responseText);
+	               if(jsonResponse["result"] == 1){
 	            	   alert('비공개 설정 완료!');
 	               }else{
 	            	   alert('비공개 설정 실패!');
 	               }
+	         	}
 	         }
 		 }else{
 			 console.log("off");
 			 data.append("range", 0);
 	         xhr.send(data);
 	         xhr.onload = function(e) {
-	        	 if(e.currentTarget.responseText == "ok"){
+	        	 if(this.status == 200){
+	        		 var jsonResponse = JSON.parse(e.currentTarget.responseText);
+	        	 if(jsonResponse["result"] == 1){
 	            	   alert('비공개 해제 완료!');
 	               }else{
 	            	   alert('비공개 해제 실패!');
 	               }
+	        	 }
 	         }
 		 }
 	}

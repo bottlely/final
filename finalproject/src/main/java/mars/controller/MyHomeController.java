@@ -199,8 +199,8 @@ public class MyHomeController{
 		info.put("member_idx",member_idx);
 		info.put("range", range);
 		int result = mhdao.openCoverage(info);
-		String result_s = result > 0 ?"ok":"no";
- 		ModelAndView mav = new ModelAndView("marsJson","result",result_s);
+		
+ 		ModelAndView mav = new ModelAndView("marsJson","result",result);
 		return mav;
 	}
 
