@@ -31,13 +31,13 @@ public class MailController {
 		String joinCode = String.valueOf(randomCode);
 		session.setAttribute("joinCode", joinCode);
 
-		String subject = "이메일 인증 번호입니다.";
+		String subject = "Email Confirmation Code";
 		StringBuilder sb = new StringBuilder();
-		sb.append("이메일 인증 번호는").append(joinCode).append("입니다.");
+		sb.append("The Confirmation Code is : ").append(joinCode).append(":) .");
 		boolean check = mailService.send(subject, sb.toString(), "stillaway91@gmail.com", id);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("check", check);
-		mav.setViewName("emailMsg.jsp");
+		mav.setViewName("member/joincomplete");
 		return mav;
 	}
 	

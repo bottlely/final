@@ -30,11 +30,6 @@ public class MemberController {
 	public String memberJoinForm() {
 		return "member/memberJoin";
 	}
-	
-	@RequestMapping("/emailCheck.do")
-	public String emailCheckForm() {
-		return "member/emailCheck";
-	}
 
 
 	@RequestMapping("/join.do")

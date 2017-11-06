@@ -90,6 +90,8 @@ section {
 	text-decoration: none;
 }
 </style>
+
+<script type="text/javascript" src="js/httpRequest.js"></script>
 <script>
 	function openIdCheck() {
 		window.open('idCheck.jsp', 'idCheck', 'width=400,height=200');
@@ -127,6 +129,8 @@ section {
 			}
 		}
 	}
+	
+	
 </script>
 </head>
 <body>
@@ -147,6 +151,7 @@ section {
 					<th scope="row">아이디 <span
 						style="color: red; font-weight: bolder;">*</span></th>
 					<td><input type="text" name="id" required>Email형식으로 입력</td>
+					<td><input type="button" value="중복확인"></td>
 				</tr>
 				<tr>
 					<th>비밀번호 <span style="color: red; font-weight: bolder;">*</span></th>

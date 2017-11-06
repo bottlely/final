@@ -73,6 +73,7 @@ h2 {
 	function showResult() {
 		if (XHR.readyState == 4) {
 			if (XHR.status == 200) {
+				window.alert('메일발송 성공');
 				window.location.reload();
 			} else {
 				window.alert('메일발송 실패');
@@ -81,12 +82,11 @@ h2 {
 	}
 	
 	function checkJoinCode() {
-		var joinCode = '0';
+		var joinCode = '${sessionScope.joinCode}';
 		var usercode = document.fm.usercode.value;
 		
 		if(joinCode==usercode) {
 			window.alert('인증코드 확인완료');
-			location.href='joincomplete.jsp';
 		}else {
 			window.alert('인증코드가 틀렸습니다. 다시 확인해 주세요.');
 		}
@@ -110,7 +110,7 @@ String name = request.getParameter("name");
 	<section>
 		<h2>이메일 인증</h2>
 
-		<form name="fm">
+		<form name="fm" action="join.do">
 			<input type="hidden" name="name" value="<%=name%>">
 			<input type="hidden" name="pwd" value="<%=pwd%>">
 			<table>
