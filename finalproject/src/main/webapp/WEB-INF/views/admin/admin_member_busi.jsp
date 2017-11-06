@@ -195,19 +195,51 @@ function request(){
 		
 		oneTag.innerHTML='Company';
 		twoTag.innerHTML='Request Date';
-		threeTag.innerHTML='show';
+		threeTag.innerHTML='show';	
+		sendRequest('getAdRequest.do', null, requestResult, 'GET');
 }
 
-
-function payShow(){
-	
-	var element = document.ok;
-	element.method="post";
-	element.submit();
-	
+function requestResult(){
+	 if(XHR.readyState == 4){
+        if(XHR.status == 200){
+       	 var data = XHR.responseText;
+       	 var lists = eval('('+data+')');
+			var adChan = document.getElementById('adChange');
 			
+			if(lists.list.length==0){
+				var newDiv = document.createElement('td');
+				newDiv.innerHTML = '게시물 없음';
+				newDiv.setAttribute('style', 'colspan:3; align:center;');
+				adChan.appendChild(newDiv);
+			}
+			else{
+				
+				for(var i=0; i<lists.list.length; i++){
+					
+					var trDiv = document.createElement('tr');
+ 					adChan.appendChild(trDiv);
+ 					
+ 					
+	 				var list = lists.list[i];
+	 				var newDiv = document.createElement('td');
+	 				newDiv.innerHTML = list.name;
+	 				trDiv.appendChild(newDiv);
+	 				
+	 				var newDiv2 = document.createElement('td');
+	 				newDiv2.innerHTML = list.date;
+	 				trDiv.appendChild(newDiv2);
+	 				
+	 				var newDiv3 = document.createElement('td');
+	 				newDiv3.innerHTML = list.link;
+	 				trDiv.appendChild(newDiv3);
+	 			}
+				
+			}
+        
+        }
+	 }
+     
 }
-
 
 function pay(){
 	var oneTag = document.all.a;
@@ -216,30 +248,51 @@ function pay(){
 	
 	oneTag.innerHTML='Company';
 	twoTag.innerHTML='Approval Date';
-	threeTag.innerHTML='Payment Status';
-	
-	sendRequest('getAdRequest.do', null, showResult, 'GET');
+	threeTag.innerHTML='Payment Status';	
+	sendRequest('getAdRequest.do', null, payResult, 'GET');
 }
 
-function showResult(){
-	
+function payResult(){
 	 if(XHR.readyState == 4){
          if(XHR.status == 200){
-        	 alert('11');
-         //   var data = eval('('+XHR.responseText+')');
-            var da = XHR.responseText;
-            alert(da);
+        	 var data = XHR.responseText;
+        	 var lists = eval('('+data+')');
+ 			 var adChan = document.getElementById('adChange');
+ 			
+ 			if(lists.list.length==0){
+ 				var newDiv = document.createElement('td');
+ 				newDiv.innerHTML = '게시물 없음';
+ 				newDiv.setAttribute('style', 'colspan:3; align:center;');
+ 				adChan.appendChild(newDiv);
+ 			}
+ 			else{
+ 				
+ 				for(var i=0; i<lists.list.length; i++){
+ 					var trDiv = document.createElement('tr');
+ 					adChan.appendChild(trDiv);
+ 						
+ 	 				var list = lists.list[i];
+ 	 				var newDiv = document.createElement('td');
+ 	 				newDiv.innerHTML = list.name;
+ 	 				trDiv.appendChild(newDiv);
+ 	 				
+ 	 				var newDiv2 = document.createElement('td');
+ 	 				newDiv2.innerHTML = list.date;
+ 	 				trDiv.appendChild(newDiv2);
+ 	 				
+ 	 				var newDiv3 = document.createElement('td');
+ 	 				newDiv3.innerHTML = list.link;
+ 	 				trDiv.appendChild(newDiv3);
+ 	 			}
+ 				
+ 			}
+         
          }
-      }
+	 }
+      
 }
 
-function total(){
-	var p1=document.all.p1;
-	p1.innerHTML='<font color="yellow">앗! 화면이 바뀌었네~!</font>';
-}
 </script>
-
-
 
 <div class="container">
   <br><br>
@@ -247,14 +300,11 @@ function total(){
   <br><br>
   <div class="btn-group btn-group-justified">
     <input type="button" value="광고주 관리" class="btn btn-primary" onclick="request()">
-    <input type="button" value="결제 관리" class="btn btn-primary" onclick="pay()">
-    <input type="button" value="통계 보기" class="btn btn-primary" onclick="total()">
-    
+    <input type="button" value="결제 관리" class="btn btn-primary" onclick="pay()"> 
   </div>
 </div>
 
-
-  <table class="table table-striped">
+ <table class="table table-striped">
   <thead>
       <tr>
         <th id="a">Company</th>
@@ -262,24 +312,12 @@ function total(){
         <th id="c">show</th>
       </tr>
    </thead>
-
   
-    <tbody>
-    <c:if test="${empty list}">
-    	<tr>
-    		<td colspan="3" align="center">게시물 없음</td>
-    	</tr>
-    </c:if>
-    
-    <c:forEach var="ad" items="${list }">
-    	<tr>
-        	<td>${ad.name }</td>
-        	<td>${ad.apply_date }</td>
-        	<td>신청서 link</td>
-        </tr>
-    </c:forEach>
-  </tbody>
-  </table>
+   <tbody id="adChange">  
+    	
+   </tbody>
+ </table>
+
    
     <!-- 다운 끝 -->
       
@@ -289,7 +327,7 @@ function total(){
     <footer class="sticky-footer">
       <div class="container">
         <div class="text-center">
-          <small>Copyright © Your Website 2017</small>
+          <small>Copyright ⓒ Your Website 2017</small>
         </div>
       </div>
     </footer>

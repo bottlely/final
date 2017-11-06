@@ -47,36 +47,9 @@ public class AdController {
 	
 	
 	@RequestMapping("/getAdRequest.do")
-	public ModelAndView getAdRequest(HttpSession session,
-			   @RequestParam Map<String, Object> paramMap){
-		
-//		List<ApplyAdDTO> list = adDao.adList();
-//		int leng = list.size();
-//		String str="";
-//		str += "{person :[";
-		
-//		for(int i=0; i<leng; i++){
-//			str += "{name:'"+list.get(i).getName()+"',";
-//			str += " apply_date:'"+list.get(i).getApply_date()+"'}";
-//		}
-		
-//		str += "]}";
-//		System.out.println(str);
-//		model.addAttribute("str", str);
-//		return "/admin/json";
-		
-		List<ApplyAdDTO> list = adDao.adList();
-		
-//		for(int i=0; i<list.size(); i++){
-			
-//			paramMap.put("name", list.get(i).getName());
-//			paramMap.put("apply_date", list.get(i).getApply_date());
-//		}
-	
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("jsonView");
-		mav.addObject("list", list);
-	//	mav.setViewName("admin/admin_member_busi");
+	public ModelAndView getAdRequest(){
+		List<ApplyAdDTO> list =	adDao.adList();
+		ModelAndView mav = new ModelAndView("marsJson","list",list);
 		return mav;
 	}
 	

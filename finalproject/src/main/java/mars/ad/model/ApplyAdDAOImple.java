@@ -22,8 +22,6 @@ public class ApplyAdDAOImple implements ApplyAdDAO {
 		
 		Map<String, Integer> data = new HashMap<String, Integer>();  
 		List<ApplyAdDTO> list = sqlMap.selectList("adList", data);
-	//	System.out.println("들어옴?");
-	//	System.out.println(list.size());
 		return list;
 	}
 
