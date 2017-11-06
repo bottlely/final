@@ -184,7 +184,15 @@
                     </li>
                                         <li>
                         <a href="javascript:void(0);" class="hidden-xs" id="friends1">
-                            Friends 
+                            <i class="pe-7s-note2"></i>
+                           
+                        </a>
+                    </li>
+                    
+                                        <li>
+                        <a href="javascript:void(0);" class="hidden-xs" id="friends1">
+                            <i class="pe-7s-menu"></i>
+                           
                         </a>
                     </li>
                </ul>
