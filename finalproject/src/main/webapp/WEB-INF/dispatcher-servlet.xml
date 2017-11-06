@@ -57,13 +57,6 @@
 	<bean id="mailService" class="mars.email.model.MailServiceImple">
 		<property name="javaMailSender" ref="javaMailSender" />
 	</bean>
-	
-	<!-- ad json -->
-	
-	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJacksonJsonView">
-		<property name="contentType" value="application/json;charset=UTF-8"> </property>
-	</bean>
-	
 
 	<!-- controller -->
 	
