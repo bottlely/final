@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -67,12 +68,14 @@
 								<header>
 								<div style="float: left;">
 								<h3>Follower</h3>
-								<h3><a href="#intro" id="follower">200000</a></h3>
+								<c:set var="follower_list" value="${followerList }" />
+								<h3><a href="#intro" id="follower">${follower_list.size() }</a></h3>
 								</div>
 								
 								<div style="float: right;">
 								<h3>Following</h3>
-								<h3><a href="#intro" id="following">120</a></h3>
+								<c:set var="following_list" value="${followingList }" />
+								<h3><a href="#intro" id="following">${following_list.size() }</a></h3>
 								</div>
 								</header>
 								
@@ -94,105 +97,38 @@
 						<!-- follower -->
 							<section id="follower1" style="display: none;">
 								<ul class="posts">
+								<c:forEach var="follower_list" items="${followerList }">
 									<li>
 										<article>
 											<header>
-												<h3><a href="#">강호동</a></h3>
+												<h3><a href="#">${follower_list}</a></h3>
 												<time class="published" datetime="2015-10-20">October 20, 2015</time>
 											</header>
 											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
 										</article>
 									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">이승기</a></h3>
-												<time class="published" datetime="2015-10-15">October 15, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic09.jpg" alt="" style="border-radius: 50%"></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">이수근</a></h3>
-												<time class="published" datetime="2015-10-10">October 10, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic10.jpg" alt="" style="border-radius: 50%"></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">김종민</a></h3>
-												<time class="published" datetime="2015-10-08">October 8, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic11.jpg" alt="" style="border-radius: 50%"></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">유재석</a></h3>
-												<time class="published" datetime="2015-10-06">October 7, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic12.jpg" alt="" style="border-radius: 50%"></a>
-										</article>
-									</li>
+								</c:forEach>
 								</ul>
 							</section>
 							
 							<!-- following -->
 							<section id="following1" style="display: none;">
 								<ul class="posts">
+								<c:forEach var="following_list" items="${followingList }">
 									<li>
 										<article>
 											<header>
-												<h3><a href="#">태연</a></h3>
+												<h3><a href="#">${following_list }</a></h3>
 												<time class="published" datetime="2015-10-20">October 20, 2015</time>
 											</header>
 											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
 										</article>
 									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">윤아</a></h3>
-												<time class="published" datetime="2015-10-15">October 15, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic09.jpg" alt="" style="border-radius: 50%"></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">써니</a></h3>
-												<time class="published" datetime="2015-10-10">October 10, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic10.jpg" alt="" style="border-radius: 50%"></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">수영</a></h3>
-												<time class="published" datetime="2015-10-08">October 8, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic11.jpg" alt="" style="border-radius: 50%"></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">선미</a></h3>
-												<time class="published" datetime="2015-10-06">October 7, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic12.jpg" alt="" style="border-radius: 50%"></a>
-										</article>
-									</li>
+								</c:forEach>
 								</ul>
 							</section>
-												<!-- Pagination -->
+							
+							<!-- Pagination -->
 							<ul class="actions pagination">
 								<li><a href="" class="disabled button big previous">Previous Page</a></li>
 								<li><a href="#" class="button big next">Next Page</a></li>
@@ -205,51 +141,17 @@
 							<hr>
 							<section id="black1" style="display: none;">
 								<ul class="posts">
+								<c:forEach var="blackList" items="${blackList }">
 									<li>
 										<article>
 											<header>
-												<h3><a href="#">양진모</a></h3>
+												<h3><a href="#">${blackList }</a></h3>
 												<time class="published" datetime="2015-10-20">October 20, 2015</time>
 											</header>
 											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">곽은지</a></h3>
-												<time class="published" datetime="2015-10-15">October 15, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic09.jpg" alt="" style="border-radius: 50%"></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">오현경</a></h3>
-												<time class="published" datetime="2015-10-10">October 10, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic10.jpg" alt="" style="border-radius: 50%"></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">박연수</a></h3>
-												<time class="published" datetime="2015-10-08">October 8, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic11.jpg" alt="" style="border-radius: 50%"></a>
-										</article>
-									</li>
-									<li>
-										<article>
-											<header>
-												<h3><a href="#">정다운</a></h3>
-												<time class="published" datetime="2015-10-06">October 7, 2015</time>
-											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic12.jpg" alt="" style="border-radius: 50%"></a>
-										</article>
-									</li>
+								</c:forEach>
 								</ul>
 							</section>
 

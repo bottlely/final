@@ -11,5 +11,6 @@
 		<mapper resource="sql/settingSql.xml"/>
 		<mapper resource="sql/adminSql.xml"/>
 		<mapper resource="sql/contentSql.xml"/>
+		<mapper resource="sql/friendSql.xml"/>
 	</mappers>
 </configuration>

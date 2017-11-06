@@ -10,8 +10,4 @@ public class MainController {
 	public String mainPage() {
 		return "main/main";
 	}
-	@RequestMapping("main_frList.do")
-	public String mainFrListPage() {
-		return "main/main_frList";
-	}
 }

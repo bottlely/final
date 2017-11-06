@@ -67,13 +67,12 @@
 	<bean id="adminController" class="mars.controller.AdminController"></bean>
 	<bean id="settingController" class="mars.controller.SettingController"></bean>
 	<bean id="myHomeController" class="mars.controller.MyHomeController"></bean>
-	<bean id="echoHandler" class="mars.controller.EchoHandler"></bean>
 	<bean id="webcamController" class="mars.controller.WebcamController"></bean>
 	<bean id="mailController" class="mars.controller.MailController">
 		<property name="mailService" ref="mailService"></property>
 	</bean>
 	<bean id="contentController" class="mars.controller.ContentController"></bean>
-	
+	<bean id="friendController" class="mars.controller.FriendController"></bean>
 
 
 	<!-- service -->
@@ -108,9 +107,13 @@
 			<ref bean="sqlSessionTemplate"></ref>
 		</constructor-arg>
 	</bean>
+	<bean id="friendDao" class="mars.friend.model.FriendDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate" />
+		</constructor-arg>
+	</bean>
 	
-	
-	
+
 	<!-- views -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
