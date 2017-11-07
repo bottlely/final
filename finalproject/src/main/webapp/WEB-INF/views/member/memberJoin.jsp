@@ -74,6 +74,48 @@ function idCheck() {
 		}
 	}
 
+// 회원가입 유효성 검사
+
+	function sendIt() {
+	
+	var Cnum = document.join.company_number.value;
+	
+	//비밀번호 6~15자리
+	if(document.join.pwd.value.length<6 || document.join.pwd.value.length>15) {
+		alert("비밀번호는 6~15자리로 입력해주세요.")
+		document.join.pwd.focus()
+		document.join.pwd.select()
+		return false;
+	}
+	//비밀번호 일치여부 체크
+	if(document.join.pwd.value != document.join.checkpwd.value) {
+		alert("비밀번호가 일치하지 않습니다.")
+		document.join.checkpwd.value=""
+		document.join.checkpwd.focus()
+		return false;
+	}
+	
+	//등록번호 숫자만
+	if(!isNumeric(Cnum)) {
+		alert("사업자 번호는 숫자만 입력가능합니다.")
+		document.join.company_number.value=""
+		document.join.company_number.focus()
+		return false;
+		
+	}
+	
+	
+}
+	function isNumeric(s) { 
+        for (i=0; i<s.length; i++) { 
+          c = s.substr(i, 1); 
+          if (c < "0" || c > "9") return false; 
+        } 
+        return true; 
+      }
+
+	
+	
 
 </script>
 
@@ -129,7 +171,7 @@ function idCheck() {
 
 				</div>
 				<div class="col-sm-8" data-sr="enter right, hustle 80px">
-					<form name="join" class="st-form" action="ecForm.do" method="post">
+					<form name="join" class="st-form" action="ecForm.do" method="post" onsubmit="return sendIt();">
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-group ">
