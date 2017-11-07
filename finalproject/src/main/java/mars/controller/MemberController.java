@@ -2,12 +2,14 @@ package mars.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,7 +33,7 @@ public class MemberController {
 		return "member/memberJoin";
 	}
 
-
+	/*Sing-in*/
 	@RequestMapping("/join.do")
 	public ModelAndView memberJoin(MemberDTO dto) {
 		int result = mdao.memberJoin(dto);
@@ -44,13 +46,27 @@ public class MemberController {
 		return mav;
 	}
 	
+	/*id duplication check*/
+	@RequestMapping("idCheck.do")
+	public String idDuplCheck(@RequestParam("id")String id, HttpServletResponse resp, HttpServletRequest req,Model map) {
+		int result = mdao.loginIdCheck(id);
+		String text = "";
+		if (result == 0) {
+			text = "사용가능한 ID 입니다.";
+		}else{
+			text = "중복된 ID 입니다.";
+		}
+		map.addAttribute("msg",text);
+		return "member/idMsg";
+	}
+	
 	
 	/*login Check*/
 	
 	@RequestMapping("/login.do")
 	public ModelAndView loginCheck(@RequestParam("id")String userid, @RequestParam("pwd")String userpwd,
 			HttpSession session, HttpServletResponse resp, HttpServletRequest req) {
-		
+	
 		System.out.println(userid);
 		System.out.println(userpwd);
 		
