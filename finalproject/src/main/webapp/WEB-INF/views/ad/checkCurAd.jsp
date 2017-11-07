@@ -13,6 +13,18 @@
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script>
 
+(function imme(){
+	
+	if("${i}"==""){
+		//alert("시작하자마자 날 보게 될거야");
+	}
+	else{
+		//alert(${i});
+		showAve();
+	}
+})()
+
+
 function showCur(){
 	sendRequest('showCur.do', null, showCurResult, 'GET');
 }
@@ -32,7 +44,7 @@ function showCurResult(){
 			else{
 				for(var i=0; i<lists.list.length; i++){
 					var l = lists.list[i];
-					str += '<a href="#" onclick="showAve('+l.ad_name+');">'+l.ad_name+'</a><hr>';
+					str += '<a href="showAve.do?ad_idx='+l.ad_idx+'">'+l.ad_name+'</a><hr>';
 				}
 				p1.innerHTML = str;
 			}
@@ -40,10 +52,17 @@ function showCurResult(){
 	}
 }
 
-function showAve(data22){
-	
-	alert(data22)
-//	sendRequest('showAve.do', null, showAveResult, 'GET');
+function showAve(){
+	var i = "${i}";
+	var str = "${str}";
+	alert(i);
+	alert(str);
+	alert('111'); 
+//	alert(str);
+//	alert(data);
+//	var data = XHR.responseText;
+//	var lists = eval('('+data+')');
+//	alert(list);
 }
 
 function showAveResult(){

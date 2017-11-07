@@ -2,10 +2,13 @@ package mars.controller;
 
 import java.util.List;
 
+import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import mars.ad.model.ApplyAdDAO;
@@ -56,11 +59,22 @@ public class AdController {
 	}
 	
 	@RequestMapping("/showAve.do")
-	public String showAve(){
-		System.out.println("1");
-		String str=adDao.showAveNum();
-		System.out.println("2");
-		return str;
+	public ModelAndView showAve(@RequestParam(value="ad_idx")Integer i){
+		//ajax에서 보낸값 controller에서 바로 받는 방법(requestparam!)
+		//System.out.println("ad_idx = "+i);
+	//	List<ApplyAdDTO> list = adDao.showAveNum(i);
+		String str = adDao.showAveNum(i);
+		ModelAndView mav = new ModelAndView();
+	//	System.out.println(str);
+	//	Model model=null;
+//		ModelAndView mav = new ModelAndView("marsJson","list",list);
+	//	model.addAttribute("i", i);
+		mav.addObject("i", i);
+		mav.addObject("str", str);
+		mav.setViewName("ad/checkCurAd");
+//		return mav;
+		
+		return mav;
 	}
 	
 	

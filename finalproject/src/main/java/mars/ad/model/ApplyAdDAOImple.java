@@ -39,13 +39,19 @@ public class ApplyAdDAOImple implements ApplyAdDAO {
 		return list;
 	}
 	
-	public String showAveNum(){
+	public String showAveNum(Integer i){
 		//member_idx 찾아서 넘겨야함! 임의로 줌!(로그인한)
 		//어떤 광고 인지 check!
 		//지금 구하는 str에서 / 로 구분해서 최대 뒤에서 7개 자르기!
-		String str = sqlMap.selectOne("showAveNum");
-		return str;
 		
+	//	Map<String, Integer> data = new HashMap<String, Integer>();
+	//	data.put("ad_idx", i);
+	//	List<ApplyAdDTO> list = sqlMap.selectList("showAve", data);
+		String str = sqlMap.selectOne("showAve", i);
+		//null이거나 all_amount값!
+	//	System.out.println(str);
+	//	return list;
+		return str;
 	}
 
 }

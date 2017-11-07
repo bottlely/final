@@ -13,8 +13,8 @@
   		select * from ad where member_idx=32
   	</select>
   	
-  	<select id="showAveNum" resultType="String">
-  		select all_amount from ad where member_idx=32 and ad_name='c'
+  	<select id="showAve" parameterType="Map" resultType="String">
+  		select all_amount from ad where member_idx=32 and ad_idx=#{ad_idx} and status=3
   	</select>
   	
   	
