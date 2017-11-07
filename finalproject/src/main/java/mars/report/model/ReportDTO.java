@@ -8,7 +8,7 @@ public class ReportDTO {
 	int idx_from;
 	int idx_to;
 	String content;
-	int category;
+	int category;	//11:검색,인기태그 , 12:공개범위 , 13:친구 , 14:피드 , 15:게시물작성 16_알림
 	String link;
 	Date reportdate;
 	int state;

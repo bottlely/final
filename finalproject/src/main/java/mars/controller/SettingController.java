@@ -93,12 +93,17 @@ public class SettingController {
 	}
 	
 	@RequestMapping("serviceCenter.do")
-	public String serviceCenter(){
-		return "setting/serviceCenter";
+	public ModelAndView serviceCenter(){
+		int idx = 12;
+		MemberDTO dto = settingDao.getMyInfo(12);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("dto", dto);
+		mav.setViewName("setting/serviceCenter");
+		return mav;
 	}
 	
 	@RequestMapping("sendReport.do")
-	public ModelAndView SendReport(int category, String content, @RequestParam("idx")int idx_from){
+	public ModelAndView sendReport(int category, String content, @RequestParam("idx")int idx_from){
 		ModelAndView mav = new ModelAndView();
 		ReportDTO dto = new ReportDTO(idx_from, content, category);
 		int count = settingDao.sendReport(dto);

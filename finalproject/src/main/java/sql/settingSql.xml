@@ -32,6 +32,6 @@
 	</select>
 	
 	<insert id="sendReport" parameterType="mars.report.model.ReportDTO">
-	insert into mars_report values(mars_report_idx.nextval, idx_from=#{idx_from}, 0, content=#{content}, category=#{category}, '', sysdate, 0)
+	insert into mars_report values(mars_report_idx.nextval, #{idx_from}, 0, #{content}, #{category}, '', sysdate, 0)
 	</insert>
 </mapper>
