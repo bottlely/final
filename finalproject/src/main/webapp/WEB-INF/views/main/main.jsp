@@ -102,16 +102,15 @@
 			    });
 			});
 			
-			$(document).ready(function(){
-			    $("#pic").click(function(){
-			        var div = document.getElementById('pic1').value;
-			        
-			        $('#galleryImage').attr("src",div);
-			        
-			    });
-			});
+
 			
-			
+			function openpic(i){
+				var div = document.getElementById('pic'+i).value;
+				window.alert(i);
+				   window.alert(div);
+				   
+				$('#galleryImage').attr("src",div);
+				} 
 
 </script> 
 <body>
@@ -255,6 +254,9 @@
 			</div>
 
 				<div class="works-area" >
+				<% for(int i=0; i<12; i++){
+					
+					%>
 				<div class="col-md-4 col-sm-6 col-xs-12  photo"  >
 					<div class="works">
 						<img src="assets_main/images/아이유6.jpg" alt="" style="width: 431px; height: 431px;">
@@ -264,8 +266,9 @@
 								<h4>PHOTO</h4>
 
 								
-					<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" id="pic">
-                        <input type="hidden" value="assets_main/images/아이유6.jpg"  id="pic1">
+					<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" 
+					onclick="openpic(<%=i%>)">
+                        <input type="hidden" value="assets_main/images/아이유6.jpg"  id="pic<%=+i%>" >
                         
   							<p>사진1번</p>
                     </a>
@@ -273,78 +276,14 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 text" >
-					<div class="works">
-						<img src="assets_main/images/아이유2.jpg" alt="" style="width: 431px; height: 431px;">
+					
+					<% 
+					
+					
+					
+					}%>
+				
 
-						<div class="work-overlay text-center">
-							<div class="overlay-caption">
-								<h4>PHOTO</h4>
-
-								
-					<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" id="pic">
-                        <input type="hidden" value="assets_main/images/아이유2.jpg"  id="pic1">
-                        
-  							<p>사진1번</p>
-                    </a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 viedeo" >
-					<div class="works">
-						<img src="assets_main/images/아이유4.jpg" alt="" style="width: 431px; height: 431px;">
-
-						<div class="work-overlay text-center">
-							<div class="overlay-caption">
-								<h4>PHOTO</h4>
-
-								
-					<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" id="pic">
-                        <input type="hidden" value="assets_main/images/아이유4.jpg"  id="pic1">
-                        
-  							<p>사진1번</p>
-                    </a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 viedeo" >
-					<div class="works">
-						<img src="assets_main/images/아이유2.jpg" alt="" style="width: 431px; height: 431px;">
-
-						<div class="work-overlay text-center">
-							<div class="overlay-caption">
-								<h4>PHOTO</h4>
-
-								
-					<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" id="pic">
-                        <input type="hidden" value="assets_main/images/아이유2.jpg"  id="pic1">
-                        
-  							<p>사진1번</p>
-                    </a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 viedeo" >
-		<div class="works">
-						<img src="assets_main/images/아이유6.jpg" alt="" style="width: 431px; height: 431px;">
-
-						<div class="work-overlay text-center">
-							<div class="overlay-caption">
-								<h4>PHOTO</h4>
-
-								
-					<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" id="pic">
-                        <input type="hidden" value="assets_main/images/아이유6.jpg"  id="pic1">
-                        
-  							<p>사진1번</p>
-                    </a>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div> 
 		</div>
 		</div>
