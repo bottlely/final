@@ -640,10 +640,10 @@
 
 /* Main */
 
-	
+	#cover,
 	#cover img{
 	position: absolute;
-	z-index:1;
+	z-index:-100;
 	margin:0px auto;
 		width:100%;
 		height:300px;
@@ -699,8 +699,9 @@
 			}
 
 	#main .calendaricon button{
-	position:absolute;
+	display: flex;
 		padding: none;
+		border-color: #ffffff;
 	}
 
 	#main .calendaricon button i{
@@ -714,17 +715,78 @@
 		
 		/*moreicon*/	
 	
-			#main .moreicon #moreicon{
+			#main .moreicon a i{
 			position:relative;
-			z-index:15;
 			float: right;
 			margin-left:-8em;
 			margin-right:5em;
-       font-align: center;
+			
         font-size: 30px;
         color: #BDBDBD;
 			}
+			
+			#main .plusicon button{
+			display: flex;
+			
+			border-color: #ffffff;
+			
+			float: right;
+			margin-left:-10em;
+			margin-right:3em;
+			}
+			
+			
+			#main .plusicon button i{
+			font-align: center;
+        font-size: 22px;
+        color: #BDBDBD;
+        padding: none;
+			}
 
+#middle {
+		
+		max-width: 100%;
+		background: #ffffff;
+		text-align: center;
+	}
+	
+	#middle .myfeedcategory{
+	width:100%;
+	height:100%;
+	margin:0px auto;
+	}
+	
+	#middle .myfeedcategory ul{
+	margin: 0px auto;
+	}
+	#middle .myfeedcategory ul li{
+	margin: 0px auto;
+	list-style:none;
+	float: left;
+	}
+	#middle .myfeed{
+	width:100%;
+	height:100%;
+	margin:0px auto;
+	}
+	#middle .myfeed table{
+	margin:0px auto;
+	}
+
+
+@media screen and (max-width: 480px) {
+
+			#middle {
+				
+				width: 100%;
+				
+			}
+			#middle .myfeed,
+			#middle .myfeed table{
+			
+				width: 100%;
+			}
+			
 
 
 		@media screen and (max-width: 480px) {

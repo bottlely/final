@@ -20,6 +20,7 @@
 	z-index: 9999;
 	background-color: #000;
 	display: none;
+	
 }
 
 .window {
@@ -29,6 +30,25 @@
 	width: 200px;
 	height: 150px;
 	z-index: 99999;
+}
+
+.mask2 {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9999;
+	background-color: #000;
+	display: none;
+}
+
+.uploadui {
+	position: absolute;
+	display: none;
+	background-color: #ffffff;
+	width: 200px;
+	height: 150px;
+	z-index: 99999;
+	background-color: rgba( 255, 255, 255, 0 );
 }
 
 .switch {
@@ -152,6 +172,7 @@ input:checked+.slider:before {
 		 }
 	}
 	
+	//moreicon function
     function wrapWindowByMask(){
         var maskHeight = $(document).height();
         var maskWidth = $(window).width();
@@ -182,6 +203,40 @@ input:checked+.slider:before {
         $('.mask').click(function () {
             $(this).hide();
             $('.window').hide();
+        });
+    });
+    
+   //게시물작성 UI function 
+    function contentUpload(){
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+ 
+        $('.mask2').css({'width':maskWidth,'height':maskHeight});
+ 
+        $('.mask2').fadeTo("fast",0.3);
+ 
+        var left = ( $(window).scrollLeft() + ( $(window).width() - $('.uploadui').width()) / 2 );
+        var top = ( $(window).scrollTop() + ( $(window).height() - $('.uploadui').height()) / 2 );
+ 
+        $('.uploadui').css({'left':left,'top':top, 'position':'absolute'});
+ 
+        $('.uploadui').show();
+    }
+ 
+    $(document).ready(function(){
+        $('.showMask2').click(function(e){
+            e.preventDefault();
+            contentUpload();
+        });
+ 
+        $('.uploadui .close').click(function (e) {
+            e.preventDefault();
+            $('.mask2, .uploadui').hide();
+        });
+ 
+        $('.mask2').click(function () {
+            $(this).hide();
+            $('.uploadui').hide();
         });
     });
 </script>
@@ -215,7 +270,7 @@ input:checked+.slider:before {
 		<c:param name="useridx" value="${sessionScope.useridx}"/>
 	</c:url>
 	
-    <a href="moreMyHomeUrl" class="showMask"><i id="moreicon" class="fa fa-ellipsis-h"></i></a>
+    <a href="moreMyHomeUrl" class="showMask"><i class="fa fa-ellipsis-h"></i></a>
  	</c:if>
  	
     <div class="mask"></div>
@@ -231,14 +286,56 @@ input:checked+.slider:before {
 			</label></td></tr>
        </table>
     </div>
+    
+   <!--  본인이 아닐때
+    <div class="mask"></div>
+    <div class="window">
+       <table align="center">
+       	<tr><td><a href="backgroundUploadForm.do">신고하기</a></td></tr>
+       	<tr><td><a href="profileUploadForm.do">차단하기 또는 차단취소하기</a></td></tr>
+       	<tr><td><a href="introUploadForm.do">팔로우하기 또는 언팔로우하기</a></td></tr>
+       	</table>
+    </div>
+    --> 
+    
+    
 </div>
 
+<!-- 게시물작성아이콘 -->
+<div class="plusicon">
+	<button style="font-size:24px;width:50px;border:0px;" class="showMask2">
+	<i class="fa fa-plus-square-o"></i></button>
+
+
+<div class="mask2"></div>
+    <div class="uploadui">
+				<a href="contentUploadForm.do?useridx=${sessionScope.useridx}&type=1">
+					<img width="50" height="50"
+					src="myHomeFolder/category/photoIcon.png">
+				</a> 
+				<a href="contentUploadForm.do?useridx=${sessionScope.useridx}&type=2">
+					<img width="50" height="50"
+					src="myHomeFolder/category/videoIcon.png">
+				</a> 
+				<br>
+				<a href="contentUploadForm.do?useridx=${sessionScope.useridx}&type=3">
+					<img width="50" height="50"
+					src="myHomeFolder/category/textIcon.png">
+				</a> 
+				<a href="contentUploadForm.do?useridx=${sessionScope.useridx}&type=4">
+					<img width="50" height="50"
+					src="myHomeFolder/category/shootIcon.png">
+				</a>
+			</div>
+</div>
 
 <!-- 캘린더아이콘 -->
 <div class="calendaricon" style="width:300px;height:50px;">
 	<input type='text' name="calendar" class="datepicker-here" style="width: 150px;">
 	<button style="width:50px;border:0px;"><i class="fa fa-calendar"></i></button>
 </div>
+
+
 							
 <!-- 아이디,한줄소개 -->
 	<h1>${mhdto.getName()}</h1><br>
@@ -248,10 +345,18 @@ input:checked+.slider:before {
 </section>
 					
 					
-					
+	<section id="middle">			
 			<!-- 내 피드 -->				
-		<div style="width:900px;height:900px;padding-top:50px;margin:0px auto;">
-			<table style="border-spacing:15px;width:800px;height:800px;margin:0px auto;">
+		
+		<div class="myfeedcategory">
+		<ul>
+			<li><input type="button" value="PHOTO"></li>
+			<li><input type="button" value="VIEDEO"></li>
+			<li><input type="button" value="TEXT"></li>
+		</ul>
+		</div>
+		<div class="myfeed">
+			<table style="width: 600px; height: 600px; border-spacing:10px;">
 				<tr>
 					<td style="background-color:blue;"></td>
 					<td style="background-color:blue;"></td>
@@ -269,6 +374,6 @@ input:checked+.slider:before {
 				</tr>
 			</table>
 		</div>	
-			
+</section>				
 </body>
 </html>
