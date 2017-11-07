@@ -1,5 +1,8 @@
 package mars.controller;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import javax.swing.JFrame;
 
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,8 @@ public class WebcamController {
 
 	@RequestMapping("/webMain.do")
 	public ModelAndView detectCam(){
+		String ip = getMyIp();
+		System.out.println("myip : " + ip);
 		Webcam webcam = Webcam.getDefault();
 		ModelAndView mav = new ModelAndView();
 		
@@ -30,6 +35,16 @@ public class WebcamController {
 		
 	}
 	
+	public String getMyIp() {
+		try {
+			String addr = InetAddress.getLocalHost().getHostAddress();
+			return addr;
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 //	@RequestMapping("/playCam.do")
 //	public String playweb(){
 //		return "webcam/views/index";
@@ -44,6 +59,8 @@ public class WebcamController {
 //	public String playremote(){
 //		return "webcam/views/remote-streams";
 //	}
+
+	
 
 	public void playCam() {
 		Webcam webcam = Webcam.getDefault();

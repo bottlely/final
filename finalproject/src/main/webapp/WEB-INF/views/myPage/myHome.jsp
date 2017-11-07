@@ -103,7 +103,55 @@ input:checked+.slider:before {
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
 <noscript><link rel="stylesheet" href="assets_myPage/assets/css/noscript.css" /></noscript>
 
+			
 <script type="text/javascript">
+
+	function check(){
+		var openCoverage = '${mhdto.getOpen_coverage()}';
+		if(openCoverage == 1){
+			document.getElementById('openCoverage').checked = true;
+		}
+	}
+
+	function openCoverage(){
+		
+		var data = new FormData();
+		data.append("useridx", '${sessionScope.useridx}');
+		
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST","openCoverage.do");
+		
+		 if(document.getElementById('openCoverage').checked){
+			 console.log("on");
+			 data.append("range", 1);
+	         xhr.send(data);
+	         xhr.onload = function(e) {
+	           if(this.status == 200){
+	        	   var jsonResponse = JSON.parse(e.currentTarget.responseText);
+	               if(jsonResponse["result"] == 1){
+	            	   alert('비공개 설정 완료!');
+	               }else{
+	            	   alert('비공개 설정 실패!');
+	               }
+	         	}
+	         }
+		 }else{
+			 console.log("off");
+			 data.append("range", 0);
+	         xhr.send(data);
+	         xhr.onload = function(e) {
+	        	 if(this.status == 200){
+	        		 var jsonResponse = JSON.parse(e.currentTarget.responseText);
+	        	 if(jsonResponse["result"] == 1){
+	            	   alert('비공개 해제 완료!');
+	               }else{
+	            	   alert('비공개 해제 실패!');
+	               }
+	        	 }
+	         }
+		 }
+	}
+	
     function wrapWindowByMask(){
         var maskHeight = $(document).height();
         var maskWidth = $(window).width();
@@ -139,7 +187,7 @@ input:checked+.slider:before {
 </script>
 
 </head>
-<body>
+<body onload="check()">
 
 <!-- 커버이미지 -->
 <div id="cover"><img src="myHomeFolder/background_img/${mhdto.getBackground_img()}" alt="cover">
@@ -176,8 +224,9 @@ input:checked+.slider:before {
        	<tr><td><a href="backgroundUploadForm.do">커버사진</a></td></tr>
        	<tr><td><a href="profileUploadForm.do">프로필사진</a></td></tr>
        	<tr><td><a href="introUploadForm.do">소개글</a></td></tr>
+       	<tr><td><a href="contentCategory.do">게시물 추가(test용)</a></td></tr>
        	<tr><td>공개설정<label class="switch">
-  			<input type="checkbox" checked>
+  			<input id="openCoverage" type="checkbox" onchange="openCoverage()">
   			<span class="slider round"></span>
 			</label></td></tr>
        </table>

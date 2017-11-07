@@ -77,11 +77,9 @@ public class ContentController {
 	}
 	
 	@RequestMapping("uploadPhoto.do")
-	public String uploadContent(@RequestParam("useridx")String member_idx,
+	public ModelAndView uploadContent(@RequestParam("useridx")String member_idx,
 			@RequestParam("content")String content,
 			MultipartHttpServletRequest req,HttpServletRequest req2) {
-		
-		ModelAndView mav = new ModelAndView();
 		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
 		
@@ -107,13 +105,8 @@ public class ContentController {
             	path += fileName+"?";
             	
             }else{
-            	/*RedirectView redirectView = new RedirectView(); // redirect url 설정
-        		redirectView.setUrl("/uploadPhoto.do");
-        		redirectView.setExposeModelAttributes(false);
-        		mav.addObject("useridx", member_idx);
-        		mav.addObject("type",1);
-        		mav.setView(redirectView);*/
-        		return "-1";
+            	ModelAndView mav = new ModelAndView("marsJson","result",-1);
+        		return mav;
             }
         }
       
@@ -122,17 +115,8 @@ public class ContentController {
         info.put("writer", mhdto.getName());
         int result = cdao.photoUpload(info);
 
-		/*RedirectView redirectView = new RedirectView(); // redirect url 설정
-		redirectView.setUrl("/myHomeForm.do");
-		redirectView.setExposeModelAttributes(false);
-		mav.addObject("useridx", member_idx);
-		mav.setView(redirectView);
-		return mav;*/
-        
-		/*mav.addObject("useridx", member_idx);
-		mav.addObject("mhdto", mhdto);
-		mav.setViewName("myPage/myHome");*/
-		return "0";
+        ModelAndView mav = new ModelAndView("marsJson","result",0);
+		return mav;
 	}
 	
 	public void copyInto(String filename,MultipartFile upload,HttpServletRequest req2){

@@ -1,6 +1,7 @@
 package mars.controller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,5 +89,31 @@ public class SettingController {
 		mav.addObject("gourl", gourl);
 		mav.setViewName("setting/settingMsg");
 		return mav;
+	}
+	
+	@RequestMapping("serviceCenter.do")
+	public String serviceCenter(){
+		return "setting/serviceCenter";
+	}
+	
+	@RequestMapping("friendSetting.do")
+	public ModelAndView friendsSetting(){
+//	public String friendsSetting(int idx){
+		int idx = 12;
+		List<MemberDTO> list = settingDao.getFollowingList(idx);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("setting/friendSetting");
+		return mav;
+	}
+	
+	@RequestMapping("addGroupForm.do")
+	public String addGroupForm(){
+		return "setting/addGroupForm";
+	}
+	
+	@RequestMapping("addGroup.do")
+	public void addGroup(){
+		
 	}
 }

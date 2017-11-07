@@ -6,7 +6,6 @@
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
-<script src="js/previewmodule.js"></script>
  <style type="text/css">
  
 	input[type=file] {
@@ -100,7 +99,7 @@
     			 data.append("image_count", sel_files.length);
     			 data.append("useridx", '${sessionScope.useridx}');
     			 
-    			 var content = document.getElementsByTagName("textarea");
+    			 var content = document.getElementsByTagName("textarea")[0].value;
     			 data.append("content",content);
     			 
     	        /* $.ajax({
@@ -127,7 +126,13 @@
 		            xhr.send(data);
 		            xhr.onload = function(e) {
 		                if(this.status == 200) {
-		                    console.log("Result : "+e.currentTarget.responseText);
+		                	var jsonResponse = JSON.parse(e.currentTarget.responseText);
+		                    if(jsonResponse["result"] == 0){
+		                    	alert('업로드 완료!');
+		                    	document.getElementById('myHome').submit();
+		                    }else{
+		                    	alert('파일 형식이 잘못 되었습니다!');
+		                    }
 		                }
 		            }
 

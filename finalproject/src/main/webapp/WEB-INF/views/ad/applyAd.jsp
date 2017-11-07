@@ -26,7 +26,7 @@
 </tr>
 <tr>
 	<th>File</th>
-	<td><input type="file"></td>
+	<td><input type="file" name="ad_content"></td>
 </tr>
 
 <tr>

@@ -25,19 +25,31 @@ public class AdController {
 	
 	@RequestMapping("/applyAdForm.do")
 	public String adJoinForm(){
-		//占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占� 占실억옙 占쌍댐옙占쏙옙 확占쏙옙!
+		
 		return "ad/applyAd";
 	}
 	
 	
 	@RequestMapping("/applyAdOk.do")
-	public String acceptJoinForm(){
-		//占쏙옙占쏙옙
-		return "main/main";
+	public ModelAndView acceptJoinForm(ApplyAdDTO adDto){
+		
+		int result = adDao.insert(adDto);
+		String msg = result>0?"광고 신청을 완료했습니다.":"광고 신청이 실패했습니다.";
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.setViewName("ad/adMsg");
+		return mav;
+	}
+	
+	@RequestMapping("/goMyPage.do")
+	public String goMyPage(){
+		//광고 신청 후 돌아갈 page
+		return "";
 	}
 	
 	@RequestMapping("/checkCurAd.do")
 	public String checkCurAd(){
+		
 		ModelAndView mav = new ModelAndView();
 		
 		
@@ -48,6 +60,7 @@ public class AdController {
 	
 	@RequestMapping("/getAdRequest.do")
 	public ModelAndView getAdRequest(){
+		
 		List<ApplyAdDTO> list =	adDao.adList();
 		ModelAndView mav = new ModelAndView("marsJson","list",list);
 		return mav;

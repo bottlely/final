@@ -200,10 +200,7 @@ public class MyHomeController{
 		info.put("range", range);
 		int result = mhdao.openCoverage(info);
 		
-		ModelAndView mav = new ModelAndView();
-		String msg = result > 0 ? "변경 완료!" : "변경 실패!";
-		mav.addObject("msg", msg);
-		mav.setViewName("myPage/myHomeMsg");
+ 		ModelAndView mav = new ModelAndView("marsJson","result",result);
 		return mav;
 	}
 
