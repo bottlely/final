@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="mars.member">
+	<select id="memberSearch" resultType="mars.member.model.MemberDTO">
+		select * from mars_member where name=#{name} order by idx desc
+	</select>
+	<select id="htagSearch" resultType="mars.htag.model.htagDTO">
+		select * from content where idx in (select content_idx from mars_htag where name=#{name}) 
+	</select>
+</mapper>

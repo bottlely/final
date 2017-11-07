@@ -141,6 +141,12 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         
               <ul class="nav navbar-nav navbar-right">
+              <li>
+              <form name="search" action="membersearch.do">
+              	<input type="text" name="name">
+              	<input type="submit" value="검색">
+              	</form>
+              </li>
               
               <!-- 다운 광고 추가 임시 버튼 -->
               <li>

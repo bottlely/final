@@ -72,7 +72,7 @@
 		<property name="mailService" ref="mailService"></property>
 	</bean>
 	<bean id="contentController" class="mars.controller.ContentController"></bean>
-	<bean id="friendController" class="mars.controller.FriendController"></bean>
+	<bean id="searchController" class="mars.controller.SearchController"></bean>
 
 
 	<!-- service -->
@@ -110,6 +110,16 @@
 	<bean id="friendDao" class="mars.friend.model.FriendDAOImple">
 		<constructor-arg>
 			<ref bean="sqlSessionTemplate" />
+		</constructor-arg>
+	</bean>
+	<bean id="searchdao" class="mars.search.model.SearchDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+	</bean>
+	<bean id="htagdao" class="mars.htag.model.htagDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
 		</constructor-arg>
 	</bean>
 	
