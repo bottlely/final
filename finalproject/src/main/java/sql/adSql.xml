@@ -10,6 +10,6 @@
   	</select>
   	
   	<insert id="addAdForm" parameterType="mars.ad.model.ApplyAdDTO">
-  		insert into ad values(ad_ad_idx.nextval, #{member_idx}, #{name}, #{type}, #{link}, #{ad_content}, '05-11-17', '31-12-17', 2000000, 0, 1, 1, 0, 1, 0, 1, 0, 0, #{post}, 'no_one', sysdate, 1000, 1, 1, 1, 1, 1, 1, 1)
+  	insert into ad values(ad_ad_idx.nextval, 32, #{name}, #{type}, #{link}, 'no', #{fee}, #{favor_movie}, 1, 1, 0, 1, 0, 1, 0, 0, 'nothing', 'no', sysdate, 1000, 1, 1, 1, 1, 1, 1, 1, #{s_date}, #{e_date})
   	</insert>
   </mapper>

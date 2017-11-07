@@ -11,7 +11,7 @@ public class ApplyAdDAOImple implements ApplyAdDAO {
 	private SqlSessionTemplate sqlMap;
 	
 	public ApplyAdDAOImple() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 	public ApplyAdDAOImple(SqlSessionTemplate sqlMap) {
 		super();

@@ -1,16 +1,11 @@
 package mars.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import mars.ad.model.ApplyAdDAO;
@@ -24,16 +19,21 @@ public class AdController {
 	private ApplyAdDAO adDao;
 	
 	@RequestMapping("/applyAdForm.do")
-	public String adJoinForm(){
+	public ModelAndView adJoinForm(){
 		
-		return "ad/applyAd";
+		 ModelAndView mav = new ModelAndView();
+	     mav.setViewName("ad/applyAd");
+	     return mav;
 	}
 	
-	
-	@RequestMapping("/applyAdOk.do")
-	public ModelAndView acceptJoinForm(ApplyAdDTO adDto){
+	@RequestMapping("/applyAd.do")
+	public ModelAndView applyAd(@ModelAttribute("cmd")ApplyAdDTO command){
+		System.out.println("come2");
+		System.out.println("1"+command.getFavor_sport()+"2"+command.getFavor_beauty()+command.getFavor_dance()+command.getFavor_fashion()+command.getFavor_food()+command.getFavor_music());
 		
-		int result = adDao.insert(adDto);
+		
+		
+		int result = adDao.insert(command);
 		String msg = result>0?"광고 신청을 완료했습니다.":"광고 신청이 실패했습니다.";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
@@ -44,18 +44,17 @@ public class AdController {
 	@RequestMapping("/goMyPage.do")
 	public String goMyPage(){
 		//광고 신청 후 돌아갈 page
-		return "";
+		return "main/main";
 	}
 	
-	@RequestMapping("/checkCurAd.do")
-	public String checkCurAd(){
+//	@RequestMapping("/checkCurAd.do")
+//	public String checkCurAd(){
 		
-		ModelAndView mav = new ModelAndView();
+//		ModelAndView mav = new ModelAndView();	
 		
 		
-		
-		return "ad/checkCurAd";
-	}
+//		return "ad/checkCurAd";
+//	}
 	
 	
 	@RequestMapping("/getAdRequest.do")
