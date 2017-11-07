@@ -15,11 +15,13 @@ public class FriendDAOImple implements FriendDAO {
 		this.sqlMap = sqlMap;
 	}
 	
-	public int friendAdd(FriendDTO dto) {
-		//HashMap<String, Integer> map = new HashMap<String, Integer>();
-		//map.put("user1_idx", user1_idx);
-		//map.put("user2_idx", user2_idx);
+	public int following(FriendDTO dto) {
 		int result = sqlMap.insert("friendAdd", dto);
+		return result;
+	}
+	
+	public int deleteFriend(FriendDTO dto) {
+		int result = sqlMap.delete("deleteFriend", dto);
 		return result;
 	}
 	

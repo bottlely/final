@@ -51,6 +51,9 @@
 	  		  });
 			});
 		
+		function test(idx) { //follow_test
+			location.href='test.do?user_idx='+idx;
+		}
 		
 		</script>
 	</head>
@@ -94,7 +97,7 @@
 								<div style="float: right;">
 								<h3>Following</h3>
 								<c:set var="following_list" value="${followingList }" />
-								<h3><a href="#intro" id="following">${follower_list.size() }</a></h3>
+								<h3><a href="#intro" id="following">${following_list.size() }</a></h3>
 								</div>
 								</header>
 								
@@ -123,7 +126,7 @@
 										<article>
 											<header>
 												<h3><a href="#">${follower_list.name}</a></h3>
-												<input type="button" value="chat" onclick=""><input type="button" value="more" onclick="">
+												<input type="button" value="chat" onclick=""><input type="button" value="more" onclick="test('${sessionScope.useridx}')">
 											</header>
 											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
 										</article>

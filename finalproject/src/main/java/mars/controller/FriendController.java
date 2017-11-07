@@ -22,7 +22,9 @@ public class FriendController {
 	/**following*/
 	@RequestMapping("/following.do")
 	public ModelAndView addFollowing(FriendDTO dto) {
-		int result = friendDao.friendAdd(dto);
+		//System.out.println("user1_idx: "+dto.getUser1_idx());
+		//System.out.println("user2_idx: "+dto.getUser2_idx());
+		int result = friendDao.following(dto);
 		String msg = result>0? "Success" : "Fail";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
@@ -30,13 +32,24 @@ public class FriendController {
 		return mav;
 	}
 	
-	/**following*/
+	/**unfollowing & remove Follower*/
+	@RequestMapping("/deleteFriend.do")
+	public ModelAndView unFollowing(FriendDTO dto) {
+		int result = friendDao.deleteFriend(dto);
+		String msg = result>0? "Sucess" : "Fail";
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.setViewName("friend/friendMsg");
+		return mav;
+	}
 	
 	@RequestMapping("/test.do")
 	public ModelAndView test(@RequestParam("user_idx")int user_idx) {
 		List<MemberDTO> list1 = friendDao.followerList(user_idx);
+		List<MemberDTO> list2 = friendDao.followingList(user_idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("followerList", list1);
+		mav.addObject("followingList", list2);
 		mav.setViewName("friend/test");
 		return mav;
 	}

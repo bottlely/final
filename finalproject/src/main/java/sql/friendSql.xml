@@ -31,4 +31,8 @@
 							from mars_ff
 							where mars_ff.user1_idx=#{user_idx})
 	</select>
+	<delete id="deleteFriend" parameterType="Integer">
+		delete mars_ff 
+		where user1_idx=#{user1_idx} and user2_idx=#{user2_idx}
+	</delete>
 </mapper>

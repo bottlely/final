@@ -6,7 +6,8 @@ import mars.friend.model.*;
 
 public interface FriendDAO {
 	
-	public int friendAdd(FriendDTO dto);
+	public int following(FriendDTO dto);
+	public int deleteFriend(FriendDTO dto);
 	public List<MemberDTO> followingList(int user1_idx);
 	public List<MemberDTO> followerList(int user2_idx);
 	public List<MemberDTO> blackList(int user2_idx);
