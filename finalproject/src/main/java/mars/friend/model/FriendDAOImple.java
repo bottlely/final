@@ -16,6 +16,9 @@ public class FriendDAOImple implements FriendDAO {
 	}
 	
 	public int friendAdd(FriendDTO dto) {
+		//HashMap<String, Integer> map = new HashMap<String, Integer>();
+		//map.put("user1_idx", user1_idx);
+		//map.put("user2_idx", user2_idx);
 		int result = sqlMap.insert("friendAdd", dto);
 		return result;
 	}

@@ -2,6 +2,7 @@ package mars.friend.model;
 
 import java.util.*;
 import mars.member.model.*;
+import mars.friend.model.*;
 
 public interface FriendDAO {
 	

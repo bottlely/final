@@ -6,26 +6,25 @@
   
 <mapper namespace="mars.ff">
 	<insert id="friendAdd" parameterType="mars.friend.model.FriendDTO">
-		insert into mars_ff values
-		(mars_ff_idx.nextval, user1_idx=#{user1_idx}, user2_idx=#{user2_idx}, 0, '', 0, 0, 0, '', '')
+		insert into mars_ff values(mars_ff_idx.nextval, #{user1_idx}, #{user2_idx}, 0, '', 0, 0, 0, '', '')
 	</insert>
-	<select id="followingList" resultType="String">
-		select mars_member.name
+	<select id="followingList" parameterType="Integer" resultType="mars.member.model.MemberDTO">
+		select mars_member.idx, mars_member.name
 		from mars_member, mars_ff
 		where mars_member.idx=mars_ff.user2_idx and mars_ff.user1_idx=#{user1_idx}	
 	</select>
-	<select id="followerList" resultType="String">
-		select mars_member.name
+	<select id="followerList" parameterType="Integer" resultType="mars.member.model.MemberDTO">
+		select mars_member.name, mars_member.idx
 		from mars_member, mars_ff
 		where mars_member.idx=mars_ff.user1_idx and mars_ff.user2_idx=#{user2_idx}	
 	</select>
-	<select id="blackList" resultType="String">
-		select mars_member.name
+	<select id="blackList" parameterType="Integer" resultType="mars.member.model.MemberDTO">
+		select mars_member.name, mars_member.idx
 		from mars_member, mars_ff
 		where mars_member.idx=mars_ff.user1_idx and mars_ff.user2_idx=#{user2_idx} and black_state='1'	
 	</select>
-	<select id="resultList" parameterType="hashMap" resultType="String">
-		select mars_member.name
+	<select id="resultList" parameterType="hashMap" resultType="mars.member.model.MemberDTO">
+		select mars_member.name, mars_member.idx
 		from mars_member
 		where mars_member.name=#{search_name} and 
 		mars_member.idx in (select user2_idx

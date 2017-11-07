@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link href="assets_main/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets_main/css/style.css" type="text/css">
     <link href="assets_main/css/pe-icon-7-stroke.css" rel="stylesheet" />
-	<link href="assets_main/css/ct-navbar.css" rel="stylesheet" />  
-	
+   <link href="assets_main/css/ct-navbar.css" rel="stylesheet" />  
+   
 
   
   <title>MARS</title>
@@ -22,20 +22,20 @@
     <style>
     
     
-			@keyframes spin {
-		100% {
-			transform: rotate(360deg);
-			}
-		}
-		.spinner {
-		display: inline-block;
-		width: 50px;
-		height: 50px;
-		border: 5px solid yellow;
-		border-color: yellow transparent transparent;
-		border-radius: 50%;
-		animation: spin 1s linear  infinite;
-		}    
+         @keyframes spin {
+      100% {
+         transform: rotate(360deg);
+         }
+      }
+      .spinner {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 5px solid yellow;
+      border-color: yellow transparent transparent;
+      border-radius: 50%;
+      animation: spin 1s linear  infinite;
+      }    
     
         .fa-heart{
             color: #F74933;
@@ -68,10 +68,10 @@
         } 
     </style>
 </head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<script> 
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+         <script> 
 
-			$(document).ready(function(){
+         $(document).ready(function(){
 			    $("#friends1").click(function(){
 			    	ppp.location.reload();
 			        var div = $("#friends2");
@@ -79,56 +79,56 @@
 			        div.animate({width:'toggle'}, "slow");
 			    });
 			});
-			$(document).ready(function(){
-			    $("#mypage1").click(function(){
-			        var div = $("#mypage2");
-			        div.animate({left: '35%'}, "fast");
-			        div.animate({height: '100%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-					
-			    });
-			});
+         $(document).ready(function(){
+             $("#mypage1").click(function(){
+                 var div = $("#mypage2");
+                 div.animate({left: '35%'}, "fast");
+                 div.animate({height: '100%'}, "slow");
+                 div.animate({width:'toggle'}, "slow");
+               
+             });
+         });
 
 
-			
-			$(document).ready(function(){
-			    $("#cl1").click(function(){
-			        var div = $("#friends2");
-			        div.animate({height: '100%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-					
-			    });
-			});
-			
-			$(document).ready(function(){
-			    $("#cl2").click(function(){
-			        var div = $("#mypage2");
-			        div.animate({height: '100%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-			        
-			    });
-			});
-			
-			
+         
+         $(document).ready(function(){
+             $("#cl1").click(function(){
+                 var div = $("#friends2");
+                 div.animate({height: '100%'}, "slow");
+                 div.animate({width:'toggle'}, "slow");
+               
+             });
+         });
+         
+         $(document).ready(function(){
+             $("#cl2").click(function(){
+                 var div = $("#mypage2");
+                 div.animate({height: '100%'}, "slow");
+                 div.animate({width:'toggle'}, "slow");
+                 
+             });
+         });
+         
+         
 
-			
-			$(document).ready(function(){
-			    $("#more").click(function(){
-			        var div = $("#wait");
-					div.toggle('slow');
-			        
-			    });
-			});
-			
+         
+         $(document).ready(function(){
+             $("#more").click(function(){
+                 var div = $("#wait");
+               div.toggle('slow');
+                 
+             });
+         });
+         
 
-			
-			function openpic(i){
-				var div = document.getElementById('pic'+i).value;
-				window.alert(i);
-				   window.alert(div);
-				   
-				$('#galleryImage').attr("src",div);
-				} 
+         
+         function openpic(i){
+            var div = document.getElementById('pic'+i).value;
+            window.alert(i);
+               window.alert(div);
+               
+            $('#galleryImage').attr("src",div);
+            } 
 
 </script> 
 <body>
@@ -144,38 +144,38 @@
 	<iframe src="${frListUrl }" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
 	</div>
-		 </span>
-		 <span style="float: right;">
+       </span>
+       <span style="float: right;">
 
-		 	<div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
-		<div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
-	
-	<c:url var="myHomeUrl" value="myHomeForm.do">
-		<c:param name="useridx" value="${sessionScope.useridx}"/>
-	</c:url>
-	<iframe src="${myHomeUrl}" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+          <div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
+      <div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
+   
+   <c:url var="myHomeUrl" value="myHomeForm.do">
+      <c:param name="useridx" value="${sessionScope.useridx}"/>
+   </c:url>
+   <iframe src="${myHomeUrl}" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
-	</div>
-		 
-		 </span>
+   </div>
+       
+       </span>
    <div id="navbar-blue">
     <nav class="navbar navbar-ct-blue" role="navigation">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
 <ul class="nav navbar-nav navbar-left">
-					 <li>
-					<a href="main.jsp">
+                <li>
+               <a href="main.do">
                           <img src="assets_main/images/logo.svg" alt="" />
                            
                        </a>
-					 
-					 </li>
-		             <li>
-                        <a href="main.jsp">
+                
+                </li>
+                   <li>
+                        <a href="main.do">
                           <h3>MARS</h3>
                            
                        </a>
-                   </li>			
+                   </li>         
 
                </ul>
     
@@ -184,12 +184,11 @@
         
               <ul class="nav navbar-nav navbar-right">
               <li>
-              <form name="search" action="membersearch.do">
-              	<input type="text" name="name">
-              	<input type="submit" value="검색">
-              	</form>
+	              <form name="search" action="membersearch.do">
+	                 <input type="text" name="name">
+	                 <input type="submit" value="검색">
+	              </form>
               </li>
-              
               <!-- 다운 광고 추가 임시 버튼 -->
               <li>
               <a href="#" onclick="window.open('applyAdForm.do', '광고 주문서', 'scrollbars=no width=400, height=350')">
@@ -210,12 +209,12 @@
                             
                         </a>
                     </li>
-		             <li>
+                   <li>
                         <a href="#">
                            <i class="pe-7s-global"></i>
                            
                        </a>
-                   </li>			
+                   </li>         
                     <li>
                         <a href="#">
                             <i class="pe-7s-mail">
@@ -238,16 +237,16 @@
                     </li>
                     
                                         <li>
-					<div class="dropdown">
- 		 <a class="btn btn-primary dropdown-toggle"  data-toggle="dropdown">
- 		 <i class="pe-7s-menu"></i>
- 		 <span class="caret"></span></a>
- 			 <ul class="dropdown-menu">
-   			 <li><a href="#">메뉴1</a></li>
-   			 <li><a href="#">메뉴2</a></li>
-   			 <li><a href="#">메뉴3</a></li>
- 			 </ul>
-			</div>
+               <div class="dropdown">
+        <a class="btn btn-primary dropdown-toggle"  data-toggle="dropdown">
+        <i class="pe-7s-menu"></i>
+        <span class="caret"></span></a>
+           <ul class="dropdown-menu">
+             <li><a href="#">메뉴1</a></li>
+             <li><a href="#">메뉴2</a></li>
+             <li><a href="#">메뉴3</a></li>
+           </ul>
+         </div>
                     </li>
                </ul>
                <form class="navbar-form navbar-right navbar-search-form" role="search">                  
@@ -265,62 +264,62 @@
 
 
    <section id="latest-works">
-	<div class="container">
-		<div class="row">
+   <div class="container">
+      <div class="row">
 
-		</div>
-		<div class="row text-center">
-			<div class="works-category"  data-sr='enter top, wait 0.2s'>
-				<ul class="statistics">
-					<li class="style1"><a href="#" data-filter="*" class="current">All</a></li>
-					<li class="style2"><a href="#" data-filter=".photo">PHOTO</a></li>
-					<li class="style3"><a href="#" data-filter=".viedeo">VIEDEO</a></li>
-					<li class="style4"><a href="#" data-filter=".text">TEXT</a></li>
-					<li class="style1"><a href="#" data-filter=".strategy">HOT</a></li>
-				</ul>
-			</div>
+      </div>
+      <div class="row text-center">
+         <div class="works-category"  data-sr='enter top, wait 0.2s'>
+            <ul class="statistics">
+               <li class="style1"><a href="#" data-filter="*" class="current">All</a></li>
+               <li class="style2"><a href="#" data-filter=".photo">PHOTO</a></li>
+               <li class="style3"><a href="#" data-filter=".viedeo">VIEDEO</a></li>
+               <li class="style4"><a href="#" data-filter=".text">TEXT</a></li>
+               <li class="style1"><a href="#" data-filter=".strategy">HOT</a></li>
+            </ul>
+         </div>
 
-				<div class="works-area" >
-				<% for(int i=0; i<12; i++){
-					
-					%>
-				<div class="col-md-4 col-sm-6 col-xs-12  photo"  >
-					<div class="works">
-						<img src="assets_main/images/아이유6.jpg" alt="" style="width: 431px; height: 431px;">
+            <div class="works-area" >
+            <% for(int i=0; i<12; i++){
+               
+               %>
+            <div class="col-md-4 col-sm-6 col-xs-12  photo"  >
+               <div class="works">
+                  <img src="assets_main/images/아이유6.jpg" alt="" style="width: 431px; height: 431px;">
 
-						<div class="work-overlay text-center">
-							<div class="overlay-caption">
-								<h4>PHOTO</h4>
+                  <div class="work-overlay text-center">
+                     <div class="overlay-caption">
+                        <h4>PHOTO</h4>
 
-								
-					<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" 
-					onclick="openpic(<%=i%>)">
+                        
+               <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" 
+               onclick="openpic(<%=i%>)">
                         <input type="hidden" value="assets_main/images/아이유6.jpg"  id="pic<%=+i%>" >
                         
-  							<p>사진<%=i+1 %>번</p>
+                       <p>사진<%=i+1 %>번</p>
                     </a>
-							</div>
-						</div>
-					</div>
-				</div>
-					
-					<% 
-					
-					
-					
-					}%>
-				
+                     </div>
+                  </div>
+               </div>
+            </div>
+               
+               <% 
+               
+               
+               
+               }%>
+            
 
-			</div> 
-		</div>
-		</div>
+         </div> 
+      </div>
+      </div>
 
 </section>
   <section>
   <div class="container">
    
     <div class="row">
-    		 <div class="col-xs-12" style="text-align: center;">
+           <div class="col-xs-12" style="text-align: center;">
                    <div class="spinner" id="wait"></div>
         </div>
     
@@ -347,16 +346,16 @@
       댓글2<br>
         </div>
         
-        		
+              
     </div>
 </div>
-      	<div class="container" style="background-color: white;">
+         <div class="container" style="background-color: white;">
     <div class="row">
         <div class="col-sm-12">
-      		  <p>
-        	 <br/>
+              <p>
+            <br/>
          <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
-        		</p>
+              </p>
         </div>
     </div>
 </div>
@@ -364,11 +363,11 @@
 </body>
 
     <script src="assets_main/js_1/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="assets_main/js_1/bootstrap.js" type="text/javascript"></script>
-	<script type="text/javascript" src="assets_main/js_1/main.js"></script>
-	<script src="assets_main/js_1/ct-navbar.js"></script>
-	<script type="text/javascript" src="assets_main/owl-carousel/owl.carousel.min.js"></script>
-	
+   <script src="assets_main/js_1/bootstrap.js" type="text/javascript"></script>
+   <script type="text/javascript" src="assets_main/js_1/main.js"></script>
+   <script src="assets_main/js_1/ct-navbar.js"></script>
+   <script type="text/javascript" src="assets_main/owl-carousel/owl.carousel.min.js"></script>
+   
 <!--Parallax-->
 <script type="text/javascript" src="assets_main/js/jquery.stellar.min.js"></script>
 <!--IsoTop-->
