@@ -20,6 +20,23 @@
     <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
     <style>
+    
+    
+			@keyframes spin {
+		100% {
+			transform: rotate(360deg);
+			}
+		}
+		.spinner {
+		display: inline-block;
+		width: 50px;
+		height: 50px;
+		border: 5px solid yellow;
+		border-color: yellow transparent transparent;
+		border-radius: 50%;
+		animation: spin 1s linear  infinite;
+		}    
+    
         .fa-heart{
             color: #F74933;
         }   
@@ -93,11 +110,12 @@
 			});
 			
 			
+
+			
 			$(document).ready(function(){
-			    $("#cl2").click(function(){
-			        var div = $("#mypage2");
-			        div.animate({height: '100%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
+			    $("#more").click(function(){
+			        var div = $("#wait");
+					div.toggle('slow');
 			        
 			    });
 			});
@@ -129,7 +147,7 @@
 		 </span>
 		 <span style="float: right;">
 
-		 	<div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; z-index: 4" display: none;>
+		 	<div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
 		<div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
 	
 	<c:url var="myHomeUrl" value="myHomeForm.do">
@@ -214,13 +232,16 @@
                     </li>
                     
                                         <li>
-                        <a href="javascript:void(0);" class="hidden-xs" id="friends1">
-                            <i class="pe-7s-menu"></i>
-                               <ul>
-                               <li>메뉴1</li>
-                               <li>메뉴2</li>
-                               </ul>
-                        </a>
+					<div class="dropdown">
+ 		 <a class="btn btn-primary dropdown-toggle"  data-toggle="dropdown">
+ 		 <i class="pe-7s-menu"></i>
+ 		 <span class="caret"></span></a>
+ 			 <ul class="dropdown-menu">
+   			 <li><a href="#">메뉴1</a></li>
+   			 <li><a href="#">메뉴2</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+ 			 </ul>
+			</div>
                     </li>
                </ul>
                <form class="navbar-form navbar-right navbar-search-form" role="search">                  
@@ -270,7 +291,7 @@
 					onclick="openpic(<%=i%>)">
                         <input type="hidden" value="assets_main/images/아이유6.jpg"  id="pic<%=+i%>" >
                         
-  							<p>사진1번</p>
+  							<p>사진<%=i+1 %>번</p>
                     </a>
 							</div>
 						</div>
@@ -291,10 +312,14 @@
 </section>
   <section>
   <div class="container">
-    <div class="row"></div>
+   
     <div class="row">
+    		 <div class="col-xs-12" style="text-align: center;">
+                   <div class="spinner" id="wait"></div>
+        </div>
+    
         <div class="col-xs-12" style="text-align: center;">
-                     <button type="button" class="btn btn-primary">More List..</button>
+                     <button type="button" class="btn btn-primary" id="more">More List..</button>
         </div>
     </div>
 </div>
@@ -302,22 +327,33 @@
   </section>
 <!-- end main -->
     <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-        	<div class="modal-body">
-        		<img src="" id="galleryImage" class="img-responsive"  style="display: inline;">
+    <div class="container" style="background-color: white;">
+    <div class="row">
+        <div class="col-xs-6">
         
-
-        	</div>
-        	<div>
-        	제목  내용  댓글
-        	</div>
-        	        		<p>
-        		    <br/>
-        		    <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+        <img src="" id="galleryImage" class="img-responsive">
+        
+        </div>
+        <div class="col-xs-6" style="float: left;">
+       <h2> 제목 </h2><br>
+        내용 <br>
+      댓글1<br>
+      댓글2<br>
+        </div>
+        
+        		
+    </div>
+</div>
+      	<div class="container" style="background-color: white;">
+    <div class="row">
+        <div class="col-sm-12">
+      		  <p>
+        	 <br/>
+         <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
         		</p>
         </div>
-        </div>
+    </div>
+</div>
     </div>
 </body>
 
