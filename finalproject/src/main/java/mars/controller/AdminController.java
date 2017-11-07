@@ -17,6 +17,7 @@ public class AdminController {
 	private AdminDAO aDao;
 	
 	
+	
 	@RequestMapping("/admin.do")
 	public String adminMain() {
 		return "admin/admin_main";
