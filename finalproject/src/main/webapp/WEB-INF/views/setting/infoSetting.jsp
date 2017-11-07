@@ -61,15 +61,15 @@
             </div>
 
             <ul class="nav">
-                <li class="active">
-                    <a href="infoSetting.do">
-                        <i class="ti-panel"></i>
+                <li  class="active">
+                   <a href="infoSetting.do">
+                        <i class="ti-user"></i>
                         <p>Setting</p>
                     </a>
                 </li>
                 <li>
-                    <a href="pwdSetting.do">
-                        <i class="ti-user"></i>
+                     <a href="pwdSetting.do">
+                        <i class="ti-panel"></i>
                         <p>Password Setting</p>
                     </a>
                 </li>
@@ -90,8 +90,7 @@
                         <i class="ti-pencil-alt2"></i>
                         <p>Leave</p>
                     </a>
-                </li>
-
+         
             </ul>
     	</div>
     </div>
