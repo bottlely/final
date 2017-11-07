@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -9,7 +10,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets_main_fr/css/main.css" />
-		 <link href="assets_main/css/pe-icon-7-stroke.css" rel="stylesheet" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -17,6 +17,8 @@
 		$(document).ready(function(){
   		  $("#follower").click(function(){
   			$("#following1").fadeOut();
+  			$('#search1').fadeOut();
+  			$('#search1').empty();
     	    $("#follower1").slideToggle();
   		  });
 		});
@@ -24,6 +26,8 @@
 		$(document).ready(function(){
 	  		  $("#following").click(function(){
 	  			$("#follower1").fadeOut();
+	  			$('#search1').fadeOut();
+	  			$('#search1').empty();
 	    	    $("#following1").slideToggle();
 	  		  });
 			});
@@ -33,16 +37,30 @@
 	    	    $("#black1").slideToggle();
 	  		  });
 			});
+		
+		$(document).ready(function(){
+	  		  $("#search").click(function(){
+	  			  $('#search1').fadeOut('fast');
+	    	    $("#search1").slideToggle();
+	  		  });
+			});
+		
+		$(document).ready(function(){
+	  		  $("#search_name").click(function(){
+	  			  $('#search1').fadeOut('fast');
+	  		  });
+			});
+		
+		
 		</script>
 	</head>
 	<body>
-
 		<!-- Wrapper -->
 			<div id="wrapper">
 
 				<!-- Header -->
 					<header id="header">
-						<h1><a href="#">Follow & Black</a></h1>
+						<h1><a href="main_frList.do?user_idx=${sessionScope.useridx }">Follow & Black</a></h1>
 
 					</header>
 
@@ -87,8 +105,10 @@
 							<section>
 						<div>
 						
-									<form id="search" method="get" action="#">
-										<input type="text" name="query" placeholder="Search" />
+									<form id="search" method="get" action="friend_search.do">
+										<input type="hidden" name="user_idx" value="${sessionScope.useridx }">
+										<input type="text" name="search_name" placeholder="Search" />
+										<a href="#intro" id="search"><input type="submit" value="찾기"></a>
 									</form>
 							
 						</div>
@@ -103,14 +123,7 @@
 										<article>
 											<header>
 												<h3><a href="#">${follower_list}</a></h3>
-												<a href="#">
-												<i class="pe-7s-chat"></i>
-												</a>
-												&nbsp;&nbsp;
-												<a href="#">
-												<i class="pe-7s-light"></i>
-												</a>
-												
+												<input type="button" value="chat" onclick=""><input type="button" value="more" onclick="">
 											</header>
 											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
 										</article>
@@ -127,13 +140,24 @@
 										<article>
 											<header>
 												<h3><a href="#">${following_list }</a></h3>
-												<a href="#">
-												<i class="pe-7s-chat"></i>
-												</a>
-												&nbsp;&nbsp;
-												<a href="#">
-												<i class="pe-7s-light"></i>
-												</a>
+												<input type="button" value="chat" onclick=""><input type="button" value="more" onclick="">
+											</header>
+											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
+										</article>
+									</li>
+								</c:forEach>
+								</ul>
+							</section>
+							
+							<!-- search -->
+							<section id="search1" style="display: none;">
+								<ul class="posts">
+								<c:forEach var="search_list" items="${resultList }">
+									<li>
+										<article>
+											<header>
+												<h3><a href="#">${search_list }</a></h3>
+												<input type="button" value="chat" onclick=""><input type="button" value="more" onclick="">
 											</header>
 											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
 										</article>
@@ -160,13 +184,7 @@
 										<article>
 											<header>
 												<h3><a href="#">${blackList }</a></h3>
-												<a href="#">
-												<i class="pe-7s-chat"></i>
-												</a>
-												&nbsp;&nbsp;
-												<a href="#">
-												<i class="pe-7s-light"></i>
-												</a>
+												<input type="button" value="chat" onclick=""><input type="button" value="more" onclick="">
 											</header>
 											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt="" style="border-radius: 50%"></a>
 										</article>

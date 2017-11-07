@@ -56,10 +56,10 @@
 
 			$(document).ready(function(){
 			    $("#friends1").click(function(){
+			    	ppp.location.reload();
 			        var div = $("#friends2");
 			        div.animate({height: '100%'}, "slow");
 			        div.animate({width:'toggle'}, "slow");
-			        
 			    });
 			});
 			$(document).ready(function(){
@@ -79,7 +79,7 @@
 			        var div = $("#friends2");
 			        div.animate({height: '100%'}, "slow");
 			        div.animate({width:'toggle'}, "slow");
-			        
+					
 			    });
 			});
 			
@@ -97,9 +97,12 @@
 <div id="navbar-full">
 <span style="float: left;">
 
-				<div  id="friends2" style="background:#935d8c;height:100%;width:25%; position: absolute; float: left; display: none; z-index: 4">
+				<div id="friends2" style="background:#935d8c;height:100%;width:25%; position: absolute; float: left; display: none; z-index: 4">
 		<div style="background-color: white; align-content:center; "><a href="#" id="cl1">Close</a></div> 
-	<iframe src="main_frList.do?user_idx=9" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+	<c:url var="frListUrl" value="main_frList.do">
+		<c:param name="user_idx" value="${sessionScope.useridx }" />
+	</c:url>
+	<iframe src="${frListUrl }" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
 	</div>
 		 </span>

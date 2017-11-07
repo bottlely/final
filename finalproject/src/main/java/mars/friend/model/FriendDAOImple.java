@@ -22,19 +22,19 @@ public class FriendDAOImple implements FriendDAO {
 	
 	public List<MemberDTO> followingList(int user1_idx) {
 		List<MemberDTO> list = sqlMap.selectList("followingList", user1_idx);
-		System.out.println("list1:" + list);
+		//System.out.println("list1:" + list);
 		return list;
 	}
 	
 	public List<MemberDTO> followerList(int user2_idx) {
 		List<MemberDTO> list = sqlMap.selectList("followerList", user2_idx);
-		System.out.println("list2:" + list);
+		//System.out.println("list2:" + list);
 		return list;
 	}
 	
 	public List<MemberDTO> blackList(int user2_idx) {
 		List<MemberDTO> list = sqlMap.selectList("blackList", user2_idx);
-		System.out.println("list3:" + list);
+		//System.out.println("list3:" + list);
 		return list;
 	}
 	
@@ -43,7 +43,7 @@ public class FriendDAOImple implements FriendDAO {
 		map.put("search_name", search_name);
 		map.put("user_idx", String.valueOf(user_idx));
 		List<MemberDTO> list = sqlMap.selectList("resultList", map);
-		System.out.println("list5<FriendDAOImple>: "+list);
+		//System.out.println("list5<FriendDAOImple>: "+list);
 		return list;
 	}
 	
