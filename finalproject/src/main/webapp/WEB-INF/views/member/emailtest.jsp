@@ -103,6 +103,13 @@ request.setCharacterEncoding("utf-8");
 String id = request.getParameter("id");
 String pwd = request.getParameter("pwd");
 String name = request.getParameter("name");
+int usertype = Integer.parseInt(request.getParameter("usertype"));
+int company_number = 0;
+if(request.getParameter("company_number")==null||request.getParameter("company_number")=="") {
+	company_number = 0;
+} else {
+	company_number = Integer.parseInt(request.getParameter("company_number"));
+}
 %>
 
 </head>
@@ -113,6 +120,8 @@ String name = request.getParameter("name");
 		<form name="fm" action="join.do">
 			<input type="hidden" name="name" value="<%=name%>">
 			<input type="hidden" name="pwd" value="<%=pwd%>">
+			<input type="hidden" name="usertype" value="<%=usertype%>">
+			<input type="hidden" name="company_number" value="<%=company_number%>">
 			<table>
 				<tr>
 					<th>이메일</th>
