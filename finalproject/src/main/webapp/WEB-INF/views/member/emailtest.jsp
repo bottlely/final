@@ -29,117 +29,113 @@
 <!--Responsive Style-->
 <link rel="stylesheet" href="assets_index/css/responsive.css"
 	type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <style>
 [data-sr] {
 	visibility: hidden;
 }
 
-#home {
-	background-image: url("assets_index/images/indeximage3.jpg");
+#footer {
+	background-image: linear-gradient(to bottom right, #5a00b5, #fc81ac);
 }
 
 #div1 {
-	display:none;
+	display: none;
 }
 </style>
 
 <script>
+	var XHR = null;
 
-var XHR = null;
-
-function getXHR() {
-	if (window.ActiveXObject) {
-		return new ActiveXObject('Msxml1.XMLHTTP');
-	} else if (window.XMLHttpRequest) {
-		return new XMLHttpRequest();
-	} else {
-		return null;
-	}
-}
-
-function sendRequest(url, params, callback, method) {
-
-	XHR = getXHR();
-
-	//1.접속방식의 검증
-	var httpUrl = url;
-	var httpMethod = method ? method : 'GET';
-	if (httpMethod != 'GET' && httpMethod != 'POST') { //오타인지 확인하기 위해
-		httpMethod = 'GET';
-	}
-
-	//2.파라미터 검증
-	var httpParams = (params == null || params == '') ? null : params;
-
-	//3.접속방식에 따른 파라미터 처리
-	if (httpMethod == 'GET' && httpParams != null) {
-		httpUrl = url + '?' + httpParams;
-	}
-
-	XHR.onreadystatechange = callback;
-	XHR.open(httpMethod, httpUrl, true);
-	XHR.setRequestHeader('Content-Type',
-			'application/x-www-form-urlencoded');
-	XHR.send(httpMethod == 'POST' ? httpParams : null);
-}
-
-
-//이메일 인증 보내기
-
-function sendEmail() {
-	var id = 'id=' + document.fm.id.value;
-	window.alert('서버 사정에 따라 몇 분이 소요될 수 있습니다.');
-	sendRequest('sendEmail.do', id, showResult, 'GET');
-}
-
-function showResult() {
-	if (XHR.readyState == 4) {
-		if (XHR.status == 200) {
-			window.alert('메일발송 성공');
-			window.location.reload();
+	function getXHR() {
+		if (window.ActiveXObject) {
+			return new ActiveXObject('Msxml1.XMLHTTP');
+		} else if (window.XMLHttpRequest) {
+			return new XMLHttpRequest();
 		} else {
-			window.alert('메일발송 실패');
+			return null;
 		}
 	}
-}
 
-function checkJoinCode() {
-	var joinCode = '${sessionScope.joinCode}';
-	var usercode = document.fm.usercode.value;
-	
-	if(joinCode==usercode) {
-		window.alert('인증코드 확인완료');
-	}else {
-		window.alert('인증코드가 틀렸습니다. 다시 확인해 주세요.');
+	function sendRequest(url, params, callback, method) {
+
+		XHR = getXHR();
+
+		//1.접속방식의 검증
+		var httpUrl = url;
+		var httpMethod = method ? method : 'GET';
+		if (httpMethod != 'GET' && httpMethod != 'POST') { //오타인지 확인하기 위해
+			httpMethod = 'GET';
+		}
+
+		//2.파라미터 검증
+		var httpParams = (params == null || params == '') ? null : params;
+
+		//3.접속방식에 따른 파라미터 처리
+		if (httpMethod == 'GET' && httpParams != null) {
+			httpUrl = url + '?' + httpParams;
+		}
+
+		XHR.onreadystatechange = callback;
+		XHR.open(httpMethod, httpUrl, true);
+		XHR.setRequestHeader('Content-Type',
+				'application/x-www-form-urlencoded');
+		XHR.send(httpMethod == 'POST' ? httpParams : null);
 	}
-	
-}
 
-	
+	//이메일 인증 보내기
 
+	function sendEmail() {
+		var id = 'id=' + document.fm.id.value;
+		window.alert('서버 사정에 따라 몇 분이 소요될 수 있습니다.');
+		sendRequest('sendEmail.do', id, showResult, 'GET');
+	}
+
+	function showResult() {
+		if (XHR.readyState == 4) {
+			if (XHR.status == 200) {
+				window.alert('메일발송 성공');
+				window.location.reload();
+			} else {
+				window.alert('메일발송 실패');
+			}
+		}
+	}
+
+	function checkJoinCode() {
+		var joinCode = '${sessionScope.joinCode}';
+		var usercode = document.fm.usercode.value;
+
+		if (joinCode == usercode) {
+			window.alert('인증코드 확인완료');
+		} else {
+			window.alert('인증코드가 틀렸습니다. 다시 확인해 주세요.');
+		}
+
+	}
 </script>
 <%
-request.setCharacterEncoding("utf-8");
+	request.setCharacterEncoding("utf-8");
 
-String id = request.getParameter("id");
-String pwd = request.getParameter("pwd");
-String name = request.getParameter("name");
-int usertype = Integer.parseInt(request.getParameter("usertype"));
-int company_number = 0;
-if(request.getParameter("company_number")==null||request.getParameter("company_number")=="") {
-	company_number = 0;
-} else {
-	company_number = Integer.parseInt(request.getParameter("company_number"));
-}
+	String id = request.getParameter("id");
+	String pwd = request.getParameter("pwd");
+	String name = request.getParameter("name");
+	int usertype = Integer.parseInt(request.getParameter("usertype"));
+	int company_number = 0;
+	if (request.getParameter("company_number") == null || request.getParameter("company_number") == "") {
+		company_number = 0;
+	} else {
+		company_number = Integer.parseInt(request.getParameter("company_number"));
+	}
 %>
 
 </head>
 <body>
 
 	<!--/HEADER SECTION -->
-	<header class="header">
+	<header class="header" style="background: rgba(0,0,0,0.8);">
 		<div class="container">
 			<div class="navbar navbar-default" role="navigation">
 				<div class="container-fluid">
@@ -155,9 +151,9 @@ if(request.getParameter("company_number")==null||request.getParameter("company_n
 					<!-- end navbar-header -->
 					<div class="navbar-collapse collapse">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a data-scroll href="#login">Login</a></li>
+							<li><a data-scroll href="index.do">Login</a></li>
 							<li><a href="joinForm.do">Sign Up</a></li>
-							<li><a data-scroll href="#about-us">About</a></li>
+							<li><a data-scroll href="index.do">About</a></li>
 							<li><a href="admin.do">admin</a></li>
 							<li><a href="myHomeForm.do">MyPage</a></li>
 							<li><a href="logout.do">Log-out</a></li>
@@ -173,57 +169,59 @@ if(request.getParameter("company_number")==null||request.getParameter("company_n
 	<!-- end header -->
 
 	<!--Contact-->
-	<section id="contact" style="margin-top:100px;">
+	<section id="contact" style="margin-top: 100px;">
 		<div class="container">
-			
-			
+
+
 			<div class="row">
 				<div class="col-sm-12 text-center">
 					<h1 class="section-title">Emain Confirmation</h1>
 
 					<p class="sec-subtitle" id="contact1">MARS</p>
 				</div>
-				<div class="col-sm-2" data-sr="enter left, hustle 80px">
-
-				</div>
+				<div class="col-sm-2" data-sr="enter left, hustle 80px"></div>
 				<div class="col-sm-8" data-sr="enter right, hustle 80px">
 					<form name="fm" class="st-form" action="join.do" method="post">
-					<input type="hidden" name="name" value="<%=name%>">
-					<input type="hidden" name="pwd" value="<%=pwd%>">
-					<input type="hidden" name="usertype" value="<%=usertype%>">
-					<input type="hidden" name="company_number" value="<%=company_number%>">
-							<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group ">
-									<input type="email" class="form-control" placeholder="<%=id %>"
-										name="name" required readonly>
-								</div>
-								<div class="form-group ">
-									<input type="button" value="인증번호 받기" onclick="sendEmail()">
-								</div>								
+						<input type="hidden" name="name" value="<%=name%>"> <input
+							type="hidden" name="pwd" value="<%=pwd%>"> <input
+							type="hidden" name="usertype" value="<%=usertype%>"> <input
+							type="hidden" name="company_number" value="<%=company_number%>">
+						<div class="row">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-4">
+								<input type="email" class="form-control" placeholder=""
+									name="id" value="<%=id %>" readonly>
 							</div>
-							<div class="col-sm-6">
-								<div class="form-group ">
-									<input type="text" name="usercode" placeholder="인증번호">
-								</div>
-								<div class="form-group ">
-									<input type="button" value="확인" onclick="checkJoinCode()">
-								</div>
+							<div class="col-sm-4">
+								<button type="button" class="btn btn-send" onclick="sendEmail()">인증메일 전송</button>
 							</div>
-							<div class="row">
-							<div class="col-sm-3"></div>							
+							<div class="col-sm-2"></div>
+
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-2"></div>
+							<div class="col-sm-4">
+								<input type="text" class="form-control" placeholder="인증코드"
+									name="usercode" required>
+							</div>
+							<div class="col-sm-4">
+								<button type="button" class="btn btn-send" onclick="checkJoinCode()">인증코드 확인</button>
+							</div>
+							<div class="col-sm-2"></div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-sm-12" align="center">
 								<button type="submit" class="btn btn-send">회원가입 완료</button>
 							</div>
-							<div class="col-sm-3"></div>
 						</div>
-							
-						</div>						
 					</form>
 				</div>
 			</div>
 		</div>
 	</section>
-	
+
 	<!-- / Contact-->
 	<!--Footer-->
 	<footer id="footer">

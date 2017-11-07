@@ -36,8 +36,9 @@
 	visibility: hidden;
 }
 
-#home {
-	background-image: url("assets_index/images/indeximage3.jpg");
+
+#footer {
+	background-image: linear-gradient(to bottom right, #5a00b5, #fc81ac);
 }
 
 #div1 {
@@ -123,7 +124,7 @@ function idCheck() {
 <body>
 
 	<!--/HEADER SECTION -->
-	<header class="header">
+	<header class="header" style="background: rgba(0,0,0,0.6);">
 		<div class="container">
 			<div class="navbar navbar-default" role="navigation">
 				<div class="container-fluid">
@@ -137,11 +138,11 @@ function idCheck() {
 							style="color: white;">MARS</font></a>
 					</div>
 					<!-- end navbar-header -->
-					<div class="navbar-collapse collapse">
+					<div class="navbar-collapse collapse" >
 						<ul class="nav navbar-nav navbar-right">
-							<li><a data-scroll href="#login">Login</a></li>
+							<li><a data-scroll href="index.do">Login</a></li>
 							<li><a href="joinForm.do">Sign Up</a></li>
-							<li><a data-scroll href="#about-us">About</a></li>
+							<li><a data-scroll href="index.do">About</a></li>
 							<li><a href="admin.do">admin</a></li>
 							<li><a href="myHomeForm.do">MyPage</a></li>
 							<li><a href="logout.do">Log-out</a></li>
@@ -190,7 +191,7 @@ function idCheck() {
 							<div class="col-sm-6">
 								<div class="form-group ">
 									<input type="password" class="form-control"
-										placeholder="YOUR PASSWORD" name="pwd" required>
+										placeholder="YOUR PASSWORD (6~15)" name="pwd" required>
 								</div>
 							</div>
 							<div class="col-sm-6">

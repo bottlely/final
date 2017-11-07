@@ -136,6 +136,12 @@ public class MemberController {
 		return "member/emailtest";
 	}
 	
+	/*id pwd Search*/
+	@RequestMapping("/idpwdSrc.do")
+	public String idpwdSrcForm() {
+		return "member/idpwdSrcForm";
+	}
+	
 
 
 	
