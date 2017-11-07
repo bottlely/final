@@ -9,6 +9,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets_main_fr/css/main.css" />
+		 <link href="assets_main/css/pe-icon-7-stroke.css" rel="stylesheet" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -102,7 +103,14 @@
 										<article>
 											<header>
 												<h3><a href="#">${follower_list}</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#">
+												<i class="pe-7s-chat"></i>
+												</a>
+												&nbsp;&nbsp;
+												<a href="#">
+												<i class="pe-7s-light"></i>
+												</a>
+												
 											</header>
 											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
 										</article>
@@ -119,7 +127,13 @@
 										<article>
 											<header>
 												<h3><a href="#">${following_list }</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#">
+												<i class="pe-7s-chat"></i>
+												</a>
+												&nbsp;&nbsp;
+												<a href="#">
+												<i class="pe-7s-light"></i>
+												</a>
 											</header>
 											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
 										</article>
@@ -146,7 +160,13 @@
 										<article>
 											<header>
 												<h3><a href="#">${blackList }</a></h3>
-												<time class="published" datetime="2015-10-20">October 20, 2015</time>
+												<a href="#">
+												<i class="pe-7s-chat"></i>
+												</a>
+												&nbsp;&nbsp;
+												<a href="#">
+												<i class="pe-7s-light"></i>
+												</a>
 											</header>
 											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt="" style="border-radius: 50%"></a>
 										</article>
