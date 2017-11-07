@@ -39,7 +39,7 @@ public class AdminController {
 		
 		int result = aDao.admin_memberDelete(idx);
 		
-		String msg = result > 0 ? "íšŒì› íƒˆí‡´ ì„±ê³µ" : "íšŒì› íƒˆí‡´ ì‹¤íŒ¨";
+		String msg = result > 0 ? "È¸¿ø Å»Åð ¼º°ø!" : "È¸¿ø Å»Åð ½ÇÆÐ!.";
 		
 		mav.addObject("msg", msg);
 		

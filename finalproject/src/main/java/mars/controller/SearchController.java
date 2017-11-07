@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import mars.htag.model.htagDAO;
+import mars.htag.model.htagDTO;
 import mars.member.model.MemberDTO;
 import mars.search.model.SearchDAO;
 
@@ -17,6 +18,9 @@ public class SearchController {
 	
 	@Autowired
 	private SearchDAO searchdao;
+	
+	@Autowired
+	private htagDAO htagdao;
 	
 	@RequestMapping("/membersearch.do")
 	public ModelAndView memberSearch(@RequestParam("name")String name){
@@ -37,13 +41,13 @@ public class SearchController {
 	public ModelAndView htagSearch(@RequestParam("name")String name){
 		ModelAndView mav = new ModelAndView();
 		
-		List<MemberDTO> list = searchdao.memberSearch(name);
+		List<htagDTO> list = htagdao.htagSearch(name);
 		
-		mav.addObject("searchName", name);
+		mav.addObject("name", name);
 		
-		mav.addObject("mSearch", list);
+		mav.addObject("find", list);
 		
-		mav.setViewName("/search/membersearch");
+		mav.setViewName("/search/htagSearch");
 		
 		return mav;
 	}

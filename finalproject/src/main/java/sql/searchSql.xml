@@ -8,7 +8,7 @@
 	<select id="memberSearch" resultType="mars.member.model.MemberDTO">
 		select * from mars_member where name=#{name} order by idx desc
 	</select>
-	<select id="htagSearch" resultType="mars.htag.model.htagDTO">
-		select * from content where idx in (select content_idx from mars_htag where name=#{name}) 
+	<select id="htagSearch" parameterType="String" resultType="mars.htag.model.htagDTO">
+		select * from content where content_idx in (select content_idx from mars_htag where content=#{name}) 
 	</select>
 </mapper>

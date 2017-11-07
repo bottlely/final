@@ -17,8 +17,6 @@ public class htagDAOImple implements htagDAO {
 	public List<htagDTO> htagSearch(String name) {
 		List<htagDTO> list = sqlMap.selectList("htagSearch", name);
 		
-		System.out.println(list);
-		
 		return list;
 	}
 }
