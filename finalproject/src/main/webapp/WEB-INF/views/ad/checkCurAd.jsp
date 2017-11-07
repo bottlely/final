@@ -10,6 +10,40 @@
 </head>
 <body>
 
+<script type="text/javascript" src="js/httpRequest.js"></script>
+<script>
+
+function showCur(){
+	sendRequest('showCur.do', null, showCurResult, 'GET');
+}
+
+function showCurResult(){
+	if(XHR.readyState==4){
+		if(XHR.status==200){
+			var data = XHR.responseText;
+			var lists = eval('('+data+')');
+			var p1 = document.all.abc;
+			var str='';
+		
+			if(lists.list.length==0){
+				str = '신청한 광고가 없습니다.'
+				p1.innerHTML = str;
+			}
+			else{
+				for(var i=0; i<lists.list.length; i++){
+					var l = lists.list[i];
+					str += l.ad_name+'<hr>';
+				}
+				p1.innerHTML = str;
+			}
+		}
+	}
+}
+
+
+</script>
+
+
 <div class="container">
 <h2>Group Name</h2>
   <div class="panel-group" id="accordion">
@@ -17,11 +51,13 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">광고 신청 현황</a>
+          <a data-toggle="collapse" data-parent="#accordion" onclick="showCur()" href="#collapse1">광고 신청 현황</a>
         </h4>
       </div>
       <div id="collapse1" class="panel-collapse collapse in">
-        <div class="panel-body"></div>
+      <div class="panel-body">
+     	 <div id="abc"></div>
+      </div>
     </div>
     
     

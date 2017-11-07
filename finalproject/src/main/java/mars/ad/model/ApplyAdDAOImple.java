@@ -8,27 +8,35 @@ import mars.ad.model.ApplyAdDTO;
 import org.mybatis.spring.SqlSessionTemplate;
 
 public class ApplyAdDAOImple implements ApplyAdDAO {
+	
 	private SqlSessionTemplate sqlMap;
 	
 	public ApplyAdDAOImple() {
 		super();
 	}
+	
 	public ApplyAdDAOImple(SqlSessionTemplate sqlMap) {
 		super();
 		this.sqlMap=sqlMap;
 	}
 	
 	public List<ApplyAdDTO> adList(){
-		
 		Map<String, Integer> data = new HashMap<String, Integer>();  
 		List<ApplyAdDTO> list = sqlMap.selectList("adList", data);
 		return list;
 	}
 	
 	public int insert(ApplyAdDTO adDto){
-		
 		int cnt = sqlMap.insert("addAdForm", adDto);
 		return cnt;
+	}
+	
+	//현재까지 내가 신청한 광고들 상태
+	public List<ApplyAdDTO> showCurList(){
+		//member_idx 찾아서 넘겨야함! 임의로 줌!(로그인한)
+		Map<String, Integer> data = new HashMap<String, Integer>();  
+		List<ApplyAdDTO> list = sqlMap.selectList("showCurList", data);
+		return list;
 	}
 
 }

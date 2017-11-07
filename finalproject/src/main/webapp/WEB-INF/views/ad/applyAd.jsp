@@ -13,8 +13,12 @@
 <form name="applyAd" action="applyAd.do" method="post">
 <table>
 <tr>
-	<th>Name</th>
+	<th>Company</th>
 	<td><input type="text" name="name"></td>
+</tr>
+<tr>
+	<th>Ad_Name</th>
+	<td><input type="text" name="ad_name"></td>
 </tr>
 <tr>
 	<th>BusinessType</th>

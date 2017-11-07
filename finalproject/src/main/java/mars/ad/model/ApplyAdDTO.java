@@ -34,6 +34,7 @@ public class ApplyAdDTO {
 	private int cnt7;
 	private String s_date; //광고 시작 날짜
 	private String e_date; //광고 끝나는 날짜
+	private String ad_name;
 	
 	public ApplyAdDTO() {
 		// TODO Auto-generated constructor stub
@@ -42,7 +43,7 @@ public class ApplyAdDTO {
 	public ApplyAdDTO(int ad_idx, int member_idx, String name, String type, String link, String ad_content,
 			int fee, int favor_movie, int favor_sport, int favor_fashion, int favor_beauty,
 			int favor_travel, int favor_music, int favor_dance, int favor_food, int status, String post,
-			String follow, Date apply_date, int amount, String s_date, String e_date) {
+			String follow, Date apply_date, int amount, String s_date, String e_date, String ad_name) {
 		super();
 		this.ad_idx = ad_idx;
 		this.member_idx = member_idx;
@@ -66,6 +67,7 @@ public class ApplyAdDTO {
 		this.amount = amount;
 		this.s_date = s_date;
 		this.e_date = e_date;
+		this.ad_name = ad_name;
 	}
 	
 	
@@ -202,6 +204,14 @@ public class ApplyAdDTO {
 	}
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+
+	public String getAd_name() {
+		return ad_name;
+	}
+
+	public void setAd_name(String ad_name) {
+		this.ad_name = ad_name;
 	}
 	
 	
