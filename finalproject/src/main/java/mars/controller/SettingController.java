@@ -35,7 +35,7 @@ public class SettingController {
 	public ModelAndView infoSetting(MemberDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		int count = settingDao.updateMyInfo(dto);
-		String msg = count > 0 ? "변경되었습니다." : "변경에 실패하였습니다.";
+		String msg = count > 0 ? "수정되었습니다." : "수정에 실패하였습니다.";
 		String gourl = "infoSetting.do";
 		mav.addObject("msg", msg);
 		mav.addObject("gourl", gourl);
@@ -64,7 +64,7 @@ public class SettingController {
 			int count = settingDao.changePwd(map);
 			msg = count > 0 ? "비밀번호가 변경되었습니다." : "비밀번호 변경에 실패하였습니다.";
 		} else {
-			msg = "현재 비밀번호가 알맞지 않습니다.";
+			msg = "현재 비밀번호가 일치하지 않습니다.";
 		}
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
