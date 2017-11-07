@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import mars.member.model.MemberDTO;
+import mars.report.model.ReportDTO;
 import mars.setting.model.SettingDAO;
 
 @Controller
@@ -34,7 +35,7 @@ public class SettingController {
 	public ModelAndView infoSetting(MemberDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		int count = settingDao.updateMyInfo(dto);
-		String msg = count > 0 ? "¼öÁ¤µÇ¾ú½À´Ï´Ù." : "¼öÁ¤¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù.";
+		String msg = count > 0 ? "ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤." : "ë³€ê²½ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.";
 		String gourl = "infoSetting.do";
 		mav.addObject("msg", msg);
 		mav.addObject("gourl", gourl);
@@ -61,9 +62,9 @@ public class SettingController {
 			map.put("idx", idx);
 			map.put("pwd", ch_pwd);
 			int count = settingDao.changePwd(map);
-			msg = count > 0 ? "ºñ¹Ğ¹øÈ£°¡ º¯°æµÇ¾ú½À´Ï´Ù." : "ºñ¹Ğ¹øÈ£ º¯°æ¿¡ ½ÇÆĞÇß½À´Ï´Ù.";
+			msg = count > 0 ? "ë¹„ë°€ë²ˆí˜¸ê°€ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤." : "ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.";
 		} else {
-			msg = "ÇöÀçºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.";
+			msg = "í˜„ì¬ ë¹„ë°€ë²ˆí˜¸ê°€ ì•Œë§ì§€ ì•ŠìŠµë‹ˆë‹¤.";
 		}
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
@@ -82,7 +83,7 @@ public class SettingController {
 		// public ModelAndView leaveMars(int idx){
 		int idx = 12;
 		int count = settingDao.leaveMars(idx);
-		String msg = count>0? "Å»ÅğµÇ¾ú½À´Ï´Ù." : "Å»Åğ¿¡ ½ÇÆĞÇÏ¿³½À´Ï´Ù.";
+		String msg = count>0? "íƒˆí‡´ë˜ì—ˆìŠµë‹ˆë‹¤." : "íƒˆí‡´ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤.";
 		String gourl = count>0? "index.do" : "leaveMars.do";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
@@ -94,6 +95,18 @@ public class SettingController {
 	@RequestMapping("serviceCenter.do")
 	public String serviceCenter(){
 		return "setting/serviceCenter";
+	}
+	
+	@RequestMapping("sendReport.do")
+	public ModelAndView SendReport(int category, String content, @RequestParam("idx")int idx_from){
+		ModelAndView mav = new ModelAndView();
+		ReportDTO dto = new ReportDTO(idx_from, content, category);
+		int count = settingDao.sendReport(dto);
+		String msg = count>0? "ì‹ ê³ ê°€ ì ‘ìˆ˜ë˜ì—ˆìŠµë‹ˆë‹¤.":"ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì‹œë„í•˜ì—¬ì£¼ì‹­ì‹œì˜¤";
+		mav.addObject("msg", msg);
+		mav.addObject("gourl", "serviceCenter.do");
+		mav.setViewName("setting/settingMsg");
+		return mav;
 	}
 	
 	@RequestMapping("friendSetting.do")

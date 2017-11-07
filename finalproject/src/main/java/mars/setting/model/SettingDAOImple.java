@@ -6,6 +6,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 
 import mars.member.model.MemberDTO;
+import mars.report.model.ReportDTO;
 
 public class SettingDAOImple implements SettingDAO {
 
@@ -50,5 +51,11 @@ public class SettingDAOImple implements SettingDAO {
 	public List<MemberDTO> getFollowingList(int user2_idx) {
 		List<MemberDTO> list = sqlMap.selectList("getFollowingList", user2_idx);
 		return list;
+	}
+
+	/**문제신고 관련 메서드*/
+	public int sendReport(ReportDTO dto) {
+		int count = sqlMap.insert("sentReport",dto);
+		return count;
 	}
 }

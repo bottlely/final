@@ -106,32 +106,21 @@
 								<div class="content">
 
 									<hr>
-									<form name="serviceCenter" action="serviceCenter.do" method="post">
+									<form name="serviceCenter" action="sentReport.do">
+									<input type="hidden" name="idx" value="12">
 										<table cell-spacing="0" width="800" height="600" border="1">
 											<tr>
 												<th>Category</th>
-												<td colspan="3"><select id="category" name="category">
-														<option>검색/인기 태그</option>
-														<option>공개범위</option>
-														<option>친구</option>
-														<option>피드</option>
-														<option>게시물 작성</option>
-														<option>알림</option>
+												<td><select id="category" name="category">
+														<option value="1.1">검색/인기 태그</option>
+														<option value="1.2">공개범위</option>
+														<option value="1.3">친구</option>
+														<option value="1.4">피드</option>
+														<option value="1.5">게시물 작성</option>
+														<option value="1.6">알림</option>
 												</select></td>
-											</tr>
-											<tr>
 												<th>Writer</th>
 												<td><input type="text" name="writer"></td>
-												<th>Password</th>
-												<td><input type="password" name="pwd"></td>
-											</tr>
-											<tr>
-												<th>E-mail</th>
-												<td colspan="3"><input type="text" name="email"></td>
-											</tr>
-											<tr>
-												<th>Tel</th>
-												<td colspan="3"><input type="text" name="tel"></td>
 											</tr>
 											<tr>
 												<th>Content</th>
