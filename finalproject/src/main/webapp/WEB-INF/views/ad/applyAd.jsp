@@ -53,15 +53,15 @@
 	<td>
 		<fieldset>
 			<legend>Check Your Interest!</legend>
-			<input type="checkbox" name="favor_movie" value="movie" id="movie"> movie
-			<input type="checkbox" name="sport" value="sport" id="sport"> sport
-			<input type="checkbox" name="fashion" value="fashion" id="fashion"> fashion
-			<input type="checkbox" name="beauty" value="beauty" id="beauty"> beauty
+			<input type="checkbox" name="favor_movie" value="1"> movie
+			<input type="checkbox" name="favor_sport" value="1"> sport
+			<input type="checkbox" name="favor_fashion" value="1"> fashion
+			<input type="checkbox" name="favor_beauty" value="1" > beauty
 			<hr>
-			<input type="checkbox" name="travel" value="travel" id="travel"> travel
-			<input type="checkbox" name="music" value="music" id="music"> music
-			<input type="checkbox" name="dance" value="dance" id="dance"> dance
-			<input type="checkbox" name="food" value="food" id="food"> food
+			<input type="checkbox" name="favor_travel" value="1" > travel
+			<input type="checkbox" name="favor_music" value="1" > music
+			<input type="checkbox" name="favor_dance" value="1" > dance
+			<input type="checkbox" name="favor_food" value="1" > food
 		</fieldset>
 	</td>
 </tr>

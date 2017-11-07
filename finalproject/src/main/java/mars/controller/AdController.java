@@ -28,10 +28,6 @@ public class AdController {
 	
 	@RequestMapping("/applyAd.do")
 	public ModelAndView applyAd(@ModelAttribute("cmd")ApplyAdDTO command){
-		System.out.println("come2");
-		System.out.println("1"+command.getFavor_sport()+"2"+command.getFavor_beauty()+command.getFavor_dance()+command.getFavor_fashion()+command.getFavor_food()+command.getFavor_music());
-		
-		
 		
 		int result = adDao.insert(command);
 		String msg = result>0?"광고 신청을 완료했습니다.":"광고 신청이 실패했습니다.";
