@@ -30,4 +30,8 @@
 		from mars_member, mars_ff
 		where mars_member.idx=mars_ff.user1_idx and mars_ff.user2_idx=#{user2_idx}
 	</select>
+	
+	<insert id="sendReport" parameterType="mars.report.model.ReportDTO">
+	insert into mars_report values(mars_report_idx.nextval, #{idx_from}, 0, #{content}, #{category}, '', sysdate, 0)
+	</insert>
 </mapper>

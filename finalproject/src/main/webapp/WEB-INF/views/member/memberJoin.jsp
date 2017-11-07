@@ -6,7 +6,6 @@
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/semi/css/mainLayout2.css">
 <style>
 #confirmpwd {
 	color: red;
@@ -92,10 +91,9 @@ section {
 </style>
 
 <script type="text/javascript" src="js/httpRequest.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-	function openIdCheck() {
-		window.open('idCheck.jsp', 'idCheck', 'width=400,height=200');
-	}
+
 	function checkpwd() {
 		var u_id = window.join.id.value;
 		var u_pwd = window.join.pwd.value;
@@ -131,6 +129,22 @@ section {
 	}
 	
 	
+	function idCheck() {
+		var id = 'id='+document.join.id.value;
+		sendRequest('idCheck.do',id,showResult,'GET');
+		
+	}
+	
+	
+	function showResult() {
+		if(XHR.readyState == 4) {
+			if(XHR.status == 200) {
+				var data = XHR.responseText;
+				alert(data);
+			}
+		}
+	}
+	
 </script>
 </head>
 <body>
@@ -150,8 +164,8 @@ section {
 				<tr>
 					<th scope="row">아이디 <span
 						style="color: red; font-weight: bolder;">*</span></th>
-					<td><input type="text" name="id" required>Email형식으로 입력</td>
-					<td><input type="button" value="중복확인"></td>
+					<td><input type="email" name="id" required placeholder="Email형식"></td>
+					<td><input type="button" value="중복확인" onclick="idCheck()"></td>
 				</tr>
 				<tr>
 					<th>비밀번호 <span style="color: red; font-weight: bolder;">*</span></th>

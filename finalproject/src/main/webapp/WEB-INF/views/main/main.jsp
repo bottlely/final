@@ -20,6 +20,23 @@
     <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
     <style>
+    
+    
+			@keyframes spin {
+		100% {
+			transform: rotate(360deg);
+			}
+		}
+		.spinner {
+		display: inline-block;
+		width: 50px;
+		height: 50px;
+		border: 5px solid yellow;
+		border-color: yellow transparent transparent;
+		border-radius: 50%;
+		animation: spin 1s linear  infinite;
+		}    
+    
         .fa-heart{
             color: #F74933;
         }   
@@ -56,10 +73,10 @@
 
 			$(document).ready(function(){
 			    $("#friends1").click(function(){
+			    	ppp.location.reload();
 			        var div = $("#friends2");
 			        div.animate({height: '100%'}, "slow");
 			        div.animate({width:'toggle'}, "slow");
-			        
 			    });
 			});
 			$(document).ready(function(){
@@ -79,7 +96,7 @@
 			        var div = $("#friends2");
 			        div.animate({height: '100%'}, "slow");
 			        div.animate({width:'toggle'}, "slow");
-			        
+					
 			    });
 			});
 			
@@ -91,21 +108,46 @@
 			        
 			    });
 			});
+			
+			
+
+			
+			$(document).ready(function(){
+			    $("#more").click(function(){
+			        var div = $("#wait");
+					div.toggle('slow');
+			        
+			    });
+			});
+			
+
+			
+			function openpic(i){
+				var div = document.getElementById('pic'+i).value;
+				window.alert(i);
+				   window.alert(div);
+				   
+				$('#galleryImage').attr("src",div);
+				} 
+
 </script> 
 <body>
 <header>
 <div id="navbar-full">
 <span style="float: left;">
 
-				<div  id="friends2" style="background:#935d8c;height:100%;width:25%; position: absolute; float: left; display: none; z-index: 4">
+				<div id="friends2" style="background:#935d8c;height:100%;width:25%; position: absolute; float: left; display: none; z-index: 4">
 		<div style="background-color: white; align-content:center; "><a href="#" id="cl1">Close</a></div> 
-	<iframe src="main_frList.do?user_idx=9" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+	<c:url var="frListUrl" value="main_frList.do">
+		<c:param name="user_idx" value="${sessionScope.useridx }" />
+	</c:url>
+	<iframe src="${frListUrl }" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
 	</div>
 		 </span>
 		 <span style="float: right;">
 
-		 	<div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; z-index: 4" display: none;>
+		 	<div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
 		<div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
 	
 	<c:url var="myHomeUrl" value="myHomeForm.do">
@@ -196,13 +238,16 @@
                     </li>
                     
                                         <li>
-                        <a href="javascript:void(0);" class="hidden-xs" id="friends1">
-                            <i class="pe-7s-menu"></i>
-                               <ul>
-                               <li>메뉴1</li>
-                               <li>메뉴2</li>
-                               </ul>
-                        </a>
+					<div class="dropdown">
+ 		 <a class="btn btn-primary dropdown-toggle"  data-toggle="dropdown">
+ 		 <i class="pe-7s-menu"></i>
+ 		 <span class="caret"></span></a>
+ 			 <ul class="dropdown-menu">
+   			 <li><a href="#">메뉴1</a></li>
+   			 <li><a href="#">메뉴2</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+ 			 </ul>
+			</div>
                     </li>
                </ul>
                <form class="navbar-form navbar-right navbar-search-form" role="search">                  
@@ -236,76 +281,36 @@
 			</div>
 
 				<div class="works-area" >
+				<% for(int i=0; i<12; i++){
+					
+					%>
 				<div class="col-md-4 col-sm-6 col-xs-12  photo"  >
 					<div class="works">
-						<img src="assets_main/images/아이유6.jpg" alt="">
+						<img src="assets_main/images/아이유6.jpg" alt="" style="width: 431px; height: 431px;">
 
 						<div class="work-overlay text-center">
 							<div class="overlay-caption">
 								<h4>PHOTO</h4>
 
-								<p>제목</p>
-								<a class="btn-view" href="#">VIEW <i class="fa fa-angle-right"></i></a>
+								
+					<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" 
+					onclick="openpic(<%=i%>)">
+                        <input type="hidden" value="assets_main/images/아이유6.jpg"  id="pic<%=+i%>" >
+                        
+  							<p>사진<%=i+1 %>번</p>
+                    </a>
 							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 text" >
-					<div class="works">
-						<img src="assets_main/images/아이유6.jpg" alt="">
+					
+					<% 
+					
+					
+					
+					}%>
+				
 
-						<div class="work-overlay text-center">
-							<div class="overlay-caption">
-								<h4>TEXT</h4>
-
-								<p>제목</p>
-								<a class="btn-view" href="#">VIEW <i class="fa fa-angle-right"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 viedeo" >
-					<div class="works">
-						<img src="assets_main/images/아이유6.jpg" alt="">
-
-						<div class="work-overlay text-center">
-							<div class="overlay-caption">
-								<h4>VIEDEO</h4>
-
-								<p>제목</p>
-								<a class="btn-view" href="#">VIEW <i class="fa fa-angle-right"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 viedeo" >
-					<div class="works">
-						<img src="assets_main/images/아이유6.jpg" alt="">
-
-						<div class="work-overlay text-center">
-							<div class="overlay-caption">
-								<h4>VIEDEO</h4>
-
-								<p>제목</p>
-								<a class="btn-view" href="#">VIEW <i class="fa fa-angle-right"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 col-sm-6 col-xs-12 viedeo" >
-					<div class="works">
-						<img src="assets_main/images/아이유6.jpg" alt="">
-
-						<div class="work-overlay text-center">
-							<div class="overlay-caption">
-								<h4>VIEDEO</h4>
-
-								<p>제목</p>
-								<a class="btn-view" href="#">VIEW <i class="fa fa-angle-right"></i></a>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div> 
 		</div>
 		</div>
@@ -313,17 +318,49 @@
 </section>
   <section>
   <div class="container">
-    <div class="row"></div>
+   
     <div class="row">
+    		 <div class="col-xs-12" style="text-align: center;">
+                   <div class="spinner" id="wait"></div>
+        </div>
+    
         <div class="col-xs-12" style="text-align: center;">
-                     <button type="button" class="btn btn-primary">More List..</button>
+                     <button type="button" class="btn btn-primary" id="more">More List..</button>
         </div>
     </div>
 </div>
   
   </section>
 <!-- end main -->
-
+    <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="container" style="background-color: white;">
+    <div class="row">
+        <div class="col-xs-6">
+        
+        <img src="" id="galleryImage" class="img-responsive">
+        
+        </div>
+        <div class="col-xs-6" style="float: left;">
+       <h2> 제목 </h2><br>
+        내용 <br>
+      댓글1<br>
+      댓글2<br>
+        </div>
+        
+        		
+    </div>
+</div>
+      	<div class="container" style="background-color: white;">
+    <div class="row">
+        <div class="col-sm-12">
+      		  <p>
+        	 <br/>
+         <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+        		</p>
+        </div>
+    </div>
+</div>
+    </div>
 </body>
 
     <script src="assets_main/js_1/jquery-1.10.2.js" type="text/javascript"></script>
@@ -331,7 +368,7 @@
 	<script type="text/javascript" src="assets_main/js_1/main.js"></script>
 	<script src="assets_main/js_1/ct-navbar.js"></script>
 	<script type="text/javascript" src="assets_main/owl-carousel/owl.carousel.min.js"></script>
-
+	
 <!--Parallax-->
 <script type="text/javascript" src="assets_main/js/jquery.stellar.min.js"></script>
 <!--IsoTop-->

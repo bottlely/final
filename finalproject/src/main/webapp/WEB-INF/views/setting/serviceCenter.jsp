@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="dto" value="${dto }"></c:set>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,8 +38,7 @@
 	rel="stylesheet">
 <link href='https://fonts.googleapis.com/css?family=Muli:400,300'
 	rel='stylesheet' type='text/css'>
-<link href="assets/css/themify-icons.css" rel="stylesheet">
-
+<link href="assets_setting/css/themify-icons.css" rel="stylesheet">
 </head>
 
 
@@ -52,46 +53,31 @@
 		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
 	-->
 
-		    	<div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="infoSetting.do" class="simple-text">
-                    MARS
-                </a>
-            </div>
+			<div class="sidebar-wrapper">
+				<div class="logo">
+					<a href="infoSetting.do" class="simple-text"> MARS </a>
+				</div>
 
-            <ul class="nav">
-                <li>
-                   <a href="infoSetting.do">
-                        <i class="ti-user"></i>
-                        <p>Setting</p>
-                    </a>
-                </li>
-                <li>
-                     <a href="pwdSetting.do">
-                        <i class="ti-panel"></i>
-                        <p>Password Setting</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="friendSetting.do">
-                        <i class="ti-view-list-alt"></i>
-                        <p>Friends Setting</p>
-                    </a>
-                </li>
-                <li  class="active">
-                    <a href="serviceCenter.do">
-                        <i class="ti-text"></i>
-                        <p>Service Center</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="leaveMars.do">
-                        <i class="ti-pencil-alt2"></i>
-                        <p>Leave</p>
-                    </a>
-         
-            </ul>
-    	</div>
+				<ul class="nav">
+					<li><a href="infoSetting.do"> <i class="ti-user"></i>
+							<p>Setting</p>
+					</a></li>
+					<li><a href="pwdSetting.do"> <i class="ti-panel"></i>
+							<p>Password Setting</p>
+					</a></li>
+					<li><a href="friendSetting.do"> <i
+							class="ti-view-list-alt"></i>
+							<p>Friends Setting</p>
+					</a></li>
+					<li class="active"><a href="serviceCenter.do"> <i
+							class="ti-text"></i>
+							<p>Service Center</p>
+					</a></li>
+					<li><a href="leaveMars.do"> <i class="ti-pencil-alt2"></i>
+							<p>Leave</p>
+					</a>
+				</ul>
+			</div>
 		</div>
 
 		<div class="main-panel">
@@ -121,39 +107,30 @@
 								<div class="content">
 
 									<hr>
-									<form name="serviceCenter" action="serviceCenter.do" method="post">
+									<form name="serviceCenter" action="sendReport.do">
+										<input type="hidden" name="idx" value="${dto.idx }">
 										<table cell-spacing="0" width="800" height="600" border="1">
 											<tr>
 												<th>Category</th>
-												<td colspan="3"><select id="category" name="category">
-														<option>검색/인기 태그</option>
-														<option>공개범위</option>
-														<option>친구</option>
-														<option>피드</option>
-														<option>게시물 작성</option>
-														<option>알림</option>
+												<td><select id="category" name="category">
+														<option value="11">검색/인기 태그</option>
+														<option value="12">공개범위</option>
+														<option value="13">친구</option>
+														<option value="14">피드</option>
+														<option value="15">게시물 작성</option>
+														<option value="16">알림</option>
 												</select></td>
-											</tr>
-											<tr>
 												<th>Writer</th>
-												<td><input type="text" name="writer"></td>
-												<th>Password</th>
-												<td><input type="password" name="pwd"></td>
-											</tr>
-											<tr>
-												<th>E-mail</th>
-												<td colspan="3"><input type="text" name="email"></td>
-											</tr>
-											<tr>
-												<th>Tel</th>
-												<td colspan="3"><input type="text" name="tel"></td>
+												<td><label>${dto.name }</label></td>
 											</tr>
 											<tr>
 												<th>Content</th>
-												<td colspan="3"><textarea name="content" cols="30" rows="10"></textarea></td>
+												<td colspan="3"><textarea name="content" cols="30"
+														rows="10"></textarea></td>
 											</tr>
 											<tr>
-											<td colspan="4" align="center"><input type="submit" value="Send"><input type="reset" value="Reset"></td>
+												<td colspan="4" align="center"><input type="submit"
+													value="Send"><input type="reset" value="Reset"></td>
 											</tr>
 										</table>
 									</form>
