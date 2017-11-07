@@ -68,13 +68,13 @@ function checkPwd(){
             <ul class="nav">
                 <li>
                    <a href="infoSetting.do">
-                        <i class="ti-panel"></i>
+                        <i class="ti-user"></i>
                         <p>Setting</p>
                     </a>
                 </li>
                 <li class="active">
                      <a href="pwdSetting.do">
-                        <i class="ti-user"></i>
+                        <i class="ti-panel"></i>
                         <p>Password Setting</p>
                     </a>
                 </li>

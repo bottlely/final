@@ -4,8 +4,8 @@
 <html>
 <head>
 	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="assets_setting/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets_setting/img/favicon.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title>MARS</title>
@@ -23,15 +23,13 @@
     <!--  Paper Dashboard core CSS    -->
     <link href="assets_setting/css/paper-dashboard.css" rel="stylesheet"/>
 
-
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="assets_setting/css/demo.css" rel="stylesheet" />
-
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
-    <link href="assets/css/themify-icons.css" rel="stylesheet">
+    <link href="assets_setting/css/themify-icons.css" rel="stylesheet">
 	<script>
 		function checkOne(gender){
 			var chk = document.getElementsByName("gender");
@@ -62,14 +60,14 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="infoSetting.do">
-                        <i class="ti-panel"></i>
+                   <a href="infoSetting.do">
+                        <i class="ti-user"></i>
                         <p>Setting</p>
                     </a>
                 </li>
                 <li>
-                    <a href="pwdSetting.do">
-                        <i class="ti-user"></i>
+                     <a href="pwdSetting.do">
+                        <i class="ti-panel"></i>
                         <p>Password Setting</p>
                     </a>
                 </li>
@@ -90,8 +88,7 @@
                         <i class="ti-pencil-alt2"></i>
                         <p>Leave</p>
                     </a>
-                </li>
-
+         
             </ul>
     	</div>
     </div>
@@ -214,7 +211,7 @@
 
 </body>
 
-    <!--   Core JS Files   -->
+   <!--   Core JS Files   -->
     <script src="assets_setting/js/jquery-1.10.2.js" type="text/javascript"></script>
 	<script src="assets_setting/js/bootstrap.min.js" type="text/javascript"></script>
 
