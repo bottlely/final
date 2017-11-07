@@ -38,5 +38,14 @@ public class ApplyAdDAOImple implements ApplyAdDAO {
 		List<ApplyAdDTO> list = sqlMap.selectList("showCurList", data);
 		return list;
 	}
+	
+	public String showAveNum(){
+		//member_idx 찾아서 넘겨야함! 임의로 줌!(로그인한)
+		//어떤 광고 인지 check!
+		//지금 구하는 str에서 / 로 구분해서 최대 뒤에서 7개 자르기!
+		String str = sqlMap.selectOne("showAveNum");
+		return str;
+		
+	}
 
 }

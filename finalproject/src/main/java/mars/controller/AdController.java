@@ -55,6 +55,14 @@ public class AdController {
 		return mav;
 	}
 	
+	@RequestMapping("/showAve.do")
+	public String showAve(){
+		System.out.println("1");
+		String str=adDao.showAveNum();
+		System.out.println("2");
+		return str;
+	}
+	
 	
 	@RequestMapping("/getAdRequest.do")
 	public ModelAndView getAdRequest(){

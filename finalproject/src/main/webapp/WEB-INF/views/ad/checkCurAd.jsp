@@ -22,7 +22,7 @@ function showCurResult(){
 		if(XHR.status==200){
 			var data = XHR.responseText;
 			var lists = eval('('+data+')');
-			var p1 = document.all.abc;
+			var p1 = document.all.cur;
 			var str='';
 		
 			if(lists.list.length==0){
@@ -32,7 +32,7 @@ function showCurResult(){
 			else{
 				for(var i=0; i<lists.list.length; i++){
 					var l = lists.list[i];
-					str += l.ad_name+'<hr>';
+					str += '<a href="#" onclick="showAve('+l.ad_name+');">'+l.ad_name+'</a><hr>';
 				}
 				p1.innerHTML = str;
 			}
@@ -40,7 +40,23 @@ function showCurResult(){
 	}
 }
 
+function showAve(data22){
+	
+	alert(data22)
+//	sendRequest('showAve.do', null, showAveResult, 'GET');
+}
 
+function showAveResult(){
+	if(XHR.readyState==4){
+
+	//	alert(XHR.status);
+		if(XHR.status==200){
+		//	var data = XHR.responseText;
+		//	alert(data);
+		}
+	}
+	
+}
 </script>
 
 
@@ -56,7 +72,7 @@ function showCurResult(){
       </div>
       <div id="collapse1" class="panel-collapse collapse in">
       <div class="panel-body">
-     	 <div id="abc"></div>
+     	 <div id="cur"></div>
       </div>
     </div>
     
@@ -64,11 +80,13 @@ function showCurResult(){
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">하루 평균 광고 도달 수</a>
+          <a data-toggle="collapse" data-parent="#accordion" onclick="showAve()" href="#collapse2">위에서 클릭하면 넘어오게! 진행중이면 진행중 아니면, 광고 통계</a>
         </h4>
       </div>
       <div id="collapse2" class="panel-collapse collapse">
-        <div class="panel-body"></div>
+        <div class="panel-body">
+          <div id="ave"></div>
+        </div>
     </div>
     
     
@@ -79,7 +97,9 @@ function showCurResult(){
         </h4>
       </div>
       <div id="collapse3" class="panel-collapse collapse">
-        <div class="panel-body"></div>
+        <div class="panel-body">
+        
+        </div>
     </div>
     
     

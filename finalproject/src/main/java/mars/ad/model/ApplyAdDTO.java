@@ -25,16 +25,10 @@ public class ApplyAdDTO {
 	private String follow; //팔로워?팔로잉
 	private Date apply_date; //신청 날짜 -> 승인하면 승인날짜로
 	private int amount;
-	private int cnt1;
-	private int cnt2;
-	private int cnt3;
-	private int cnt4;
-	private int cnt5;
-	private int cnt6;
-	private int cnt7;
 	private String s_date; //광고 시작 날짜
 	private String e_date; //광고 끝나는 날짜
-	private String ad_name;
+	private String ad_name; //광고 이름
+	private String all_amount; //string으로 매일 amount 저장하기
 	
 	public ApplyAdDTO() {
 		// TODO Auto-generated constructor stub
@@ -43,7 +37,7 @@ public class ApplyAdDTO {
 	public ApplyAdDTO(int ad_idx, int member_idx, String name, String type, String link, String ad_content,
 			int fee, int favor_movie, int favor_sport, int favor_fashion, int favor_beauty,
 			int favor_travel, int favor_music, int favor_dance, int favor_food, int status, String post,
-			String follow, Date apply_date, int amount, String s_date, String e_date, String ad_name) {
+			String follow, Date apply_date, int amount, String s_date, String e_date, String ad_name, String all_amount) {
 		super();
 		this.ad_idx = ad_idx;
 		this.member_idx = member_idx;
@@ -68,6 +62,7 @@ public class ApplyAdDTO {
 		this.s_date = s_date;
 		this.e_date = e_date;
 		this.ad_name = ad_name;
+		this.all_amount = all_amount;
 	}
 	
 	
@@ -212,6 +207,14 @@ public class ApplyAdDTO {
 
 	public void setAd_name(String ad_name) {
 		this.ad_name = ad_name;
+	}
+
+	public String getAll_amount() {
+		return all_amount;
+	}
+
+	public void setAll_amount(String all_amount) {
+		this.all_amount = all_amount;
 	}
 	
 	
