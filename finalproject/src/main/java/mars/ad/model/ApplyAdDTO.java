@@ -1,18 +1,17 @@
 package mars.ad.model;
 
 import java.sql.*;
+import java.util.Date;
 
 public class ApplyAdDTO {
 	
-	private int ad_idx;
-	private int member_idx; //íšŒì› ê°€ìž…ì‹œ idx
-	private String name;
-	private String type;
-	private String link;
-	private String ad_content;
-	private Date s_date;
-	private Date e_date;
-	private int fee;
+	private int ad_idx; //È¸¿ø °¡ÀÔ½Ã idx, primary key
+	private int member_idx; //È¸¿ø °¡ÀÔÇÏ´Â »ç¶÷ÀÇ idx
+	private String name; //È¸»ç ÀÌ¸§
+	private String type; //È¸»ç Å¸ÀÔ
+	private String link; //È¸»ç ¸µÅ©, Å¸°í°¥ ¸µÅ©
+	private String ad_content; //È«º¸ÇÒ ÄÁÅÙÆ®
+	private int fee; //¿ä±Ý
 	private int favor_movie;
 	private int favor_sport;
 	private int favor_fashion;
@@ -21,10 +20,10 @@ public class ApplyAdDTO {
 	private int favor_music;
 	private int favor_dance;
 	private int favor_food;
-	private int status; //0:ì‹ ì²­&ì‹¬ì‚¬ì¤‘ 1:ì‹¬ì‚¬ ì™„ë£Œ/ê²°ì œ 2:ê²°ì œì™„ë£Œ 3:ê²Œì‹œ
-	private String post;
-	private String follow;
-	private Date apply_date; //ì‹ ì²­ ë‚ ì§œ -> ìŠ¹ì¸í•˜ë©´ ìŠ¹ì¸ë‚ ì§œë¡œ
+	private int status; //0:½ÅÃ»&½É»çÁß 1:½É»ç ¿Ï·á/°áÁ¦ 2:°áÁ¦¿Ï·á 3:°Ô½Ã
+	private String post; //ÆÛ°£???
+	private String follow; //ÆÈ·Î¿ö?ÆÈ·ÎÀ×
+	private Date apply_date; //½ÅÃ» ³¯Â¥ -> ½ÂÀÎÇÏ¸é ½ÂÀÎ³¯Â¥·Î
 	private int amount;
 	private int cnt1;
 	private int cnt2;
@@ -33,15 +32,18 @@ public class ApplyAdDTO {
 	private int cnt5;
 	private int cnt6;
 	private int cnt7;
+	private String s_date; //±¤°í ½ÃÀÛ ³¯Â¥
+	private String e_date; //±¤°í ³¡³ª´Â ³¯Â¥
+	private String ad_name;
 	
 	public ApplyAdDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public ApplyAdDTO(int ad_idx, int member_idx, String name, String type, String link, String ad_content, Date s_date,
-			Date e_date, int fee, int favor_movie, int favor_sport, int favor_fashion, int favor_beauty,
+	public ApplyAdDTO(int ad_idx, int member_idx, String name, String type, String link, String ad_content,
+			int fee, int favor_movie, int favor_sport, int favor_fashion, int favor_beauty,
 			int favor_travel, int favor_music, int favor_dance, int favor_food, int status, String post,
-			String follow, Date apply_date, int amount) {
+			String follow, Date apply_date, int amount, String s_date, String e_date, String ad_name) {
 		super();
 		this.ad_idx = ad_idx;
 		this.member_idx = member_idx;
@@ -49,8 +51,6 @@ public class ApplyAdDTO {
 		this.type = type;
 		this.link = link;
 		this.ad_content = ad_content;
-		this.s_date = s_date;
-		this.e_date = e_date;
 		this.fee = fee;
 		this.favor_movie = favor_movie;
 		this.favor_sport = favor_sport;
@@ -65,6 +65,9 @@ public class ApplyAdDTO {
 		this.follow = follow;
 		this.apply_date = apply_date;
 		this.amount = amount;
+		this.s_date = s_date;
+		this.e_date = e_date;
+		this.ad_name = ad_name;
 	}
 	
 	
@@ -106,16 +109,16 @@ public class ApplyAdDTO {
 	public void setAd_content(String ad_content) {
 		this.ad_content = ad_content;
 	}
-	public Date getS_date() {
+	public String getS_date() {
 		return s_date;
 	}
-	public void setS_date(Date s_date) {
+	public void setS_date(String s_date) {
 		this.s_date = s_date;
 	}
-	public Date getE_date() {
+	public String getE_date() {
 		return e_date;
 	}
-	public void setE_date(Date e_date) {
+	public void setE_date(String e_date) {
 		this.e_date = e_date;
 	}
 	public int getFee() {
@@ -201,6 +204,14 @@ public class ApplyAdDTO {
 	}
 	public void setAmount(int amount) {
 		this.amount = amount;
+	}
+
+	public String getAd_name() {
+		return ad_name;
+	}
+
+	public void setAd_name(String ad_name) {
+		this.ad_name = ad_name;
 	}
 	
 	

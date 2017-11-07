@@ -71,6 +71,7 @@
 	<bean id="mailController" class="mars.controller.MailController">
 		<property name="mailService" ref="mailService"></property>
 	</bean>
+	<bean id="friendController" class="mars.controller.FriendController"></bean>
 	<bean id="contentController" class="mars.controller.ContentController"></bean>
 	<bean id="searchController" class="mars.controller.SearchController"></bean>
 

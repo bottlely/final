@@ -42,18 +42,8 @@
 	rel='stylesheet' type='text/css'>
 <link href="assets_setting/css/themify-icons.css" rel="stylesheet">
 <script>
-	function checkOne(gender) {
-		var chk = document.getElementsByName("gender");
-		for (var i = 0; i < chk.length; i++) {
-			if (chk[i] != gender) {
-				chk[i].checked = false;
-			}
-		}
-	}
-	
 	function addGroupForm(){
-		var list = '<c:out value="${list}"/>';
-		window.open('addGroupForm.do?list='+list, 'addGroupForm', 'width=300, height=800');
+		window.open('addGroupForm.do', 'addGroupForm', 'width=400, height=800');
 	}
 </script>
 </head>
@@ -147,7 +137,7 @@
 											<li>친구가 없습니다.</li>
 										</c:if>
 										<c:forEach var="list" items="${list }">
-											<li>${list.name} / ${list.idx}</li>
+											<li>${list.name}</li>
 										</c:forEach>
 
 									</ul>

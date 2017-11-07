@@ -226,7 +226,7 @@ function requestResult(){
 	 				trDiv.appendChild(newDiv);
 	 				
 	 				var newDiv2 = document.createElement('td');
-	 				newDiv2.innerHTML = list.date;
+	 				newDiv2.innerHTML = list.apply_date;
 	 				trDiv.appendChild(newDiv2);
 	 				
 	 				var newDiv3 = document.createElement('td');
@@ -277,7 +277,7 @@ function payResult(){
  	 				trDiv.appendChild(newDiv);
  	 				
  	 				var newDiv2 = document.createElement('td');
- 	 				newDiv2.innerHTML = list.date;
+ 	 				newDiv2.innerHTML = list.apply_date;
  	 				trDiv.appendChild(newDiv2);
  	 				
  	 				var newDiv3 = document.createElement('td');

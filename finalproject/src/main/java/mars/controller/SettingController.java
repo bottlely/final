@@ -126,12 +126,19 @@ public class SettingController {
 	}
 	
 	@RequestMapping("addGroupForm.do")
-	public String addGroupForm(){
-		return "setting/addGroupForm";
+	public ModelAndView addGroupForm(){
+		int idx=12;
+		List<MemberDTO> list = settingDao.getFollowingList(idx);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("setting/addGroupForm");
+		return mav;
 	}
 	
 	@RequestMapping("addGroup.do")
-	public void addGroup(){
+	public void addGroup(@RequestParam("group_name")String group_name, @RequestParam("frlist")String frlist){
+		System.out.println("name = " + group_name + "frlist = " + frlist);
+//		return "setting/settingMsg";
 		
 	}
 }

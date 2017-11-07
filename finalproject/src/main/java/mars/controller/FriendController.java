@@ -21,14 +21,24 @@ public class FriendController {
 	
 	/**following*/
 	@RequestMapping("/following.do")
-	public ModelAndView addFollowing(MemberDTO dto) {
-		//int result = mdao.memberJoin(dto);
-		//tring msg = result>0?"Success":"Fail";
+	public ModelAndView addFollowing(FriendDTO dto) {
+		int result = friendDao.friendAdd(dto);
+		String msg = result>0? "Success" : "Fail";
 		ModelAndView mav = new ModelAndView();
-		//mav.addObject("msg", msg);
-		//mav.setViewName("member/memberMsg");
+		mav.addObject("msg", msg);
+		mav.setViewName("friend/friendMsg");
 		return mav;
-		
+	}
+	
+	/**following*/
+	
+	@RequestMapping("/test.do")
+	public ModelAndView test(@RequestParam("user_idx")int user_idx) {
+		List<MemberDTO> list1 = friendDao.followerList(user_idx);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("followerList", list1);
+		mav.setViewName("friend/test");
+		return mav;
 	}
 	
 	@RequestMapping("/main_frList.do")
