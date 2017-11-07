@@ -192,7 +192,10 @@
                                         <li>
                         <a href="javascript:void(0);" class="hidden-xs" id="friends1">
                             <i class="pe-7s-menu"></i>
-                           
+                               <ul>
+                               <li>메뉴1</li>
+                               <li>메뉴2</li>
+                               </ul>
                         </a>
                     </li>
                </ul>
