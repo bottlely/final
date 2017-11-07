@@ -20,7 +20,7 @@
     <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
     <style>
-<<<<<<< HEAD
+
     
     
          @keyframes spin {
@@ -262,7 +262,7 @@
                     </li>
                     
                                         <li>
-<<<<<<< HEAD
+
                <div class="dropdown">
         <a class="btn btn-primary dropdown-toggle"  data-toggle="dropdown">
         <i class="pe-7s-menu"></i>
@@ -273,7 +273,7 @@
              <li><a href="#">메뉴3</a></li>
            </ul>
          </div>
-=======
+
                         <a href="javascript:void(0);" class="hidden-xs" id="friends1">
                             <i class="pe-7s-menu"></i>
                                <ul>
@@ -281,7 +281,7 @@
                                <li>메뉴2</li>
                                </ul>
                         </a>
->>>>>>> branch 'master' of https://github.com/bottlely/final.git
+
                     </li>
                </ul>
                <form class="navbar-form navbar-right navbar-search-form" role="search">                  
@@ -314,7 +314,7 @@
             </ul>
          </div>
 
-<<<<<<< HEAD
+
             <div class="works-area" >
             <% for(int i=0; i<12; i++){
                
@@ -322,18 +322,17 @@
             <div class="col-md-4 col-sm-6 col-xs-12  photo"  >
                <div class="works">
                   <img src="assets_main/images/아이유6.jpg" alt="" style="width: 431px; height: 431px;">
-=======
+
 				<div class="works-area" >
 				<div class="col-md-4 col-sm-6 col-xs-12  photo"  >
 					<div class="works">
 						<img src="assets_main/images/아이유6.jpg" alt="">
->>>>>>> branch 'master' of https://github.com/bottlely/final.git
 
                   <div class="work-overlay text-center">
                      <div class="overlay-caption">
                         <h4>PHOTO</h4>
 
-<<<<<<< HEAD
+
                         
                <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" 
                onclick="openpic(<%=i%>)">
@@ -352,7 +351,7 @@
                
                }%>
             
-=======
+
 								<p>제목</p>
 								<a class="btn-view" href="#">VIEW <i class="fa fa-angle-right"></i></a>
 							</div>
@@ -362,13 +361,11 @@
 				<div class="col-md-4 col-sm-6 col-xs-12 text" >
 					<div class="works">
 						<img src="assets_main/images/아이유6.jpg" alt="">
->>>>>>> branch 'master' of https://github.com/bottlely/final.git
 
-<<<<<<< HEAD
          </div> 
       </div>
       </div>
-=======
+
 						<div class="work-overlay text-center">
 							<div class="overlay-caption">
 								<h4>TEXT</h4>
@@ -424,20 +421,18 @@
 			</div> 
 		</div>
 		</div>
->>>>>>> branch 'master' of https://github.com/bottlely/final.git
+
 
 </section>
   <section>
   <div class="container">
     <div class="row"></div>
     <div class="row">
-<<<<<<< HEAD
+
            <div class="col-xs-12" style="text-align: center;">
                    <div class="spinner" id="wait"></div>
         </div>
-    
-=======
->>>>>>> branch 'master' of https://github.com/bottlely/final.git
+
         <div class="col-xs-12" style="text-align: center;">
                      <button type="button" class="btn btn-primary">More List..</button>
         </div>
@@ -476,25 +471,23 @@
     </div>
 </div>
     </div>
-=======
 
->>>>>>> branch 'master' of https://github.com/bottlely/final.git
 </body>
 
     <script src="assets_main/js_1/jquery-1.10.2.js" type="text/javascript"></script>
-<<<<<<< HEAD
+
    <script src="assets_main/js_1/bootstrap.js" type="text/javascript"></script>
    <script type="text/javascript" src="assets_main/js_1/main.js"></script>
    <script src="assets_main/js_1/ct-navbar.js"></script>
    <script type="text/javascript" src="assets_main/owl-carousel/owl.carousel.min.js"></script>
    
-=======
+
 	<script src="assets_main/js_1/bootstrap.js" type="text/javascript"></script>
 	<script type="text/javascript" src="assets_main/js_1/main.js"></script>
 	<script src="assets_main/js_1/ct-navbar.js"></script>
 	<script type="text/javascript" src="assets_main/owl-carousel/owl.carousel.min.js"></script>
 
->>>>>>> branch 'master' of https://github.com/bottlely/final.git
+
 <!--Parallax-->
 <script type="text/javascript" src="assets_main/js/jquery.stellar.min.js"></script>
 <!--IsoTop-->
