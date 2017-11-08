@@ -10,7 +10,7 @@ public class ActivityDTO {
 	private int content_idx;
 	private int reply_idx;
 	private int like_idx;
-	private Date likedate;
+	private Date actdate;
 	private int numtype1;
 	private int numtype2;
 	private String vartype1;
@@ -21,7 +21,7 @@ public class ActivityDTO {
 	}
 
 	public ActivityDTO(int idx, int from_idx, int to_idx, int type, int content_idx, int reply_idx, int like_idx,
-			Date likedate, int numtype1, int numtype2, String vartype1, String vartype2) {
+			Date actdate, int numtype1, int numtype2, String vartype1, String vartype2) {
 		super();
 		this.idx = idx;
 		this.from_idx = from_idx;
@@ -30,7 +30,7 @@ public class ActivityDTO {
 		this.content_idx = content_idx;
 		this.reply_idx = reply_idx;
 		this.like_idx = like_idx;
-		this.likedate = likedate;
+		this.actdate = actdate;
 		this.numtype1 = numtype1;
 		this.numtype2 = numtype2;
 		this.vartype1 = vartype1;
@@ -93,12 +93,12 @@ public class ActivityDTO {
 		this.like_idx = like_idx;
 	}
 
-	public Date getLikedate() {
-		return likedate;
+	public Date getActdate() {
+		return actdate;
 	}
 
-	public void setLikedate(Date likedate) {
-		this.likedate = likedate;
+	public void setActdate(Date actdate) {
+		this.actdate = actdate;
 	}
 
 	public int getNumtype1() {
@@ -132,6 +132,7 @@ public class ActivityDTO {
 	public void setVartype2(String vartype2) {
 		this.vartype2 = vartype2;
 	}
+
 	
 	
 }
