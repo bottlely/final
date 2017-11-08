@@ -72,7 +72,6 @@
 </head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 			<script> 
-
 			$(document).ready(function(){
 			    $("#friends1").click(function(){
 			    	ppp.location.reload();
@@ -128,6 +127,8 @@
 			function openpic(i){
 				var div = document.getElementById('pic'+ i).value;
 				
+				document.getElementById('pic_idx').value = i;
+				
 				sendRequest('replyList.do?content_idx=20', null, replyList, 'GET');
 				
 				$('#galleryImage').attr("src",div);
@@ -167,9 +168,15 @@
             }
 			
 			function addReply(){
+				var pic_idx = document.getElementById('pic_idx').value;
+				
 	            var content = document.getElementById('content').value;
 	            
-	            sendRequest('reply.do?content='+content, null, replyList, 'GET');
+	            sendRequest('reply.do?content='+content, null, 'GET');
+	            
+	            sendRequest('replyList.do?content_idx=20', null, openpic(pic_idx), 'GET');
+	            
+	            $('#galleryImage').attr("src",div);
 	         }
 
 </script> 
@@ -371,7 +378,7 @@
 					<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" 
 					onclick="openpic(<%=i%>)">
                         <input type="hidden" value="assets_main/images/아이유6.jpg"  id="pic<%=+i%>" >
-                        
+                        <input type="hidden" id="pic_idx" value="">
   							<p>사진<%=i+1 %>번</p>
                     </a>
 							</div>
