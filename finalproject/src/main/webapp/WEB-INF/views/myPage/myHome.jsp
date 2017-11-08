@@ -260,6 +260,7 @@ input:checked+.slider:before {
     function contentDate(){
     	var uploadDate=$('.datepicker-here').val();
     	window.alert(uploadDate);
+    	location.href="uploadDateContent.do?uploadDate="+uploadDate;
     }
 </script>
 
