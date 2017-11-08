@@ -254,9 +254,9 @@
  		 <i class="pe-7s-menu"></i>
  		 <span class="caret"></span></a>
  			 <ul class="dropdown-menu">
-   			 <li><a href="#">메뉴1</a></li>
-   			 <li><a href="#">메뉴2</a></li>
-   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="infoSetting.do">Settings</a></li>
+   			 <li><a href="serviceCenter.do">Customer Center</a></li>
+   			 <li><a href="#">로그아웃</a></li>
 
  			 </ul>
 			</div>
