@@ -5,8 +5,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="mars.content">
-	<insert id="photoUpload" parameterType="HashMap">
+
+	<insert id="uploadContent" parameterType="HashMap">
 		insert into content values
-		(#{idx}, content_idx.nextval,1,sysdate,#{path},#{content},#{writer})
+		(#{idx}, content_idx.nextval,#{type},sysdate,#{path},#{content},#{writer})
 	</insert>
 </mapper>

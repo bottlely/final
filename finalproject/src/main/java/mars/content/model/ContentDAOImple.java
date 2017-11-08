@@ -13,8 +13,8 @@ public class ContentDAOImple implements ContentDAO {
 		this.sqlMap = sqlMap;
 	}
 
-	public int photoUpload(HashMap<String, String> info) {
-		int result = sqlMap.update("photoUpload", info);
+	public int uploadContent(HashMap<String, String> info) {
+		int result = sqlMap.update("uploadContent", info);
 		return result;
 	}
 

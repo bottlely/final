@@ -19,5 +19,5 @@ public interface ContentDAO {
 	prePageGo()
 	*/
 	
-	public int photoUpload(HashMap<String, String> info);
+	public int uploadContent(HashMap<String, String> info);
 }

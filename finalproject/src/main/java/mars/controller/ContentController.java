@@ -1,7 +1,6 @@
 package mars.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +17,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import mars.content.model.*;
 import mars.myHome.model.*;
 
+
+
 @Controller
 public class ContentController {
 	
@@ -29,8 +30,6 @@ public class ContentController {
 	
 	private List<String> photoType;
 	
-	private List<String> videoType;
-	
 	private boolean typeCheck;
 	
 	public ContentController() {
@@ -38,8 +37,6 @@ public class ContentController {
 		super();
 		
 		photoType = new ArrayList<String>();
-		
-		videoType = new ArrayList<String>();
 		
 		typeCheck = false;
 		
@@ -77,8 +74,9 @@ public class ContentController {
 	}
 	
 	@RequestMapping("uploadPhoto.do")
-	public ModelAndView uploadContent(@RequestParam("useridx")String member_idx,
+	public ModelAndView uploadPhoto(@RequestParam("useridx")String member_idx,
 			@RequestParam("content")String content,
+			//@RequestParam("type")int type,
 			MultipartHttpServletRequest req,HttpServletRequest req2) {
 		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
@@ -90,6 +88,7 @@ public class ContentController {
 		
 		Iterator<String> itr = req.getFileNames();
 		
+		
         while(itr.hasNext()){
 
             String uploadFile = itr.next();
@@ -97,6 +96,8 @@ public class ContentController {
             MultipartFile mFile = req.getFile(uploadFile);
 
             String fileName = mhdto.getMember_idx()+mhdto.getName()+System.currentTimeMillis()+mFile.getOriginalFilename();
+            
+            //typeCheck = type > 1 ? videoType.contains(mFile.getContentType()) : photoType.contains(mFile.getContentType());
             
             typeCheck = photoType.contains(mFile.getContentType());
             
@@ -113,7 +114,8 @@ public class ContentController {
         info.put("path", path);	
         info.put("content", content);
         info.put("writer", mhdto.getName());
-        int result = cdao.photoUpload(info);
+        info.put("type", "1");
+        int result = cdao.uploadContent(info);
 
         ModelAndView mav = new ModelAndView("marsJson","result",0);
 		return mav;
@@ -137,5 +139,145 @@ public class ContentController {
 		}
 		
 	}
+	
+	@RequestMapping("uploadVideo.do")
+	public ModelAndView uploadVideo(@RequestParam("useridx")String member_idx,
+			@RequestParam("content")String content,
+			//@RequestParam("type")int type,
+			MultipartHttpServletRequest req,HttpServletRequest req2) {
+		
+		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
+		
+		String path = "";
+		
+		HashMap<String, String> info = new HashMap<String, String>();
+		info.put("idx",member_idx);
+		
+		Iterator<String> itr = req.getFileNames();
+		
+        while(itr.hasNext()){
+
+            String uploadFile = itr.next();
+
+            MultipartFile mFile = req.getFile(uploadFile);
+
+            String fileName = mhdto.getMember_idx()+mhdto.getName()+System.currentTimeMillis()+mFile.getOriginalFilename();
+            
+            //typeCheck = type > 1 ? videoType.contains(mFile.getContentType()) : photoType.contains(mFile.getContentType());
+            
+            typeCheck = photoType.contains(mFile.getContentType());
+            
+            if(typeCheck){
+            	copyInto(fileName,mFile,req2);
+            	path += fileName+"?";
+            	
+            }else{
+            	ModelAndView mav = new ModelAndView("marsJson","result",-1);
+        		return mav;
+            }
+        }
+      
+        info.put("path", path);	
+        info.put("content", content);
+        info.put("writer", mhdto.getName());
+        info.put("type", "1");
+        int result = cdao.uploadContent(info);
+
+        ModelAndView mav = new ModelAndView("marsJson","result",0);
+		return mav;
+	}
+	
+	@RequestMapping("videoThumbnail.do")
+	public ModelAndView videoThumbnail(@RequestParam("useridx")String member_idx,
+			MultipartHttpServletRequest req,HttpServletRequest req2) {
+		
+		System.out.println(member_idx+"------------------------");
+		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
+		
+		MultipartFile videoFile = req.getFile("video");
+
+        String fileName = mhdto.getMember_idx()+mhdto.getName()+System.currentTimeMillis()+videoFile.getOriginalFilename();
+		
+        copyInto(fileName,videoFile,req2);
+        
+        String realPath = req2.getSession().getServletContext().getRealPath("");
+		realPath = realPath.replaceAll("\\\\","/");
+		
+        File newfile = new File(realPath+"/myHomeFolder/content/"+fileName);
+        
+        File imageFile = new File(realPath+"/myHomeFolder/content/test.jpg");
+        
+        System.out.println(imageFile.getAbsolutePath()+"--------------------------------");
+        
+		File thumbnail = extractImage(newfile,1,imageFile);
+		
+		String path = "myHomeFolder/content/"+thumbnail.getName();
+
+        ModelAndView mav = new ModelAndView("marsJson","thumbnail",thumbnail);
+        mav.addObject("path", path);
+		return mav;
+	}
+	
+	/*비디오 썸네일*/
+	public File extractImage(File videoFile, int position,File creatingImageFile) 
+	{
+
+		try {
+			int seconds = position % 60;
+			int minutes = (position - seconds) / 60;
+			int hours = (position - minutes * 60 - seconds) / 60 / 60;
+			String videoFilePath = videoFile.getAbsolutePath();
+			String imageFilePath = creatingImageFile.getAbsolutePath();
+			String ffmpeg = "C:\\tools\\ffmpeg";
+					
+			String[] commands = { ffmpeg, "-ss",
+
+					String.format("%02d:%02d:%02d", hours, minutes, seconds),
+
+					"-i", videoFilePath, "-an", "-vframes", "1", "-y",
+
+					imageFilePath};
+
+			Runtime run = Runtime.getRuntime();
+			//run.exec("cmd.exe chcp 65001");
+			Process processor = run.exec(commands);
+
+			String line1 = null;
+
+			BufferedReader error = new BufferedReader(new InputStreamReader(
+
+					processor.getErrorStream()));
+
+			while ((line1 = error.readLine()) != null) {
+
+				System.out.println(line1);
+
+			}
+
+			processor.waitFor();
+
+			int exitValue = processor.exitValue();
+
+			if (exitValue != 0) {
+
+				throw new RuntimeException("exit code is not 0 [" + exitValue
+
+						+ "]");
+			}
+
+			return creatingImageFile;
+
+		} catch (IOException e) {
+
+			throw new RuntimeException(e);
+
+		} catch (InterruptedException e) {
+
+			throw new RuntimeException(e);
+
+		}
+
+	}
+
 
 }

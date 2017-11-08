@@ -77,11 +77,6 @@
             $(img_id).remove(); 
         }
 
-        function fileUploadAction() {
-            console.log("fileUploadAction");
-            $("#input_imgs").trigger('click');
-        }
-
         function submitAction() {
              
             if(sel_files.length < 1) {
@@ -101,6 +96,7 @@
     			 
     			 var content = document.getElementsByTagName("textarea")[0].value;
     			 data.append("content",content);
+    			 //data.append("type",1);
     			 
     	        /* $.ajax({
     	            type : 'post',
@@ -131,7 +127,7 @@
 		                    	alert('업로드 완료!');
 		                    	document.getElementById('myHome').submit();
 		                    }else{
-		                    	alert('파일 형식이 잘못 되었습니다!');
+		                    	alert('업로드 실패!');
 		                    }
 		                }
 		            }
@@ -162,6 +158,7 @@
 	
 	<form id="myHome" action="myHomeForm.do" method="post">
 		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
+		<input type="submit" value="back">
 	</form>
 
 </body>
