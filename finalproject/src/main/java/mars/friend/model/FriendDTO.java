@@ -16,6 +16,14 @@ public class FriendDTO {
 		super();
 	}
 
+	
+	public FriendDTO(int user2_idx, String group_name) {
+		super();
+		this.user2_idx = user2_idx;
+		this.group_name = group_name;
+	}
+
+
 	public FriendDTO(int idx, int user1_idx, int user2_idx, int type, String group_name, int black_state, int numtype1,
 			int numtype2, String vartype1, String vartype2) {
 		super();

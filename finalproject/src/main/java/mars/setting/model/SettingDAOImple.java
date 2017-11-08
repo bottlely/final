@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import mars.friend.model.FriendDTO;
 import mars.member.model.MemberDTO;
 import mars.report.model.ReportDTO;
 
@@ -53,9 +54,23 @@ public class SettingDAOImple implements SettingDAO {
 		return list;
 	}
 
+	/**나의 그룹 리스트 가져오기 관련 메서드*/
+	public List<FriendDTO> getGroupList(int user2_idx) {
+		List<FriendDTO> g_list = sqlMap.selectList("getGroupList", user2_idx);
+		return g_list;
+	}
+	
 	/** 문제신고 관련 메서드 */
 	public int sendReport(ReportDTO dto) {
 		int count = sqlMap.insert("sendReport",dto);
 		return count;
 	}
+
+	/** mars_ff에 그룹 저장*/
+	public int addGroup(FriendDTO dto) {
+		int count = sqlMap.insert("addGroup", dto);
+		return count;
+	}
+
+	
 }

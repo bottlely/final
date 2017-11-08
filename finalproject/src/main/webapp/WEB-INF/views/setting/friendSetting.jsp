@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="list" value="${list }"></c:set>
+<c:set var="g_list" value="${g_list }"></c:set>
 <!doctype html>
 <html>
 <head>
@@ -21,7 +22,7 @@
 
 
 <!-- Bootstrap core CSS     -->
-<link href=assets_setting/css/bootstrap.min.css " rel="stylesheet" />
+<link href="assets_setting/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Animation library for notifications   -->
 <link href="assets_setting/css/animate.min.css" rel="stylesheet" />
@@ -42,7 +43,7 @@
 	rel='stylesheet' type='text/css'>
 <link href="assets_setting/css/themify-icons.css" rel="stylesheet">
 <script>
-	function addGroupForm(){
+	function addGroupForm() {
 		window.open('addGroupForm.do', 'addGroupForm', 'width=400, height=800');
 	}
 </script>
@@ -58,46 +59,31 @@
 		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
 	-->
 
-		<div class="sidebar-wrapper">
-            <div class="logo">
-                <a href="infoSetting.do" class="simple-text">
-                    MARS
-                </a>
-            </div>
+			<div class="sidebar-wrapper">
+				<div class="logo">
+					<a href="infoSetting.do" class="simple-text"> MARS </a>
+				</div>
 
-            <ul class="nav">
-                <li>
-                   <a href="infoSetting.do">
-                        <i class="ti-user"></i>
-                        <p>Setting</p>
-                    </a>
-                </li>
-                <li>
-                     <a href="pwdSetting.do">
-                        <i class="ti-panel"></i>
-                        <p>Password Setting</p>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="friendSetting.do">
-                        <i class="ti-view-list-alt"></i>
-                        <p>Friends Setting</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="serviceCenter.do?idx=${sessionScope.useridx}">
-                        <i class="ti-text"></i>
-                        <p>Service Center</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="leaveMars.do">
-                        <i class="ti-pencil-alt2"></i>
-                        <p>Leave</p>
-                    </a>
-         
-            </ul>
-    	</div>
+				<ul class="nav">
+					<li><a href="infoSetting.do"> <i class="ti-user"></i>
+							<p>Setting</p>
+					</a></li>
+					<li><a href="pwdSetting.do"> <i class="ti-panel"></i>
+							<p>Password Setting</p>
+					</a></li>
+					<li class="active"><a href="friendSetting.do"> <i
+							class="ti-view-list-alt"></i>
+							<p>Friends Setting</p>
+					</a></li>
+					<li><a href="serviceCenter.do?idx=${sessionScope.useridx}">
+							<i class="ti-text"></i>
+							<p>Service Center</p>
+					</a></li>
+					<li><a href="leaveMars.do"> <i class="ti-pencil-alt2"></i>
+							<p>Leave</p>
+					</a>
+				</ul>
+			</div>
 		</div>
 
 		<div class="main-panel">
@@ -132,17 +118,17 @@
 										<input type="button" value="+" onclick="addGroupForm()">
 									</p>
 									<ul>
-										
 										<c:if test="${empty list }">
 											<li>친구가 없습니다.</li>
 										</c:if>
+										<c:forEach var="g_list" items="${g_list}">
+											<li><a href="#">${g_list.group_name }</a></li>
+										</c:forEach>
 										<c:forEach var="list" items="${list }">
 											<li>${list.name}</li>
 										</c:forEach>
 
 									</ul>
-									<form action="addGroup.do" name="addGroup"></form>
-
 								</div>
 							</div>
 						</div>

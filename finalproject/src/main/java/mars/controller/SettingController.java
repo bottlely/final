@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import mars.friend.model.FriendDTO;
 import mars.member.model.MemberDTO;
 import mars.report.model.ReportDTO;
 import mars.setting.model.SettingDAO;
@@ -21,8 +22,8 @@ public class SettingController {
 	private SettingDAO settingDao;
 
 	@RequestMapping(value = "/infoSetting.do", method = RequestMethod.GET)
-		 public ModelAndView infoSettingForm(int idx) {
-		 MemberDTO dto = settingDao.getMyInfo(idx);
+	public ModelAndView infoSettingForm(int idx) {
+		MemberDTO dto = settingDao.getMyInfo(idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
 		mav.setViewName("setting/infoSetting");
@@ -47,7 +48,8 @@ public class SettingController {
 	}
 
 	@RequestMapping(value = "/pwdSetting.do", method = RequestMethod.POST)
-	 public ModelAndView pwdSetting(@RequestParam("cur_pwd")String cur_pwd, @RequestParam("ch_pwd")String ch_pwd, int idx){
+	public ModelAndView pwdSetting(@RequestParam("cur_pwd") String cur_pwd, @RequestParam("ch_pwd") String ch_pwd,
+			int idx) {
 		System.out.println("idx = " + idx);
 		String msg = "";
 		String gourl = "pwdSetting.do";
@@ -73,64 +75,79 @@ public class SettingController {
 		return "setting/leaveMars";
 	}
 
-	@RequestMapping(value="leaveMars.do", method=RequestMethod.POST)
-		 public ModelAndView leaveMars(int idx){
+	@RequestMapping(value = "leaveMars.do", method = RequestMethod.POST)
+	public ModelAndView leaveMars(int idx) {
 		int count = settingDao.leaveMars(idx);
-		String msg = count>0? "탈퇴되었습니다." : "탈퇴에 실패하였습니다.";
-		String gourl = count>0? "index.do" : "leaveMars.do";
+		String msg = count > 0 ? "탈퇴되었습니다." : "탈퇴에 실패하였습니다.";
+		String gourl = count > 0 ? "index.do" : "leaveMars.do";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.addObject("gourl", gourl);
 		mav.setViewName("setting/settingMsg");
 		return mav;
 	}
-	
+
 	@RequestMapping("serviceCenter.do")
-	public ModelAndView serviceCenter(int idx){
+	public ModelAndView serviceCenter(int idx) {
 		MemberDTO dto = settingDao.getMyInfo(idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
 		mav.setViewName("setting/serviceCenter");
 		return mav;
 	}
-	
+
 	@RequestMapping("sendReport.do")
-	public ModelAndView sendReport(int category, String content,int idx_from){
+	public ModelAndView sendReport(int category, String content, int idx_from) {
 		ModelAndView mav = new ModelAndView();
 		ReportDTO dto = new ReportDTO(idx_from, content, category);
 		int count = settingDao.sendReport(dto);
-		String msg = count>0? "신고가 접수되었습니다.":"실패하였습니다. 다시 시도하여주십시오";
+		String msg = count > 0 ? "신고가 접수되었습니다." : "실패하였습니다. 다시 시도하여주십시오";
 		mav.addObject("msg", msg);
-		mav.addObject("gourl", "serviceCenter.do?idx="+idx_from);
+		mav.addObject("gourl", "serviceCenter.do?idx=" + idx_from);
 		mav.setViewName("setting/settingMsg");
 		return mav;
 	}
-	
+
 	@RequestMapping("friendSetting.do")
-	public ModelAndView friendsSetting(){
-//	public String friendsSetting(int idx){
+	public ModelAndView friendsSetting() {
+		// public String friendsSetting(int idx){
+		int idx = 12;
+		List<FriendDTO> g_list = settingDao.getGroupList(idx);
+		List<MemberDTO> list = settingDao.getFollowingList(idx);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.addObject("g_list", g_list);
+		mav.setViewName("setting/friendSetting");
+		return mav;
+	}
+
+	@RequestMapping("addGroupForm.do")
+	public ModelAndView addGroupForm() {
 		int idx = 12;
 		List<MemberDTO> list = settingDao.getFollowingList(idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
-		mav.setViewName("setting/friendSetting");
-		return mav;
-	}
-	
-	@RequestMapping("addGroupForm.do")
-	public ModelAndView addGroupForm(){
-		int idx=12;
-		List<MemberDTO> list = settingDao.getFollowingList(idx);
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", list);
+		mav.addObject("idx_from", idx);
 		mav.setViewName("setting/addGroupForm");
 		return mav;
 	}
-	
+
 	@RequestMapping("addGroup.do")
-	public void addGroup(@RequestParam("group_name")String group_name, @RequestParam("frlist")String frlist){
-		System.out.println("name = " + group_name + "frlist = " + frlist);
-//		return "setting/settingMsg";
-		
+	public void addGroup(@RequestParam("group_name") String group_name, @RequestParam("idx_to") int[] idx_to,
+			int idx_from) {
+		System.out.println("num = " + idx_to.length);
+		System.out.println("idx_from = " + idx_from);
+		System.out.println("name = " + group_name + "idx_to = " + idx_to);
+
+		FriendDTO dto = new FriendDTO(idx_from, group_name);
+		int count = settingDao.addGroup(dto);
+		System.out.println("count = " + count);
+
+		for (int i = 0; i < idx_to.length; i++) {
+			// int count = settingDao.insertGroup();
+		}
+
+		// return "setting/settingMsg";
+
 	}
 }
