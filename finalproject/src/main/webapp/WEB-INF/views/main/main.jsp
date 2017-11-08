@@ -122,6 +122,14 @@
 			    });
 			});
 			
+			$(document).ready(function(){
+			    $("#more1").click(function(){
+			    	var div = $("#more2");
+	                 div.animate({right: '55%'}, "fast");
+	                 div.animate({height: '50%'}, "slow");
+	                 div.animate({width:'toggle'}, "slow");
+			    });
+			});
 
 			
 			function openpic(i){
@@ -210,6 +218,13 @@
 	
 		<H1>채팅창 태스트</H1>
 
+	</div>
+	
+			 	<div  id="more2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 20%; margin-left: 78%">
+		<div style="background-color: white; align-content:center; "><a href="#" id="cl3">Close</a></div>
+	
+		<H1>Follow</H1>
+		<H1>UnFollow</H1>
 	</div>
 	
    <div id="navbar-blue">
@@ -320,6 +335,7 @@
    			 <li><a href="serviceCenter.do">CUSTOMER CENTER</a></li>
    			 <li><a href="#">Logout</a></li>
 			<li> <a href="#" id="msgTest1">MSGTEST</a></li>
+			<li> <a href="#" id="more1">MORETEST</a></li>
 	
     </ul>
   </div></li>
