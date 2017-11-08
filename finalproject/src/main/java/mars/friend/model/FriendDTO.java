@@ -7,7 +7,7 @@ public class FriendDTO {
 	private int type; //Group or not ..if group: 1 (not group: 0)
 	private String group_name; //This should be not null if the group is 1.
 	private int black_state; //if black: 1 (not black: 0)
-	private int numtype1;
+	private int group_cnt;
 	private int numtype2;
 	private String vartype1;
 	private String vartype2;
@@ -16,15 +16,14 @@ public class FriendDTO {
 		super();
 	}
 
-	
-	public FriendDTO(int user2_idx, String group_name) {
+	public FriendDTO(int user2_idx, String group_name, int group_cnt) {
 		super();
 		this.user2_idx = user2_idx;
 		this.group_name = group_name;
+		this.group_cnt = group_cnt;
 	}
 
-
-	public FriendDTO(int idx, int user1_idx, int user2_idx, int type, String group_name, int black_state, int numtype1,
+	public FriendDTO(int idx, int user1_idx, int user2_idx, int type, String group_name, int black_state, int group_cnt,
 			int numtype2, String vartype1, String vartype2) {
 		super();
 		this.idx = idx;
@@ -33,7 +32,7 @@ public class FriendDTO {
 		this.type = type;
 		this.group_name = group_name;
 		this.black_state = black_state;
-		this.numtype1 = numtype1;
+		this.group_cnt = group_cnt;
 		this.numtype2 = numtype2;
 		this.vartype1 = vartype1;
 		this.vartype2 = vartype2;
@@ -87,12 +86,12 @@ public class FriendDTO {
 		this.black_state = black_state;
 	}
 
-	public int getNumtype1() {
-		return numtype1;
+	public int getGroup_cnt() {
+		return group_cnt;
 	}
 
-	public void setNumtype1(int numtype1) {
-		this.numtype1 = numtype1;
+	public void setGroup_cnt(int group_cnt) {
+		this.group_cnt = group_cnt;
 	}
 
 	public int getNumtype2() {
@@ -118,6 +117,5 @@ public class FriendDTO {
 	public void setVartype2(String vartype2) {
 		this.vartype2 = vartype2;
 	}
-	
-	
+
 }
