@@ -15,40 +15,40 @@ import mars.search.model.SearchDAO;
 
 @Controller
 public class SearchController {
-	
-	@Autowired
-	private SearchDAO searchdao;
-	
-	@Autowired
-	private htagDAO htagdao;
-	
-	@RequestMapping("/membersearch.do")
-	public ModelAndView memberSearch(@RequestParam("name")String name){
-		ModelAndView mav = new ModelAndView();
-		
-		List<MemberDTO> list = searchdao.memberSearch(name);
-		
-		mav.addObject("name", name);
-		
-		mav.addObject("find", list);
-		
-		mav.setViewName("search/membersearch");
-		
-		return mav;
-	}
-	
-	@RequestMapping("/htagSearch.do")
-	public ModelAndView htagSearch(@RequestParam("name")String name){
-		ModelAndView mav = new ModelAndView();
-		
-		List<htagDTO> list = htagdao.htagSearch(name);
-		
-		mav.addObject("name", name);
-		
-		mav.addObject("find", list);
-		
-		mav.setViewName("/search/htagSearch");
-		
-		return mav;
-	}
+   
+   @Autowired
+   private SearchDAO searchdao;
+   
+   @Autowired
+   private htagDAO htagdao;
+   
+   @RequestMapping("/membersearch.do")
+   public ModelAndView memberSearch(@RequestParam("name")String name){
+      ModelAndView mav = new ModelAndView();
+      
+      List<MemberDTO> list = searchdao.memberSearch(name);
+      
+      mav.addObject("name", name);
+      
+      mav.addObject("find", list);
+      
+      mav.setViewName("search/membersearch");
+      
+      return mav;
+   }
+   
+   @RequestMapping("/htagSearch.do")
+   public ModelAndView htagSearch(@RequestParam("name")String name){
+      ModelAndView mav = new ModelAndView();
+      
+      List<htagDTO> list = htagdao.htagSearch(name);
+      
+      mav.addObject("name", name);
+      
+      mav.addObject("find", list);
+      
+      mav.setViewName("/search/htagSearch");
+      
+      return mav;
+   }
 }

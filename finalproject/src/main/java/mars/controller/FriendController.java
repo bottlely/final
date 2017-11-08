@@ -22,8 +22,6 @@ public class FriendController {
 	/**following*/
 	@RequestMapping("/following.do")
 	public ModelAndView addFollowing(FriendDTO dto) {
-		//System.out.println("user1_idx: "+dto.getUser1_idx());
-		//System.out.println("user2_idx: "+dto.getUser2_idx());
 		int result = friendDao.following(dto);
 		String msg = result>0? "Success" : "Fail";
 		ModelAndView mav = new ModelAndView();
