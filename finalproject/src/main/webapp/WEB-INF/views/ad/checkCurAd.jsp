@@ -55,27 +55,44 @@ function showCurResult(){
 function showAve(){
 	var i = "${i}";
 	var str = "${str}";
-	alert(i);
-	alert(str);
-	alert('111'); 
+	var p1 = document.all.ave;
+	var strGo='';
+//	alert(i);
 //	alert(str);
-//	alert(data);
-//	var data = XHR.responseText;
-//	var lists = eval('('+data+')');
-//	alert(list);
-}
-
-function showAveResult(){
-	if(XHR.readyState==4){
-
-	//	alert(XHR.status);
-		if(XHR.status==200){
-		//	var data = XHR.responseText;
-		//	alert(data);
-		}
-	}
 	
+	if(str==""){
+		//저장된 정보가 없음. 즉 status!=3
+		strGo='등록된 게시물이 아닙니다!';
+	}
+	else{
+		var arr = str.split('/');
+		var leng = arr.length;
+		
+		var today = new Date();
+		var dd = today.getDate();
+		var mm = today.getMonth()+1;
+	
+		
+		if(leng<8){ //게시한지 7일이 안됨
+			for(var i=(leng-1); i>=0; i--){
+				strGo += (mm+'/'+dd+'.      '+arr[i]+'회'+'<hr>');
+				dd = dd-1;
+			}
+		}
+		else{
+			for(var i=(leng-1); i>=(leng-7); i--){
+				strGo += (mm+'/'+dd+'.      '+arr[i]+''+'<hr>');
+				dd = dd-1;
+			}
+		}	
+
+	}
+	p1.innerHTML = strGo;
+	location.href='#collapse2';
+	//바로 위치 이동 !
 }
+
+
 </script>
 
 
@@ -99,11 +116,11 @@ function showAveResult(){
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" onclick="showAve()" href="#collapse2">위에서 클릭하면 넘어오게! 진행중이면 진행중 아니면, 광고 통계</a>
+          <a data-toggle="collapse" data-parent="#accordion" onclick="showAve()" href="#collapse2">광고 통계</a>
         </h4>
       </div>
       <div id="collapse2" class="panel-collapse collapse">
-        <div class="panel-body">
+        <div class="panel-body" >
           <div id="ave"></div>
         </div>
     </div>
