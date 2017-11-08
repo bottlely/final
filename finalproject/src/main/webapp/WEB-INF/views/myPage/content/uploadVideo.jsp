@@ -65,12 +65,11 @@
 	            xhr.onload = function(e) {
 	                if(this.status == 200) {
 	                	var jsonResponse = JSON.parse(e.currentTarget.responseText);
-	                	 sel_files.push(jsonResponse["result"]);
+	                	 sel_files.push(jsonResponse["thumbnail"]);
 	                	 path = jsonResponse["path"];
+	                	 console.log(jsonResponse["thumbnail"]);
 	                }
 	            }
-            
-                sel_files.push(f);
 
                 var reader = new FileReader();
                 reader.onload = function(e) {

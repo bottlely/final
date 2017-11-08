@@ -8,12 +8,16 @@
 <title>Insert title here</title>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.2.1.js" type="text/javascript"></script>
+
 <style>
 .moreicon {
 	text-align: center;
 }
 
-.mask {
+.mask,
+.mask2,
+.mask3 {
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -32,21 +36,19 @@
 	z-index: 99999;
 }
 
-.mask2 {
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: 9999;
-	background-color: #000;
-	display: none;
-}
-
 .uploadui {
 	position: absolute;
 	display: none;
-	background-color: #ffffff;
 	width: 200px;
 	height: 150px;
+	z-index: 99999;
+	background-color: rgba( 255, 255, 255, 0 );
+}
+
+.contentDiv {
+	position: absolute;
+	display: none;
+	width: 30px;
 	z-index: 99999;
 	background-color: rgba( 255, 255, 255, 0 );
 }
@@ -108,6 +110,7 @@ input:checked+.slider:before {
 .slider.round:before {
 	border-radius: 50%;
 }
+
 </style>
 
 <!-- datepicker -->
@@ -123,6 +126,20 @@ input:checked+.slider:before {
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
 <noscript><link rel="stylesheet" href="assets_myPage/assets/css/noscript.css" /></noscript>
 
+
+<script type="text/javascript">
+        var BPOPUP='';
+        (function($) {
+            $(function() {
+                  $('#btest1').bind('click', function(e) {
+                      e.preventDefault();
+                      BPOPUP =  $('#bpopup1').bPopup({
+                           modalClose : false
+                       });
+                    });    
+             });
+        })(jQuery);
+    </script>  
 			
 <script type="text/javascript">
 
@@ -239,6 +256,11 @@ input:checked+.slider:before {
             $('.uploadui').hide();
         });
     });
+   
+    function contentDate(){
+    	var uploadDate=$('.datepicker-here').val();
+    	window.alert(uploadDate);
+    }
 </script>
 
 </head>
@@ -332,7 +354,7 @@ input:checked+.slider:before {
 <!-- 캘린더아이콘 -->
 <div class="calendaricon" style="width:300px;height:50px;">
 	<input type='text' name="calendar" class="datepicker-here" style="width: 150px;">
-	<button style="width:50px;border:0px;"><i class="fa fa-calendar"></i></button>
+	<button style="width:50px;border:0px;" onclick="contentDate()"><i class="fa fa-calendar"></i></button>
 </div>
 
 
@@ -355,11 +377,12 @@ input:checked+.slider:before {
 			<li><input type="button" value="TEXT"></li>
 		</ul>
 		</div>
+		
 		<div class="myfeed">
-			<table style="width: 600px; height: 600px; border-spacing:10px;">
+			<table style="border-spacing:10px;">
 				<tr>
-					<td style="background-color:blue;"></td>
-					<td style="background-color:blue;"></td>
+					<td><img src="assets_myPage/images/cow.jpg" class="showMask3"></td>
+					<td><img src="assets_myPage/images/pig.jpg"></td>
 					<td style="background-color:blue;"></td>
 				</tr>
 				<tr>
@@ -374,6 +397,12 @@ input:checked+.slider:before {
 				</tr>
 			</table>
 		</div>	
-</section>				
+		
+		<div class="mask3"></div>
+		<div class="contentDiv">
+		<img src="assets_myPage/images/cow.jpg" width="300px;">
+		</div>
+</section>
+
 </body>
 </html>

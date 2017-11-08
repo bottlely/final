@@ -191,7 +191,6 @@ public class ContentController {
 	public ModelAndView videoThumbnail(@RequestParam("useridx")String member_idx,
 			MultipartHttpServletRequest req,HttpServletRequest req2) {
 		
-		System.out.println(member_idx+"------------------------");
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
 		
 		MultipartFile videoFile = req.getFile("video");
@@ -205,20 +204,22 @@ public class ContentController {
 		
         File newfile = new File(realPath+"/myHomeFolder/content/"+fileName);
         
-        File imageFile = new File(realPath+"/myHomeFolder/content/test.jpg");
+        String imageFileName = fileName.substring(0, fileName.indexOf("."))+ ".jpg";
         
-        System.out.println(imageFile.getAbsolutePath()+"--------------------------------");
+        File imageFile = new File(realPath+"/myHomeFolder/content/"+imageFileName);
         
 		File thumbnail = extractImage(newfile,1,imageFile);
 		
-		String path = "myHomeFolder/content/"+thumbnail.getName();
+		String path = "myHomeFolder/content/"+imageFileName;
+		
+		System.out.println(path+"-----------------------");
 
         ModelAndView mav = new ModelAndView("marsJson","thumbnail",thumbnail);
         mav.addObject("path", path);
 		return mav;
 	}
 	
-	/*비디오 썸네일*/
+	/*鍮꾨뵒�삤 �뜽�꽕�씪*/
 	public File extractImage(File videoFile, int position,File creatingImageFile) 
 	{
 

@@ -52,6 +52,7 @@
                 }
 
                 sel_files.push(f);
+                console.log(f);
 
                 var reader = new FileReader();
                 reader.onload = function(e) {
