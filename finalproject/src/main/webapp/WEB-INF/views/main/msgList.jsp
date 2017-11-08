@@ -7,30 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-메세지1<br>
-메세지2<br>
-메세지3<br>
-메세지4<br>
-<hr>
-메세지1<br>
-메세지2<br>
-메세지3<br>
-메세지4<br>
-<hr>
-메세지1<br>
-메세지2<br>
-메세지3<br>
-메세지4<br>
-<hr>
-메세지1<br>
-메세지2<br>
-메세지3<br>
-메세지4<br>
-<hr>
-메세지1<br>
-메세지2<br>
-메세지3<br>
-메세지4<br>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <strong>박연수</strong>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">안녕</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <strong>오현경</strong>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">ㅇㄷ</div>
+            </a>
 
 </body>
 </html>

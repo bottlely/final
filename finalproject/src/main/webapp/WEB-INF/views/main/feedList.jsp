@@ -7,30 +7,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-피드1<br>
-피드2<br>
-피드3<br>
-피드4<br>
-피드5<br>
-<hr>
-피드1<br>
-피드2<br>
-피드3<br>
-피드4<br>
-피드5<br>
-<hr>
-피드1<br>
-피드2<br>
-피드3<br>
-피드4<br>
-피드5<br>
-<hr>
-피드1<br>
-피드2<br>
-피드3<br>
-피드4<br>
-피드5<br>
-<hr>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <span class="text-success">
+                <strong>
+                  <i class="fa fa-long-arrow-up fa-fw"></i>오현경님이 댓글을남겼습니다</strong>
+              </span>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">대박</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <span class="text-danger">
+                <strong>
+                  <i class="fa fa-long-arrow-up fa-fw"></i>박연수님이 회원님 게시물을 좋아합니다.</strong>
+              </span>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small"></div>
+            </a>
 
 </body>
 </html>
