@@ -1,5 +1,14 @@
 package mars.activity.model;
 
-public class ActivityDAOImple implements ActivityDAO {
+import org.mybatis.spring.SqlSessionTemplate;
 
+public class ActivityDAOImple implements ActivityDAO {
+	
+	private SqlSessionTemplate sqlMap;
+
+	public ActivityDAOImple(SqlSessionTemplate sqlMap) {
+		super();
+		this.sqlMap = sqlMap;
+	}
+	
 }
