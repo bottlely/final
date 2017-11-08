@@ -57,6 +57,16 @@
 			location.href='test.do?user_idx='+idx;
 		}
 		
+		$(document).ready(function(){
+		    $("#openMypage").click(function(){
+		        var div = $('#mypage2', parent.document);
+		        div.animate({left: '35%'}, "fast");
+		        div.animate({height: '100%'}, "slow");
+		        div.animate({width:'toggle'}, "slow");
+				
+		    });
+		});
+		
 		</script>
 	</head>
 	<body>
@@ -127,7 +137,7 @@
 									<li>
 										<article>
 											<header>
-												<h3><a href="#">${follower_list.name}</a></h3>
+												<h3><a href="#" id="openMypage">${follower_list.name}</a></h3>
 												<input type="button" value="chat" onclick=""><input type="button" value="more" onclick="test('${sessionScope.useridx}')">
 											</header>
 											<a href="#" class="image"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}" alt=""  style="border-radius: 50%"></a>
