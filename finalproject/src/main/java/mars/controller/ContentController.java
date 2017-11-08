@@ -188,36 +188,34 @@ public class ContentController {
 	}
 	
 	@RequestMapping("/videoThumbnail.do")
-	public ModelAndView videoThumbnail(@RequestParam("useridx")String member_idx,
-			MultipartHttpServletRequest req,HttpServletRequest req2) {
-		
-		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
-		
-		MultipartFile videoFile = req.getFile("video");
+	   public ModelAndView videoThumbnail(@RequestParam("useridx")String member_idx,
+	         MultipartHttpServletRequest req,HttpServletRequest req2) {
+	      
+	      MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
+	      
+	      MultipartFile videoFile = req.getFile("video");
 
-        String fileName = mhdto.getMember_idx()+mhdto.getName()+System.currentTimeMillis()+videoFile.getOriginalFilename();
-		
-        copyInto(fileName,videoFile,req2);
-        
-        String realPath = req2.getSession().getServletContext().getRealPath("");
-		realPath = realPath.replaceAll("\\\\","/");
-		
-        File newfile = new File(realPath+"/myHomeFolder/content/"+fileName);
-        
-        String imageFileName = fileName.substring(0, fileName.indexOf("."))+ ".jpg";
-        
-        File imageFile = new File(realPath+"/myHomeFolder/content/"+imageFileName);
-        
-		File thumbnail = extractImage(newfile,1,imageFile);
-		
-		String path = "myHomeFolder/content/"+imageFileName;
-		
-		System.out.println(path+"-----------------------");
+	        String fileName = mhdto.getMember_idx()+mhdto.getName()+System.currentTimeMillis()+videoFile.getOriginalFilename();
+	      
+	        copyInto(fileName,videoFile,req2);
+	        
+	        String realPath = req2.getSession().getServletContext().getRealPath("");
+	      realPath = realPath.replaceAll("\\\\","/");
+	      
+	        File newfile = new File(realPath+"/myHomeFolder/content/"+fileName);
+	        
+	        String imageFileName = fileName.substring(0, fileName.indexOf("."))+ ".jpg";
+	        
+	        File imageFile = new File(realPath+"/myHomeFolder/content/"+imageFileName);
+	        
+	      File thumbnail = extractImage(newfile,1,imageFile);
+	      
+	      String path = "myHomeFolder/content/"+imageFileName;
 
-        ModelAndView mav = new ModelAndView("marsJson","thumbnail",thumbnail);
-        mav.addObject("path", path);
-		return mav;
-	}
+	        ModelAndView mav = new ModelAndView("marsJson","path",path);
+	        mav.addObject("name", imageFileName);
+	      return mav;
+	   }
 	
 	/*鍮꾨뵒�삤 �뜽�꽕�씪*/
 	public File extractImage(File videoFile, int position,File creatingImageFile) 
@@ -280,6 +278,17 @@ public class ContentController {
 
 	}
 
-	
+	@RequestMapping("/uploadDateContent.do")
+	public ModelAndView uploadDateContent(@RequestParam("uploadDate")String uploadDate){
+		
+		List<ContentDTO> list=cdao.searchUploadDate(uploadDate);
+		ModelAndView mav=new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("myPage/myHome");
+		return mav;
+		
+		
+	}
 
+	
 }

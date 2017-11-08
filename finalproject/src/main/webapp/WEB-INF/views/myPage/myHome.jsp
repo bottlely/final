@@ -405,5 +405,11 @@ input:checked+.slider:before {
 		</div>
 </section>
 
+<c:if test="${empty list}">
+<p>검색된 날짜의 게시물이 없습니다.</p>
+</c:if>
+<c:forEach var="dto" items="${list}">
+${dto.content_idx}
+</c:forEach>
 </body>
 </html>

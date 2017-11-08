@@ -10,4 +10,9 @@
 		insert into content values
 		(#{idx}, content_idx.nextval,#{type},sysdate,#{path},#{content},#{writer})
 	</insert>
+	<select id="searchUploadDate" parameterType="String" resultType="mars.content.model.ContentDTO">
+		select *
+		from content
+		where to_char(writetime,'yyyy-mm-dd') = #{uploadDate}
+	</select>
 </mapper>

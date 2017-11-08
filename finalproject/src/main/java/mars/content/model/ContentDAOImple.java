@@ -1,6 +1,7 @@
 package mars.content.model;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -18,4 +19,8 @@ public class ContentDAOImple implements ContentDAO {
 		return result;
 	}
 
+	public List<ContentDTO> searchUploadDate(String uploadDate){
+		List<ContentDTO> list = sqlMap.selectList("searchUploadDate", uploadDate);
+		return list;
+	}
 }

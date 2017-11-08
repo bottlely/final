@@ -1,6 +1,7 @@
 package mars.content.model;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface ContentDAO {
 	
@@ -20,4 +21,5 @@ public interface ContentDAO {
 	*/
 	
 	public int uploadContent(HashMap<String, String> info);
+	public List<ContentDTO> searchUploadDate(String uploadDate);
 }
