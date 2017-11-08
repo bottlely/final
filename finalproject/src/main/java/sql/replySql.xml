@@ -4,12 +4,16 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="mars.reply">
-	<select id="replyList" parameterType="mars.reply.model.ReplyDTO">
-		select mypage.name, mypage.profile_img, mars_reply.content
-		from mypage
-		inner join mars_reply on mypage.member_idx=mars_reply.to_idx
-		where mars_reply.content_idx=#{content_idx}
+<mapper namespace="mars.*" >
+   <resultMap type="mars.reply.model.MyHomeReplyDTO" id="myHomeReply">
+      <result property="name" column="name" />
+      <result property="profile_img" column="profile_img" />
+      <result property="content" column="content" />
+   </resultMap>
+   <select id="replyList" resultMap="myHomeReply">
+      select mypage.name, mypage.profile_img, mars_reply.content
+      from mypage
+      inner join mars_reply on mypage.member_idx=mars_reply.to_idx
    </select>
    <insert id="addReply" parameterType="mars.reply.model.ReplyDTO">
       insert into mars_reply values(mars_reply_idx.nextval, 30, 20, 27, #{content}, 0, 0, 0, sysdate, 0, 0, 0, 0)

@@ -141,7 +141,7 @@
                            <li>
                               <article>
                                  <header>
-                                    <h3><a onclick="openMypage(${follower_list.idx })" value="${follower_list.idx }">${follower_list.name}</a></h3>
+                                    <h3><a onclick="openMypage('${follower_list.idx }')" value="${follower_list.idx }">${follower_list.name}</a></h3>
                                     <input type="button" value="chat" id="userChat"><input type="button" value="more" onclick="test('${sessionScope.useridx}')">
                                  </header>
                                  <a href="#" class="image"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}" alt=""  style="border-radius: 50%"></a>
