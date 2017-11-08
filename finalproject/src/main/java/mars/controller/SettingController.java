@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import mars.friend.model.FriendDTO;
+import mars.group.model.GroupDTO;
 import mars.member.model.MemberDTO;
 import mars.report.model.ReportDTO;
 import mars.setting.model.SettingDAO;
@@ -109,9 +110,7 @@ public class SettingController {
 	}
 
 	@RequestMapping("friendSetting.do")
-	public ModelAndView friendsSetting() {
-		// public String friendsSetting(int idx){
-		int idx = 12;
+	public ModelAndView friendsSetting(int idx) {
 		List<FriendDTO> g_list = settingDao.getGroupList(idx);
 		List<MemberDTO> list = settingDao.getFollowingList(idx);
 		ModelAndView mav = new ModelAndView();
@@ -122,8 +121,7 @@ public class SettingController {
 	}
 
 	@RequestMapping("addGroupForm.do")
-	public ModelAndView addGroupForm() {
-		int idx = 12;
+	public ModelAndView addGroupForm(int idx) {
 		List<MemberDTO> list = settingDao.getFollowingList(idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
@@ -133,22 +131,29 @@ public class SettingController {
 	}
 
 	@RequestMapping("addGroup.do")
-	public void addGroup(@RequestParam("group_name") String group_name, @RequestParam("idx_to") int[] idx_to, int idx_from) {
+	public ModelAndView addGroup(@RequestParam("group_name") String group_name, @RequestParam("idx_to") int[] idx_to,
+			int idx_from) {
+		int idx_ff = 0;
+		int result = 0;
+		ModelAndView mav = new ModelAndView();
+
 		int group_cnt = settingDao.getGroupCnt(idx_from);
-		System.out.println("group_cnt = " +group_cnt);
-		FriendDTO dto = new FriendDTO(idx_from, group_name, group_cnt+1);
+		FriendDTO dto = new FriendDTO(idx_from, group_name, group_cnt + 1);
 		int count = settingDao.addGroup(dto);
-		
-		int idx_ff=0;
-		if(count >0) {
-//		idx_ff = settingDao.getGroupIdx();
+
+		if (count > 0) {
+			idx_ff = settingDao.getGroupIdx(dto);
+			for (int i = 0; i < idx_to.length; i++) {
+				GroupDTO gdto = new GroupDTO(idx_from, idx_to[i], idx_ff, group_name);
+				count = settingDao.insertGroup(gdto);
+				result = count > 0 ? result + 1 : result;
+			}
 		}
 
-		for (int i = 0; i < idx_to.length; i++) {
-			// int count = settingDao.insertGroup();
-		}
-
-		// return "setting/settingMsg";
-
+		String msg = result == idx_to.length ? "그룹이 생성되었습니다." : "그룹 생성에 실패하였습니다. 다시 시도하여주십시오";
+		mav.addObject("msg", msg);
+		mav.addObject("gourl", "friendSetting.do");
+		mav.setViewName("setting/popupMsg");
+		return mav;
 	}
 }

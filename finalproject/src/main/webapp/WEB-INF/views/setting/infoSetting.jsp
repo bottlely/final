@@ -74,7 +74,7 @@
 					<li><a href="pwdSetting.do"> <i class="ti-panel"></i>
 							<p>Password Setting</p>
 					</a></li>
-					<li><a href="friendSetting.do"> <i
+					<li><a href="friendSetting.do?idx=${sessionScope.useridx}"> <i
 							class="ti-view-list-alt"></i>
 							<p>Friends Setting</p>
 					</a></li>

@@ -14,6 +14,14 @@ public class GroupDTO {
 	public GroupDTO() {
 	}
 	
+	public GroupDTO(int idx_from, int idx_to, int idx_ff, String group_name) {
+		super();
+		this.idx_from = idx_from;
+		this.idx_to = idx_to;
+		this.idx_ff = idx_ff;
+		this.group_name = group_name;
+	}
+
 	public GroupDTO(int idx, int idx_from, int idx_to, int idx_ff, String group_name, Date adddate) {
 		super();
 		this.idx = idx;

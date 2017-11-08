@@ -44,7 +44,7 @@
 <link href="assets_setting/css/themify-icons.css" rel="stylesheet">
 <script>
 	function addGroupForm() {
-		window.open('addGroupForm.do', 'addGroupForm', 'width=400, height=800');
+		window.open('addGroupForm.do?idx=${sessionScope.useridx}', 'addGroupForm', 'width=400, height=800');
 	}
 </script>
 </head>
@@ -71,7 +71,7 @@
 					<li><a href="pwdSetting.do"> <i class="ti-panel"></i>
 							<p>Password Setting</p>
 					</a></li>
-					<li class="active"><a href="friendSetting.do"> <i
+					<li class="active"><a href="friendSetting.do?idx=${sessionScope.useridx}"> <i
 							class="ti-view-list-alt"></i>
 							<p>Friends Setting</p>
 					</a></li>
@@ -118,12 +118,19 @@
 										<input type="button" value="+" onclick="addGroupForm()">
 									</p>
 									<ul>
-										<c:if test="${empty list }">
-											<li>친구가 없습니다.</li>
+										<c:if test="${empty g_list }">
+											<li>생성된 그룹이 없습니다.</li>
 										</c:if>
 										<c:forEach var="g_list" items="${g_list}">
 											<li><a href="#">${g_list.group_name }</a></li>
 										</c:forEach>
+									</ul>
+									<hr>
+									<ul>
+										<c:if test="${empty list }">
+											<li>친구가 없습니다.</li>
+										</c:if>
+
 										<c:forEach var="list" items="${list }">
 											<li>${list.name}</li>
 										</c:forEach>

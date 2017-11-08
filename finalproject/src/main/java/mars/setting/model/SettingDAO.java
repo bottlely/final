@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import mars.friend.model.FriendDTO;
+import mars.group.model.GroupDTO;
 import mars.member.model.MemberDTO;
 import mars.report.model.ReportDTO;
 
@@ -19,4 +20,6 @@ public interface SettingDAO {
 	public int sendReport(ReportDTO dto);
 	public int addGroup(FriendDTO dto);
 	public int getGroupCnt(int idx);
+	public int getGroupIdx(FriendDTO dto);
+	public int insertGroup(GroupDTO dto);
 }

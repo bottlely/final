@@ -74,7 +74,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="friendSetting.do">
+                    <a href="friendSetting.do?idx=${sessionScope.useridx}">
                         <i class="ti-view-list-alt"></i>
                         <p>Friends Setting</p>
                     </a>
