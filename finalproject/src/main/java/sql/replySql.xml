@@ -5,8 +5,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="mars.reply">
-	<select id="replyList" parameterType="Integer" resultType="mars.reply.model.ReplyDTO">
-      select content from mars_reply where content_idx=20
+	<resultMap type="mars.myHome.model.MyHomeDTO" id="mars.myHome.model.MyHomeDTO">
+		<result property="name" column="name" />
+		<result property="profile_img" column="profile_img" />
+	</resultMap>
+	<resultMap type="mars.reply.model.ReplyDTO" id="mars.reply.model.ReplyDTO">
+		<result property="content" column="content" />
+		<collection property="myhome" resultMap="mars.myHome.model.MyHomeDTO" />
+	</resultMap>
+	<select id="replyList" parameterType="reply" resultMap="mars.reply.model.ReplyDTO">
+      select mypage.name, mypage.profile_img, mars_reply.content
+		from mypage
+		inner join mars_reply on mypage.member_idx=mars_reply.to_idx
    </select>
    <insert id="addReply" parameterType="mars.reply.model.ReplyDTO">
       insert into mars_reply values(mars_reply_idx.nextval, 30, 20, 27, #{content}, 0, 0, 0, sysdate, 0, 0, 0, 0)

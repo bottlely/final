@@ -19,6 +19,8 @@
 
     <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script type="text/javascript" src="js/httpRequest.js"></script>
     <style>
     
     
@@ -123,9 +125,9 @@
 
 			
 			function openpic(i){
-				var div = document.getElementById('pic20').value;
+				var div = document.getElementById('pic'+ i).value;
 				
-				sendRequest('replyList.do', null, replyList, 'GET');
+				sendRequest('replyList.do?content_idx=20', null, replyList, 'GET');
 				
 				$('#galleryImage').attr("src",div);
 			} 
@@ -135,19 +137,20 @@
 					if(XHR.status==200){
 						var data = XHR.responseText;
 						var lists = eval('('+data+')');
-						var p1 = document.all.cur;
+						var content_writer = '박연수';
+						var content_content = '하이하이';
+						var reply_list = document.all.reply_List;
 						var str='';
 					
-						if(lists.list.length==0){
-							str = '신청한 광고가 없습니다.'
-							p1.innerHTML = str;
-						}
-						else{
-							for(var i=0; i<lists.list.length; i++){
-								var l = lists.list[i];
-								str += '<a href="showAve.do?ad_idx='+l.ad_idx+'">'+l.ad_name+'</a><hr>';
+						if(lists.replyList.length==0){
+							str = '댓글 없습니다.'
+							reply_list.innerHTML = str;
+						}else{
+							for(var i=0; i<lists.replyList.length; i++){
+								var l = lists.replyList[i];
+								str += l.profile_img + " : " + l.name + " : " + l.content + '<hr>';
 							}
-							p1.innerHTML = str;
+							reply_list.innerHTML = str;
 						}
 					}
 				}
@@ -399,18 +402,11 @@
         
         </div>
         <div class="col-xs-6" style="float: left;">
-      <form name="reply" action="reply.do">
-      	<h2>작성자</h2><br>
-      	<h2>게시글 내용</h2>
+      	<h2 id="content_writer">작성자</h2><br>
+      	<h2 id="content_content">게시글 내용</h2>
       	<h2>좋아요</h2>
-      	<input type="text" name="content"><input type="submit" value="작성"><br>
-      	<c:if test="${empty replyList }">
-      		댓글 없습니다.
-      	</c:if>
-      	<c:forEach var="replyList" items="${replyList }">
-      		${replyList.content }<hr><br>
-      	</c:forEach>
-      </form>
+      	<input type="text" name="content"><input type="button" onclick="" value="작성"><br>
+      	<h2 id="reply_List">댓글 내용</h2>
         </div>
     </div>
 </div>

@@ -13,8 +13,6 @@ public class ReplyDAOImple implements ReplyDAO {
 	}
 
 	public List<ReplyDTO> replyList(int content_idx) {
-		content_idx = 20;
-		
 		List<ReplyDTO> list = sqlMap.selectList("replyList", content_idx);
 		
 		return list;

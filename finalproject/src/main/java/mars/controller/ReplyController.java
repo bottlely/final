@@ -15,12 +15,12 @@ public class ReplyController {
 	@Autowired
 	private ReplyDAO replydao;
 	
-	@RequestMapping("replyList.do")
-	   public ModelAndView replyList(int content_idx){
+	@RequestMapping("/replyList.do")
+	   public ModelAndView replyList(@RequestParam("content_idx")int content_idx){
 	      List<ReplyDTO> list = replydao.replyList(content_idx);
-	      
+	      System.out.println(list);
 	      ModelAndView mav = new ModelAndView("marsJson", "replyList", list);
-	       
+	      
 	      return mav;
 	   }
 	

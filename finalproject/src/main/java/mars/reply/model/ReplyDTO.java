@@ -2,6 +2,8 @@ package mars.reply.model;
 
 import java.sql.Date;
 
+import mars.myHome.model.MyHomeDTO;
+
 public class ReplyDTO {
    private int idx;
    private int from_idx;
@@ -17,7 +19,15 @@ public class ReplyDTO {
    private String vartype1;
    private String vartype2;
  
-   public ReplyDTO() {
+   private MyHomeDTO myhome;
+   
+   public MyHomeDTO getMyHomeDTO() {
+	return myhome;
+}
+public void setMyHomeDTO(MyHomeDTO myhome) {
+	this.myhome = myhome;
+}
+public ReplyDTO() {
       super();
    }
    public ReplyDTO(int idx, int from_idx, int content_idx, int to_idx, String content, int ref, int lev, int sunbun,
