@@ -226,26 +226,51 @@
  		 	<span class="label">10</span>
  		 <span class="caret"></span></a>
  			 <ul class="dropdown-menu">
-   			 <li><%@include file="feedList.jsp" %></li>
+ 			 <li>Active List</li>
+   			 <li>
+   			 <div style="height: 3%;">
+   			 <%@include file="feedList.jsp" %>
+   			 </div>
+   			 </li>
 	
 
  			 </ul>
 			</div>
                    </li>			
-                    <li>
-                        	<div class="dropdown">
- 		 <a class="btn btn-default dropdown-toggle"  data-toggle="dropdown">
- 		  
- 		 <i class="pe-7s-mail"></i>
- 		 	<span class="label">30</span>
- 		 <span class="caret"></span></a>
- 			 <ul class="dropdown-menu">
-   			 <li><%@include file="msgList.jsp" %></li>
-	
-
- 			 </ul>
-			</div>
-                    </li> 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-fw fa-envelope"></i>
+            <span class="d-lg-none">Messages
+              <span class="badge badge-pill badge-primary">12 New</span>
+            </span>
+            <span class="indicator text-primary d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+            </span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="messagesDropdown">
+            <h6 class="dropdown-header">New Messages:</h6>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <strong>David Miller</strong>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <strong>Jane Smith</strong>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00 instead of 4:00. Thanks!</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">
+              <strong>John Doe</strong>
+              <span class="small float-right text-muted">11:21 AM</span>
+              <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item small" href="#">View all messages</a>
+          </div>
+        </li>
 
                     
                                         <li>
@@ -254,9 +279,9 @@
  		 <i class="pe-7s-menu"></i>
  		 <span class="caret"></span></a>
  			 <ul class="dropdown-menu">
-   			 <li><a href="infoSetting.do">Settings</a></li>
-   			 <li><a href="serviceCenter.do">Customer Center</a></li>
-   			 <li><a href="#">로그아웃</a></li>
+   			  <li><a href="infoSetting.do?idx=${sessionScope.useridx }">SETTINGS</a></li>
+   			 <li><a href="serviceCenter.do">CUSTOMER CENTER</a></li>
+   			 <li><a href="#">LOGIUT</a></li>
 
  			 </ul>
 			</div>
