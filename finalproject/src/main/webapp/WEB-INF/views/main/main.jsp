@@ -83,8 +83,7 @@
 			});
 			$(document).ready(function(){
 			    $("#mypage1").click(function(){
-			    	document.getElementById('ppp').src='myHomeForm.do?useridx='+${sessionScope.useridx};
-			        var div = $("#mypage2");
+			    	var div = $("#mypage2");
 			        div.animate({left: '35%'}, "fast");
 			        div.animate({height: '100%'}, "slow");
 			        div.animate({width:'toggle'}, "slow");
@@ -158,12 +157,20 @@
 			}
 			
 			function test1(idx) {
-				document.getElementById('ppp').src='myHomeForm.do?useridx='+idx;
-				var div = $("#mypage2");
-		        div.animate({left: '35%'}, "fast");
-		        div.animate({height: '100%'}, "slow");
-		        div.animate({width:'toggle'}, "slow");
-			}
+				alert(idx);
+	            document.getElementById('ppp').src='myHomeForm.do?useridx='+idx;
+	            var div = $("#mypage2");
+	              div.animate({left: '35%'}, "fast");
+	              div.animate({height: '100%'}, "slow");
+	              div.animate({width:'toggle'}, "slow");
+	         }
+			
+			function addReply(){
+				alert('dd');
+	            var content = document.getElementById('content').value;
+	            alert(content);
+	            sendRequest('replyList.do?content='+content, null, replyList, 'GET');
+	         }
 
 </script> 
 <body>
@@ -185,7 +192,8 @@
 		 	<div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
 		<div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
 	
-	<iframe src="myHomeForm.do?useridx=${sessionScope.useridx }" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+	
+	<iframe src="myHomeForm.do?useridx=${sessionScope.useridx}" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
 	</div>
 		 
@@ -411,7 +419,7 @@
       	<h2 id="content_writer">작성자</h2><br>
       	<h2 id="content_content">게시글 내용</h2>
       	<h2>좋아요</h2>
-      	<input type="text" name="content"><input type="button" onclick="" value="작성"><br>
+      	<input type="text" name="content" id="content" value=""><input type="button" onclick="addReply()" value="작성"><br>
       	<h2 id="reply_List">댓글 내용</h2>
         </div>
     </div>
