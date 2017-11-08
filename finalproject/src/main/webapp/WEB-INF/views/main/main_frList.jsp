@@ -59,7 +59,7 @@
       
       function openMypage(j) {
     	  var idx = j;
-    	  alert(idx);
+    	  //alert(idx);
           parent.test1(idx);
       } 
       
