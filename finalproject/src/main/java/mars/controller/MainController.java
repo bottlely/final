@@ -10,4 +10,9 @@ public class MainController {
 	public String mainPage() {
 		return "main/main";
 	}
+	
+	@RequestMapping("main_view.do")
+	public String main_viewPage() {
+		return "main/main_view";
+	}
 }
