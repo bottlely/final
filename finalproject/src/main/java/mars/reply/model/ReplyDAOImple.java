@@ -1,5 +1,13 @@
 package mars.reply.model;
 
-public class ReplyDAOImple implements ReplyDAO {
+import org.mybatis.spring.SqlSessionTemplate;
 
+public class ReplyDAOImple implements ReplyDAO {
+	private SqlSessionTemplate sqlMap;
+
+	public ReplyDAOImple(SqlSessionTemplate sqlMap) {
+		super();
+		this.sqlMap = sqlMap;
+	}
+	
 }
