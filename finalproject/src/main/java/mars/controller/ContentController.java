@@ -53,7 +53,7 @@ public class ContentController {
 		return "myPage/content/contentCategory";
 	}
 	
-	@RequestMapping("contentUploadForm.do")
+	@RequestMapping("/contentUploadForm.do")
 	public ModelAndView contentUploadForm(@RequestParam("useridx")String member_idx,@RequestParam("type")int type) {
 		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
@@ -73,7 +73,7 @@ public class ContentController {
 		return mav;
 	}
 	
-	@RequestMapping("uploadPhoto.do")
+	@RequestMapping("/uploadPhoto.do")
 	public ModelAndView uploadPhoto(@RequestParam("useridx")String member_idx,
 			@RequestParam("content")String content,
 			//@RequestParam("type")int type,
@@ -140,7 +140,7 @@ public class ContentController {
 		
 	}
 	
-	@RequestMapping("uploadVideo.do")
+	@RequestMapping("/uploadVideo.do")
 	public ModelAndView uploadVideo(@RequestParam("useridx")String member_idx,
 			@RequestParam("content")String content,
 			//@RequestParam("type")int type,
@@ -187,7 +187,7 @@ public class ContentController {
 		return mav;
 	}
 	
-	@RequestMapping("videoThumbnail.do")
+	@RequestMapping("/videoThumbnail.do")
 	public ModelAndView videoThumbnail(@RequestParam("useridx")String member_idx,
 			MultipartHttpServletRequest req,HttpServletRequest req2) {
 		
@@ -280,5 +280,6 @@ public class ContentController {
 
 	}
 
+	
 
 }
