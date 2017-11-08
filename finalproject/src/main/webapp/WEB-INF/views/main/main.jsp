@@ -83,6 +83,7 @@
 			});
 			$(document).ready(function(){
 			    $("#mypage1").click(function(){
+			    	document.getElementById('ppp').src='myHomeForm.do?useridx='+${sessionScope.useridx};
 			        var div = $("#mypage2");
 			        div.animate({left: '35%'}, "fast");
 			        div.animate({height: '100%'}, "slow");
@@ -155,6 +156,14 @@
 					}
 				}
 			}
+			
+			function test1(idx) {
+				document.getElementById('ppp').src='myHomeForm.do?useridx='+idx;
+				var div = $("#mypage2");
+		        div.animate({left: '35%'}, "fast");
+		        div.animate({height: '100%'}, "slow");
+		        div.animate({width:'toggle'}, "slow");
+			}
 
 </script> 
 <body>
@@ -176,10 +185,7 @@
 		 	<div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
 		<div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
 	
-	<c:url var="myHomeUrl" value="myHomeForm.do">
-		<c:param name="useridx" value="${sessionScope.useridx}"/>
-	</c:url>
-	<iframe src="${myHomeUrl}" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+	<iframe src="myHomeForm.do?useridx=${sessionScope.useridx }" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
 	</div>
 		 
