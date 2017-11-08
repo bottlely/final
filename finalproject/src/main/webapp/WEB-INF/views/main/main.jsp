@@ -183,12 +183,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         
               <ul class="nav navbar-nav navbar-right">
-               <li>
-	              <form name="search" action="membersearch.do">
-	                 <input type="text" name="name">
-	                 <input type="submit" value="검색">
-	              </form>
-              </li>
+
            				<!-- 다운 광고 추가 임시 버튼 -->
               <li>
               <a href="#" onclick="window.open('applyAdForm.do', '광고 주문서', 'scrollbars=no width=400, height=450')">
@@ -247,15 +242,45 @@
    			 <li><a href="#">메뉴1</a></li>
    			 <li><a href="#">메뉴2</a></li>
    			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
+   			 <li><a href="#">메뉴3</a></li>
  			 </ul>
 			</div>
                     </li>
                </ul>
-               <form class="navbar-form navbar-right navbar-search-form" role="search">                  
-                 <div class="form-group">
-                      <input type="text" value="" class="form-control" placeholder="Search...">
+                <form name="search" action="membersearch.do" class="navbar-form navbar-right navbar-search-form">
+                
+                  <div class="form-group">
+                  		<input type="text" name="name" class="form-control" placeholder="Search...">
+	             
+                     
                  </div> 
-              </form>
+	             
+	              </form>
+
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
