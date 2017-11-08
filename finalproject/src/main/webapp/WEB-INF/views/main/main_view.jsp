@@ -316,9 +316,62 @@
 </header>
 
 
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+   
+    </div>
+    <div class="col-sm-8 text-center"  style="background-color: white; border-radius: 5%;"> 
+      <img src="assets_main/images/아이유6.jpg" alt="" style="margin: 1%" class="img-thumbnail">
+    </div>
+    <div class="col-sm-2 sidenav">
+     
+ 
+    </div>
+  </div>
+  <div class="row content">
+  <div class="col-sm-4 text-center" >
+    
+  </div>
+  <div class="col-sm-4 text-left"  style="background-color: white; border-radius: 5%;">
+  발자취
+  </div>
+  <div class="col-sm-4 text-center">
+  
+  </div>
+  </div>
+  
+    <div class="row content">
+    <div class="col-sm-2 sidenav">
+   
+    </div>
+    <div class="col-sm-8 text-left"  style="background-color: white; border-radius: 5%;"> 
+       댓글들<br>
+       댓글들<br>
+       댓글들<br>
+       댓글들<br>
+       댓글들<br>
+       댓글들<br>
+       댓글들<br>
+       댓글들<br>
+       댓글들<br>
+       댓글들<br>
+       댓글들<br>
+       댓글들<br>
+       댓글들<br>
+       
+    </div>
+    <div class="col-sm-2 sidenav">
+     
+ 
+    </div>
+  </div>
+  
+</div>
 
-활동내역 누르면 여기로옴
-
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
 
 
 
