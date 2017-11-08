@@ -53,5 +53,12 @@ public class ApplyAdDAOImple implements ApplyAdDAO {
 	//	return list;
 		return str;
 	}
+	
+	public List<ApplyAdDTO> showNum(){
+		Map<String, Integer> data = new HashMap<String, Integer>();  
+		List<ApplyAdDTO> list = sqlMap.selectList("showNum", data);
+	//	System.out.println("list = "+list.size());
+		return list;
+	}
 
 }

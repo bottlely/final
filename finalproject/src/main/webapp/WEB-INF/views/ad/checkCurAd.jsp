@@ -92,6 +92,66 @@ function showAve(){
 	//바로 위치 이동 !
 }
 
+function showNum(){	
+	sendRequest('showNum.do', null, showNumResult, 'GET');
+}
+
+function showNumResult(){
+	if(XHR.readyState==4){
+		if(XHR.status==200){
+			
+			var data = XHR.responseText;
+			var lists = eval('('+data+')');
+			var p1 = document.all.num;
+			var str='';
+		
+			if(lists.list.length==0){
+				str = '신청한 광고가 없습니다.'
+				p1.innerHTML = str;
+			}
+			else{
+				//alert(lists.list.length);
+				var newArr = new Array(lists.list.length);
+				var nameArr = new Array(lists.list.length);
+				
+				for(var i=0; i<lists.list.length; i++){
+					var l = lists.list[i];
+				//	alert(l.num_amount);
+					newArr[i] = l.num_amount;
+				//	nameArr[i] = l.ad_name;
+//					alert(newArr[i]);
+					//str += '<a href="showAve.do?ad_idx='+l.ad_idx+'">'+l.ad_name+'</a><hr>';
+				}
+//				alert('2');
+				newArr.sort(function(a, b){
+					return b-a;
+				});
+//				alert('3');
+				
+				for(var i=0; i<lists.list.length; i++){
+//					alert('d');
+					var cnt=0;
+					while(true){
+						var l = lists.list[cnt];
+						if(newArr[i]==l.num_amount){
+							nameArr[i] = l.ad_name;
+							break;
+						}
+						cnt = cnt+1;
+					}
+				}
+				
+				for(var i=0; i<newArr.length; i++){
+					str += (i+1)+'위.      '+nameArr[i]+'의 현재까지 총 유입량?  '+newArr[i]+'<hr>';
+					//str += (i+1)+'.  의 현재까지 총 유입량?  '+newArr[i].num_amount+'<hr>';
+				}
+				p1.innerHTML = str;
+			}		
+			
+		}
+	}
+}
+
 
 </script>
 
@@ -129,12 +189,12 @@ function showAve(){
     <div class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">광고 수치로 분석</a>
+          <a data-toggle="collapse" data-parent="#accordion" onclick="showNum()" href="#collapse3">광고 수치로 분석</a>
         </h4>
       </div>
       <div id="collapse3" class="panel-collapse collapse">
         <div class="panel-body">
-        
+        	<div id="num"></div>
         </div>
     </div>
     

@@ -77,6 +77,12 @@ public class AdController {
 		return mav;
 	}
 	
+	@RequestMapping("/showNum.do")
+	public ModelAndView showNum(){
+		List<ApplyAdDTO> list =	adDao.showNum();
+		ModelAndView mav = new ModelAndView("marsJson","list",list);
+		return mav;
+	}
 	
 	@RequestMapping("/getAdRequest.do")
 	public ModelAndView getAdRequest(){

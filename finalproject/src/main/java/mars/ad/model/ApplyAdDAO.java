@@ -8,5 +8,6 @@ public interface ApplyAdDAO {
 	public int insert(ApplyAdDTO adDto);
 	public List<ApplyAdDTO> showCurList();
 	public String showAveNum(Integer i);
+	public List<ApplyAdDTO> showNum();
 
 }
