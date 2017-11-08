@@ -30,6 +30,7 @@
 <link rel="stylesheet" href="assets_index/css/responsive.css"
 	type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/httpRequest.js"></script>
 
 <style>
 [data-sr] {
@@ -58,7 +59,7 @@ $(document).ready(function(){
     });
 });
 
-
+//id 중복체크
 function idCheck() {
 		var id = 'id='+document.join.id.value;
 		sendRequest('idCheck.do',id,showResult,'GET');
@@ -66,14 +67,16 @@ function idCheck() {
 	}
 	
 	
-	function showResult() {
+function showResult() {
 		if(XHR.readyState == 4) {
 			if(XHR.status == 200) {
 				var data = XHR.responseText;
-				alert(data);
+					alert(data);
+				
 			}
 		}
 	}
+	
 
 // 회원가입 유효성 검사
 
@@ -102,7 +105,6 @@ function idCheck() {
 		document.join.company_number.value=""
 		document.join.company_number.focus()
 		return false;
-		
 	}
 	
 	
@@ -183,7 +185,7 @@ function idCheck() {
 							<div class="col-sm-6">
 								<div class="form-group ">
 									<input type="email" class="form-control"
-										placeholder="YOUR E-MAIL" name="id" id="checkaa" oninput="idCheck()" required>
+										placeholder="YOUR E-MAIL" name="id" id="checkaa" onfocusout="idCheck()" required>
 								</div>
 							</div>
 						</div>
@@ -220,7 +222,7 @@ function idCheck() {
 							<div class="col-sm-3"></div>
 							<div class="col-sm-12"
 								style="text-align: center; font-size: 18px; color: black;">
-								가입하면 Mars의 약관 및 개인정보처리방침에 동의하게 됩니다.
+								<label>가입하면 Mars의 약관 및 개인정보처리방침에 동의하게 됩니다.</label>
 								<button type="submit" id="signupbtn"class="btn btn-send">Sign Up</button>
 							</div>
 							<div class="col-sm-3"></div>

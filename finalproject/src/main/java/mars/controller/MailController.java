@@ -30,7 +30,6 @@ public class MailController {
 	
 	@RequestMapping("/sendEmail.do")
 	public ModelAndView sendEmail(HttpSession session, @RequestParam String id) {
-		System.out.println(id);
 		int randomCode = new Random().nextInt(10000) + 1000;
 		String joinCode = String.valueOf(randomCode);
 		session.setAttribute("joinCode", joinCode);
@@ -46,10 +45,8 @@ public class MailController {
 	}
 	
 	@RequestMapping("/pwdSend.do")
-	public ModelAndView pwdSend(HttpSession session, @RequestParam String id) {
-		
+	public ModelAndView pwdSend(HttpSession session, @RequestParam("id") String id) {
 		String pwd = mdao.pwdCheck(id);
-
 		String subject = "MARS 비밀번호 찾기";
 		StringBuilder sb = new StringBuilder();
 		sb.append("비밀번호는 ").append("<< "+pwd+" >>").append(" 입니다.");

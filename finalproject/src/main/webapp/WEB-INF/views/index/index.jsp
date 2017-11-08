@@ -59,6 +59,11 @@
 }
 
 </style>
+
+<%
+String idx = (String)session.getAttribute("useridx");
+
+%>
 </head>
 <body>
 
@@ -83,7 +88,8 @@
 							<li><a href="joinForm.do">Sign Up</a></li>
 							<li><a data-scroll href="#about-us">About</a></li>
 							<li><a href="admin.do">admin</a></li>
-							<li><a href="myHomeForm.do">MyPage</a></li>
+							<li><a href="main.do">Main Page</a></li>
+							<li><a href="myHomeForm.do?useridx=<%=idx%>">MyPage</a></li>
 							<li><a href="logout.do">Log-out</a></li>
 						</ul>
 					</div>

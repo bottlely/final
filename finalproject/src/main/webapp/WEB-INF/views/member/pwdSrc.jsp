@@ -53,7 +53,8 @@
 	function sendEmail() {
 		var id = 'id=' + document.fm.id.value;
 		window.alert('서버 사정에 따라 몇 분이 소요될 수 있습니다.');
-		sendRequest('pwdSrc', id, showResult, 'GET');
+		window.alert(id);
+		sendRequest('pwdSend.do', id, showResult, 'GET');
 	}
 
 	function showResult() {
@@ -119,6 +120,7 @@
 				</div>
 				<div class="col-sm-2" data-sr="enter left, hustle 80px"></div>
 				<div class="col-sm-8" data-sr="enter right, hustle 80px">
+					<form name="fm">
 						<div class="row">
 							<div class="col-sm-2"></div>
 							<div class="col-sm-4">
@@ -129,7 +131,8 @@
 								<button type="button" class="btn btn-send" onclick="sendEmail()">인증메일 전송</button>
 							</div>
 							<div class="col-sm-2"></div>
-						</div>						
+						</div>
+					</form>						
 				</div>
 			</div>
 		</div>
