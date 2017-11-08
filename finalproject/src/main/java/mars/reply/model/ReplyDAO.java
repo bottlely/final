@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface ReplyDAO {
 	public List<MyHomeReplyDTO> replyList(int content_idx);
-	public void addReply(String content);
+	public int addReply(String content);
 }

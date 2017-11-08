@@ -24,16 +24,18 @@ public class ReplyController {
 	      return mav;
 	   }
 
-	   @RequestMapping("reply.do")
+	   @RequestMapping("/reply.do")
 	   public ModelAndView reply(@RequestParam("content")String content){
-	      replydao.addReply(content);
-	      
-	      ModelAndView mav = new ModelAndView("marsJson");
-	      
-	      return mav;
-	   }
+		      int content_idx = replydao.addReply(content);
+		      
+		      
+		      
+		      ModelAndView mav = new ModelAndView("marsJson");
+		      
+		      return mav;
+		   }
    
-   @RequestMapping("re_reply.do")
+   @RequestMapping("/re_reply.do")
    public ModelAndView re_reply(){
 	   ModelAndView mav = new ModelAndView();
 	   
