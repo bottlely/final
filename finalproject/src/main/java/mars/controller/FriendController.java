@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import mars.member.model.*;
+import mars.myHome.model.MyHomeDAO;
+import mars.myHome.model.MyHomeDTO;
 import mars.friend.model.*;
 
 import java.util.*;
@@ -18,6 +20,8 @@ public class FriendController {
 	
 	@Autowired
 	private FriendDAO friendDao;
+	@Autowired
+	private MyHomeDAO mhdao;
 	
 	/**following*/
 	@RequestMapping("/following.do")
@@ -45,9 +49,11 @@ public class FriendController {
 	public ModelAndView test(@RequestParam("user_idx")int user_idx) {
 		List<MemberDTO> list1 = friendDao.followerList(user_idx);
 		List<MemberDTO> list2 = friendDao.followingList(user_idx);
+		MyHomeDTO mhdto = mhdao.myHomeSource(String.valueOf(user_idx));
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("followerList", list1);
 		mav.addObject("followingList", list2);
+		mav.addObject("mhdto", mhdto);
 		mav.setViewName("friend/test");
 		return mav;
 	}
@@ -58,10 +64,12 @@ public class FriendController {
 		List<MemberDTO> list1 = friendDao.followingList(user_idx);
 		List<MemberDTO> list2 = friendDao.followerList(user_idx);
 		List<MemberDTO> list3 = friendDao.blackList(user_idx);
+		MyHomeDTO mhdto = mhdao.myHomeSource(String.valueOf(user_idx));
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("followingList", list1);
 		mav.addObject("followerList", list2);
 		mav.addObject("blackList", list3);
+		mav.addObject("mhdto", mhdto);
 		mav.setViewName("main/main_frList");
 		return mav;
 	}
@@ -72,11 +80,13 @@ public class FriendController {
 		List<MemberDTO> list2 = friendDao.followerList(user_idx);
 		List<MemberDTO> list3 = friendDao.blackList(user_idx);
 		List<MemberDTO> list4 = friendDao.searchNameList(search_name, user_idx);
+		MyHomeDTO mhdto = mhdao.myHomeSource(String.valueOf(user_idx));
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("followingList", list1);
 		mav.addObject("followerList", list2);
 		mav.addObject("blackList", list3);
 		mav.addObject("resultList", list4);
+		mav.addObject("mhdto", mhdto);
 		mav.setViewName("main/main_frList");
 		return mav;
 	}

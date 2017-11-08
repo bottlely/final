@@ -130,7 +130,7 @@
 												<h3><a href="#">${follower_list.name}</a></h3>
 												<input type="button" value="chat" onclick=""><input type="button" value="more" onclick="test('${sessionScope.useridx}')">
 											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}" alt=""  style="border-radius: 50%"></a>
 										</article>
 									</li>
 								</c:forEach>
@@ -147,7 +147,7 @@
 												<h3><a href="#">${following_list.name }</a></h3>
 												<input type="button" value="chat" onclick=""><input type="button" value="more" onclick="">
 											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}" alt=""  style="border-radius: 50%"></a>
 										</article>
 									</li>
 								</c:forEach>
@@ -164,7 +164,7 @@
 												<h3><a href="#">${search_list.name }</a></h3>
 												<input type="button" value="chat" onclick=""><input type="button" value="more" onclick="">
 											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt=""  style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}" alt=""  style="border-radius: 50%"></a>
 										</article>
 									</li>
 								</c:forEach>
@@ -191,7 +191,7 @@
 												<h3><a href="#">${blackList.name }</a></h3>
 												<input type="button" value="chat" onclick=""><input type="button" value="more" onclick="">
 											</header>
-											<a href="#" class="image"><img src="assets_main_fr/images/pic08.jpg" alt="" style="border-radius: 50%"></a>
+											<a href="#" class="image"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}" alt="" style="border-radius: 50%"></a>
 										</article>
 									</li>
 								</c:forEach>
