@@ -206,21 +206,7 @@
                             
                         </a>
                     </li>
-		             <li>
-                        <a href="#">
-                           <i class="pe-7s-global"></i>
-                           
-                       </a>
-                   </li>			
-                    <li>
-                        <a href="#">
-                            <i class="pe-7s-mail">
-                                <span class="label">23</span>
-                            </i>
-                            
-                        </a>
-                    </li> 
-                    <li>
+                                        <li>
                        <a href="#" id="mypage1">
                              <i class="pe-7s-user"></i>
                              
@@ -232,41 +218,46 @@
                            
                         </a>
                     </li>
+		             <li>
+					<div class="dropdown">
+ 		 <a class="btn btn-default dropdown-toggle"  data-toggle="dropdown">
+ 		  
+ 		 <i class="pe-7s-global"></i>
+ 		 	<span class="label">10</span>
+ 		 <span class="caret"></span></a>
+ 			 <ul class="dropdown-menu">
+   			 <li><%@include file="feedList.jsp" %></li>
+	
+
+ 			 </ul>
+			</div>
+                   </li>			
+                    <li>
+                        	<div class="dropdown">
+ 		 <a class="btn btn-default dropdown-toggle"  data-toggle="dropdown">
+ 		  
+ 		 <i class="pe-7s-mail"></i>
+ 		 	<span class="label">30</span>
+ 		 <span class="caret"></span></a>
+ 			 <ul class="dropdown-menu">
+   			 <li><%@include file="msgList.jsp" %></li>
+	
+
+ 			 </ul>
+			</div>
+                    </li> 
+
                     
                                         <li>
 					<div class="dropdown">
- 		 <a class="btn btn-primary dropdown-toggle"  data-toggle="dropdown">
+ 		 <a class="btn btn-default dropdown-toggle"  data-toggle="dropdown">
  		 <i class="pe-7s-menu"></i>
  		 <span class="caret"></span></a>
  			 <ul class="dropdown-menu">
    			 <li><a href="#">메뉴1</a></li>
    			 <li><a href="#">메뉴2</a></li>
    			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
-   			 <li><a href="#">메뉴3</a></li>
+
  			 </ul>
 			</div>
                     </li>
