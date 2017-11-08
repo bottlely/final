@@ -186,6 +186,8 @@
       
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script>
+var cnt1=0;
+var cnt2=1;
 
 function request(){
 		
@@ -195,7 +197,23 @@ function request(){
 		
 		oneTag.innerHTML='Company';
 		twoTag.innerHTML='Request Date';
-		threeTag.innerHTML='show';	
+		threeTag.innerHTML='show';
+		
+		//alert('1');
+		if(cnt1!=0){
+			for(var i=cnt2; i<=cnt1; i++){
+				var rItem = document.getElementById('isId'+i);
+				if(rItem!=null){
+				//	alert('2');
+					rItem.parentNode.removeChild(rItem);
+				}
+			}
+		}
+		
+		cnt2 = cnt1;
+//		alert('3');
+		
+		
 		sendRequest('getAdRequest.do', null, requestResult, 'GET');
 }
 
@@ -208,6 +226,7 @@ function requestResult(){
 			
 			if(lists.list.length==0){
 				var newDiv = document.createElement('td');
+				newDiv.setAttribute('id', 'isId');
 				newDiv.innerHTML = '게시물 없음';
 				newDiv.setAttribute('style', 'colspan:3; align:center;');
 				adChan.appendChild(newDiv);
@@ -215,8 +234,10 @@ function requestResult(){
 			else{
 				
 				for(var i=0; i<lists.list.length; i++){
-					
+					cnt1++;
 					var trDiv = document.createElement('tr');
+					
+					trDiv.setAttribute('id', 'isId'+cnt1);
  					adChan.appendChild(trDiv);
  					
  					
@@ -248,7 +269,23 @@ function pay(){
 	
 	oneTag.innerHTML='Company';
 	twoTag.innerHTML='Approval Date';
-	threeTag.innerHTML='Payment Status';	
+	threeTag.innerHTML='Payment Status';
+	
+	
+//	alert('1');
+	if(cnt1!=0){
+		for(var i=cnt2; i<=cnt1; i++){
+			var rItem = document.getElementById('isId'+i);
+			if(rItem!=null){
+	//			alert('2');
+				rItem.parentNode.removeChild(rItem);
+			}
+		}
+	}
+	
+	cnt2 = cnt1;
+//	alert('3');
+	
 	sendRequest('getAdRequest.do', null, payResult, 'GET');
 }
 
@@ -258,9 +295,12 @@ function payResult(){
         	 var data = XHR.responseText;
         	 var lists = eval('('+data+')');
  			 var adChan = document.getElementById('adChange');
+ 			 
+ 			 
  			
  			if(lists.list.length==0){
  				var newDiv = document.createElement('td');
+ 				newDiv.setAttribute('id', 'isId');
  				newDiv.innerHTML = '게시물 없음';
  				newDiv.setAttribute('style', 'colspan:3; align:center;');
  				adChan.appendChild(newDiv);
@@ -268,7 +308,9 @@ function payResult(){
  			else{
  				
  				for(var i=0; i<lists.list.length; i++){
+ 					cnt1++;
  					var trDiv = document.createElement('tr');
+ 					trDiv.setAttribute('id', 'isId'+cnt1);
  					adChan.appendChild(trDiv);
  						
  	 				var list = lists.list[i];
@@ -298,7 +340,7 @@ function payResult(){
   <br><br>
   <h2>광고 관리</h2>
   <br><br>
-  <div class="btn-group btn-group-justified">
+  <div class="btn-group btn-group-justified" id="re">
     <input type="button" value="광고주 관리" class="btn btn-primary" onclick="request()">
     <input type="button" value="결제 관리" class="btn btn-primary" onclick="pay()"> 
   </div>
