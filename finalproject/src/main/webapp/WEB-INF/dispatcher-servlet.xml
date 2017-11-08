@@ -74,7 +74,8 @@
 	<bean id="friendController" class="mars.controller.FriendController"></bean>
 	<bean id="contentController" class="mars.controller.ContentController"></bean>
 	<bean id="searchController" class="mars.controller.SearchController"></bean>
-
+	<bean id="replyController" class="mars.controller.ReplyController"></bean>
+	<bean id="activityController" class="mars.controller.ActivityController"></bean>
 
 	<!-- service -->
 	
@@ -123,8 +124,17 @@
 			<ref bean="sqlSessionTemplate"></ref>
 		</constructor-arg>
 	</bean>
+	<bean id="replydao" class="mars.reply.model.htagDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+	</bean>
+	<bean id="actDao" class="mars.activity.model.ActivityDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+	</bean>
 	
-
 	<!-- views -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"/>
