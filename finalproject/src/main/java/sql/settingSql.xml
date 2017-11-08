@@ -40,6 +40,10 @@
 	</insert>
 	
 	<insert id="addGroup" parameterType="mars.friend.model.FriendDTO">
-	insert into mars_ff values(mars_ff_idx.nextval, 0, #{user2_idx}, 1, #{group_name}, 0, 0, 0, '', '')
+	insert into mars_ff values(mars_ff_idx.nextval, 0, #{user2_idx}, 1, #{group_name}, 0, #{group_cnt}, 0, '', '')
 	</insert>
+	
+	<select id="getGroupCnt">
+	select max(group_cnt) from mars_ff where user2_idx = #{user2_idx}
+	</select>
 </mapper>

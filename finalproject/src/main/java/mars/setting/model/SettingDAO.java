@@ -18,4 +18,5 @@ public interface SettingDAO {
 	public List<FriendDTO> getGroupList(int idx);
 	public int sendReport(ReportDTO dto);
 	public int addGroup(FriendDTO dto);
+	public int getGroupCnt(int idx);
 }

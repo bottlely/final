@@ -133,15 +133,16 @@ public class SettingController {
 	}
 
 	@RequestMapping("addGroup.do")
-	public void addGroup(@RequestParam("group_name") String group_name, @RequestParam("idx_to") int[] idx_to,
-			int idx_from) {
-		System.out.println("num = " + idx_to.length);
-		System.out.println("idx_from = " + idx_from);
-		System.out.println("name = " + group_name + "idx_to = " + idx_to);
-
-		FriendDTO dto = new FriendDTO(idx_from, group_name);
+	public void addGroup(@RequestParam("group_name") String group_name, @RequestParam("idx_to") int[] idx_to, int idx_from) {
+		int group_cnt = settingDao.getGroupCnt(idx_from);
+		System.out.println("group_cnt = " +group_cnt);
+		FriendDTO dto = new FriendDTO(idx_from, group_name, group_cnt+1);
 		int count = settingDao.addGroup(dto);
-		System.out.println("count = " + count);
+		
+		int idx_ff=0;
+		if(count >0) {
+//		idx_ff = settingDao.getGroupIdx();
+		}
 
 		for (int i = 0; i < idx_to.length; i++) {
 			// int count = settingDao.insertGroup();

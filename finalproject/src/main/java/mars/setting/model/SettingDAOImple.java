@@ -72,5 +72,11 @@ public class SettingDAOImple implements SettingDAO {
 		return count;
 	}
 
+	/** group_cnt가져오기 관련 메서드*/
+	public int getGroupCnt(int user2_idx) {
+		int count = sqlMap.selectOne("getGroupCnt", user2_idx);
+		return count;
+	}
+
 	
 }
