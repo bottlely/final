@@ -164,14 +164,14 @@
         <!-- Brand and toggle get grouped for better mobile display -->
 <ul class="nav navbar-nav navbar-left">
 					 <li>
-					<a href="main.jsp">
+					<a href="main.do">
                           <img src="assets_main/images/logo.svg" alt="" />
                            
                        </a>
 					 
 					 </li>
 		             <li>
-                        <a href="main.jsp">
+                        <a href="main.do">
                           <h3>MARS</h3>
                            
                        </a>
