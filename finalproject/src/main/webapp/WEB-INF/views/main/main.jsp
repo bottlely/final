@@ -332,7 +332,7 @@
  		 <span class="caret"></span></a>
  			 <ul class="dropdown-menu">
    			  <li><a href="infoSetting.do?idx=${sessionScope.useridx }">SETTINGS</a></li>
-   			 <li><a href="serviceCenter.do">CUSTOMER CENTER</a></li>
+   			 <li><a href="serviceCenter.do?idx=${sessionScope.useridx }">CUSTOMER CENTER</a></li>
    			 <li><a href="#">Logout</a></li>
 			<li> <a href="#" id="msgTest1">MSGTEST</a></li>
 			<li> <a href="#" id="more1">MORETEST</a></li>

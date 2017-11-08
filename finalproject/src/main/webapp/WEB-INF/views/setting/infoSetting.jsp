@@ -63,11 +63,11 @@
 
 			<div class="sidebar-wrapper">
 				<div class="logo">
-					<a href="infoSetting.do" class="simple-text"> MARS </a>
+					<a href="infoSetting.do?idx=${sessionScope.useridx}" class="simple-text"> MARS </a>
 				</div>
 
 				<ul class="nav">
-					<li class="active"><a href="infoSetting.do"> <i
+					<li class="active"><a href="infoSetting.do?idx=${sessionScope.useridx}"> <i
 							class="ti-user"></i>
 							<p>Setting</p>
 					</a></li>

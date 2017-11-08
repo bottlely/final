@@ -60,14 +60,14 @@ function checkPwd(){
 
     	<div class="sidebar-wrapper">
             <div class="logo">
-                <a href="infoSetting.do" class="simple-text">
+                <a href="infoSetting.do?idx=${sessionScope.useridx}" class="simple-text">
                     MARS
                 </a>
             </div>
 
             <ul class="nav">
                 <li>
-                   <a href="infoSetting.do">
+                   <a href="infoSetting.do?idx=${sessionScope.useridx}">
                         <i class="ti-user"></i>
                         <p>Setting</p>
                     </a>
