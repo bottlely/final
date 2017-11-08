@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -70,7 +71,14 @@
 </head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 			<script> 
-
+			function hash(name){
+				location.href='htagSearch.do?name='+name;
+			}
+			
+			function member(name){
+				location.href='membersearch.do?name='+name;
+			}
+			
 			$(document).ready(function(){
 			    $("#friends1").click(function(){
 			    	ppp.location.reload();
@@ -164,14 +172,14 @@
         <!-- Brand and toggle get grouped for better mobile display -->
 <ul class="nav navbar-nav navbar-left">
 					 <li>
-					<a href="main.jsp">
+					<a href="main.do">
                           <img src="assets_main/images/logo.svg" alt="" />
                            
                        </a>
 					 
 					 </li>
 		             <li>
-                        <a href="main.jsp">
+                        <a href="main.do">
                           <h3>MARS</h3>
                            
                        </a>
@@ -183,12 +191,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         
               <ul class="nav navbar-nav navbar-right">
-               <li>
-	              <form name="search" action="membersearch.do">
-	                 <input type="text" name="name">
-	                 <input type="submit" value="검색">
-	              </form>
-              </li>
+
            				<!-- 다운 광고 추가 임시 버튼 -->
               <li>
               <a href="#" onclick="window.open('applyAdForm.do', '광고 주문서', 'scrollbars=no width=400, height=450')">
@@ -211,21 +214,7 @@
                             
                         </a>
                     </li>
-		             <li>
-                        <a href="#">
-                           <i class="pe-7s-global"></i>
-                           
-                       </a>
-                   </li>			
-                    <li>
-                        <a href="#">
-                            <i class="pe-7s-mail">
-                                <span class="label">23</span>
-                            </i>
-                            
-                        </a>
-                    </li> 
-                    <li>
+                                        <li>
                        <a href="#" id="mypage1">
                              <i class="pe-7s-user"></i>
                              
@@ -237,25 +226,68 @@
                            
                         </a>
                     </li>
+       <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="pe-7s-global"></i>
+            
+              <span class="badge badge-pill badge-warning">6 New</span>
+            
+            <span class="indicator text-warning d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+            </span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+            <h6 class="dropdown-header">New Alerts:</h6>
+			<%@include file="feedList.jsp" %>
+
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item small" href="#">View all alerts</a>
+          </div>
+        </li>			
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="pe-7s-mail"></i>
+            <span class="d-lg-none">
+              <span class="badge badge-pill badge-primary">12 New</span>
+            </span>
+            <span class="indicator text-primary d-none d-lg-block">
+              <i class="fa fa-fw fa-circle"></i>
+            </span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="messagesDropdown">
+            <h6 class="dropdown-header">New Messages:</h6>
+			<%@include file="msgList.jsp" %>
+         
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item small" href="#">View all messages</a>
+          </div>
+        </li>
+
                     
                                         <li>
 					<div class="dropdown">
- 		 <a class="btn btn-primary dropdown-toggle"  data-toggle="dropdown">
+ 		 <a class="btn btn-default dropdown-toggle"  data-toggle="dropdown">
  		 <i class="pe-7s-menu"></i>
  		 <span class="caret"></span></a>
  			 <ul class="dropdown-menu">
-   			 <li><a href="#">메뉴1</a></li>
-   			 <li><a href="#">메뉴2</a></li>
-   			 <li><a href="#">메뉴3</a></li>
+   			  <li><a href="infoSetting.do?idx=${sessionScope.useridx }">SETTINGS</a></li>
+   			 <li><a href="serviceCenter.do">CUSTOMER CENTER</a></li>
+   			 <li><a href="#">LOGIUT</a></li>
+
  			 </ul>
 			</div>
                     </li>
                </ul>
-               <form class="navbar-form navbar-right navbar-search-form" role="search">                  
-                 <div class="form-group">
-                      <input type="text" value="" class="form-control" placeholder="Search...">
+                <form name="search" action="membersearch.do" class="navbar-form navbar-right navbar-search-form">
+                
+                  <div class="form-group">
+                  		<input type="text" name="name" class="form-control" placeholder="Search...">
+	             
+                     
                  </div> 
-              </form>
+	             
+	              </form>
+
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
@@ -274,42 +306,32 @@
 			<div class="works-category"  data-sr='enter top, wait 0.2s'>
 				<ul class="statistics">
 					<li class="style1"><a href="#" data-filter="*" class="current">All</a></li>
-					<li class="style2"><a href="#" data-filter=".photo">PHOTO</a></li>
-					<li class="style3"><a href="#" data-filter=".viedeo">VIEDEO</a></li>
-					<li class="style4"><a href="#" data-filter=".text">TEXT</a></li>
-					<li class="style1"><a href="#" data-filter=".strategy">HOT</a></li>
+					<li class="style2"><a href="#" data-filter=".photo">PEOPLE</a></li>
+					<li class="style3"><a href="#" data-filter=".viedeo">HASH</a></li>
 				</ul>
 			</div>
 
 				<div class="works-area" >
-				<% for(int i=0; i<12; i++){
-					
-					%>
-				<div class="col-md-4 col-sm-6 col-xs-12  photo"  >
-					<div class="works">
-						<img src="assets_main/images/아이유6.jpg" alt="" style="width: 431px; height: 431px;">
-
-						<div class="work-overlay text-center">
-							<div class="overlay-caption">
-								<h4>PHOTO</h4>
-
-								
-					<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" 
-					onclick="openpic(<%=i%>)">
-                        <input type="hidden" value="assets_main/images/아이유6.jpg"  id="pic<%=+i%>" >
-                        
-  							<p>사진<%=i+1 %>번</p>
-                    </a>
-							</div>
-						</div>
-					</div>
-				</div>
-					
-					<% 
-					
-					
-					
-					}%>
+			<c:set var="txtfind" value="${find }" /> 
+<form name="reSearch" action="membersearch.do">
+<input type="text" name="name" value="${name }"><input type="submit" value="검색"><br>
+	<table>
+		<c:if test="${empty find }">
+			<tr>
+				<input type="button" value="사람" onclick="member('${name}')">
+				<input type="button" value="해시" onclick="hash('${name}')">
+				<td colspan="4" align="center">찾으시는 해시태그가 존재하지 않습니다.</td>
+			</tr>
+		</c:if>
+		<c:forEach var="find" items="${find }">
+			<tr>
+				<input type="button" value="사람" onclick="member('${name}')">
+				<input type="button" value="해시" onclick="hash('${name}')">
+				<td>${find.content}</td>
+			</tr>
+		</c:forEach>
+	</table>
+	</form>
 				
 
 			</div> 
