@@ -80,7 +80,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="serviceCenter.do">
+                     <a href="serviceCenter.do?idx=${sessionScope.useridx}">
                         <i class="ti-text"></i>
                         <p>Service Center</p>
                     </a>
@@ -139,6 +139,7 @@
 	계정을 삭제하려고 하신다니 아쉽습니다. 탈퇴하신다면 하단 탈퇴 버튼을 클릭하여 주십시오.
 	</p>
 	<form action="leaveMars.do" method="post">
+	<input type="hidden" name="idx" value="${sessionScope.useridx }">
 		<input type="submit" value="탈퇴">
 	</form>
                             </div>

@@ -85,7 +85,7 @@ function checkPwd(){
                     </a>
                 </li>
                 <li>
-                    <a href="serviceCenter.do">
+                    <a href="serviceCenter.do?idx=${sessionScope.useridx}">
                         <i class="ti-text"></i>
                         <p>Service Center</p>
                     </a>
@@ -131,6 +131,7 @@ function checkPwd(){
 
 	<hr>
 	<form name="pwdSetting" action="pwdSetting.do" method="post">
+	<input type="hidden" name="idx" value=${sessionScope.useridx }>
 		<table>
 			<tr>
 				<th>현재 비밀번호</th>

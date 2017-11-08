@@ -85,7 +85,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="serviceCenter.do">
+                    <a href="serviceCenter.do?idx=${sessionScope.useridx}">
                         <i class="ti-text"></i>
                         <p>Service Center</p>
                     </a>
@@ -141,6 +141,7 @@
 										</c:forEach>
 
 									</ul>
+									<form action="addGroup.do" name="addGroup"></form>
 
 								</div>
 							</div>

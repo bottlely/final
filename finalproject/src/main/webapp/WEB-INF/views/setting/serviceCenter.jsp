@@ -69,8 +69,8 @@
 							class="ti-view-list-alt"></i>
 							<p>Friends Setting</p>
 					</a></li>
-					<li class="active"><a href="serviceCenter.do"> <i
-							class="ti-text"></i>
+					<li class="active"> <a href="serviceCenter.do?idx=${sessionScope.useridx}">
+					 <i	class="ti-text"></i>
 							<p>Service Center</p>
 					</a></li>
 					<li><a href="leaveMars.do"> <i class="ti-pencil-alt2"></i>

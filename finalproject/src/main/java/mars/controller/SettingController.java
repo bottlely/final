@@ -21,10 +21,8 @@ public class SettingController {
 	private SettingDAO settingDao;
 
 	@RequestMapping(value = "/infoSetting.do", method = RequestMethod.GET)
-	public ModelAndView infoSettingForm() {
-		// public ModelAndView infoSettingForm(int idx) {
-		// MemberDTO dto = settingDao.getMyInfo(idx);
-		MemberDTO dto = settingDao.getMyInfo(12);
+		 public ModelAndView infoSettingForm(int idx) {
+		 MemberDTO dto = settingDao.getMyInfo(idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
 		mav.setViewName("setting/infoSetting");
@@ -44,16 +42,13 @@ public class SettingController {
 	}
 
 	@RequestMapping(value = "/pwdSetting.do", method = RequestMethod.GET)
-	// public ModelAndView pwdSettingForm(int idx){
 	public String pwdSettingForm() {
 		return "setting/pwdSetting";
 	}
 
 	@RequestMapping(value = "/pwdSetting.do", method = RequestMethod.POST)
-	// public ModelAndView pwdSetting(@RequestParam("cur_pwd")String cur_pwd,
-	// @RequestParam("ch_pwd")String ch_pwd, int idx){
-	public ModelAndView pwdSetting(@RequestParam("cur_pwd") String cur_pwd, @RequestParam("ch_pwd") String ch_pwd) {
-		int idx = 12;
+	 public ModelAndView pwdSetting(@RequestParam("cur_pwd")String cur_pwd, @RequestParam("ch_pwd")String ch_pwd, int idx){
+		System.out.println("idx = " + idx);
 		String msg = "";
 		String gourl = "pwdSetting.do";
 		String sv_pwd = settingDao.getMyPwd(idx);
@@ -79,9 +74,7 @@ public class SettingController {
 	}
 
 	@RequestMapping(value="leaveMars.do", method=RequestMethod.POST)
-	public ModelAndView leaveMars() {
-		// public ModelAndView leaveMars(int idx){
-		int idx = 12;
+		 public ModelAndView leaveMars(int idx){
 		int count = settingDao.leaveMars(idx);
 		String msg = count>0? "탈퇴되었습니다." : "탈퇴에 실패하였습니다.";
 		String gourl = count>0? "index.do" : "leaveMars.do";
@@ -93,9 +86,8 @@ public class SettingController {
 	}
 	
 	@RequestMapping("serviceCenter.do")
-	public ModelAndView serviceCenter(){
-		int idx = 12;
-		MemberDTO dto = settingDao.getMyInfo(12);
+	public ModelAndView serviceCenter(int idx){
+		MemberDTO dto = settingDao.getMyInfo(idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("dto", dto);
 		mav.setViewName("setting/serviceCenter");
