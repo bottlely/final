@@ -17,8 +17,7 @@ public class ReplyController {
 	
 	@RequestMapping("/replyList.do")
 	   public ModelAndView replyList(@RequestParam("content_idx")int content_idx){
-	      List<ReplyDTO> list = replydao.replyList(content_idx);
-	      System.out.println(list);
+	      List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
 	      ModelAndView mav = new ModelAndView("marsJson", "replyList", list);
 	      
 	      return mav;

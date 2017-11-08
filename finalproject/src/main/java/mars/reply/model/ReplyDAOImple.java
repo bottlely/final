@@ -12,8 +12,8 @@ public class ReplyDAOImple implements ReplyDAO {
 		this.sqlMap = sqlMap;
 	}
 
-	public List<ReplyDTO> replyList(int content_idx) {
-		List<ReplyDTO> list = sqlMap.selectList("replyList", content_idx);
+	public List<MyHomeReplyDTO> replyList(int content_idx) {
+		List<MyHomeReplyDTO> list = sqlMap.selectList("replyList", content_idx);
 		
 		return list;
 	}
