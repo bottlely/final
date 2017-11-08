@@ -124,7 +124,7 @@
 			<ref bean="sqlSessionTemplate"></ref>
 		</constructor-arg>
 	</bean>
-	<bean id="replydao" class="mars.reply.model.htagDAOImple">
+	<bean id="replydao" class="mars.reply.model.ReplyDAOImple">
 		<constructor-arg>
 			<ref bean="sqlSessionTemplate"></ref>
 		</constructor-arg>
