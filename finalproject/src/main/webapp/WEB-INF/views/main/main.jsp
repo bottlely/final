@@ -79,6 +79,16 @@
 			        div.animate({width:'toggle'}, "slow");
 			    });
 			});
+			
+			$(document).ready(function(){
+			    $("#msgTest1").click(function(){
+			    	ppp.location.reload();
+			        var div = $("#msgTest2");
+			        div.animate({height: '40%'}, "slow");
+			        div.animate({width:'toggle'}, "slow");
+			    });
+			});
+			
 			$(document).ready(function(){
 			    $("#mypage1").click(function(){
 			        var div = $("#mypage2");
@@ -100,6 +110,8 @@
 			    });
 			});
 			
+
+			
 			$(document).ready(function(){
 			    $("#cl2").click(function(){
 			        var div = $("#mypage2");
@@ -108,7 +120,14 @@
 			        
 			    });
 			});
-			
+			$(document).ready(function(){
+			    $("#cl3").click(function(){
+			        var div = $("#msgTest2");
+			        div.animate({height: '0%'}, "slow");
+			        div.animate({width:'toggle'}, "slow");
+					
+			    });
+			});
 			
 
 			
@@ -158,6 +177,13 @@
 	</div>
 		 
 		 </span>
+		 	<div  id="msgTest2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 30%; margin-left: 78%">
+		<div style="background-color: white; align-content:center; "><a href="#" id="cl3">Close</a></div>
+	
+		<H1>채팅창 태스트</H1>
+
+	</div>
+	
    <div id="navbar-blue">
     <nav class="navbar navbar-ct-blue" role="navigation">
       <div class="container-fluid">
@@ -264,8 +290,11 @@
  			 <ul class="dropdown-menu">
    			  <li><a href="infoSetting.do?idx=${sessionScope.useridx }">SETTINGS</a></li>
    			 <li><a href="serviceCenter.do">CUSTOMER CENTER</a></li>
-   			 <li><a href="#">LOGIUT</a></li>
-
+   			 <li><a href="#">Logout</a></li>
+			<li> <a href="#" id="msgTest1">MSGTEST</a></li>
+	
+    </ul>
+  </div></li>
  			 </ul>
 			</div>
                     </li>

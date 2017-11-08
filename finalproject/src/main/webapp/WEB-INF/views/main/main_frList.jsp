@@ -67,6 +67,15 @@
 		    });
 		});
 		
+		
+		$(document).ready(function(){
+		    $("#userChat").click(function(){
+		        var div = $('#msgTest2', parent.document);
+		        div.animate({height: '40%'}, "slow");
+		        div.animate({width:'toggle'}, "slow");
+				
+		    });
+		});
 		</script>
 	</head>
 	<body>
@@ -138,7 +147,7 @@
 										<article>
 											<header>
 												<h3><a href="#" id="openMypage">${follower_list.name}</a></h3>
-												<input type="button" value="chat" onclick=""><input type="button" value="more" onclick="test('${sessionScope.useridx}')">
+												<input type="button" value="chat" id="userChat"><input type="button" value="more" onclick="test('${sessionScope.useridx}')">
 											</header>
 											<a href="#" class="image"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}" alt=""  style="border-radius: 50%"></a>
 										</article>
@@ -155,7 +164,7 @@
 										<article>
 											<header>
 												<h3><a href="#">${following_list.name }</a></h3>
-												<input type="button" value="chat" onclick=""><input type="button" value="more" onclick="">
+												<input type="button" value="chat" id="userChat"><input type="button" value="more" id="more">
 											</header>
 											<a href="#" class="image"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}" alt=""  style="border-radius: 50%"></a>
 										</article>
