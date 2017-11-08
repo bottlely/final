@@ -1,5 +1,8 @@
 package mars.reply.model;
 
-public interface ReplyDAO {
+import java.util.List;
 
+public interface ReplyDAO {
+	public List<ReplyDTO> replyList(int content_idx);
+	public int addReply(ReplyDTO dto);
 }

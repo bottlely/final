@@ -1,5 +1,7 @@
 package mars.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,10 +15,20 @@ public class ReplyController {
 	@Autowired
 	private ReplyDAO replydao;
 	
+	@RequestMapping("replyList.do")
+	   public ModelAndView replyList(int content_idx){
+	      List<ReplyDTO> list = replydao.replyList(content_idx);
+	      
+	      ModelAndView mav = new ModelAndView("marsJson", "replyList", list);
+	       
+	      return mav;
+	   }
+	
    @RequestMapping("reply.do")
-   public ModelAndView reply(@RequestParam("reply")String reply){
+   public ModelAndView reply(ReplyDTO dto){
       ModelAndView mav = new ModelAndView();
       
+      int result = replydao.addReply(dto);
       
       
       return mav;

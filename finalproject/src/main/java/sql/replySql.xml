@@ -5,10 +5,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="mars.reply">
-   <insert id="reply" parameterType="mars.reply.model.ReplyDTO">
-      insert into mars_reply values(mars_reply_idx.nextval, from_idx=#{from_idx}, content_idx=#{content_idx}, to_idx=#{to_idx}, content=#{content}, ref=0, lev=0, sunbun=0, sysdate, 0, 0, 0, 0)
+	<select id="replyList" parameterType="Integer" resultType="mars.reply.model.ReplyDTO">
+      select content from mars_reply where content_idx=20
+   </select>
+   <insert id="addReply" parameterType="mars.reply.model.ReplyDTO">
+      insert into mars_reply values(mars_reply_idx.nextval, 30, 20, 27, #{content}, 0, 0, 0, sysdate, 0, 0, 0, 0)
    </insert>
    <insert id="re_reply" parameterType="mars.reply.model.ReplyDTO">
-      insert into mars_reply values(mars_reply_idx.nextval, from_idx=#{from_idx}, content_idx=#{content_idx}, to_idx=#{to_idx}, content=#{content}, ref=0, lev=0, sunbun=0, sysdate, 0, 0, 0, 0)
+      insert into mars_reply values(mars_reply_idx.nextval, 30, 20, 27, #{content}, 0, 1, 0, sysdate, 0, 0, 0, 0)
    </insert>
 </mapper>

@@ -79,16 +79,6 @@
 			        div.animate({width:'toggle'}, "slow");
 			    });
 			});
-			
-			$(document).ready(function(){
-			    $("#msgTest1").click(function(){
-			    	ppp.location.reload();
-			        var div = $("#msgTest2");
-			        div.animate({height: '40%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-			    });
-			});
-			
 			$(document).ready(function(){
 			    $("#mypage1").click(function(){
 			        var div = $("#mypage2");
@@ -110,8 +100,6 @@
 			    });
 			});
 			
-
-			
 			$(document).ready(function(){
 			    $("#cl2").click(function(){
 			        var div = $("#mypage2");
@@ -120,14 +108,7 @@
 			        
 			    });
 			});
-			$(document).ready(function(){
-			    $("#cl3").click(function(){
-			        var div = $("#msgTest2");
-			        div.animate({height: '0%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-					
-			    });
-			});
+			
 			
 
 			
@@ -142,12 +123,35 @@
 
 			
 			function openpic(i){
-				var div = document.getElementById('pic'+i).value;
-				window.alert(i);
-				   window.alert(div);
-				   
+				var div = document.getElementById('pic20').value;
+				
+				sendRequest('replyList.do', null, replyList, 'GET');
+				
 				$('#galleryImage').attr("src",div);
-				} 
+			} 
+			
+			function replyList(){
+				if(XHR.readyState==4){
+					if(XHR.status==200){
+						var data = XHR.responseText;
+						var lists = eval('('+data+')');
+						var p1 = document.all.cur;
+						var str='';
+					
+						if(lists.list.length==0){
+							str = '신청한 광고가 없습니다.'
+							p1.innerHTML = str;
+						}
+						else{
+							for(var i=0; i<lists.list.length; i++){
+								var l = lists.list[i];
+								str += '<a href="showAve.do?ad_idx='+l.ad_idx+'">'+l.ad_name+'</a><hr>';
+							}
+							p1.innerHTML = str;
+						}
+					}
+				}
+			}
 
 </script> 
 <body>
@@ -395,13 +399,19 @@
         
         </div>
         <div class="col-xs-6" style="float: left;">
-       <h2> 제목 </h2><br>
-        내용 <br>
-      댓글1<br>
-      댓글2<br>
+      <form name="reply" action="reply.do">
+      	<h2>작성자</h2><br>
+      	<h2>게시글 내용</h2>
+      	<h2>좋아요</h2>
+      	<input type="text" name="content"><input type="submit" value="작성"><br>
+      	<c:if test="${empty replyList }">
+      		댓글 없습니다.
+      	</c:if>
+      	<c:forEach var="replyList" items="${replyList }">
+      		${replyList.content }<hr><br>
+      	</c:forEach>
+      </form>
         </div>
-        
-        		
     </div>
 </div>
       	<div class="container" style="background-color: white;">
