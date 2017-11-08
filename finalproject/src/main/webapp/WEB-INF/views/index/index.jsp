@@ -41,6 +41,23 @@
 #footer {
 	background-image: linear-gradient(to bottom right, #5a00b5, #fc81ac);
 }
+
+#cb {
+	width:18px;
+	height:18px;
+	line-height:18px;	
+}
+
+#smt1 {
+	font-size:15px;
+	font-weight:bold;
+	background-image:linear-gradient(to bottom right, #5a00b5, #fc81ac);
+}
+
+#smt1:hover {
+	background-color:white;
+}
+
 </style>
 </head>
 <body>
@@ -145,8 +162,11 @@
 							<div class="col-sm-6">
 								<div class="form-group ">
 									<input type="email" class="form-control"
-										placeholder="YOUR E-MAIL" name="id">
+										placeholder="YOUR E-MAIL" name="id" value="${cookie.saveid.value}">
+									<input type="checkbox" id="cb" name="saveid" value="on" ${empty cookie.saveid.value?'':'checked'}>
+									<label for="cb" style="font-size:14px;">ID 기억하기</label>
 								</div>
+								
 							</div>
 						</div>
 						<div class="row">
@@ -154,12 +174,14 @@
 								<div class="form-group ">
 									<input type="password" class="form-control"
 										placeholder="YOUR PASSWORD" name="pwd">
+									
 								</div>
 							</div>
 						</div>
-						<a href="idpwdSrc.do"><input type="button" class="btn btn-send" value="ID/PWD 찾기"></a>
-						<input type="submit" class="btn btn-send" value="LOGIN">
+						<input type="submit" class="btn btn-send" value="LOGIN" id="smt1">
 					</form>
+					<label style="font-size:15px;"><a href="pwdSrcForm.do">비밀번호를 잃어버리셨나요?</a></label>
+					
 				</div>
 			</div>
 		</div>

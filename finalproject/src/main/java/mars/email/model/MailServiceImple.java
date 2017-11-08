@@ -38,5 +38,26 @@ public class MailServiceImple implements MailService {
 		
 		return false;
 	}
+	
+	public boolean pwdsend(String subject, String text, String from, String to) {
+		
+		MimeMessage message = javaMailSender.createMimeMessage();
+		
+		try {
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+			helper.setSubject(subject);
+			helper.setText(text);
+			helper.setFrom(from);
+			helper.setTo(to);
+			
+			javaMailSender.send(message);
+			return true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 
 }

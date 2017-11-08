@@ -29,102 +29,50 @@
 <!--Responsive Style-->
 <link rel="stylesheet" href="assets_index/css/responsive.css"
 	type="text/css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/httpRequest.js"></script>
 <style>
 [data-sr] {
 	visibility: hidden;
 }
-
 
 #footer {
 	background-image: linear-gradient(to bottom right, #5a00b5, #fc81ac);
 }
 
 #div1 {
-	display:none;
+	display: none;
 }
 </style>
 
 <script>
+	
+	//이메일 인증 보내기
 
-
-$(document).ready(function(){
-    $("#show").click(function(){
-        $("#div1").fadeIn();
-    });
-    $("#hide").click(function(){
-        $("#div1").hide();
-    });
-});
-
-
-function idCheck() {
-		var id = 'id='+document.join.id.value;
-		sendRequest('idCheck.do',id,showResult,'GET');
-		
+	function sendEmail() {
+		var id = 'id=' + document.fm.id.value;
+		window.alert('서버 사정에 따라 몇 분이 소요될 수 있습니다.');
+		sendRequest('pwdSrc', id, showResult, 'GET');
 	}
-	
-	
+
 	function showResult() {
-		if(XHR.readyState == 4) {
-			if(XHR.status == 200) {
-				var data = XHR.responseText;
-				alert(data);
+		if (XHR.readyState == 4) {
+			if (XHR.status == 200) {
+				window.alert('메일발송 성공');
+				location.href='index.do';
+			} else {
+				window.alert('메일발송 실패');
 			}
 		}
 	}
 
-// 회원가입 유효성 검사
-
-	function sendIt() {
-	
-	var Cnum = document.join.company_number.value;
-	
-	//비밀번호 6~15자리
-	if(document.join.pwd.value.length<6 || document.join.pwd.value.length>15) {
-		alert("비밀번호는 6~15자리로 입력해주세요.")
-		document.join.pwd.focus()
-		document.join.pwd.select()
-		return false;
-	}
-	//비밀번호 일치여부 체크
-	if(document.join.pwd.value != document.join.checkpwd.value) {
-		alert("비밀번호가 일치하지 않습니다.")
-		document.join.checkpwd.value=""
-		document.join.checkpwd.focus()
-		return false;
-	}
-	
-	//등록번호 숫자만
-	if(!isNumeric(Cnum)) {
-		alert("사업자 번호는 숫자만 입력가능합니다.")
-		document.join.company_number.value=""
-		document.join.company_number.focus()
-		return false;
-		
-	}
-	
-	
-}
-	function isNumeric(s) { 
-        for (i=0; i<s.length; i++) { 
-          c = s.substr(i, 1); 
-          if (c < "0" || c > "9") return false; 
-        } 
-        return true; 
-      }
-
-	
-	
-
 </script>
-
 </head>
 <body>
 
 	<!--/HEADER SECTION -->
-	<header class="header" style="background: rgba(0,0,0,0.6);">
+	<header class="header" style="background: rgba(0,0,0,0.8);">
 		<div class="container">
 			<div class="navbar navbar-default" role="navigation">
 				<div class="container-fluid">
@@ -138,7 +86,7 @@ function idCheck() {
 							style="color: white;">MARS</font></a>
 					</div>
 					<!-- end navbar-header -->
-					<div class="navbar-collapse collapse" >
+					<div class="navbar-collapse collapse">
 						<ul class="nav navbar-nav navbar-right">
 							<li><a data-scroll href="index.do">Login</a></li>
 							<li><a href="joinForm.do">Sign Up</a></li>
@@ -158,69 +106,35 @@ function idCheck() {
 	<!-- end header -->
 
 	<!--Contact-->
-	<section id="contact" style="margin-top:100px;">
+	<section id="contact" style="margin-top: 100px;">
 		<div class="container">
-			
-			
+
+
 			<div class="row">
 				<div class="col-sm-12 text-center">
-					<h1 class="section-title"> PWD 찾기 </h1>
+					<h1 class="section-title">Emain Confirmation</h1>
 
 					<p class="sec-subtitle" id="contact1">MARS</p>
+					<p>가입하신 이메일 주소로 비밀번호를 보내드립니다.</p>
 				</div>
-				<div class="col-sm-2" data-sr="enter left, hustle 80px">
-
-				</div>
+				<div class="col-sm-2" data-sr="enter left, hustle 80px"></div>
 				<div class="col-sm-8" data-sr="enter right, hustle 80px">
-					<form name="join" class="st-form" action="ecForm.do" method="post" onsubmit="return sendIt();">
 						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group ">
-									<input type="text" class="form-control" placeholder="YOUR NAME or COMPANY NAME"
-										name="name" required>
-								</div>
+							<div class="col-sm-2"></div>
+							<div class="col-sm-4">
+								<input type="email" class="form-control" placeholder="가입한 이메일 입력"
+									name="id">
 							</div>
-							<div class="col-sm-6">
-								<div class="form-group ">
-									<input type="email" class="form-control"
-										placeholder="YOUR E-MAIL" name="id" id="checkaa" oninput="idCheck()" required>
-								</div>
+							<div class="col-sm-4">
+								<button type="button" class="btn btn-send" onclick="sendEmail()">인증메일 전송</button>
 							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-6">
-								<div class="form-group ">
-									<input type="password" class="form-control"
-										placeholder="YOUR PASSWORD (6~15)" name="pwd" required>
-								</div>
-							</div>
-							<div class="col-sm-6">
-								<div class="form-group ">
-									<input type="password" class="form-control"
-										placeholder="COFIRM YOUR PASSWORD" name="checkpwd" required>
-								</div>
-							</div>
-						</div>
-						<div class="row">							
-							<div class="col-sm-6">
-								<div class="form-group" style="font-size:18px;">
-									<label id="hide"><input type="radio" name="usertype" value="0" checked>개인 회원</label>
-									<label id="show"><input type="radio" name="usertype" value="1">기업 회원</label>
-								</div>
-							</div>
-							<div class="col-sm-6" id = "div1">
-								<div class="form-group">
-									<input type="text" class="form-control"
-										placeholder="REGIST NUMBER" name="company_number">
-								</div>
-							</div>
-						</div>
-					</form>
+							<div class="col-sm-2"></div>
+						</div>						
 				</div>
 			</div>
 		</div>
 	</section>
-	
+
 	<!-- / Contact-->
 	<!--Footer-->
 	<footer id="footer">

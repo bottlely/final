@@ -1,5 +1,6 @@
 package mars.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 
@@ -81,7 +82,7 @@ public class MemberController {
 				mav.addObject("msg", msg);
 				mav.addObject("gourl", gourl);
 				
-				/*login info save*/
+				/*login info save in Session*/
 				MemberDTO dto = new MemberDTO();
 				dto = mdao.getUserInfo(userid);
 				String username = dto.getName();
@@ -89,6 +90,18 @@ public class MemberController {
 				session.setAttribute("useridx",useridx);
 				session.setAttribute("userid", userid);
 				session.setAttribute("username", username);
+				
+				/*Cookie Save*/
+				String saveid = req.getParameter("saveid");
+				if(saveid==null||saveid.equals("")){
+					Cookie ck = new Cookie("saveid", userid);
+					ck.setMaxAge(0);
+					resp.addCookie(ck);
+				}else{
+					Cookie ck = new Cookie("saveid", userid);
+					ck.setMaxAge(60*60*24*30);
+					resp.addCookie(ck);
+				}
 				
 				
 			}else{ //id ok but pwd wrong
@@ -137,9 +150,9 @@ public class MemberController {
 	}
 	
 	/*id pwd Search*/
-	@RequestMapping("/idpwdSrc.do")
+	@RequestMapping("/pwdSrcForm.do")
 	public String idpwdSrcForm() {
-		return "member/idpwdSrcForm";
+		return "member/pwdSrc";
 	}
 	
 
