@@ -13,5 +13,7 @@
 		<mapper resource="sql/contentSql.xml"/>
 		<mapper resource="sql/friendSql.xml"/>
 		<mapper resource="sql/searchSql.xml" />
+		<mapper resource="sql/activitySql.xml" />
+		<mapper resource="sql/replySql.xml" />
 	</mappers>
 </configuration>
