@@ -18,9 +18,7 @@ public class ReplyDAOImple implements ReplyDAO {
 		return list;
 	}
 	
-	public int addReply(ReplyDTO dto) {
-		int result = sqlMap.insert("addReply", dto);
-		
-		return result;
+	public void addReply(String content) {
+		sqlMap.insert("addReply", content);
 	}
 }
