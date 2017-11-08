@@ -8,6 +8,7 @@
 </head>
 <body>
             <div class="dropdown-divider"></div>
+            <!-- 게시물 하나당 a태그하나 -->
             <a class="dropdown-item" href="#">
               <span class="text-success">
                 <strong>

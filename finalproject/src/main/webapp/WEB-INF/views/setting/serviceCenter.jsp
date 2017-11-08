@@ -108,7 +108,7 @@
 
 									<hr>
 									<form name="serviceCenter" action="sendReport.do" method="post">
-										<input type="hidden" name="idx" value="${dto.idx }">
+										<input type="hidden" name="idx_from" value="${dto.idx }">
 										<table cell-spacing="0" width="800" height="600" border="1">
 											<tr>
 												<th>Category</th>
