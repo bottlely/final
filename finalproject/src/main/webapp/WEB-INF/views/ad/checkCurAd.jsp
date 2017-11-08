@@ -1,17 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta charset="UTF-8" name="viewport"
+	content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 
-<script type="text/javascript" src="js/httpRequest.js"></script>
-<script>
+	<script type="text/javascript" src="js/httpRequest.js"></script>
+	<script>
 
 (function imme(){
 	
@@ -104,7 +108,7 @@ function showNumResult(){
 			var lists = eval('('+data+')');
 			var p1 = document.all.num;
 			var str='';
-		
+			
 			if(lists.list.length==0){
 				str = '신청한 광고가 없습니다.'
 				p1.innerHTML = str;
@@ -155,52 +159,56 @@ function showNumResult(){
 
 </script>
 
+<section class="contact" style="background-image:linear-gradient(to bottom right, #5a00b5, #fc81ac);">
+	<div class="container">
+		<h2>광고관리</h2>
+		<div class="panel-group" id="accordion">
 
-<div class="container">
-<h2>Group Name</h2>
-  <div class="panel-group" id="accordion">
-  
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" onclick="showCur()" href="#collapse1">광고 신청 현황</a>
-        </h4>
-      </div>
-      <div id="collapse1" class="panel-collapse collapse in">
-      <div class="panel-body">
-     	 <div id="cur"></div>
-      </div>
-    </div>
-    
-    
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" onclick="showAve()" href="#collapse2">광고 통계</a>
-        </h4>
-      </div>
-      <div id="collapse2" class="panel-collapse collapse">
-        <div class="panel-body" >
-          <div id="ave"></div>
-        </div>
-    </div>
-    
-    
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" onclick="showNum()" href="#collapse3">광고 수치로 분석</a>
-        </h4>
-      </div>
-      <div id="collapse3" class="panel-collapse collapse">
-        <div class="panel-body">
-        	<div id="num"></div>
-        </div>
-    </div>
-    
-    
-  </div> 
-</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion"
+							onclick="showCur()" href="#collapse1">광고 신청 현황</a>
+					</h4>
+				</div>
+				<div id="collapse1" class="panel-collapse collapse in">
+					<div class="panel-body">
+						<div id="cur"></div>
+					</div>
+				</div>
 
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+							<a data-toggle="collapse" data-parent="#accordion"
+								onclick="showAve()" href="#collapse2">광고 통계</a>
+						</h4>
+					</div>
+					<div id="collapse2" class="panel-collapse collapse">
+						<div class="panel-body">
+							<div id="ave"></div>
+						</div>
+					</div>
+
+
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" data-parent="#accordion"
+									onclick="showNum()" href="#collapse3">광고 수치로 분석</a>
+							</h4>
+						</div>
+						<div id="collapse3" class="panel-collapse collapse">
+							<div class="panel-body">
+								<div id="num"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 </body>
 </html>
