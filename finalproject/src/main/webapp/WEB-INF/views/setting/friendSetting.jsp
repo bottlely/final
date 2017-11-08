@@ -122,7 +122,14 @@
 											<li>생성된 그룹이 없습니다.</li>
 										</c:if>
 										<c:forEach var="g_list" items="${g_list}">
-											<li><a href="#">${g_list.group_name }</a></li>
+											<li><a href="showGroup.do?idx_ff=${g_list.idx }&idx=${sessionScope.useridx}">${g_list.group_name }</a>
+											<c:set var="group" value="${group }"></c:set>
+											<ul>
+											<c:forEach var="group" items="${group }">
+											<li>${group.idx_to }</li>
+											</c:forEach>
+											</ul>
+											</li>
 										</c:forEach>
 									</ul>
 									<hr>

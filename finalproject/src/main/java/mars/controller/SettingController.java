@@ -152,8 +152,20 @@ public class SettingController {
 
 		String msg = result == idx_to.length ? "그룹이 생성되었습니다." : "그룹 생성에 실패하였습니다. 다시 시도하여주십시오";
 		mav.addObject("msg", msg);
-		mav.addObject("gourl", "friendSetting.do");
+		mav.addObject("gourl", "friendSetting.do?idx="+idx_from);
 		mav.setViewName("setting/popupMsg");
+		return mav;
+	}
+	
+	@RequestMapping("showGroup.do")
+	public ModelAndView showGroup(int idx_ff, int idx){
+		System.out.println("idx_ff = " + idx_ff);
+		List<GroupDTO> group = settingDao.showGroup(idx_ff);
+		System.out.println("group_len = " + group.size());
+		System.out.println("eunji = " + group.get(0).getIdx_to());
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("group", group);
+		mav.setViewName("setting/friendSetting");
 		return mav;
 	}
 }

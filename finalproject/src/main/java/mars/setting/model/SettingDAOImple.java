@@ -85,10 +85,16 @@ public class SettingDAOImple implements SettingDAO {
 		return idx_ff;
 	}
 
-	/**group 테이블에 등록*/
+	/**group 테이블에 등록 관련 메서드*/
 	public int insertGroup(GroupDTO dto) {
 		int count = sqlMap.insert("insertGroup", dto);
 		return count;
+	}
+
+	/**그룹 인원 리스트 보기 관렴 메서드*/
+	public List<GroupDTO> showGroup(int idx_ff) {
+		List<GroupDTO> group = sqlMap.selectList("showGroup", idx_ff);
+		return group;
 	}
 
 	

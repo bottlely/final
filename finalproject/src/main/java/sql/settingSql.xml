@@ -54,4 +54,8 @@
 	<insert id="insertGroup" parameterType="mars.group.model.GroupDTO">
 	insert into mars_group values(mars_group_idx.nextval, #{idx_from}, #{idx_to}, #{idx_ff}, #{group_name}, sysdate)
 	</insert>
+	
+	<select id="showGroup" parameterType="integer" resultType="mars.group.model.GroupDTO">
+	select * from mars_group where idx_ff=#{idx_ff}
+	</select>
 </mapper>
