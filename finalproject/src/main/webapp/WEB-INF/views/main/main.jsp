@@ -120,7 +120,7 @@
              $("#mypage1").click(function(){
             	 document.getElementById('ppp').src='myHomeForm.do?useridx='+${sessionScope.useridx};
                 var div = $("#mypage2");
-                 div.animate({left: '35%'}, "fast");
+                 div.animate({right: '0px'}, "fast");
                  div.animate({height: '100%'}, "slow");
                  div.animate({width:'toggle'}, "slow");
                
@@ -157,7 +157,7 @@
 			$(document).ready(function(){
 			    $("#cl5").click(function(){
 			        var div = $("#black2");
-			        div.animate({height: '100%'}, "slow");
+			        div.animate({height: '0%'}, "slow");
 			        div.animate({width:'toggle'}, "slow");
 			        
 			    });
@@ -210,7 +210,7 @@
 			function test1(idx) {
                document.getElementById('ppp').src='myHomeForm.do?useridx='+idx;
                var div = $("#mypage2");
-               div.animate({left: '35%'}, "fast");
+               div.animate({right: '0px'}, "fast");
                div.animate({height: '100%'}, "slow");
                div.animate({width:'toggle'}, "slow");
             }
@@ -259,15 +259,14 @@
 
 	</div>
 		<!-- 개인설정 창 부분(more) -->
-		<div  id="more2" style="background:white;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 40%">
-		<div style="background-color: white; align-content:center; text-align: right; "><a href="#" id="cl4">Close</a></div>
-		<hr width="40%;">
+		<div  id="more2" style="border-top:1px solid; border-bottom:1px solid; border-left:1px solid; border-right:1px solid;background:white;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%">
+		<div style="background-color: white; align-content:center; text-align: right; vertical-align: middle;"><a href="#" id="cl4" style="font-size: 13px;">Close</a></div>
+		<hr width="100%;" style="border: solid 1px black;">
 		<div style="text-align: center; border: thick;">
 		<img src="assets_main/images/아이유6.jpg" style="width: 60px; height: 60px; border-radius: 50%;">
 		
 		</div>
-		아이유
-		<hr width="40%;">
+		<p style="text-align: center;">아이유</p>
 		<div style="text-align: center;">
 		<input type="button" value="Unfollow" onclick="" class="frbutton"><br><br>
 		<input type="button" value="Remove Follwer" onclick="" class="frbutton"><br><br>
@@ -277,7 +276,7 @@
 	</div>
 	
 	<!-- 차단해제 창 부분(black) -->
-	<div  id="black2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 40%">
+	<div  id="black2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 50%">
 		<div style="background-color: white; align-content:center; text-align: right; "><a href="#" id="cl5">Close</a></div>
 	
 		<input type="button" value="차단해제" onclick="">
