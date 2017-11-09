@@ -45,6 +45,10 @@
 	background-color: rgba( 255, 255, 255, 0 );
 }
 
+.uploadui img{
+	cursor: pointer;
+}
+
 .contentDiv {
 	position: absolute;
 	display: none;
@@ -257,10 +261,16 @@ input:checked+.slider:before {
         });
     });
    
+    //날짜검색function
     function contentDate(){
     	var uploadDate=$('.datepicker-here').val();
     	window.alert(uploadDate);
     	location.href="uploadDateContent.do?uploadDate="+uploadDate;
+    }
+    
+    //게시물올리기 popupfunction
+    function photoUploadOpen(){
+    	window.open('contentUploadForm.do?useridx='+${sessionScope.useridx}+'&type=1','photoUpload','width=300,height=300');
     }
 </script>
 
@@ -332,9 +342,9 @@ input:checked+.slider:before {
 
 <div class="mask2"></div>
     <div class="uploadui">
-				<a href="contentUploadForm.do?useridx=${sessionScope.useridx}&type=1">
+				<!--  <a href="contentUploadForm.do?useridx=${sessionScope.useridx}&type=1"> -->
 					<img width="50" height="50"
-					src="myHomeFolder/category/photoIcon.png">
+					src="myHomeFolder/category/photoIcon.png" onclick="photoUploadOpen()">
 				</a> 
 				<a href="contentUploadForm.do?useridx=${sessionScope.useridx}&type=2">
 					<img width="50" height="50"

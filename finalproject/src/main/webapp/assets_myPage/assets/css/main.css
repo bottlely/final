@@ -682,7 +682,7 @@
 		#main .avatar {
 			position: relative;
 			display: block;
-			z-index:10000;
+			
 			margin-bottom: 1.5em;
 			
 			
@@ -690,7 +690,7 @@
 
 			#main .avatar img {
 				position: relative;
-				z-index:100000;
+				
 				display: block;
 				width: 150px;
 				height: 150px;
