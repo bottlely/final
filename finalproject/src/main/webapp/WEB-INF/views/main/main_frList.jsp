@@ -35,7 +35,6 @@
       
       $(document).ready(function(){
              $("#black").click(function(){
-           	  $('#black1').fadeOut();
               $("#black1").slideToggle();
              });
          });

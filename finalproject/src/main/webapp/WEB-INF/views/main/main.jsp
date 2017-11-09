@@ -126,6 +126,8 @@
 				sendRequest('replyList.do?content_idx=20', null, replyList, 'GET');
 				
 				$('#galleryImage').attr("src",div);
+				
+				$("#galleryImage").load(galleryImage);
 			} 
 			
 			function replyList(){
