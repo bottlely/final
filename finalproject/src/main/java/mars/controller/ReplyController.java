@@ -28,8 +28,6 @@ public class ReplyController {
 	   public ModelAndView reply(@RequestParam("content")String content){
 		      int content_idx = replydao.addReply(content);
 		      
-		      
-		      
 		      ModelAndView mav = new ModelAndView("marsJson");
 		      
 		      return mav;

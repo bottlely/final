@@ -80,6 +80,7 @@
 			        div.animate({width:'toggle'}, "slow");
 			    });
 			});
+			
 			$(document).ready(function(){
              $("#mypage1").click(function(){
             	 document.getElementById('ppp').src='myHomeForm.do?useridx='+${sessionScope.useridx};
@@ -91,8 +92,6 @@
              });
          });
 
-
-			
 			$(document).ready(function(){
 			    $("#cl1").click(function(){
 			        var div = $("#friends2");
@@ -111,9 +110,6 @@
 			    });
 			});
 			
-			
-
-			
 			$(document).ready(function(){
 			    $("#more").click(function(){
 			        var div = $("#wait");
@@ -121,17 +117,7 @@
 			        
 			    });
 			});
-			
-			$(document).ready(function(){
-			    $("#more1").click(function(){
-			    	var div = $("#more2");
-	                 div.animate({right: '55%'}, "fast");
-	                 div.animate({height: '50%'}, "slow");
-	                 div.animate({width:'toggle'}, "slow");
-			    });
-			});
-
-			
+					
 			function openpic(i){
 				var div = document.getElementById('pic'+ i).value;
 				
@@ -184,7 +170,6 @@
 	            
 	            sendRequest('replyList.do?content_idx=20', null, openpic(pic_idx), 'GET');
 	            
-	            $('#galleryImage').attr("src",div);
 	         }
 
 </script> 

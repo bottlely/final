@@ -13,7 +13,7 @@
    <select id="replyList" resultMap="myHomeReply">
       select mypage.name, mypage.profile_img, mars_reply.content
       from mypage
-      inner join mars_reply on mypage.member_idx=mars_reply.to_idx
+      inner join mars_reply on mypage.member_idx=mars_reply.to_idx order by idx desc
    </select>
    <insert id="addReply" parameterType="mars.reply.model.ReplyDTO">
       insert into mars_reply values(mars_reply_idx.nextval, 30, 20, 27, #{content}, 0, 0, 0, sysdate, 0, 0, 0, 0)
