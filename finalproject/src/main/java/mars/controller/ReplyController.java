@@ -39,4 +39,11 @@ public class ReplyController {
 	   
 	   return mav;
    }
+   
+   @RequestMapping("/reply_list.do")
+   public String reply_list(){
+
+	      
+	      return "reply/reply";
+	   }
 }

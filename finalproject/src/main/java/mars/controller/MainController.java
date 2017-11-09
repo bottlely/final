@@ -15,4 +15,5 @@ public class MainController {
 	public String main_viewPage() {
 		return "main/main_view";
 	}
+	
 }

@@ -485,10 +485,10 @@
   
   </section>
 <!-- end main -->
-    <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="margin: 3%;">
     <div class="container" style="background-color: white;">
     <div class="row">
-        <div class="col-xs-6">
+        <div class="col-xs-6" style="margin-top: 10px;">
         
         <img src="" id="galleryImage" class="img-responsive">
         
@@ -498,7 +498,9 @@
       	<h2 id="content_content">게시글 내용</h2>
       	<h2>좋아요</h2>
       	<input type="text" name="content" id="content" value=""><input type="button" onclick="addReply()" value="작성"><br>
-      	<h2 id="reply_List">댓글 내용</h2>
+      	<div style="width: 100%;">
+      	<iframe src="reply_list.do"></iframe>
+      	</div>
         </div>
     </div>
 </div>
