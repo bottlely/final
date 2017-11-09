@@ -22,7 +22,42 @@
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
      <script type="text/javascript" src="js/httpRequest.js"></script>
     <style>
-    
+    	.frbutton{
+    	
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+		-moz-transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+		-webkit-transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+		-ms-transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+		transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+		background-color: transparent;
+		border: 0;
+		box-shadow: inset 0 0 0 1px rgba(160, 160, 160, 0.3);
+		color: #3c3b3b !important;
+		cursor: pointer;
+		display: inline-block;
+		font-family: "Raleway", Helvetica, sans-serif;
+		font-size: 0.6em;
+		font-weight: 800;
+		height: 20px;
+		letter-spacing: 0.25em;
+		line-height: 4.8125em;
+		padding: 0 2.5em;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		white-space: nowrap;
+	
+    	
+    	
+    	}
+    	
+    	.frbutton:hover {
+			box-shadow: inset 0 0 0 1px #2ebaae;
+			color: #2ebaae !important;
+		}
     
 			@keyframes spin {
 		100% {
@@ -113,7 +148,7 @@
 			$(document).ready(function(){
 			    $("#cl4").click(function(){
 			        var div = $("#more2");
-			        div.animate({height: '100%'}, "slow");
+			        div.animate({height: '0%'}, "slow");
 			        div.animate({width:'toggle'}, "slow");
 			        
 			    });
@@ -225,18 +260,19 @@
 	</div>
 		<!-- 개인설정 창 부분(more) -->
 		<div  id="more2" style="background:white;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 40%">
-		<div style="background-color: white; align-content:center; text-align: right; "><button id="cl4">Close</button></div>
-		<hr>
+		<div style="background-color: white; align-content:center; text-align: right; "><a href="#" id="cl4">Close</a></div>
+		<hr width="40%;">
 		<div style="text-align: center; border: thick;">
 		<img src="assets_main/images/아이유6.jpg" style="width: 60px; height: 60px; border-radius: 50%;">
 		
 		</div>
-		<hr>
+		아이유
+		<hr width="40%;">
 		<div style="text-align: center;">
-		<input type="button" value="Unfollow" onclick=""><br><br>
-		<input type="button" value="Remove Follwer" onclick=""><br><br>
-		<input type="button" value="Setting Group" onclick=""><br><br>
-		<input type="button" value="Cancle" onclick=""><br>
+		<input type="button" value="Unfollow" onclick="" class="frbutton"><br><br>
+		<input type="button" value="Remove Follwer" onclick="" class="frbutton"><br><br>
+		<input type="button" value="Setting Group" onclick="" class="frbutton"><br><br>
+		<input type="button" value="Cancle" onclick="" class="frbutton"><br>
 		</div>
 	</div>
 	
