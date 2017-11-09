@@ -485,31 +485,39 @@
   
   </section>
 <!-- end main -->
-    <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="margin: 3%;">
-    <div class="container" style="background-color: white;">
+    <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" style="margin: 3%; background: #f4f4f4;
+     border: solid;">
+    <div class="container">
     <div class="row">
-        <div class="col-xs-6" style="margin-top: 10px;">
+        <div class="col-xs-6" style="margin-top: 10px; float: left;">
         
-        <img src="" id="galleryImage" class="img-responsive">
+        <img src="" id="galleryImage" class="img-thumbnail">
         
         </div>
-        <div class="col-xs-6" style="float: left; ">
-      	<h2 id="content_writer">작성자</h2><br>
-      	<h2 id="content_content">게시글 내용</h2>
-      	<h2>좋아요</h2>
-      	<input type="text" name="content" id="content" value=""><input type="button" onclick="addReply()" value="작성"><br>
-      	<div style="width: 100%;">
-      	<iframe src="reply_list.do"></iframe>
+        <div class="col-xs-6">
+      	<h3 id="content_writer">양진모</h3><br>
+      	<h3 id="content_content">아이유짱이에요</h3>
+      	<h4 style="display: inline;">좋아요 2000개</h4>
+      	<h4 style="display: inline;">댓글 20000개</h4>
+      	<br>
+      	<hr>
+      	<h5>발자취</h5>
+      	
+      	<input type="text" name="content" id="content" value="" style="width: 60%;"><input type="button" onclick="addReply()" value="작성"><br>
+      	<br>
+      	<hr>
+      	<div style="width: 100%; height: 100%;">
+      	<iframe src="reply_list.do" style="width: 100%; height: 100%;"></iframe>
       	</div>
         </div>
     </div>
 </div>
-      	<div class="container" style="background-color: white;">
+      	<div class="container" style="background-color: #f4f4f4;">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12" style="text-align: center;">
       		  <p>
         	 <br/>
-         <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
+         <button  data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
         		</p>
         </div>
     </div>
