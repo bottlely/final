@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%int i =-1; %>
 <!DOCTYPE HTML>
 <html>
    <head>
@@ -36,20 +35,21 @@
       
       $(document).ready(function(){
              $("#black").click(function(){
+           	  $('#black1').fadeOut();
               $("#black1").slideToggle();
              });
          });
       
       $(document).ready(function(){
              $("#search").click(function(){
-                $('#search1').fadeOut('fast');
+                $('#search1').fadeOut();
               $("#search1").slideToggle();
              });
          });
       
       $(document).ready(function(){
              $("#search_name").click(function(){
-                $('#search1').fadeOut('fast');
+                $('#search1').fadeOut();
              });
          });
       
@@ -59,7 +59,6 @@
       
       function openMypage(j) {
     	  var idx = j;
-    	  //alert(idx);
           parent.test1(idx);
       } 
       
@@ -69,9 +68,45 @@
               var div = $('#msgTest2', parent.document);
               div.animate({height: '40%'}, "slow");
               div.animate({width:'toggle'}, "slow");
-            
           });
       });
+      
+      $(document).ready(function(){
+          $("#userChat1").click(function(){
+              var div = $('#msgTest2', parent.document);
+              div.animate({height: '40%'}, "slow");
+              div.animate({width:'toggle'}, "slow");
+          });
+      });
+      
+      $(document).ready(function(){
+          $("#userChat2").click(function(){
+              var div = $('#msgTest2', parent.document);
+              div.animate({height: '40%'}, "slow");
+              div.animate({width:'toggle'}, "slow");
+          });
+      });
+      
+      /* $(document).ready(function(){
+          $("#black").click(function(){
+              var div = $('#more2', parent.document);
+              div.animate({height: '40%'}, "slow");
+              div.animate({width:'toggle'}, "slow");
+          });
+      }); */
+		
+     function black(idx) {
+    	 var div = $('#black2', parent.document);
+         div.animate({height: '40%'}, "slow");
+         div.animate({width:'toggle'}, "slow");
+     } 
+      
+     function more(idx) {
+    	 var div = $('#more2', parent.document);
+         div.animate({height: '40%'}, "slow");
+         div.animate({width:'toggle'}, "slow");
+     }
+     
       </script>
    </head>
    <body>
@@ -159,8 +194,8 @@
                            <li>
                               <article>
                                  <header>
-                                    <h3><a href="#">${following_list.name }</a></h3>
-                                    <input type="button" value="chat" id="userChat"><input type="button" value="more" id="more">
+                                    <h3><a onclick="openMypage(${following_list.idx })" value="${following_list.idx }">${following_list.name }</a></h3>
+                                    <input type="button" value="chat" id="userChat1"><input type="button" value="more" id="more" onclick="more(${search_list.idx })">
                                  </header>
                                  <a href="#" class="image"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}" alt=""  style="border-radius: 50%"></a>
                               </article>
@@ -176,8 +211,8 @@
                            <li>
                               <article>
                                  <header>
-                                    <h3><a href="#">${search_list.name }</a></h3>
-                                    <input type="button" value="chat" onclick=""><input type="button" value="more" onclick="">
+                                    <h3><a onclick="openMypage(${search_list.idx })" value="${search_list.idx }">${search_list.name }</a></h3>
+                                    <input type="button" value="chat" id="userChat2"><input type="button" value="more" id="more" onclick="more(${search_list.idx })">
                                  </header>
                                  <a href="#" class="image"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}" alt=""  style="border-radius: 50%"></a>
                               </article>
@@ -203,10 +238,10 @@
                            <li>
                               <article>
                                  <header>
-                                    <h3><a href="#">${blackList.name }</a></h3>
-                                    <input type="button" value="chat" onclick=""><input type="button" value="more" onclick="">
+                                    <h3 style="display: inline;"><a onclick="openMypage(${blackList.idx })" value="${blackList.idx }">${blackList.name }</a></h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="button" value="차단해제" onclick="black(${blackList.idx })">
                                  </header>
-                                 <a href="#" class="image"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}" alt="" style="border-radius: 50%"></a>
+                                 <a href="#" class="image"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}" alt=""  style="border-radius: 50%"></a>
                               </article>
                            </li>
                         </c:forEach>

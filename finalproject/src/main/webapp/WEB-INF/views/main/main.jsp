@@ -111,8 +111,8 @@
 			});
 			
 			$(document).ready(function(){
-			    $("#more").click(function(){
-			        var div = $("#wait");
+			    $("#more1").click(function(){
+			        var div = $("#more2");
 					div.toggle('slow');
 			        
 			    });
@@ -153,7 +153,6 @@
 			}
 			
 			function test1(idx) {
-            //alert(idx);
                document.getElementById('ppp').src='myHomeForm.do?useridx='+idx;
                var div = $("#mypage2");
                div.animate({left: '35%'}, "fast");
@@ -178,7 +177,7 @@
 <div id="navbar-full">
 <span style="float: left;">
 
-            <div id="friends2" style="background:#935d8c;height:100%;width:25%; position: absolute; float: left; display: none; z-index: 4">
+            <div id="friends2" style="background:#935d8c;height:100%;width:26%; position: absolute; float: left; display: none; z-index: 4">
       <div style="background-color: white; align-content:center; "><a href="#" id="cl1">Close</a></div> 
    <c:url var="frListUrl" value="main_frList.do">
       <c:param name="user_idx" value="${sessionScope.useridx }" />
@@ -204,12 +203,21 @@
 		<H1>채팅창 태스트</H1>
 
 	</div>
-	
-			 	<div  id="more2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 20%; margin-left: 78%">
+		<!-- 개인설정 창 부분(more) -->
+		<div  id="more2" style="background:white;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 40%">
 		<div style="background-color: white; align-content:center; "><a href="#" id="cl3">Close</a></div>
 	
-		<H1>Follow</H1>
-		<H1>UnFollow</H1>
+		<input type="button" value="Unfollow" onclick="">
+		<input type="button" value="Remove Follwer" onclick="">
+		<input type="button" value="Setting Group" onclick="">
+		<input type="button" value="Cancle" onclick="">
+	</div>
+	
+	<!-- 차단해제 창 부분(black) -->
+	<div  id="black2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 40%">
+		<div style="background-color: white; align-content:center; "><a href="#" id="cl3">Close</a></div>
+	
+		<input type="button" value="차단해제" onclick="">
 	</div>
 	
    <div id="navbar-blue">
