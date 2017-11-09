@@ -493,7 +493,7 @@
         <img src="" id="galleryImage" class="img-responsive">
         
         </div>
-        <div class="col-xs-6" style="float: left;">
+        <div class="col-xs-6" style="float: left; ">
       	<h2 id="content_writer">작성자</h2><br>
       	<h2 id="content_content">게시글 내용</h2>
       	<h2>좋아요</h2>
