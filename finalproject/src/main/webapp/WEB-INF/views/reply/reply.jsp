@@ -6,6 +6,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+function replyList(){
+	if(XHR.readyState==4){
+		if(XHR.status==200){
+			var data = XHR.responseText;
+			var lists = eval('('+data+')');
+			var content_writer = '박연수';
+			var content_content = '하이하이';
+			var reply_list = document.all.reply_List;
+			var str='';
+
+			if(lists.replyList.length==0){
+				str = '댓글 없습니다.'
+				reply_list.innerHTML = str;
+			}else{
+				for(var i=0; i<lists.replyList.length; i++){
+					var l = lists.replyList[i];
+					str += l.profile_img + " : " + l.name + " : " + l.content + '<hr>';
+				}
+				reply_list.innerHTML = str;
+			}
+		}
+	}
+}
+
+
+</script>
 </head>
 <body>
 
