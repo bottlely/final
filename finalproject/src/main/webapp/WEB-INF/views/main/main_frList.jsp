@@ -102,7 +102,7 @@
       
      function more(idx) {
     	 var div = $('#more2', parent.document);
-         div.animate({height: '40%'}, "slow");
+         div.animate({height: '45%'}, "slow");
          div.animate({width:'toggle'}, "slow");
      }
      

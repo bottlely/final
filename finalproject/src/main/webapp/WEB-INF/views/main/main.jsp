@@ -111,6 +111,24 @@
 			});
 			
 			$(document).ready(function(){
+			    $("#cl4").click(function(){
+			        var div = $("#more2");
+			        div.animate({height: '100%'}, "slow");
+			        div.animate({width:'toggle'}, "slow");
+			        
+			    });
+			});
+			
+			$(document).ready(function(){
+			    $("#cl5").click(function(){
+			        var div = $("#black2");
+			        div.animate({height: '100%'}, "slow");
+			        div.animate({width:'toggle'}, "slow");
+			        
+			    });
+			});
+			
+			$(document).ready(function(){
 			    $("#more1").click(function(){
 			        var div = $("#more2");
 					div.toggle('slow');
@@ -180,7 +198,7 @@
 <span style="float: left;">
 
             <div id="friends2" style="background:#935d8c;height:100%;width:26%; position: absolute; float: left; display: none; z-index: 4">
-      <div style="background-color: white; align-content:center; "><a href="#" id="cl1">Close</a></div> 
+      <div style="background-color: white; align-content:center; text-align: right;"><a href="#" id="cl1">Close</a></div> 
    <c:url var="frListUrl" value="main_frList.do">
       <c:param name="user_idx" value="${sessionScope.useridx }" />
    </c:url>
@@ -207,17 +225,24 @@
 	</div>
 		<!-- 개인설정 창 부분(more) -->
 		<div  id="more2" style="background:white;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 40%">
-		<div style="background-color: white; align-content:center; "><a href="#" id="cl3">Close</a></div>
-	
-		<input type="button" value="Unfollow" onclick="">
-		<input type="button" value="Remove Follwer" onclick="">
-		<input type="button" value="Setting Group" onclick="">
-		<input type="button" value="Cancle" onclick="">
+		<div style="background-color: white; align-content:center; text-align: right; "><button id="cl4">Close</button></div>
+		<hr>
+		<div style="text-align: center; border: thick;">
+		<img src="assets_main/images/아이유6.jpg" style="width: 60px; height: 60px; border-radius: 50%;">
+		
+		</div>
+		<hr>
+		<div style="text-align: center;">
+		<input type="button" value="Unfollow" onclick=""><br><br>
+		<input type="button" value="Remove Follwer" onclick=""><br><br>
+		<input type="button" value="Setting Group" onclick=""><br><br>
+		<input type="button" value="Cancle" onclick=""><br>
+		</div>
 	</div>
 	
 	<!-- 차단해제 창 부분(black) -->
 	<div  id="black2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 40%">
-		<div style="background-color: white; align-content:center; "><a href="#" id="cl3">Close</a></div>
+		<div style="background-color: white; align-content:center; text-align: right; "><a href="#" id="cl5">Close</a></div>
 	
 		<input type="button" value="차단해제" onclick="">
 	</div>
