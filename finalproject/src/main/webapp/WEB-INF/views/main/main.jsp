@@ -119,7 +119,7 @@
 			$(document).ready(function(){
              $("#mypage1").click(function(){
             	 document.getElementById('ppp').src='myHomeForm.do?useridx='+${sessionScope.useridx};
-                var div = $("#mypage2");
+            	 var div = $("#mypage2");
                  div.animate({right: '0px'}, "fast");
                  div.animate({height: '100%'}, "slow");
                  div.animate({width:'toggle'}, "slow");

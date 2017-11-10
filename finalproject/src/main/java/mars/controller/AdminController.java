@@ -27,9 +27,16 @@ public class AdminController {
    public ModelAndView admin_m_u() {
       List<MemberDTO> list = aDao.admin_member();
       
+      int yearMin = aDao.yearMin();
+      int yearMax = aDao.yearMax();
+      
       ModelAndView mav = new ModelAndView();
       
       mav.addObject("list", list);
+      
+      mav.addObject("yearMin", yearMin);
+      
+      mav.addObject("yearMax", yearMax);
       
       mav.setViewName("admin/admin_member_user");
       
@@ -45,7 +52,7 @@ public class AdminController {
          aDao.ff_delete(idx);
       }
       
-      String msg = result > 0 ? "È¸¿ø Å»Åð ¼º°ø!" : "È¸¿ø Å»Åð ½ÇÆÐ!";
+      String msg = result > 0 ? "È¸ï¿½ï¿½ Å»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!" : "È¸ï¿½ï¿½ Å»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!";
       
       mav.addObject("msg", msg);
       

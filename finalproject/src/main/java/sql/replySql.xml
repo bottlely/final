@@ -9,9 +9,10 @@
       <result property="name" column="name" />
       <result property="profile_img" column="profile_img" />
       <result property="content" column="content" />
+      <result property="idx" column="idx" />
    </resultMap>
    <select id="replyList" resultMap="myHomeReply">
-      select mypage.name, mypage.profile_img, mars_reply.content
+      select mypage.name, mypage.profile_img, mars_reply.content, mars_reply.idx, mars_reply.lev
       from mypage
       inner join mars_reply on mypage.member_idx=mars_reply.to_idx order by idx desc
    </select>
@@ -19,6 +20,18 @@
       insert into mars_reply values(mars_reply_idx.nextval, 30, 20, 27, #{content}, 0, 0, 0, sysdate, 0, 0, 0, 0)
    </insert>
    <insert id="re_reply" parameterType="mars.reply.model.ReplyDTO">
-      insert into mars_reply values(mars_reply_idx.nextval, 30, 20, 27, #{content}, 0, 1, 0, sysdate, 0, 0, 0, 0)
+      insert into mars_reply values(mars_reply_idx.nextval, 30, 20, 27, #{content}, #{ref}, 1, #{sunbun}, sysdate, 0, 0, 0, 0)
    </insert>
+   <!-- <update id="update_Reply" parameterType="HashMap">
+         update from mars_reply set content=#{content} where idx={reply_idx}
+   </update> -->
+   <delete id="delete_Reply" parameterType="Integer">
+         delete from mars_reply where idx=#{reply_idx}
+   </delete>
+   <select id="ref" resultType="mars.reply.model.ReplyDTO">
+         select ref from mars_reply where idx=#{reply_idx}
+   </select>
+   <select id="sunbun" resultType="mars.reply.model.ReplyDTO">
+         select sunbun from mars_reply where idx=#{reply_idx}
+   </select>
 </mapper>

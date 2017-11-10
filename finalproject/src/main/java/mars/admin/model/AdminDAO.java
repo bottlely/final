@@ -11,4 +11,6 @@ public interface AdminDAO {
    public List<MemberDTO> admin_nameSearch(String name);
    public List<MemberDTO> admin_idSearch(String id);
    public int ff_delete(int idx);
+   public int yearMin();
+   public int yearMax();
 }

@@ -35,4 +35,9 @@
 		delete mars_ff 
 		where user1_idx=#{user1_idx} and user2_idx=#{user2_idx}
 	</delete>
+	<select id="moreSetting" parameterType="Integer" resultType="mars.myHome.model.MyHomeDTO">
+		select member_idx, name
+		from mypage
+		where member_idx=#{user_idx}
+	</select>
 </mapper>

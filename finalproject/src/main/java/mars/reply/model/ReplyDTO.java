@@ -22,10 +22,10 @@ public class ReplyDTO {
    private MyHomeDTO myhome;
    
    public MyHomeDTO getMyHomeDTO() {
-	return myhome;
+   return myhome;
 }
 public void setMyHomeDTO(MyHomeDTO myhome) {
-	this.myhome = myhome;
+   this.myhome = myhome;
 }
 public ReplyDTO() {
       super();

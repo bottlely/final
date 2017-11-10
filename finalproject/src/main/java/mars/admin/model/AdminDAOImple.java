@@ -45,4 +45,16 @@ public class AdminDAOImple implements AdminDAO {
       
       return list;
    }
+
+   public int yearMin() {
+      int yearMin = sqlMap.selectOne("yearMin");
+      
+      return yearMin;
+   }
+   
+   public int yearMax() {
+      int yearMax = sqlMap.selectOne("yearMax");
+      
+      return yearMax;
+   }
 }

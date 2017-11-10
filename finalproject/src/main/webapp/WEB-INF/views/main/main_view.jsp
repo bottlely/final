@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link href="assets_main/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets_main/css/style.css" type="text/css">
     <link href="assets_main/css/pe-icon-7-stroke.css" rel="stylesheet" />
-	<link href="assets_main/css/ct-navbar.css" rel="stylesheet" />  
-	
+   <link href="assets_main/css/ct-navbar.css" rel="stylesheet" />  
+   
 
   
   <title>MARS</title>
@@ -22,20 +22,20 @@
     <style>
     
     
-			@keyframes spin {
-		100% {
-			transform: rotate(360deg);
-			}
-		}
-		.spinner {
-		display: inline-block;
-		width: 50px;
-		height: 50px;
-		border: 5px solid yellow;
-		border-color: yellow transparent transparent;
-		border-radius: 50%;
-		animation: spin 1s linear  infinite;
-		}    
+         @keyframes spin {
+      100% {
+         transform: rotate(360deg);
+         }
+      }
+      .spinner {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 5px solid yellow;
+      border-color: yellow transparent transparent;
+      border-radius: 50%;
+      animation: spin 1s linear  infinite;
+      }    
     
         .fa-heart{
             color: #F74933;
@@ -68,86 +68,86 @@
         } 
     </style>
 </head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<script> 
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+         <script> 
 
-			$(document).ready(function(){
-			    $("#friends1").click(function(){
-			    	ppp.location.reload();
-			        var div = $("#friends2");
-			        div.animate({height: '100%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-			    });
-			});
-			
-			$(document).ready(function(){
-			    $("#msgTest1").click(function(){
-			    	ppp.location.reload();
-			        var div = $("#msgTest2");
-			        div.animate({height: '40%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-			    });
-			});
-			
-			$(document).ready(function(){
-			    $("#mypage1").click(function(){
-			        var div = $("#mypage2");
-			        div.animate({left: '35%'}, "fast");
-			        div.animate({height: '100%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-					
-			    });
-			});
+         $(document).ready(function(){
+             $("#friends1").click(function(){
+                ppp.location.reload();
+                 var div = $("#friends2");
+                 div.animate({height: '100%'}, "slow");
+                 div.animate({width:'toggle'}, "slow");
+             });
+         });
+         
+         $(document).ready(function(){
+             $("#msgTest1").click(function(){
+                ppp.location.reload();
+                 var div = $("#msgTest2");
+                 div.animate({height: '40%'}, "slow");
+                 div.animate({width:'toggle'}, "slow");
+             });
+         });
+         
+         $(document).ready(function(){
+             $("#mypage1").click(function(){
+                 var div = $("#mypage2");
+                 div.animate({left: '35%'}, "fast");
+                 div.animate({height: '100%'}, "slow");
+                 div.animate({width:'toggle'}, "slow");
+               
+             });
+         });
 
 
-			
-			$(document).ready(function(){
-			    $("#cl1").click(function(){
-			        var div = $("#friends2");
-			        div.animate({height: '100%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-					
-			    });
-			});
-			
+         
+         $(document).ready(function(){
+             $("#cl1").click(function(){
+                 var div = $("#friends2");
+                 div.animate({height: '100%'}, "slow");
+                 div.animate({width:'toggle'}, "slow");
+               
+             });
+         });
+         
 
-			
-			$(document).ready(function(){
-			    $("#cl2").click(function(){
-			        var div = $("#mypage2");
-			        div.animate({height: '100%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-			        
-			    });
-			});
-			$(document).ready(function(){
-			    $("#cl3").click(function(){
-			        var div = $("#msgTest2");
-			        div.animate({height: '0%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-					
-			    });
-			});
-			
+         
+         $(document).ready(function(){
+             $("#cl2").click(function(){
+                 var div = $("#mypage2");
+                 div.animate({height: '100%'}, "slow");
+                 div.animate({width:'toggle'}, "slow");
+                 
+             });
+         });
+         $(document).ready(function(){
+             $("#cl3").click(function(){
+                 var div = $("#msgTest2");
+                 div.animate({height: '0%'}, "slow");
+                 div.animate({width:'toggle'}, "slow");
+               
+             });
+         });
+         
 
-			
-			$(document).ready(function(){
-			    $("#more").click(function(){
-			        var div = $("#wait");
-					div.toggle('slow');
-			        
-			    });
-			});
-			
+         
+         $(document).ready(function(){
+             $("#more").click(function(){
+                 var div = $("#wait");
+               div.toggle('slow');
+                 
+             });
+         });
+         
 
-			
-			function openpic(i){
-				var div = document.getElementById('pic'+i).value;
-				window.alert(i);
-				   window.alert(div);
-				   
-				$('#galleryImage').attr("src",div);
-				} 
+         
+         function openpic(i){
+            var div = document.getElementById('pic'+i).value;
+            window.alert(i);
+               window.alert(div);
+               
+            $('#galleryImage').attr("src",div);
+            } 
 
 </script> 
 <body>
@@ -155,53 +155,53 @@
 <div id="navbar-full">
 <span style="float: left;">
 
-				<div id="friends2" style="background:#935d8c;height:100%;width:25%; position: absolute; float: left; display: none; z-index: 4">
-		<div style="background-color: white; align-content:center; "><a href="#" id="cl1">Close</a></div> 
-	<c:url var="frListUrl" value="main_frList.do">
-		<c:param name="user_idx" value="${sessionScope.useridx }" />
-	</c:url>
-	<iframe src="${frListUrl }" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+            <div id="friends2" style="background:#935d8c;height:100%;width:25%; position: absolute; float: left; display: none; z-index: 4">
+      <div style="background-color: white; align-content:center; "><a href="#" id="cl1">Close</a></div> 
+   <c:url var="frListUrl" value="main_frList.do">
+      <c:param name="user_idx" value="${sessionScope.useridx }" />
+   </c:url>
+   <iframe src="${frListUrl }" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
-	</div>
-		 </span>
-		 <span style="float: right;">
+   </div>
+       </span>
+       <span style="float: right;">
 
-		 	<div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
-		<div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
-	
-	<c:url var="myHomeUrl" value="myHomeForm.do">
-		<c:param name="useridx" value="${sessionScope.useridx}"/>
-	</c:url>
-	<iframe src="${myHomeUrl}" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+          <div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
+      <div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
+   
+   <c:url var="myHomeUrl" value="myHomeForm.do">
+      <c:param name="useridx" value="${sessionScope.useridx}"/>
+   </c:url>
+   <iframe src="${myHomeUrl}" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
-	</div>
-		 
-		 </span>
-		 	<div  id="msgTest2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 30%; margin-left: 78%">
-		<div style="background-color: white; align-content:center; "><a href="#" id="cl3">Close</a></div>
-	
-		<H1>채팅창 태스트</H1>
+   </div>
+       
+       </span>
+          <div  id="msgTest2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 30%; margin-left: 78%">
+      <div style="background-color: white; align-content:center; "><a href="#" id="cl3">Close</a></div>
+   
+      <H1>채팅창 태스트</H1>
 
-	</div>
-	
+   </div>
+   
    <div id="navbar-blue">
     <nav class="navbar navbar-ct-blue" role="navigation">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
 <ul class="nav navbar-nav navbar-left">
-					 <li>
-					<a href="main.do">
+                <li>
+               <a href="main.do">
                           <img src="assets_main/images/logo.svg" alt="" />
                            
                        </a>
-					 
-					 </li>
-		             <li>
+                
+                </li>
+                   <li>
                         <a href="main.do">
                           <h3>MARS</h3>
                            
                        </a>
-                   </li>			
+                   </li>         
 
                </ul>
     
@@ -210,7 +210,7 @@
         
               <ul class="nav navbar-nav navbar-right">
 
-           				<!-- 다운 광고 추가 임시 버튼 -->
+                       <!-- 다운 광고 추가 임시 버튼 -->
               <li>
               <a href="#" onclick="window.open('applyAdForm.do', '광고 주문서', 'scrollbars=no width=400, height=450')">
                            <i class="pe-7s-search"></i>       
@@ -256,12 +256,12 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="alertsDropdown">
             <h6 class="dropdown-header">New Alerts:</h6>
-			<%@include file="feedList.jsp" %>
+         <%@include file="feedList.jsp" %>
 
             <div class="dropdown-divider"></div>
             <a class="dropdown-item small" href="#">View all alerts</a>
           </div>
-        </li>			
+        </li>         
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="pe-7s-mail"></i>
@@ -274,7 +274,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="messagesDropdown">
             <h6 class="dropdown-header">New Messages:</h6>
-			<%@include file="msgList.jsp" %>
+         <%@include file="msgList.jsp" %>
          
             <div class="dropdown-divider"></div>
             <a class="dropdown-item small" href="#">View all messages</a>
@@ -283,31 +283,31 @@
 
                     
                                         <li>
-					<div class="dropdown">
- 		 <a class="btn btn-default dropdown-toggle"  data-toggle="dropdown">
- 		 <i class="pe-7s-menu"></i>
- 		 <span class="caret"></span></a>
- 			 <ul class="dropdown-menu">
-   			  <li><a href="infoSetting.do?idx=${sessionScope.useridx }">SETTINGS</a></li>
-   			 <li><a href="serviceCenter.do">CUSTOMER CENTER</a></li>
-   			 <li><a href="#">Logout</a></li>
-			<li> <a href="#" id="msgTest1">MSGTEST</a></li>
-	
+               <div class="dropdown">
+        <a class="btn btn-default dropdown-toggle"  data-toggle="dropdown">
+        <i class="pe-7s-menu"></i>
+        <span class="caret"></span></a>
+           <ul class="dropdown-menu">
+              <li><a href="infoSetting.do?idx=${sessionScope.useridx }">SETTINGS</a></li>
+             <li><a href="serviceCenter.do">CUSTOMER CENTER</a></li>
+             <li><a href="#">Logout</a></li>
+         <li> <a href="#" id="msgTest1">MSGTEST</a></li>
+   
     </ul>
   </div></li>
- 			 </ul>
-			</div>
+           </ul>
+         </div>
                     </li>
                </ul>
                 <form name="search" action="membersearch.do" class="navbar-form navbar-right navbar-search-form">
                 
                   <div class="form-group">
-                  		<input type="text" name="name" class="form-control" placeholder="Search...">
-	             
+                        <input type="text" name="name" class="form-control" placeholder="Search...">
+                
                      
                  </div> 
-	             
-	              </form>
+                
+                 </form>
 
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -346,19 +346,42 @@
    
     </div>
     <div class="col-sm-8 text-left"  style="background-color: white; border-radius: 5%;"> 
-       댓글들<br>
-       댓글들<br>
-       댓글들<br>
-       댓글들<br>
-       댓글들<br>
-       댓글들<br>
-       댓글들<br>
-       댓글들<br>
-       댓글들<br>
-       댓글들<br>
-       댓글들<br>
-       댓글들<br>
-       댓글들<br>
+      <input type="text" id="content" name="content" value=""><input type="button" value="작성"><br>
+      <c:forEach var="replyList" items="${list }">
+      <c:if test="${empty list }">
+         댓글 없습니다.
+      </c:if>
+         <c:choose>
+         <c:when test="${replyList.lev == 0 }">
+      ${replyList.profile_img} ${ replyList.name} " : " ${replyList.content }<br>         
+      <input type="button" value="답글" onclick="re_Reply(${replyList.idx})">
+      <%-- <input type="button" value="수정" onclick="update_Reply(${replyList.idx})"> --%>
+      <input type="button" value="삭제" onclick="delete_Reply(${replyList.idx })"><br>
+      </c:when>
+      <c:when test="${replyList.lev == 1 }">
+      &emsp;&emsp;${replyList.profile_img} ${ replyList.name} " : " ${replyList.content }<br>
+      <%-- <input type="button" value="수정" onclick="update_Reply(${replyList.idx})"> --%>
+      <input type="button" value="삭제" onclick="delete_Reply(${replyList.idx })"><br>
+      </c:when>
+      </c:choose>
+      <script>
+         function re_Reply(idx){
+            var content = document.getElementById("content").value;
+            
+            location.href="re_Reply.do?reply_idx="+idx+"&content="+content;
+         }
+         
+         /* function update_Reply(idx){
+            var content = document.getElementById("content").value;
+            alert('content' + content + 'idx' + idx);
+            location.href="update_Reply.do?reply_idx="+idx+"&content="+content;
+         } */
+         
+         function delete_Reply(idx){
+            location.href="delete_Reply.do?reply_idx="+idx;
+         }
+      </script>
+      </c:forEach>
        
     </div>
     <div class="col-sm-2 sidenav">
@@ -378,11 +401,11 @@
 </body>
 
     <script src="assets_main/js_1/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="assets_main/js_1/bootstrap.js" type="text/javascript"></script>
-	<script type="text/javascript" src="assets_main/js_1/main.js"></script>
-	<script src="assets_main/js_1/ct-navbar.js"></script>
-	<script type="text/javascript" src="assets_main/owl-carousel/owl.carousel.min.js"></script>
-	
+   <script src="assets_main/js_1/bootstrap.js" type="text/javascript"></script>
+   <script type="text/javascript" src="assets_main/js_1/main.js"></script>
+   <script src="assets_main/js_1/ct-navbar.js"></script>
+   <script type="text/javascript" src="assets_main/owl-carousel/owl.carousel.min.js"></script>
+   
 <!--Parallax-->
 <script type="text/javascript" src="assets_main/js/jquery.stellar.min.js"></script>
 <!--IsoTop-->

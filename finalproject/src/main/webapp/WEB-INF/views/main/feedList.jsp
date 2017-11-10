@@ -9,7 +9,7 @@
 <body>
             <div class="dropdown-divider"></div>
             <!-- 게시물 하나당 a태그하나 -->
-            <a class="dropdown-item" href="main_view.do">
+            <a class="dropdown-item" href="main_view.do?content_idx=20">
               <span class="text-success">
                 <strong>
                   <i class="fa fa-long-arrow-up fa-fw"></i>오현경님이 댓글을남겼습니다</strong>
