@@ -212,7 +212,12 @@
                var div = $("#mypage2");
                div.animate({right: '0px'}, "fast");
                div.animate({height: '100%'}, "slow");
-               div.animate({width:'toggle'}, "slow");
+               if(div.height = '60%'){
+               div.animate({width:'60%'}, "slow");
+               }
+               else{
+            	   div.animate({width:'toggle'},"slow");
+               }
             }
 			
 			function addReply(){
