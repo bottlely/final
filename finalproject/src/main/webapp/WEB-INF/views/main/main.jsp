@@ -231,6 +231,26 @@
 	            sendRequest('replyList.do?content_idx=20', null, openpic(pic_idx), 'GET');
 	            
 	         }
+			function following(n1, n2) {
+				window.alert(n1);
+				window.alert(n2);
+				location.href='following.do?user1_idx='+n1+'&user2_idx='+n2;
+			}
+			function unfollowing(user_idx, other_idx) {
+				parent.unfollowing(user_idx, other_idx);
+				window.alert(user_idx);
+				window.alert(other_idx);
+				location.href='deleteFriend.do?user1_idx='+user_idx+'&user2_idx='+other_idx;
+			}
+			function removeFollower(n1, n2) {
+				window.alert(n1);
+				window.alert(n2);
+				location.href='deleteFriend.do?user1_idx='+n2+'&user2_idx='+n1;
+			}
+			
+			function addIdx(user_idx) {
+				
+			}
 
 </script> 
 <body>
@@ -274,7 +294,7 @@
 		</div>
 		<p style="text-align: center;">아이유</p>
 		<div style="text-align: center;">
-		<input type="button" value="Unfollow" onclick="" class="frbutton"><br><br>
+		<input type="button" value="Unfollow" onclick="unfollowing()" class="frbutton"><br><br>
 		<input type="button" value="Remove Follwer" onclick="" class="frbutton"><br><br>
 		<input type="button" value="Setting Group" onclick="" class="frbutton"><br><br>
 		<input type="button" value="Cancle" onclick="" class="frbutton"><br>
@@ -439,38 +459,38 @@
 				</ul>
 			</div>
 
-				<div class="works-area" >
-				<% for(int i=0; i<12; i++){
-					
-					%>
-				<div class="col-md-4 col-sm-6 col-xs-12  photo"  >
-					<div class="works">
-						<img src="assets_main/images/아이유6.jpg" alt="" style="width: 431px; height: 431px;">
+				  <div class="works-area" >
+            <% for(int i=0; i<12; i++){
+               
+               %>
+            <div class="col-md-4 col-sm-6 col-xs-12  photo"  >
+               <div class="works">
+                  <img src="assets_main/images/아이유6.jpg" alt="" style="width: 431px; height: 431px;">
 
-						<div class="work-overlay text-center">
-							<div class="overlay-caption">
-								<h4>PHOTO</h4>
+                  <div class="work-overlay text-center">
+                     <div class="overlay-caption">
+                        <h4>PHOTO</h4>
 
-								
-					<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" 
-					onclick="openpic(<%=i%>)">
+                        
+               <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" 
+               onclick="openpic(<%=i%>)">
                         <input type="hidden" value="assets_main/images/아이유6.jpg"  id="pic<%=+i%>" >
                         <input type="hidden" id="pic_idx" value="">
-  							<p>사진<%=i+1 %>번</p>
+                       <p>사진<%=i+1 %>번</p>
                     </a>
-							</div>
-						</div>
-					</div>
-				</div>
-					
-					<% 
-					
-					
-					
-					}%>
-				
+                     </div>
+                  </div>
+               </div>
+            </div>
+               
+               <% 
+               
+               
+               
+               }%>
+            
 
-			</div> 
+         </div> 
 		</div>
 		</div>
 
@@ -500,27 +520,19 @@
         <img src="" id="galleryImage" class="img-thumbnail">
         
         </div>
-        <div class="col-xs-6">
-      	<h3 id="content_writer">양진모</h3><br>
-      	<h3 id="content_content">아이유짱이에요</h3>
-      	<h4 style="display: inline;">좋아요 2000개</h4>
-      	<h4 style="display: inline;">댓글 20000개</h4>
-      	<br>
-      	<hr>
-      	<h5>발자취</h5>
-      	
-      	<input type="text" name="content" id="content" value="" style="width: 60%;"><input type="button" onclick="addReply()" value="작성"><br>
-      	<br>
-      	<hr>
-      	<div style="width: 100%; height: 100%;">
-      	<iframe src="reply_list.do" style="width: 100%; height: 100%;"></iframe>
-      	</div>
+         <div class="col-xs-6" style="float: left;">
+      	<h2 id="content_writer">작성자</h2><br>
+      	<h2 id="content_content">게시글 내용</h2>
+      	<h2>좋아요</h2>
+      	<input type="text" name="content" id="content" value=""><input type="button" onclick="addReply()" value="작성"><br>
+      	<h2 id="reply_List">댓글 내용</h2>
         </div>
     </div>
 </div>
-      	<div class="container" style="background-color: #f4f4f4;">
+      	
+      	<div class="container" style="background-color: white;">
     <div class="row">
-        <div class="col-sm-12" style="text-align: center;">
+        <div class="col-sm-12">
       		  <p>
         	 <br/>
          <button  data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
