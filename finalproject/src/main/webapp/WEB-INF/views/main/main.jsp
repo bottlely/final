@@ -212,12 +212,11 @@
                var div = $("#mypage2");
                div.animate({right: '0px'}, "fast");
                div.animate({height: '100%'}, "slow");
-               if(div.height = '0%'){
-               div.animate({width:'toggle'},"slow");
-               
+               if(div.height() == '0%'){
+               div.animate({width:'toggle'},"slow"); 
                }
                else{
-            	   div.animate({width:'60%'}, "slow");
+            	   div.animate({width:'60%'},"slow");
                }
             }
 			
