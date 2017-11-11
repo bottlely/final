@@ -198,11 +198,8 @@ public class ContentController {
         File imageFile = new File(realPath+"/myHomeFolder/content/"+imageFileName);
         
 		File thumbnail = extractImage(newfile,1,imageFile);
-		
-		//비디오 파일 경로 리턴
-		String path = "myHomeFolder/content/"+fileName;
 
-        ModelAndView mav = new ModelAndView("marsJson","path",path);
+        ModelAndView mav = new ModelAndView("marsJson","fileName",fileName);
 		return mav;
 	}
 	

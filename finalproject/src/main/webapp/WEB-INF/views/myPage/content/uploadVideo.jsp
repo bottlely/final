@@ -61,12 +61,12 @@
 		                if(this.status == 200) {
 		                	var jsonResponse = JSON.parse(e.currentTarget.responseText);
 		                	
-		                	console.log(jsonResponse["path"]);
+		                	console.log(jsonResponse["fileName"]);
 		 		        	var source = document.getElementById('src');
-		 		        	source.src = jsonResponse["path"];
+		 		        	source.src = "myHomeFolder/content/"+jsonResponse["fileName"];
 		 		        	
-		 		        	not_upload.push(jsonResponse["path"]);
-		                	sel = jsonResponse["path"];
+		 		        	not_upload.push(jsonResponse["fileName"]);
+		                	sel = jsonResponse["fileName"];
 		 		        	
 		 		        	var player = document.getElementById('player');
 		 		         	player.load();

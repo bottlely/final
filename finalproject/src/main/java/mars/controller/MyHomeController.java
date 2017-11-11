@@ -36,29 +36,44 @@ public class MyHomeController{
 	private ContentDAO cdao;
 	
 	@RequestMapping(value="/myHomeForm.do")
-	public ModelAndView myHomeForm(@RequestParam("useridx")String member_idx) {
+	public ModelAndView myHomeForm(@RequestParam("useridx")String member_idx,
+			@RequestParam(value="cp",defaultValue="1")int cp,
+			@RequestParam(value="category",defaultValue="0")int category) {
 		
 		mhdao.visitorUpdate(member_idx);
+		
 		List<ContentDTO> contentList = cdao.contentList(member_idx);
+		int totalCnt = contentList.size();
+		
 		List<String> imgList = new ArrayList<String>();
 		List<String> videoList = new ArrayList<String>();
 		
 		for(int i=0; i < contentList.size(); i++){
-			int category = contentList.get(i).getCategory();
-			switch(category){
-				case 1 : { imgList.addAll(Arrays.asList(contentList.get(i).getPath().split(",")));} break;
-				case 2 : { videoList.add(contentList.get(i).getPath());} break;
-				case 3 : {} break;
-				case 4 : {} break;
-				default : {};
-			}
+			int content_category = contentList.get(i).getCategory();
+			
+				switch(content_category){
+				
+					case 1 : {imgList.addAll(Arrays.asList(contentList.get(i).getPath().split(",")));} break;
+					
+					case 2 : {String path = contentList.get(i).getPath();
+							  videoList.add(path.substring(0, path.indexOf("."))+ ".jpg");} break;
+							  
+					case 3 : {} break;
+					case 4 : {} break;
+					default : {};
+				}
 		}
+		//int listSize = 9;
+		//int pageSize = 1; 
+		
+		//String pageStr = mars.page.PageModule.makePage("bbsList.do", totalCnt, listSize, pageSize, cp);
 		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("mhdto", mhdto);
 		mav.addObject("cdao", cdao);
-		mav.addObject("imgList",imgList);
+		mav.addObject("totalCnt", totalCnt);
+		mav.addObject("imgList", imgList);
 		mav.addObject("videoList", videoList);
 		mav.setViewName("myPage/myHome");
 		return mav;
