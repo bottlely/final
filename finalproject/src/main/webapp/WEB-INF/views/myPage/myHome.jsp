@@ -260,17 +260,34 @@ input:checked+.slider:before {
             $('.uploadui').hide();
         });
     });
-   
-    //날짜검색function
-    function contentDate(){
-    	var uploadDate=$('.datepicker-here').val();
-    	window.alert(uploadDate);
-    	location.href="uploadDateContent.do?uploadDate="+uploadDate;
-    }
     
     //게시물올리기 popupfunction
     function photoUploadOpen(){
     	window.open('contentUploadForm.do?useridx='+${sessionScope.useridx}+'&type=1','photoUpload','width=300,height=300');
+    }
+</script>
+<script>
+	//날짜검색function
+	function contentDate(){
+	    	var uploadDate=$('.datepicker-here').val();
+	    	alert(uploadDate);
+	    	sendRequest('uploadDateContent.do','uploadDate='+uploadDate,showResult,'POST');
+	}
+	
+	function showResult(){
+    	if(XHR.readyState==4){
+    		if(XHR.status==200){
+    			var data=eval('('+XHR.responseText+')');
+    			var msg=data.contents.length;
+    			window.alert(msg);
+    			
+    			for(var i=0; i<data.contents.length; i++){
+    				var contentDate=data.contents[i];
+    				var contentTable=document.getElementById('myfeedtable');
+    				
+    			}
+    		}
+    	}
     }
 </script>
 
@@ -415,11 +432,5 @@ input:checked+.slider:before {
 		</div>
 </section>
 
-<c:if test="${empty list}">
-<p>검색된 날짜의 게시물이 없습니다.</p>
-</c:if>
-<c:forEach var="dto" items="${list}">
-${dto.content_idx}
-</c:forEach>
 </body>
 </html>
