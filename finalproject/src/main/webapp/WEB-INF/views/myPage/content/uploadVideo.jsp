@@ -4,152 +4,112 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset=UTF-8">
+<meta charset="UTF-8">
 <title>Insert title here</title>
  <style type="text/css">
  
 	input[type=file] {
-        display: none;
-  	}
-  	
-  	.imgs_wrap img {
-        max-width: 150px;
-        margin-left: 10px;
-        margin-right: 10px;
-     }
-   
+	        display: none;
+	 } 
+	.file_input label{
+		position:relative;
+		cursor:pointer;
+		display:inline-block;
+		vertical-align:middle;
+		overflow:hidden;
+		width:100px;
+		height:30px;
+		text-align:center;
+		line-height:30px;
+	}
+	.file_input label input{
+		position:absolute;
+		width:0;
+		height:0;
+		overflow:hidden;
+	}
+
 </style>
- <script type="text/javascript" src="js/jquery-3.1.0.min.js" charset="utf-8"></script>
+<script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript">
-
-        // 이미지 정보들을 담을 배열
-        var sel_files = [];
-
-
-        $(document).ready(function() {
-            $("#input_imgs").on("change", handleImgFileSelect);
-        }); 
-
-        function fileUploadAction() {
-        	
-            console.log("fileUploadAction");
-            $("#input_imgs").trigger('click');
-        }
-
-        function handleImgFileSelect(e) {
-
-            // 이미지 정보들을 초기화
-            sel_files = [];
-            $(".imgs_wrap").empty();
-
-            var files = e.target.files;
-            var filesArr = Array.prototype.slice.call(files);
-
-            var index = 0;
-            filesArr.forEach(function(f) {
-            	
-                if(!f.type.match("video.*")) {
-                    alert("확장자는 동영상 확장자만 가능합니다.");
-                    return;
-                }
-                
-                var path = null;
-                
-            	var data = new FormData();
-            	data.append("video", f);
-            	data.append("useridx", '${sessionScope.useridx}');
-		            
-            	var xhr = new XMLHttpRequest();
-	            xhr.open("POST","videoThumbnail.do");
-	            xhr.send(data);
-	            xhr.onload = function(e) {
-	                if(this.status == 200) {
-	                	var jsonResponse = JSON.parse(e.currentTarget.responseText);
-	                	 sel_files.push(jsonResponse["thumbnail"]);
-	                	 path = jsonResponse["path"];
-	                	 console.log(jsonResponse["thumbnail"]);
-	                }
-	            }
-
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + path + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";
-                    $(".imgs_wrap").append(html);
-                    index++;
-
-                }
-                reader.readAsDataURL(f);
-                
-            });
-        }
-
-
-
-        function deleteImageAction(index) {
-            console.log("index : "+index);
-            console.log("sel length : "+sel_files.length);
-
-            sel_files.splice(index, 1);
-
-            var img_id = "#img_id_"+index;
-            $(img_id).remove(); 
-        }
-
-        function submitAction() {
-             
-            if(sel_files.length < 1) {
-                alert("한개이상의 파일을 선택해주세요.");
-                return;
-            }   
-    			
-    			 var data = new FormData();
-    			
-    			 for(var i=0, len=sel_files.length; i<len; i++) {
-    	                var name = "image_"+i;
-    	                data.append(name, sel_files[i]);
-    	            }
-    			 
-    			 data.append("image_count", sel_files.length);
-    			 data.append("useridx", '${sessionScope.useridx}');
-    			 
-    			 var content = document.getElementsByTagName("textarea")[0].value;
-    			 data.append("content",content);
-    			 //data.append("type",1);
-    			 
-    	        /* $.ajax({
-    	            type : 'post',
-    	            url : 'uploadPhoto.do',
-    	            data : data ,
-    	            processData : false,
-    	            contentType : false
-    	           }).error(function(msg) {
-    	            	alert('error: 업로드할 수 없습니다.');
-    	           }).done(function(msg) {
-    	           
-    	            if(msg==1){
-    	             	alert('정상적으로 취소처리가 되었습니다. 리스트 페이지로 이동합니다.');
-    	             	document.getElementById('frm').submit();
-    	            }else{
-    	             alert('취소처리가 되지 않았습니다. 잠시 후에 시도해 주십시오.');
-    	            }
-
-    	           }); */
-    	           
-		            var xhr = new XMLHttpRequest();
-		            xhr.open("POST","uploadPhoto.do");
+    
+   var not_upload = [];
+   var sel = "";
+  
+   function Search(e){
+	   
+    		 var f = e.files[0];
+    		 
+	              if(!f.type.match("video/mp4")) {
+	                  alert("확장자는 mp4,webm,ogg 동영상 확장자만 가능합니다.");
+	                  return;
+	              }
+	              
+	              if(f.size > 104857600){
+	              	alert("업로드 용량을 초과하였습니다.");
+	                  return;
+	              }
+	            
+	          	var data = new FormData();
+	          	data.append("video", f);
+	          	data.append("useridx", '${sessionScope.useridx}');
+			            
+	          	var xhr = new XMLHttpRequest();
+		            xhr.open("POST","videoThumbnail.do");
 		            xhr.send(data);
 		            xhr.onload = function(e) {
 		                if(this.status == 200) {
 		                	var jsonResponse = JSON.parse(e.currentTarget.responseText);
-		                    if(jsonResponse["result"] == 0){
-		                    	alert('업로드 완료!');
-		                    	document.getElementById('myHome').submit();
-		                    }else{
-		                    	alert('업로드 실패!');
-		                    }
+		                	
+		                	console.log(jsonResponse["path"]);
+		 		        	var source = document.getElementById('src');
+		 		        	source.src = jsonResponse["path"];
+		 		        	
+		 		        	not_upload.push(jsonResponse["path"]);
+		                	sel = jsonResponse["path"];
+		 		        	
+		 		        	var player = document.getElementById('player');
+		 		         	player.load();
+		 		           	player.play();
+		 		           	player.loop = true;
 		                }
 		            }
-
+    		}
+        
+        function submitAction() {
+        	
+        	 var data = new FormData();
+        	 
+        	 data.append("useridx", '${sessionScope.useridx}');
+			 
+			 var content = document.getElementsByTagName("textarea")[0].value;
+			 data.append("content",content);
+			 
+             data.append("not_upload",not_upload);
+             data.append("sel",sel);
+             
+             var xhr = new XMLHttpRequest();
+ 	        xhr.open("POST","uploadVideo.do");
+ 	        xhr.send(data);
+ 	          xhr.onload = function(e) {
+ 	             if(this.status == 200) {
+ 	               var jsonResponse = JSON.parse(e.currentTarget.responseText);
+ 	              if(jsonResponse["result"] > 0){
+                  	alert('업로드 완료!');
+                  	document.getElementById('myHome').submit();
+                  }else{
+                  	alert('업로드 실패!');
+                  }
+ 	              }
+ 	         }
+        
+        }
+        
+        function play(){
+        	console.log("play");
+         	var player = document.getElementById('player');
+         	player.load();
+           	player.autoplay();
         }
 
     </script>
@@ -157,17 +117,12 @@
 
 <body>
 	<h2></h2>
-    <div>
-        <div class="input_wrap">
-            <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
-            <input type="file" id="input_imgs" multiple/>
-        </div>
-    </div>
-
-    <div>
-        <div class="imgs_wrap">
-            <img id="img" />
-        </div>
+    
+    <div class="file_input">
+    	<label>
+    		버튼 이미지
+    		<input type="file" id="video" onchange="Search(this)">
+    	</label>
     </div>
     
     <textarea></textarea>
@@ -178,6 +133,9 @@
 		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
 		<input type="submit" value="back">
 	</form>
-
+	
+	 <video id="player" width="320" height="240">
+      <source id="src" src="" type="video/mp4" onchange="play()"/>
+	</video>
 </body>
 </html>
