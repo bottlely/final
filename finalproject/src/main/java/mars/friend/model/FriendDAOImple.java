@@ -3,6 +3,7 @@ package mars.friend.model;
 import java.sql.*;
 import java.util.*;
 import mars.member.model.*;
+import mars.myHome.model.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -52,4 +53,10 @@ public class FriendDAOImple implements FriendDAO {
 		return list;
 	}
 	
+	public List<MyHomeDTO> infoList(int user_idx) {
+		List<MyHomeDTO> list = sqlMap.selectList("infoList", user_idx);
+		System.out.println("list6:" + list.get(0).getName());
+		System.out.println("list6:" + list.get(0).getProfile_img());
+		return list;
+	}
 }

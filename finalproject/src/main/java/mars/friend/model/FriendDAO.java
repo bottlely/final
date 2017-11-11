@@ -3,6 +3,7 @@ package mars.friend.model;
 import java.util.*;
 import mars.member.model.*;
 import mars.friend.model.*;
+import mars.myHome.model.*;
 
 public interface FriendDAO {
 	
@@ -12,5 +13,6 @@ public interface FriendDAO {
 	public List<MemberDTO> followerList(int user2_idx);
 	public List<MemberDTO> blackList(int user2_idx);
 	public List<MemberDTO> searchNameList(String search_name, int user_idx);
+	public List<MyHomeDTO> infoList(int user_idx);
 	
 }

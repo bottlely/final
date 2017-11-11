@@ -5,13 +5,18 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="mars.ff">
+	<resultMap type="mars.friend.model.MyPageFriendDTO" id="mypagefriend">
+	    <result property="name" column="name" />
+	    <result property="member_idx" column="member_idx" />
+	    <result property="profile_img" column="profile_img" />
+    </resultMap>
 	<insert id="friendAdd" parameterType="mars.friend.model.FriendDTO">
 		insert into mars_ff values(mars_ff_idx.nextval, #{user1_idx}, #{user2_idx}, 0, '', 0, 0, 0, '', '')
 	</insert>
-	<select id="followingList" parameterType="Integer" resultType="mars.member.model.MemberDTO">
-		select mars_member.idx, mars_member.name
-		from mars_member, mars_ff
-		where mars_member.idx=mars_ff.user2_idx and mars_ff.user1_idx=#{user1_idx}	
+	<select id="followingList" resultMap="mypagefriend">
+		select mypage.name, mypage.member_idx, mypage.profile_img
+		from mypage
+		inner join mars_ff on mypage.member_idx=mars_ff.user2_idx and mars_ff.user1_idx=#{user1_idx}
 	</select>
 	<select id="followerList" parameterType="Integer" resultType="mars.member.model.MemberDTO">
 		select mars_member.name, mars_member.idx
@@ -35,9 +40,9 @@
 		delete mars_ff 
 		where user1_idx=#{user1_idx} and user2_idx=#{user2_idx}
 	</delete>
-	<select id="moreSetting" parameterType="Integer" resultType="mars.myHome.model.MyHomeDTO">
-		select member_idx, name
+	<select id="infoList" parameterType="Integer" resultType="mars.myHome.model.MyHomeDTO">
+		select mypage.name, mypage.profile_img
 		from mypage
-		where member_idx=#{user_idx}
+		where mypage.member_idx=#{user_idx}
 	</select>
 </mapper>
