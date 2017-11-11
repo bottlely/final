@@ -16,7 +16,7 @@ public interface SettingDAO {
 	public int changePwd(HashMap<String, String> map);
 	public int leaveMars(int idx);
 	public List<MemberDTO> getFollowingList(int idx);
-	public List<FriendDTO> getGroupList(int idx);
+	public List<GroupListDTO> getGroupList(int idx);
 	public int sendReport(ReportDTO dto);
 	public int addGroup(FriendDTO dto);
 	public int getGroupCnt(int idx);

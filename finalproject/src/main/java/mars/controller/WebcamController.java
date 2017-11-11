@@ -27,7 +27,7 @@ public class WebcamController {
 			return mav;
 		} else {
 			System.out.println("No webcam detected");
-			mav.addObject("msg", "»ç¿ë°¡´ÉÇÑ Ä«¸Ş¶ó°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+			mav.addObject("msg", "ì—°ê²°ê°€ëŠ¥í•œ ì¹´ë©”ë¼ê°€ ì—†ìŠµë‹ˆë‹¤.");
 			mav.addObject("gourl", "index.do");
 			mav.setViewName("webcam/webcamMsg");
 			return mav;

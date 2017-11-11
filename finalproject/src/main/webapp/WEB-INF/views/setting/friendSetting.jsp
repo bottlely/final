@@ -121,7 +121,7 @@
 										<c:if test="${empty g_list }">
 											<li>생성된 그룹이 없습니다.</li>
 										</c:if>
-										<c:forEach var="g_list" items="${g_list}">
+										<%-- <c:forEach var="g_list" items="${g_list.group_name}">
 											<li><a href="showGroup.do?idx_ff=${g_list.idx }&idx=${sessionScope.useridx}">${g_list.group_name }</a>
 											<c:set var="group" value="${group }"></c:set>
 											<ul>
@@ -130,6 +130,11 @@
 											</c:forEach>
 											</ul>
 											</li>
+										</c:forEach> --%>
+										<c:forEach var="g_list" items="${g_list }">
+										<li>${g_list.group_name }</li>
+										<li>${g_list.idx }</li>
+										<li>${g_list.name }</li>
 										</c:forEach>
 									</ul>
 									<hr>

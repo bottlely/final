@@ -32,17 +32,6 @@
     <link href="assets_setting/css/themify-icons.css" rel="stylesheet">
 
 </head>
-
-	<script>
-		function checkOne(gender){
-			var chk = document.getElementsByName("gender");
-			  for(var i=0; i<chk.length; i++){
-	      	  if(chk[i] != gender){
-	      	  	chk[i].checked = false;
-	     		   }
-	   		 }
-		}
-</script>
 <body>
 
 <div class="wrapper">

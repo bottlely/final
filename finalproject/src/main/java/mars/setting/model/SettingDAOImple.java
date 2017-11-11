@@ -56,8 +56,8 @@ public class SettingDAOImple implements SettingDAO {
 	}
 
 	/**나의 그룹 리스트 가져오기 관련 메서드*/
-	public List<FriendDTO> getGroupList(int user2_idx) {
-		List<FriendDTO> g_list = sqlMap.selectList("getGroupList", user2_idx);
+	public List<GroupListDTO> getGroupList(int user2_idx) {
+		List<GroupListDTO> g_list = sqlMap.selectList("getGroupList", user2_idx);
 		return g_list;
 	}
 	

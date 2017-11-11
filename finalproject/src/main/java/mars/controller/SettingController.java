@@ -14,6 +14,7 @@ import mars.friend.model.FriendDTO;
 import mars.group.model.GroupDTO;
 import mars.member.model.MemberDTO;
 import mars.report.model.ReportDTO;
+import mars.setting.model.GroupListDTO;
 import mars.setting.model.SettingDAO;
 
 @Controller
@@ -111,7 +112,7 @@ public class SettingController {
 
 	@RequestMapping("friendSetting.do")
 	public ModelAndView friendsSetting(int idx) {
-		List<FriendDTO> g_list = settingDao.getGroupList(idx);
+		List<GroupListDTO> g_list = settingDao.getGroupList(idx);
 		List<MemberDTO> list = settingDao.getFollowingList(idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
