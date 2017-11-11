@@ -15,4 +15,9 @@
 		from content
 		where to_char(writetime,'yyyy-mm-dd') = #{uploadDate}
 	</select>
+	
+	<select id="contentList" parameterType="String" resultType="mars.content.model.ContentDTO">
+		select * from content where member_idx = #{member_idx} order by content_idx desc
+	</select>
+	
 </mapper>

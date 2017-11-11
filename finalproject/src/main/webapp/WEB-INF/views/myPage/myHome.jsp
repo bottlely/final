@@ -409,8 +409,8 @@ input:checked+.slider:before {
 		<div class="myfeed">
 			<table style="border-spacing:10px;">
 				<tr>
-					<td><img src="assets_myPage/images/cow.jpg" class="showMask3"></td>
-					<td><img src="assets_myPage/images/pig.jpg"></td>
+					<td><img src="" class="showMask3"></td>
+					<td><img src=""></td>
 					<td style="background-color:blue;"></td>
 				</tr>
 				<tr>

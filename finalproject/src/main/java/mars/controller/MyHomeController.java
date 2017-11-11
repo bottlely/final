@@ -1,7 +1,10 @@
 package mars.controller;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import mars.content.model.ContentDAO;
+import mars.content.model.ContentDTO;
 import mars.myHome.model.*;
 
 import javax.servlet.RequestDispatcher;
@@ -27,15 +32,34 @@ public class MyHomeController{
 	@Autowired
 	private MyHomeDAO mhdao;
 	
+	@Autowired
+	private ContentDAO cdao;
 	
 	@RequestMapping(value="/myHomeForm.do")
 	public ModelAndView myHomeForm(@RequestParam("useridx")String member_idx) {
 		
 		mhdao.visitorUpdate(member_idx);
+		List<ContentDTO> contentList = cdao.contentList(member_idx);
+		List<String> imgList = new ArrayList<String>();
+		List<String> videoList = new ArrayList<String>();
+		
+		for(int i=0; i < contentList.size(); i++){
+			int category = contentList.get(i).getCategory();
+			switch(category){
+				case 1 : { imgList.addAll(Arrays.asList(contentList.get(i).getPath().split(",")));} break;
+				case 2 : { videoList.add(contentList.get(i).getPath());} break;
+				case 3 : {} break;
+				case 4 : {} break;
+				default : {};
+			}
+		}
 		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("mhdto", mhdto);
+		mav.addObject("cdao", cdao);
+		mav.addObject("imgList",imgList);
+		mav.addObject("videoList", videoList);
 		mav.setViewName("myPage/myHome");
 		return mav;
 	}

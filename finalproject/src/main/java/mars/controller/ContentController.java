@@ -29,24 +29,13 @@ public class ContentController {
 	@Autowired
 	private MyHomeDAO mhdao;
 	
-	private List<String> photoType;
-	
 	private boolean typeCheck;
 	
 	public ContentController() {
 		
 		super();
 		
-		photoType = new ArrayList<String>();
-		
 		typeCheck = false;
-		
-		photoType.add("image/pjpeg");
-		photoType.add("image/jpeg");
-		photoType.add("image/JPG");
-		photoType.add("image/X-PNG");
-		photoType.add("image/PNG");
-		photoType.add("image/x-png");
 	}
 
 	@RequestMapping("/contentCategory.do")
@@ -97,19 +86,9 @@ public class ContentController {
             MultipartFile mFile = req.getFile(uploadFile);
 
             String fileName = mhdto.getMember_idx()+mhdto.getName()+System.currentTimeMillis()+mFile.getOriginalFilename();
-            
-            //typeCheck = type > 1 ? videoType.contains(mFile.getContentType()) : photoType.contains(mFile.getContentType());
-            
-            typeCheck = photoType.contains(mFile.getContentType());
-            
-            if(typeCheck){
-            	copyInto(fileName,mFile,req2);
-            	path += fileName+"?";
-            	
-            }else{
-            	ModelAndView mav = new ModelAndView("marsJson","result",-1);
-        		return mav;
-            }
+
+            copyInto(fileName,mFile,req2);
+            path += fileName+"?";
         }
       
         info.put("path", path);	

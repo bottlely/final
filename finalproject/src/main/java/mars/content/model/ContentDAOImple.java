@@ -23,4 +23,9 @@ public class ContentDAOImple implements ContentDAO {
 		List<ContentDTO> list = sqlMap.selectList("searchUploadDate", uploadDate);
 		return list;
 	}
+
+	public List<ContentDTO> contentList(String member_idx) {
+		List<ContentDTO> list = sqlMap.selectList("contentList", member_idx);
+		return list;
+	}
 }
