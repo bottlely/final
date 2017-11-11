@@ -15,5 +15,6 @@
 		<mapper resource="sql/searchSql.xml" />
 		<mapper resource="sql/activitySql.xml" />
 		<mapper resource="sql/replySql.xml" />
+		<mapper resource="sql/feedSql.xml" />
 	</mappers> 
 </configuration>

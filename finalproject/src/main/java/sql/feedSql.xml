@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mars.feed">
+<select id="showFeed" parameterType="Integer" resultType="mars.content.model.ContentDTO">
+select * from content where member_idx in (select user2_idx from mars_ff where user1_idx=#{idx}) order by writetime desc)
+</select>
+</mapper>
