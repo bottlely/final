@@ -47,7 +47,7 @@ public class FriendDAOImple implements FriendDAO {
 	public List<MemberDTO> searchNameList(String search_name, int user_idx) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("search_name", search_name);
-		map.put("user_idx", String.valueOf(user_idx));
+		map.put("member_idx", String.valueOf(user_idx));
 		List<MemberDTO> list = sqlMap.selectList("resultList", map);
 		//System.out.println("list5<FriendDAOImple>: "+list);
 		return list;

@@ -153,7 +153,7 @@
                   <div>
                   
                            <form id="search" method="get" action="friend_search.do">
-                              <input type="hidden" name="user_idx" value="${sessionScope.useridx }">
+                              <input type="hidden" name="member_idx" value="${sessionScope.useridx }">
                               <input type="text" name="search_name" placeholder="Search" />
                               <a href="#intro" id="search"><input type="submit" value="찾기"></a>
                            </form>
@@ -165,15 +165,14 @@
                   <!-- follower -->
                      <section id="follower1" style="display: none;">
                         <ul class="posts">
-                        <c:set var="infoList" value="${infoList }" />
                         <c:forEach var="follower_list" items="${followerList }">
                            <li>
                               <article>
                                  <header>
-                                    <h3><a onclick="openMypage(${follower_list.idx })" value="${follower_list.idx }">${follower_list.name }</a></h3>
-                                    <input type="button" value="chat" id="userChat"><input type="button" value="more" onclick="more(${follower_list.idx })">
+                                    <h3><a onclick="openMypage(${follower_list.member_idx })" value="${follower_list.member_idx }">${follower_list.name }</a></h3>
+                                    <input type="button" value="chat" id="userChat"><input type="button" value="more" onclick="more(${follower_list.member_idx })">
                                  </header>
-                                 <%-- <a href="#" class="image"><img src="myHomeFolder/profile_img/${infoList.get(0).getProfile_img() }" alt=""  style="border-radius: 50%"></a> --%>
+                                 <a href="#" class="image"><img src="myHomeFolder/profile_img/${follower_list.profile_img }" alt=""  style="border-radius: 50%"></a>
                               </article>
                            </li>
                         </c:forEach>
@@ -204,10 +203,10 @@
                            <li>
                               <article>
                                  <header>
-                                    <h3><a onclick="openMypage(${search_list.idx })" value="${search_list.idx }">${search_list.name }</a></h3>
-                                    <input type="button" value="chat" id="userChat2"><input type="button" value="more" id="more" onclick="more(${search_list.idx })">
+                                    <h3><a onclick="openMypage(${search_list.member_idx })" value="${search_list.member_idx }">${search_list.name }</a></h3>
+                                    <input type="button" value="chat" id="userChat2"><input type="button" value="more" id="more" onclick="more(${search_list.member_idx })">
                                  </header>
-                                 <%-- <a href="#" class="image"><img src="myHomeFolder/profile_img/${infoList.profile_img }" alt=""  style="border-radius: 50%"></a> --%>
+                                 <a href="#" class="image"><img src="myHomeFolder/profile_img/${search_list.profile_img }" alt=""  style="border-radius: 50%"></a>
                               </article>
                            </li>
                         </c:forEach>
@@ -227,15 +226,14 @@
                      <hr>
                      <section id="black1" style="display: none;">
                         <ul class="posts">
-                        <c:set var="infoList" value="${infoList }" />
                         <c:forEach var="blackList" items="${blackList }">
                            <li>
                               <article>
                                  <header>
-                                    <h3 style="display: inline;"><a onclick="openMypage(${blackList.idx })" value="${blackList.idx }">${blackList.name }</a></h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="button" value="차단해제" onclick="black(${blackList.idx })">
+                                    <h3 style="display: inline;"><a onclick="openMypage(${blackList.member_idx })" value="${blackList.member_idx }">${blackList.name }</a></h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="button" value="차단해제" onclick="black(${blackList.member_idx })">
                                  </header>
-                                 <a href="#" class="image"><img src="myHomeFolder/profile_img/${infoList.get(0).getProfile_img() }" alt=""  style="border-radius: 50%"></a>
+                                 <a href="#" class="image"><img src="myHomeFolder/profile_img/${blackList.profile_img }" alt=""  style="border-radius: 50%"></a>
                               </article>
                            </li>
                         </c:forEach>

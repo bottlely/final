@@ -60,35 +60,30 @@ public class FriendController {
 	}
 	
 	@RequestMapping("/main_frList.do")
-	public ModelAndView followingList(@RequestParam("user_idx")int user_idx) {
+	public ModelAndView followingList(@RequestParam("member_idx")int member_idx) {
 		//System.out.println("idx: "+user_idx);
-		List<MemberDTO> list1 = friendDao.followingList(user_idx);
-		List<MemberDTO> list2 = friendDao.followerList(user_idx);
-		List<MemberDTO> list3 = friendDao.blackList(user_idx);
-		//MyHomeDTO mhdto = mhdao.myHomeSource(String.valueOf(user_idx));
-		//List<MyHomeDTO> list5 = friendDao.infoList(user_idx);
+		List<MemberDTO> list1 = friendDao.followingList(member_idx);
+		List<MemberDTO> list2 = friendDao.followerList(member_idx);
+		List<MemberDTO> list3 = friendDao.blackList(member_idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("followingList", list1);
 		mav.addObject("followerList", list2);
 		mav.addObject("blackList", list3);
-		//mav.addObject("infoList", list5);
 		mav.setViewName("main/main_frList");
 		return mav;
 	}
 	
 	@RequestMapping("/friend_search.do")
-	public ModelAndView searchResult(@RequestParam("user_idx")int user_idx, @RequestParam("search_name")String search_name) {
-		List<MemberDTO> list1 = friendDao.followingList(user_idx);
-		List<MemberDTO> list2 = friendDao.followerList(user_idx);
-		List<MemberDTO> list3 = friendDao.blackList(user_idx);
-		List<MemberDTO> list4 = friendDao.searchNameList(search_name, user_idx);
-		MyHomeDTO mhdto = mhdao.myHomeSource(String.valueOf(user_idx));
+	public ModelAndView searchResult(@RequestParam("member_idx")int member_idx, @RequestParam("search_name")String search_name) {
+		List<MemberDTO> list1 = friendDao.followingList(member_idx);
+		List<MemberDTO> list2 = friendDao.followerList(member_idx);
+		List<MemberDTO> list3 = friendDao.blackList(member_idx);
+		List<MemberDTO> list4 = friendDao.searchNameList(search_name, member_idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("followingList", list1);
 		mav.addObject("followerList", list2);
 		mav.addObject("blackList", list3);
 		mav.addObject("resultList", list4);
-		mav.addObject("mhdto", mhdto);
 		mav.setViewName("main/main_frList");
 		return mav;
 	}

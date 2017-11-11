@@ -257,10 +257,10 @@
 <div id="navbar-full">
 <span style="float: left;">
 
-            <div id="friends2" style="background:#935d8c;height:100%;width:26%; position: absolute; float: left; display: none; z-index: 4">
+            <div id="friends2" style="background:#935d8c;height:100%;width:40%; position: absolute; float: left; display: none; z-index: 4">
       <div style="background-color: white; align-content:center; text-align: right;"><a href="#" id="cl1">Close</a></div> 
    <c:url var="frListUrl" value="main_frList.do">
-      <c:param name="user_idx" value="${sessionScope.useridx }" />
+      <c:param name="member_idx" value="${sessionScope.useridx }" />
    </c:url>
    <iframe src="${frListUrl }" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
