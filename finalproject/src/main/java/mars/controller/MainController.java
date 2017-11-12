@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import mars.content.model.ContentDTO;
 import mars.feed.model.FeedDAO;
@@ -23,8 +25,14 @@ public class MainController {
 	private FeedDAO feedDao;
 
 	@RequestMapping("main.do")
-	public String mainPage() {
-		return "main/main";
+	public ModelAndView mainPage() {
+		int idx = 12;
+		List<ContentDTO> list = feedDao.showFeed(idx);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("main/main");
+		return mav;
 	}
 
 	@RequestMapping("main_view.do")
@@ -34,6 +42,8 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 
 		mav.addObject("list", list);
+		
+		mav.addObject("content_idx", content_idx);
 
 		mav.setViewName("main/main_view");
 
@@ -43,12 +53,11 @@ public class MainController {
 	@RequestMapping("showFeed.do")
 	public ModelAndView showFeed(int idx) {
 		idx = 12;
-		
 		List<ContentDTO> list = feedDao.showFeed(idx);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
-		mav.setViewName("main/");
+		mav.setViewName("main/main");
 		return mav;
 	}
 }

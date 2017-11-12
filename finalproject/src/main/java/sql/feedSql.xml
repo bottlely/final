@@ -6,6 +6,6 @@
 
 <mapper namespace="mars.feed">
 <select id="showFeed" parameterType="Integer" resultType="mars.content.model.ContentDTO">
-select * from content where member_idx in (select user2_idx from mars_ff where user1_idx=#{idx}) order by writetime desc)
+select * from content where member_idx in (select user2_idx from mars_ff where user1_idx=#{idx}) order by writetime desc
 </select>
 </mapper>
