@@ -81,8 +81,11 @@
         	 var data = new FormData();
         	 
         	 data.append("useridx", '${sessionScope.useridx}');
-			 
-			 var content = document.getElementsByTagName("textarea")[0].value;
+        	 
+        	 var tag =  document.getElementById("tag");
+			 data.append("tag",tag);
+        	 
+			 var content =document.getElementById("content");
 			 data.append("content",content);
 			 
              data.append("not_upload",not_upload);
@@ -112,11 +115,17 @@
            	player.autoplay();
         }
 
+        function clearText(field){
+        	if(field.defaultValue == field.value) field.value = '';
+        	else if(field.value == '') field.value = field.defaultValue;
+        }
     </script>
 </head>
 
 <body>
-	<h2></h2>
+	<h2>${writer}</h2>
+    
+   <img src="myHomeFolder/profile_img/${profile}" width="50px" height="50px"/>
     
     <div class="file_input">
     	<label>
@@ -125,7 +134,8 @@
     	</label>
     </div>
     
-    <textarea></textarea>
+    <input id="tag" type="text" value="태그" onFocus="clearText(this)" onBlur="clearText(this)">
+    <textarea id="content" onFocus="clearText(this)" onBlur="clearText(this)">내용입력하세요.</textarea>
 
 	<a href="javascript:" class="my_button" onclick="submitAction();">업로드</a>
 	

@@ -95,8 +95,12 @@
     			 data.append("image_count", sel_files.length);
     			 data.append("useridx", '${sessionScope.useridx}');
     			 
-    			 var content = document.getElementsByTagName("textarea")[0].value;
+    			 var tag =  document.getElementById("tag");
+    			 data.append("tag",tag);
+            	 
+    			 var content =document.getElementById("content");
     			 data.append("content",content);
+    			 
     			 //data.append("type",1);
     			 
     	        /* $.ajax({
@@ -124,7 +128,7 @@
 		            xhr.onload = function(e) {
 		                if(this.status == 200) {
 		                	var jsonResponse = JSON.parse(e.currentTarget.responseText);
-		                    if(jsonResponse["result"] == 0){
+		                    if(jsonResponse["result"] > 0){
 		                    	alert('업로드 완료!');
 		                    	document.getElementById('myHome').submit();
 		                    }else{
@@ -134,26 +138,31 @@
 		            }
 
         }
-
+	
+        function clearText(field){
+        	if(field.defaultValue == field.value) field.value = '';
+        	else if(field.value == '') field.value = field.defaultValue;
+        }
+        
     </script>
 </head>
 
 <body>
-	<h2></h2>
-    <div>
+	<h2>${writer}</h2>
+	
+	<img src="myHomeFolder/profile_img/${profile}" width="50px" height="50px"/>
+    
         <div class="input_wrap">
             <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
             <input type="file" id="input_imgs" multiple/>
         </div>
-    </div>
 
-    <div>
         <div class="imgs_wrap">
             <img id="img" />
         </div>
-    </div>
     
-    <textarea></textarea>
+     <input id="tag" type="text" value="태그" onFocus="clearText(this)" onBlur="clearText(this)">
+    <textarea id="content" onFocus="clearText(this)" onBlur="clearText(this)">내용입력하세요.</textarea>
 
 	<a href="javascript:" class="my_button" onclick="submitAction();">업로드</a>
 	

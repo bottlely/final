@@ -427,46 +427,6 @@ input:checked+.slider:before {
 					<td style="background-color:blue;"></td>
 					<td style="background-color:blue;"></td>
 				</tr>
-				
-				<c:if test="${empty cdao}">
-					<tr>
-						<td colspan="3" align="center">No content</td>
-					</tr>
-				</c:if>
-				<c:if test="${!empty cdao}">
-					<tr>
-						<c:set var="count" value="0"/>
-						
-						<c:forEach var="cdao" items="${cdao}">
-						
-							<c:url var="contentUrl" value="">
-								<c:param name="contentIdx" value="${cdao.getContent_idx()}"/>
-							</c:url>
-							<a href="${contentUrl}">
-								<td>
-									<c:if test="${cdao.getCategory() < 3}">
-										<c:forTokens var="temp" items="${cdao.getPath()}" delims="?">
-											<img src="myHomeFolder/content/${temp}">
-										</c:forTokens>
-									</c:if>
-								</td>
-							</a>	
-							
-						<c:set var="count" value="${count + 1}" />
-							<c:if test="${count % 3 == 0}">
-								</tr>
-								<tr>
-							</c:if>
-						</c:forEach>
-					</tr>
-				</c:if>
-			 <tfoot>
-	            <tr>
-	            	 <td colspan="3" align="center">
-	                 	 <input type="button" value="more">
-	                </td>
-	            </tr>
-	         </tfoot>
 			</table>
 		</div>	
 		

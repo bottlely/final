@@ -59,14 +59,39 @@ public class ContentController {
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("writer", mhdto.getName());
+		mav.addObject("profile", mhdto.getProfile_img());
 		mav.setViewName(path);
+		return mav;
+	}
+	
+	@RequestMapping("/uploadText.do")
+	public ModelAndView uploadText(@RequestParam("useridx")String member_idx,
+			@RequestParam("tag")String tag,
+			@RequestParam("title")String title,
+			@RequestParam("content")String content,
+			MultipartHttpServletRequest req,HttpServletRequest req2) {
+		
+		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
+		
+		HashMap<String, String> info = new HashMap<String, String>();
+		info.put("idx",member_idx);
+		info.put("path", title);	
+        info.put("content", content);
+        info.put("writer", mhdto.getName());
+        info.put("type", "3");
+		int result = cdao.uploadContent(info);
+		
+		ModelAndView mav = new ModelAndView();
+		String msg = result > 0 ? "ok!" : "no!";
+		mav.addObject("msg", msg);
+		mav.setViewName("myPage/myHomeMsg");
 		return mav;
 	}
 	
 	@RequestMapping("/uploadPhoto.do")
 	public ModelAndView uploadPhoto(@RequestParam("useridx")String member_idx,
 			@RequestParam("content")String content,
-			//@RequestParam("type")int type,
+			@RequestParam("tag")String tag,
 			MultipartHttpServletRequest req,HttpServletRequest req2) {
 		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
@@ -77,7 +102,6 @@ public class ContentController {
 		info.put("idx",member_idx);
 		
 		Iterator<String> itr = req.getFileNames();
-		
 		
         while(itr.hasNext()){
 
@@ -97,7 +121,7 @@ public class ContentController {
         info.put("type", "1");
         int result = cdao.uploadContent(info);
 
-        ModelAndView mav = new ModelAndView("marsJson","result",0);
+        ModelAndView mav = new ModelAndView("marsJson","result",result);
 		return mav;
 	}
 	
@@ -123,6 +147,7 @@ public class ContentController {
 	@RequestMapping("/uploadVideo.do")
 	public ModelAndView uploadVideo(@RequestParam("useridx")String member_idx,
 			@RequestParam("content")String content,@RequestParam("not_upload")String list,
+			@RequestParam("tag")String tag,
 			@RequestParam("sel")String sel,HttpServletRequest req) {
 
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
