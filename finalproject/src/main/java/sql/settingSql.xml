@@ -43,18 +43,18 @@
 		mars_ff.user2_idx=#{user2_idx}
 	</select>
 
-	<!-- <select id="getGroupList" parameterType="Integer"
+	<select id="getGroupList" parameterType="Integer"
 		resultType="mars.friend.model.FriendDTO">
 		select * from mars_ff where user2_idx=#{user2_idx} and type=1
-	</select> -->
+	</select>
 
-	<select id="getGroupList" parameterType="Integer" resultType="mars.setting.model.GroupListDTO">
+	<!-- <select id="getGroupList" parameterType="Integer" resultType="mars.setting.model.GroupListDTO">
 		select a.name, a.idx, b.group_name from mars_member a
 		inner join (select idx_to, group_name, idx_ff from mars_group where idx_ff
 		in (select idx from mars_ff where user2_idx=#{user2_idx} and type=1) order by
 		idx_ff asc, idx_to asc)b
 		on b.idx_to=a.idx
-	</select>
+	</select> -->
 
 	<insert id="sendReport" parameterType="mars.report.model.ReportDTO">
 		insert into mars_report values(mars_report_idx.nextval, #{idx_from}, 0,
@@ -83,5 +83,9 @@
 
 	<select id="showGroup" parameterType="integer" resultType="mars.group.model.GroupDTO">
 		select * from mars_group where idx_ff=#{idx_ff}
+	</select>
+	
+	<select id="groupMember" parameterType="Integer" resultType="mars.member.model.MemberDTO">
+	select * from mars_member where idx in (select idx_to from mars_group where idx_ff=#{idx})
 	</select>
 </mapper>

@@ -112,7 +112,8 @@ public class SettingController {
 
 	@RequestMapping("friendSetting.do")
 	public ModelAndView friendsSetting(int idx) {
-		List<GroupListDTO> g_list = settingDao.getGroupList(idx);
+		// List<GroupListDTO> g_list = settingDao.getGroupList(idx);
+		List<FriendDTO> g_list = settingDao.getGroupList(idx);
 		List<MemberDTO> list = settingDao.getFollowingList(idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
@@ -153,13 +154,13 @@ public class SettingController {
 
 		String msg = result == idx_to.length ? "그룹이 생성되었습니다." : "그룹 생성에 실패하였습니다. 다시 시도하여주십시오";
 		mav.addObject("msg", msg);
-		mav.addObject("gourl", "friendSetting.do?idx="+idx_from);
+		mav.addObject("gourl", "friendSetting.do?idx=" + idx_from);
 		mav.setViewName("setting/popupMsg");
 		return mav;
 	}
-	
+
 	@RequestMapping("showGroup.do")
-	public ModelAndView showGroup(int idx_ff, int idx){
+	public ModelAndView showGroup(int idx_ff, int idx) {
 		System.out.println("idx_ff = " + idx_ff);
 		List<GroupDTO> group = settingDao.showGroup(idx_ff);
 		System.out.println("group_len = " + group.size());
@@ -167,6 +168,13 @@ public class SettingController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("group", group);
 		mav.setViewName("setting/friendSetting");
+		return mav;
+	}
+
+	@RequestMapping("groupMember.do")
+	public ModelAndView groupMember(int idx) {
+		List<MemberDTO> list = settingDao.groupMember(idx);
+		ModelAndView mav = new ModelAndView("marsJson", "memberList", list);
 		return mav;
 	}
 }

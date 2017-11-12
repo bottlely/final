@@ -14,7 +14,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <title>MARS</title>
-
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
 	name='viewport' />
@@ -42,9 +41,43 @@
 <link href='https://fonts.googleapis.com/css?family=Muli:400,300'
 	rel='stylesheet' type='text/css'>
 <link href="assets_setting/css/themify-icons.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     <script type="text/javascript" src="js/httpRequest.js"></script>
 <script>
 	function addGroupForm() {
 		window.open('addGroupForm.do?idx=${sessionScope.useridx}', 'addGroupForm', 'width=400, height=800');
+	}
+	
+	function groupMember(idx){
+		sendRequest('groupMember.do?idx='+idx, null, memberList, 'GET');
+	}
+	
+	function memberList(){
+		if(XHR.readyState==4){
+			if(XHR.status==200){
+				var data = XHR.responseText;
+				var lists = eval('('+data+')');
+				var parent = document.getElementById('group_name');
+				
+				if(lists.memberList.length==0){
+					var ul = document.createElement("ul");
+					var li = document.createElement("li");
+					li.innerHTML = '그룹에 해당하는 사람이 없습니다.';
+					parent.append(ul);
+					ul.appendChild(li);
+					
+				}else{
+					for(var i=0; i<lists.memberList.length; i++){
+						var ul = document.createElement("ul");
+						var li = document.createElement("li");
+						var l = lists.memberList[i];
+						li.innerHTML = l.name;
+						parent.appendChild(ul);
+						ul.appendChild(li);
+					}
+				}
+			}
+		}
 	}
 </script>
 </head>
@@ -121,20 +154,9 @@
 										<c:if test="${empty g_list }">
 											<li>생성된 그룹이 없습니다.</li>
 										</c:if>
-										<%-- <c:forEach var="g_list" items="${g_list.group_name}">
-											<li><a href="showGroup.do?idx_ff=${g_list.idx }&idx=${sessionScope.useridx}">${g_list.group_name }</a>
-											<c:set var="group" value="${group }"></c:set>
-											<ul>
-											<c:forEach var="group" items="${group }">
-											<li>${group.idx_to }</li>
-											</c:forEach>
-											</ul>
-											</li>
-										</c:forEach> --%>
 										<c:forEach var="g_list" items="${g_list }">
-										<li>${g_list.group_name }</li>
-										<li>${g_list.idx }</li>
-										<li>${g_list.name }</li>
+										<li id="group_name"><a href="javascript:groupMember(${g_list.idx})">${g_list.group_name } </a>
+										</li>
 										</c:forEach>
 									</ul>
 									<hr>
