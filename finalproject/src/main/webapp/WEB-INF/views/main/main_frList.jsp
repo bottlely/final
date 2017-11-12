@@ -86,10 +86,11 @@
           });
       });
       
-     function black(idx) {
-    	 var div = $('#black2', parent.document);
+     function black(user1_idx, user2_idx) {
+    	 /* var div = $('#black2', parent.document);
          div.animate({height: '40%'}, "slow");
-         div.animate({width:'toggle'}, "slow");
+         div.animate({width:'toggle'}, "slow"); */
+         location.href="friend_unblock.do?user1_idx="+user1_idx+"&user2_idx="+user2_idx;
      } 
       
      function more(other_idx) {
@@ -231,7 +232,7 @@
                               <article>
                                  <header>
                                     <h3 style="display: inline;"><a onclick="openMypage(${blackList.member_idx })" value="${blackList.member_idx }">${blackList.name }</a></h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="button" value="차단해제" onclick="black(${blackList.member_idx })">
+                                    <input type="button" value="차단해제" onclick="black(${sessionScope.useridx }, ${blackList.member_idx })">
                                  </header>
                                  <a href="#" class="image"><img src="myHomeFolder/profile_img/${blackList.profile_img }" alt=""  style="border-radius: 50%"></a>
                               </article>

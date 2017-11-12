@@ -45,19 +45,17 @@ public class FriendController {
 		return mav;
 	}
 	
-	@RequestMapping("/test.do")
+	/*@RequestMapping("/test.do")
 	public ModelAndView test(@RequestParam("user_idx")int user_idx) {
 		List<MemberDTO> list1 = friendDao.followerList(user_idx);
 		List<MemberDTO> list2 = friendDao.followingList(user_idx);
 		//MyHomeDTO mhdto = mhdao.myHomeSource(String.valueOf(user_idx));
-		List<MyHomeDTO> list5 = friendDao.infoList(user_idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("followerList", list1);
 		mav.addObject("followingList", list2);
-		mav.addObject("infoList", list5);
 		mav.setViewName("friend/test");
 		return mav;
-	}
+	}*/
 	
 	@RequestMapping("/main_frList.do")
 	public ModelAndView followingList(@RequestParam("member_idx")int member_idx) {
@@ -84,6 +82,20 @@ public class FriendController {
 		mav.addObject("followerList", list2);
 		mav.addObject("blackList", list3);
 		mav.addObject("resultList", list4);
+		mav.setViewName("main/main_frList");
+		return mav;
+	}
+	
+	@RequestMapping("/friend_unblock.do")
+	public ModelAndView unblock(@RequestParam("user1_idx")int user1_idx, @RequestParam("user2_idx")int user2_idx) {
+		List<MemberDTO> list1 = friendDao.followingList(user1_idx);
+		List<MemberDTO> list2 = friendDao.followerList(user1_idx);
+		List<MemberDTO> list3 = friendDao.blackList(user1_idx);
+		int res = friendDao.unblock(user1_idx, user2_idx);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("followingList", list1);
+		mav.addObject("followerList", list2);
+		mav.addObject("blackList", list3);
 		mav.setViewName("main/main_frList");
 		return mav;
 	}

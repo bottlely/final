@@ -53,10 +53,12 @@ public class FriendDAOImple implements FriendDAO {
 		return list;
 	}
 	
-	public List<MyHomeDTO> infoList(int user_idx) {
-		List<MyHomeDTO> list = sqlMap.selectList("infoList", user_idx);
-		System.out.println("list6:" + list.get(0).getName());
-		System.out.println("list6:" + list.get(0).getProfile_img());
-		return list;
+	public int unblock(int user1_idx, int user2_idx) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user1_idx", user1_idx);
+		map.put("user2_idx", user2_idx);
+		int res = sqlMap.update("unblock", map);
+		return res;
 	}
+	
 }
