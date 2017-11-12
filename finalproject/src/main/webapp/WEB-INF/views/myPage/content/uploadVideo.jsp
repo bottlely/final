@@ -129,7 +129,7 @@
     
     <div class="file_input">
     	<label>
-    		버튼 이미지
+    		파일 찾기
     		<input type="file" id="video" onchange="Search(this)">
     	</label>
     </div>

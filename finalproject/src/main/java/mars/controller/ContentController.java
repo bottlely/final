@@ -68,8 +68,7 @@ public class ContentController {
 	public ModelAndView uploadText(@RequestParam("useridx")String member_idx,
 			@RequestParam("tag")String tag,
 			@RequestParam("title")String title,
-			@RequestParam("content")String content,
-			MultipartHttpServletRequest req,HttpServletRequest req2) {
+			@RequestParam("content")String content) {
 		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
 		

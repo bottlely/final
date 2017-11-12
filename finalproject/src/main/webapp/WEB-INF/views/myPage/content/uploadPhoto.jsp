@@ -130,7 +130,8 @@
 		                	var jsonResponse = JSON.parse(e.currentTarget.responseText);
 		                    if(jsonResponse["result"] > 0){
 		                    	alert('업로드 완료!');
-		                    	document.getElementById('myHome').submit();
+		                    	window.opener.location.reload();
+		                    	window.close();
 		                    }else{
 		                    	alert('업로드 실패!');
 		                    }
@@ -144,6 +145,10 @@
         	else if(field.value == '') field.value = field.defaultValue;
         }
         
+        function back(){
+        	window.opener.location.reload();
+        	window.close();
+        }
     </script>
 </head>
 
@@ -153,7 +158,7 @@
 	<img src="myHomeFolder/profile_img/${profile}" width="50px" height="50px"/>
     
         <div class="input_wrap">
-            <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 업로드</a>
+            <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 찾기</a>
             <input type="file" id="input_imgs" multiple/>
         </div>
 
@@ -166,10 +171,11 @@
 
 	<a href="javascript:" class="my_button" onclick="submitAction();">업로드</a>
 	
-	<form id="myHome" action="myHomeForm.do" method="post">
+	<!--   <form id="myHome" action="myHomeForm.do" method="post">
 		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
 		<input type="submit" value="back">
-	</form>
-
+		</form>
+	-->
+	<input type="submit" value="back" onclick="back()">
 </body>
 </html>
