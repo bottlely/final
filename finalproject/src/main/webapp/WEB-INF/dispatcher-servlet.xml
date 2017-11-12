@@ -64,6 +64,7 @@
 	<bean id="memberController" class="mars.controller.MemberController"></bean>
 	<bean id="mainController" class="mars.controller.MainController"></bean>
 	<bean id="adController" class="mars.controller.AdController"></bean>
+	<bean id="voiceController" class="mars.controller.VoiceController"></bean>
 	<bean id="adminController" class="mars.controller.AdminController"></bean>
 	<bean id="settingController" class="mars.controller.SettingController"></bean>
 	<bean id="myHomeController" class="mars.controller.MyHomeController"></bean>

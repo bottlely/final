@@ -334,6 +334,22 @@
               <ul class="nav navbar-nav navbar-right">
 
            				<!-- 다운 광고 추가 임시 버튼 -->
+           				
+           	<script>
+           		function voice(){
+           			sendRequest('voice.do', null, voiceResult, 'GET');
+           		}
+           		function voiceResult(){
+           			
+           		}
+           	</script>	
+           				
+           				
+           	  <li>
+              <a href="#" onclick="voice()">
+                           <i class="pe-7s-search"></i>       
+              </a>
+              </li>
               <li>
               <a href="#" onclick="window.open('applyAdForm.do', '광고 주문서', 'scrollbars=no width=400, height=450')">
                            <i class="pe-7s-search"></i>       

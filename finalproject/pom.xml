@@ -9,6 +9,16 @@
 	<description>finalproject</description>
 
 	<dependencies>
+	
+	   <!-- google speech to text -->
+
+<dependency>
+  <groupId>com.google.cloud</groupId>
+  <artifactId>google-cloud-speech</artifactId>
+  <version>0.26.0-alpha</version>
+</dependency>
+
+
 		<!-- https://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api -->
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
