@@ -119,7 +119,7 @@ String idx = (String)session.getAttribute("useridx");
 							Spaces</p>
 
 						<div class="wow fadeInDown" data-wow-delay="0.3s">
-							<a class="btn btn-action" href="#login">&nbsp;Login&nbsp;
+							<a class="btn btn-action" data-scroll href="#login">&nbsp;Login&nbsp;
 							</a> <a class="btn btn-action" href="joinForm.do">Sign Up
 							</a>
 						</div>

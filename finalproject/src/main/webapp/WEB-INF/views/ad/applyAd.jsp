@@ -21,8 +21,8 @@ h2 {
 }
 
 </style>
-<body style="background-image:linear-gradient(to bottom right, #5a00b5, #fc81ac);">
-	<div class="container">
+<body>
+	<div class="container" style="background-color:#f2fdff;">
 		<h2>광고 주문서</h2>
 		<form class="form-horizontal" name="applyAd" action="applyAd.do"
 			method="post">

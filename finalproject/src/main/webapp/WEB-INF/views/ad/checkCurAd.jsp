@@ -12,7 +12,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background-color:#f2fdff;">
 
 	<script type="text/javascript" src="js/httpRequest.js"></script>
 	<script>
@@ -159,7 +159,7 @@ function showNumResult(){
 
 </script>
 
-<section class="contact" style="background-image:linear-gradient(to bottom right, #5a00b5, #fc81ac);">
+<section class="contact">
 	<div class="container">
 		<h2>광고관리</h2>
 		<div class="panel-group" id="accordion">
