@@ -30,7 +30,7 @@ public class FriendController {
 		String msg = result>0? "Success" : "Fail";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
-		mav.setViewName("friend/friendMsg");
+		mav.setViewName("main/friendMsg");
 		return mav;
 	}
 	
@@ -41,7 +41,7 @@ public class FriendController {
 		String msg = result>0? "Sucess" : "Fail";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
-		mav.setViewName("friend/friendMsg");
+		mav.setViewName("main/friendMsg");
 		return mav;
 	}
 	
@@ -66,32 +66,13 @@ public class FriendController {
 	@RequestMapping("/main_frList.do")
 	public ModelAndView followingList(@RequestParam("member_idx")int member_idx) {
 		//System.out.println("idx: "+user_idx);
-		HashMap<String, String> map = new HashMap<String, String>();
 		
 		List<MemberDTO> list1 = friendDao.followingList(member_idx); //following
 		List<MemberDTO> list2 = friendDao.followerList(member_idx); //follower
-		
-		/*int max = list1.size();
-		int min = list2.size();
-		if(list1.size()<list2.size()) {
-			max = list2.size();
-			min = list1.size();
-		}
-		
-		for(int i = 0; i < max; i++) {
-			for(int j = 0; j < min; j++) {
-				if(list1.get(i).getIdx()== list2.get(j).getIdx()) {
-					map.put("name", list2.get(i).getName());
-				}
-			}
-		}*/
-		
 		List<MemberDTO> list3 = friendDao.blackList(member_idx);
-		List<MyPageFriendDTO> check_list = friendDao.check(member_idx);
 		
 		ModelAndView mav = new ModelAndView();
 		
-		mav.addObject("name", map);
 		mav.addObject("followingList", list1);
 		mav.addObject("followerList", list2);
 		mav.addObject("blackList", list3);
