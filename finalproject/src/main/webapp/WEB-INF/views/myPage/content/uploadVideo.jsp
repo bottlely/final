@@ -120,10 +120,10 @@ select {
             
             data.append("useridx", '${sessionScope.useridx}');
             
-            var tag =  document.getElementById("tag");
+            var tag =  document.getElementById("tag").value;
           data.append("tag",tag);
             
-          var content =document.getElementById("content");
+          var content =document.getElementById("content").value;
           data.append("content",content);
           
              data.append("not_upload",not_upload);
