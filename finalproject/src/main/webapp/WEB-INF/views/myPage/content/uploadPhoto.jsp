@@ -149,6 +149,13 @@
         	window.opener.location.reload();
         	window.close();
         }
+        
+        function hi(e){
+        	var sel = e.options[e.selectedIndex].value;
+        	if(sel == 2 || sel == 3){
+        		alert('hi!!');
+        	}
+        }
     </script>
 </head>
 
@@ -157,6 +164,14 @@
 	
 	<img src="myHomeFolder/profile_img/${profile}" width="50px" height="50px"/>
     
+    <select name="coverage" onchange="hi(this)">
+    <option value="0">전채공개</option>
+    <option value="1">친구만</option>
+    <option value="2">특정 대상</option>
+    <option value="3">제외할 대상</option>
+    <option value="4">나만</option>
+	</select>
+
         <div class="input_wrap">
             <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 찾기</a>
             <input type="file" id="input_imgs" multiple/>

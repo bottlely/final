@@ -127,6 +127,14 @@
     
    <img src="myHomeFolder/profile_img/${profile}" width="50px" height="50px"/>
     
+     <select name="coverage">
+    <option value="0">전채공개</option>
+    <option value="1">친구만</option>
+    <option value="2">특정 대상</option>
+    <option value="3">제외할 대상</option>
+    <option value="4">나만</option>
+	</select>
+	
     <div class="file_input">
     	<label>
     		파일 찾기
