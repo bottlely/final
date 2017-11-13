@@ -729,7 +729,7 @@
 			
 			#main .plusicon button{
 			display: flex;
-			
+			padding:none;
 			border-color: #ffffff;
 			
 			float: right;

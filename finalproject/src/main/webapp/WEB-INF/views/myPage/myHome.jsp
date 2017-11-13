@@ -301,7 +301,17 @@ function showResult(){
 	}
 }
 </script>
-
+<script>
+//내 게시물 사진만 보기
+function showMyPhoto(){
+	sendRequest('showMyPhoto.do','member_idx='+${sessionScope.useridx},showResult2(),'POST')
+}
+function showResult2(){
+	if(XHR.readyState==4){
+		if(XHR.status==200){
+			var data=eval('('+XHR.responseText+')');
+}
+</script>
 </head>
 <body onload="check()">
 
@@ -323,7 +333,7 @@ function showResult(){
 							
 <!-- 더보기아이콘 -->
 
-<div class="moreicon">
+<div id="moreicon">
 	
     <a href="" class="showMask"><i class="fa fa-ellipsis-h"></i></a>
  	
@@ -367,7 +377,7 @@ function showResult(){
 <div class="plusicon">
 
 	
-	<button style="font-size:24px;width:50px;border:0px;" class="showMask2">
+	<button style="font-size:24px;width:30px;border:0px;" class="showMask2">
 	<i class="fa fa-plus-square-o"></i></button>
 
 
@@ -408,7 +418,7 @@ function showResult(){
 		
 		<div class="myfeedcategory">
 		<ul>
-			<li><input type="button" value="PHOTO"></li>
+			<li><input type="button" value="PHOTO" onclick="showMyPhoto()"></li>
 			<li><input type="button" value="VIEDEO"></li>
 			<li><input type="button" value="TEXT"></li>
 		</ul>
