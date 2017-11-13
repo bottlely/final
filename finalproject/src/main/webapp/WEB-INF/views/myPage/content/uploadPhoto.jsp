@@ -53,6 +53,25 @@ select {
     border-radius: 3px;
 }
 
+.mask{
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9999;
+	background-color: #000;
+	display: none;
+	
+}
+
+.window {
+	position: absolute;
+	display: none;
+	background-color: #ffffff;
+	width: 200px;
+	height: 150px;
+	z-index: 99999;
+}
+
 </style>
  <script type="text/javascript" src="js/jquery-3.1.0.min.js" charset="utf-8"></script>
     <script type="text/javascript">
@@ -191,6 +210,40 @@ select {
         		alert('hi!!');
         	}
         }
+        
+        //암막 function
+         function wrapWindowByMask(){
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+ 
+        $('.mask').css({'width':maskWidth,'height':maskHeight});
+ 
+        $('.mask').fadeTo("fast",0.3);
+ 
+        var left = ( $(window).scrollLeft() + ( $(window).width() - $('.window').width()) / 2 );
+        var top = ( $(window).scrollTop() + ( $(window).height() - $('.window').height()) / 2 );
+ 
+        $('.window').css({'left':left,'top':top, 'position':'absolute'});
+ 
+        $('.window').show();
+    }
+ 
+    $(document).ready(function(){
+        $('.showMask').click(function(e){
+            e.preventDefault();
+            wrapWindowByMask();
+        });
+ 
+        $('.window .close').click(function (e) {
+            e.preventDefault();
+            $('.mask, .window').hide();
+        });
+ 
+        $('.mask').click(function () {
+            $(this).hide();
+            $('.window').hide();
+        });
+    });
     </script>
 </head>
 
@@ -254,5 +307,14 @@ select {
 		</div>
 	</div>
 </div>
+<div class="mask"></div>
+    <div class="window">
+       <table align="center">
+       	<tr><td><a href="#">1</a></td></tr>
+       	<tr><td><a href="#">2</a></td></tr>
+       	<tr><td><a href="#">3</a></td></tr>
+       	<tr><td><a href="#">4</a></td></tr>
+       	</table>
+    </div>
 </body>
 </html>
