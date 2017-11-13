@@ -6,17 +6,43 @@ public class MyHomeReplyDTO {
    private String content;
    private int idx;
    private int lev;
+   private int ref;
+   private int sunbun;
    
-   public MyHomeReplyDTO(String name, String profile_img, String content, int idx, int lev) {
+   public MyHomeReplyDTO(String name, String profile_img, String content, int idx, int lev, int ref, int sunbun) {
       super();
       this.name = name;
       this.profile_img = profile_img;
       this.content = content;
       this.idx = idx;
       this.lev = lev;
+      this.ref = ref;
+      this.sunbun = sunbun;
    }
    
-   public int getLev() {
+   public int getSunbun() {
+   return sunbun;
+}
+
+
+public void setSunbun(int sunbun) {
+   this.sunbun = sunbun;
+}
+
+
+public int getRef() {
+   return ref;
+}
+
+
+
+public void setRef(int ref) {
+   this.ref = ref;
+}
+
+
+
+public int getLev() {
       return lev;
    }
 

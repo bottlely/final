@@ -1,14 +1,19 @@
 package mars.reply.model;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public interface ReplyDAO {
    public List<MyHomeReplyDTO> replyList(int content_idx);
-   public int addReply(String content);
-   public int re_AddReply(HashMap<String, String> map);
+   public void addReply(HashMap<String, String> map);
+   public void re_AddReply(HashMap<String, String> map);
    public void update_Reply(HashMap<String, String> map);
-   public void delete_Reply(int reply_idx);
+   public void delete_Reply(HashMap<String, String> map);
    public int ref(int reply_idx);
-   public int sunbun(int reply_idx);
+   public int sunbun(HashMap<String, String> map);
+   public int content_idx_ref(int content_idx);
+   public int reply_idx_ref(int reply_idx);
+   public int member_idx(int content_idx);
+   public void like(HashMap<String, String> map);
+   public int likeSelect(HashMap<String, String> map);
+   public void like_delete(HashMap<String, String> map);
 }

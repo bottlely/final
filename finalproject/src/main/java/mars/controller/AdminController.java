@@ -1,7 +1,7 @@
 package mars.controller;
 
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,38 +19,32 @@ import mars.member.model.MemberDTO;
 public class AdminController {
    @Autowired
    private AdminDAO aDao;
-	
-	
-	
+   
+   
+   
    @RequestMapping("/admin.do")
    public ModelAndView adminMain() {
-	   
-	   
-	   ModelAndView mav = new ModelAndView();
-	  
-	
-	   mav.setViewName("admin/admin_main");
-	   return mav;
+      
+      
+      ModelAndView mav = new ModelAndView();
+     
+   
+      mav.setViewName("admin/admin_main");
+      return mav;
    }
-   @RequestMapping("/admin_m_u.do")
+  @RequestMapping("/admin_m_u.do")
    public ModelAndView admin_m_u() {
       List<MemberDTO> list = aDao.admin_member();
-      
-      int yearMin = aDao.yearMin();
-      int yearMax = aDao.yearMax();
       
       ModelAndView mav = new ModelAndView();
       
       mav.addObject("list", list);
-      
-      mav.addObject("yearMin", yearMin);
-      
-      mav.addObject("yearMax", yearMax);
-      
+
       mav.setViewName("admin/admin_member_user");
       
       return mav;
    }
+
    @RequestMapping("/admin_memberDelete.do")
    public ModelAndView admin_memberDelete(int idx){
       ModelAndView mav = new ModelAndView();
@@ -61,7 +55,7 @@ public class AdminController {
          aDao.ff_delete(idx);
       }
       
-      String msg = result > 0 ? "ȸ�� Ż�� ����!" : "ȸ�� Ż�� ����!";
+      String msg = result > 0 ? "탈퇴 성공" : "탈퇴 실패";
       
       mav.addObject("msg", msg);
       
@@ -96,33 +90,76 @@ public class AdminController {
       return mav;
    }
    
+   @RequestMapping("/detail_Search.do")
+   public ModelAndView detail_Search(
+         @RequestParam(value="startYear", required=true, defaultValue="0")String startYear,
+         @RequestParam(value="endYear", required=true, defaultValue="0")String endYear,
+         @RequestParam(value="city", required=true, defaultValue="a")String city, 
+         @RequestParam(value="favorite_Movie", required=true, defaultValue="0")String favorite_Movie, 
+         @RequestParam(value="favorite_Sport", required=true, defaultValue="0")String favorite_Sport, 
+         @RequestParam(value="favorite_Fashion", required=true, defaultValue="0")String favorite_Fashion, 
+         @RequestParam(value="favorite_Beauty", required=true, defaultValue="0")String favorite_Beauty, 
+         @RequestParam(value="favorite_Travel", required=true, defaultValue="0")String favorite_Travel, 
+         @RequestParam(value="favorite_Music", required=true, defaultValue="0")String favorite_Music, 
+         @RequestParam(value="favorite_Dance", required=true, defaultValue="0")String favorite_Dance, 
+         @RequestParam(value="favorite_Food", required=true, defaultValue="0")String favorite_Food, 
+         @RequestParam(value="man", required=true, defaultValue="6")int man,
+         @RequestParam(value="woman", required=true, defaultValue="6")int woman){
+      ModelAndView mav = new ModelAndView();
+      
+      HashMap map = new HashMap<String, String>();
+      
+      map.put("startYear", startYear);
+      map.put("endYear", endYear);
+      map.put("man", man);
+      map.put("woman", woman);
+      map.put("city", city);
+      map.put("favorite_movie", favorite_Movie);
+      map.put("favorite_sport", favorite_Sport);
+      map.put("favorite_fashion", favorite_Fashion);
+      map.put("favorite_beauty", favorite_Beauty);
+      map.put("favorite_travel", favorite_Travel);
+      map.put("favorite_music", favorite_Music);
+      map.put("favorite_dance", favorite_Dance);
+      map.put("favorite_food", favorite_Food);
+
+      if(city.equals("city")){
+         List<MemberDTO> list = aDao.noCity_Detail_Search(map);
+      }else{
+         List<MemberDTO> list = aDao.detail_Search(map);
+      }
+      mav.setViewName("admin/admin_member_user");
+      
+      return mav;
+   }
+   
    @RequestMapping("/admin_m_b.do")
    public String admin_m_b() {
       return "admin/admin_member_busi";
    }
    @RequestMapping("/admin_d_u.do")
    public ModelAndView admin_d_u() {
-	   ModelAndView mav = new ModelAndView();
-	   int favor_movie = aDao.favor_movie();
-	   int favor_dance = aDao.favor_dance();
-	   int favor_sport = aDao.favor_sport();
-	   int favor_travel = aDao.favor_travel();
-	   int favor_fashion = aDao.favor_fashion();
-	   int favor_food = aDao.favor_food();
-	   int favor_music = aDao.favor_music();
-	   int favor_beauty = aDao.favor_beauty();
-	   System.out.println(favor_movie);
-	   mav.addObject("movie",favor_movie);
-	   mav.addObject("dance",favor_dance);
-	   mav.addObject("sport",favor_sport);
-	   mav.addObject("travel",favor_travel);
-	   mav.addObject("fashion",favor_fashion);
-	   mav.addObject("food",favor_food);
-	   mav.addObject("music",favor_music);
-	   mav.addObject("beauty",favor_beauty);
-	   mav.setViewName("admin/admin_data_user");
-	 
-	   return mav;
+      ModelAndView mav = new ModelAndView();
+      int favor_movie = aDao.favor_movie();
+      int favor_dance = aDao.favor_dance();
+      int favor_sport = aDao.favor_sport();
+      int favor_travel = aDao.favor_travel();
+      int favor_fashion = aDao.favor_fashion();
+      int favor_food = aDao.favor_food();
+      int favor_music = aDao.favor_music();
+      int favor_beauty = aDao.favor_beauty();
+      System.out.println(favor_movie);
+      mav.addObject("movie",favor_movie);
+      mav.addObject("dance",favor_dance);
+      mav.addObject("sport",favor_sport);
+      mav.addObject("travel",favor_travel);
+      mav.addObject("fashion",favor_fashion);
+      mav.addObject("food",favor_food);
+      mav.addObject("music",favor_music);
+      mav.addObject("beauty",favor_beauty);
+      mav.setViewName("admin/admin_data_user");
+    
+      return mav;
    }
    @RequestMapping("/admin_d_b.do")
    public String admin_d_b() {

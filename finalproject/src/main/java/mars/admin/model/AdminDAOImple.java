@@ -1,6 +1,6 @@
 package mars.admin.model;
 
-import java.util.List;
+import java.util.*;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
@@ -46,65 +46,66 @@ public class AdminDAOImple implements AdminDAO {
       return list;
    }
 
-   public int yearMin() {
-      int yearMin = sqlMap.selectOne("yearMin");
+   public List<MemberDTO> detail_Search(HashMap<String, String> map) {
+      List<MemberDTO> list = sqlMap.selectList("detail_Search", map);
       
-      return yearMin;
+      return list;
+   }
+
+   public List<MemberDTO> noCity_Detail_Search(HashMap<String, String> map) {
+      List<MemberDTO> list = sqlMap.selectList("noCity_Detail_Search", map);
+      
+      return list;
+   }
+
+   /*관심사통계*/
+   public int favor_movie() {
+      
+      int favor_movies=sqlMap.selectOne("favor_movie");
+      return favor_movies;
    }
    
-   public int yearMax() {
-      int yearMax = sqlMap.selectOne("yearMax");
+   public int favor_dance() {
       
-      return yearMax;
+      int favor_movies=sqlMap.selectOne("favor_dance");
+      return favor_movies;
    }
-	/*관심사통계*/
-	public int favor_movie() {
-		
-		int favor_movies=sqlMap.selectOne("favor_movie");
-		return favor_movies;
-	}
-	
-	public int favor_dance() {
-		
-		int favor_movies=sqlMap.selectOne("favor_dance");
-		return favor_movies;
-	}
-	
-	public int favor_travel() {
-		
-		int favor_movies=sqlMap.selectOne("favor_travel");
-		return favor_movies;
-	}
-	
-	public int favor_beauty() {
-		
-		int favor_movies=sqlMap.selectOne("favor_beauty");
-		return favor_movies;
-	}
-	
-	public int favor_sport() {
-		
-		int favor_movies=sqlMap.selectOne("favor_sport");
-		return favor_movies;
-	}
-	
-	public int favor_food() {
-		
-		int favor_movies=sqlMap.selectOne("favor_food");
-		return favor_movies;
-	}
-	
-	public int favor_fashion() {
-		
-		int favor_movies=sqlMap.selectOne("favor_fashion");
-		return favor_movies;
-	}
-	
-	public int favor_music() {
-		
-		int favor_movies=sqlMap.selectOne("favor_music");
-		return favor_movies;
-	}
-	
-	
+   
+   public int favor_travel() {
+      
+      int favor_movies=sqlMap.selectOne("favor_travel");
+      return favor_movies;
+   }
+   
+   public int favor_beauty() {
+      
+      int favor_movies=sqlMap.selectOne("favor_beauty");
+      return favor_movies;
+   }
+   
+   public int favor_sport() {
+      
+      int favor_movies=sqlMap.selectOne("favor_sport");
+      return favor_movies;
+   }
+   
+   public int favor_food() {
+      
+      int favor_movies=sqlMap.selectOne("favor_food");
+      return favor_movies;
+   }
+   
+   public int favor_fashion() {
+      
+      int favor_movies=sqlMap.selectOne("favor_fashion");
+      return favor_movies;
+   }
+   
+   public int favor_music() {
+      
+      int favor_movies=sqlMap.selectOne("favor_music");
+      return favor_movies;
+   }
+   
+   
 }
