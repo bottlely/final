@@ -130,6 +130,8 @@ select {
                          sel = jsonResponse["fileName"];
                         
                         var player = document.getElementById('player');
+                        player.width = "320";
+                        player.height = "240";
                         player.load();
                         player.play();
                         player.loop = true;
@@ -294,9 +296,11 @@ select {
          </div>
       </div>
 
-      <video id="player" width="320" height="240">
+      <video id="player" width="1" height="1">
          <source id="src" src="" type="video/mp4"/>
       </video>
+      
+      <hr>
       
       <div class="row" style="padding-bottom: 10px;">
          <div class="col-sm-12">
