@@ -102,7 +102,7 @@ select {
            var f = e.files[0];
            
                  if(!f.type.match("video/mp4")) {
-                     alert("확장자는 mp4,webm,ogg 동영상 확장자만 가능합니다.");
+                     alert("확장자는 mp4 동영상 확장자만 가능합니다.");
                      return;
                  }
                  
@@ -130,15 +130,20 @@ select {
                          sel = jsonResponse["fileName"];
                         
                         var player = document.getElementById('player');
-                         player.load();
-                           player.play();
-                           player.loop = true;
+                        player.load();
+                        player.play();
+                        player.loop = true;
                       }
                   }
           }
         
         function submitAction() {
            
+        	if(not_upload.length < 1 || sel == "") {
+                alert("한 개 이상의 파일을 선택해주세요.");
+                return;
+            } 
+        	
             var data = new FormData();
             
             data.append("useridx", '${sessionScope.useridx}');
@@ -175,13 +180,6 @@ select {
         
         }
         
-        function play(){
-           console.log("play");
-            var player = document.getElementById('player');
-            player.load();
-              player.autoplay();
-        }
-
         function clearText(field){
            if(field.defaultValue == field.value) field.value = '';
            else if(field.value == '') field.value = field.defaultValue;
@@ -297,7 +295,7 @@ select {
       </div>
 
       <video id="player" width="320" height="240">
-         <source id="src" src="" type="video/mp4" onchange="play()" />
+         <source id="src" src="" type="video/mp4"/>
       </video>
       
       <div class="row" style="padding-bottom: 10px;">

@@ -138,7 +138,7 @@ select {
         function submitAction() {
              
             if(sel_files.length < 1) {
-                alert("한개이상의 파일을 선택해주세요.");
+                alert("한 개 이상의 파일을 선택해주세요.");
                 return;
             }   
     			
