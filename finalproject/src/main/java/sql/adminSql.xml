@@ -3,103 +3,160 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="mars.member">
-   <select id="admin_member" resultType="mars.member.model.MemberDTO">
-      select * from mars_member order by idx desc
-   </select>
-   <delete id="admin_memberDelete" parameterType="int">
-      delete mars_member where idx=#{idx}
-   </delete>
-   <select id="admin_nameSearch" resultType="mars.member.model.MemberDTO">
-      select * from mars_member where name=#{name} order by idx desc
-   </select>
-   <select id="admin_idSearch" resultType="mars.member.model.MemberDTO">
-      select * from mars_member where id=#{id} order by idx desc
-   </select>
-   <delete id="ff_delete" parameterType="int">
-      delete mars_ff where user1_idx=#{idx} or user2_idx=#{idx}
-   </delete>
-   <select id="detail_Search" parameterType="HashMap" resultType="mars.member.model.MemberDTO">
-         select * from mars_member where birth_y between #{startYear} and #{endYear} and 
-                                    city=#{city} and
-                                    gender=#{man} or gender=#{woman} and 
-                                    favorite_movie=#{favorite_movie} or 
-                                    favorite_Sport=#{favorite_sport} or 
-                                    favorite_fashion=#{favorite_fashion} or 
-                                    favorite_beauty=#{favorite_beauty} or 
-                                    favorite_travel=#{favorite_travel} or 
-                                    favorite_music=#{favorite_music} or 
-                                    favorite_dance=#{favorite_dance} or 
-                                    favorite_food=#{favorite_food}
-   </select>
-   <select id="noCity_Detail_Search" parameterType="HashMap" resultType="mars.member.model.MemberDTO">
-         select * from mars_member where birth_y between #{startYear} and #{endYear} and 
-                                    gender=#{man} or gender=#{woman} and 
-                                    favorite_movie=#{favorite_movie} or 
-                                    favorite_Sport=#{favorite_sport} or 
-                                    favorite_fashion=#{favorite_fashion} or 
-                                    favorite_beauty=#{favorite_beauty} or 
-                                    favorite_travel=#{favorite_travel} or 
-                                    favorite_music=#{favorite_music} or 
-                                    favorite_dance=#{favorite_dance} or 
-                                    favorite_food=#{favorite_food}
-   </select>
-         <select id="date_user" resultType="mars.member.model.MemberDTO" parameterType="String"> 
+	<select id="admin_member" resultType="mars.member.model.MemberDTO">
+		select * from mars_member
+		order by idx desc
+	</select>
+	<delete id="admin_memberDelete" parameterType="int">
+		delete mars_member
+		where idx=#{idx}
+	</delete>
+	<select id="admin_nameSearch" resultType="mars.member.model.MemberDTO">
+		select * from
+		mars_member where name=#{name} order by idx desc
+	</select>
+	<select id="admin_idSearch" resultType="mars.member.model.MemberDTO">
+		select * from mars_member
+		where id=#{id} order by idx desc
+	</select>
+	<delete id="ff_delete" parameterType="int">
+		delete mars_ff where
+		user1_idx=#{idx} or user2_idx=#{idx}
+	</delete>
+	<select id="detail_Search" parameterType="HashMap"
+		resultType="mars.member.model.MemberDTO">
+		select * from mars_member where birth_y between
+		#{startYear} and #{endYear}
+		and
+		city=#{city} and
+		gender=#{man} or
+		gender=#{woman} and
+		favorite_movie=#{favorite_movie} or
+		favorite_Sport=#{favorite_sport} or
+		favorite_fashion=#{favorite_fashion} or
+		favorite_beauty=#{favorite_beauty} or
+		favorite_travel=#{favorite_travel} or
+		favorite_music=#{favorite_music}
+		or
+		favorite_dance=#{favorite_dance} or
+		favorite_food=#{favorite_food}
+	</select>
+	<select id="noCity_Detail_Search" parameterType="HashMap"
+		resultType="mars.member.model.MemberDTO">
+		select * from mars_member where birth_y between
+		#{startYear} and #{endYear}
+		and
+		gender=#{man} or gender=#{woman} and
+		favorite_movie=#{favorite_movie} or
+		favorite_Sport=#{favorite_sport} or
+		favorite_fashion=#{favorite_fashion} or
+		favorite_beauty=#{favorite_beauty} or
+		favorite_travel=#{favorite_travel} or
+		favorite_music=#{favorite_music}
+		or
+		favorite_dance=#{favorite_dance} or
+		favorite_food=#{favorite_food}
+	</select>
+	<select id="date_user" resultType="mars.member.model.MemberDTO"
+		parameterType="String"> 
          <![CDATA[ 
          select count(*) from (select to_char(joindate,'YY-MM-DD')as a from mars_member) where a <= #{date}
          ]]>
-   </select>
-      <select id="dateList" resultType="mars.member.model.MemberDTO">
-      select distinct a from (select to_char(joindate,'YY-MM-DD')as a from mars_member)
-   </select>
-   <select id="favor_movie" resultType="int">
-   select sum(a.favorite_movie)from
-(select favorite_movie,favorite_sport,favorite_fashion,
-favorite_beauty,favorite_travel,favorite_music,favorite_dance,
-favorite_food  from mars_member)a
-   </select>
-      <select id="favor_dance" resultType="int">
-   select sum(a.favorite_dance)from
-(select favorite_movie,favorite_sport,favorite_fashion,
-favorite_beauty,favorite_travel,favorite_music,favorite_dance,
-favorite_food  from mars_member)a
-   </select>
-      <select id="favor_music" resultType="int">
-   select sum(a.favorite_music)from
-(select favorite_movie,favorite_sport,favorite_fashion,
-favorite_beauty,favorite_travel,favorite_music,favorite_dance,
-favorite_food  from mars_member)a
-   </select>
-      <select id="favor_sport" resultType="int">
-   select sum(a.favorite_sport)from
-(select favorite_movie,favorite_sport,favorite_fashion,
-favorite_beauty,favorite_travel,favorite_music,favorite_dance,
-favorite_food  from mars_member)a
-   </select>
-      <select id="favor_fashion" resultType="int">
-   select sum(a.favorite_fashion)from
-(select favorite_movie,favorite_sport,favorite_fashion,
-favorite_beauty,favorite_travel,favorite_music,favorite_dance,
-favorite_food  from mars_member)a
-   </select>
-      <select id="favor_beauty" resultType="int">
-   select sum(a.favorite_beauty)from
-(select favorite_movie,favorite_sport,favorite_fashion,
-favorite_beauty,favorite_travel,favorite_music,favorite_dance,
-favorite_food  from mars_member)a
-   </select>
-      <select id="favor_travel" resultType="int">
-   select sum(a.favorite_travel)from
-(select favorite_movie,favorite_sport,favorite_fashion,
-favorite_beauty,favorite_travel,favorite_music,favorite_dance,
-favorite_food  from mars_member)a
-   </select>
-         <select id="favor_food" resultType="int">
-   select sum(a.favorite_food)from
-(select favorite_movie,favorite_sport,favorite_fashion,
-favorite_beauty,favorite_travel,favorite_music,favorite_dance,
-favorite_food  from mars_member)a
-   </select>
+	</select>
+	<select id="dateList" resultType="mars.member.model.MemberDTO">
+		select distinct a from (select
+		to_char(joindate,'YY-MM-DD')as a from
+		mars_member)
+	</select>
+	<select id="favor_movie" resultType="int">
+		select
+		sum(a.favorite_movie)from
+		(select
+		favorite_movie,favorite_sport,favorite_fashion,
+		favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+		favorite_food from mars_member)a
+	</select>
+	<select id="favor_dance" resultType="int">
+		select
+		sum(a.favorite_dance)from
+		(select
+		favorite_movie,favorite_sport,favorite_fashion,
+		favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+		favorite_food from mars_member)a
+	</select>
+	<select id="favor_music" resultType="int">
+		select
+		sum(a.favorite_music)from
+		(select
+		favorite_movie,favorite_sport,favorite_fashion,
+		favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+		favorite_food from mars_member)a
+	</select>
+	<select id="favor_sport" resultType="int">
+		select
+		sum(a.favorite_sport)from
+		(select
+		favorite_movie,favorite_sport,favorite_fashion,
+		favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+		favorite_food from mars_member)a
+	</select>
+	<select id="favor_fashion" resultType="int">
+		select
+		sum(a.favorite_fashion)from
+		(select
+		favorite_movie,favorite_sport,favorite_fashion,
+		favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+		favorite_food from mars_member)a
+	</select>
+	<select id="favor_beauty" resultType="int">
+		select
+		sum(a.favorite_beauty)from
+		(select
+		favorite_movie,favorite_sport,favorite_fashion,
+		favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+		favorite_food from mars_member)a
+	</select>
+	<select id="favor_travel" resultType="int">
+		select
+		sum(a.favorite_travel)from
+		(select
+		favorite_movie,favorite_sport,favorite_fashion,
+		favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+		favorite_food from mars_member)a
+	</select>
+	<select id="favor_food" resultType="int">
+		select
+		sum(a.favorite_food)from
+		(select
+		favorite_movie,favorite_sport,favorite_fashion,
+		favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+		favorite_food from mars_member)a
+	</select>
+	<select id="gender_1" resultType="int">
+		select count(*) from
+		mars_member where gender = 1
+	</select>
+	<select id="gender_2" resultType="int">
+		select count(*) from
+		mars_member where gender = 2
+	</select>
+	<select id="1man" parameterType="int" resultType="int">
+	<![CDATA[ 
+		select count(*) from mars_member where gender = 1 and #{age}-birth_y < 0
+		]]>
+	</select>
+	
+		<select id="1girl" parameterType="int" resultType="int">
+	<![CDATA[ 
+		select count(*) from mars_member where gender = 2 and #{age}-birth_y < 0
+		]]>
+	</select>
+			<select id="allcount"  resultType="int">
+ 
+		select count(*) from mars_member
+	
+	</select>
 
 </mapper>

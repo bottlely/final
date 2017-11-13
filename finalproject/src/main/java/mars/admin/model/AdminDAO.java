@@ -22,5 +22,10 @@ public interface AdminDAO {
    public int favor_dance();
    public List<MemberDTO> detail_Search(HashMap<String, String> map);
    public List<MemberDTO> noCity_Detail_Search(HashMap<String, String> map);
+   public int gender_1();
+   public int gender_2();
+   public int girl1();
+   public int man1();
+   public int allcount();
    
 }

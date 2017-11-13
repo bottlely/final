@@ -54,7 +54,7 @@
 					pointHoverBackgroundColor : "rgba(2,117,216,1)",
 					pointHitRadius : 20,
 					pointBorderWidth : 2,
-					data : [ 10, 10, 10, 10, 10, 10, 10 ],
+					data : [ 10, 10, 10, 10, 10, 10, ${allcount} ],
 				} ],
 			},
 			options : {
@@ -73,7 +73,7 @@
 					yAxes : [ {
 						ticks : {
 							min : 0,
-							max : 100,
+							max : ${allcount},
 							maxTicksLimit : 5
 						},
 						gridLines : {
@@ -86,18 +86,18 @@
 				}
 			}
 		});
-		//-- Bar Chart Example
+		//-- city
 		var ctx = document.getElementById("myBarChart");
 		var myLineChart = new Chart(ctx, {
 			type : 'bar',
 			data : {
-				labels : [ "January", "February", "March", "April", "May",
-						"June" ],
+				labels : [ "서울", "인천", "수원", "대전", "대구",
+						"일산","부산","기타" ],
 				datasets : [ {
 					label : "Revenue",
 					backgroundColor : "rgba(2,117,216,1)",
 					borderColor : "rgba(2,117,216,1)",
-					data : [ 4215, 5312, 6251, 7841, 9821, 14984 ],
+					data : [ 4215, 5312, 6251, 7841, 9821, 14984,1000,2000 ],
 				} ],
 			},
 			options : {
@@ -129,7 +129,7 @@
 				}
 			}
 		});
-		//-- Pie Chart Example
+		//-- favor
 		var ctx = document.getElementById("myPieChart");
 		var myPieChart = new Chart(ctx, {
 			type : 'pie',
@@ -139,12 +139,70 @@
 				datasets : [ {
 					data : [ ${movie},${sport},${fashion},${beauty},${travel},${music},${dance},${food} ],
 					backgroundColor : [ '#007bff', '#dc3545', '#ffc107',
+							'#FF5E00', '#28a745', '#0100FF', '#5F00FF',
+							'#FF007F' ],
+				} ],
+			},
+		});
+ 		// -- Gender
+ 		
+		var ctx = document.getElementById("myPieChart1");
+		var myPieChart = new Chart(ctx, {
+			type : 'pie',
+			data : {
+				
+				labels : [ "Man", "Girl" ],
+				datasets : [ {
+					data : [ ${gender1},${gender2} ],
+					backgroundColor : [ '#007bff', '#dc3545', '#ffc107',
 							'#28a745', '#28a745', '#28a745', '#28a745',
 							'#28a745' ],
 				} ],
 			},
 		});
-
+		//-- age
+		var ctx = document.getElementById("myBarChart1");
+		var myLineChart = new Chart(ctx, {
+			type : 'bar',
+			data : {
+				labels : [ "10s/Man", "10s/Girl", "20s/Man", "20s/Girl", "30s/Man",
+						"30s/Girl","40s/Man","40s/Girl","Other" ],
+				datasets : [ {
+					label : "Revenue",
+					backgroundColor : "rgba(2,117,216,1)",
+					borderColor : "rgba(2,117,216,1)",
+					data : [ ${man1}, ${girl1}, 3, 3, 3, 3,3,3,3 ],
+				} ],
+			},
+			options : {
+				scales : {
+					xAxes : [ {
+						time : {
+							unit : 'month'
+						},
+						gridLines : {
+							display : false
+						},
+						ticks : {
+							maxTicksLimit : 6
+						}
+					} ],
+					yAxes : [ {
+						ticks : {
+							min : 0,
+							max : ${allcount},
+							maxTicksLimit : 5
+						},
+						gridLines : {
+							display : true
+						}
+					} ],
+				},
+				legend : {
+					display : false
+				}
+			}
+		});
 	}
 </script>
 </head>
@@ -320,26 +378,20 @@
 				<div class="card-body">
 					<canvas id="myAreaChart" width="100%" height="30"></canvas>
 				</div>
-				<div class="card-footer small text-muted">Updated yesterday at
-					11:59 PM</div>
+				
 			</div>
 			<div class="row">
 				<div class="col-lg-8">
 					<!-- Example Bar Chart Card-->
 					<div class="card mb-3">
 						<div class="card-header">
-							<i class="fa fa-bar-chart"></i>Favor Ranking <select>
-								<option>All</option>
-								<option>Man</option>
-								<option>Girl</option>
-							</select>
-							<button type="submit">Search</button>
+							<i class="fa fa-bar-chart"></i>Citys 
+							
 						</div>
 						<div class="card-body">
 							<canvas id="myBarChart" width="100" height="50"></canvas>
 						</div>
-						<div class="card-footer small text-muted">Updated yesterday
-							at 11:59 PM</div>
+
 					</div>
 				</div>
 				<div class="col-lg-4">
@@ -352,12 +404,40 @@
 							<canvas id="myPieChart" width="100%" height="100"></canvas>
 
 						</div>
-						<div class="card-footer small text-muted">Updated yesterday
-							at 11:59 PM</div>
+					
 					</div>
 				</div>
 			</div>
+		
+		
+					<div class="row">
+				<div class="col-lg-8">
+					<!-- Example Bar Chart Card-->
+					<div class="card mb-3">
+						<div class="card-header">
+							<i class="fa fa-bar-chart"></i>Age
+							
+						</div>
+						<div class="card-body">
+							<canvas id="myBarChart1" width="100" height="50"></canvas>
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<!-- Example Pie Chart Card-->
+					<div class="card mb-3">
+						<div class="card-header">
+							<i class="fa fa-pie-chart"></i>Gender
+						</div>
+						<div class="card-body">
+							<canvas id="myPieChart1" width="100%" height="100"></canvas>
 
+						</div>
+					
+					</div>
+				</div>
+			</div>
 
 		</div>
 		<!-- /.container-fluid-->

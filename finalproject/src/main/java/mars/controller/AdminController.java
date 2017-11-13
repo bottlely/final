@@ -148,6 +148,11 @@ public class AdminController {
       int favor_food = aDao.favor_food();
       int favor_music = aDao.favor_music();
       int favor_beauty = aDao.favor_beauty();
+      int gender_1 = aDao.gender_1();
+      int gender_2 = aDao.gender_2();
+      int girl1 = aDao.girl1();
+      int man1 = aDao.man1();
+      int allcount=aDao.allcount();
       System.out.println(favor_movie);
       mav.addObject("movie",favor_movie);
       mav.addObject("dance",favor_dance);
@@ -157,6 +162,11 @@ public class AdminController {
       mav.addObject("food",favor_food);
       mav.addObject("music",favor_music);
       mav.addObject("beauty",favor_beauty);
+      mav.addObject("gender1",gender_1);
+      mav.addObject("gender2",gender_2);
+      mav.addObject("girl1",girl1);
+      mav.addObject("allcount",allcount);
+      mav.addObject("man1",man1);
       mav.setViewName("admin/admin_data_user");
     
       return mav;
