@@ -525,8 +525,43 @@
 					<li class="style1"><a href="#" data-filter=".strategy">HOT</a></li>
 				</ul>
 			</div>
+			
+			<div>
+					<c:set var="list" value="${list }"></c:set>
+					<c:if test="${empty list }"> 게시물 없음! </c:if>
+					<c:forEach var="list" items="${list }">
+						<a>${list.path } / ${list.writer }</a>
+					</c:forEach>
+				</div>
 
-				  <div class="works-area" >
+
+				<div class="works-area">
+				<c:set var="list" value="${list }"></c:set>
+					<c:if test="${empty list }"> 게시물 없음! </c:if>
+					<c:forEach var="list" items="${list }">
+					<div class="col-md-4 col-sm-6 col-xs-12  photo">
+						<div class="works">
+							<img src="myHomeFolder/content/${list.path }" alt="" style="width: 431px; height: 431px;">
+							<div class="work-overlay text-center">
+								<div class="overlay-caption">
+									<h4>PHOTO</h4>
+									<a href="#galleryModal" class="gallery-box" data-toggle="modal"
+										data-src="${list.path }"
+										onclick="openpic(${list.content_idx})"> 
+										<input type="hidden" value="${list.path }" id="pic"> 
+										<input type="hidden" id="pic_idx" value="${list.content_idx}">
+										<p>
+											${list.writer}
+										</p>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					</c:forEach>
+				</div>
+
+	<%-- 			  <div class="works-area" >
             <% for(int i=0; i<12; i++){
                
                %>
@@ -557,7 +592,7 @@
                }%>
             
 
-         </div> 
+         </div>  --%>
 		</div>
 		</div>
 
