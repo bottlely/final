@@ -39,6 +39,17 @@
 <link href='https://fonts.googleapis.com/css?family=Muli:400,300'
 	rel='stylesheet' type='text/css'>
 <link href="assets_setting/css/themify-icons.css" rel="stylesheet">
+<script>
+ function checkOne(gender){
+ 	var chk = document.getElementsByName("gender");
+ 	  for(var i=0; i<chk.length; i++){
+ 	        if(chk[i] != gender){
+ 	        	chk[i].checked = false;
+ 	        }
+ 	    }
+ 
+ }
+ </script>
 </head>
 <body>
 
