@@ -215,7 +215,7 @@ select {
 	<hr>
 	<div class="row">
 			<div class="col-sm-12">
-				<input type="text" class="form-control" id="tag" name="hashtag"
+				<input type="text" class="form-control" id="tag" name="tag"
 					placeholder="해시태그" onFocus="clearText(this)" onBlur="clearText(this)">
 			</div>
 			<hr>
