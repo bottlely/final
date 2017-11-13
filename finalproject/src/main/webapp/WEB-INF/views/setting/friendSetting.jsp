@@ -44,11 +44,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
      <script type="text/javascript" src="js/httpRequest.js"></script>
 <script>
+	var m_idx;
 	function addGroupForm() {
 		window.open('addGroupForm.do?idx=${sessionScope.useridx}', 'addGroupForm', 'width=400, height=800');
 	}
 	
 	function groupMember(idx){
+		m_idx=idx;
 		sendRequest('groupMember.do?idx='+idx, null, memberList, 'GET');
 	}
 	
@@ -57,7 +59,7 @@
 			if(XHR.status==200){
 				var data = XHR.responseText;
 				var lists = eval('('+data+')');
-				var parent = document.getElementById('group_name');
+				var parent = document.getElementById('group_name_'+m_idx);
 				
 				if(lists.memberList.length==0){
 					var ul = document.createElement("ul");
@@ -79,6 +81,7 @@
 			}
 		}
 	}
+	
 </script>
 </head>
 <body>
@@ -144,7 +147,6 @@
 							<div class="card">
 
 								<div class="content">
-
 									<hr>
 									<!--친구목록  -->
 									<p align="right">
@@ -155,7 +157,8 @@
 											<li>생성된 그룹이 없습니다.</li>
 										</c:if>
 										<c:forEach var="g_list" items="${g_list }">
-										<li id="group_name"><a href="javascript:groupMember(${g_list.idx})">${g_list.group_name } </a>
+										<li id="group_name_${g_list.idx }"><a href="javascript:groupMember(${g_list.idx})">${g_list.group_name } </a>
+										<input type="hidden" id="idx" value="${g_list.idx }">
 										</li>
 										</c:forEach>
 									</ul>
