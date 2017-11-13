@@ -107,6 +107,12 @@
 		}
 	}
 	
+ 	function updateGroup(group_idx){
+ 		window.alert(group_idx);
+ 	}
+ 	
+ 	
+	
 </script>
 <script type="text/javascript">
 //moreicon function
@@ -224,8 +230,8 @@ $(document).ready(function(){
  		 <i class="fa fa-ellipsis-h"></i>
  		 <span class="caret"></span></a>
  			 <ul class="dropdown-menu">
-   			  <li><a href="#">수정</a></li>
-   			 <li><a href="#">삭제</a></li>
+   			  <li><a href="javascript:updateGroup(${g_list.idx })">수정</a></li>
+   			 <li><a href="deleteGroup.do?idx_ff=${g_list.idx }&idx=${sessionScope.useridx}">삭제</a></li>
    			 </ul></span>
  							
 										<input type="hidden" id="idx" value="${g_list.idx }">

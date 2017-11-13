@@ -88,4 +88,12 @@
 	<select id="groupMember" parameterType="Integer" resultType="mars.member.model.MemberDTO">
 	select * from mars_member where idx in (select idx_to from mars_group where idx_ff=#{idx})
 	</select>
+	
+	<delete id="deleteGroup" parameterType="Integer">
+	delete from mars_group where idx_ff=#{idx_ff}
+	</delete>
+	
+	<delete id="deleteff" parameterType="Integer">
+	delete from mars_ff where idx=#{idx_ff}
+	</delete>
 </mapper>

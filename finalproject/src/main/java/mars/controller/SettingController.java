@@ -161,10 +161,7 @@ public class SettingController {
 
 	@RequestMapping("showGroup.do")
 	public ModelAndView showGroup(int idx_ff, int idx) {
-		System.out.println("idx_ff = " + idx_ff);
 		List<GroupDTO> group = settingDao.showGroup(idx_ff);
-		System.out.println("group_len = " + group.size());
-		System.out.println("eunji = " + group.get(0).getIdx_to());
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("group", group);
 		mav.setViewName("setting/friendSetting");
@@ -175,6 +172,23 @@ public class SettingController {
 	public ModelAndView groupMember(int idx) {
 		List<MemberDTO> list = settingDao.groupMember(idx);
 		ModelAndView mav = new ModelAndView("marsJson", "memberList", list);
+		return mav;
+	}
+
+	
+	@RequestMapping("deleteGroup.do")
+	public ModelAndView deleteGroup(int idx_ff, int idx){
+		String msg="";
+		ModelAndView mav = new ModelAndView();
+		int count = settingDao.deleteGroup(idx_ff);
+		if(count>0){
+			count = settingDao.deleteff(idx_ff);
+			msg = count>0? "삭제되었습니다." : "삭제에 실패하였습니다.";
+		}
+		
+		mav.addObject("msg", msg);
+		mav.addObject("gourl", "friendSetting.do?idx="+idx);
+		mav.setViewName("setting/settingMsg");
 		return mav;
 	}
 }

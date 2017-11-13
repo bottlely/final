@@ -25,4 +25,6 @@ public interface SettingDAO {
 	public int insertGroup(GroupDTO dto);
 	public List<GroupDTO> showGroup(int idx_ff);
 	public List<MemberDTO> groupMember(int idx);
+	public int deleteGroup(int idx_ff);
+	public int deleteff(int idx_ff);
 }

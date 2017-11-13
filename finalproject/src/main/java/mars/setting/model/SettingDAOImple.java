@@ -107,5 +107,16 @@ public class SettingDAOImple implements SettingDAO {
 		return list;
 	}
 
+	/**그룹 삭제*/
+	public int deleteGroup(int idx_ff) {
+		int count = sqlMap.delete("deleteGroup", idx_ff);
+		return count;
+	}
+
+	public int deleteff(int idx_ff) {
+		int count = sqlMap.delete("deleteff", idx_ff);
+		return count;
+	}
+
 	
 }
