@@ -107,14 +107,16 @@
 </head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 			<script> 
-			$(document).ready(function(){
-			    $("#friends1").click(function(){
-			    	ppp.location.reload();
-			        var div = $("#friends2");
-			        div.animate({height: '100%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-			    });
-			});
+		    $(document).ready(function(){
+	             $("#friends1").click(function(){
+	                $('#more2').fadeOut();
+	                   $('#more3').fadeOut();
+	                ppp.location.reload();
+	                 var div = $("#friends2");
+	                 div.animate({height: '100%'}, "slow");
+	                 div.animate({width:'toggle'}, "slow");
+	             });
+	         });
 			
 			$(document).ready(function(){
              $("#mypage1").click(function(){
@@ -127,14 +129,15 @@
              });
          });
 
-			$(document).ready(function(){
-			    $("#cl1").click(function(){
-			        var div = $("#friends2");
-			        div.animate({height: '100%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-					
-			    });
-			});
+		    $(document).ready(function(){
+	             $("#cl1").click(function(){
+	                 var div = $("#friends2");
+	                 div.animate({height: '100%'}, "slow");
+	                 div.animate({width:'toggle'}, "slow");
+	               
+	             });
+	         });
+
 			
 			$(document).ready(function(){
 			    $("#cl2").click(function(){
@@ -180,16 +183,18 @@
 			    });
 			});
 					
-			function openpic(i){
-				var div = document.getElementById('pic'+ i).value;
+			function openpic(content_idx){
 				
-				document.getElementById('pic_idx').value = i;
+				var path = document.getElementById('path_'+content_idx).value;
 				
-				sendRequest('replyList.do?content_idx=20', null, replyList, 'GET');
+				window.alert(path);
+			/* 	document.getElementById('pic_idx').value = i; */
 				
-				$('#galleryImage').attr("src",div);
+				sendRequest('replyList.do?content_idx='+content_idx, null, replyList, 'GET');
 				
-				$("#galleryImage").load(galleryImage);
+				$('#galleryImage').attr("src",path);
+				
+				$("#galleryImage").load("#galleryImage");
 			} 
 			
 			function replyList(){
@@ -216,20 +221,19 @@
 				}
 			}
 			
-			function test1(idx) {
-			   alert(idx);
-               document.getElementById('ppp').src='myHomeForm.do?useridx='+idx;
-               var div = $("#mypage2");
-               div.animate({right: '0px'}, "fast");
-               div.animate({height: '100%'}, "slow");
-               div.animate({width:'toggle'}, "slow");
-               /* if(div.height() == '0%'){
-               div.animate({width:'toggle'},"slow"); 
-               }
-               else{
-            	   div.animate({width:'60%'},"slow");
-               } */
-            }
+		      function test1(idx) {
+	               document.getElementById('ppp').src='myHomeForm.do?useridx='+idx;
+	               var div = $("#mypage2");
+	               div.animate({right: '0px'}, "fast");
+	               div.animate({height: '100%'}, "slow");
+	               div.animate({width:'toggle'}, "slow");
+	               /* if(div.height() == '0%'){
+	               div.animate({width:'toggle'},"slow"); 
+	               }
+	               else{
+	                  div.animate({width:'60%'},"slow");
+	               } */
+	            }
 			
 			function addReply(){
 				var pic_idx = document.getElementById('pic_idx').value;
@@ -241,59 +245,64 @@
 	            sendRequest('replyList.do?content_idx=20', null, openpic(pic_idx), 'GET');
 	            
 	         }
-			function following(n1, n2) {
-				window.alert(n1);
-				window.alert(n2);
-				location.href='following.do?user1_idx='+n1+'&user2_idx='+n2;
-			}
-			function unfollowing(user_idx, other_idx) {
-				parent.unfollowing(user_idx, other_idx);
-				window.alert(user_idx);
-				window.alert(other_idx);
-				location.href='deleteFriend.do?user1_idx='+user_idx+'&user2_idx='+other_idx;
-			}
-			function removeFollower(n1, n2) {
-				window.alert(n1);
-				window.alert(n2);
-				location.href='deleteFriend.do?user1_idx='+n2+'&user2_idx='+n1;
-			}
 			
-			function addIdx1(other_idx, other_name, other_profile_img) { //follower
-				document.getElementById('follower_img_id').src='myHomeFolder/profile_img/'+other_profile_img;
-				document.getElementById('follower_name_id').innerHTML=other_name;
-				$(document).ready(function(){
-				    $("#btn_following").click(function(){ //팔로우하기
-				    	location.href='following.do?user1_idx='+${sessionScope.useridx}+'&user2_idx='+other_idx;
-				    });
-				});
-				$(document).ready(function(){
-				    $("#btn_removeFollower").click(function(){ //팔로워삭제
-				    	location.href='deleteFriend.do?user1_idx='+${sessionScope.useridx}+'&user2_idx='+other_idx;
-				    });
-				});
-				$(document).ready(function(){
-				    $("#btn_settingGroup").click(function(){ //그룹설정이동
-				    	location.href='infoSetting.do';
-				    });
-				});
-				$(document).ready(function(){
-				    $("#btn_cancle").click(function(){ //취소하기
-				    	var div = $("#more3");
-				        div.animate({height: '0%'}, "slow");
-				        div.animate({width:'toggle'}, "slow");
-				    });
-				});
-			}
+			   function btn_cancle() {
+		            var more2 = document.getElementById('more2');
+		            more2.style.dissplay='none';
+		            var more3 = document.getElementById('more3');
+		            more3.style.display='none';
+		         }
+		         
+		         function settingGroup() {
+		            location.href='infoSetting.do?idx='+${sessionScope.useridx};
+		         }
+		         
+		         function removeFollower() {
+		            var user2_idx = document.getElementById('hidden_other_idx').value;
+		            location.href='deleteFriend.do?user1_idx='+${sessionScope.useridx}+'&user2_idx='+user2_idx;
+		         }
+		         
+		         function black() {
+		            //alert('black');
+		            var user2_idx = document.getElementById('hidden_other_idx').value;
+		            location.href="friend_unblock.do?user1_idx="+${sessionScope.useridx}+"&user2_idx="+user2_idx;
+		         }
+		         
+		         function following() {
+		            //alert('following');
+		            var user2_idx = document.getElementById('hidden_other_idx').value;
+		            location.href='following.do?user1_idx='+${sessionScope.useridx}+'&user2_idx='+user2_idx;
+		         }
+		         
+		         function unfollowing() {
+		            //alert('unfollowing');
+		            var user2_idx = document.getElementById('hidden_other_idx').value;
+		            location.href='deleteFriend.do?user1_idx='+${sessionScope.useridx}+'&user2_idx='+user2_idx;
+		         }
+		         
+		         function fwer(other_idx, other_name, other_profile_img) { //follower
+		            document.getElementById('follower_img_id').src='myHomeFolder/profile_img/'+other_profile_img;
+		            document.getElementById('follower_name_id').innerHTML=other_name;
+		            
+		            document.getElementById('hidden_other_idx').value=other_idx;
+		            
+		         }
+		         
+		         function fwing(other_idx, other_name, other_profile_img) { //following
+		            document.getElementById('following_img_id').src='myHomeFolder/profile_img/'+other_profile_img;
+		            document.getElementById('following_name_id').innerHTML=other_name;
+		            
+		            document.getElementById('hidden_other_idx').value=other_idx;
+		         }
 			
-			function addIdx2(other_idx, other_name, other_profile_img) { //following
-				document.getElementById('following_img_id').src='myHomeFolder/profile_img/'+other_profile_img;
-				document.getElementById('following_name_id').innerHTML=other_name;
-				
-			}
-
 </script> 
 <body>
 <header>
+<form name="hidden_value">
+   <input type="hidden" name="hidden_other_idx" id="hidden_other_idx" value="">
+   <input type="hidden" name="hidden_other_name" id="hidden_other_name" value="">
+   <input type="hidden" name="hidden_other_profile_img" id="hidden_other_profile_img" value="">
+</form>
 <div id="navbar-full">
 		<span style="float: left;">
             <div id="friends2" style="background:#935d8c;height:100%;width:40%; position: absolute; float: left; display: none; z-index: 4">
@@ -543,11 +552,8 @@
 							<div class="work-overlay text-center">
 								<div class="overlay-caption">
 									<h4>PHOTO</h4>
-									<a href="#galleryModal" class="gallery-box" data-toggle="modal"
-										data-src="${list.path }"
-										onclick="openpic(${list.content_idx})"> 
-										<input type="hidden" value="${list.path }" id="pic"> 
-										<input type="hidden" id="pic_idx" value="${list.content_idx}">
+									<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
+									<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }">
 										<p>
 											${list.writer}
 										</p>
@@ -617,7 +623,7 @@
     <div class="row">
         <div class="col-xs-6" style="margin-top: 10px; float: left;">
         
-        <img src="" id="galleryImage" class="img-thumbnail">
+        <img src="default_content.jpg" id="galleryImage" class="img-thumbnail">
         
         </div>
          <div class="col-xs-6" style="float: left;">
