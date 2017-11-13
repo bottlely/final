@@ -4,7 +4,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<mapper namespace="mars.*" >
+<mapper namespace="mars.reply" >
    <resultMap type="mars.reply.model.MyHomeReplyDTO" id="myHomeReply">
       <result property="name" column="name" />
       <result property="profile_img" column="profile_img" />
@@ -12,26 +12,44 @@
       <result property="idx" column="idx" />
    </resultMap>
    <select id="replyList" resultMap="myHomeReply">
-      select mypage.name, mypage.profile_img, mars_reply.content, mars_reply.idx, mars_reply.lev
+      select mypage.name, mypage.profile_img, mars_reply.content, mars_reply.idx, mars_reply.lev, mars_reply.ref, mars_reply.sunbun
       from mypage
-      inner join mars_reply on mypage.member_idx=mars_reply.to_idx order by idx desc
+      inner join mars_reply on mypage.member_idx=mars_reply.to_idx where content_idx=#{content_idx} order by ref asc, sunbun asc
    </select>
    <insert id="addReply" parameterType="mars.reply.model.ReplyDTO">
-      insert into mars_reply values(mars_reply_idx.nextval, 30, 20, 27, #{content}, 0, 0, 0, sysdate, 0, 0, 0, 0)
+      insert into mars_reply values(mars_reply_idx.nextval, #{member_idx}, #{content_idx}, #{session_idx}, #{content}, 0, 0, sysdate,  #{ref}, 0, 0, 0)
    </insert>
-   <insert id="re_reply" parameterType="mars.reply.model.ReplyDTO">
-      insert into mars_reply values(mars_reply_idx.nextval, 30, 20, 27, #{content}, #{ref}, 1, #{sunbun}, sysdate, 0, 0, 0, 0)
+   <insert id="re_AddReply" parameterType="HashMap">
+      insert into mars_reply values(mars_reply_idx.nextval, #{member_idx}, #{content_idx}, #{session_idx}, #{content}, 1, #{sunbun}, sysdate,  #{ref}, 0, 0, 0)
    </insert>
    <!-- <update id="update_Reply" parameterType="HashMap">
          update from mars_reply set content=#{content} where idx={reply_idx}
    </update> -->
    <delete id="delete_Reply" parameterType="Integer">
-         delete from mars_reply where idx=#{reply_idx}
+         delete from mars_reply where idx=#{reply_idx} and ref=#{ref} or ref=#{ref}
    </delete>
-   <select id="ref" resultType="mars.reply.model.ReplyDTO">
+   <select id="ref" parameterType="Integer" resultType="Integer">
          select ref from mars_reply where idx=#{reply_idx}
    </select>
-   <select id="sunbun" resultType="mars.reply.model.ReplyDTO">
-         select sunbun from mars_reply where idx=#{reply_idx}
+   <select id="sunbun" parameterType="Integer" resultType="Integer">
+         select max(sunbun) from mars_reply where content_idx=#{content_idx} and ref=#{reply_idx_ref}
    </select>
+   <select id="content_idx_ref" parameterType="Integer" resultType="Integer">
+         select nvl(count(ref),0) from mars_reply where content_idx=#{content_idx}
+   </select>
+   <select id="reply_idx_ref" parameterType="Integer" resultType="Integer">
+         select ref from mars_reply where idx=#{reply_idx}
+   </select>
+   <select id="member_idx" parameterType="Integer" resultType="Integer">
+         select member_idx from content where content_idx=#{content_idx}
+   </select>
+   <insert id="like" parameterType="HashMap">
+         insert into mars_like values(mars_like_idx.nextval, #{member_idx}, #{content_idx}, #{session_idx}, sysdate, 1, 0, 0, 0)
+   </insert>
+   <select id="likeSelect" parameterType="HashMap" resultType="Integer">
+         select nvl(count(flag),0) from mars_like where content_idx=20 and to_idx=27
+   </select>
+   <delete id="like_delete" parameterType="HashMap">
+         delete from mars_like where content_idx=#{content_idx} and to_idx=#{session_idx}
+   </delete>
 </mapper>
