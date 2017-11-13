@@ -6,8 +6,33 @@
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
- <style type="text/css">
- 
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+
+<style>
+body {
+	background-color:#f2fdff;
+}
+
+.container {
+	margin-top: 20px;
+}
+
+#pf {
+	width: 50px;
+	heigth: 50px;
+}
+
+#name {
+	width: 67%;
+}
+
 	input[type=file] {
         display: none;
   	}
@@ -17,7 +42,17 @@
         margin-left: 10px;
         margin-right: 10px;
      }
-   
+     
+select {
+    width: 100px;
+    height: 30px;
+    padding-left: 10px;
+    font-size: 12px;
+    color: #006fff;
+    border: 1px solid #006fff;
+    border-radius: 3px;
+}
+
 </style>
  <script type="text/javascript" src="js/jquery-3.1.0.min.js" charset="utf-8"></script>
     <script type="text/javascript">
@@ -160,37 +195,64 @@
 </head>
 
 <body>
-	<h2>${writer}</h2>
+
+<div class="container" style="background-color: white;">
+	<div class="row" style="padding-top:10px;">
+		<div class="col-sm-12">
+			<span class="avatar">
+			<img src="myHomeFolder/profile_img/${profile}" alt="" id="pf"/>
+			</span>
+		    <label id="name">${writer}</label>
+		    <select name="coverage" onchange="hi(this)">
+			    <option value="0">전체공개</option>
+			    <option value="1">친구만</option>
+			    <option value="2">특정 대상</option>
+			    <option value="3">제외할 대상</option>
+		    	<option value="4">나만</option>
+			</select>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+			<div class="col-sm-12">
+				<input type="text" class="form-control" id="tag" name="hashtag"
+					placeholder="해시태그" onFocus="clearText(this)" onBlur="clearText(this)">
+			</div>
+			<hr>
+			<div class="col-sm-12">
+				<div class="form-group">
+					<textarea class="form-control" rows="5" id="content" name="content" placeholder="사진에 대해 이야기 해주세요 :)" onFocus="clearText(this)" onBlur="clearText(this)"></textarea>
+				</div>
+			</div>
+		</div>
+		<hr>
+			
+	<div class="row">
+		<div class="col-md-12">	
+	        <div class="input_wrap" style="margin-bottom:15px;">
+	        	<input type="button" class="btn btn-primary" onclick="fileUploadAction();" value="사진 선택">
+	            <input type="file" id="input_imgs" multiple/>
+	        </div>
 	
-	<img src="myHomeFolder/profile_img/${profile}" width="50px" height="50px"/>
-    
-    <select name="coverage" onchange="hi(this)">
-    <option value="0">전채공개</option>
-    <option value="1">친구만</option>
-    <option value="2">특정 대상</option>
-    <option value="3">제외할 대상</option>
-    <option value="4">나만</option>
-	</select>
-
-        <div class="input_wrap">
-            <a href="javascript:" onclick="fileUploadAction();" class="my_button">파일 찾기</a>
-            <input type="file" id="input_imgs" multiple/>
-        </div>
-
-        <div class="imgs_wrap">
-            <img id="img" />
-        </div>
-    
-     <input id="tag" type="text" value="태그" onFocus="clearText(this)" onBlur="clearText(this)">
-    <textarea id="content" onFocus="clearText(this)" onBlur="clearText(this)">내용입력하세요.</textarea>
-
-	<a href="javascript:" class="my_button" onclick="submitAction();">업로드</a>
+	        <div class="imgs_wrap">
+	            <img id="img" />
+	        </div>
+    	</div>
+    </div>
+    <hr>
+     
+    <div class="row" style="padding-bottom:10px;">
+    	<div class="col-sm-12">
+			<input type="button" value="업로드" class="btn btn-success" onclick="submitAction();">
+			<input type="submit" value="취소" class="btn btn-Info" onclick="back()">
 	
 	<!--   <form id="myHome" action="myHomeForm.do" method="post">
 		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
 		<input type="submit" value="back">
 		</form>
 	-->
-	<input type="submit" value="back" onclick="back()">
+		</div>
+	</div>
+</div>
 </body>
 </html>

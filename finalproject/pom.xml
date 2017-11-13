@@ -4,7 +4,6 @@
 	<groupId>finalproject</groupId>
 	<artifactId>finalproject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 	<name>finalproject</name>
 	<description>finalproject</description>
 
@@ -192,4 +191,5 @@
 			<version>0.3.11</version>
 		</dependency>
 	</dependencies>
+	<packaging>war</packaging>
 </project>
