@@ -217,16 +217,18 @@
 			}
 			
 			function test1(idx) {
+			   alert(idx);
                document.getElementById('ppp').src='myHomeForm.do?useridx='+idx;
                var div = $("#mypage2");
                div.animate({right: '0px'}, "fast");
                div.animate({height: '100%'}, "slow");
-               if(div.height() == '0%'){
+               div.animate({width:'toggle'}, "slow");
+               /* if(div.height() == '0%'){
                div.animate({width:'toggle'},"slow"); 
                }
                else{
             	   div.animate({width:'60%'},"slow");
-               }
+               } */
             }
 			
 			function addReply(){
@@ -293,28 +295,23 @@
 <body>
 <header>
 <div id="navbar-full">
-<span style="float: left;">
-
+		<span style="float: left;">
             <div id="friends2" style="background:#935d8c;height:100%;width:40%; position: absolute; float: left; display: none; z-index: 4">
-      <div style="background-color: white; align-content:center; text-align: right;"><a href="#" id="cl1">Close</a></div> 
-   <c:url var="frListUrl" value="main_frList.do">
-      <c:param name="member_idx" value="${sessionScope.useridx }" />
-   </c:url>
-   <iframe src="${frListUrl }" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
-
-   </div>
+		      <div style="background-color: white; align-content:center; text-align: right;"><a href="#" id="cl1">Close</a></div> 
+			   <c:url var="frListUrl" value="main_frList.do">
+			      <c:param name="member_idx" value="${sessionScope.useridx }" />
+			   </c:url>
+			   <iframe src="${frListUrl }" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+		   </div>
        </span>
+       
        <span style="float: right;">
-
-          <div id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
-      <div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
-   
-   
-   <iframe src="myHomeForm.do?useridx=${sessionScope.useridx}" width="100%" height="100%" name="ppp" id="ppp" frameborder="0"></iframe>
-
-   </div>
+          <div id="mypage2" style="background:#935d8c; height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
+      		<div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
+  			 <iframe src="myHomeForm.do?useridx=${sessionScope.useridx}" width="100%" height="100%" name="ppp" id="ppp" frameborder="0"></iframe>
+  		 </div>
+	  </span>
 		 
-		 </span>
 		 	<div id="msgTest2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 30%; margin-left: 78%">
 		<div style="background-color: white; align-content:center; "><a href="#" id="cl3">Close</a></div>
 	
@@ -331,6 +328,7 @@
 		<p style="text-align: center; font-size: 8pt; font-family: Sans-Serif;" id="following_name_id"></p>
 		<div style="text-align: center;">
 		<input type="button" value="팔로우취소" onclick="unfollowing()" id="btn_unfwing" class="frbutton"><br><br>
+		<input type="button" value="차단하기" onclick="black()" id="btn_black" class="frbutton"><br><br>
 		<input type="button" value="그룹설정" onclick="settingGroup()" id="btn_settingGroup" class="frbutton"><br><br>
 		<input type="button" value="취소하기" onclick="btn_cancle()" id="btn_cancle" class="frbutton"><br>
 		</div>
