@@ -164,6 +164,15 @@
 			});
 			
 			$(document).ready(function(){
+			    $("#cl6").click(function(){
+			        var div = $("#more3");
+			        div.animate({height: '0%'}, "slow");
+			        div.animate({width:'toggle'}, "slow");
+			        
+			    });
+			});
+			
+			$(document).ready(function(){
 			    $("#more1").click(function(){
 			        var div = $("#more2");
 					div.toggle('slow');
@@ -247,7 +256,36 @@
 				location.href='deleteFriend.do?user1_idx='+n2+'&user2_idx='+n1;
 			}
 			
-			function addIdx(user_idx) {
+			function addIdx1(other_idx, other_name, other_profile_img) { //follower
+				document.getElementById('follower_img_id').src='myHomeFolder/profile_img/'+other_profile_img;
+				document.getElementById('follower_name_id').innerHTML=other_name;
+				$(document).ready(function(){
+				    $("#btn_following").click(function(){ //팔로우하기
+				    	location.href='following.do?user1_idx='+${sessionScope.useridx}+'&user2_idx='+other_idx;
+				    });
+				});
+				$(document).ready(function(){
+				    $("#btn_removeFollower").click(function(){ //팔로워삭제
+				    	location.href='deleteFriend.do?user1_idx='+${sessionScope.useridx}+'&user2_idx='+other_idx;
+				    });
+				});
+				$(document).ready(function(){
+				    $("#btn_settingGroup").click(function(){ //그룹설정이동
+				    	location.href='infoSetting.do';
+				    });
+				});
+				$(document).ready(function(){
+				    $("#btn_cancle").click(function(){ //취소하기
+				    	var div = $("#more3");
+				        div.animate({height: '0%'}, "slow");
+				        div.animate({width:'toggle'}, "slow");
+				    });
+				});
+			}
+			
+			function addIdx2(other_idx, other_name, other_profile_img) { //following
+				document.getElementById('following_img_id').src='myHomeFolder/profile_img/'+other_profile_img;
+				document.getElementById('following_name_id').innerHTML=other_name;
 				
 			}
 
@@ -268,7 +306,7 @@
        </span>
        <span style="float: right;">
 
-          <div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
+          <div id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
       <div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
    
    
@@ -277,31 +315,45 @@
    </div>
 		 
 		 </span>
-		 	<div  id="msgTest2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 30%; margin-left: 78%">
+		 	<div id="msgTest2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 30%; margin-left: 78%">
 		<div style="background-color: white; align-content:center; "><a href="#" id="cl3">Close</a></div>
 	
 		<H1>채팅창 태스트</H1>
 
 	</div>
-		<!-- 개인설정 창 부분(more) -->
-		<div  id="more2" style="border-top:1px solid; border-bottom:1px solid; border-left:1px solid; border-right:1px solid;background:white;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%">
-		<div style="background-color: white; align-content:center; text-align: right; vertical-align: middle;"><a href="#" id="cl4" style="font-size: 13px;">Close</a></div>
-		<hr width="100%;" style="border: solid 1px black;">
+	<!-- 개인설정 창 부분(more)___followingList -->
+	<div id="more2" style="background:white;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%">
+		<div style="background-color: white; align-content:center; text-align: right;"><a href="#" id="cl4" style="font-size: 11px;">Close</a></div>
 		<div style="text-align: center; border: thick;">
-		<img src="assets_main/images/아이유6.jpg" style="width: 60px; height: 60px; border-radius: 50%;">
-		
+			<img src="" id="following_img_id" alt="" style="border-radius: 50%; width: 50px;">
 		</div>
-		<p style="text-align: center;">아이유</p>
+		<br>
+		<p style="text-align: center; font-size: 8pt; font-family: Sans-Serif;" id="following_name_id"></p>
 		<div style="text-align: center;">
-		<input type="button" value="Unfollow" onclick="unfollowing()" class="frbutton"><br><br>
-		<input type="button" value="Remove Follwer" onclick="" class="frbutton"><br><br>
-		<input type="button" value="Setting Group" onclick="" class="frbutton"><br><br>
-		<input type="button" value="Cancle" onclick="" class="frbutton"><br>
+		<input type="button" value="팔로우취소" onclick="unfollowing()" id="btn_unfwing" class="frbutton"><br><br>
+		<input type="button" value="그룹설정" onclick="settingGroup()" id="btn_settingGroup" class="frbutton"><br><br>
+		<input type="button" value="취소하기" onclick="btn_cancle()" id="btn_cancle" class="frbutton"><br>
+		</div>
+	</div>
+	
+	<!-- 개인설정 창 부분(more)___followerList -->
+	<div id="more3" style="background:white;height:20%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%">
+		<div style="background-color: white; align-content:center; text-align: right;"><a href="#" id="cl6" style="font-size: 11px;">Close</a></div>
+		<div style="text-align: center; border: thick;">
+			<img src="" id="follower_img_id" alt="" style="border-radius: 50%; width: 50px;">
+		</div>
+		<br>
+		<p style="text-align: center; font-size: 8pt; font-family: Sans-Serif;" id="follower_name_id"></p>
+		<div style="text-align: center;">
+		<input type="button" value="팔로우하기" onclick="following()" id="btn_following" class="frbutton"><br><br>
+		<input type="button" value="팔로워삭제" onclick="removeFollower()" id="btn_removeFollower" class="frbutton"><br><br>
+		<input type="button" value="그룹설정" onclick="settingGroup()" id="btn_settingGroup" class="frbutton"><br><br>
+		<input type="button" value="취소하기" onclick="btn_cancle()" id="btn_cancle" class="frbutton"><br>
 		</div>
 	</div>
 	
 	<!-- 차단해제 창 부분(black) -->
-	<div  id="black2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 50%">
+	<div id="black2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 50%">
 		<div style="background-color: white; align-content:center; text-align: right; "><a href="#" id="cl5">Close</a></div>
 	
 		<input type="button" value="차단해제" onclick="">
@@ -334,22 +386,22 @@
               <ul class="nav navbar-nav navbar-right">
 
            				<!-- 다운 광고 추가 임시 버튼 -->
-           				
-           	<script>
-           		function voice(){
-           			sendRequest('voice.do', null, voiceResult, 'GET');
-           		}
-           		function voiceResult(){
-           			
-           		}
-           	</script>	
-           				
-           				
-           	  <li>
-              <a href="#" onclick="voice()">
-                           <i class="pe-7s-search"></i>       
-              </a>
-              </li>
+            				
+            	<script>
+            		function voice(){
+            			sendRequest('voice.do', null, voiceResult, 'GET');
+            		}
+            		function voiceResult(){
+            			
+            		}
+            	</script>	
+            				
+            				
+            	  <li>
+               <a href="#" onclick="voice()">
+                            <i class="pe-7s-search"></i>       
+               </a>
+               </li>
               <li>
               <a href="#" onclick="window.open('applyAdForm.do', '광고 주문서', 'scrollbars=no width=400, height=450')">
                            <i class="pe-7s-search"></i>       

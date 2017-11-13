@@ -87,19 +87,79 @@
       });
       
      function black(user1_idx, user2_idx) {
-    	 /* var div = $('#black2', parent.document);
-         div.animate({height: '40%'}, "slow");
-         div.animate({width:'toggle'}, "slow"); */
          location.href="friend_unblock.do?user1_idx="+user1_idx+"&user2_idx="+user2_idx;
      } 
       
-     function more(other_idx) {
+     function fwer_more(other_idx, other_name, other_profile_img) {
+    	 var div_1 = $('#follower_img_id', parent.document);
+    	 div_1.src='myHomeFolder/profile_img/'+other_profile_img;
+    	 var div_2 = $('#follower_name_id', parent.document);
+    	 div_2.innerHTML=other_name;
+    	 
+    	 var div = $('#more3', parent.document);
+         div.animate({height: '45%'}, "slow");
+         div.animate({width:'toggle'}, "slow");
+         parent.addIdx1(other_idx, other_name, other_profile_img);
+     }
+     
+     function fwing_more(other_idx, other_name, other_profile_img) {
+    	 var div_1 = $('#following_img_id', parent.document);
+    	 div_1.src='myHomeFolder/profile_img/'+other_profile_img;
+    	 var div_2 = $('#following_name_id', parent.document);
+    	 div_2.innerHTML=other_name;
+    	 var btn_1 = $('#btn_unfwing', parent.document);
+    	 btn_1.attr('onclick','unfollowing(${sessionScope.useridx}, other_idx)');
+    	 var btn_2 = $('#btn_settingGroup', parent.document);
+    	 btn_1.attr('onclick','settingGroup()');
+    	 var btn_3 = $('#btn_cancle', parent.document);
+    	 btn_1.attr('onclick','cancle_btn()');
+    	 
     	 var div = $('#more2', parent.document);
          div.animate({height: '45%'}, "slow");
          div.animate({width:'toggle'}, "slow");
-         parent.addIdx(other_idx);
+         parent.addIdx2(other_idx, other_name, other_profile_img);
      }
-     
+     function following(n1, n2) {
+			window.alert(n1);
+			window.alert(n2);
+			location.href='following.do?user1_idx='+n1+'&user2_idx='+n2;
+		}
+		function unfollowing(user_idx, other_idx) {
+			parent.unfollowing(user_idx, other_idx);
+			window.alert(user_idx);
+			window.alert(other_idx);
+			location.href='deleteFriend.do?user1_idx='+user_idx+'&user2_idx='+other_idx;
+		}
+		function removeFollower(n1, n2) {
+			window.alert(n1);
+			window.alert(n2);
+			location.href='deleteFriend.do?user1_idx='+n2+'&user2_idx='+n1;
+		}
+		function settingGroup() {
+			location.href='infoSetting.do';
+		}
+		function cancle_btn() {
+			window.self.close();
+		}
+		
+
+     $(document).ready(function(){
+		    $("#btn_unfwing").click(function(){ //팔로우 취소하기
+		    	location.href='deleteFriend.do?user1_idx='+${sessionScope.useridx}+'&user2_idx='+other_idx;
+		    });
+		});
+     $(document).ready(function(){
+		    $("#btn_settingGroup").click(function(){ //그룹설정
+		    	location.href='infoSetting.do';
+		    });
+		});
+	$(document).ready(function(){
+		    $("#btn_cancle").click(function(){ //취소하기
+		    	var div = $("#more2");
+		        div.animate({height: '0%'}, "slow");
+		        div.animate({width:'toggle'}, "slow");
+		    });
+		});
       </script>
    </head>
    <body>
@@ -166,17 +226,40 @@
                   <!-- follower -->
                      <section id="follower1" style="display: none;">
                         <ul class="posts">
+                        
                         <c:forEach var="follower_list" items="${followerList }">
-                           <li>
-                              <article>
-                                 <header>
-                                    <h3><a onclick="openMypage(${follower_list.member_idx })" value="${follower_list.member_idx }">${follower_list.name }</a></h3>
-                                    <input type="button" value="chat" id="userChat"><input type="button" value="more" onclick="more(${follower_list.member_idx })">
-                                 </header>
-                                 <a href="#" class="image"><img src="myHomeFolder/profile_img/${follower_list.profile_img }" alt=""  style="border-radius: 50%"></a>
-                              </article>
-                           </li>
-                        </c:forEach>
+						   <c:set var="cde" value="false" />
+						   <li>
+						      <article>
+						         <header>
+						            <h3>
+						               <a onclick="openMypage(${follower_list.member_idx })" value="${follower_list.member_idx }">
+						                  ${follower_list.name }
+						               </a>
+						            </h3>
+						            <input type="button" value="chat" id="userChat">
+						            <c:forEach var="fwing_idx" items="${followingList }">
+						               <c:if test="${cde != true}">
+						                  <c:if test="${fwing_idx.member_idx == follower_list.member_idx }">
+						                     <input type="button" value="more" onclick="fwer_more('${follower_list.member_idx }','${follower_list.name }','${follower_list.profile_img }')">
+						                     <c:set var="cde" value="true" />
+						                  </c:if>
+						                  <c:if test="${fwing_idx.member_idx != follower_list.member_idx }">
+						                     
+						                  </c:if>
+						               </c:if>
+						            </c:forEach>
+						            <c:if test="${cde != true }">
+						               <input type="button" value="Follow" onclick="fwing_more('${follower_list.member_idx }','${follower_list.name }','${follower_list.profile_img }')">
+						            </c:if>
+						         </header>
+						         <a href="#" class="image">
+						            <img src="myHomeFolder/profile_img/${follower_list.profile_img }" alt="" style="border-radius: 50%">
+						         </a>
+						      </article>
+						   </li>
+						</c:forEach>
+                        
                         </ul>
                      </section>
                      
@@ -188,7 +271,7 @@
                               <article>
                                  <header>
                                     <h3><a onclick="openMypage(${following_list.member_idx })" value="${following_list.member_idx }">${following_list.name }</a></h3>
-                                    <input type="button" value="chat" id="userChat1"><input type="button" value="more" id="more" onclick="more(${following_list.member_idx })">
+                                    <input type="button" value="chat" id="userChat1"><input type="button" value="more" id="more" onclick="fwing_more('${following_list.member_idx }','${following_list.name }','${following_list.profile_img }')">
                                  </header>
                                  <a href="#" class="image"><img src="myHomeFolder/profile_img/${following_list.profile_img }" alt=""  style="border-radius: 50%"></a>
                               </article>
