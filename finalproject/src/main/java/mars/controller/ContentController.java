@@ -80,12 +80,10 @@ public class ContentController {
         info.put("type", "3");
 		int result = cdao.uploadContent(info);
 		
-		ModelAndView mav = new ModelAndView();
-		String msg = result > 0 ? "ok!" : "no!";
-		mav.addObject("msg", msg);
-		mav.setViewName("myPage/myHomeMsg");
+		ModelAndView mav = new ModelAndView("marsJson","result",result);
 		return mav;
 	}
+	
 	
 	@RequestMapping("/uploadPhoto.do")
 	public ModelAndView uploadPhoto(@RequestParam("useridx")String member_idx,

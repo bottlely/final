@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,14 +46,39 @@ select {
 </style>
 
 <script type="text/javascript">
+function uploadText(){
+	
+	var data = new FormData();
+	data.append("useridx", '${sessionScope.useridx}'); 
+	data.append("tag",document.getElementById("tag").value);
+	data.append("title", document.getElementById("title").value);
+	data.append("content", document.getElementById("content").value);
+	
+     var xhr = new XMLHttpRequest();
+     xhr.open("POST","uploadText.do");
+     xhr.send(data);
+     xhr.onload = function(e) {
+          if(this.status == 200) {
+            var jsonResponse = JSON.parse(e.currentTarget.responseText);
+           if(jsonResponse["result"] > 0){
+              alert('업로드 완료!');
+              window.opener.location.reload();
+            window.close();
+           }else{
+              alert('업로드 실패!');
+           }
+           }
+      }
+     
+}
 function clearText(field){
-   if(field.defaultValue == field.value) field.value = '';
-   else if(field.value == '') field.value = field.defaultValue;
+	if(field.defaultValue == field.value) field.value = '';
+	else if(field.value == '') field.value = field.defaultValue;
 }
 
 function back(){
-   window.opener.location.reload();
-   window.close();
+	window.opener.location.reload();
+	window.close();
 }
 </script>
 </head>
@@ -75,15 +101,14 @@ function back(){
       </div>
    </div>
    <hr>
-   <form action="uploadText.do" method="post">
-      <input type="hidden" name="useridx" value="${sessionScope.useridx}">
+   <form id="uploadForm" method="post">
       <div class="row">
          <div class="col-sm-12">
             <input type="text" class="form-control" id="tag" name="tag"
                placeholder="해시태그">
          </div>
          <div class="col-sm-12">
-            <input type="text" name="title" class="form-control" placeholder="제목">
+            <input type="text" id="title" name="title" class="form-control" placeholder="제목">
          </div>
          <hr>
          <div class="col-sm-12">
@@ -95,12 +120,10 @@ function back(){
       
       <div class="row" style="padding-bottom:10px;">
           <div class="col-sm-12">
-            <input type="submit" value="업로드" class="btn btn-success">
+            <input type="button" value="업로드" class="btn btn-success" onclick="uploadText()">
             <input type="button" value="취소" class="btn btn-Info" onclick="back()">
          </div>
    </div>
-   
-   
    </form>
 </div>
 </body>
