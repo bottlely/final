@@ -27,8 +27,82 @@
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script type="text/javascript">
-	var date = new Date();
-	function chart() {
+	//7일전
+	var nday = new Date();    
+	nday.setDate(nday.getDate() - 7); //오늘 날짜에서 days만큼을 뒤로 이동 
+	var yy = nday.getFullYear();
+	var mm = nday.getMonth()+1;
+	var dd = nday.getDate();
+
+		if( mm<10) mm="0"+mm;
+		if( dd<10) dd="0"+dd;
+		var day7 = yy+"-"+mm+"-"+dd;
+		//6일전
+		var nday1 = new Date();    
+		nday1.setDate(nday1.getDate() - 6); //오늘 날짜에서 days만큼을 뒤로 이동 
+		var yy1 = nday1.getFullYear();
+		var mm1 = nday1.getMonth()+1;
+		var dd1 = nday1.getDate();
+
+			if( mm1<10) mm1="0"+mm1;
+			if( dd1<10) dd1="0"+dd1;
+			var day6 = yy1+"-"+mm1+"-"+dd1;
+			
+			//5일전
+			var nday2 = new Date();    
+			nday2.setDate(nday2.getDate() - 5); //오늘 날짜에서 days만큼을 뒤로 이동 
+			var yy2 = nday2.getFullYear();
+			var mm2 = nday2.getMonth()+1;
+			var dd2 = nday2.getDate();
+
+				if( mm2<10) mm2="0"+mm2;
+				if( dd2<10) dd2="0"+dd2;
+				var day5 = yy2+"-"+mm2+"-"+dd2;
+				
+				//4일전
+				var nday3 = new Date();    
+				nday3.setDate(nday3.getDate() - 4); //오늘 날짜에서 days만큼을 뒤로 이동 
+				var yy3 = nday3.getFullYear();
+				var mm3 = nday3.getMonth()+1;
+				var dd3 = nday3.getDate();
+
+					if( mm3<10) mm3="0"+mm3;
+					if( dd3<10) dd3="0"+dd3;
+					var day4 = yy3+"-"+mm3+"-"+dd3;
+					
+					//3일전
+					var nday4 = new Date();    
+					nday4.setDate(nday1.getDate() - 3); //오늘 날짜에서 days만큼을 뒤로 이동 
+					var yy4 = nday4.getFullYear();
+					var mm4 = nday4.getMonth()+1;
+					var dd4 = nday4.getDate();
+
+						if( mm4<10) mm4="0"+mm4;
+						if( dd4<10) dd4="0"+dd4;
+						var day3 = yy4+"-"+mm4+"-"+dd4;
+						
+						//2일전
+						var nday5 = new Date();    
+						nday5.setDate(nday5.getDate() - 2); //오늘 날짜에서 days만큼을 뒤로 이동 
+						var yy5 = nday5.getFullYear();
+						var mm5 = nday5.getMonth()+1;
+						var dd5 = nday5.getDate();
+
+							if( mm5<10) mm5="0"+mm5;
+							if( dd5<10) dd5="0"+dd5;
+							var day2 = yy5+"-"+mm5+"-"+dd5;
+							
+							//1일전
+							var nday6 = new Date();    
+							nday6.setDate(nday6.getDate() - 1); //오늘 날짜에서 days만큼을 뒤로 이동 
+							var yy6 = nday6.getFullYear();
+							var mm6 = nday6.getMonth()+1;
+							var dd6 = nday6.getDate();
+
+								if( mm6<10) mm1="0"+mm6;
+								if( dd6<10) dd1="0"+dd6;
+								var day1 = yy6+"-"+mm6+"-"+dd6;
+			function chart() {
 
 		//Chart.js scripts
 		//-- Set new default font family and font color to mimic Bootstrap's default styling
@@ -40,8 +114,8 @@
 
 			type : 'line',
 			data : {
-				labels : [ date.getMonth(), "월요일", "화요일", "수요일", "목요일", "금요일",
-						"토요일" ],
+				labels : [ day7, day6, day5, day4, day3, day2,
+						day1 , "now" ],
 				datasets : [ {
 					label : "",
 					lineTension : 0.3,
@@ -54,7 +128,7 @@
 					pointHoverBackgroundColor : "rgba(2,117,216,1)",
 					pointHitRadius : 20,
 					pointBorderWidth : 2,
-					data : [ 10, 10, 10, 10, 10, 10, ${allcount} ],
+					data : [ 10, 10, 10, 10, 10, 10,10, ${allcount} ],
 				} ],
 			},
 			options : {
@@ -378,15 +452,15 @@
 				<div class="card-body">
 					<canvas id="myAreaChart" width="100%" height="30"></canvas>
 				</div>
-				
+
 			</div>
 			<div class="row">
 				<div class="col-lg-8">
 					<!-- Example Bar Chart Card-->
 					<div class="card mb-3">
 						<div class="card-header">
-							<i class="fa fa-bar-chart"></i>Citys 
-							
+							<i class="fa fa-bar-chart"></i>Citys
+
 						</div>
 						<div class="card-body">
 							<canvas id="myBarChart" width="100" height="50"></canvas>
@@ -404,24 +478,24 @@
 							<canvas id="myPieChart" width="100%" height="100"></canvas>
 
 						</div>
-					
+
 					</div>
 				</div>
 			</div>
-		
-		
-					<div class="row">
+
+
+			<div class="row">
 				<div class="col-lg-8">
 					<!-- Example Bar Chart Card-->
 					<div class="card mb-3">
 						<div class="card-header">
 							<i class="fa fa-bar-chart"></i>Age
-							
+
 						</div>
 						<div class="card-body">
 							<canvas id="myBarChart1" width="100" height="50"></canvas>
 						</div>
-						
+
 					</div>
 				</div>
 				<div class="col-lg-4">
@@ -434,7 +508,7 @@
 							<canvas id="myPieChart1" width="100%" height="100"></canvas>
 
 						</div>
-					
+
 					</div>
 				</div>
 			</div>
@@ -446,7 +520,7 @@
 			<div class="container">
 				<div class="text-center">
 					<small>Copyright © Your Website 2017</small>
-			
+
 				</div>
 			</div>
 		</footer>
