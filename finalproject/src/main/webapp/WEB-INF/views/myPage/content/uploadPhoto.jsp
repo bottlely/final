@@ -149,10 +149,10 @@ select {
     			 data.append("image_count", sel_files.length);
     			 data.append("useridx", '${sessionScope.useridx}');
     			 
-    			 var tag =  document.getElementById("tag");
+    			 var tag =  document.getElementById("tag").value;
     			 data.append("tag",tag);
             	 
-    			 var content =document.getElementById("content");
+    			 var content =document.getElementById("content").value;
     			 data.append("content",content);
     			 
     			 //data.append("type",1);
