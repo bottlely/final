@@ -10,6 +10,11 @@ function clearText(field){
 	if(field.defaultValue == field.value) field.value = '';
 	else if(field.value == '') field.value = field.defaultValue;
 }
+
+function back(){
+	window.opener.location.reload();
+	window.close();
+}
 </script>
 </head>
 <body>
@@ -33,9 +38,7 @@ function clearText(field){
 		<input type="submit" value="업로드">
 	</form>
 	
-<form action="myHomeForm.do" method="post">
-	<input type="hidden" name="useridx" value="${sessionScope.useridx}">
-	<input type="submit" value="back">
+	<input type="submit" value="back" onclick="back()"> 
 </form>
 </body>
 </html>

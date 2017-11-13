@@ -266,8 +266,8 @@ input:checked+.slider:before {
     });
     
     //게시물올리기 popupfunction
-    function photoUploadOpen(){
-    	window.open('contentUploadForm.do?useridx='+${sessionScope.useridx}+'&type=1','photoUpload','width=300,height=300');
+    function UploadOpen(num){
+    	window.open('contentUploadForm.do?useridx=${sessionScope.useridx}&type='+num,'UploadContent','width=600,height=500');
     }
 </script>
 <script>
@@ -368,21 +368,14 @@ input:checked+.slider:before {
     <div class="uploadui">
 				<!--  <a href="contentUploadForm.do?useridx=${sessionScope.useridx}&type=1"> -->
 					<img width="50" height="50"
-					src="myHomeFolder/category/photoIcon.png" onclick="photoUploadOpen()">
-				</a> 
-				<a href="contentUploadForm.do?useridx=${sessionScope.useridx}&type=2">
+					src="myHomeFolder/category/photoIcon.png" onclick="UploadOpen(1)">
 					<img width="50" height="50"
-					src="myHomeFolder/category/videoIcon.png">
-				</a> 
+					src="myHomeFolder/category/videoIcon.png" onclick="UploadOpen(2)">
 				<br>
-				<a href="contentUploadForm.do?useridx=${sessionScope.useridx}&type=3">
 					<img width="50" height="50"
-					src="myHomeFolder/category/textIcon.png">
-				</a> 
-				<a href="contentUploadForm.do?useridx=${sessionScope.useridx}&type=4">
+					src="myHomeFolder/category/textIcon.png" onclick="UploadOpen(3)">
 					<img width="50" height="50"
-					src="myHomeFolder/category/shootIcon.png">
-				</a>
+					src="myHomeFolder/category/shootIcon.png" onclick="UploadOpen(4)">
 			</div>
 </div>
 </c:if>

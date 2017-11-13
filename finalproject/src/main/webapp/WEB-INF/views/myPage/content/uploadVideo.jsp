@@ -99,7 +99,8 @@
  	               var jsonResponse = JSON.parse(e.currentTarget.responseText);
  	              if(jsonResponse["result"] > 0){
                   	alert('업로드 완료!');
-                  	document.getElementById('myHome').submit();
+                  	window.opener.location.reload();
+                	window.close();
                   }else{
                   	alert('업로드 실패!');
                   }
@@ -118,6 +119,11 @@
         function clearText(field){
         	if(field.defaultValue == field.value) field.value = '';
         	else if(field.value == '') field.value = field.defaultValue;
+        }
+        
+        function back(){
+        	window.opener.location.reload();
+        	window.close();
         }
         
         function fflist(e){
@@ -155,10 +161,7 @@
 
 	<a href="javascript:" class="my_button" onclick="submitAction();">업로드</a>
 	
-	<form id="myHome" action="myHomeForm.do" method="post">
-		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
-		<input type="submit" value="back">
-	</form>
+	<input type="submit" value="back" onclick="back()">
 	
 	 <video id="player" width="320" height="240">
       <source id="src" src="" type="video/mp4" onchange="play()"/>
