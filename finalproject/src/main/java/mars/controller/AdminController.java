@@ -19,16 +19,15 @@ import mars.member.model.MemberDTO;
 public class AdminController {
    @Autowired
    private AdminDAO aDao;
-	@Autowired
-	private MemberDAO mdao;
+	
 	
 	
    @RequestMapping("/admin.do")
    public ModelAndView adminMain() {
-	   List<String> dates = mdao.dates();
-	  
+	   
+	   
 	   ModelAndView mav = new ModelAndView();
-	   mav.addObject("dates",dates);
+	  
 	
 	   mav.setViewName("admin/admin_main");
 	   return mav;
@@ -102,8 +101,28 @@ public class AdminController {
       return "admin/admin_member_busi";
    }
    @RequestMapping("/admin_d_u.do")
-   public String admin_d_u() {
-      return "admin/admin_data_user";
+   public ModelAndView admin_d_u() {
+	   ModelAndView mav = new ModelAndView();
+	   int favor_movie = aDao.favor_movie();
+	   int favor_dance = aDao.favor_dance();
+	   int favor_sport = aDao.favor_sport();
+	   int favor_travel = aDao.favor_travel();
+	   int favor_fashion = aDao.favor_fashion();
+	   int favor_food = aDao.favor_food();
+	   int favor_music = aDao.favor_music();
+	   int favor_beauty = aDao.favor_beauty();
+	   System.out.println(favor_movie);
+	   mav.addObject("movie",favor_movie);
+	   mav.addObject("dance",favor_dance);
+	   mav.addObject("sport",favor_sport);
+	   mav.addObject("travel",favor_travel);
+	   mav.addObject("fashion",favor_fashion);
+	   mav.addObject("food",favor_food);
+	   mav.addObject("music",favor_music);
+	   mav.addObject("beauty",favor_beauty);
+	   mav.setViewName("admin/admin_data_user");
+	 
+	   return mav;
    }
    @RequestMapping("/admin_d_b.do")
    public String admin_d_b() {

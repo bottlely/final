@@ -13,4 +13,12 @@ public interface AdminDAO {
    public int ff_delete(int idx);
    public int yearMin();
    public int yearMax();
+   public int favor_movie();
+   public int favor_sport();
+   public int favor_fashion();
+   public int favor_food();
+   public int favor_music();
+   public int favor_beauty();
+   public int favor_travel();
+   public int favor_dance();
 }

@@ -57,4 +57,54 @@ public class AdminDAOImple implements AdminDAO {
       
       return yearMax;
    }
+	/*관심사통계*/
+	public int favor_movie() {
+		
+		int favor_movies=sqlMap.selectOne("favor_movie");
+		return favor_movies;
+	}
+	
+	public int favor_dance() {
+		
+		int favor_movies=sqlMap.selectOne("favor_dance");
+		return favor_movies;
+	}
+	
+	public int favor_travel() {
+		
+		int favor_movies=sqlMap.selectOne("favor_travel");
+		return favor_movies;
+	}
+	
+	public int favor_beauty() {
+		
+		int favor_movies=sqlMap.selectOne("favor_beauty");
+		return favor_movies;
+	}
+	
+	public int favor_sport() {
+		
+		int favor_movies=sqlMap.selectOne("favor_sport");
+		return favor_movies;
+	}
+	
+	public int favor_food() {
+		
+		int favor_movies=sqlMap.selectOne("favor_food");
+		return favor_movies;
+	}
+	
+	public int favor_fashion() {
+		
+		int favor_movies=sqlMap.selectOne("favor_fashion");
+		return favor_movies;
+	}
+	
+	public int favor_music() {
+		
+		int favor_movies=sqlMap.selectOne("favor_music");
+		return favor_movies;
+	}
+	
+	
 }

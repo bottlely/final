@@ -34,5 +34,53 @@
       <select id="dateList" resultType="mars.member.model.MemberDTO">
       select distinct a from (select to_char(joindate,'YY-MM-DD')as a from mars_member)
    </select>
+   <select id="favor_movie" resultType="int">
+   select sum(a.favorite_movie)from
+(select favorite_movie,favorite_sport,favorite_fashion,
+favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+favorite_food  from mars_member)a
+   </select>
+      <select id="favor_dance" resultType="int">
+   select sum(a.favorite_dance)from
+(select favorite_movie,favorite_sport,favorite_fashion,
+favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+favorite_food  from mars_member)a
+   </select>
+      <select id="favor_music" resultType="int">
+   select sum(a.favorite_music)from
+(select favorite_movie,favorite_sport,favorite_fashion,
+favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+favorite_food  from mars_member)a
+   </select>
+      <select id="favor_sport" resultType="int">
+   select sum(a.favorite_sport)from
+(select favorite_movie,favorite_sport,favorite_fashion,
+favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+favorite_food  from mars_member)a
+   </select>
+      <select id="favor_fashion" resultType="int">
+   select sum(a.favorite_fashion)from
+(select favorite_movie,favorite_sport,favorite_fashion,
+favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+favorite_food  from mars_member)a
+   </select>
+      <select id="favor_beauty" resultType="int">
+   select sum(a.favorite_beauty)from
+(select favorite_movie,favorite_sport,favorite_fashion,
+favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+favorite_food  from mars_member)a
+   </select>
+      <select id="favor_travel" resultType="int">
+   select sum(a.favorite_travel)from
+(select favorite_movie,favorite_sport,favorite_fashion,
+favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+favorite_food  from mars_member)a
+   </select>
+         <select id="favor_food" resultType="int">
+   select sum(a.favorite_food)from
+(select favorite_movie,favorite_sport,favorite_fashion,
+favorite_beauty,favorite_travel,favorite_music,favorite_dance,
+favorite_food  from mars_member)a
+   </select>
 
 </mapper>
