@@ -64,10 +64,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
      <script type="text/javascript" src="js/httpRequest.js"></script>
 <script>
-
-
-</script>
-<script>
 	var m_idx;
 	function addGroupForm() {
 		window.open('addGroupForm.do?idx=${sessionScope.useridx}', 'addGroupForm', 'width=400, height=800');
@@ -109,6 +105,7 @@
 	
  	function updateGroup(group_idx){
  		window.alert(group_idx);
+ 		window.open('updateGroupForm.do?idx_ff='+group_idx+'&idx=${sessionScope.useridx}', 'updateGroupForm', 'width=400, height=800');
  	}
  	
  	
