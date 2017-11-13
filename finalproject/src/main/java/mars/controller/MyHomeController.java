@@ -100,20 +100,11 @@ public class MyHomeController{
 		return "myPage/more/introUpload";
 	}
 	
-	@RequestMapping("/moreFFHomeForm.do")
-	public ModelAndView moreMyHomeForm(@RequestParam("ffidx")int ffidx,@RequestParam("ffid")String ffid) {
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("ffidx", ffidx);
-		mav.addObject("ffid", ffid);
-		mav.setViewName("myPage/more/moreFFHome");
-		return mav;
-	}
-	
 	@RequestMapping("/reportUserForm.do")
-	public ModelAndView reportUserForm(@RequestParam("toIdx")int toIdx,@RequestParam("toId")String toId) {
+	public ModelAndView reportUserForm(@RequestParam("toIdx")int toIdx,@RequestParam("toName")String toName) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("toIdx",toIdx);
-		mav.addObject("toId",toId);
+		mav.addObject("toName",toName);
 		mav.setViewName("myPage/more/reportUser");
 		return mav;
 	}

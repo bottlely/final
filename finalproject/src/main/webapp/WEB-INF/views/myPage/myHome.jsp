@@ -317,15 +317,10 @@ input:checked+.slider:before {
 <!-- 더보기아이콘 -->
 
 <div class="moreicon">
-
-	<c:if test="${sessionScope.useridx eq mhdto.getMember_idx()}">
 	
-	<c:url var="moreMyHomeUrl" value="moreMyHomeForm.do">
-		<c:param name="useridx" value="${sessionScope.useridx}"/>
-	</c:url>
-	
-    <a href="moreMyHomeUrl" class="showMask"><i class="fa fa-ellipsis-h"></i></a>
- 	</c:if>
+    <a href="" class="showMask"><i class="fa fa-ellipsis-h"></i></a>
+ 	
+ 	<c:if test="${sessionScope.useridx eq mhdto.getMember_idx()}">
  	
     <div class="mask"></div>
     <div class="window">
@@ -340,23 +335,31 @@ input:checked+.slider:before {
 			</label></td></tr>
        </table>
     </div>
+    </c:if>
     
-   <!--  본인이 아닐때
+    <c:if test="${sessionScope.useridx ne mhdto.getMember_idx()}">
     <div class="mask"></div>
     <div class="window">
        <table align="center">
-       	<tr><td><a href="backgroundUploadForm.do">신고하기</a></td></tr>
-       	<tr><td><a href="profileUploadForm.do">차단하기 또는 차단취소하기</a></td></tr>
+       
+       <c:url var="reportUrl" value="reportUserForm.do">
+		 <c:param name="toIdx">${mhdto.getMember_idx()}</c:param>
+		 <c:param name="toName">${mhdto.getName()}</c:param>
+		</c:url>
+       	<tr><td><a href="${reportUrl}">신고하기</a></td></tr>
+       	<tr><td><a href="#">차단하기 또는 차단취소하기</a></td></tr>
        	<tr><td><a href="introUploadForm.do">팔로우하기 또는 언팔로우하기</a></td></tr>
        	</table>
     </div>
-    --> 
-    
+    </c:if>
     
 </div>
 
 <!-- 게시물작성아이콘 -->
+<c:if test="${sessionScope.useridx eq mhdto.getMember_idx()}">
 <div class="plusicon">
+
+	
 	<button style="font-size:24px;width:50px;border:0px;" class="showMask2">
 	<i class="fa fa-plus-square-o"></i></button>
 
@@ -382,6 +385,7 @@ input:checked+.slider:before {
 				</a>
 			</div>
 </div>
+</c:if>
 
 <!-- 캘린더아이콘 -->
 <div class="calendaricon" style="width:300px;height:50px;">

@@ -9,8 +9,8 @@
 </head>
 <body>
 <form action="reportUser.do" method="post">
-신고자 : ${sessionScope.userid}
-신고할 대상 :${toId} / ${toIdx}
+신고자 : ${sessionScope.username}
+신고할 대상 : ${toName}
 신고 이유 :<input type="text" name="report">
 <input type="hidden" name="toIdx" value="${toIdx}">
 <input type="hidden" name="fromIdx" value="${sessionScope.userid}">

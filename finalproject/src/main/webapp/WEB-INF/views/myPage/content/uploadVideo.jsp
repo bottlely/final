@@ -119,6 +119,14 @@
         	if(field.defaultValue == field.value) field.value = '';
         	else if(field.value == '') field.value = field.defaultValue;
         }
+        
+        function fflist(e){
+        	var sel = e.options[e.selectedIndex].value;
+        	if(sel == 2 || sel == 3){
+        		alert('hi!!');
+        	}
+        }
+        
     </script>
 </head>
 
@@ -127,7 +135,7 @@
     
    <img src="myHomeFolder/profile_img/${profile}" width="50px" height="50px"/>
     
-     <select name="coverage">
+     <select name="coverage" onchange="fflist(this)">
     <option value="0">전채공개</option>
     <option value="1">친구만</option>
     <option value="2">특정 대상</option>
