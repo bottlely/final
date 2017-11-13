@@ -269,9 +269,9 @@ public class ContentController {
 	}
 	
 	
-	@RequestMapping("/uploadDateContent.do")
+	@RequestMapping(value="/uploadDateContent.do",method=RequestMethod.POST)
 	public ModelAndView uploadDateContent(@RequestParam("uploadDate")String uploadDate, @RequestParam("member_idx")int member_idx){
-		
+		System.out.println(uploadDate+"/"+member_idx);
 		HashMap<String, String> uploadDateMap = new HashMap<String, String>();
 		uploadDateMap.put("uploadDate", uploadDate);
 		uploadDateMap.put("member_idx", String.valueOf(member_idx));

@@ -9,7 +9,8 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.2.1.js" type="text/javascript"></script>
-
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script type="text/javascript" src="js/httpRequest.js"></script>
 <style>
 .moreicon {
 	text-align: center;
@@ -274,7 +275,7 @@ input:checked+.slider:before {
 //날짜검색function
 function contentDate(){
     	var uploadDate=$('.datepicker-here').val();
-    	
+    	window.alert(uploadDate);
     	sendRequest('uploadDateContent.do?uploadDate='+uploadDate+'&member_idx='+${sessionScope.useridx}, null ,showResult,'POST');
 }
 
@@ -414,7 +415,7 @@ function showResult(){
 		</div>
 		
 		<div class="myfeed">
-			<table style="border-spacing:10px;">
+			<table style="border-spacing:10px;" id="myfeedtable">
 				 <tr>
 					<td style="background-color:blue;"></td>
 					<td style="background-color:blue;"></td>
