@@ -43,9 +43,33 @@ select {
     border-radius: 3px;
 }
 
+.mask{
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9999;
+	background-color: #000;
+	display: none;
+	
+}
+
+.window {
+	position: absolute;
+	display: none;
+	background-color: #ffffff;
+	width: 200px;
+	height: 150px;
+	z-index: 99999;
+	overflow:scroll;
+}
+
 </style>
 
 <script type="text/javascript">
+
+//공개범위 사용자 정의 리스트
+var sel_list = [];
+
 function uploadText(){
 	
 	var data = new FormData();
@@ -53,7 +77,9 @@ function uploadText(){
 	data.append("tag",document.getElementById("tag").value);
 	data.append("title", document.getElementById("title").value);
 	data.append("content", document.getElementById("content").value);
-	
+	data.append("coverage_list",sel_list);
+	data.append("coverage_state",document.getElementById("coverage_state").value);
+	 
      var xhr = new XMLHttpRequest();
      xhr.open("POST","uploadText.do");
      xhr.send(data);
@@ -80,6 +106,64 @@ function back(){
 	window.opener.location.reload();
 	window.close();
 }
+
+
+function fflist(e){
+	
+	var sel = e.options[e.selectedIndex].value;
+	if(sel == 2 || sel == 3){
+		 wrapWindowByMask();
+	}
+ }
+
+function sel_coverage(idx){
+	
+	var color = document.getElementById(idx).color;
+	        	
+	if(color == "gray"){
+	      document.getElementById(idx).color = "007bff";
+	      sel_list.push(idx);
+	      //alert("1 : "+ sel_list.length);
+	      //alert(sel_list[sel_list.length-1]);
+	}else{
+	     document.getElementById(idx).color = "gray";
+	  for(var i=0, len=sel_list.length; i<len; i++) {
+		  sel_list.splice(i, 1);
+		}
+	 	 //alert("2 : "+ sel_list.length);
+	}
+}
+
+//암막 function
+ function wrapWindowByMask(){
+var maskHeight = $(document).height();
+var maskWidth = $(window).width();
+
+$('.mask').css({'width':maskWidth,'height':maskHeight});
+
+$('.mask').fadeTo("fast",0.3);
+
+var left = ( $(window).scrollLeft() + ( $(window).width() - $('.window').width()) / 2 );
+var top = ( $(window).scrollTop() + ( $(window).height() - $('.window').height()) / 2 );
+
+$('.window').css({'left':left,'top':top, 'position':'absolute'});
+
+$('.window').show();
+}
+
+$(document).ready(function(){
+
+$('.window .close').click(function (e) {
+    e.preventDefault();
+    $('.mask, .window').hide();
+});
+
+$('.mask').click(function () {
+    $(this).hide();
+    $('.window').hide();
+});
+});
+
 </script>
 </head>
 <body>
@@ -91,7 +175,7 @@ function back(){
          <img src="myHomeFolder/profile_img/${profile}" alt="" id="pf"/>
          </span>
           <label id="name">${writer}</label>
-          <select name="coverage" onchange="hi(this)">
+          <select id="coverage_state" name="coverage" onclick="fflist(this)">
              <option value="0">전체공개</option>
              <option value="1">친구만</option>
              <option value="2">특정 대상</option>
@@ -126,5 +210,16 @@ function back(){
    </div>
    </form>
 </div>
+
+<div class="mask"></div>
+    <div class="window">
+       <table align="center">
+        <c:forEach var="follower_list" items="${followerList}">
+        	<tr onclick="sel_coverage(${follower_list.member_idx})"><td><img src="myHomeFolder/profile_img/${follower_list.profile_img}" alt="" width="20" height="20" style="border-radius: 50%">
+        	  <font id="${follower_list.member_idx}" color="gray"><strong>${follower_list.name}</font>
+        	</td></tr>
+        </c:forEach>
+       	</table>
+    </div>
 </body>
 </html>

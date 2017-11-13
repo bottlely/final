@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import mars.coverage.model.CoverageDTO;
+
 public class ContentDAOImple implements ContentDAO {
 	
 	private SqlSessionTemplate sqlMap;
@@ -15,7 +17,7 @@ public class ContentDAOImple implements ContentDAO {
 	}
 
 	public int uploadContent(HashMap<String, String> info) {
-		int result = sqlMap.update("uploadContent", info);
+		int result = sqlMap.insert("uploadContent", info);
 		return result;
 	}
 
@@ -27,5 +29,15 @@ public class ContentDAOImple implements ContentDAO {
 	public List<ContentDTO> contentList(String member_idx) {
 		List<ContentDTO> list = sqlMap.selectList("contentList", member_idx);
 		return list;
+	}
+
+	public int contentIdxSearch(String member_idx) {
+		int contentIdx = sqlMap.selectOne("contentIdxSearch", member_idx);
+		return contentIdx;
+	}
+
+	public int coverageInsert(CoverageDTO dto) {
+		int result = sqlMap.insert("coverageInsert", dto);
+		return result;
 	}
 }

@@ -67,13 +67,36 @@ select {
     border-radius: 3px;
 }
 
+.mask{
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9999;
+	background-color: #000;
+	display: none;
+	
+}
+
+.window {
+	position: absolute;
+	display: none;
+	background-color: #ffffff;
+	width: 200px;
+	height: 150px;
+	z-index: 99999;
+	overflow:scroll;
+}
+
 </style>
 <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
 <script type="text/javascript">
     
    var not_upload = [];
    var sel = "";
-  
+   
+ 	//공개범위 사용자 정의 리스트
+   var sel_list = [];
+ 
    function Search(e){
       
            var f = e.files[0];
@@ -126,6 +149,11 @@ select {
           var content =document.getElementById("content").value;
           data.append("content",content);
           
+          data.append("coverage_list",sel_list);
+			 
+		  var coverage_state = document.getElementById("coverage_state").value;
+		  data.append("coverage_state",coverage_state)
+          
              data.append("not_upload",not_upload);
              data.append("sel",sel);
              
@@ -164,12 +192,61 @@ select {
            window.close();
         }
         
-        function fflist(e){
-           var sel = e.options[e.selectedIndex].value;
-           if(sel == 2 || sel == 3){
-              alert('hi!!');
-           }
+ 		function fflist(e){
+        	
+        	var sel = e.options[e.selectedIndex].value;
+        	if(sel == 2 || sel == 3){
+        		 wrapWindowByMask();
+        	}
+         }
+        
+        function sel_coverage(idx){
+        	
+        	var color = document.getElementById(idx).color;
+        	        	
+        	if(color == "gray"){
+        	      document.getElementById(idx).color = "007bff";
+        	      sel_list.push(idx);
+        	      //alert("1 : "+ sel_list.length);
+        	      //alert(sel_list[sel_list.length-1]);
+        	}else{
+        	     document.getElementById(idx).color = "gray";
+        	  for(var i=0, len=sel_list.length; i<len; i++) {
+        		  sel_list.splice(i, 1);
+        		}
+        	 	 //alert("2 : "+ sel_list.length);
+        	}
         }
+        
+        //암막 function
+         function wrapWindowByMask(){
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+ 
+        $('.mask').css({'width':maskWidth,'height':maskHeight});
+ 
+        $('.mask').fadeTo("fast",0.3);
+ 
+        var left = ( $(window).scrollLeft() + ( $(window).width() - $('.window').width()) / 2 );
+        var top = ( $(window).scrollTop() + ( $(window).height() - $('.window').height()) / 2 );
+ 
+        $('.window').css({'left':left,'top':top, 'position':'absolute'});
+ 
+        $('.window').show();
+    }
+ 
+    $(document).ready(function(){
+    	
+        $('.window .close').click(function (e) {
+            e.preventDefault();
+            $('.mask, .window').hide();
+        });
+ 
+        $('.mask').click(function () {
+            $(this).hide();
+            $('.window').hide();
+        });
+    });
         
     </script>
 </head>
@@ -180,8 +257,8 @@ select {
          <div class="col-sm-12">
             <span class="avatar"> <img
                src="myHomeFolder/profile_img/${profile}" alt="" id="pf" />
-            </span> <label id="name">${writer}</label> <select name="coverage"
-               onchange="hi(this)">
+            </span> <label id="name">${writer}</label> 
+            <select id="coverage_state" name="coverage" onclick="fflist(this)">
                <option value="0">전체공개</option>
                <option value="1">친구만</option>
                <option value="2">특정 대상</option>
@@ -219,6 +296,10 @@ select {
          </div>
       </div>
 
+      <video id="player" width="320" height="240">
+         <source id="src" src="" type="video/mp4" onchange="play()" />
+      </video>
+      
       <div class="row" style="padding-bottom: 10px;">
          <div class="col-sm-12">
             <input type="button" value="업로드" class="btn btn-success"
@@ -226,10 +307,16 @@ select {
                class="btn btn-Info" onclick="back()">
          </div>
       </div>
-
-      <video id="player" width="320" height="240">
-         <source id="src" src="" type="video/mp4" onchange="play()" />
-      </video>
    </div>
+   <div class="mask"></div>
+    <div class="window">
+       <table align="center">
+        <c:forEach var="follower_list" items="${followerList}">
+        	<tr onclick="sel_coverage(${follower_list.member_idx})"><td><img src="myHomeFolder/profile_img/${follower_list.profile_img}" alt="" width="20" height="20" style="border-radius: 50%">
+        	  <font id="${follower_list.member_idx}" color="gray"><strong>${follower_list.name}</font>
+        	</td></tr>
+        </c:forEach>
+       	</table>
+    </div>
 </body>
 </html>

@@ -70,15 +70,18 @@ select {
 	width: 200px;
 	height: 150px;
 	z-index: 99999;
+	overflow:scroll;
 }
 
 </style>
  <script type="text/javascript" src="js/jquery-3.1.0.min.js" charset="utf-8"></script>
     <script type="text/javascript">
-
+    
         // 이미지 정보들을 담을 배열
         var sel_files = [];
-
+		
+        //공개범위 사용자 정의 리스트
+        var sel_list = [];
 
         $(document).ready(function() {
             $("#input_imgs").on("change", handleImgFileSelect);
@@ -155,6 +158,11 @@ select {
     			 var content =document.getElementById("content").value;
     			 data.append("content",content);
     			 
+    			 data.append("coverage_list",sel_list);
+    			 
+    			 var coverage_state = document.getElementById("coverage_state").value;
+    			 data.append("coverage_state",coverage_state)
+    			 
     			 //data.append("type",1);
     			 
     	        /* $.ajax({
@@ -204,10 +212,29 @@ select {
         	window.close();
         }
         
-        function hi(e){
+        function fflist(e){
+        	
         	var sel = e.options[e.selectedIndex].value;
         	if(sel == 2 || sel == 3){
-        		alert('hi!!');
+        		 wrapWindowByMask();
+        	}
+         }
+        
+        function sel_coverage(idx){
+        	
+        	var color = document.getElementById(idx).color;
+        	        	
+        	if(color == "gray"){
+        	      document.getElementById(idx).color = "007bff";
+        	      sel_list.push(idx);
+        	      //alert("1 : "+ sel_list.length);
+        	      //alert(sel_list[sel_list.length-1]);
+        	}else{
+        	     document.getElementById(idx).color = "gray";
+        	  for(var i=0, len=sel_list.length; i<len; i++) {
+        		  sel_list.splice(i, 1);
+        		}
+        	 	 //alert("2 : "+ sel_list.length);
         	}
         }
         
@@ -229,11 +256,7 @@ select {
     }
  
     $(document).ready(function(){
-        $('.showMask').click(function(e){
-            e.preventDefault();
-            wrapWindowByMask();
-        });
- 
+    	
         $('.window .close').click(function (e) {
             e.preventDefault();
             $('.mask, .window').hide();
@@ -256,7 +279,7 @@ select {
 			<img src="myHomeFolder/profile_img/${profile}" alt="" id="pf"/>
 			</span>
 		    <label id="name">${writer}</label>
-		    <select name="coverage" onchange="hi(this)">
+		    <select id="coverage_state" name="coverage" onclick="fflist(this)">
 			    <option value="0">전체공개</option>
 			    <option value="1">친구만</option>
 			    <option value="2">특정 대상</option>
@@ -310,10 +333,11 @@ select {
 <div class="mask"></div>
     <div class="window">
        <table align="center">
-       	<tr><td><a href="#">1</a></td></tr>
-       	<tr><td><a href="#">2</a></td></tr>
-       	<tr><td><a href="#">3</a></td></tr>
-       	<tr><td><a href="#">4</a></td></tr>
+        <c:forEach var="follower_list" items="${followerList}">
+        	<tr onclick="sel_coverage(${follower_list.member_idx})"><td><img src="myHomeFolder/profile_img/${follower_list.profile_img}" alt="" width="20" height="20" style="border-radius: 50%">
+        	  <font id="${follower_list.member_idx}" color="gray"><strong>${follower_list.name}</font>
+        	</td></tr>
+        </c:forEach>
        	</table>
     </div>
 </body>

@@ -276,7 +276,7 @@ input:checked+.slider:before {
 function contentDate(){
     	var uploadDate=$('.datepicker-here').val();
     	window.alert(uploadDate);
-    	sendRequest('uploadDateContent.do?uploadDate='+uploadDate+'&member_idx='+${sessionScope.useridx}, null ,showResult,'POST');
+    	sendRequest('uploadDateContent.do?uploadDate='+uploadDate+'&member_idx=${sessionScope.useridx}', null ,showResult,'POST');
 }
 
 function showResult(){
@@ -304,12 +304,14 @@ function showResult(){
 <script>
 //내 게시물 사진만 보기
 function showMyPhoto(){
-	sendRequest('showMyPhoto.do','member_idx='+${sessionScope.useridx},showResult2(),'POST')
+	sendRequest('showMyPhoto.do','member_idx=${sessionScope.useridx}',showResult2(),'POST');
 }
 function showResult2(){
 	if(XHR.readyState==4){
 		if(XHR.status==200){
 			var data=eval('('+XHR.responseText+')');
+		}
+	}
 }
 </script>
 </head>

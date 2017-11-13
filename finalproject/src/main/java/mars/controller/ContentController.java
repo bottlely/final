@@ -16,6 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import mars.content.model.*;
+import mars.coverage.model.CoverageDTO;
+import mars.friend.model.FriendDAO;
+import mars.member.model.MemberDTO;
 import mars.myHome.model.*;
 
 
@@ -29,13 +32,12 @@ public class ContentController {
 	@Autowired
 	private MyHomeDAO mhdao;
 	
-	private boolean typeCheck;
+	@Autowired
+	private FriendDAO friendDao;
 	
 	public ContentController() {
 		
 		super();
-		
-		typeCheck = false;
 	}
 
 	@RequestMapping("/contentCategory.do")
@@ -47,7 +49,9 @@ public class ContentController {
 	public ModelAndView contentUploadForm(@RequestParam("useridx")String member_idx,@RequestParam("type")int type) {
 		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
-	
+		
+		List<MemberDTO> followerList = friendDao.followerList(Integer.parseInt(member_idx));
+		
 		String path =  null;
 		
 		switch(type){
@@ -60,6 +64,7 @@ public class ContentController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("writer", mhdto.getName());
 		mav.addObject("profile", mhdto.getProfile_img());
+		mav.addObject("followerList", followerList);
 		mav.setViewName(path);
 		return mav;
 	}
@@ -68,6 +73,8 @@ public class ContentController {
 	public ModelAndView uploadText(@RequestParam("useridx")String member_idx,
 			@RequestParam("tag")String tag,
 			@RequestParam("title")String title,
+			@RequestParam("coverage_list")String cl,
+			@RequestParam("coverage_state")String cs,
 			@RequestParam("content")String content) {
 		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
@@ -79,8 +86,19 @@ public class ContentController {
         info.put("writer", mhdto.getName());
         info.put("type", "3");
 		int result = cdao.uploadContent(info);
-		
-		ModelAndView mav = new ModelAndView("marsJson","result",result);
+		int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
+        
+        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
+        CoverageDTO dto = new CoverageDTO(contentIdx,0,Integer.parseInt(cs),0,Integer.parseInt(member_idx));
+        
+        int result2 = 0;
+        
+        for(String toIdx : toIdxList){
+        	dto.setIdx_to(Integer.parseInt(toIdx));
+        	result2 = cdao.coverageInsert(dto);
+        }
+        
+        ModelAndView mav = new ModelAndView("marsJson","result",result2);
 		return mav;
 	}
 	
@@ -89,6 +107,8 @@ public class ContentController {
 	public ModelAndView uploadPhoto(@RequestParam("useridx")String member_idx,
 			@RequestParam("content")String content,
 			@RequestParam("tag")String tag,
+			@RequestParam("coverage_list")String cl,
+			@RequestParam("coverage_state")String cs,
 			MultipartHttpServletRequest req,HttpServletRequest req2) {
 		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
@@ -117,8 +137,19 @@ public class ContentController {
         info.put("writer", mhdto.getName());
         info.put("type", "1");
         int result = cdao.uploadContent(info);
-
-        ModelAndView mav = new ModelAndView("marsJson","result",result);
+        int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
+        
+        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
+        CoverageDTO dto = new CoverageDTO(contentIdx,0,Integer.parseInt(cs),0,Integer.parseInt(member_idx));
+        
+        int result2 = 0;
+        
+        for(String toIdx : toIdxList){
+        	dto.setIdx_to(Integer.parseInt(toIdx));
+        	result2 = cdao.coverageInsert(dto);
+        }
+        
+        ModelAndView mav = new ModelAndView("marsJson","result",result2);
 		return mav;
 	}
 	
@@ -145,6 +176,8 @@ public class ContentController {
 	public ModelAndView uploadVideo(@RequestParam("useridx")String member_idx,
 			@RequestParam("content")String content,@RequestParam("not_upload")String list,
 			@RequestParam("tag")String tag,
+			@RequestParam("coverage_list")String cl,
+			@RequestParam("coverage_state")String cs,
 			@RequestParam("sel")String sel,HttpServletRequest req) {
 
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
@@ -158,8 +191,19 @@ public class ContentController {
         info.put("writer", mhdto.getName());
         info.put("type", "2");
         int result = cdao.uploadContent(info);
-
-        ModelAndView mav = new ModelAndView("marsJson","result",result);
+        int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
+        
+        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
+        CoverageDTO dto = new CoverageDTO(contentIdx,0,Integer.parseInt(cs),0,Integer.parseInt(member_idx));
+        
+        int result2 = 0;
+        
+        for(String toIdx : toIdxList){
+        	dto.setIdx_to(Integer.parseInt(toIdx));
+        	result2 = cdao.coverageInsert(dto);
+        }
+        
+        ModelAndView mav = new ModelAndView("marsJson","result",result2);
 		return mav;
 	}
 	
