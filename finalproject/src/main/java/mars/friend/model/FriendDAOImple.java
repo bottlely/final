@@ -61,17 +61,20 @@ public class FriendDAOImple implements FriendDAO {
 		return res;
 	}
 	
-	public List<MyPageFriendDTO> check(int member_idx) {
-		List<MyPageFriendDTO> list = sqlMap.selectList("check", member_idx);
-		return list;
+	public int block(int user1_idx, int user2_idx) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user1_idx", user1_idx);
+		map.put("user2_idx", user2_idx);
+		int res = sqlMap.update("block", map);
+		return res;
 	}
 	
-	public List<MyPageFriendDTO> checkFollowing(int member_idx, int other_idx) {
+	public int removeFollower(int user1_idx, int user2_idx) {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
-		map.put("member_idx", member_idx);
-		map.put("other_idx", other_idx);
-		List<MyPageFriendDTO> list = sqlMap.selectList("checkFollowing", map);
-		return list;
+		map.put("user1_idx", user1_idx);
+		map.put("user2_idx", user2_idx);
+		int res = sqlMap.delete("removeFollower", map);
+		return res;
 	}
 	
 }

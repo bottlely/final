@@ -122,7 +122,12 @@
          parent.fwing(other_idx, other_name, other_profile_img);
      }
      
-		
+     function unblock(member_idx) {
+         location.href="friend_unblock.do?user1_idx="+${sessionScope.useridx}+"&user2_idx="+member_idx;
+         ppp.location.reload();
+     }
+     
+     
       </script>
    </head>
    <body>
@@ -234,7 +239,7 @@
                               <article>
                                  <header>
                                     <h3><a onclick="openMypage(${following_list.member_idx })" value="${following_list.member_idx }">${following_list.name }</a></h3>
-                                    <input type="button" value="chat" id="userChat1"><input type="button" value="more" id="more" onclick="fwing_more('${following_list.member_idx }','${following_list.name }','${following_list.profile_img }')">
+                                    <input type="button" value="chat" id="userChat1"><input type="button" value="more" onclick="fwing_more('${following_list.member_idx }','${following_list.name }','${following_list.profile_img }')">
                                  </header>
                                  <a href="#" class="image"><img src="myHomeFolder/profile_img/${following_list.profile_img }" alt=""  style="border-radius: 50%"></a>
                               </article>
@@ -278,7 +283,7 @@
                               <article>
                                  <header>
                                     <h3 style="display: inline;"><a onclick="openMypage(${blackList.member_idx })" value="${blackList.member_idx }">${blackList.name }</a></h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="button" value="차단해제" onclick="black(${sessionScope.useridx }, ${blackList.member_idx })">
+                                    <input type="button" value="차단해제" onclick="unblock(${blackList.member_idx })">
                                  </header>
                                  <a href="#" class="image"><img src="myHomeFolder/profile_img/${blackList.profile_img }" alt=""  style="border-radius: 50%"></a>
                               </article>

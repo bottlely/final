@@ -124,11 +124,11 @@ pre.prettyprint {
 		    $(document).ready(function(){
 	             $("#friends1").click(function(){
 	                $('#more2').fadeOut();
-	                   $('#more3').fadeOut();
+	                $('#more3').fadeOut();
 	                ppp.location.reload();
-	                 var div = $("#friends2");
-	                 div.animate({height: '100%'}, "slow");
-	                 div.animate({width:'toggle'}, "slow");
+	                var div = $("#friends2");
+	                div.animate({height: '100%'}, "slow");
+	                div.animate({width:'toggle'}, "slow");
 	             });
 	         });
 			
@@ -295,10 +295,11 @@ pre.prettyprint {
              
              function removeFollower() {
                 var user2_idx = document.getElementById('hidden_other_idx').value;
-                location.href='deleteFriend.do?user1_idx='+${sessionScope.useridx}+'&user2_idx='+user2_idx;
+                location.href='removeFollower.do?user1_idx='+${sessionScope.useridx}+'&user2_idx='+user2_idx;
              }
              
              function block() {
+            	//alert('차단하기');
                 var user2_idx = document.getElementById('hidden_other_idx').value;
                 location.href="friend_block.do?user1_idx="+${sessionScope.useridx}+"&user2_idx="+user2_idx;
              }
@@ -385,7 +386,6 @@ pre.prettyprint {
       <p style="text-align: center; font-size: 8pt; font-family: Sans-Serif;" id="following_name_id"></p>
       <div style="text-align: center;">
       <input type="button" value="팔로우취소" onclick="unfollowing()" class="frbutton"><br><br>
-      <input type="button" value="차단하기" onclick="block()" class="frbutton"><br><br>
       <input type="button" value="그룹설정" onclick="settingGroup()" class="frbutton"><br><br>
       <input type="button" value="취소하기" onclick="btn_cancle1()" class="frbutton"><br>
       </div>
@@ -402,21 +402,12 @@ pre.prettyprint {
       <div style="text-align: center;">
       <input type="button" value="팔로우하기" onclick="following()" class="frbutton"><br><br>
       <input type="button" value="팔로워삭제" onclick="removeFollower()" class="frbutton"><br><br>
+      <input type="button" value="차단하기" onclick="block()" class="frbutton"><br><br>
       <input type="button" value="그룹설정" onclick="settingGroup()" class="frbutton"><br><br>
       <input type="button" value="취소하기" onclick="btn_cancle2()" class="frbutton"><br>
       </div>
    </div>
-
-			<!-- 차단해제 창 부분(black) -->
-			<div id="black2"
-				style="background: #935d8c; height: 50%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 50%">
-				<div
-					style="background-color: white; align-content: center; text-align: right;">
-					<a href="#" id="cl5">Close</a>
-				</div>
-
-				<input type="button" value="차단해제" onclick="">
-			</div>
+	
 
 			<div id="navbar-blue">
 				<nav class="navbar navbar-ct-blue" role="navigation">

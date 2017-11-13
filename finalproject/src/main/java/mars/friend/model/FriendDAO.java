@@ -12,7 +12,7 @@ public interface FriendDAO {
 	public List<MemberDTO> blackList(int user2_idx);
 	public List<MemberDTO> searchNameList(String search_name, int user_idx);
 	public int unblock(int user1_idx, int user2_idx);
-	public List<MyPageFriendDTO> check(int member_idx);
-	public List<MyPageFriendDTO> checkFollowing(int member_idx, int other_idx);
+	public int block(int user1_idx, int user2_idx);
+	public int removeFollower(int user1_idx, int user2_idx);
 	
 }

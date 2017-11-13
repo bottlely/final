@@ -1,16 +1,12 @@
 package mars.controller;
 
-import org.apache.catalina.Session;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import mars.member.model.*;
-import mars.myHome.model.*;
 import mars.friend.model.*;
 
 import java.util.*;
@@ -20,25 +16,25 @@ public class FriendController {
 	
 	@Autowired
 	private FriendDAO friendDao;
-	@Autowired
-	private MyHomeDAO mhdao;
 	
 	/**following*/
 	@RequestMapping("/following.do")
 	public ModelAndView addFollowing(FriendDTO dto) {
 		int result = friendDao.following(dto);
 		String msg = result>0? "Success" : "Fail";
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.setViewName("main/friendMsg");
 		return mav;
 	}
 	
-	/**unfollowing & remove Follower*/
+	/**unfollowing*/
 	@RequestMapping("/deleteFriend.do")
 	public ModelAndView unFollowing(FriendDTO dto) {
 		int result = friendDao.deleteFriend(dto);
 		String msg = result>0? "Sucess" : "Fail";
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.setViewName("main/friendMsg");
@@ -86,6 +82,7 @@ public class FriendController {
 		List<MemberDTO> list2 = friendDao.followerList(member_idx);
 		List<MemberDTO> list3 = friendDao.blackList(member_idx);
 		List<MemberDTO> list4 = friendDao.searchNameList(search_name, member_idx);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("followingList", list1);
 		mav.addObject("followerList", list2);
@@ -97,15 +94,38 @@ public class FriendController {
 	
 	@RequestMapping("/friend_unblock.do")
 	public ModelAndView unblock(@RequestParam("user1_idx")int user1_idx, @RequestParam("user2_idx")int user2_idx) {
+		int res = friendDao.unblock(user1_idx, user2_idx);
 		List<MemberDTO> list1 = friendDao.followingList(user1_idx);
 		List<MemberDTO> list2 = friendDao.followerList(user1_idx);
 		List<MemberDTO> list3 = friendDao.blackList(user1_idx);
-		int res = friendDao.unblock(user1_idx, user2_idx);
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("followingList", list1);
 		mav.addObject("followerList", list2);
 		mav.addObject("blackList", list3);
 		mav.setViewName("main/main_frList");
+		return mav;
+	}
+	
+	@RequestMapping("/friend_block.do")
+	public ModelAndView block(@RequestParam("user1_idx")int user1_idx, @RequestParam("user2_idx")int user2_idx) {
+		int res = friendDao.block(user1_idx, user2_idx);
+		
+		ModelAndView mav = new ModelAndView();
+		String msg = res>0? "Success" : "Fail";
+		mav.addObject("msg", msg);
+		mav.setViewName("main/friendMsg");
+		return mav;
+	}
+	
+	@RequestMapping("/removeFollower.do")
+	public ModelAndView removeFollower(@RequestParam("user1_idx")int user1_idx, @RequestParam("user2_idx")int user2_idx) {
+		int res = friendDao.removeFollower(user1_idx, user2_idx);
+		
+		ModelAndView mav = new ModelAndView();
+		String msg = res>0? "Success" : "Fail";
+		mav.addObject("msg", msg);
+		mav.setViewName("main/friendMsg");
 		return mav;
 	}
 	
