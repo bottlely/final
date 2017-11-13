@@ -192,22 +192,61 @@
           <i class="fa fa-table"></i> Data Table Example</div>
         <div class="card-body">
         <select name="select" id="select">
-        	<option value="0">이름</option>
-        	<option value="1">ID</option>
+           <option value="0">이름</option>
+           <option value="1">ID</option>
         </select>
         <input type="text" id="search">
         <input type="button" value="검색" onclick="search()">
+        <form name="detail_Search" action="detail_Search.do">
+           <section>
+              <fieldset>
+                 <legend>상세 검색</legend>
+                 YEAR :  <select name="startYear">
+                          <option value="1950">시작 년도</option>
+                             <c:forEach var="startYear" begin="1950" end="2012" step="1">
+                                <option value="${startYear }">${startYear }</option>
+                             </c:forEach>
+                       </select> ~
+                       <select name="endYear">
+                          <option value="2012">끝나는 년도</option>
+                             <c:forEach var="endYear" begin="1950" end="2012" step="1">
+                                <option value="${endYear }">${endYear }</option>
+                             </c:forEach>
+                       </select><br>
+                 GENDER : <input type="checkbox" name="man" value="1">남자&emsp;&emsp;<input type="checkbox" name="women" value="2">여자<br>
+                 HOBBY : &nbsp;<input type="checkbox" name="favorite_Moive" value="1"> Movie
+                       <input type="checkbox" name="favorite_Sport" value="favorite_Sport"> Sport
+                       <input type="checkbox" name="favorite_Fashion" value="favorite_Fashion"> Fashion
+                       <input type="checkbox" name="favorite_Beauty" value="favorite_Beauty"> Beauty<br>&emsp;&emsp;&emsp;&emsp;
+                       <input type="checkbox" name="favorite_Travel" value="favorite_Travel"> Travel
+                       <input type="checkbox" name="favorite_Music" value="favorite_Music"> Music
+                       <input type="checkbox" name="favorite_Dance" value="favorite_Dance"> Dance
+                       <input type="checkbox" name="favorite_Food" value="favorite_Food"> Food<br>
+                 CITY :  <select name="city">
+                          <option value="city">City</option>
+                          <option value="seoul">seoul</option>
+                          <option value="incheon">incheon</option>
+                          <option value="suwon">suwon</option>
+                          <option value="ilsan">ilsan</option>
+                          <option value="daegu">daegu</option>
+                          <option value="daejeon">daejeon</option>
+                          <option value="busan">busan</option>
+                       </select><br>
+                       <input type="submit" value="상세 검색">
+              </fieldset>
+           </section>
+        </form>
         <script>
-        	function search(){
-        		var txt = document.getElementById("search").value;
-        		var option = document.getElementById("select").value;
-        		
-        		if(option == 0){
-        			location.href='admin_nameSearch.do?txt='+txt;
-        		}else{
-        			location.href='admin_idSearch.do?txt='+txt;
-        		}
-        	}
+           function search(){
+              var txt = document.getElementById("search").value;
+              var option = document.getElementById("select").value;
+              
+              if(option == 0){
+                 location.href='admin_nameSearch.do?txt='+txt;
+              }else{
+                 location.href='admin_idSearch.do?txt='+txt;
+              }
+           }
         </script>
           <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -218,21 +257,21 @@
                 </tr>
               </thead>
               <tbody>
-              	<c:if test="${empty list }">
-              		<tr>
-              			<td colspan="3" align="center">등록된 회원이 없습니다.</td>
-              		</tr>
-              	</c:if>
-              	<c:forEach var="dto" items="${list }">
-	                <tr>
-	                	<td>${dto.name }</td>
-	                	<td><input type="button" value="회원 탈퇴" onclick="memberDelete('${dto.idx}')"></td>
-	                	<script>
-	                		function memberDelete(idx){
-	                			location.href='admin_memberDelete.do?idx='+idx;
-	                		}
-	                	</script>
-	                </tr>
+                 <c:if test="${empty list }">
+                    <tr>
+                       <td colspan="3" align="center">등록된 회원이 없습니다.</td>
+                    </tr>
+                 </c:if>
+                 <c:forEach var="dto" items="${list }">
+                   <tr>
+                      <td>${dto.name }</td>
+                      <td><input type="button" value="회원 탈퇴" onclick="memberDelete('${dto.idx}')"></td>
+                      <script>
+                         function memberDelete(idx){
+                            location.href='admin_memberDelete.do?idx='+idx;
+                         }
+                      </script>
+                   </tr>
                 </c:forEach>
               </tbody>
             </table>
