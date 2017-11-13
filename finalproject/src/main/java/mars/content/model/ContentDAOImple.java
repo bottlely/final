@@ -19,8 +19,8 @@ public class ContentDAOImple implements ContentDAO {
 		return result;
 	}
 
-	public List<ContentDTO> searchUploadDate(String uploadDate){
-		List<ContentDTO> list = sqlMap.selectList("searchUploadDate", uploadDate);
+	public List<ContentDTO> searchUploadDate(HashMap<String, String> uploadDateMap){
+		List<ContentDTO> list = sqlMap.selectList("searchUploadDate", uploadDateMap);
 		return list;
 	}
 

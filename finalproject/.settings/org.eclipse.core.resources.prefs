@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/mars/controller/AdController.java=UTF-8
+encoding//src/main/java/mars/controller/ContentController.java=UTF-8
 encoding//src/main/java/mars/controller/MemberController.java=UTF-8
 encoding//src/main/java/mars/controller/MyHomeController.java=UTF-8
 encoding//src/main/java/mars/myHome/model/MyHomeDAOImple.java=UTF-8

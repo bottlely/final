@@ -183,13 +183,13 @@ public class ContentController {
 				
 				if(file_video.exists() && file_img.exists() ){ 
 						if(file_video.delete() && file_img.delete()){
-		                System.out.println("파일삭제 성공 : "+src);
+		                System.out.println("�뙆�씪�궘�젣 �꽦怨� : "+src);
 		            }else{
-		                System.out.println("파일삭제 실패 : "+src);
+		                System.out.println("�뙆�씪�궘�젣 �떎�뙣 : "+src);
 		                return null;
 		            }
 				}else{
-					System.out.println("파일이 존재하지 않습니다.");
+					System.out.println("�뙆�씪�씠 議댁옱�븯吏� �븡�뒿�땲�떎.");
 					return null;
 				}
 				
@@ -208,10 +208,10 @@ public class ContentController {
 		MultipartFile videoFile = req.getFile("video");
         String fileName = mhdto.getMember_idx()+mhdto.getName()+System.currentTimeMillis()+videoFile.getOriginalFilename();
 		
-        //비디오 복사
+        //鍮꾨뵒�삤 蹂듭궗
         copyInto(fileName,videoFile,req2);
         
-        //비디오 캡처 이미지 저장
+        //鍮꾨뵒�삤 罹≪쿂 �씠誘몄� ���옣
         String realPath = req2.getSession().getServletContext().getRealPath("");
 		realPath = realPath.replaceAll("\\\\","/");
 		
@@ -269,16 +269,17 @@ public class ContentController {
 	}
 	
 	
-	@RequestMapping(value="/uploadDateContent.do",method=RequestMethod.POST)
-	public ModelAndView uploadDateContent(@RequestParam("uploadDate")String uploadDate){
+	@RequestMapping("/uploadDateContent.do")
+	public ModelAndView uploadDateContent(@RequestParam("uploadDate")String uploadDate, @RequestParam("member_idx")int member_idx){
 		
-		List<ContentDTO> list=cdao.searchUploadDate(uploadDate);
-		ModelAndView mav=new ModelAndView();
-		System.out.println(list.size());
-		mav.addObject("list", list);
-		mav.setViewName("myPage/calendarJSON");
+		HashMap<String, String> uploadDateMap = new HashMap<String, String>();
+		uploadDateMap.put("uploadDate", uploadDate);
+		uploadDateMap.put("member_idx", String.valueOf(member_idx));
+		List<ContentDTO> list = cdao.searchUploadDate(uploadDateMap);
+		
+		ModelAndView mav=new ModelAndView("marsJson", "list", list);
+		
 		return mav;
-		
 		
 	}
 

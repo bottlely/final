@@ -21,6 +21,6 @@ public interface ContentDAO {
 	*/
 	
 	public int uploadContent(HashMap<String, String> info);
-	public List<ContentDTO> searchUploadDate(String uploadDate);
+	public List<ContentDTO> searchUploadDate(HashMap<String, String> uploadDateMap);
 	public List<ContentDTO> contentList(String member_idx);
 }

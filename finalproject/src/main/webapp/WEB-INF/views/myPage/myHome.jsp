@@ -271,28 +271,34 @@ input:checked+.slider:before {
     }
 </script>
 <script>
-	//날짜검색function
-	function contentDate(){
-	    	var uploadDate=$('.datepicker-here').val();
-	    	alert(uploadDate);
-	    	sendRequest('uploadDateContent.do','uploadDate='+uploadDate,showResult,'POST');
+//날짜검색function
+function contentDate(){
+    	var uploadDate=$('.datepicker-here').val();
+    	
+    	sendRequest('uploadDateContent.do?uploadDate='+uploadDate+'&member_idx='+${sessionScope.useridx}, null ,showResult,'POST');
+}
+
+function showResult(){
+	if(XHR.readyState==4){
+		if(XHR.status==200){
+			var data=eval('('+XHR.responseText+')');
+			var myFeedTable=document.all.myfeedtable;
+			var str='';
+			if(data.list.length==0){
+				str='<table><tr><td>검색결과가 없습니다.</td></tr></table>';
+				myFeedTable.innerHTML=str;
+			}else{
+			for(var i=0; i<data.list.length; i++){
+				var contentDate=data.list[i].path;
+				
+				str='<table><tr><td><img src="myHomeFolder/content/'+contentDate+'"></td></tr></table>';
+				myFeedTable.innerHTML=str;
+			}
+		
+			}
+		}
 	}
-	
-	function showResult(){
-    	if(XHR.readyState==4){
-    		if(XHR.status==200){
-    			var data=eval('('+XHR.responseText+')');
-    			var msg=data.contents.length;
-    			window.alert(msg);
-    			
-    			for(var i=0; i<data.contents.length; i++){
-    				var contentDate=data.contents[i];
-    				var contentTable=document.getElementById('myfeedtable');
-    				
-    			}
-    		}
-    	}
-    }
+}
 </script>
 
 </head>
@@ -410,8 +416,8 @@ input:checked+.slider:before {
 		<div class="myfeed">
 			<table style="border-spacing:10px;">
 				 <tr>
-					<td><img src="" class="showMask3"></td>
-					<td><img src=""></td>
+					<td style="background-color:blue;"></td>
+					<td style="background-color:blue;"></td>
 					<td style="background-color:blue;"></td>
 				</tr>
 				<tr>
@@ -427,10 +433,6 @@ input:checked+.slider:before {
 			</table>
 		</div>	
 		
-		<div class="mask3"></div>
-		<div class="contentDiv">
-		<img src="assets_myPage/images/cow.jpg" width="300px;">
-		</div>
 </section>
 
 </body>

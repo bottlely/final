@@ -10,10 +10,10 @@
 		insert into content values
 		(#{idx}, content_idx.nextval,#{type},sysdate,#{path},#{content},#{writer})
 	</insert>
-	<select id="searchUploadDate" parameterType="String" resultType="mars.content.model.ContentDTO">
+	<select id="searchUploadDate" parameterType="HashMap" resultType="mars.content.model.ContentDTO">
 		select *
 		from content
-		where to_char(writetime,'yyyy-mm-dd') = #{uploadDate}
+		where member_idx=#{member_idx} and to_char(writetime,'yyyy-mm-dd') = #{uploadDate} order by writetime desc
 	</select>
 	
 	<select id="contentList" parameterType="String" resultType="mars.content.model.ContentDTO">
