@@ -211,7 +211,8 @@ select {
       <div class="row">
          <div class="col-md-12">
             <div class="file_input" style="margin-bottom: 15px;">
-               <label class="btn btn-primary">파일 찾기<input type="file" id="video"
+            <input type="button" class="btn btn-primary" value="파일 선택" onclick="document.getElementById('video').click();">
+               <label><input type="file" id="video"
                   onchange="Search(this)" class="btn btn-primary">
                </label>               
             </div>
