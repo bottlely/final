@@ -30,9 +30,9 @@ var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
  type: 'line',
  data: {
-   labels: ["aaa 1", "Mar 2", "Mar 3", "Mar 4", "Mar 5", "Mar 6", "Mar 7", "Mar 8", "Mar 9", "Mar 10", "Mar 11", "Mar 12", "Mar 13"],
+   labels: ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"],
    datasets: [{
-     label: "Sessions",
+     label: "",
      lineTension: 0.3,
      backgroundColor: "rgba(2,117,216,0.2)",
      borderColor: "rgba(2,117,216,1)",
@@ -43,7 +43,7 @@ var myLineChart = new Chart(ctx, {
      pointHoverBackgroundColor: "rgba(2,117,216,1)",
      pointHitRadius: 20,
      pointBorderWidth: 2,
-     data: [10000, 30162, 26263, 18394, 18287, 28682, 31274, 33259, 25849, 24159, 32651, 31984, 38451],
+     data: [10,10,10,10,10,10,10],
    }],
  },
  options: {
@@ -62,7 +62,7 @@ var myLineChart = new Chart(ctx, {
      yAxes: [{
        ticks: {
          min: 0,
-         max: 40000,
+         max: 100,
          maxTicksLimit: 5
        },
        gridLines: {
@@ -122,10 +122,10 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
  type: 'pie',
  data: {
-   labels: ["Blue", "Red", "Yellow", "Green"],
+   labels: ["영화", "스포츠", "패션", "뷰티","여행","음악","댄스","음식"],
    datasets: [{
-     data: [12.21, 15.58, 11.25, 8.32],
-     backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
+     data: [15, 15, 14, 3 ,13,2,3,20],
+     backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745','#28a745','#28a745','#28a745','#28a745'],
    }],
  },
 });
@@ -297,14 +297,22 @@ var myPieChart = new Chart(ctx, {
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
+          <a href="#">Data</a>
         </li>
-        <li class="breadcrumb-item active">Charts</li>
+        <li class="breadcrumb-item active">User</li>
       </ol>
       <!-- Area Chart Example-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-area-chart"></i> Area Chart Example</div>
+          <i class="fa fa-area-chart"></i>User(All)
+          <select>
+          <option>All</option>
+          <option>Man</option>
+          <option>Girl</option>
+          </select>
+          <button type="submit">Search</button>
+               
+          </div>
         <div class="card-body">
           <canvas id="myAreaChart" width="100%" height="30"></canvas>
         </div>
@@ -315,7 +323,14 @@ var myPieChart = new Chart(ctx, {
           <!-- Example Bar Chart Card-->
           <div class="card mb-3">
             <div class="card-header">
-              <i class="fa fa-bar-chart"></i> Bar Chart Example</div>
+              <i class="fa fa-bar-chart"></i>Favor Ranking
+                <select>
+          <option>All</option>
+          <option>Man</option>
+          <option>Girl</option>
+          </select>
+          <button type="submit">Search</button>
+              </div>
             <div class="card-body">
               <canvas id="myBarChart" width="100" height="50"></canvas>
             </div>
@@ -326,7 +341,7 @@ var myPieChart = new Chart(ctx, {
           <!-- Example Pie Chart Card-->
           <div class="card mb-3">
             <div class="card-header">
-              <i class="fa fa-pie-chart"></i> Pie Chart Example</div>
+              <i class="fa fa-pie-chart"></i>Favor</div>
             <div class="card-body">
               <canvas id="myPieChart" width="100%" height="100"></canvas>
             </div>
@@ -334,6 +349,8 @@ var myPieChart = new Chart(ctx, {
           </div>
         </div>
       </div>
+      
+      
     </div>
     <!-- /.container-fluid-->
     <!-- /.content-wrapper-->
@@ -376,7 +393,7 @@ var myPieChart = new Chart(ctx, {
     <!-- Custom scripts for all pages-->
     <script src="assets_admin/js/sb-admin.min.js"></script>
     <!-- Custom scripts for this page-->
-    <script src="assets_admin/js/sb-admin-charts.min.js"></script>
+    
   </div>
 </body>
 

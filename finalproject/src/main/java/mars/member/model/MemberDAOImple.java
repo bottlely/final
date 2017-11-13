@@ -1,5 +1,7 @@
 package mars.member.model;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 public class MemberDAOImple implements MemberDAO {
@@ -47,5 +49,12 @@ public class MemberDAOImple implements MemberDAO {
 		dto = sqlMap.selectOne("getUserInfo", userid);
 		return dto;
 	}
-
+	/*날짜가져오기*/
+	public List<String> dates() {
+		// TODO Auto-generated method stub
+		List<String> dates = sqlMap.selectList("dateList");
+		return dates;
+	}
+	/*날짜별 유저수*/
+	
 }

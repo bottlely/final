@@ -26,4 +26,13 @@
    <select id="yearMax" resultType="mars.member.model.MemberDTO">
       select max(birth_y) from mars_member
    </select>
+   	   <select id="date_user" resultType="mars.member.model.MemberDTO" parameterType="String"> 
+   		<![CDATA[ 
+   		select count(*) from (select to_char(joindate,'YY-MM-DD')as a from mars_member) where a <= #{date}
+   		]]>
+   </select>
+      <select id="dateList" resultType="mars.member.model.MemberDTO">
+      select distinct a from (select to_char(joindate,'YY-MM-DD')as a from mars_member)
+   </select>
+
 </mapper>

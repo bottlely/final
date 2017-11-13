@@ -1,5 +1,6 @@
 package mars.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +19,19 @@ import mars.member.model.MemberDTO;
 public class AdminController {
    @Autowired
    private AdminDAO aDao;
-   
+	@Autowired
+	private MemberDAO mdao;
+	
+	
    @RequestMapping("/admin.do")
-   public String adminMain() {
-      return "admin/admin_main";
+   public ModelAndView adminMain() {
+	   List<String> dates = mdao.dates();
+	  
+	   ModelAndView mav = new ModelAndView();
+	   mav.addObject("dates",dates);
+	
+	   mav.setViewName("admin/admin_main");
+	   return mav;
    }
    @RequestMapping("/admin_m_u.do")
    public ModelAndView admin_m_u() {
