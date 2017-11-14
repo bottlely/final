@@ -170,6 +170,16 @@ $('.mask').click(function () {
 });
 });
 
+//친구검색
+$(document).ready(function(){
+	  $("#myInput").on("keyup", function() {
+	    var value = $(this).val().toLowerCase();
+	    $("#myList li").filter(function() {
+	      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+	    });
+	  });
+	});
+
 </script>
 </head>
 <body>
@@ -216,16 +226,25 @@ $('.mask').click(function () {
    </div>
    </form>
 </div>
-
 <div class="mask"></div>
-    <div class="window">
-       <table align="center">
-        <c:forEach var="follower_list" items="${followerList}">
-        	<tr onclick="sel_coverage(${follower_list.member_idx})"><td><img src="myHomeFolder/profile_img/${follower_list.profile_img}" alt="" width="20" height="20" style="border-radius: 50%">
-        	  <font id="${follower_list.member_idx}" color="gray"><strong>${follower_list.name}</font>
-        	</td></tr>
-        </c:forEach>
-       	</table>
-    </div>
+	<div class="window"
+		style="width: 300px; height: 400px; overflow: auto;">
+		<div class="container" style="overflow: auto;">
+			<h6 align="center">친구 검색</h6>
+			<input class="form-control" id="myInput" type="text"
+				placeholder="Search.."> <br>
+			<ul class="list-group" id="myList">
+				<c:forEach var="follower_list" items="${followerList}">
+					<li class="list-group-item"
+						onclick="sel_coverage(${follower_list.member_idx})"><img
+						src="myHomeFolder/profile_img/${follower_list.profile_img}" alt=""
+						width="20" height="20" style="border-radius: 50%"> <font
+						id="${follower_list.member_idx}" color="gray"><strong>${follower_list.name}</font>
+					</li>
+				</c:forEach>
+
+			</ul>
+		</div>
+	</div>
 </body>
 </html>
