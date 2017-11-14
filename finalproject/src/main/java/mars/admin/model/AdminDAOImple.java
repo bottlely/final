@@ -180,5 +180,39 @@ public class AdminDAOImple implements AdminDAO {
 	   int all = sqlMap.selectOne("allcount");
 	   return all;
    }
-
+   
+   public String seoul() {
+	   
+	   String seoul = sqlMap.selectOne("seoul");
+	   return seoul;
+   }
+   public String suwon(){
+	   
+	   String suwon = sqlMap.selectOne("suwon");
+	   return suwon;
+   }
+   public String incheon(){
+	   
+	   String incheon = sqlMap.selectOne("incheon");
+	   return incheon;
+   }
+   public String daegu(){
+	   
+	   String daegu = sqlMap.selectOne("daegu");
+	   return daegu;
+   }
+   public String daejeon(){
+	   
+	   String daejeon = sqlMap.selectOne("daejeon");
+	   return daejeon;
+   }
+   public String busan(){
+	   
+	   String busan = sqlMap.selectOne("busan");
+	   return busan;
+   }
+   public String ilsan() {
+	   String ilsan= sqlMap.selectOne("ilsan");
+	   return ilsan;
+   }
 }

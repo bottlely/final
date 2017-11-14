@@ -171,7 +171,7 @@
 					label : "Revenue",
 					backgroundColor : "rgba(2,117,216,1)",
 					borderColor : "rgba(2,117,216,1)",
-					data : [ 1,1, 1, 2, 2, 2,4,3 ],
+					data : [ ${seoul},${incheon}, ${suwon}, ${daejeon}, ${daejeon}, ${daegu},${ilsan},${busan},0 ],
 				} ],
 			},
 			options : {

@@ -34,5 +34,13 @@ public interface AdminDAO {
    public int girl4();
    public int man4();
    public int others();
+   public String seoul();
+   public String suwon();
+   public String incheon();
+   public String daegu();
+   public String daejeon();
+   public String busan();
+   public String ilsan();
+   
    
 }
