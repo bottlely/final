@@ -77,12 +77,12 @@ public class FriendDAOImple implements FriendDAO {
 		return res;
 	}
 	
-	public List<MemberDTO> blackCheck(String user1_idx, String user2_idx) {
+	/*public List<MemberDTO> blackCheck(String user1_idx, String user2_idx) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("user1_idx", user1_idx);
 		map.put("user2_idx", user2_idx);
 		List<MemberDTO> list = sqlMap.selectList("blackCheck", map);
 		return list;
-	}
+	}*/
 	
 }
