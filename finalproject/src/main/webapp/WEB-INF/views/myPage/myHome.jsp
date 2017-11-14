@@ -276,7 +276,7 @@ input:checked+.slider:before {
 function contentDate(){
     	var uploadDate=$('.datepicker-here').val();
     	window.alert(uploadDate);
-    	sendRequest('uploadDateContent.do?uploadDate='+uploadDate+'&member_idx='+${sessionScope.useridx}, null ,showResult,'POST');
+    	sendRequest('uploadDateContent.do?uploadDate='+uploadDate+'&member_idx=${sessionScope.useridx}', null ,showResult,'POST');
 }
 
 function showResult(){
@@ -301,7 +301,19 @@ function showResult(){
 	}
 }
 </script>
-
+<script>
+//내 게시물 사진만 보기
+function showMyPhoto(){
+	sendRequest('showMyPhoto.do','member_idx=${sessionScope.useridx}',showResult2(),'POST');
+}
+function showResult2(){
+	if(XHR.readyState==4){
+		if(XHR.status==200){
+			var data=eval('('+XHR.responseText+')');
+		}
+	}
+}
+</script>
 </head>
 <body onload="check()">
 
@@ -323,7 +335,7 @@ function showResult(){
 							
 <!-- 더보기아이콘 -->
 
-<div class="moreicon">
+<div id="moreicon">
 	
     <a href="" class="showMask"><i class="fa fa-ellipsis-h"></i></a>
  	
@@ -354,9 +366,11 @@ function showResult(){
 		 <c:param name="toName">${mhdto.getName()}</c:param>
 		</c:url>
        	<tr><td><a href="${reportUrl}">신고하기</a></td></tr>
-       	<tr><td><a href="#">차단하기 또는 차단취소하기</a></td></tr>
-       	<tr><td><a href="introUploadForm.do">팔로우하기 또는 언팔로우하기</a></td></tr>
-       	</table>
+          <tr><td><a href="friend_block.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">차단하기 </a></td></tr>
+          <tr><td><a href="friend_unblock.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">차단취소하기 </a></td></tr>
+          <tr><td><a href="following.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">팔로우하기</a></td></tr>
+          <tr><td><a href="deleteFriend.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">언팔로우하기</a></td></tr>
+          </table>
     </div>
     </c:if>
     
@@ -367,7 +381,7 @@ function showResult(){
 <div class="plusicon">
 
 	
-	<button style="font-size:24px;width:50px;border:0px;" class="showMask2">
+	<button style="font-size:24px;width:30px;border:0px;" class="showMask2">
 	<i class="fa fa-plus-square-o"></i></button>
 
 
@@ -408,7 +422,7 @@ function showResult(){
 		
 		<div class="myfeedcategory">
 		<ul>
-			<li><input type="button" value="PHOTO"></li>
+			<li><input type="button" value="PHOTO" onclick="showMyPhoto()"></li>
 			<li><input type="button" value="VIEDEO"></li>
 			<li><input type="button" value="TEXT"></li>
 		</ul>

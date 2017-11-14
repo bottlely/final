@@ -14,6 +14,26 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 <title>MARS</title>
+<style>
+.mask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9999;
+	background-color: #000;
+	display: none;
+}
+.window {
+	position: absolute;
+	display: none;
+	background-color: #ffffff;
+	text-align:center;
+	width:50px;
+	height:50px;
+	z-index: 99999;
+}
+
+</style>
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'
 	name='viewport' />
@@ -44,11 +64,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
      <script type="text/javascript" src="js/httpRequest.js"></script>
 <script>
+	var m_idx;
 	function addGroupForm() {
 		window.open('addGroupForm.do?idx=${sessionScope.useridx}', 'addGroupForm', 'width=400, height=800');
 	}
 	
 	function groupMember(idx){
+		m_idx=idx;
 		sendRequest('groupMember.do?idx='+idx, null, memberList, 'GET');
 	}
 	
@@ -57,7 +79,7 @@
 			if(XHR.status==200){
 				var data = XHR.responseText;
 				var lists = eval('('+data+')');
-				var parent = document.getElementById('group_name');
+				var parent = document.getElementById('group_name_'+m_idx);
 				
 				if(lists.memberList.length==0){
 					var ul = document.createElement("ul");
@@ -74,12 +96,57 @@
 						li.innerHTML = l.name;
 						parent.appendChild(ul);
 						ul.appendChild(li);
+						
 					}
 				}
 			}
 		}
 	}
+	
+ 	function updateGroup(group_idx){
+ 		window.alert(group_idx);
+ 		window.open('updateGroupForm.do?idx_ff='+group_idx+'&idx=${sessionScope.useridx}', 'updateGroupForm', 'width=400, height=800');
+ 	}
+ 	
+ 	
+	
 </script>
+<script type="text/javascript">
+//moreicon function
+function wrapWindowByMask(){
+    var maskHeight = $(document).height();
+    var maskWidth = $(window).width();
+
+    $('.mask').css({'width':maskWidth,'height':maskHeight});
+
+    $('.mask').fadeTo("fast",0.3);
+
+    var left = ( $(window).scrollLeft() + ( $(window).width() - $('.window').width()) / 3 );
+    var top = ( $(window).scrollTop() + ( $(window).height() - $('.window').height()) / 3 );
+
+    $('.window').css({'left':left,'top':top, 'position':'absolute'});
+
+    $('.window').show();
+}
+
+$(document).ready(function(){
+    $('.showMask').click(function(e){
+        e.preventDefault();
+        wrapWindowByMask();
+    });
+
+    $('.window .close').click(function (e) {
+        e.preventDefault();
+        $('.mask, .window').hide();
+    });
+
+    $('.mask').click(function () {
+        $(this).hide();
+        $('.window').hide();
+    });
+});
+</script>
+
 </head>
 <body>
 
@@ -144,7 +211,6 @@
 							<div class="card">
 
 								<div class="content">
-
 									<hr>
 									<!--친구목록  -->
 									<p align="right">
@@ -155,7 +221,17 @@
 											<li>생성된 그룹이 없습니다.</li>
 										</c:if>
 										<c:forEach var="g_list" items="${g_list }">
-										<li id="group_name"><a href="javascript:groupMember(${g_list.idx})">${g_list.group_name } </a>
+										<li id="group_name_${g_list.idx }"><a href="javascript:groupMember(${g_list.idx})">${g_list.group_name } </a>
+		<span class="dropdown">
+ 		 <a data-toggle="dropdown">
+ 		 <i class="fa fa-ellipsis-h"></i>
+ 		 <span class="caret"></span></a>
+ 			 <ul class="dropdown-menu">
+   			  <li><a href="javascript:updateGroup(${g_list.idx })">수정</a></li>
+   			 <li><a href="deleteGroup.do?idx_ff=${g_list.idx }&idx=${sessionScope.useridx}">삭제</a></li>
+   			 </ul></span>
+ 							
+										<input type="hidden" id="idx" value="${g_list.idx }">
 										</li>
 										</c:forEach>
 									</ul>
@@ -177,7 +253,14 @@
 
 				</div>
 			</div>
-
+			
+			<div class="mask"></div>
+    		<div class="window">
+       			<table align="center">
+       			<tr><td><a href="#">수정</a></td></tr>
+       			<tr><td><a href="#">삭제</a></td></tr>
+       			</table>
+       		</div>	
 
 			<footer class="footer">
 				<div class="container-fluid">

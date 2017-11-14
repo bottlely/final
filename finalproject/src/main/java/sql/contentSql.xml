@@ -10,6 +10,12 @@
 		insert into content values
 		(#{idx}, content_idx.nextval,#{type},sysdate,#{path},#{content},#{writer})
 	</insert>
+	
+	<insert id="coverageInsert" parameterType="mars.coverage.model.CoverageDTO">
+		insert into coverage values
+		(#{content_idx}, coverage_idx.nextval, #{coverage_state},#{idx_to},#{idx_from})
+	</insert>
+	
 	<select id="searchUploadDate" parameterType="HashMap" resultType="mars.content.model.ContentDTO">
 		select *
 		from content
@@ -18,6 +24,10 @@
 	
 	<select id="contentList" parameterType="String" resultType="mars.content.model.ContentDTO">
 		select * from content where member_idx = #{member_idx} order by content_idx desc
+	</select>
+	
+	<select id="contentIdxSearch" parameterType="String" resultType="Integer">
+		select max(content_idx) from content where member_idx = #{member_idx}
 	</select>
 	
 </mapper>

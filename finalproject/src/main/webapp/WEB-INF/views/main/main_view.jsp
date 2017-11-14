@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="assets_main/css/style.css" type="text/css">
     <link href="assets_main/css/pe-icon-7-stroke.css" rel="stylesheet" />
    <link href="assets_main/css/ct-navbar.css" rel="stylesheet" />  
-   
-
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ <script type="text/javascript" src="js/httpRequest.js"></script>
   
   <title>MARS</title>
     <!--     Font Awesome     -->
@@ -150,7 +150,7 @@
             } 
 
 </script> 
-<body>
+<body onload="reply_List(${content_idx})">
 <header>
 <div id="navbar-full">
 <span style="float: left;">
@@ -334,7 +334,7 @@
     
   </div>
   <div class="col-sm-4 text-left"  style="background-color: white; border-radius: 5%;">
-  발자취
+        <img src=""><input type="button" value="발자취" onclick="like(${content_idx})">
   </div>
   <div class="col-sm-4 text-center">
   
@@ -346,29 +346,99 @@
    
     </div>
     <div class="col-sm-8 text-left"  style="background-color: white; border-radius: 5%;"> 
-      <input type="text" id="content" name="content" value=""><input type="button" value="작성"><br>
-      <c:forEach var="replyList" items="${list }">
-      <c:if test="${empty list }">
-         댓글 없습니다.
-      </c:if>
-         <c:choose>
-         <c:when test="${replyList.lev == 0 }">
-      ${replyList.profile_img} ${ replyList.name} " : " ${replyList.content }<br>         
-      <input type="button" value="답글" onclick="re_Reply(${replyList.idx})">
-      <%-- <input type="button" value="수정" onclick="update_Reply(${replyList.idx})"> --%>
-      <input type="button" value="삭제" onclick="delete_Reply(${replyList.idx })"><br>
-      </c:when>
-      <c:when test="${replyList.lev == 1 }">
-      &emsp;&emsp;${replyList.profile_img} ${ replyList.name} " : " ${replyList.content }<br>
-      <%-- <input type="button" value="수정" onclick="update_Reply(${replyList.idx})"> --%>
-      <input type="button" value="삭제" onclick="delete_Reply(${replyList.idx })"><br>
-      </c:when>
-      </c:choose>
+    <input type="hidden" id="content_idx" name="content_idx" value="${content_idx  }">
+      <input type="text" id="content" name="content" value=""><input type="button" value="작성" onclick="addReply()"><br>
+      
+      <h2 id="reply_List"></h2>
+      <input type="hidden" id="session_idx" value="${sessionScope.useridx }">
+      <input type="hidden" id="session_name" value="${sessionScope.username }">
       <script>
-         function re_Reply(idx){
+         function like(content_idx){
+            document.getElementById("session_idx").value;
+            
+            sendRequest('like.do?session_idx='+session_idx+'content_idx='+content_idx, null, likeList, 'GET');
+         }
+         
+         function likeList(){
+         if(XHR.readyState==4){
+            if(XHR.status==200){
+               var data = XHR.responseText;
+               var lists = eval('('+data+')');
+               
+               
+               
+            }
+         }
+      }
+         
+         function reply_List(content_idx){
+            sendRequest('replyList.do?content_idx=' + content_idx, null, replyList, 'GET');
+         }
+         
+         function addReply(){
+            var content_idx = document.getElementById("content_idx").value;
+            var session_idx = document.getElementById("session_idx").value;
             var content = document.getElementById("content").value;
             
-            location.href="re_Reply.do?reply_idx="+idx+"&content="+content;
+            sendRequest('reply.do?content='+content+"&content_idx=20&session_idx="+session_idx, null, replyList,'GET');
+         }
+         
+         function replyList(){
+         if(XHR.readyState==4){
+            if(XHR.status==200){
+               var data = XHR.responseText;
+               var lists = eval('('+data+')');
+               var content_writer = '박연수';
+               var content_content = '하이하이';
+               var reply_list = document.all.reply_List;
+               var str='';
+               var userName = document.getElementById("session_name").value;
+
+               if(lists.replyList.length==0){
+                  str = '댓글 없습니다.'
+                  reply_list.innerHTML = str;
+               }else{
+                  for(var i=0; i<lists.replyList.length; i++){
+                     var l = lists.replyList[i];
+                     
+                     if(l.lev == 0){
+                        if(l.name == userName){
+                           str += l.profile_img + " : " + l.name + " : " + l.content + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" >' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+                        }else{
+                           str += l.profile_img + " : " + l.name + " : " + l.content + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
+                        }
+                        
+                     }else{
+                        if(l.name == userName){
+                           str += '=>' + l.profile_img + " : " + l.name + " : " + l.content + '<br>' + '<input type="button" value="수정" >' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
+                        }else{
+                           str += '=>' + l.profile_img + " : " + l.name + " : " + l.content + '<hr>';
+                        }
+                     }
+                  }
+                  reply_list.innerHTML = str;
+               }
+            }
+         }
+      }
+         
+         function re_Reply(idx){
+            var content = document.getElementById(idx+"text").value;
+            var content_idx = document.getElementById("content_idx").value;
+            var session_idx = document.getElementById("session_idx").value;
+            
+            sendRequest('re_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx+'&session_idx='+session_idx, null, replyList,'GET');
+            
+            re_content.style.display = 'none';
+              re_ok.style.display = 'none';
+         }
+         
+         function ondisplay(idx){
+            var re_content = document.getElementById(idx+"text");
+            var re_ok = document.getElementById(idx+"btn");
+            
+            re_content.style.display = 'block';
+            re_ok.style.display = 'block';
          }
          
          /* function update_Reply(idx){
@@ -377,11 +447,14 @@
             location.href="update_Reply.do?reply_idx="+idx+"&content="+content;
          } */
          
-         function delete_Reply(idx){
-            location.href="delete_Reply.do?reply_idx="+idx;
+          function delete_Reply(idx){
+            var content_idx = document.getElementById('content_idx').value;
+            
+            location.href="delete_Reply.do?reply_idx="+idx+"&content_idx="+content_idx;
          }
+         
+         
       </script>
-      </c:forEach>
        
     </div>
     <div class="col-sm-2 sidenav">

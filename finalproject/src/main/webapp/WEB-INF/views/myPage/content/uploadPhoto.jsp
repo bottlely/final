@@ -53,13 +53,35 @@ select {
     border-radius: 3px;
 }
 
+.mask{
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9999;
+	background-color: #000;
+	display: none;
+	
+}
+
+.window {
+	position: absolute;
+	display: none;
+	background-color: #ffffff;
+	width: 200px;
+	height: 150px;
+	z-index: 99999;
+	overflow:scroll;
+}
+
 </style>
  <script type="text/javascript" src="js/jquery-3.1.0.min.js" charset="utf-8"></script>
     <script type="text/javascript">
-
+    
         // 이미지 정보들을 담을 배열
         var sel_files = [];
-
+		
+        //공개범위 사용자 정의 리스트
+        var sel_list = [];
 
         $(document).ready(function() {
             $("#input_imgs").on("change", handleImgFileSelect);
@@ -116,7 +138,7 @@ select {
         function submitAction() {
              
             if(sel_files.length < 1) {
-                alert("한개이상의 파일을 선택해주세요.");
+                alert("한 개 이상의 파일을 선택해주세요.");
                 return;
             }   
     			
@@ -130,11 +152,16 @@ select {
     			 data.append("image_count", sel_files.length);
     			 data.append("useridx", '${sessionScope.useridx}');
     			 
-    			 var tag =  document.getElementById("tag");
+    			 var tag =  document.getElementById("tag").value;
     			 data.append("tag",tag);
             	 
-    			 var content =document.getElementById("content");
+    			 var content =document.getElementById("content").value;
     			 data.append("content",content);
+    			 
+    			 data.append("coverage_list",sel_list);
+    			 
+    			 var coverage_state = document.getElementById("coverage_state").value;
+    			 data.append("coverage_state",coverage_state)
     			 
     			 //data.append("type",1);
     			 
@@ -185,12 +212,61 @@ select {
         	window.close();
         }
         
-        function hi(e){
+        function fflist(e){
+        	
         	var sel = e.options[e.selectedIndex].value;
         	if(sel == 2 || sel == 3){
-        		alert('hi!!');
+        		 wrapWindowByMask();
+        	}
+         }
+        
+        function sel_coverage(idx){
+        	
+        	var color = document.getElementById(idx).color;
+        	        	
+        	if(color == "gray"){
+        	      document.getElementById(idx).color = "007bff";
+        	      sel_list.push(idx);
+        	      //alert("1 : "+ sel_list.length);
+        	      //alert(sel_list[sel_list.length-1]);
+        	}else{
+        	     document.getElementById(idx).color = "gray";
+        	  for(var i=0, len=sel_list.length; i<len; i++) {
+        		  sel_list.splice(i, 1);
+        		}
+        	 	 //alert("2 : "+ sel_list.length);
         	}
         }
+        
+        //암막 function
+         function wrapWindowByMask(){
+        var maskHeight = $(document).height();
+        var maskWidth = $(window).width();
+ 
+        $('.mask').css({'width':maskWidth,'height':maskHeight});
+ 
+        $('.mask').fadeTo("fast",0.3);
+ 
+        var left = ( $(window).scrollLeft() + ( $(window).width() - $('.window').width()) / 2 );
+        var top = ( $(window).scrollTop() + ( $(window).height() - $('.window').height()) / 2 );
+ 
+        $('.window').css({'left':left,'top':top, 'position':'absolute'});
+ 
+        $('.window').show();
+    }
+ 
+    $(document).ready(function(){
+    	
+        $('.window .close').click(function (e) {
+            e.preventDefault();
+            $('.mask, .window').hide();
+        });
+ 
+        $('.mask').click(function () {
+            $(this).hide();
+            $('.window').hide();
+        });
+    });
     </script>
 </head>
 
@@ -203,7 +279,7 @@ select {
 			<img src="myHomeFolder/profile_img/${profile}" alt="" id="pf"/>
 			</span>
 		    <label id="name">${writer}</label>
-		    <select name="coverage" onchange="hi(this)">
+		    <select id="coverage_state" name="coverage" onclick="fflist(this)">
 			    <option value="0">전체공개</option>
 			    <option value="1">친구만</option>
 			    <option value="2">특정 대상</option>
@@ -254,5 +330,15 @@ select {
 		</div>
 	</div>
 </div>
+<div class="mask"></div>
+    <div class="window">
+       <table align="center">
+        <c:forEach var="follower_list" items="${followerList}">
+        	<tr onclick="sel_coverage(${follower_list.member_idx})"><td><img src="myHomeFolder/profile_img/${follower_list.profile_img}" alt="" width="20" height="20" style="border-radius: 50%">
+        	  <font id="${follower_list.member_idx}" color="gray"><strong>${follower_list.name}</font>
+        	</td></tr>
+        </c:forEach>
+       	</table>
+    </div>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <mapper namespace="mars.member">
 	<insert id="memberJoin" parameterType="mars.member.model.MemberDTO">
 		insert into mars_member values
-		(mars_member_idx.nextval, #{name}, #{id}, #{pwd}, 1, 2000, 10, 10, '111-111', 'seoul', 0,0,0,0,0,0,0,0,sysdate,#{usertype},#{company_number},0,0,0,0,0)
+		(mars_member_idx.nextval, #{name}, #{id}, #{pwd}, 0, 2000, 10, 10, '111-111', 'seoul', 0,0,0,0,0,0,0,0,sysdate,#{usertype},#{company_number},0,0,0,0,0)
 	</insert>
 	
 	<select id="idxSearch" parameterType="mars.member.model.MemberDTO" resultType="mars.member.model.MemberDTO">

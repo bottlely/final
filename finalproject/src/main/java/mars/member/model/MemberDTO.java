@@ -34,6 +34,8 @@ public class MemberDTO {
 	public MemberDTO() {
 		super();
 	}
+	
+
 
 	public MemberDTO(int idx, String name, String id, String pwd, int gender, int birth_y, int birth_m, int birth_d,
 			String tel, String city, int favorite_movie, int favorite_sport, int favorite_fashion, int favorite_beauty,

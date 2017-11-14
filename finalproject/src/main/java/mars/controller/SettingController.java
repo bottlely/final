@@ -52,7 +52,6 @@ public class SettingController {
 	@RequestMapping(value = "/pwdSetting.do", method = RequestMethod.POST)
 	public ModelAndView pwdSetting(@RequestParam("cur_pwd") String cur_pwd, @RequestParam("ch_pwd") String ch_pwd,
 			int idx) {
-		System.out.println("idx = " + idx);
 		String msg = "";
 		String gourl = "pwdSetting.do";
 		String sv_pwd = settingDao.getMyPwd(idx);
@@ -160,14 +159,9 @@ public class SettingController {
 	}
 
 	@RequestMapping("showGroup.do")
-	public ModelAndView showGroup(int idx_ff, int idx) {
-		System.out.println("idx_ff = " + idx_ff);
+	public ModelAndView showGroup(int idx_ff) {
 		List<GroupDTO> group = settingDao.showGroup(idx_ff);
-		System.out.println("group_len = " + group.size());
-		System.out.println("eunji = " + group.get(0).getIdx_to());
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("group", group);
-		mav.setViewName("setting/friendSetting");
+		ModelAndView mav = new ModelAndView("marsJson", "memberList", group);
 		return mav;
 	}
 
@@ -176,5 +170,33 @@ public class SettingController {
 		List<MemberDTO> list = settingDao.groupMember(idx);
 		ModelAndView mav = new ModelAndView("marsJson", "memberList", list);
 		return mav;
+	}
+
+	
+	@RequestMapping("deleteGroup.do")
+	public ModelAndView deleteGroup(int idx_ff, int idx){
+		String msg="";
+		ModelAndView mav = new ModelAndView();
+		int count = settingDao.deleteGroup(idx_ff);
+		if(count>0){
+			count = settingDao.deleteff(idx_ff);
+			msg = count>0? "삭제되었습니다." : "삭제에 실패하였습니다.";
+		}
+		
+		mav.addObject("msg", msg);
+		mav.addObject("gourl", "friendSetting.do?idx="+idx);
+		mav.setViewName("setting/settingMsg");
+		return mav;
+	}
+	
+	@RequestMapping("updateGroupForm.do")
+	public ModelAndView updateGroupForm(int idx_ff, int idx){
+		List<MemberDTO> list = settingDao.getFollowingList(idx);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.addObject("idx_ff", idx_ff);
+		mav.setViewName("setting/updateGroupForm");
+		return mav;
+		
 	}
 }

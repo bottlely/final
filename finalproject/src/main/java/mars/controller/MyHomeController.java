@@ -43,7 +43,7 @@ public class MyHomeController{
 		mhdao.visitorUpdate(member_idx);
 		
 		List<ContentDTO> contentList = cdao.contentList(member_idx);
-		int totalCnt = contentList.size();
+		//int totalCnt = contentList.size();
 		
 		List<String> imgList = new ArrayList<String>();
 		List<String> videoList = new ArrayList<String>();
@@ -72,7 +72,7 @@ public class MyHomeController{
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("mhdto", mhdto);
 		mav.addObject("cdao", cdao);
-		mav.addObject("totalCnt", totalCnt);
+		//mav.addObject("totalCnt", totalCnt);
 		mav.addObject("imgList", imgList);
 		mav.addObject("videoList", videoList);
 		mav.setViewName("myPage/myHome");

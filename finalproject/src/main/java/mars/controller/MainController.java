@@ -18,46 +18,46 @@ import mars.reply.model.ReplyDTO;
 
 @Controller
 public class MainController {
-	@Autowired
-	private ReplyDAO replydao;
-	
-	@Autowired
-	private FeedDAO feedDao;
+   @Autowired
+   private ReplyDAO replydao;
+   
+   @Autowired
+   private FeedDAO feedDao;
 
-	@RequestMapping("main.do")
-	public ModelAndView mainPage() {
-		int idx = 12;
-		List<ContentDTO> list = feedDao.showFeed(idx);
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", list);
-		mav.setViewName("main/main");
-		return mav;
-	}
+   @RequestMapping("main.do")
+   public ModelAndView mainPage() {
+      int idx = 12;
+      List<ContentDTO> list = feedDao.showFeed(idx);
+      
+      ModelAndView mav = new ModelAndView();
+      mav.addObject("list", list);
+      mav.setViewName("main/main");
+      return mav;
+   }
 
-	@RequestMapping("main_view.do")
-	public ModelAndView main_viewPage(@RequestParam("content_idx") int content_idx) {
-		List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
+   @RequestMapping("main_view.do")
+   public ModelAndView main_viewPage(@RequestParam("content_idx")int content_idx) {
+      List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
+      
+      ModelAndView mav = new ModelAndView();
+      
+      mav.addObject("list", list);
+      
+      mav.addObject("content_idx", content_idx);
+      
+      mav.setViewName("main/main_view");
+      
+      return mav;
+   }
 
-		ModelAndView mav = new ModelAndView();
-
-		mav.addObject("list", list);
-		
-		mav.addObject("content_idx", content_idx);
-
-		mav.setViewName("main/main_view");
-
-		return mav;
-	}
-
-	@RequestMapping("showFeed.do")
-	public ModelAndView showFeed(int idx) {
-		idx = 12;
-		List<ContentDTO> list = feedDao.showFeed(idx);
-		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", list);
-		mav.setViewName("main/main");
-		return mav;
-	}
+   @RequestMapping("showFeed.do")
+   public ModelAndView showFeed(int idx) {
+      idx = 12;
+      List<ContentDTO> list = feedDao.showFeed(idx);
+      
+      ModelAndView mav = new ModelAndView();
+      mav.addObject("list", list);
+      mav.setViewName("main/main");
+      return mav;
+   }
 }
