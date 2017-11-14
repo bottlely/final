@@ -47,6 +47,10 @@ public class MyHomeController{
 		
 		mhdao.visitorUpdate(member_idx);
 		
+		//개인인지 기업인지
+		
+		int userType = mdao.getUserInfo_idx(Integer.parseInt(member_idx)).getUsertype();
+		
 		List<ContentDTO> contentList = cdao.contentList(member_idx);
 		//int totalCnt = contentList.size();
 		
@@ -80,6 +84,7 @@ public class MyHomeController{
 		//mav.addObject("totalCnt", totalCnt);
 		mav.addObject("imgList", imgList);
 		mav.addObject("videoList", videoList);
+		mav.addObject("userType", userType);
 		mav.setViewName("myPage/myHome");
 		return mav;
 	}

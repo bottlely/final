@@ -152,10 +152,6 @@ input:checked+.slider:before {
          document.getElementById('openCoverage').checked = true;
       }
    }
-   
-   function feed(){
-      
-   }
 
    function openCoverage(){
       
@@ -443,20 +439,21 @@ function showResult2(){
    </c:if>
 </span>
 
-<!-- 광고관리 아이콘-->
-<span id="adadminicon">
-<button style="width:30px;border:0px;padding:none;margin-left:10px;" class="showMask3">
-<i class="fa fa-newspaper-o" style="color: #BDBDBD;position:relative;font-size: 30px;"></i></button>
-
-   <div class="mask3"></div>
-    <div class="window3" style="cursor: pointer;">
-       <table align="center">
-          <tr onclick="#"><td colspan="2">광고 신청하기</td></tr>
-          <tr onclick="#"><td colspan="2">광고 신청현황</td></tr>
-          </table>
-     </div>     
-</span>
-
+	<!-- 광고관리 아이콘-->
+	<c:if test="${userType ne 0}">
+		<span id="adadminicon">
+		<button style="width:30px;border:0px;padding:none;margin-left:10px;" class="showMask3">
+		<i class="fa fa-newspaper-o" style="color: #BDBDBD;position:relative;font-size: 30px;"></i></button>
+		
+		   <div class="mask3"></div>
+		    <div class="window3" style="cursor: pointer;">
+		       <table align="center">
+		          <tr onclick="#"><td colspan="2">광고 신청하기</td></tr>
+		          <tr onclick="#"><td colspan="2">광고 신청현황</td></tr>
+		          </table>
+		     </div>     
+		</span>
+	</c:if>
 </div>
 
 
