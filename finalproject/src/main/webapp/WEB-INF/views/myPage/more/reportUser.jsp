@@ -11,17 +11,44 @@
 function back(){
     window.opener.location.reload();
     window.close();
- }
+}
+function uploadData(){
+	
+	var report = document.getElementById("report").value;
+	
+	if(report == ""){
+		 alert("신고 이유를 작성해주세요 ;)");
+        return;
+	}
+	
+	var data = new FormData();
+	
+	data.append("fromIdx", '${sessionScope.useridx}'); 
+	data.append("toIdx", '${toIdx}'); 
+	data.append("report",report);
+	 
+     var xhr = new XMLHttpRequest();
+     xhr.open("POST","reportUser.do");
+     xhr.send(data);
+     xhr.onload = function(e) {
+          if(this.status == 200) {
+            var jsonResponse = JSON.parse(e.currentTarget.responseText);
+           if(jsonResponse["result"] > 0){
+              alert('업로드 완료!');
+              window.opener.location.reload();
+            window.close();
+           }else{
+              alert('업로드 실패!');
+           }
+           }
+      }
+}
 </script>
 <body>
-<form action="reportUser.do" method="post">
 신고자 : ${sessionScope.username}
-신고할 대상 : ${toName}
-신고 이유 :<input type="text" name="report">
-<input type="hidden" name="toIdx" value="${toIdx}">
-<input type="hidden" name="fromIdx" value="${sessionScope.userid}">
-<input type="submit" value="보내기">
-</form>
+신고할 대상 : ${toName} / ${toIdx}
+신고 이유 :<input type="text" id="report">
+<input type="button" value="보내기" onclick="uploadData()">
 <input type="button" value="back" onclick="back()">
 </body>
 </html>

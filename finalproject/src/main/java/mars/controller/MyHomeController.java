@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import mars.content.model.ContentDAO;
 import mars.content.model.ContentDTO;
+import mars.member.model.MemberDAO;
+import mars.member.model.MemberDTO;
 import mars.myHome.model.*;
 
 import javax.servlet.RequestDispatcher;
@@ -34,6 +36,9 @@ public class MyHomeController{
 	
 	@Autowired
 	private ContentDAO cdao;
+	
+	@Autowired
+	private MemberDAO mdao;
 	
 	@RequestMapping(value="/myHomeForm.do")
 	public ModelAndView myHomeForm(@RequestParam("useridx")String member_idx,
@@ -103,10 +108,11 @@ public class MyHomeController{
 	}
 	
 	@RequestMapping("/reportUserForm.do")
-	public ModelAndView reportUserForm(@RequestParam("toIdx")int toIdx,@RequestParam("toName")String toName) {
+	public ModelAndView reportUserForm(@RequestParam("toIdx")int toIdx) {
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("toIdx",toIdx);
-		mav.addObject("toName",toName);
+		mav.addObject("toName",mdao.getUserInfo_idx(toIdx).getName());
 		mav.setViewName("myPage/more/reportUser");
 		return mav;
 	}
@@ -115,10 +121,7 @@ public class MyHomeController{
 			@RequestParam("toIdx")String toIdx,
 			@RequestParam("fromIdx")String fromIdx) {
 		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("ffIdx", toIdx);
-		mav.addObject("msg", "신고 로직 필요!");
-		mav.setViewName("myPage/myHomeMsg");
+		ModelAndView mav = new ModelAndView("marsJson","result",1);
 		return mav;
 	}
 	

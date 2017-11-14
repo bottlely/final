@@ -11,6 +11,6 @@ public interface MemberDAO {
 	public int loginIdCheck(String userid);
 	public String pwdCheck(String userid);
 	public MemberDTO getUserInfo(String userid);
-
+	public MemberDTO getUserInfo_idx(int userid);
 	
 }

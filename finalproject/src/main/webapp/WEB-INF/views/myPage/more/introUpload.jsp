@@ -12,7 +12,7 @@ function back(){
     window.opener.location.reload();
     window.close();
  }
-function uploadData(flag){
+function uploadData(){
 	
 	var data = new FormData();
 	
@@ -38,7 +38,7 @@ function uploadData(flag){
 </script>
 <body>
 		소개글:<input type="text" id="intro">
-		<input type="button" value="업로드" onclick="uploadData(true)">
+		<input type="button" value="업로드" onclick="uploadData()">
 		<input type="button" value="back" onclick="back()">
 	
 </body>

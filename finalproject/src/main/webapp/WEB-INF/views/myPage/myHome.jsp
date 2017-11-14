@@ -12,108 +12,105 @@
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script type="text/javascript" src="js/httpRequest.js"></script>
 <style>
-.moreicon {
-	text-align: center;
-}
-
 .mask,
 .mask2,
 .mask3 {
-	position: absolute;
-	left: 0;
-	top: 0;
-	z-index: 9999;
-	background-color: #000;
-	display: none;
-	
+   position: absolute;
+   left: 0;
+   top: 0;
+   z-index: 9999;
+   background-color: #000;
+   display: none;
+   
 }
 
-.window {
-	position: absolute;
-	display: none;
-	background-color: #ffffff;
-	width: 200px;
-	height: 150px;
-	z-index: 99999;
+.window,
+.window3{
+   position: absolute;
+   display: none;
+   background-color: #ffffff;
+   width: 200px;
+   
+   z-index: 99999;
 }
 
 .uploadui {
-	position: absolute;
-	display: none;
-	width: 200px;
-	height: 150px;
-	z-index: 99999;
-	background-color: rgba( 255, 255, 255, 0 );
+   position: absolute;
+   display: none;
+   width: 200px;
+   height: 150px;
+   z-index: 99999;
+   background-color: rgba( 255, 255, 255, 0 );
 }
 
 .uploadui img{
-	cursor: pointer;
+   cursor: pointer;
 }
 
 .contentDiv {
-	position: absolute;
-	display: none;
-	width: 30px;
-	z-index: 99999;
-	background-color: rgba( 255, 255, 255, 0 );
+   position: absolute;
+   display: none;
+   width: 30px;
+   z-index: 99999;
+   background-color: rgba( 255, 255, 255, 0 );
 }
 
 .switch {
-	position: relative;
-	display: inline-block;
-	width: 60px;
-	height: 34px;
+   position: relative;
+   display: inline-block;
+   width: 45px;
+   height: 27px;
 }
 
 .switch input {
-	display: none;
+   display: none;
 }
 
 .slider {
-	position: absolute;
-	cursor: pointer;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	background-color: #ccc;
-	-webkit-transition: .4s;
-	transition: .4s;
+   position: absolute;
+   cursor: pointer;
+   top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;
+   background-color: #ccc;
+   -webkit-transition: .4s;
+   transition: .4s;
 }
 
 .slider:before {
-	position: absolute;
-	content: "";
-	height: 26px;
-	width: 26px;
-	left: 4px;
-	bottom: 4px;
-	background-color: white;
-	-webkit-transition: .4s;
-	transition: .4s;
+   position: absolute;
+   content: "";
+   height: 20px;
+   width: 20px;
+   left: 4px;
+   bottom: 4px;
+   background-color: white;
+   -webkit-transition: .4s;
+   transition: .4s;
 }
 
 input:checked+.slider {
-	background-color: #2196F3;
+   background-color: #2196F3;
 }
 
 input:focus+.slider {
-	box-shadow: 0 0 1px #2196F3;
+   box-shadow: 0 0 1px #2196F3;
 }
 
 input:checked+.slider:before {
-	-webkit-transform: translateX(26px);
-	-ms-transform: translateX(26px);
-	transform: translateX(26px);
+   -webkit-transform: translateX(20px);
+   -ms-transform: translateX(20px);
+   transform: translateX(20px);
 }
 
 /* Rounded sliders */
 .slider.round {
-	border-radius: 34px;
+   border-radius: 34px;
 }
 
 .slider.round:before {
-	border-radius: 50%;
+   border-radius: 50%;
 }
 
 </style>
@@ -129,6 +126,7 @@ input:checked+.slider:before {
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="assets_myPage/assets/css/main.css" />
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <noscript><link rel="stylesheet" href="assets_myPage/assets/css/noscript.css" /></noscript>
 
 
@@ -145,60 +143,60 @@ input:checked+.slider:before {
              });
         })(jQuery);
     </script>  
-			
+         
 <script type="text/javascript">
 
-	function check(){
-		var openCoverage = '${mhdto.getOpen_coverage()}';
-		if(openCoverage == 1){
-			document.getElementById('openCoverage').checked = true;
-		}
-	}
-	
-	function feed(){
-		
-	}
+   function check(){
+      var openCoverage = '${mhdto.getOpen_coverage()}';
+      if(openCoverage == 1){
+         document.getElementById('openCoverage').checked = true;
+      }
+   }
+   
+   function feed(){
+      
+   }
 
-	function openCoverage(){
-		
-		var data = new FormData();
-		data.append("useridx", '${sessionScope.useridx}');
-		
-		var xhr = new XMLHttpRequest();
-		xhr.open("POST","openCoverage.do");
-		
-		 if(document.getElementById('openCoverage').checked){
-			 console.log("on");
-			 data.append("range", 1);
-	         xhr.send(data);
-	         xhr.onload = function(e) {
-	           if(this.status == 200){
-	        	   var jsonResponse = JSON.parse(e.currentTarget.responseText);
-	               if(jsonResponse["result"] == 1){
-	            	   alert('비공개 설정 완료!');
-	               }else{
-	            	   alert('비공개 설정 실패!');
-	               }
-	         	}
-	         }
-		 }else{
-			 console.log("off");
-			 data.append("range", 0);
-	         xhr.send(data);
-	         xhr.onload = function(e) {
-	        	 if(this.status == 200){
-	        		 var jsonResponse = JSON.parse(e.currentTarget.responseText);
-	        	 if(jsonResponse["result"] == 1){
-	            	   alert('비공개 해제 완료!');
-	               }else{
-	            	   alert('비공개 해제 실패!');
-	               }
-	        	 }
-	         }
-		 }
-	}
-	
-	//moreicon function
+   function openCoverage(){
+      
+      var data = new FormData();
+      data.append("useridx", '${sessionScope.useridx}');
+      
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST","openCoverage.do");
+      
+       if(document.getElementById('openCoverage').checked){
+          console.log("on");
+          data.append("range", 1);
+            xhr.send(data);
+            xhr.onload = function(e) {
+              if(this.status == 200){
+                 var jsonResponse = JSON.parse(e.currentTarget.responseText);
+                  if(jsonResponse["result"] == 1){
+                     alert('비공개 설정 완료!');
+                  }else{
+                     alert('비공개 설정 실패!');
+                  }
+               }
+            }
+       }else{
+          console.log("off");
+          data.append("range", 0);
+            xhr.send(data);
+            xhr.onload = function(e) {
+               if(this.status == 200){
+                  var jsonResponse = JSON.parse(e.currentTarget.responseText);
+               if(jsonResponse["result"] == 1){
+                     alert('비공개 해제 완료!');
+                  }else{
+                     alert('비공개 해제 실패!');
+                  }
+               }
+            }
+       }
+   }
+   
+   //moreicon function
     function wrapWindowByMask(){
         var maskHeight = $(document).height();
         var maskWidth = $(window).width();
@@ -266,58 +264,99 @@ input:checked+.slider:before {
         });
     });
     
+    
     //게시물올리기 popupfunction
     function uploadOpen(num){
-    	window.open('contentUploadForm.do?useridx=${sessionScope.useridx}&type='+num,'uploadContent','width=600,height=500');
+       window.open('contentUploadForm.do?useridx=${sessionScope.useridx}&type='+num,'uploadContent','width=600,height=500');
     }
     
     //더보기  popupfunction
     function moreOpen(num){
-    	window.open('moreUploadForm.do?type='+num,'uploadMore','width=600,height=500');
+       window.open('moreUploadForm.do?type='+num,'uploadMore','width=600,height=500');
+    }
+
+    //신고하기  popupfunction
+    function reportOpen(){
+       window.open('reportUserForm.do?toIdx=${mhdto.getMember_idx()}','reportOpen','width=600,height=500');
     }
     
 </script>
 <script>
+//광고신청function
+function adapply(){
+    var maskHeight = $(document).height();
+    var maskWidth = $(window).width();
+
+    $('.mask3').css({'width':maskWidth,'height':maskHeight});
+
+    $('.mask3').fadeTo("fast",0.3);
+
+    var left = ( $(window).scrollLeft() + ( $(window).width() - $('.window3').width()) / 2 );
+    var top = ( $(window).scrollTop() + ( $(window).height() - $('.window3').height()) / 2 );
+
+    $('.window3').css({'left':left,'top':top, 'position':'absolute'});
+
+    $('.window3').show();
+}
+
+$(document).ready(function(){
+    $('.showMask3').click(function(e){
+        e.preventDefault();
+        adapply();
+    });
+
+    $('.window3 .close').click(function (e) {
+        e.preventDefault();
+        $('.mask3, .window3').hide();
+    });
+
+    $('.mask3').click(function () {
+        $(this).hide();
+        $('.window3').hide();
+    });
+});
+</script>
+<script>
 //날짜검색function
 function contentDate(){
-    	var uploadDate=$('.datepicker-here').val();
-    	window.alert(uploadDate);
-    	sendRequest('uploadDateContent.do?uploadDate='+uploadDate+'&member_idx=${sessionScope.useridx}', null ,showResult,'POST');
+       var uploadDate=$('.datepicker-here').val();
+       window.alert(uploadDate);
+       sendRequest('uploadDateContent.do?uploadDate='+uploadDate+'&member_idx=${sessionScope.useridx}', null ,showResult,'POST');
 }
 
 function showResult(){
-	if(XHR.readyState==4){
-		if(XHR.status==200){
-			var data=eval('('+XHR.responseText+')');
-			var myFeedTable=document.all.myfeedtable;
-			var str='';
-			if(data.list.length==0){
-				str='<table><tr><td>검색결과가 없습니다.</td></tr></table>';
-				myFeedTable.innerHTML=str;
-			}else{
-			for(var i=0; i<data.list.length; i++){
-				var contentDate=data.list[i].path;
-				
-				str='<table><tr><td><img src="myHomeFolder/content/'+contentDate+'"></td></tr></table>';
-				myFeedTable.innerHTML=str;
-			}
-		
-			}
-		}
-	}
+   if(XHR.readyState==4){
+      if(XHR.status==200){
+         var data=eval('('+XHR.responseText+')');
+         var myFeedTable=document.all.myfeedtable;
+         var str='';
+         if(data.list.length==0){
+            str='<table><tr><td>검색결과가 없습니다.</td></tr></table>';
+            myFeedTable.innerHTML=str;
+         }else{
+         for(var i=0; i<data.list.length; i++){
+            var contentDate=data.list[i].path;
+            
+            str='<table><tr><td><img src="myHomeFolder/content/'+contentDate+'"></td></tr></table>';
+            myFeedTable.innerHTML=str;
+         }
+      
+         }
+      }
+   }
 }
 </script>
 <script>
 //내 게시물 사진만 보기
 function showMyPhoto(){
-	sendRequest('showMyPhoto.do','member_idx=${sessionScope.useridx}',showResult2(),'POST');
+   sendRequest('showMyPhoto.do','member_idx=${sessionScope.useridx}',showResult2(),'POST');
 }
 function showResult2(){
-	if(XHR.readyState==4){
-		if(XHR.status==200){
-			var data=eval('('+XHR.responseText+')');
-		}
-	}
+   if(XHR.readyState==4){
+      if(XHR.status==200){
+         var data=eval('('+XHR.responseText+')');
+      }
+   }
 }
 </script>
 </head>
@@ -329,35 +368,36 @@ function showResult2(){
 
 <!-- Main -->
 <section id="main">
-					
+               
 <!-- 방문자수 -->
 <span class="visitor">TODAY ${mhdto.getVisitor_today()} | TOTAL ${mhdto.getVisitor_total()}</span>
 
-					
+               
 <header style="margin-top:9em;">
-					
+               
 <!-- 프로필사진 -->
 <span class="avatar"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}"alt="" /></span>
-							
+   
+<div style="width:200px;height:50px;float:right;">                     
 <!-- 더보기아이콘 -->
 
-<div id="moreicon">
-	
-    <a href="" class="showMask"><i class="fa fa-ellipsis-h"></i></a>
- 	
- 	<c:if test="${sessionScope.useridx eq mhdto.getMember_idx()}">
- 	
+   <span>
+   
+    <a href="" class="showMask"><i class="fa fa-ellipsis-h" style="font-size: 30px;color: #BDBDBD;"></i></a>
+    
+    <c:if test="${sessionScope.useridx eq mhdto.getMember_idx()}">
+    
     <div class="mask"></div>
-    <div class="window">
+    <div class="window" style="cursor: pointer;">
        <table align="center">
-       	<tr onclick="moreOpen(1)"><td colspan="2">커버사진</td></tr>
-       	<tr onclick="moreOpen(2)"><td colspan="2">프로필사진</td></tr>
-       	<tr onclick="moreOpen(3)"><td colspan="2">소개글</td></tr>
-       	<tr><td align="center">공개설정</td>
-       		<td><label class="switch">
-       		<input id="openCoverage" type="checkbox" onchange="openCoverage()">
-  			<span class="slider round"></span>
-			</label></td></tr>
+          <tr onclick="moreOpen(1)"><td colspan="2">커버사진</td></tr>
+          <tr onclick="moreOpen(2)"><td colspan="2">프로필사진</td></tr>
+          <tr onclick="moreOpen(3)"><td colspan="2">소개글</td></tr>
+          <tr><td align="center">공개설정</td>
+             <td style="padding-top:10px;"><label class="switch">
+             <input id="openCoverage" type="checkbox" onchange="openCoverage()">
+           <span class="slider round"></span>
+         </label></td></tr>
        </table>
     </div>
     </c:if>
@@ -367,11 +407,7 @@ function showResult2(){
     <div class="window">
        <table align="center">
        
-       <c:url var="reportUrl" value="reportUserForm.do">
-		 <c:param name="toIdx">${mhdto.getMember_idx()}</c:param>
-		 <c:param name="toName">${mhdto.getName()}</c:param>
-		</c:url>
-       	<tr><td><a href="${reportUrl}">신고하기</a></td></tr>
+           <tr onclick="reportOpen()"><td>신고하기</td></tr>
           <tr><td><a href="friend_block.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">차단하기 </a></td></tr>
           <tr><td><a href="friend_unblock.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">차단취소하기 </a></td></tr>
           <tr><td><a href="following.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">팔로우하기</a></td></tr>
@@ -379,81 +415,99 @@ function showResult2(){
           </table>
     </div>
     </c:if>
-    
-</div>
+</span>
 
 <!-- 게시물작성아이콘 -->
-<c:if test="${sessionScope.useridx eq mhdto.getMember_idx()}">
-<div class="plusicon">
 
-	
-	<button style="font-size:24px;width:30px;border:0px;" class="showMask2">
-	<i class="fa fa-plus-square-o"></i></button>
+<span id="plusicon">
+<c:if test="${sessionScope.useridx eq mhdto.getMember_idx()}">
+
+   
+   <button style="width:30px;border:0px;padding:none;" class="showMask2">
+   <i class="fa fa-plus-square-o" style="position:relative;font-size: 30px;color: #BDBDBD;"></i></button>
 
 
 <div class="mask2"></div>
     <div class="uploadui">
-				<!--  <a href="contentUploadForm.do?useridx=${sessionScope.useridx}&type=1"> -->
-					<img width="50" height="50"
-					src="myHomeFolder/category/photoIcon.png" onclick="uploadOpen(1)">
-					<img width="50" height="50"
-					src="myHomeFolder/category/videoIcon.png" onclick="uploadOpen(2)">
-				<br>
-					<img width="50" height="50"
-					src="myHomeFolder/category/textIcon.png" onclick="uploadOpen(3)">
-					<img width="50" height="50"
-					src="myHomeFolder/category/shootIcon.png" onclick="uploadOpen(4)">
-			</div>
+            <!--  <a href="contentUploadForm.do?useridx=${sessionScope.useridx}&type=1"> -->
+               <img width="50" height="50"
+               src="myHomeFolder/category/photoIcon.png" onclick="uploadOpen(1)">
+               <img width="50" height="50"
+               src="myHomeFolder/category/videoIcon.png" onclick="uploadOpen(2)">
+            <br>
+               <img width="50" height="50"
+               src="myHomeFolder/category/textIcon.png" onclick="uploadOpen(3)">
+               <img width="50" height="50"
+               src="myHomeFolder/category/shootIcon.png" onclick="uploadOpen(4)">
+         </div>
+   </c:if>
+</span>
+
+<!-- 광고관리 아이콘-->
+<span id="adadminicon">
+<button style="width:30px;border:0px;padding:none;margin-left:10px;" class="showMask3">
+<i class="fa fa-newspaper-o" style="color: #BDBDBD;position:relative;font-size: 30px;"></i></button>
+
+   <div class="mask3"></div>
+    <div class="window3" style="cursor: pointer;">
+       <table align="center">
+          <tr onclick="#"><td colspan="2">광고 신청하기</td></tr>
+          <tr onclick="#"><td colspan="2">광고 신청현황</td></tr>
+          </table>
+     </div>     
+</span>
+
 </div>
-</c:if>
+
 
 <!-- 캘린더아이콘 -->
 <div class="calendaricon" style="width:300px;height:50px;">
-	<input type='text' name="calendar" class="datepicker-here" style="width: 150px;">
-	<button style="width:50px;border:0px;" onclick="contentDate()"><i class="fa fa-calendar"></i></button>
+   <input type='text' name="calendar" class="datepicker-here" style="width: 150px;">
+   <button style="dispaly:flex;width:50px;border:0px;padding: none;border-color: #ffffff;" onclick="contentDate()">
+   <i class="fa fa-calendar" style="font-align: center;font-size: 25px;color: #BDBDBD;padding: none;"></i></button>
 </div>
 
 
-							
+                     
 <!-- 아이디,한줄소개 -->
-	<h1>${mhdto.getName()}</h1><br>
-	<h3>${mhdto.getIntro()}</h3>
-	
+   <h1>${mhdto.getName()}</h1><br>
+   <h3>${mhdto.getIntro()}</h3>
+   
 </header>
 </section>
-					
-					
-	<section id="middle">			
-			<!-- 내 피드 -->				
-		
-		<div class="myfeedcategory">
-		<ul>
-			<li><input type="button" value="PHOTO" onclick="showMyPhoto()"></li>
-			<li><input type="button" value="VIEDEO"></li>
-			<li><input type="button" value="TEXT"></li>
-		</ul>
-		</div>
-		
-		<div class="myfeed">
-			<table style="border-spacing:10px;" id="myfeedtable">
-				 <tr>
-					<td style="background-color:blue;"></td>
-					<td style="background-color:blue;"></td>
-					<td style="background-color:blue;"></td>
-				</tr>
-				<tr>
-					<td style="background-color:blue;"></td>
-					<td style="background-color:blue;"></td>
-					<td style="background-color:blue;"></td>
-				</tr>
-				<tr>
-					<td style="background-color:blue;"></td>
-					<td style="background-color:blue;"></td>
-					<td style="background-color:blue;"></td>
-				</tr>
-			</table>
-		</div>	
-		
+               
+               
+   <section id="middle">         
+         <!-- 내 피드 -->            
+      
+      <div class="myfeedcategory">
+      <ul>
+         <li><input type="button" value="PHOTO" onclick="showMyPhoto()"></li>
+         <li><input type="button" value="VIEDEO"></li>
+         <li><input type="button" value="TEXT"></li>
+      </ul>
+      </div>
+      
+      <div class="myfeed">
+         <table style="border-spacing:10px;" id="myfeedtable">
+             <tr>
+               <td style="background-color:blue;"></td>
+               <td style="background-color:blue;"></td>
+               <td style="background-color:blue;"></td>
+            </tr>
+            <tr>
+               <td style="background-color:blue;"></td>
+               <td style="background-color:blue;"></td>
+               <td style="background-color:blue;"></td>
+            </tr>
+            <tr>
+               <td style="background-color:blue;"></td>
+               <td style="background-color:blue;"></td>
+               <td style="background-color:blue;"></td>
+            </tr>
+         </table>
+      </div>   
+      
 </section>
 
 </body>

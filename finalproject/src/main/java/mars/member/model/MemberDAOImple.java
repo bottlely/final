@@ -50,5 +50,11 @@ public class MemberDAOImple implements MemberDAO {
 		return dto;
 	}
 
+	public MemberDTO getUserInfo_idx(int useridx) {
+		MemberDTO dto = new MemberDTO();
+		dto = sqlMap.selectOne("getUserInfo_idx", useridx);
+		return dto;
+	}
+
 	
 }
