@@ -107,6 +107,15 @@ public class FriendController {
 		return mav;
 	}
 	
+	@RequestMapping("/myhome_unblock.do")
+	public ModelAndView myhomeUnblock(@RequestParam("user1_idx")int user1_idx, @RequestParam("user2_idx")int user2_idx) {
+		int res = friendDao.unblock(user1_idx, user2_idx);
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("myPage/more/myHome");
+		return mav;
+	}
+	
 	@RequestMapping("/friend_block.do")
 	public ModelAndView block(@RequestParam("user1_idx")int user1_idx, @RequestParam("user2_idx")int user2_idx) {
 		int res = friendDao.block(user1_idx, user2_idx);

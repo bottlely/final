@@ -26,7 +26,7 @@
          update from mars_reply set content=#{content} where idx={reply_idx}
    </update> -->
    <delete id="delete_Reply" parameterType="Integer">
-         delete from mars_reply where idx=#{reply_idx} and ref=#{ref} or ref=#{ref}
+         delete from mars_reply where idx=#{reply_idx} and ref=#{ref}
    </delete>
    <select id="ref" parameterType="Integer" resultType="Integer">
          select ref from mars_reply where idx=#{reply_idx}

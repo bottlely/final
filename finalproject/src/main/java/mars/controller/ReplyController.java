@@ -74,10 +74,7 @@ public class ReplyController {
       
       List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
 
-      ModelAndView mav = new ModelAndView("marsJson");
-
-      mav.addObject("list", list);
-      mav.setViewName("main/main_view");
+      ModelAndView mav = new ModelAndView("marsJson", "replyList", list);
 
       return mav;
    }
@@ -110,11 +107,7 @@ public class ReplyController {
       
       replydao.delete_Reply(map);
       List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
-      ModelAndView mav = new ModelAndView("marsJson");
-
-      mav.addObject("content_idx", content_idx);
-      mav.addObject("list", list);
-      mav.setViewName("main/main_view");
+      ModelAndView mav = new ModelAndView("marsJson" , "replyList", list);
 
       return mav;
    }

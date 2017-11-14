@@ -216,44 +216,86 @@ pre.prettyprint {
             /* $("#galleryImage").load("#galleryImage"); */
          } 
          
-           function replyList(){
-                  if(XHR.readyState==4){
-                     if(XHR.status==200){
-                        var data = XHR.responseText;
-                        var lists = eval('('+data+')');
-                        var content_writer = '박연수';
-                        var content_content = '하이하이';
-                        var reply_list = document.all.reply_List;
-                        var str='';
-                        var userName = document.getElementById("session_name").value;
+         function replyList(){
+             if(XHR.readyState==4){
+                if(XHR.status==200){
+                   var data = XHR.responseText;
+                   var lists = eval('('+data+')');
+                   var content_writer = '박연수';
+                   var content_content = '하이하이';
+                   var reply_list = document.all.reply_List;
+                   var str='';
+                   var userName = document.getElementById("session_name").value;
 
-                        if(lists.replyList.length==0){
-                           str = '댓글 없습니다.'
-                           reply_list.innerHTML = str;
-                        }else{
-                           for(var i=0; i<lists.replyList.length; i++){
-                              var l = lists.replyList[i];
-                              
-                              if(l.lev == 0){
-                                 if(l.name == userName){
-                                    str += l.profile_img + " : " + l.name + " : " + l.content + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" >' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
-                                 }else{
-                                    str += l.profile_img + " : " + l.name + " : " + l.content + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
-                                 }
-                                 
-                              }else{
-                                 if(l.name == userName){
-                                    str += '=>' + l.profile_img + " : " + l.name + " : " + l.content + '<br>' + '<input type="button" value="수정" >' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
-                                 }else{
-                                    str += '=>' + l.profile_img + " : " + l.name + " : " + l.content + '<hr>';
-                                 }
-                              }
-                           }
-                           reply_list.innerHTML = str;
-                        }
-                     }
-                  }
-               }
+                   if(lists.replyList.length==0){
+                      str = '댓글 없습니다.'
+                      reply_list.innerHTML = str;
+                   }else{
+                      for(var i=0; i<lists.replyList.length; i++){
+                         var l = lists.replyList[i];
+                         
+                         if(l.lev == 0){
+                            if(l.name == userName){
+                               str += l.profile_img + " : " + l.name + " : " + '<input type="text" id="' + l.idx + 'update_content" style="display: none;" value="' + l.content + '">'+l.content+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+                            }else{
+                               str += l.profile_img + " : " + l.name + " : " + l.content + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
+                            }
+                            
+                         }else{
+                            if(l.name == userName){
+                               str += '=>' + l.profile_img + " : " + l.name + " : " + l.content + '<br>' + '<input type="button" value="수정" >' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
+                            }else{
+                               str += '=>' + l.profile_img + " : " + l.name + " : " + l.content + '<hr>';
+                            }
+                         }
+                      }
+                      reply_list.innerHTML = str;
+                   }
+                }
+             }
+          }
+         
+         function re_Reply(idx){
+        	 var re_content = document.getElementById(idx+"text")
+        	 var re_ok = document.getElementById(idx+"btn")
+             var content = document.getElementById(idx+"text").value;
+             var content_idx = document.getElementById("c_idx").value;
+             var session_idx = document.getElementById("session_idx").value;
+             
+             sendRequest('re_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx+'&session_idx='+session_idx, null, replyList,'GET');
+             
+             re_content.style.display = 'none';
+               re_ok.style.display = 'none';
+          }
+         
+         function ondisplay(idx){
+             var re_content = document.getElementById(idx+"text");
+             var re_ok = document.getElementById(idx+"btn");
+             
+             re_content.style.display = 'block';
+             re_ok.style.display = 'block';
+          }
+         
+         function updateDisplay(idx){
+             var update_content = document.getElementById(idx+"update_content");
+             var update_ok = document.getElementById(idx+"update_ok");
+             
+             update_content.style.display = 'block';
+             update_ok.style.display = 'block';
+          }
+         
+         function update_Reply(idx){
+             var content = document.getElementById("content").value;
+             var content_idx = document.getElementById("c_idx").value;
+             
+             location.href="update_Reply.do?reply_idx="+idx+"&content="+content+"&content_idx="+content_idx;
+          } 
+          
+           function delete_Reply(idx){
+             var content_idx = document.getElementById('c_idx').value;
+             
+             sendRequest('delete_Reply.do?reply_idx='+idx+'&content_idx='+content_idx, null, replyList,'GET');
+          }
          
             function test1(idx) {
                   document.getElementById('ppp').src='myHomeForm.do?useridx='+idx;
@@ -548,19 +590,17 @@ pre.prettyprint {
       <!--  end navbar -->
    </header>
 
-
-
-
    <section id="latest-works">
       <div class="container">
          <div class="row"></div>
          <div class="row text-center">
             <div class="works-category" data-sr='enter top, wait 0.2s'>
                <ul class="statistics">
-                  <li class="style1"><a href="#" data-filter="*"
-                     class="current">All</a></li>
-                  <li class="style2"><a href="#" data-filter=".photo">PHOTO</a></li>
-                  <li class="style3"><a href="#" data-filter=".viedeo">VIEDEO</a></li>
+                  <li class="style1"><a href="#" data-filter="*" class="current">All</a></li>
+                  <li class="style2"><a href="#
+                  
+                  " data-filter=".jpg">PHOTO</a></li>
+                  <li class="style3"><a href="#" data-filter=".video">VIDEO</a></li>
                   <li class="style4"><a href="#" data-filter=".text">TEXT</a></li>
                   <li class="style1"><a href="#" data-filter=".strategy">HOT</a></li>
                </ul>
@@ -570,7 +610,7 @@ pre.prettyprint {
                <c:set var="list" value="${list }"></c:set>
                <c:if test="${empty list }"> 게시물 없음! </c:if>
                <c:forEach var="list" items="${list }">
-                  <div class="col-md-4 col-sm-6 col-xs-12  photo">
+                  <div class="col-md-4 col-sm-6 col-xs-12  jpg">
                      <div class="works">
                         <img src="myHomeFolder/content/${list.path }" alt=""
                            style="width: 431px; height: 431px;">
@@ -593,39 +633,6 @@ pre.prettyprint {
                   </div>
                </c:forEach>
             </div>
-
-            <%--            <div class="works-area" >
-            <% for(int i=0; i<12; i++){
-               
-               %>
-            <div class="col-md-4 col-sm-6 col-xs-12  photo"  >
-               <div class="works">
-                  <img src="assets_main/images/아이유6.jpg" alt="" style="width: 431px; height: 431px;">
-
-                  <div class="work-overlay text-center">
-                     <div class="overlay-caption">
-                        <h4>PHOTO</h4>
-
-                        
-               <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="assets_main/images/아이유6.jpg" 
-               onclick="openpic(<%=i%>)">
-                        <input type="hidden" value="assets_main/images/아이유6.jpg"  id="pic<%=+i%>" >
-                        <input type="hidden" id="pic_idx" value="">
-                       <p>사진<%=i+1 %>번</p>
-                    </a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-               
-               <% 
-               
-               
-               
-               }%>
-            
-
-         </div>  --%>
          </div>
       </div>
 
