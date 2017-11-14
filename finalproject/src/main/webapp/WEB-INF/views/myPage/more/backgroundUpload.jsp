@@ -6,12 +6,20 @@
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+  
 <style type="text/css">
  
 	input[type=file] {
 	        display: none;
-	 } 
+	 }
+	 
 </style>
+
+  
 <script type="text/javascript" src="js/previewmodule.js" charset="utf-8"></script>
 <script type="text/javascript">
 
@@ -57,16 +65,22 @@ function uploadData(flag){
 </script>
 </head>
 <body>
-		<label>
-		배경사진 
-		<input type="file" id="background" onchange="previewImage(this,'preview','150','150')">
-		</label>
-		<div id="preview">
-		</div>
-		<input type="button" value="업로드" onclick="uploadData(true)">
-	
-	<input type="button" value="기본 프로필로 변경" onclick="uploadData(false)">
-	
-	<input type="button" value="back" onclick="back()">
+
+	<div class="container">
+		<h2>프로필 사진 변경</h2>
+		<button type="button" class="btn btn-warning btn-block"
+			onclick="document.getElementById('background').click();">사진
+			선택</button>
+		<div id="preview" class="col-sm-12" style="margin: 1% 35%;"></div>
+		<button type="button" class="btn btn-info btn-block"
+			onclick="uploadData(true)">프로필 설정</button>
+		<button type="button" class="btn btn-info btn-block"
+			onclick="uploadData(false)">기본 사진으로 설정</button>
+		<button type="button" class="btn btn-info btn-block" onclick="back()">취소</button>
+	</div>
+
+	<input type="file" id="background"
+		onchange="previewImage(this,'preview','150','150')">
+
 </body>
 </html>

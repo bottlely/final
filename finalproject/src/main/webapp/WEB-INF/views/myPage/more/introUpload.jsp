@@ -6,13 +6,16 @@
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <script type="text/javascript">
 function back(){
     window.opener.location.reload();
     window.close();
  }
-function uploadData(){
+function uploadData(flag){
 	
 	var data = new FormData();
 	
@@ -37,9 +40,19 @@ function uploadData(){
 }
 </script>
 <body>
-		소개글:<input type="text" id="intro">
-		<input type="button" value="업로드" onclick="uploadData()">
-		<input type="button" value="back" onclick="back()">
+<div class="container">
+  <h3>소개글</h3>
+  
+    <div class="input-group" style="margin-bottom:20px;">
+      <span class="input-group-addon">소개글</span>
+      <input type="text" class="form-control input-lg" id="intro" placeholder="간단한 글로 자신을 소개해 보세요 :)">
+    </div>
+    <button type="button" class="btn btn-info btn-block"
+			onclick="uploadData(true)">소개글 변경</button>
+		<button type="button" class="btn btn-info btn-block"
+			onclick="back())">취소</button>
+  
+</div>
 	
 </body>
 </html>
