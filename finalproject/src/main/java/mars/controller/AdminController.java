@@ -27,8 +27,14 @@ public class AdminController {
       
       
       ModelAndView mav = new ModelAndView();
-     
-   
+      List<Integer> userrank = aDao.userrank();
+      int ranksize1 = aDao.followingSize1();
+      int ranksize2 = aDao.followingSize2();
+      int ranksize3 = aDao.followingSize3();
+      mav.addObject("ranksize1",ranksize1);
+      mav.addObject("ranksize2",ranksize2);
+      mav.addObject("ranksize3",ranksize3);
+      mav.addObject("userrank",userrank);
       mav.setViewName("admin/admin_main");
       return mav;
    }

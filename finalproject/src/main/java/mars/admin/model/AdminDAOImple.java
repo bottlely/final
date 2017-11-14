@@ -2,7 +2,7 @@ package mars.admin.model;
 
 import java.text.*;
 import java.util.*;
-import java.util.Date;
+
 import org.mybatis.spring.SqlSessionTemplate;
 
 import mars.friend.model.FriendDTO;
@@ -307,4 +307,34 @@ public class AdminDAOImple implements AdminDAO {
 	   int count1 = sqlMap.selectOne("usercount",dTime);
 	   return count1;
    }
+   
+   public List<Integer> userrank() {
+	   List<Integer> userrank = sqlMap.selectList("userrank");
+	   return userrank;
+   }
+   
+   public int followingSize1() {
+	   List<Integer> userrank = sqlMap.selectList("userrank");
+	  
+	   int one = sqlMap.selectOne("ranksize",userrank.get(0));
+	 
+	  
+		return one;
+	}
+   public int followingSize2() {
+	   List<Integer> userrank = sqlMap.selectList("userrank");
+	   System.out.println(userrank.get(2));
+	   int one = sqlMap.selectOne("ranksize",userrank.get(1));
+	 
+	  
+		return one;
+	}
+   public int followingSize3() {
+	   List<Integer> userrank = sqlMap.selectList("userrank");
+	  System.out.println(userrank.get(2));
+	   int one = sqlMap.selectOne("ranksize",userrank.get(2));
+	 
+	  
+		return one;
+	}
 }

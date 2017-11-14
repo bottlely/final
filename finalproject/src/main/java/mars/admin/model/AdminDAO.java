@@ -48,6 +48,9 @@ public interface AdminDAO {
    public int count3();
    public int count2();
    public int count1();
-   
+   public List<Integer> userrank();
+   public int followingSize1();
+   public int followingSize2();
+   public int followingSize3();
    
 }
