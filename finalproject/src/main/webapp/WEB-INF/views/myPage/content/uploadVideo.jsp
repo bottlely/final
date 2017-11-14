@@ -212,7 +212,9 @@ select {
            }else{
                 document.getElementById(idx).color = "gray";
              for(var i=0, len=sel_list.length; i<len; i++) {
-                sel_list.splice(i, 1);
+            	  if(idx == sel_list[i]){
+          		  	sel_list.splice(i, 1);
+          		  }
               }
                 //alert("2 : "+ sel_list.length);
            }

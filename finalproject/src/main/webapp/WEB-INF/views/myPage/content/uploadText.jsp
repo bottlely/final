@@ -128,13 +128,15 @@ function sel_coverage(idx){
 	      document.getElementById(idx).color = "007bff";
 	      sel_list.push(idx);
 	      //alert("1 : "+ sel_list.length);
-	      //alert(sel_list[sel_list.length-1]);
+	      alert("추가된 idx : "+sel_list[sel_list.length-1]);
 	}else{
 	     document.getElementById(idx).color = "gray";
 	  for(var i=0, len=sel_list.length; i<len; i++) {
-		  sel_list.splice(i, 1);
+		  if(idx == sel_list[i]){
+		  	sel_list.splice(i, 1);
+		  }
 		}
-	 	 //alert("2 : "+ sel_list.length);
+	 	 alert("총 길이 : "+ sel_list.length);
 	}
 }
 
