@@ -12,27 +12,65 @@
 	        display: none;
 	 } 
 </style>
- <script type="text/javascript" src="js/previewmodule.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/previewmodule.js" charset="utf-8"></script>
+<script type="text/javascript">
+
+function back(){
+    window.opener.location.reload();
+    window.close();
+ }
+ 
+function uploadData(flag){
+	
+	var data = new FormData();
+	
+	if(flag){
+	var bg = document.getElementById("background").files[0];
+	
+	if(bg == null){
+		 alert("한 개 이상의 파일을 선택해주세요.");
+         return;
+	}
+	}else{
+		var bg = null;
+	}
+	
+	data.append("useridx", '${sessionScope.useridx}'); 
+	data.append("background",bg);
+	data.append("title", document.getElementById("title").value);
+	data.append("content", document.getElementById("content").value);
+	data.append("coverage_list",sel_list);
+	data.append("coverage_state",document.getElementById("coverage_state").value);
+	 
+     var xhr = new XMLHttpRequest();
+     xhr.open("POST","uploadText.do");
+     xhr.send(data);
+     xhr.onload = function(e) {
+          if(this.status == 200) {
+            var jsonResponse = JSON.parse(e.currentTarget.responseText);
+           if(jsonResponse["result"] > 0){
+              alert('업로드 완료!');
+              window.opener.location.reload();
+            window.close();
+           }else{
+              alert('업로드 실패!');
+           }
+           }
+      }
+}
+</script>
 </head>
 <body>
-	<form action="backgroundUpload.do" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="useridx" value="${sessionScope.useridx}">	<!-- 수정 필요 -->
 		<label>
-			배경사진 
-			<input type="file" name="background" onchange="previewImage(this,'preview','150','150')">
+		배경사진 
+		<input type="file" id="background" onchange="previewImage(this,'preview','150','150')">
 		</label>
 		<div id="preview">
 		</div>
-		<input type="submit" value="업로드">
-	</form>
+		<input type="button" value="업로드" onclick="uploadData(true)">
 	
-	<form action="backgroundUpload.do" method="post" enctype="multipart/form-data">
-		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
-		<input type="submit" value="기본 배경 사진 설정">
-	</form>
-		<form action="myHomeForm.do" method="post">
-		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
-		<input type="submit" value="back">
-	</form>
+	<input type="button" value="기본 프로필로 변경" onclick="uploadData(false)">
+	
+	<input type="button" value="back" onclick="back()">
 </body>
 </html>

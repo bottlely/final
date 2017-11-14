@@ -7,6 +7,12 @@
 <meta charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+function back(){
+    window.opener.location.reload();
+    window.close();
+ }
+</script>
 <body>
 	<form action="introUpload.do" method="post">
 		<input type="hidden" name="useridx" value="${sessionScope.useridx}">	<!-- 수정 필요 -->
@@ -14,10 +20,7 @@
 		<input type="submit" value="업로드">
 	</form>
 	
-	<form action="myHomeForm.do" method="post">
-		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
-		<input type="submit" value="back">
-	</form>
+	<input type="button" value="back" onclick="back()">
 	
 </body>
 </html>

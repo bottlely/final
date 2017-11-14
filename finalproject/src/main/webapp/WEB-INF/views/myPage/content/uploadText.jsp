@@ -44,23 +44,23 @@ select {
 }
 
 .mask{
-   position: absolute;
-   left: 0;
-   top: 0;
-   z-index: 9999;
-   background-color: #000;
-   display: none;
-   
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9999;
+	background-color: #000;
+	display: none;
+	
 }
 
 .window {
-   position: absolute;
-   display: none;
-   background-color: #ffffff;
-   width: 200px;
-   height: 150px;
-   z-index: 99999;
-   overflow:scroll;
+	position: absolute;
+	display: none;
+	background-color: #ffffff;
+	width: 200px;
+	height: 150px;
+	z-index: 99999;
+	overflow:scroll;
 }
 
 </style>
@@ -71,15 +71,15 @@ select {
 var sel_list = [];
 
 function uploadText(){
-   
-   var data = new FormData();
-   data.append("useridx", '${sessionScope.useridx}'); 
-   data.append("tag",document.getElementById("tag").value);
-   data.append("title", document.getElementById("title").value);
-   data.append("content", document.getElementById("content").value);
-   data.append("coverage_list",sel_list);
-   data.append("coverage_state",document.getElementById("coverage_state").value);
-    
+	
+	var data = new FormData();
+	data.append("useridx", '${sessionScope.useridx}'); 
+	data.append("tag",document.getElementById("tag").value);
+	data.append("title", document.getElementById("title").value);
+	data.append("content", document.getElementById("content").value);
+	data.append("coverage_list",sel_list);
+	data.append("coverage_state",document.getElementById("coverage_state").value);
+	 
      var xhr = new XMLHttpRequest();
      xhr.open("POST","uploadText.do");
      xhr.send(data);
@@ -97,41 +97,37 @@ function uploadText(){
       }
      
 }
-function clearText(field){
-   if(field.defaultValue == field.value) field.value = '';
-   else if(field.value == '') field.value = field.defaultValue;
-}
 
 function back(){
-   window.opener.location.reload();
-   window.close();
+	window.opener.location.reload();
+	window.close();
 }
 
 
 function fflist(e){
-   
-   var sel = e.options[e.selectedIndex].value;
-   if(sel == 2 || sel == 3){
-       wrapWindowByMask();
-   }
+	
+	var sel = e.options[e.selectedIndex].value;
+	if(sel == 2 || sel == 3){
+		 wrapWindowByMask();
+	}
  }
 
 function sel_coverage(idx){
-   
-   var color = document.getElementById(idx).color;
-              
-   if(color == "gray"){
-         document.getElementById(idx).color = "007bff";
-         sel_list.push(idx);
-         //alert("1 : "+ sel_list.length);
-         //alert(sel_list[sel_list.length-1]);
-   }else{
-        document.getElementById(idx).color = "gray";
-     for(var i=0, len=sel_list.length; i<len; i++) {
-        sel_list.splice(i, 1);
-      }
-        //alert("2 : "+ sel_list.length);
-   }
+	
+	var color = document.getElementById(idx).color;
+	        	
+	if(color == "gray"){
+	      document.getElementById(idx).color = "007bff";
+	      sel_list.push(idx);
+	      //alert("1 : "+ sel_list.length);
+	      //alert(sel_list[sel_list.length-1]);
+	}else{
+	     document.getElementById(idx).color = "gray";
+	  for(var i=0, len=sel_list.length; i<len; i++) {
+		  sel_list.splice(i, 1);
+		}
+	 	 //alert("2 : "+ sel_list.length);
+	}
 }
 
 //암막 function
@@ -215,11 +211,11 @@ $('.mask').click(function () {
     <div class="window">
        <table align="center">
         <c:forEach var="follower_list" items="${followerList}">
-           <tr onclick="sel_coverage(${follower_list.member_idx})"><td><img src="myHomeFolder/profile_img/${follower_list.profile_img}" alt="" width="20" height="20" style="border-radius: 50%">
-             <font id="${follower_list.member_idx}" color="gray"><strong>${follower_list.name}</font>
-           </td></tr>
+        	<tr onclick="sel_coverage(${follower_list.member_idx})"><td><img src="myHomeFolder/profile_img/${follower_list.profile_img}" alt="" width="20" height="20" style="border-radius: 50%">
+        	  <font id="${follower_list.member_idx}" color="gray"><strong>${follower_list.name}</font>
+        	</td></tr>
         </c:forEach>
-          </table>
+       	</table>
     </div>
 </body>
 </html>

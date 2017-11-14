@@ -13,6 +13,12 @@
 	 } 
 </style>
  <script type="text/javascript" src="js/previewmodule.js" charset="utf-8"></script>
+ <script type="text/javascript">
+function back(){
+    window.opener.location.reload();
+    window.close();
+ }
+</script>
 </head>
 <body>
 	<form action="profileUpload.do" method="post" enctype="multipart/form-data">
@@ -29,9 +35,8 @@
 		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
 		<input type="submit" value="기본 프로필 설정">
 	</form>
-	<form action="myHomeForm.do" method="post">
-		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
-		<input type="submit" value="back">
-	</form>
+	
+	<input type="button" value="back" onclick="back()">
+	
 </body>
 </html>

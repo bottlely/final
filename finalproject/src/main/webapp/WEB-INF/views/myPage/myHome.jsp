@@ -267,9 +267,15 @@ input:checked+.slider:before {
     });
     
     //게시물올리기 popupfunction
-    function UploadOpen(num){
-    	window.open('contentUploadForm.do?useridx=${sessionScope.useridx}&type='+num,'UploadContent','width=600,height=500');
+    function uploadOpen(num){
+    	window.open('contentUploadForm.do?useridx=${sessionScope.useridx}&type='+num,'uploadContent','width=600,height=500');
     }
+    
+    //더보기  popupfunction
+    function moreOpen(num){
+    	window.open('contentUploadForm.do?type='+num,'uploadMore','width=600,height=500');
+    }
+    
 </script>
 <script>
 //날짜검색function
@@ -344,12 +350,12 @@ function showResult2(){
     <div class="mask"></div>
     <div class="window">
        <table align="center">
-       	<tr><td><a href="backgroundUploadForm.do">커버사진</a></td></tr>
-       	<tr><td><a href="profileUploadForm.do">프로필사진</a></td></tr>
-       	<tr><td><a href="introUploadForm.do">소개글</a></td></tr>
-       	<tr><td><a href="contentCategory.do">게시물 추가(test용)</a></td></tr>
-       	<tr><td>공개설정<label class="switch">
-  			<input id="openCoverage" type="checkbox" onchange="openCoverage()">
+       	<tr onclick="moreOpen(1)"><td colspan="2"><a href="backgroundUploadForm.do">커버사진</a></td></tr>
+       	<tr onclick="moreOpen(2)"><td colspan="2"><a href="profileUploadForm.do">프로필사진</a></td></tr>
+       	<tr onclick="moreOpen(3)"><td colspan="2"><a href="introUploadForm.do">소개글</a></td></tr>
+       	<tr><td align="center">공개설정</td>
+       		<td><label class="switch">
+       		<input id="openCoverage" type="checkbox" onchange="openCoverage()">
   			<span class="slider round"></span>
 			</label></td></tr>
        </table>
@@ -389,14 +395,14 @@ function showResult2(){
     <div class="uploadui">
 				<!--  <a href="contentUploadForm.do?useridx=${sessionScope.useridx}&type=1"> -->
 					<img width="50" height="50"
-					src="myHomeFolder/category/photoIcon.png" onclick="UploadOpen(1)">
+					src="myHomeFolder/category/photoIcon.png" onclick="uploadOpen(1)">
 					<img width="50" height="50"
-					src="myHomeFolder/category/videoIcon.png" onclick="UploadOpen(2)">
+					src="myHomeFolder/category/videoIcon.png" onclick="uploadOpen(2)">
 				<br>
 					<img width="50" height="50"
-					src="myHomeFolder/category/textIcon.png" onclick="UploadOpen(3)">
+					src="myHomeFolder/category/textIcon.png" onclick="uploadOpen(3)">
 					<img width="50" height="50"
-					src="myHomeFolder/category/shootIcon.png" onclick="UploadOpen(4)">
+					src="myHomeFolder/category/shootIcon.png" onclick="uploadOpen(4)">
 			</div>
 </div>
 </c:if>

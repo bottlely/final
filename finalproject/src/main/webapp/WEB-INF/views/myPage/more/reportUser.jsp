@@ -7,6 +7,12 @@
 <meta charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+function back(){
+    window.opener.location.reload();
+    window.close();
+ }
+</script>
 <body>
 <form action="reportUser.do" method="post">
 신고자 : ${sessionScope.username}
@@ -16,10 +22,6 @@
 <input type="hidden" name="fromIdx" value="${sessionScope.userid}">
 <input type="submit" value="보내기">
 </form>
-
-<form action="myHomeForm.do" method="post">
-	<input type="hidden" name="useridx" value="${toIdx}">
-<input type="submit" value="back">
-</form>
+<input type="button" value="back" onclick="back()">
 </body>
 </html>

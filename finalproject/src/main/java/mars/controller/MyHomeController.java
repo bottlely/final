@@ -87,17 +87,19 @@ public class MyHomeController{
 		mav.setViewName("myPage/more/moreMyHome");
 		return mav;
 	}
-	@RequestMapping("/profileUploadForm.do")
-	public String profileUploadForm() {
-		return "myPage/more/profileUpload";
+	
+	@RequestMapping("/moreUploadForm.do")
+	public String moreUploadForm(@RequestParam("type")int type) {
+		
+		String path =  null;
+		
+		switch(type){
+		case 1: path = "myPage/more/backgroundUpload"; break;
+		case 2: path = "myPage/more/profileUpload"; break;
+		case 3: path = "myPage/more/introUpload"; break;
 	}
-	@RequestMapping("/backgroundUploadForm.do")
-	public String backgroundUploadForm() {
-		return "myPage/more/backgroundUpload";
-	}
-	@RequestMapping("/introUploadForm.do")
-	public String introUploadForm() {
-		return "myPage/more/introUpload";
+		
+		return path;
 	}
 	
 	@RequestMapping("/reportUserForm.do")
