@@ -214,14 +214,14 @@
                              </c:forEach>
                        </select><br>
                  GENDER : <input type="checkbox" name="man" value="1">남자&emsp;&emsp;<input type="checkbox" name="women" value="2">여자<br>
-                 HOBBY : &nbsp;<input type="checkbox" name="favorite_Moive" value="1"> Movie
-                       <input type="checkbox" name="favorite_Sport" value="favorite_Sport"> Sport
-                       <input type="checkbox" name="favorite_Fashion" value="favorite_Fashion"> Fashion
-                       <input type="checkbox" name="favorite_Beauty" value="favorite_Beauty"> Beauty<br>&emsp;&emsp;&emsp;&emsp;
-                       <input type="checkbox" name="favorite_Travel" value="favorite_Travel"> Travel
-                       <input type="checkbox" name="favorite_Music" value="favorite_Music"> Music
-                       <input type="checkbox" name="favorite_Dance" value="favorite_Dance"> Dance
-                       <input type="checkbox" name="favorite_Food" value="favorite_Food"> Food<br>
+                 HOBBY : &nbsp;<input type="checkbox" name="hobby" value="favorite_Moive"> Movie
+                       <input type="checkbox" name="hobby" value="favorite_Sport"> Sport
+                       <input type="checkbox" name="hobby" value="favorite_Fashion"> Fashion
+                       <input type="checkbox" name="hobby" value="favorite_Beauty"> Beauty<br>&emsp;&emsp;&emsp;&emsp;
+                       <input type="checkbox" name="hobby" value="favorite_Travel"> Travel
+                       <input type="checkbox" name="hobby" value="favorite_Music"> Music
+                       <input type="checkbox" name="hobby" value="favorite_Dance"> Dance
+                       <input type="checkbox" name="hobby" value="favorite_Food"> Food<br>
                  CITY :  <select name="city">
                           <option value="city">City</option>
                           <option value="seoul">seoul</option>

@@ -1,3 +1,5 @@
+package mars.chat.model;
+
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
