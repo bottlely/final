@@ -505,11 +505,11 @@ pre.prettyprint {
                            class="hidden-xs"> <i class="pe-7s-search"></i>
 
                         </a></li>
-                        <li><a href="#" id="mypage1"> <i class="pe-7s-user"></i>
+                        <li><a href="#" id="mypage1"> <i class="pe-7s-home"></i>
 
                         </a></li>
                         <li><a href="javascript:void(0);" class="hidden-xs"
-                           id="friends1"> <i class="pe-7s-note2"></i>
+                           id="friends1"> <i class="pe-7s-chat"></i>
 
                         </a></li>
                         <li class="nav-item dropdown"><a
