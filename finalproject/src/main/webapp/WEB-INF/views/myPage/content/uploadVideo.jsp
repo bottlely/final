@@ -305,7 +305,7 @@ select {
       <div class="row" style="padding-bottom: 10px;">
          <div class="col-sm-12">
             <input type="button" value="업로드" class="btn btn-success"
-               onclick="submitAction();"> <input type="button" value="취소"
+               onclick="submitAction()"> <input type="button" value="취소"
                class="btn btn-Info" onclick="back()">
          </div>
       </div>

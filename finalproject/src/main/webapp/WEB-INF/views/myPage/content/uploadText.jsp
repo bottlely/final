@@ -72,11 +72,19 @@ var sel_list = [];
 
 function uploadText(){
 	
+	var title = document.getElementById("title").value;
+	var content = document.getElementById("content").value;
+	
+	if(title == "" || content == ""){
+		 alert("제목과 내용을 모두 작성해주세요 ;)");
+         return;
+	}
+	
 	var data = new FormData();
 	data.append("useridx", '${sessionScope.useridx}'); 
 	data.append("tag",document.getElementById("tag").value);
-	data.append("title", document.getElementById("title").value);
-	data.append("content", document.getElementById("content").value);
+	data.append("title", title);
+	data.append("content",content);
 	data.append("coverage_list",sel_list);
 	data.append("coverage_state",document.getElementById("coverage_state").value);
 	 
@@ -188,7 +196,7 @@ $('.mask').click(function () {
                placeholder="해시태그">
          </div>
          <div class="col-sm-12">
-            <input type="text" id="title" name="title" class="form-control" placeholder="제목">
+            <input type="text" id="title" name="title" class="form-control" placeholder="제목" required>
          </div>
          <hr>
          <div class="col-sm-12">

@@ -88,13 +88,20 @@ public class ContentController {
 		int result = cdao.uploadContent(info);
 		int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
         
-        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
+		int result2 = 0;
+        
         CoverageDTO dto = new CoverageDTO(contentIdx,0,Integer.parseInt(cs),0,Integer.parseInt(member_idx));
         
-        int result2 = 0;
-        
-        for(String toIdx : toIdxList){
-        	dto.setIdx_to(Integer.parseInt(toIdx));
+        if(cl != null && cl.length() != 0){
+	        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
+	        for(String toIdx : toIdxList){
+	        	dto.setIdx_to(Integer.parseInt(toIdx));
+	        	result2 = cdao.coverageInsert(dto);
+	        	if(result2 < 0){
+	        		return  new ModelAndView("marsJson","result",result2);
+	        	}
+	        }
+        }else{
         	result2 = cdao.coverageInsert(dto);
         }
         
@@ -139,13 +146,20 @@ public class ContentController {
         int result = cdao.uploadContent(info);
         int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
         
-        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
-        CoverageDTO dto = new CoverageDTO(contentIdx,0,Integer.parseInt(cs),0,Integer.parseInt(member_idx));
-        
         int result2 = 0;
         
-        for(String toIdx : toIdxList){
-        	dto.setIdx_to(Integer.parseInt(toIdx));
+        CoverageDTO dto = new CoverageDTO(contentIdx,0,Integer.parseInt(cs),0,Integer.parseInt(member_idx));
+        
+        if(cl != null && cl.length() != 0){
+	        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
+	        for(String toIdx : toIdxList){
+	        	dto.setIdx_to(Integer.parseInt(toIdx));
+	        	result2 = cdao.coverageInsert(dto);
+	        	if(result2 < 0){
+	        		return  new ModelAndView("marsJson","result",result2);
+	        	}
+	        }
+        }else{
         	result2 = cdao.coverageInsert(dto);
         }
         
@@ -193,13 +207,20 @@ public class ContentController {
         int result = cdao.uploadContent(info);
         int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
         
-        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
-        CoverageDTO dto = new CoverageDTO(contentIdx,0,Integer.parseInt(cs),0,Integer.parseInt(member_idx));
-        
         int result2 = 0;
         
-        for(String toIdx : toIdxList){
-        	dto.setIdx_to(Integer.parseInt(toIdx));
+        CoverageDTO dto = new CoverageDTO(contentIdx,0,Integer.parseInt(cs),0,Integer.parseInt(member_idx));
+        
+        if(cl != null && cl.length() != 0){
+	        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
+	        for(String toIdx : toIdxList){
+	        	dto.setIdx_to(Integer.parseInt(toIdx));
+	        	result2 = cdao.coverageInsert(dto);
+	        	if(result2 < 0){
+	        		return  new ModelAndView("marsJson","result",result2);
+	        	}
+	        }
+        }else{
         	result2 = cdao.coverageInsert(dto);
         }
         
