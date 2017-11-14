@@ -45,4 +45,19 @@ public class ContentDAOImple implements ContentDAO {
 		List<CoverageDTO> list = sqlMap.selectList("coverageList",member_idx);
 		return list;
 	}
+
+	public int contentDel(String content_idx) {
+		int result = sqlMap.delete("contentDel", content_idx);
+		return result;
+	}
+
+	public ContentDTO contentOne(String content_idx) {
+		ContentDTO result = sqlMap.selectOne("contentOne", content_idx);
+		return result;
+	}
+
+	public CoverageDTO coverageOne(String content_idx) {
+		CoverageDTO result = sqlMap.selectOne("coverageOne", content_idx);
+		return result;
+	}
 }

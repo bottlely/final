@@ -158,10 +158,14 @@ select {
     			 var content =document.getElementById("content").value;
     			 data.append("content",content);
     			 
-    			 data.append("coverage_list",sel_list);
-    			 
     			 var coverage_state = document.getElementById("coverage_state").value;
-    			 data.append("coverage_state",coverage_state)
+    			 data.append("coverage_state",coverage_state);
+    			 
+    			 if(coverage_state == 2 || coverage_state == 3){
+    				 data.append("coverage_list",sel_list);
+    			 }else{
+    				 data.append("coverage_list","");
+    			 }
     			 
     			 //data.append("type",1);
     			 
@@ -225,7 +229,7 @@ select {
         	var color = document.getElementById(idx).color;
         	        	
         	if(color == "gray"){
-        	      document.getElementById(idx).color = "red";
+        	      document.getElementById(idx).color = "007bff";
         	      sel_list.push(idx);
         	      //alert("1 : "+ sel_list.length);
         	      //alert(sel_list[sel_list.length-1]);

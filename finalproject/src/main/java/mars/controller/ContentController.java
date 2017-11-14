@@ -331,6 +331,45 @@ public class ContentController {
 		}
 	}
 	
+	@RequestMapping("/contentDel.do")
+	public ModelAndView contentDel (@RequestParam("contentidx")String contentidx,HttpServletRequest req){
+		
+		int type = cdao.contentOne(contentidx).getCategory();
+		
+		String realPath = req.getSession().getServletContext().getRealPath("");
+		realPath = realPath.replaceAll("\\\\","/");
+		
+		if(type < 3){
+			if(type == 1){
+				
+				String list = cdao.contentOne(contentidx).getPath();
+				
+				List<String> items = new ArrayList<String>(Arrays.asList(list.split("?")));
+				
+				for(String src : items){
+						
+						File file_img = new File(realPath+"/"+src);
+						
+						if(file_img.exists() ){ 
+								if(file_img.delete()){
+				                System.out.println("삭제한 파일 : "+src);
+				            }else{
+				                System.out.println("삭제 실패한 파일 : "+src);
+				                return null;
+				            }
+						}else{
+							System.out.println("파일이 존재하지 않습니다.");
+							return null;
+						}
+				}
+			}else{
+				
+			}
+		}
+		int result = cdao.contentDel(contentidx);
+		ModelAndView mav = new ModelAndView("marsJson", "result", result);
+		return mav;
+	}
 	
 	@RequestMapping(value="/uploadDateContent.do",method=RequestMethod.POST)
 	public ModelAndView uploadDateContent(@RequestParam("uploadDate")String uploadDate, @RequestParam("member_idx")int member_idx){

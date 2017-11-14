@@ -34,4 +34,15 @@
 		select max(content_idx) from content where member_idx = #{member_idx}
 	</select>
 	
+	<delete id="contentDel" parameterType="String">
+		delete content where content_idx = #{content_idx}
+	</delete>
+	
+	<select id="coverageOne" parameterType="String" resultType="mars.coverage.model.CoverageDTO">
+		select * from coverage where content_idx = #{content_idx}
+	</select>
+	<select id="contentOne" parameterType="String" resultType="mars.content.model.ContentDTO">
+		select * from content where content_idx = #{content_idx}
+	</select>
+	
 </mapper>

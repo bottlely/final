@@ -156,10 +156,14 @@ select {
           var content =document.getElementById("content").value;
           data.append("content",content);
           
-          data.append("coverage_list",sel_list);
-          
-        var coverage_state = document.getElementById("coverage_state").value;
-        data.append("coverage_state",coverage_state)
+          var coverage_state = document.getElementById("coverage_state").value;
+			 data.append("coverage_state",coverage_state);
+			 
+			 if(coverage_state == 2 || coverage_state == 3){
+				 data.append("coverage_list",sel_list);
+			 }else{
+				 data.append("coverage_list","");
+			 }
           
              data.append("not_upload",not_upload);
              data.append("sel",sel);

@@ -85,8 +85,15 @@ function uploadText(){
 	data.append("tag",document.getElementById("tag").value);
 	data.append("title", title);
 	data.append("content",content);
-	data.append("coverage_list",sel_list);
-	data.append("coverage_state",document.getElementById("coverage_state").value);
+
+	 var coverage_state = document.getElementById("coverage_state").value;
+	 data.append("coverage_state",coverage_state);
+	 
+	 if(coverage_state == 2 || coverage_state == 3){
+		 data.append("coverage_list",sel_list);
+	 }else{
+		 data.append("coverage_list","");
+	 }
 	 
      var xhr = new XMLHttpRequest();
      xhr.open("POST","uploadText.do");
@@ -128,7 +135,7 @@ function sel_coverage(idx){
 	      document.getElementById(idx).color = "007bff";
 	      sel_list.push(idx);
 	      //alert("1 : "+ sel_list.length);
-	      alert("추가된 idx : "+sel_list[sel_list.length-1]);
+	      //alert("추가된 idx : "+sel_list[sel_list.length-1]);
 	}else{
 	     document.getElementById(idx).color = "gray";
 	  for(var i=0, len=sel_list.length; i<len; i++) {
@@ -136,7 +143,7 @@ function sel_coverage(idx){
 		  	sel_list.splice(i, 1);
 		  }
 		}
-	 	 alert("총 길이 : "+ sel_list.length);
+	 	//alert("총 길이 : "+ sel_list.length);
 	}
 }
 
