@@ -159,6 +159,7 @@ public class AdminController {
       int girl4 = aDao.girl4();
       int man4 = aDao.man4();
       int others = aDao.others();
+      
       String seoul = aDao.seoul();
       String suwon = aDao.suwon();
       String daejeon = aDao.daejeon();
@@ -167,7 +168,13 @@ public class AdminController {
       String incheon = aDao.incheon();
       String ilsan= aDao.ilsan();
       int allcount=aDao.allcount();
-      System.out.println(favor_movie);
+      int count7=aDao.count7();
+      int count6=aDao.count6();
+      int count5=aDao.count5();
+      int count4=aDao.count4();
+      int count3=aDao.count3();
+      int count2=aDao.count2();
+      int count1=aDao.count1();
       mav.addObject("movie",favor_movie);
       mav.addObject("dance",favor_dance);
       mav.addObject("sport",favor_sport);
@@ -195,6 +202,13 @@ public class AdminController {
       mav.addObject("daejeon",daejeon);
       mav.addObject("busan",busan);
       mav.addObject("others",others);
+      mav.addObject("count7",count7);
+      mav.addObject("count6",count6);
+      mav.addObject("count5",count5);
+      mav.addObject("count4",count4);
+      mav.addObject("count3",count3);
+      mav.addObject("count2",count2);
+      mav.addObject("count1",count1);
       mav.setViewName("admin/admin_data_user");
     
       return mav;

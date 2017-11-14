@@ -41,6 +41,13 @@ public interface AdminDAO {
    public String daejeon();
    public String busan();
    public String ilsan();
+   public int count7();
+   public int count6();
+   public int count5();
+   public int count4();
+   public int count3();
+   public int count2();
+   public int count1();
    
    
 }

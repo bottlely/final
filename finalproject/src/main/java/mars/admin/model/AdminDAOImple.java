@@ -1,5 +1,6 @@
 package mars.admin.model;
 
+import java.text.*;
 import java.util.*;
 import java.util.Date;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -214,5 +215,96 @@ public class AdminDAOImple implements AdminDAO {
    public String ilsan() {
 	   String ilsan= sqlMap.selectOne("ilsan");
 	   return ilsan;
+   }
+   
+   public int count7() {
+	 
+	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+	   Date currentTime = new Date ( );
+	   Date countTime = new Date ( currentTime.getTime() - 7*( (long) 1000 * 60 * 60 * 24 ));
+	   String dTime = formatter.format ( countTime );
+	   
+	  
+	  
+	   int count7 = sqlMap.selectOne("usercount",dTime);
+	   return count7;
+   }
+   
+   public int count6() {
+		 
+	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+	   Date currentTime = new Date ( );
+	   Date countTime = new Date ( currentTime.getTime() - 6*( (long) 1000 * 60 * 60 * 24 ));
+	   String dTime = formatter.format ( countTime );
+	   
+	  
+	  
+	   int count6 = sqlMap.selectOne("usercount",dTime);
+	   return count6;
+   }
+   
+   public int count5() {
+		 
+	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+	   Date currentTime = new Date ( );
+	   Date countTime = new Date ( currentTime.getTime() - 5*( (long) 1000 * 60 * 60 * 24 ));
+	   String dTime = formatter.format ( countTime );
+	   
+	  
+	  
+	   int count5 = sqlMap.selectOne("usercount",dTime);
+	   return count5;
+   }
+   
+   public int count4() {
+		 
+	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+	   Date currentTime = new Date ( );
+	   Date countTime = new Date ( currentTime.getTime() - 4*( (long) 1000 * 60 * 60 * 24 ));
+	   String dTime = formatter.format ( countTime );
+	   
+	  
+	  
+	   int count4 = sqlMap.selectOne("usercount",dTime);
+	   return count4;
+   }
+   
+   public int count3() {
+		 
+	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+	   Date currentTime = new Date ( );
+	   Date countTime = new Date ( currentTime.getTime() - 3*( (long) 1000 * 60 * 60 * 24 ));
+	   String dTime = formatter.format ( countTime );
+	   
+	  
+	  
+	   int count3 = sqlMap.selectOne("usercount",dTime);
+	   return count3;
+   }
+   
+   public int count2() {
+		 
+	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+	   Date currentTime = new Date ( );
+	   Date countTime = new Date ( currentTime.getTime() - 2*( (long) 1000 * 60 * 60 * 24 ));
+	   String dTime = formatter.format ( countTime );
+	   
+	  
+	  
+	   int count2 = sqlMap.selectOne("usercount",dTime);
+	   return count2;
+   }
+   
+   public int count1() {
+		 
+	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+	   Date currentTime = new Date ( );
+	   Date countTime = new Date ( currentTime.getTime() - 1*( (long) 1000 * 60 * 60 * 24 ));
+	   String dTime = formatter.format ( countTime );
+	   
+	  
+	  
+	   int count1 = sqlMap.selectOne("usercount",dTime);
+	   return count1;
    }
 }

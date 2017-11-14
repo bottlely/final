@@ -128,7 +128,7 @@
 					pointHoverBackgroundColor : "rgba(2,117,216,1)",
 					pointHitRadius : 20,
 					pointBorderWidth : 2,
-					data : [ 10, 10, 10, 10, 10, 10,10, ${allcount} ],
+					data : [ ${count7}, ${count6},${count5},${count4},${count3},${count2},${count1}, ${allcount} ],
 				} ],
 			},
 			options : {
@@ -147,7 +147,7 @@
 					yAxes : [ {
 						ticks : {
 							min : 0,
-							max : ${allcount},
+							max : ${allcount}*2,
 							maxTicksLimit : 5
 						},
 						gridLines : {
@@ -442,12 +442,8 @@
 			<!-- Area Chart Example-->
 			<div class="card mb-3">
 				<div class="card-header">
-					<i class="fa fa-area-chart"></i>User <select>
-						<option>All</option>
-						<option>Man</option>
-						<option>Girl</option>
-					</select>
-					<button type="submit">Search</button>
+					<i class="fa fa-area-chart"></i>User
+					
 
 				</div>
 				<div class="card-body">
