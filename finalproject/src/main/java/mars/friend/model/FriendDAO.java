@@ -14,6 +14,6 @@ public interface FriendDAO {
 	public int unblock(int user1_idx, int user2_idx);
 	public int block(int user1_idx, int user2_idx);
 	public int removeFollower(int user1_idx, int user2_idx);
-	public List<MemberDTO> blackCheck(String user1_idx, String user2_idx);
+	//public List<MemberDTO> blackCheck(String user1_idx, String user2_idx);
 	
 }

@@ -52,7 +52,7 @@
 	<update id="block" parameterType="hashMap">
 		update mars_ff set black_state=1 where user1_idx=#{user2_idx} and user2_idx=#{user1_idx}
 	</update>
-	<select id="blackCheck" parameterType="hashMap" resultMap="mypagefriend">
+	<select id="blackCheck" parameterType="hashMap" resultType="Integer">
     	select black_state from mars_ff where user1_idx =#{user1_idx} and user2_idx =#{user2_idx}
     </select>
 </mapper>
