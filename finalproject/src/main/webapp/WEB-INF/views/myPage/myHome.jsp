@@ -366,9 +366,11 @@ function showResult2(){
 		 <c:param name="toName">${mhdto.getName()}</c:param>
 		</c:url>
        	<tr><td><a href="${reportUrl}">신고하기</a></td></tr>
-       	<tr><td><a href="#">차단하기 또는 차단취소하기</a></td></tr>
-       	<tr><td><a href="introUploadForm.do">팔로우하기 또는 언팔로우하기</a></td></tr>
-       	</table>
+          <tr><td><a href="friend_block.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">차단하기 </a></td></tr>
+          <tr><td><a href="friend_unblock.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">차단취소하기 </a></td></tr>
+          <tr><td><a href="following.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">팔로우하기</a></td></tr>
+          <tr><td><a href="deleteFriend.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">언팔로우하기</a></td></tr>
+          </table>
     </div>
     </c:if>
     

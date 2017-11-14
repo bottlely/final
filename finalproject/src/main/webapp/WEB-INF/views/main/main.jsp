@@ -681,6 +681,12 @@ pre.prettyprint {
 						<button data-dismiss="modal" aria-hidden="true">
 							Close <i class="ion-android-close"></i>
 						</button>
+						<button data-dismiss="modal" aria-hidden="true">
+							delete
+						</button>
+						<button data-dismiss="modal" aria-hidden="true">
+							modify
+						</button>
 					</p>
 				</div>
 			</div>
