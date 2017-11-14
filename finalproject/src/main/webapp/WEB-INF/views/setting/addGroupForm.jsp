@@ -20,19 +20,18 @@
 	 }
 	 /* window.close();
 	 opener.location.href='addGroup.do'; */
-} */
 </script>
 </head>
 <body>
 	<form name="addGroup" action="addGroup.do">
 	<input type="hidden" name="idx_from" value="${idx_from }">
 		<input type="text" name="group_name" placeholder="GroupName"
-			id="group_name">
+			id="group_name" required>
 		<ul>
-			<c:if test="${empty list }">
+			<c:if test="${empty list}">
 				<li>친구가 존재하지 않습니다.</li>
 			</c:if>
-			<c:forEach var="list" items="${list }">
+			<c:forEach var="list" items="${list}">
 				<li><input type="checkbox" name="idx_to" value="${list.idx}">
 					${list.name}</li>
 			</c:forEach>

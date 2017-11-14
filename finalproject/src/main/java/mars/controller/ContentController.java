@@ -18,8 +18,12 @@ import org.springframework.web.servlet.view.RedirectView;
 import mars.content.model.*;
 import mars.coverage.model.CoverageDTO;
 import mars.friend.model.FriendDAO;
+import mars.friend.model.FriendDTO;
+import mars.group.model.GroupDTO;
+import mars.member.model.MemberDAO;
 import mars.member.model.MemberDTO;
 import mars.myHome.model.*;
+import mars.setting.model.SettingDAO;
 
 
 
@@ -35,6 +39,12 @@ public class ContentController {
 	@Autowired
 	private FriendDAO friendDao;
 	
+	@Autowired
+	private SettingDAO settingDao;
+	
+	@Autowired
+	private MemberDAO mdao;
+	
 	public ContentController() {
 		
 		super();
@@ -48,9 +58,38 @@ public class ContentController {
 	@RequestMapping("/contentUploadForm.do")
 	public ModelAndView contentUploadForm(@RequestParam("useridx")String member_idx,@RequestParam("type")int type) {
 		
+		ModelAndView mav = new ModelAndView();
+		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
 		
 		List<MemberDTO> followerList = friendDao.followerList(Integer.parseInt(member_idx));
+		
+		List<FriendDTO> fdtoList = settingDao.getGroupList(Integer.parseInt(member_idx));
+		
+		HashMap<String,List<MemberDTO>> groupList = new HashMap<String, List<MemberDTO>>();
+		
+		//List<String> groupKeys = new ArrayList<String>();
+		
+		for(FriendDTO fdto : fdtoList){
+			
+			int groupIdx = fdto.getIdx();
+			List<GroupDTO> groupMembers = settingDao.showGroup(groupIdx);
+			
+			List<MemberDTO> group = new ArrayList<MemberDTO>();
+			String groupname = null;
+			for(GroupDTO gdto : groupMembers){
+				
+				//key
+				groupname = gdto.getGroup_name();
+				//groupKeys.add(groupname);
+				
+				//values
+				int member = gdto.getIdx_to();
+				MemberDTO mdto = mdao.getUserInfo_idx(member);
+				group.add(mdto);
+			}
+			groupList.put(groupname, group);
+		}
 		
 		String path =  null;
 		
@@ -61,10 +100,10 @@ public class ContentController {
 			case 4: path = "myPage/content/uploadCam"; break;
 		}
 		
-		ModelAndView mav = new ModelAndView();
 		mav.addObject("writer", mhdto.getName());
 		mav.addObject("profile", mhdto.getProfile_img());
 		mav.addObject("followerList", followerList);
+		mav.addObject("groupList",groupList);
 		mav.setViewName(path);
 		return mav;
 	}

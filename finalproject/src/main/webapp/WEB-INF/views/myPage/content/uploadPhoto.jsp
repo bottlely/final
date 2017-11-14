@@ -225,7 +225,7 @@ select {
          }
         
         function sel_coverage(idx){
-        	
+        	alert(idx.value+'---------------');
         	var color = document.getElementById(idx).color;
         	        	
         	if(color == "gray"){
@@ -359,10 +359,22 @@ select {
 						onclick="sel_coverage(${follower_list.member_idx})"><img
 						src="myHomeFolder/profile_img/${follower_list.profile_img}" alt=""
 						width="20" height="20" style="border-radius: 50%"> <font
-						id="${follower_list.member_idx}" color="gray"><strong>${follower_list.name}</font>
+						id="${follower_list.member_idx}" color="gray"><strong>${follower_list.name}</strong></font>
 					</li>
 				</c:forEach>
-
+				<hr>
+				<c:forEach var="group" items="${groupList}">
+					<li class="list-group-item" 
+						onclick="sel_coverage()">
+					<font id="" color="gray"><strong>${group.key}</strong></font>
+					</li>
+					<c:forEach var="member" items="${group.value}">
+						<li class="list-group-item">
+							<font color="lightgray"><strong>${member.name}</strong></font>
+						</li>
+					</c:forEach>
+				<hr>
+				</c:forEach>
 			</ul>
 		</div>
 	</div>
