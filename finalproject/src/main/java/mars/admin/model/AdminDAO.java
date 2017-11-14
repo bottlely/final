@@ -4,6 +4,7 @@ import java.util.*;
 
 import mars.friend.model.FriendDTO;
 import mars.member.model.MemberDTO;
+import mars.myHome.model.MyHomeDTO;
 
 public interface AdminDAO {
 	
@@ -53,6 +54,9 @@ public interface AdminDAO {
    public int followingSize2();
    public int followingSize3();
    public int todayjoin();
+   public MyHomeDTO userInfo1();
+   public MyHomeDTO userInfo2();
+   public MyHomeDTO userInfo3();
 
    
 }

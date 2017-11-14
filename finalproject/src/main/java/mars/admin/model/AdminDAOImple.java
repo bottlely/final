@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 
 import mars.friend.model.FriendDTO;
 import mars.member.model.MemberDTO;
+import mars.myHome.model.MyHomeDTO;
 
 
 public class AdminDAOImple implements AdminDAO {
@@ -324,7 +325,8 @@ public class AdminDAOImple implements AdminDAO {
 	}
    public int followingSize2() {
 	   List<Integer> userrank = sqlMap.selectList("userrank");
-	   System.out.println(userrank.get(2));
+	   
+	 
 	   int one = sqlMap.selectOne("ranksize",userrank.get(1));
 	 
 	  
@@ -349,5 +351,28 @@ public class AdminDAOImple implements AdminDAO {
 	   return todayjoin;
    }
    
+   public MyHomeDTO userInfo1() {
+	   List<Integer> userrank = sqlMap.selectList("userrank");
+	   String str=String.valueOf(userrank.get(0));
+	   MyHomeDTO dto  = sqlMap.selectOne("myHomeSource",str);
+	   return dto;
+	   
+   }
+   
+   public MyHomeDTO userInfo2() {
+	   List<Integer> userrank = sqlMap.selectList("userrank");
+	   String str=String.valueOf(userrank.get(1));
+	   MyHomeDTO dto  = sqlMap.selectOne("myHomeSource",str);
+	   return dto;
+	   
+   }
+   
+   public MyHomeDTO userInfo3() {
+	   List<Integer> userrank = sqlMap.selectList("userrank");
+	   String str=String.valueOf(userrank.get(2));
+	   MyHomeDTO dto  = sqlMap.selectOne("myHomeSource",str);
+	   return dto;
+	   
+   }
 
 }

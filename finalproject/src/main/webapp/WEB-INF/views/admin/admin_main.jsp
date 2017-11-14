@@ -2,7 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
+
 <html>
+<title>Mars_Admin</title>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -243,10 +245,13 @@
 								<i class="fa fa-flag"></i>Top1
 
 							</div>
-							<div class="card-body">
-								<p></p>
-								<p>Follower : ${ranksize1}명</p>
-							</div>
+							<div class="card-body" style="text-align: center;">
+								<div>
+								<img src="myHomeFolder/background_img/${userInfo1.profile_img}"style="width: 50px; height: 50px; border-radius: 50%;"></div>
+								</div>
+								<p style="text-align: center;">${userInfo1.name}</p>
+								<p style="text-align: center;">Follower : ${ranksize1}명</p>
+							
 
 						</div>
 					</div>
@@ -258,10 +263,13 @@
 								<i class="fa fa-flag"></i>Top2
 
 							</div>
-							<div class="card-body">
-								<p>${userrank[1]}</p>
-								<p>Follower : ${ranksize2}명</p>
-							</div>
+							<div class="card-body" style="text-align: center;">
+								<div>
+								<img src="myHomeFolder/background_img/${userInfo2.profile_img}"style="width: 50px; height: 50px; border-radius: 50%;"></div>
+								</div>
+								<p style="text-align: center;">${userInfo2.name}</p>
+								<p style="text-align: center;">Follower : ${ranksize2}명</p>
+							
 
 						</div>
 					</div>
@@ -273,10 +281,13 @@
 								<i class="fa fa-flag"></i>Top3
 
 							</div>
-							<div class="card-body">
-								<p>${userrank[2]}</p>
-								<p>Follower : ${ranksize3}명</p>
-							</div>
+							<div class="card-body" style="text-align: center;">
+								<div>
+								<img src="myHomeFolder/background_img/${userInfo3.profile_img}"style="width: 50px; height: 50px; border-radius: 50%;"></div>
+								</div>
+								<p style="text-align: center;">${userInfo3.name}</p>
+								<p style="text-align: center;">Follower : ${ranksize3}명</p>
+							
 
 						</div>
 					</div>

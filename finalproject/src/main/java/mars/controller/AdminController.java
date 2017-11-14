@@ -13,7 +13,7 @@ import mars.admin.model.AdminDAO;
 import mars.friend.model.FriendDAO;
 import mars.member.model.MemberDAO;
 import mars.member.model.MemberDTO;
-
+import mars.myHome.model.MyHomeDTO;
 @Controller
 public class AdminController {
    @Autowired
@@ -27,7 +27,9 @@ public class AdminController {
       
       ModelAndView mav = new ModelAndView();
       List<Integer> userrank = aDao.userrank();
-    
+      MyHomeDTO dto1 = aDao.userInfo1();
+      MyHomeDTO dto2 = aDao.userInfo2();
+      MyHomeDTO dto3 = aDao.userInfo3();
       int todayjoin = aDao.todayjoin();
       int ranksize1 = aDao.followingSize1();
       int ranksize2 = aDao.followingSize2();
@@ -35,7 +37,9 @@ public class AdminController {
       mav.addObject("ranksize1",ranksize1);
       mav.addObject("ranksize2",ranksize2);
       mav.addObject("ranksize3",ranksize3);
- 
+      mav.addObject("userInfo1",dto1);
+      mav.addObject("userInfo2",dto2);
+      mav.addObject("userInfo3",dto3);
       mav.addObject("userrank",userrank);
       mav.addObject("todayjoin",todayjoin);
       mav.setViewName("admin/admin_main");

@@ -72,7 +72,7 @@
 					
 					//3일전
 					var nday4 = new Date();    
-					nday4.setDate(nday1.getDate() - 3); //오늘 날짜에서 days만큼을 뒤로 이동 
+					nday4.setDate(nday4.getDate() - 3); //오늘 날짜에서 days만큼을 뒤로 이동 
 					var yy4 = nday4.getFullYear();
 					var mm4 = nday4.getMonth()+1;
 					var dd4 = nday4.getDate();
@@ -168,7 +168,7 @@
 				labels : [ "서울", "인천", "수원", "대전", "대구",
 						"일산","부산","기타" ],
 				datasets : [ {
-					label : "Revenue",
+					label : "회원수",
 					backgroundColor : "rgba(2,117,216,1)",
 					borderColor : "rgba(2,117,216,1)",
 					data : [ ${seoul},${incheon}, ${suwon}, ${daejeon}, ${daejeon}, ${daegu},${ilsan},${busan},0 ],
@@ -242,7 +242,7 @@
 				labels : [ "10s/Man", "10s/Girl", "20s/Man", "20s/Girl", "30s/Man",
 						"30s/Girl","40s/Man","40s/Girl","Other" ],
 				datasets : [ {
-					label : "Revenue",
+					label : "회원수",
 					backgroundColor : "rgba(2,117,216,1)",
 					borderColor : "rgba(2,117,216,1)",
 					data : [ ${man1}, ${girl1}, ${man2}, ${girl2}, ${man3}, ${girl3},
