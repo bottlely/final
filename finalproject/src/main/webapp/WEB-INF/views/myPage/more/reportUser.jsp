@@ -6,6 +6,11 @@
 <head>
 <meta charset=UTF-8">
 <title>Insert title here</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
 </head>
 <script type="text/javascript">
 function back(){
@@ -45,10 +50,26 @@ function uploadData(){
 }
 </script>
 <body>
-신고자 : ${sessionScope.username}
-신고할 대상 : ${toName} / ${toIdx}
-신고 이유 :<input type="text" id="report">
-<input type="button" value="보내기" onclick="uploadData()">
-<input type="button" value="back" onclick="back()">
+
+<div class="container" style="margin-top:10px;">
+  	<h2>신고하기</h2>
+    <div class="panel panel-info">
+      <div class="panel-heading">신고자</div>
+      <div class="panel-body">${sessionScope.username }</div>
+    </div>
+    <div class="panel panel-info">
+      <div class="panel-heading">신고 대상</div>
+      <div class="panel-body">${toName} / ${toIdx}</div>
+    </div>
+    <div class="panel panel-info">
+      <div class="panel-heading">신고 사유</div>
+      <div class="panel-body">
+      <input type="text" class="form-control" id="report"  style="overflow:auto;">
+      </div>
+    </div>
+	<button type="button" class="btn btn-info btn-block" onclick="uploadData()">보내기</button>
+		<button type="button" class="btn btn-info btn-block" onclick="back()">취소</button>
+   
+</div>
 </body>
 </html>
