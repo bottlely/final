@@ -40,4 +40,9 @@ public class ContentDAOImple implements ContentDAO {
 		int result = sqlMap.insert("coverageInsert", dto);
 		return result;
 	}
+
+	public List<CoverageDTO> coverageList(String member_idx) {
+		List<CoverageDTO> list = sqlMap.selectList("coverageList",member_idx);
+		return list;
+	}
 }

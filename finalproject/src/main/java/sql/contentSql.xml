@@ -16,6 +16,10 @@
 		(#{content_idx}, coverage_idx.nextval, #{coverage_state},#{idx_to},#{idx_from})
 	</insert>
 	
+	<select id="coverageList" parameterType="String" resultType="mars.coverage.model.CoverageDTO">
+		select * from coverage where idx_from = #{member_idx}
+	</select>
+	
 	<select id="searchUploadDate" parameterType="HashMap" resultType="mars.content.model.ContentDTO">
 		select *
 		from content

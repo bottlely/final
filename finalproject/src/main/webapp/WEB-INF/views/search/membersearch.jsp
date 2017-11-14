@@ -137,6 +137,15 @@
 				   
 				$('#galleryImage').attr("src",div);
 				} 
+			
+			  function pageOpen(idx) {
+                  document.getElementById('pageIframe').src='myHomeForm.do?useridx='+idx;
+                  var div = $("#mypage2");
+                  div.animate({right: '0px'}, "fast");
+                  div.animate({height: '100%'}, "slow");
+                  div.animate({width:'toggle'}, "slow");
+               }
+         
 
 </script> 
 <body>
@@ -147,9 +156,9 @@
 				<div id="friends2" style="background:#935d8c;height:100%;width:25%; position: absolute; float: left; display: none; z-index: 4">
 		<div style="background-color: white; align-content:center; "><a href="#" id="cl1">Close</a></div> 
 	<c:url var="frListUrl" value="main_frList.do">
-		<c:param name="user_idx" value="${sessionScope.useridx }" />
+		<c:param name="member_idx" value="${sessionScope.useridx}" />
 	</c:url>
-	<iframe src="${frListUrl }" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+	<iframe src="${frListUrl}" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
 	</div>
 		 </span>
@@ -161,7 +170,7 @@
 	<c:url var="myHomeUrl" value="myHomeForm.do">
 		<c:param name="useridx" value="${sessionScope.useridx}"/>
 	</c:url>
-	<iframe src="${myHomeUrl}" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+	<iframe src="${myHomeUrl}" width="100%" height="100%"  id="pageIframe" name="ppp" frameborder="0"></iframe>
 
 	</div>
 		 
@@ -314,23 +323,23 @@
 				<div class="works-area" >
 				<c:set var="txtfind" value="${find }" /> 
 <form name="reSearch" action="membersearch.do">
-<input type="text" name="name" value="${name }"><input type="submit" value="검색"><br>
+<input type="text" name="name" value="${name}"><input type="submit" value="검색"><br>
  <c:forEach var="txtfind" items="${txtfind }" begin="0" end="0"> 
 	<input type="button" value="사람" onclick="mtag('${name}')">
 	<input type="button" value="hash" onclick="htag('${name}')">
 	
  </c:forEach> 
 	<table border="1px">
-		<c:if test="${empty find }">
+		<c:if test="${empty find}">
 			<input type="button" value="사람" onclick="mtag('${name}')">
 			<input type="button" value="해시태그" onclick="htag('${name}')">
 			<tr>
 				<td colspan="4" align="center">찾으시는 사람이 존재하지 않습니다.</td>
 			</tr>
 		</c:if>
-		<c:forEach var="find" items="${find }">
-			<tr>
-				<td>${find.name }</td>
+		<c:forEach var="find" items="${find}">
+			<tr onclick="pageOpen(${find.idx})">
+				<td>${find.name}</td>
 			</tr>
 		</c:forEach>
 	</table>

@@ -27,4 +27,5 @@ public interface ContentDAO {
 	public List<ContentDTO> contentList(String member_idx);
 	public int contentIdxSearch(String member_idx);
 	public int coverageInsert(CoverageDTO dto);
+	public List<CoverageDTO> coverageList(String member_idx);
 }

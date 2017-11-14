@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import mars.content.model.ContentDAO;
 import mars.content.model.ContentDTO;
+import mars.coverage.model.CoverageDTO;
+import mars.friend.model.FriendDAO;
 import mars.member.model.MemberDAO;
 import mars.member.model.MemberDTO;
 import mars.myHome.model.*;
@@ -26,6 +28,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -40,19 +43,30 @@ public class MyHomeController{
 	@Autowired
 	private MemberDAO mdao;
 	
+	@Autowired
+	private FriendDAO friendDao;
+	
 	@RequestMapping(value="/myHomeForm.do")
 	public ModelAndView myHomeForm(@RequestParam("useridx")String member_idx,
 			@RequestParam(value="cp",defaultValue="1")int cp,
-			@RequestParam(value="category",defaultValue="0")int category) {
+			@RequestParam(value="category",defaultValue="0")int category,HttpSession session) {
 		
 		mhdao.visitorUpdate(member_idx);
 		
 		//개인인지 기업인지
-		
 		int userType = mdao.getUserInfo_idx(Integer.parseInt(member_idx)).getUsertype();
 		
 		List<ContentDTO> contentList = cdao.contentList(member_idx);
-		//int totalCnt = contentList.size();
+		
+		//블랙리스트인지
+		HashMap<String, String> info = new HashMap<String, String>();
+		info.put("user1_idx ",(String)session.getAttribute("useridx"));
+		info.put("user2_idx ", member_idx);
+		
+		//친구인지
+		List<MemberDTO> followerList = friendDao.followerList(Integer.parseInt(member_idx));
+				
+		List<CoverageDTO> coverageList = cdao.coverageList(member_idx);
 		
 		List<String> imgList = new ArrayList<String>();
 		List<String> videoList = new ArrayList<String>();
@@ -72,16 +86,10 @@ public class MyHomeController{
 					default : {};
 				}
 		}
-		//int listSize = 9;
-		//int pageSize = 1; 
-		
-		//String pageStr = mars.page.PageModule.makePage("bbsList.do", totalCnt, listSize, pageSize, cp);
-		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("mhdto", mhdto);
 		mav.addObject("cdao", cdao);
-		//mav.addObject("totalCnt", totalCnt);
 		mav.addObject("imgList", imgList);
 		mav.addObject("videoList", videoList);
 		mav.addObject("userType", userType);

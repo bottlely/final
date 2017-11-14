@@ -246,13 +246,13 @@ public class ContentController {
 				
 				if(file_video.exists() && file_img.exists() ){ 
 						if(file_video.delete() && file_img.delete()){
-		                System.out.println("�뙆�씪�궘�젣 �꽦怨� : "+src);
+		                System.out.println("삭제한 파일 : "+src);
 		            }else{
-		                System.out.println("�뙆�씪�궘�젣 �떎�뙣 : "+src);
+		                System.out.println("삭제 실패한 파일 : "+src);
 		                return null;
 		            }
 				}else{
-					System.out.println("�뙆�씪�씠 議댁옱�븯吏� �븡�뒿�땲�떎.");
+					System.out.println("파일이 존재하지 않습니다.");
 					return null;
 				}
 				
