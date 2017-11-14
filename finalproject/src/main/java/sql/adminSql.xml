@@ -144,13 +144,48 @@
 	</select>
 	<select id="1man" parameterType="int" resultType="int">
 	<![CDATA[ 
-		select count(*) from mars_member where gender = 1 and #{age}-birth_y < 0
+		select count(*) from mars_member where gender = 1 and #{age}-20-birth_y < 0
 		]]>
 	</select>
 	
 		<select id="1girl" parameterType="int" resultType="int">
 	<![CDATA[ 
-		select count(*) from mars_member where gender = 2 and #{age}-birth_y < 0
+		select count(*) from mars_member where gender = 2 and #{age}-20-birth_y < 0
+		]]>
+	</select>
+			<select id="2man" parameterType="int" resultType="int">
+	<![CDATA[ 
+		select count(*) from mars_member where gender = 1 and #{age}-20-birth_y > 0 and #{age}-30-birth_y <0
+		]]>
+	</select>
+			<select id="2girl" parameterType="int" resultType="int">
+	<![CDATA[ 
+		select count(*) from mars_member where gender = 2 and #{age}-20-birth_y > 0 and #{age}-30-birth_y <0
+		]]>
+	</select>
+				<select id="3man" parameterType="int" resultType="int">
+	<![CDATA[ 
+		select count(*) from mars_member where gender = 1 and #{age}-30-birth_y > 0 and #{age}-40-birth_y <0
+		]]>
+	</select>
+			<select id="3girl" parameterType="int" resultType="int">
+	<![CDATA[ 
+		select count(*) from mars_member where gender = 2 and #{age}-30-birth_y > 0 and #{age}-40-birth_y <0
+		]]>
+	</select>
+				<select id="4man" parameterType="int" resultType="int">
+	<![CDATA[ 
+		select count(*) from mars_member where gender = 1 and #{age}-40-birth_y > 0 and #{age}-50-birth_y <0
+		]]>
+	</select>
+			<select id="4girl" parameterType="int" resultType="int">
+	<![CDATA[ 
+		select count(*) from mars_member where gender = 2 and #{age}-40-birth_y > 0 and #{age}-50-birth_y <0
+		]]>
+	</select>
+				<select id="others" parameterType="int" resultType="int">
+	<![CDATA[ 
+		select count(*) from mars_member where #{age}-50-birth_y > 0 
 		]]>
 	</select>
 			<select id="allcount"  resultType="int">

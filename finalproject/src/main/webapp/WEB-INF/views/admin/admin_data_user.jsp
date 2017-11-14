@@ -171,7 +171,7 @@
 					label : "Revenue",
 					backgroundColor : "rgba(2,117,216,1)",
 					borderColor : "rgba(2,117,216,1)",
-					data : [ 4215, 5312, 6251, 7841, 9821, 14984,1000,2000 ],
+					data : [ 1,1, 1, 2, 2, 2,4,3 ],
 				} ],
 			},
 			options : {
@@ -190,7 +190,7 @@
 					yAxes : [ {
 						ticks : {
 							min : 0,
-							max : 15000,
+							max : ${allcount},
 							maxTicksLimit : 5
 						},
 						gridLines : {
@@ -245,7 +245,8 @@
 					label : "Revenue",
 					backgroundColor : "rgba(2,117,216,1)",
 					borderColor : "rgba(2,117,216,1)",
-					data : [ ${man1}, ${girl1}, 3, 3, 3, 3,3,3,3 ],
+					data : [ ${man1}, ${girl1}, ${man2}, ${girl2}, ${man3}, ${girl3},
+						 ${man4}, ${girl4},${others} ],
 				} ],
 			},
 			options : {
@@ -441,7 +442,7 @@
 			<!-- Area Chart Example-->
 			<div class="card mb-3">
 				<div class="card-header">
-					<i class="fa fa-area-chart"></i>User(All) <select>
+					<i class="fa fa-area-chart"></i>User <select>
 						<option>All</option>
 						<option>Man</option>
 						<option>Girl</option>
