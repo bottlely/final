@@ -25,7 +25,7 @@ function uploadData(flag){
 	var data = new FormData();
 	
 	if(flag){
-	var bg = document.getElementById("background").files[0];
+		var bg = document.getElementById("background").files[0];
 	
 	if(bg == null){
 		 alert("한 개 이상의 파일을 선택해주세요.");

@@ -129,11 +129,7 @@ public class MyHomeController{
 		info.put("member_idx",member_idx);
 		info.put("intro", intro);
 		int result = mhdao.introUpload(info);
-		
-		ModelAndView mav = new ModelAndView();
-		String msg = result > 0 ? "ok!" : "no!";
-		mav.addObject("msg", msg);
-		mav.setViewName("myPage/myHomeMsg");
+		 ModelAndView mav = new ModelAndView("marsJson","result",result);
 		return mav;
 	}
 	
@@ -162,11 +158,7 @@ public class MyHomeController{
 		}
 		
 		int result = mhdao.profileUpload(info);
-		
-		ModelAndView mav = new ModelAndView();
-		String msg = result > 0 ? "ok!" : "no";
-		mav.addObject("msg", msg);
-		mav.setViewName("myPage/myHomeMsg");
+		 ModelAndView mav = new ModelAndView("marsJson","result",result);
 		return mav;
 	}
 	
@@ -194,10 +186,7 @@ public class MyHomeController{
 		}
 		
 		int result = mhdao.backgroundUpload(info);
-		ModelAndView mav = new ModelAndView();
-		String msg = result > 0 ? "ok!" : "no!";
-		mav.addObject("msg", msg);
-		mav.setViewName("myPage/myHomeMsg");
+		 ModelAndView mav = new ModelAndView("marsJson","result",result);
 		return mav;
 	}
 

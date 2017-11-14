@@ -12,15 +12,34 @@ function back(){
     window.opener.location.reload();
     window.close();
  }
+function uploadData(flag){
+	
+	var data = new FormData();
+	
+	data.append("useridx", '${sessionScope.useridx}'); 
+	data.append("intro",document.getElementById("intro").value);
+	 
+     var xhr = new XMLHttpRequest();
+     xhr.open("POST","introUpload.do");
+     xhr.send(data);
+     xhr.onload = function(e) {
+          if(this.status == 200) {
+            var jsonResponse = JSON.parse(e.currentTarget.responseText);
+           if(jsonResponse["result"] > 0){
+              alert('업로드 완료!');
+              window.opener.location.reload();
+            window.close();
+           }else{
+              alert('업로드 실패!');
+           }
+           }
+      }
+}
 </script>
 <body>
-	<form action="introUpload.do" method="post">
-		<input type="hidden" name="useridx" value="${sessionScope.useridx}">	<!-- 수정 필요 -->
-		소개글:<input type="text" name="intro">
-		<input type="submit" value="업로드">
-	</form>
-	
-	<input type="button" value="back" onclick="back()">
+		소개글:<input type="text" id="intro">
+		<input type="button" value="업로드" onclick="uploadData(true)">
+		<input type="button" value="back" onclick="back()">
 	
 </body>
 </html>
