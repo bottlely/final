@@ -273,7 +273,7 @@ input:checked+.slider:before {
     
     //더보기  popupfunction
     function moreOpen(num){
-    	window.open('contentUploadForm.do?type='+num,'uploadMore','width=600,height=500');
+    	window.open('moreUploadForm.do?type='+num,'uploadMore','width=600,height=500');
     }
     
 </script>
@@ -350,9 +350,9 @@ function showResult2(){
     <div class="mask"></div>
     <div class="window">
        <table align="center">
-       	<tr onclick="moreOpen(1)"><td colspan="2"><a href="backgroundUploadForm.do">커버사진</a></td></tr>
-       	<tr onclick="moreOpen(2)"><td colspan="2"><a href="profileUploadForm.do">프로필사진</a></td></tr>
-       	<tr onclick="moreOpen(3)"><td colspan="2"><a href="introUploadForm.do">소개글</a></td></tr>
+       	<tr onclick="moreOpen(1)"><td colspan="2">커버사진</td></tr>
+       	<tr onclick="moreOpen(2)"><td colspan="2">프로필사진</td></tr>
+       	<tr onclick="moreOpen(3)"><td colspan="2">소개글</td></tr>
        	<tr><td align="center">공개설정</td>
        		<td><label class="switch">
        		<input id="openCoverage" type="checkbox" onchange="openCoverage()">

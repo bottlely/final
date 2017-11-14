@@ -97,7 +97,7 @@ public class MyHomeController{
 		case 1: path = "myPage/more/backgroundUpload"; break;
 		case 2: path = "myPage/more/profileUpload"; break;
 		case 3: path = "myPage/more/introUpload"; break;
-	}
+		}
 		
 		return path;
 	}

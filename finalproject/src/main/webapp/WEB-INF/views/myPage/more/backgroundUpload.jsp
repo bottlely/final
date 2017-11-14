@@ -37,13 +37,9 @@ function uploadData(flag){
 	
 	data.append("useridx", '${sessionScope.useridx}'); 
 	data.append("background",bg);
-	data.append("title", document.getElementById("title").value);
-	data.append("content", document.getElementById("content").value);
-	data.append("coverage_list",sel_list);
-	data.append("coverage_state",document.getElementById("coverage_state").value);
 	 
      var xhr = new XMLHttpRequest();
-     xhr.open("POST","uploadText.do");
+     xhr.open("POST","backgroundUpload.do");
      xhr.send(data);
      xhr.onload = function(e) {
           if(this.status == 200) {
