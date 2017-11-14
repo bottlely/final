@@ -96,4 +96,8 @@
 	<delete id="deleteff" parameterType="Integer">
 	delete from mars_ff where idx=#{idx_ff}
 	</delete>
+	
+	<select id="getGroupname" parameterType="HashMap" resultType="String">
+	select group_name from mars_ff where idx=#{idx} and user2_idx=#{user2_idx}
+	</select>
 </mapper>

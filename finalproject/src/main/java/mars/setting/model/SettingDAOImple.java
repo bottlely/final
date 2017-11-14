@@ -118,5 +118,10 @@ public class SettingDAOImple implements SettingDAO {
 		return count;
 	}
 
+	public String groupName(HashMap<String, String> map) {
+		String name = sqlMap.selectOne("getGroupname", map);
+		return name;
+	}
+
 	
 }

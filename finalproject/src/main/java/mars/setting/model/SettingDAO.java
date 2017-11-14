@@ -27,4 +27,5 @@ public interface SettingDAO {
 	public List<MemberDTO> groupMember(int idx);
 	public int deleteGroup(int idx_ff);
 	public int deleteff(int idx_ff);
+	public String groupName(HashMap<String, String> map);
 }

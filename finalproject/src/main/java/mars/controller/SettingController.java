@@ -1,5 +1,6 @@
 package mars.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import mars.member.model.MemberDTO;
 import mars.report.model.ReportDTO;
 import mars.setting.model.GroupListDTO;
 import mars.setting.model.SettingDAO;
+import mars.setting.model.UpdateListDTO;
 
 @Controller
 public class SettingController {
@@ -172,31 +174,70 @@ public class SettingController {
 		return mav;
 	}
 
-	
 	@RequestMapping("deleteGroup.do")
-	public ModelAndView deleteGroup(int idx_ff, int idx){
-		String msg="";
+	public ModelAndView deleteGroup(int idx_ff, int idx) {
+		String msg = "";
 		ModelAndView mav = new ModelAndView();
 		int count = settingDao.deleteGroup(idx_ff);
-		if(count>0){
+		if (count > 0) {
 			count = settingDao.deleteff(idx_ff);
-			msg = count>0? "삭제되었습니다." : "삭제에 실패하였습니다.";
+			msg = count > 0 ? "삭제되었습니다." : "삭제에 실패하였습니다.";
 		}
-		
+
 		mav.addObject("msg", msg);
-		mav.addObject("gourl", "friendSetting.do?idx="+idx);
+		mav.addObject("gourl", "friendSetting.do?idx=" + idx);
 		mav.setViewName("setting/settingMsg");
 		return mav;
 	}
-	
+
 	@RequestMapping("updateGroupForm.do")
-	public ModelAndView updateGroupForm(int idx_ff, int idx){
+	public ModelAndView updateGroupForm(int idx_ff, int idx) {
 		List<MemberDTO> list = settingDao.getFollowingList(idx);
+		List<GroupDTO> group = settingDao.showGroup(idx_ff);
+
+		HashMap map = new HashMap<String, String>();
+		map.put("user2_idx", idx);
+		map.put("idx", idx_ff);
+		String groupName = settingDao.groupName(map);
+
+		List<UpdateListDTO> arr = new ArrayList<UpdateListDTO>();
+
+		int result = 0;
+		String name = "";
+		int getIdx = 0;
+
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = 0; j < group.size(); j++) {
+				if (list.get(i).getIdx() == group.get(j).getIdx_to()) {
+					result = 1;
+					name = list.get(i).getName();
+					getIdx = list.get(i).getIdx();
+
+				} else {
+					result = 0;
+					name = list.get(i).getName();
+					getIdx = list.get(i).getIdx();
+				}
+			}
+			
+			if (result == 1) {
+				UpdateListDTO dto = new UpdateListDTO(list.get(i).getName(), list.get(i).getIdx(), true);
+				System.out.println("1_" + list.get(i).getIdx());
+				arr.add(dto);
+			} else {
+				UpdateListDTO dto = new UpdateListDTO(list.get(i).getName(), list.get(i).getIdx(), false);
+				System.out.println("0_" + list.get(i).getIdx());
+				arr.add(dto);
+			}
+		}
+
+		System.out.println(arr.size());
+
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("list", list);
-		mav.addObject("idx_ff", idx_ff);
+		mav.addObject("arr", arr);
+		mav.addObject("groupName", groupName);
 		mav.setViewName("setting/updateGroupForm");
 		return mav;
-		
+
 	}
 }

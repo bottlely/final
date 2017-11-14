@@ -21,4 +21,9 @@ public class FeedDAOImple implements FeedDAO {
 		return list;
 	}
 
+	public List<ContentDTO> photoFeed(int idx) {
+		List<ContentDTO> list = sqlMap.selectList("photoFeed", idx);
+		return list;
+	}
+
 }
