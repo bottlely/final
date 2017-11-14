@@ -27,5 +27,12 @@ public interface AdminDAO {
    public int girl1();
    public int man1();
    public int allcount();
+   public int girl2();
+   public int man2();
+   public int girl3();
+   public int man3();
+   public int girl4();
+   public int man4();
+   public int others();
    
 }

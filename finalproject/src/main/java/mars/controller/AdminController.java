@@ -152,6 +152,14 @@ public class AdminController {
       int gender_2 = aDao.gender_2();
       int girl1 = aDao.girl1();
       int man1 = aDao.man1();
+      int girl2 = aDao.girl2();
+      int man2 = aDao.man2();
+      int girl3 = aDao.girl3();
+      int man3 = aDao.man3();
+      int girl4 = aDao.girl4();
+      int man4 = aDao.man4();
+      int others = aDao.others();
+
       int allcount=aDao.allcount();
       System.out.println(favor_movie);
       mav.addObject("movie",favor_movie);
@@ -165,8 +173,15 @@ public class AdminController {
       mav.addObject("gender1",gender_1);
       mav.addObject("gender2",gender_2);
       mav.addObject("girl1",girl1);
+      mav.addObject("girl2",girl2);
+      mav.addObject("girl3",girl3);
+      mav.addObject("girl4",girl4);
       mav.addObject("allcount",allcount);
       mav.addObject("man1",man1);
+      mav.addObject("man2",man2);
+      mav.addObject("man3",man3);
+      mav.addObject("man4",man4);
+      mav.addObject("others",others);
       mav.setViewName("admin/admin_data_user");
     
       return mav;

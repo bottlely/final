@@ -120,13 +120,60 @@ public class AdminDAOImple implements AdminDAO {
    public int girl1() {
 	   Date now = new Date();
 	   System.out.println("출력 :"+ now.getYear());
-	   int girl=sqlMap.selectOne("1girl",now.getYear()-20);
+	   int girl=sqlMap.selectOne("1girl",now.getYear()+1900);
 	      return girl;
    }
    public int man1() {
 	   Date now = new Date();
+	   
 	   System.out.println("출력 :"+ now.getYear());
-	   int man=sqlMap.selectOne("1man",now.getYear()-20);
+	   int man=sqlMap.selectOne("1man",now.getYear()+1900);
+	      return man;
+   }
+   public int girl2() {
+	   Date now = new Date();
+	   System.out.println("출력 :"+ now.getYear());
+	   int girl=sqlMap.selectOne("2girl",now.getYear()+1900);
+	      return girl;
+   }
+   public int man2() {
+	   Date now = new Date();
+	   
+	   System.out.println("출력 :"+ now.getYear());
+	   int man=sqlMap.selectOne("2man",now.getYear()+1900);
+	      return man;
+   }
+   public int girl3() {
+	   Date now = new Date();
+	   System.out.println("출력 :"+ now.getYear());
+	   int girl=sqlMap.selectOne("3girl",now.getYear()+1900);
+	      return girl;
+   }
+   public int man3() {
+	   Date now = new Date();
+	   
+	   System.out.println("출력 :"+ now.getYear());
+	   int man=sqlMap.selectOne("3man",now.getYear()+1900);
+	      return man;
+   }
+   public int girl4() {
+	   Date now = new Date();
+	   System.out.println("출력 :"+ now.getYear());
+	   int girl=sqlMap.selectOne("4girl",now.getYear()+1900);
+	      return girl;
+   }
+   public int man4() {
+	   Date now = new Date();
+	   
+	   System.out.println("출력 :"+ now.getYear());
+	   int man=sqlMap.selectOne("4man",now.getYear()+1900);
+	      return man;
+   }
+   public int others() {
+	   Date now = new Date();
+	   
+	   System.out.println("출력 :"+ now.getYear());
+	   int man=sqlMap.selectOne("others",now.getYear()+1900);
 	      return man;
    }
    public int allcount() {
