@@ -191,12 +191,10 @@
 							<div class="card-body-icon">
 								<i class="fa fa-fw fa-comments"></i>
 							</div>
-							<div class="mr-5">26개 불편사항</div>
+							<div class="mr-5">불편사항:0개 </div>
 						</div>
 						<a class="card-footer text-white clearfix small z-1" href="#">
-							<span class="float-left">View Details</span> <span
-							class="float-right"> <i class="fa fa-angle-right"></i>
-						</span>
+							
 						</a>
 					</div>
 				</div>
@@ -206,12 +204,10 @@
 							<div class="card-body-icon">
 								<i class="fa fa-fw fa-list"></i>
 							</div>
-							<div class="mr-5">11 오늘가입한회원수</div>
+							<div class="mr-5">오늘가입한회원수:${todayjoin }명</div>
 						</div>
 						<a class="card-footer text-white clearfix small z-1" href="#">
-							<span class="float-left">View Details</span> <span
-							class="float-right"> <i class="fa fa-angle-right"></i>
-						</span>
+							
 						</a>
 					</div>
 				</div>
@@ -221,12 +217,10 @@
 							<div class="card-body-icon">
 								<i class="fa fa-fw fa-shopping-cart"></i>
 							</div>
-							<div class="mr-5">123 광고주문</div>
+							<div class="mr-5">광고주문:0개</div>
 						</div>
 						<a class="card-footer text-white clearfix small z-1" href="#">
-							<span class="float-left">View Details</span> <span
-							class="float-right"> <i class="fa fa-angle-right"></i>
-						</span>
+							
 						</a>
 					</div>
 				</div>
@@ -250,7 +244,7 @@
 
 							</div>
 							<div class="card-body">
-								<p>${userrank[0]}</p>
+								<p></p>
 								<p>Follower : ${ranksize1}명</p>
 							</div>
 
@@ -261,7 +255,7 @@
 						<!-- Example Bar Chart Card-->
 						<div class="card mb-3">
 							<div class="card-header">
-								<i class="fa fa-flag"></i>Top1
+								<i class="fa fa-flag"></i>Top2
 
 							</div>
 							<div class="card-body">
@@ -276,7 +270,7 @@
 						<!-- Example Bar Chart Card-->
 						<div class="card mb-3">
 							<div class="card-header">
-								<i class="fa fa-flag"></i>Top1
+								<i class="fa fa-flag"></i>Top3
 
 							</div>
 							<div class="card-body">

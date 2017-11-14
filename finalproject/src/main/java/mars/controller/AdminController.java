@@ -11,7 +11,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import mars.admin.model.AdminDAO;
 import mars.friend.model.FriendDAO;
-
 import mars.member.model.MemberDAO;
 import mars.member.model.MemberDTO;
 
@@ -28,13 +27,17 @@ public class AdminController {
       
       ModelAndView mav = new ModelAndView();
       List<Integer> userrank = aDao.userrank();
+    
+      int todayjoin = aDao.todayjoin();
       int ranksize1 = aDao.followingSize1();
       int ranksize2 = aDao.followingSize2();
       int ranksize3 = aDao.followingSize3();
       mav.addObject("ranksize1",ranksize1);
       mav.addObject("ranksize2",ranksize2);
       mav.addObject("ranksize3",ranksize3);
+ 
       mav.addObject("userrank",userrank);
+      mav.addObject("todayjoin",todayjoin);
       mav.setViewName("admin/admin_main");
       return mav;
    }

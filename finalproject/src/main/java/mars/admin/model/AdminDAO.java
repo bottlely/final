@@ -52,5 +52,7 @@ public interface AdminDAO {
    public int followingSize1();
    public int followingSize2();
    public int followingSize3();
+   public int todayjoin();
+
    
 }

@@ -70,6 +70,8 @@
 		to_char(joindate,'YY-MM-DD')as a from
 		mars_member)
 	</select>
+
+			
 	<select id="favor_movie" resultType="int">
 		select
 		sum(a.favorite_movie)from
@@ -248,7 +250,11 @@
 	select count(to_char(joindate,'YYYY-MM-DD')) from mars_member where joindate <= #{date}
 	]]>
 	</select>
-	
+		<select id="todayjoin" resultType="int" parameterType="String">
+	<![CDATA[
+	select count(*) from (select to_char(joindate,'YYYY-MM-DD')as a from mars_member)a where a = #{date}
+	]]>
+	</select>
 	<select id="userrank" resultType="int">
 	select user2_idx from mars_ff group by user2_idx having count(*)>1 order by  count(*) desc
 	</select>

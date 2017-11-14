@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import mars.friend.model.FriendDTO;
 import mars.member.model.MemberDTO;
 
+
 public class AdminDAOImple implements AdminDAO {
    
    private SqlSessionTemplate sqlMap;   
@@ -337,4 +338,16 @@ public class AdminDAOImple implements AdminDAO {
 	  
 		return one;
 	}
+   public int todayjoin() {
+	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+	   Date currentTime = new Date ( );
+	   Date countTime = new Date ( currentTime.getTime());
+	   String dTime = formatter.format ( countTime );
+	   
+	   int todayjoin = sqlMap.selectOne("todayjoin",dTime);
+	   
+	   return todayjoin;
+   }
+   
+
 }
