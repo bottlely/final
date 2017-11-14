@@ -141,7 +141,7 @@
 			<ref bean="sqlSessionTemplate"></ref>
 		</constructor-arg>
 	</bean>
-	<bean id="chatDao" class="mars.chat.model.chattingDAOImple">
+	<bean id="chatDao" class="mars.chat.model.ChattingDAOImple">
 		<constructor-arg>
 			<ref bean="sqlSessionTemplate" />
 		</constructor-arg>

@@ -9,7 +9,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ChattingController {
 	
-	@RequestMapping(value="/chat.do", method = RequestMethod.GET)
+	@RequestMapping("/chat.do") 
+	public String chatForm() {
+		return "broadcasting/broadcast";
+	}
+	
+	@RequestMapping(value="/broadcast.do", method = RequestMethod.GET)
 	public void chat(@RequestParam("uesr_idx")int user_idx, @RequestParam("chat_content")String chat_content) {
 		System.out.println("hi");
 		//ModelAndView mav = new ModelAndView();

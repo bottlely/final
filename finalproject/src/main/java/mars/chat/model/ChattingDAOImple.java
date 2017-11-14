@@ -13,5 +13,14 @@ public class ChattingDAOImple implements ChattingDAO {
 		this.sqlMap = sqlMap;
 	}
 	
+	public int insertChat(ChattingDTO cdto) {
+		int res = sqlMap.insert("chatInsert", cdto);
+		return res;
+	}
+	
+	public int insertGrChat(GroupChattingDTO gcdto) {
+		int res = sqlMap.insert("groupChatInsert", gcdto);
+		return res;
+	}
 	
 }
