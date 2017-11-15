@@ -13,15 +13,22 @@ public class ActivityDTO {
 	private Date actdate;
 	private int numtype1;
 	private int numtype2;
-	private String vartype1;
+	private String name;
 	private String vartype2;
 	
 	public ActivityDTO() {
 		super();
 	}
+	
+	public ActivityDTO(String name,int content_idx, Date actdate) {
+		super();
+		this.content_idx = content_idx;
+		this.actdate = actdate;
+		this.name = name;
+	}
 
 	public ActivityDTO(int idx, int from_idx, int to_idx, int type, int content_idx, int reply_idx, int like_idx,
-			Date actdate, int numtype1, int numtype2, String vartype1, String vartype2) {
+			Date actdate, int numtype1, int numtype2, String name, String vartype2) {
 		super();
 		this.idx = idx;
 		this.from_idx = from_idx;
@@ -33,7 +40,7 @@ public class ActivityDTO {
 		this.actdate = actdate;
 		this.numtype1 = numtype1;
 		this.numtype2 = numtype2;
-		this.vartype1 = vartype1;
+		this.name = name;
 		this.vartype2 = vartype2;
 	}
 
@@ -117,12 +124,12 @@ public class ActivityDTO {
 		this.numtype2 = numtype2;
 	}
 
-	public String getVartype1() {
-		return vartype1;
+	public String getname() {
+		return name;
 	}
 
-	public void setVartype1(String vartype1) {
-		this.vartype1 = vartype1;
+	public void setname(String name) {
+		this.name = name;
 	}
 
 	public String getVartype2() {

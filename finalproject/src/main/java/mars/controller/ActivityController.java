@@ -22,8 +22,8 @@ public class ActivityController {
 	public ModelAndView activeList(int idx) {
 		
 		
-		List<String> list1 = actDao.active_like(idx); 
-		List<String> list2 = actDao.active_reply(idx);
+		List<ActivityDTO> list1 = actDao.active_like(idx); 
+		List<ActivityDTO> list2 = actDao.active_reply(idx);
 		//System.out.println(list2.get(0));
 		
 		ModelAndView mav = new ModelAndView();

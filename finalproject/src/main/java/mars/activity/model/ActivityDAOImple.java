@@ -16,14 +16,14 @@ public class ActivityDAOImple implements ActivityDAO {
 	}
 	
 	
-	public List<String> active_like(int i) {
+	public List<ActivityDTO> active_like(int i) {
 	
-	     List<String> list1 = sqlMap.selectList("active_like",i);
+	     List<ActivityDTO> list1 = sqlMap.selectList("active_like",i);
 	      return list1;
 		
 	}
-	public List<String> active_reply(int i) {
-		 List<String> list1 = sqlMap.selectList("active_reply",i);
+	public List<ActivityDTO> active_reply(int i) {
+		 List<ActivityDTO> list1 = sqlMap.selectList("active_reply",i);
 	      return list1;
 	}
 }
