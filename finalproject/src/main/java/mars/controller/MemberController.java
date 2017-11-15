@@ -90,6 +90,7 @@ public class MemberController {
 				session.setAttribute("useridx",useridx);
 				session.setAttribute("userid", userid);
 				session.setAttribute("username", username);
+				session.setAttribute("userEmail", dto.getId());
 				
 				/*Cookie Save*/
 				String saveid = req.getParameter("saveid");

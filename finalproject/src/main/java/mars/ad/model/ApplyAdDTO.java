@@ -20,7 +20,7 @@ public class ApplyAdDTO {
 	private int favor_music;
 	private int favor_dance;
 	private int favor_food;
-	private int status; //0:신청&심사중 1:심사 완료/결제 2:결제완료 3:게시
+	private int status; //0:신청&심사중 1:심사 완료/결제 2:결제완료 3:게시 4:거절
 	private String post; //퍼간???
 	private String follow; //팔로워?팔로잉
 	private Date apply_date; //신청 날짜 -> 승인하면 승인날짜로

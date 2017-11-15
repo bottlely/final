@@ -33,4 +33,14 @@
   	update ad set status=1 where ad_idx = #{ad_idx}
   	</update>
   	
+  	<update id="insertNo">
+  	update ad set status=4 where ad_idx = #{ad_idx}
+  	</update>
+  	
+  	<select id="getMail" resultType="String">
+  	select id from mars_member where idx = #{member_idx}
+  	</select>
+  	
+  	
+  	
   </mapper>

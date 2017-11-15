@@ -60,8 +60,16 @@ public class ApplyAdDAOImple implements ApplyAdDAO {
 		return list;
 	}
 	
-	public void insertOkSign(int ad_idx){
+	public String insertOkSign(int ad_idx, int member_idx){
 		sqlMap.update("insertOk", ad_idx);
+		String email = sqlMap.selectOne("getMail", member_idx);
+		return email;
+	}
+	
+	public String insertNoSign(int ad_idx, int member_idx){
+		sqlMap.update("insertNo", ad_idx);
+		String email = sqlMap.selectOne("getMail", member_idx);
+		return email;
 	}
 
 }

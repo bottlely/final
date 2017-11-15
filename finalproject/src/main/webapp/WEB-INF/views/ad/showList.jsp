@@ -47,22 +47,32 @@
 
 <script>
 
-(function imme(){
+//(function imme(){
 	
-	if("${ok}"==""){
-	}
-	else{
-		window.close();
-	}
-})()
+//	if("${ok}"==""){
+//		alert('1');
+//	}
+//	else if("${ok}"==="1"){
+//		alert('2');
+//		close();
+//	}
+//})()
 
 function no(){
-	window.close();
+	window.location="insertNoSign.do?ad_idx="+${o.ad_idx}+"&member_idx="+${o.member_idx};
 }
 function ok(){
-	window.location="insertOkSign.do?ad_idx="+${o.ad_idx};
+
+	window.location="insertOkSign.do?ad_idx="+${o.ad_idx}+"&member_idx="+${o.member_idx};
+	
+	
 	//setTimeout('window.close()',10000);
 }
+
+//function close(){
+//	alert('come');
+//	window.close();
+//}
 </script>
 <input type="button" value="승인" onclick="ok()">
 <input type="button" value="거절" onclick="no()">

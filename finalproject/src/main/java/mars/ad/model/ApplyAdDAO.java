@@ -12,6 +12,7 @@ public interface ApplyAdDAO {
 	public String showAveNum(Integer i);
 	public List<ApplyAdDTO> showNum(int member_idx);
 	public List<ApplyAdDTO> showList(String ad_idx);
-	public void insertOkSign(int ad_idx);
+	public String insertOkSign(int ad_idx, int member_idx);
+	public String insertNoSign(int ad_idx, int member_idx);
 
 }

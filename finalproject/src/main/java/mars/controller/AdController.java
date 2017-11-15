@@ -2,10 +2,10 @@ package mars.controller;
 
 import java.util.List;
 
-import org.apache.catalina.connector.Request;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,12 +14,22 @@ import org.springframework.web.servlet.ModelAndView;
 import mars.ad.model.ApplyAdDAO;
 import mars.ad.model.ApplyAdDTO;
 
+import mars.email.model.MailService;
+import mars.member.model.MemberDAO;
+
 
 @Controller
 public class AdController {
 	
 	@Autowired
+	private MailService mailService;
+	
+	@Autowired
 	private ApplyAdDAO adDao;
+	
+	public void setMailService(MailService mailService) {
+		this.mailService = mailService;
+	}
 	
 	@RequestMapping("/applyAdForm.do")
 	public ModelAndView adJoinForm(){
@@ -91,17 +101,30 @@ public class AdController {
 	}
 	
 	@RequestMapping("/insertOkSign.do")
-	public void insertOkSign(@RequestParam("ad_idx")String ad_idx){
+	public void insertOkSign(@RequestParam("ad_idx")String ad_idx, @RequestParam("member_idx")String member_idx){
+		int adidx = Integer.parseInt(ad_idx);
+		int memberidx = Integer.parseInt(member_idx);
+		String mail = adDao.insertOkSign(adidx, memberidx);
+		
+		String subject = "귀하의 광고신청이 승인되었습니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("결제부탁.");
+		boolean check = mailService.send(subject, sb.toString(), "jungdu92@gmail.com", mail);
+		
+	}
+	
+	@RequestMapping("/insertNoSign.do")
+	public void insertNoSign(@RequestParam("ad_idx")String ad_idx, @RequestParam("member_idx")String member_idx){
 
 		int adidx = Integer.parseInt(ad_idx);
+		int memberidx = Integer.parseInt(member_idx);
+		String mail = adDao.insertNoSign(adidx, memberidx);
 		
-			adDao.insertOkSign(adidx);
-		
-		
-	//	ModelAndView mav = new ModelAndView();
-	//	mav.addObject("ok", 1);
-	//	mav.setViewName("ad/showList");
-	//	return mav;
+		String subject = "귀하의 광고신청이 거절되었습니다.";
+		StringBuilder sb = new StringBuilder();
+		sb.append("거절.");
+		boolean check = mailService.send(subject, sb.toString(), "jungdu92@gmail.com", mail);
+
 	}
 	
 
