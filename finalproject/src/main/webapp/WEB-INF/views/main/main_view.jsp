@@ -439,6 +439,12 @@ pre.prettyprint {
 				<input type="hidden" id="session_idx"
 					value="${sessionScope.useridx }"> <input type="hidden"
 					id="session_name" value="${sessionScope.username }">
+								</div>
+			<div class="col-sm-2 sidenav"></div>
+		</div>
+		<div class="row content">
+			<div class="col-sm-2 sidenav"></div>
+			<div class="col-sm-8 text-left" style="background: #f4f4f4; text-align: left;">
 				<script>
          function like(content_idx){
             document.getElementById("session_idx").value;
