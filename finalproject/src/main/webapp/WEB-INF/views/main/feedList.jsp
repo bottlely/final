@@ -9,7 +9,7 @@
 </head>
 <body>	
 		
-		<c:if test="${empty reply }"> 내용이 없습니다. </c:if>
+		<c:if test="${empty reply }"> 댓글 내용이 없습니다. </c:if>
 		<c:forEach var="list" items="${reply }">
             <div class="dropdown-divider"></div>
             <!-- 게시물 하나당 a태그하나 -->
@@ -17,6 +17,20 @@
               <span class="text-success">
                 <strong>
                   <i class="fa fa-long-arrow-up fa-fw"></i>${list}님이 댓글을남겼습니다</strong>
+              </span>
+              
+              
+            </a>
+		</c:forEach>
+		<br>
+		<c:if test="${empty like }"> 좋아요 내용이 없습니다. </c:if>
+		<c:forEach var="list" items="${like }">
+            <div class="dropdown-divider"></div>
+            <!-- 게시물 하나당 a태그하나 -->
+            <a class="dropdown-item" href="main_view.do?content_idx=20">
+              <span class="text-success">
+                <strong>
+                  <i class="fa fa-long-arrow-up fa-fw"></i>${list}님이 회원님 게시물을 좋아합니다.</strong>
               </span>
               
               
