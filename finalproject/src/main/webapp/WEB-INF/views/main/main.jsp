@@ -132,6 +132,30 @@ var data = [
 	,{name : '오현경'}
 	,{name : '한미연'}
 	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	,{name : '정다운'}
+	
 	];
 
 	
@@ -143,7 +167,7 @@ var data = [
 		  $("#searchForm").autocomplete(data, {
 		    matchContains: true,
 		    minChars: 0,
-		   width: 172,
+		   width: 120,
 		   max: 10,
 		   multiple: false,
 		   scroll: true,
