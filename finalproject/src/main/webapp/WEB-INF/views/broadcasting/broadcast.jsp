@@ -7,14 +7,12 @@
     <title>Testing websockets</title>
 </head>
 <body>
-	<form name="chat" id="chat">
     <fieldset>
         <textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
         <br/>
         <input id="inputMessage" type="text"/>
         <input type="submit" value="send" onclick="send()" />
     </fieldset>
-    </form>
 </body>
     <script type="text/javascript">
     
@@ -44,6 +42,7 @@
 	        textarea.value += "나 : " + inputMessage.value + "\n";
 	        webSocket.send(inputMessage.value);
 	        inputMessage.value = "";
+	        alert("나: "+inputMessage.value);
 	    }
   </script>
 </html>

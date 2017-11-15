@@ -12,7 +12,7 @@ public class ChattingController {
 	@RequestMapping("/broadcasting.do") 
 	public String chatForm() {
 		//return "broadcasting/broadcast2";
-		return "broadcasting/c";
+		return "broadcasting/chat";
 	}
 	
 	@RequestMapping("chat.do")
@@ -21,7 +21,7 @@ public class ChattingController {
 		mav.addObject("user2_name", user2_name);
 		mav.addObject("user2_idx", user2_idx);
 		mav.addObject("user2_profile_img", user2_profile_img);
-		mav.setViewName("broadcasting/c");
+		mav.setViewName("broadcasting/chat");
 		return mav;
 	}
 	
