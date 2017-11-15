@@ -536,7 +536,7 @@ var data = [
          function deleteContent(content_idx){
             
             var data = new FormData();
-            data.append("content_idx", content_idx);
+            data.append("contentidx", content_idx);
              var xhr = new XMLHttpRequest();
                xhr.open("POST","deleteContent.do");
                xhr.send(data);

@@ -462,8 +462,8 @@ public class ContentController {
 		}
 	}
 	
-	@RequestMapping("/contentDel.do")
-	public ModelAndView contentDel (@RequestParam("contentidx")String contentidx,HttpServletRequest req){
+	@RequestMapping("/deleteContent.do")
+	public ModelAndView deleteContent(@RequestParam("contentidx")String contentidx,HttpServletRequest req){
 		
 		int type = cdao.contentOne(contentidx).getCategory();
 		
@@ -475,11 +475,10 @@ public class ContentController {
 				
 				String list = cdao.contentOne(contentidx).getPath();
 				
-				List<String> items = new ArrayList<String>(Arrays.asList(list.split("?")));
+				List<String> items = new ArrayList<String>(Arrays.asList(list.split("\\?")));
 				
 				for(String src : items){
-						
-						File file_img = new File(realPath+"/"+src);
+						File file_img = new File(realPath+"/myHomeFolder/content/"+src);
 						
 						if(file_img.exists() ){ 
 								if(file_img.delete()){
@@ -514,12 +513,6 @@ public class ContentController {
 		
 		return mav;
 		
-	}
-	
-	@RequestMapping("/deleteContent.do")
-	public ModelAndView  deleteContent(@RequestParam("content_idx")int content_idx) {
-		int result = cdao.contentDel(Integer.toString(content_idx));
-		return new ModelAndView("marsJson","result",result);
 	}
 	
 }
