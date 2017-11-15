@@ -835,21 +835,47 @@ var data = [
 
 							<ul class="nav navbar-nav navbar-right">
 
-								<!-- 다운 광고 추가 임시 버튼 -->
-
-								<script>
-                  function voice(){
-                     sendRequest('voice.do', null, voiceResult, 'GET');
-                  }
-                  function voiceResult(){
-                     
-                  }
-               </script>
-
-
-								<li><a href="#" onclick="voice()"> <i
-										class="pe-7s-search"></i>
-								</a></li>
+								<!-- 다운 음성인식 -->
+								
+						<li>							
+						<div id="speechbbbbox"></div>
+					    <button onClick="startConverting();" type="button"><i class="fa fa-microphone"></i></button>
+					    </li>
+					
+					
+						<script type="text/javascript">
+						 
+						function startConverting ()
+						{
+						        if('webkitSpeechRecognition'in window)
+						        {
+						        	 var mic = new webkitSpeechRecognition();
+						        	   mic.continuous = true;
+						        	   mic.interimResults = true;
+						        	   mic.lang = 'ko-KR';
+						        	   mic.start();
+						        	   
+						        	   mic.onresult = function(e) {
+						        		   var b = '', c = false;
+						        		   for(var i = e.resultIndex; i < e.results.length; ++i) {
+						        		   b += e.results[i][0].transcript;
+						        		   c = e.results[i].isFinal;
+						        		   }
+						        		   if($('#speechbbbbox .cning').length < 1) $('#speechbbbbox').append('<span class="cning"></span>');
+						        		   $('#speechbbbbox .cning').text(b);
+						        		   if(c) $('#speechbbbbox .cning').removeClass('cning');
+						        		   };
+						        		   
+						        		mic.onend = function() {
+						        		   $('#speechbbbbox').removeClass('on');
+						        		   };
+						        		mic.stop();
+						        }
+						        else{
+						        	$('#speechbbbbox').html('<strong>지원하지 않는 브라우저입니다.</strong>');
+						        }
+						    }
+						</script>
 
 
 
