@@ -368,12 +368,13 @@ public class ContentController {
 		List<String> items = new ArrayList<String>(Arrays.asList(list.split(",")));
 		
 		for(String src : items){
+			System.out.println(src);
 			if(!src.equals(sel)){
 				
-				File file_video = new File(realPath+"/"+src);
+				File file_video = new File(realPath+"/myHomeFolder/content/"+src);
 
 				String img = src.substring(0, src.indexOf("."))+ ".jpg";
-				File file_img = new File(realPath+"/"+img);
+				File file_img = new File(realPath+"/myHomeFolder/content/"+img);
 				
 				if(file_video.exists() && file_img.exists() ){ 
 						if(file_video.delete() && file_img.delete()){
@@ -471,6 +472,7 @@ public class ContentController {
 		realPath = realPath.replaceAll("\\\\","/");
 		
 		if(type < 3){
+			
 			if(type == 1){
 				
 				String list = cdao.contentOne(contentidx).getPath();
@@ -485,15 +487,33 @@ public class ContentController {
 				                System.out.println("삭제한 파일 : "+src);
 				            }else{
 				                System.out.println("삭제 실패한 파일 : "+src);
-				                return null;
+				                return new ModelAndView("marsJson", "result", -1);
 				            }
 						}else{
 							System.out.println("파일이 존재하지 않습니다.");
-							return null;
+							return new ModelAndView("marsJson", "result", -1);
 						}
 				}
 			}else{
 				
+						String src = cdao.contentOne(contentidx).getPath();
+						
+						File file_video = new File(realPath+"/myHomeFolder/content/"+src);
+
+						String img = src.substring(0, src.indexOf("."))+ ".jpg";
+						File file_img = new File(realPath+"/myHomeFolder/content/"+img);
+						
+						if(file_video.exists() && file_img.exists() ){ 
+								if(file_video.delete() && file_img.delete()){
+				                System.out.println("삭제한 파일 : "+src);
+				            }else{
+				                System.out.println("삭제 실패한 파일 : "+src);
+				                return new ModelAndView("marsJson", "result", -1);
+				            }
+						}else{
+							System.out.println("파일이 존재하지 않습니다.");
+							return new ModelAndView("marsJson", "result", -1);
+						}
 			}
 		}
 		int result = cdao.contentDel(contentidx);
