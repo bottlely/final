@@ -60,11 +60,15 @@ function no(){
 	window.close();
 }
 function ok(){
-	window.location="insertOkSign.do?ad_idx="+${o.ad_idx};
+	window.location="insertOkSign.do?ad_idx="+${o.ad_idx}+"&status=3";
 	//setTimeout('window.close()',10000);
+}
+function wait(){
+	window.location="insertOkSign.do?ad_idx="+${o.ad_idx}+"&status=2";
 }
 </script>
 <input type="button" value="승인" onclick="ok()">
+<input type="button" value="보류" onclick="wait()">
 <input type="button" value="거절" onclick="no()">
 	
 </c:forEach>

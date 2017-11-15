@@ -13,5 +13,6 @@ public interface ApplyAdDAO {
 	public List<ApplyAdDTO> showNum(int member_idx);
 	public List<ApplyAdDTO> showList(String ad_idx);
 	public void insertOkSign(int ad_idx);
+	public void insertWaitSign(int ad_idx);
 
 }

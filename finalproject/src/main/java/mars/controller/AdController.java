@@ -87,15 +87,21 @@ public class AdController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("list", list);
 		mav.setViewName("ad/showList");
-	//	System.out.println(list.get(0).getAd_idx());
 		return mav;
 	}
 	
 	@RequestMapping("/insertOkSign.do")
-	public void insertOkSign(@RequestParam("ad_idx")String ad_idx){
-	//	System.out.println(ad_idx);
+	public void insertOkSign(@RequestParam("ad_idx")String ad_idx, @RequestParam("status")String status){
+
 		int adidx = Integer.parseInt(ad_idx);
-		adDao.insertOkSign(adidx);
+		int r_status = Integer.parseInt(status);
+		if(r_status==3){
+			adDao.insertOkSign(adidx);
+		}
+		else{
+			adDao.insertWaitSign(adidx);
+		}
+		
 	//	ModelAndView mav = new ModelAndView();
 	//	mav.addObject("ok", 1);
 	//	mav.setViewName("ad/showList");
