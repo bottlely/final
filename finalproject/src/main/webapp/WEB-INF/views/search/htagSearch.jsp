@@ -304,10 +304,10 @@
 		</div>
 		<div class="row text-center">
 			<div class="works-category"  data-sr='enter top, wait 0.2s'>
-				<ul class="statistics">
-					<li class="style1"><a href="#" data-filter="*" class="current">All</a></li>
-					<li class="style2"><a href="#" data-filter=".photo">PEOPLE</a></li>
-					<li class="style3"><a href="#" data-filter=".viedeo">HASH</a></li>
+				<ul class="statistics" style="width:700px;height:70px;margin:0px auto;">
+					
+					<li class="style1"><a href="#" data-filter=".photo">PEOPLE</a></li>
+					<li class="style2"><a href="#" data-filter=".viedeo">HASH</a></li>
 				</ul>
 			</div>
 
@@ -335,6 +335,15 @@
 				
 
 			</div> 
+		</div>
+		</div>
+		
+		<!-- 서치결과뜨는곳(해시태그) -->
+		<div class="col-md-4 col-sm-6 col-xs-12  jpg">
+							<div class="works">
+							<!-- 결과사진 foreach로 뿌려주세요 -->
+							<img src="myHomeFolder/content/" alt=""
+									style="width: 400px; height: 400px;">
 		</div>
 		</div>
 

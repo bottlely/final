@@ -67,6 +67,27 @@
         .com{
             color: #999;
         } 
+        #peoplesearch .peoplesearchtable{
+       	width:645px;
+        margin:0px auto;
+        }
+        #peoplesearch .peoplesearchtable tr{
+       
+       border-bottom: 1px solid #ddd;
+        }
+        #peoplesearch .peoplesearchtable tr td{
+        height: 70px;
+        width:100px;
+        font-size:12px;
+        text-align: left;
+        padding-left:20px;
+        }
+        #peoplesearch .peoplesearchtable tr td img{
+        border-radius: 100%;
+        width:60px;
+        height:60px;
+        
+        }
     </style>
 </head>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -313,10 +334,10 @@
 		</div>
 		<div class="row text-center">
 			<div class="works-category"  data-sr='enter top, wait 0.2s'>
-				<ul class="statistics">
-					<li class="style1"><a href="#" data-filter="*" class="current">All</a></li>
-					<li class="style2"><a href="#" data-filter=".photo">PEOPLE</a></li>
-					<li class="style3"><a href="#" data-filter=".viedeo">HASH</a></li>
+				<ul class="statistics" style="width:700px;height:70px;margin:0px auto;">
+					
+					<li class="style1"><a href="#" data-filter=".photo">PEOPLE</a></li>
+					<li class="style2"><a href="#" data-filter=".viedeo">HASH</a></li>
 				</ul>
 			</div>
 
@@ -349,8 +370,27 @@
 			</div> 
 		</div>
 		</div>
-
+		
+		<!-- 서치결과뜨는곳(사람) -->
+		<div id="peoplesearch">
+		
+		<table class="peoplesearchtable">
+			<tr>
+				<td><img src="myHomeFolder/profile_img/default_profile.jpg"></td>
+				<td colspan="3">한미연 <br> miyoniyam_hoho</td>
+			</tr>
+			<tr>
+				<td><img width="50" height="50" src="myHomeFolder/profile_img/default_profile.jpg"></td>
+				<td colspan="3">한미연 <br> miyoniyam_hoho</td>
+			</tr>
+		</table>
+		</div>
+		
+		
+		
 </section>
+
+
   <section>
   <div class="container">
    
