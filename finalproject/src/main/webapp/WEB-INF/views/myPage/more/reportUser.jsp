@@ -31,7 +31,7 @@ function uploadData(){
 	data.append("fromIdx", '${sessionScope.useridx}'); 
 	data.append("toIdx", '${toIdx}'); 
 	data.append("report",report);
-	data.append("category", category);
+	data.append("category", 2);
 	 
      var xhr = new XMLHttpRequest();
      xhr.open("POST","report.do");

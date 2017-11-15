@@ -20,6 +20,6 @@ public interface MyHomeDAO {
 	public String refreshPage();
 	public String moreButtonForm();
 	
-	public int reportSend_user(ReportDTO dto);
+	public int reportSend(ReportDTO dto);
 
 }

@@ -553,12 +553,11 @@ var data = [
                }
          }
          
-       //contentMore
-       function reportContent(content_idx){
-            
-              window.open('reportContentForm.do?toIdx='+content_idx,'reportOpen','width=600,height=500');
-         }
-         } 
+	      //contentMore
+	     function reportContent(content_idx){
+	            window.open('reportContentForm.do?toIdx='+content_idx,'reportOpen','width=600,height=500');
+	         
+	      } 
          
          function replyList(){
              if(XHR.readyState==4){
@@ -1098,12 +1097,9 @@ var data = [
 									style="background: gray;">설정</button> <!-- The Modal -->
 								<div id="myModal2" class="modal2">
 
-									<!-- Modal content -->
-									<div class="list-group" style="width: 20%; margin: 5% auto;">
-										<span class="close">&times;</span> <a href="#"
-											class="list-group-item list-group-item-success">수정</a> <a
-											href="#" class="list-group-item list-group-item-info">삭제</a>
-										<a href="#" class="list-group-item list-group-item-warning">신고</a>
+									<!-- Modal content // contentMore -->
+									<div class="list-group" style="width: 20%; margin: 5% auto;" id="contentMore">
+										<span class="close">&times;</span>
 									</div>
 
 								</div>

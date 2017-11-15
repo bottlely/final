@@ -168,9 +168,9 @@ public class MyHomeController{
 	public ModelAndView reportUser(@RequestParam("report")String content,
 			@RequestParam("toIdx")int idx_to,
 			@RequestParam("fromIdx")int idx_from,
-			@RequestParam("fromIdx")int category) {
+			@RequestParam("category")int category) {
 		ReportDTO dto = new ReportDTO(idx_from, idx_to,content, category);
-		int result = mhdao.reportSend_user(dto);
+		int result = mhdao.reportSend(dto);
 		ModelAndView mav = new ModelAndView("marsJson","result",result);
 		return mav;
 	}
