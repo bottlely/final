@@ -76,6 +76,14 @@ public class FriendDAOImple implements FriendDAO {
 		int res = sqlMap.delete("removeFollower", map);
 		return res;
 	}
+
+	public FriendDTO relation(int user1_idx, int user2_idx) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("user1_idx", user1_idx);
+		map.put("user2_idx", user2_idx);
+		FriendDTO fdto = sqlMap.selectOne("relation", map);
+		return fdto;
+	}
 	
 	/*public List<MemberDTO> blackCheck(String user1_idx, String user2_idx) {
 		HashMap<String, String> map = new HashMap<String, String>();

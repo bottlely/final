@@ -182,7 +182,7 @@ select {
                   if(jsonResponse["result"] > 0){
                      alert('업로드 완료!');
                      window.opener.location.reload();
-                   window.close();
+                   	 window.close();
                   }else{
                      alert('업로드 실패!');
                   }

@@ -152,6 +152,30 @@ input:checked+.slider:before {
          document.getElementById('openCoverage').checked = true;
       }
    }
+   
+   function UserHomeMore(url){
+	   var urldo = url +'.do';
+	   alert(urldo);
+	   var data = new FormData();
+	   data.append("user1_idx", '${sessionScope.useridx}');
+	   data.append("user2_idx", '${mhdto.getMember_idx()}');
+
+	   var xhr = new XMLHttpRequest();
+	   xhr.open("POST",urldo);
+	    xhr.send(data);
+        xhr.onload = function(e) {
+            if(this.status == 200){
+               var jsonResponse = JSON.parse(e.currentTarget.responseText);
+                if(jsonResponse["result"] > 0){
+                   alert('ok!');
+                   	window.location.reload();
+                   	parent.ppp.location.reload();
+                }else{
+                   alert('no!');
+                }
+             }
+          }
+   }
 
    function openCoverage(){
       
@@ -168,7 +192,7 @@ input:checked+.slider:before {
             xhr.onload = function(e) {
               if(this.status == 200){
                  var jsonResponse = JSON.parse(e.currentTarget.responseText);
-                  if(jsonResponse["result"] == 1){
+                  if(jsonResponse["result"] > 0){
                      alert('비공개 설정 완료!');
                   }else{
                      alert('비공개 설정 실패!');
@@ -182,7 +206,7 @@ input:checked+.slider:before {
             xhr.onload = function(e) {
                if(this.status == 200){
                   var jsonResponse = JSON.parse(e.currentTarget.responseText);
-               if(jsonResponse["result"] == 1){
+               if(jsonResponse["result"] > 1){
                      alert('비공개 해제 완료!');
                   }else{
                      alert('비공개 해제 실패!');
@@ -413,11 +437,19 @@ function showResult2(){
     <div class="window">
        <table align="center">
        
-           <tr onclick="reportOpen()"><td>신고하기</td></tr>
-          <tr><td><a href="friend_block.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">차단하기 </a></td></tr>
-          <tr><td><a href="friend_unblock.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">차단취소하기 </a></td></tr>
-          <tr><td><a href="following.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">팔로우하기</a></td></tr>
-          <tr><td><a href="deleteFriend.do?user1_idx=${sessionScope.useridx}&user2_idx=${mhdto.getMember_idx() }">언팔로우하기</a></td></tr>
+          <tr onclick="reportOpen()"><td>신고하기</td></tr>
+          <c:if test="${block eq 0}">
+          <tr onclick="UserHomeMore('friend_block_mypage')"><td>차단하기</td></tr>
+          </c:if>
+          <c:if test="${block eq 1}">
+          <tr onclick="UserHomeMore('friend_unblock_mypage')"><td>차단해제</td></tr>
+          </c:if>
+          <c:if test="${following eq 0}">
+          <tr onclick="UserHomeMore('following_mypage')"><td>팔로우</td></tr>
+          </c:if>
+          <c:if test="${following eq 1}">
+          <tr onclick="UserHomeMore('deleteFriend_mypage')"><td>언팔로우</td></tr>
+          </c:if>
           </table>
     </div>
     </c:if>
