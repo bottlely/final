@@ -515,6 +515,11 @@ public class ContentController {
 		return mav;
 		
 	}
-
+	
+	@RequestMapping("/deleteContent.do")
+	public ModelAndView  deleteContent(@RequestParam("content_idx")int content_idx) {
+		int result = cdao.contentDel(Integer.toString(content_idx));
+		return new ModelAndView("marsJson","result",result);
+	}
 	
 }

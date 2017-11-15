@@ -53,14 +53,14 @@ function uploadData(){
 <body>
 
 <div class="container" style="margin-top:10px;">
-  	<h2>회원 신고 </h2>
+  	<h2> 게시물 신고 </h2>
     <div class="panel panel-info">
       <div class="panel-heading">신고자</div>
-      <div class="panel-body">${sessionScope.username }</div>
+      <div class="panel-body">${sessionScope.username}</div>
     </div>
     <div class="panel panel-info">
-      <div class="panel-heading">신고 대상</div>
-      <div class="panel-body">${toName} (${toId}) </div>
+      <div class="panel-heading">게시물 작성자</div>
+      <div class="panel-body">${toName}</div>
     </div>
     <div class="panel panel-info">
       <div class="panel-heading">신고 사유</div>

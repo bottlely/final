@@ -23,6 +23,7 @@ import mars.friend.model.FriendDTO;
 import mars.member.model.MemberDAO;
 import mars.member.model.MemberDTO;
 import mars.myHome.model.*;
+import mars.report.model.ReportDTO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -145,17 +146,32 @@ public class MyHomeController{
 	public ModelAndView reportUserForm(@RequestParam("toIdx")int toIdx) {
 		
 		ModelAndView mav = new ModelAndView();
+
+		mav.addObject("toIdx", toIdx);
 		mav.addObject("toId",mdao.getUserInfo_idx(toIdx).getId());
 		mav.addObject("toName",mdao.getUserInfo_idx(toIdx).getName());
 		mav.setViewName("myPage/more/reportUser");
 		return mav;
 	}
-	@RequestMapping("/reportUser.do")
-	public ModelAndView reportUser(@RequestParam("report")String report,
-			@RequestParam("toIdx")String toIdx,
-			@RequestParam("fromIdx")String fromIdx) {
+	
+	@RequestMapping("/reportContentForm.do")
+	public ModelAndView reportContentForm(@RequestParam("toIdx")int toIdx) {
 		
-		ModelAndView mav = new ModelAndView("marsJson","result",1);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("toIdx", toIdx);
+		mav.addObject("toName",cdao.contentOne(Integer.toString(toIdx)).getWriter());
+		mav.setViewName("myPage/content/reportContent");
+		return mav;
+	}
+	
+	@RequestMapping("/report.do")
+	public ModelAndView reportUser(@RequestParam("report")String content,
+			@RequestParam("toIdx")int idx_to,
+			@RequestParam("fromIdx")int idx_from,
+			@RequestParam("fromIdx")int category) {
+		ReportDTO dto = new ReportDTO(idx_from, idx_to,content, category);
+		int result = mhdao.reportSend_user(dto);
+		ModelAndView mav = new ModelAndView("marsJson","result",result);
 		return mav;
 	}
 	
