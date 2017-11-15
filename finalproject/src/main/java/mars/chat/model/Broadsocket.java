@@ -16,17 +16,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 @ServerEndpoint("/broadcasting")
 public class Broadsocket {
 	
-	@Autowired
-	private ChattingDAO chatDao;
-	
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
 
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
 		System.out.println(message);
-		
-		//int res1 = chatDao.insertChat(cdto);
-		//int res2 = chatDao.insertGrChat(gcdto);
 		
 		synchronized (clients) {
 			// Iterate over the connected sessions

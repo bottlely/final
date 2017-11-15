@@ -62,30 +62,6 @@
       } 
       
       
-      $(document).ready(function(){
-          $("#userChat").click(function(){
-              var div = $('#msgTest2', parent.document);
-              div.animate({height: '40%'}, "slow");
-              div.animate({width:'toggle'}, "slow");
-          });
-      });
-      
-      $(document).ready(function(){
-          $("#userChat1").click(function(){
-              var div = $('#msgTest2', parent.document);
-              div.animate({height: '40%'}, "slow");
-              div.animate({width:'toggle'}, "slow");
-          });
-      });
-      
-      $(document).ready(function(){
-          $("#userChat2").click(function(){
-              var div = $('#msgTest2', parent.document);
-              div.animate({height: '40%'}, "slow");
-              div.animate({width:'toggle'}, "slow");
-          });
-      });
-      
      function fwer_more(other_idx, other_name, other_profile_img) {
     	 //alert(other_idx);
     	 
@@ -125,6 +101,15 @@
      function unblock(member_idx) {
          location.href="friend_unblock.do?user1_idx="+${sessionScope.useridx}+"&user2_idx="+member_idx;
          ppp.location.reload();
+     }
+     
+     /* function chatting(other_name, other_profile_img) {
+    	 //parent.chatting(other_name, other_profile_img);
+    	 window.open("");
+     } */
+     
+     function chatting(other_idx, other_name, other_profile_img) {
+    	 window.open('http://192.168.43.202:9090/finalproject/chat.do?user2_name='+other_name+'&user2_idx='+other_idx+'&user2_profile_img='+other_profile_img,'chat','width=300, height=300');
      }
      
      
@@ -205,7 +190,7 @@
 						                  ${follower_list.name }
 						               </a>
 						            </h3>
-						            <input type="button" value="chat" id="userChat">
+						            <input type="button" value="chat" id="userChat" onclick="chatting('${follower_list.member_idx }','${follower_list.name }','${follower_list.profile_img }')">
 						            <c:forEach var="fwing_idx" items="${followingList }">
 						               <c:if test="${cde != true}">
 						                  <c:if test="${fwing_idx.member_idx == follower_list.member_idx }">
@@ -222,7 +207,7 @@
 						            </c:if>
 						         </header>
 						         <a href="#" class="image">
-						            <img src="myHomeFolder/profile_img/${follower_list.profile_img }" alt="" style="border-radius: 50%">
+						            <img src="myHomeFolder/profile_img/${follower_list.profile_img }" alt="" style="border-radius: 50%; height: 40px; width: 40px;">
 						         </a>
 						      </article>
 						   </li>
@@ -239,9 +224,9 @@
                               <article>
                                  <header>
                                     <h3><a onclick="openMypage(${following_list.member_idx })" value="${following_list.member_idx }">${following_list.name }</a></h3>
-                                    <input type="button" value="chat" id="userChat1"><input type="button" value="more" onclick="fwing_more('${following_list.member_idx }','${following_list.name }','${following_list.profile_img }')">
+                                    <input type="button" value="chat" id="userChat1" onclick="chatting('${following_list.member_idx }','${following_list.name }','${following_list.profile_img }')"><input type="button" value="more" onclick="fwing_more('${following_list.member_idx }','${following_list.name }','${following_list.profile_img }')">
                                  </header>
-                                 <a href="#" class="image"><img src="myHomeFolder/profile_img/${following_list.profile_img }" alt=""  style="border-radius: 50%"></a>
+                                 <a href="#" class="image"><img src="myHomeFolder/profile_img/${following_list.profile_img }" alt=""  style="border-radius: 50%; height: 40px; width: 40px;"></a>
                               </article>
                            </li>
                         </c:forEach>
@@ -256,9 +241,9 @@
                               <article>
                                  <header>
                                     <h3><a onclick="openMypage(${search_list.member_idx })" value="${search_list.member_idx }">${search_list.name }</a></h3>
-                                    <input type="button" value="chat" id="userChat2"><input type="button" value="more" id="more" onclick="more(${search_list.member_idx })">
+                                    <input type="button" value="chat" id="userChat2" onclick="chatting('${search_list.member_idx }','${search_list.name }','${search_list.profile_img }')"><input type="button" value="more" id="more" onclick="more(${search_list.member_idx })">
                                  </header>
-                                 <a href="#" class="image"><img src="myHomeFolder/profile_img/${search_list.profile_img }" alt=""  style="border-radius: 50%"></a>
+                                 <a href="#" class="image"><img src="myHomeFolder/profile_img/${search_list.profile_img }" alt=""  style="border-radius: 50%; height: 40px; width: 40px;"></a>
                               </article>
                            </li>
                         </c:forEach>
@@ -285,7 +270,7 @@
                                     <h3 style="display: inline;"><a onclick="openMypage(${blackList.member_idx })" value="${blackList.member_idx }">${blackList.name }</a></h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="button" value="차단해제" onclick="unblock(${blackList.member_idx })">
                                  </header>
-                                 <a href="#" class="image"><img src="myHomeFolder/profile_img/${blackList.profile_img }" alt=""  style="border-radius: 50%"></a>
+                                 <a href="#" class="image"><img src="myHomeFolder/profile_img/${blackList.profile_img }" alt=""  style="border-radius: 50%; height: 40px; width: 40px;"></a>
                               </article>
                            </li>
                         </c:forEach>
