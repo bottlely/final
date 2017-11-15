@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
+import mars.report.model.ReportDTO;
+
 
 public class MyHomeDAOImple implements MyHomeDAO {
 	
@@ -55,6 +57,11 @@ public class MyHomeDAOImple implements MyHomeDAO {
 	public int openCoverage(HashMap<String, Integer> info) {
 		int result = sqlMap.update("openCoverage", info);
 		return result;
+	}
+
+	public int reportSend_user(ReportDTO dto) {
+		int result = sqlMap.insert("sendReport_user", dto);
+		return 0;
 	}
 
 }

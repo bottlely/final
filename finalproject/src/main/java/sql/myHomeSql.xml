@@ -34,4 +34,9 @@
 	<update id="openCoverage" parameterType="HashMap">
 		update myPage set open_coverage = ${range} where member_idx = #{member_idx}
 	</update>
+	
+	<insert id="sendReport_user" parameterType="mars.report.model.ReportDTO">
+		insert into mars_report values(mars_report_idx.nextval, #{idx_from}, #{idx_to},
+		#{content}, #{category}, '', sysdate, 0)
+	</insert>
 </mapper>

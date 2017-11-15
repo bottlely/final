@@ -8,7 +8,7 @@ public class ReportDTO {
 	int idx_from;
 	int idx_to;
 	String content;
-	int category;	//11:검색,인기태그 , 12:공개범위 , 13:친구 , 14:피드 , 15:게시물작성 16_알림
+	int category;	//11:寃��깋,�씤湲고깭洹� , 12:怨듦컻踰붿쐞 , 13:移쒓뎄 , 14:�뵾�뱶 , 15:寃뚯떆臾쇱옉�꽦 16_�븣由�
 	String link;
 	Date reportdate;
 	int state;
@@ -23,6 +23,14 @@ public class ReportDTO {
 		this.category = category;
 	}
 	
+	public ReportDTO(int idx_from, int idx_to, String content, int category) {
+		super();
+		this.idx_from = idx_from;
+		this.idx_to = idx_to;
+		this.content = content;
+		this.category = category;
+	}
+
 	public ReportDTO(int idx, int idx_from, int idx_to, String content, int category, String link, Date reportdate,
 			int state) {
 		super();
