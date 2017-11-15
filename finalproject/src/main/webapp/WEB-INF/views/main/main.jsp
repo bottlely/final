@@ -925,7 +925,7 @@ var data = [
 					<!--사진  -->
 						<c:if test="${list.category==1 }">
 							<div class="col-md-4 col-sm-6 col-xs-12  photo">
-								<div class="works">
+								<div class="works" style="height: 431px;">
 									<img src="myHomeFolder/content/${list.path }" alt="" style="width: 431px; height: 431px;">
 									<div class="work-overlay text-center">
 										<div class="overlay-caption">
@@ -979,10 +979,9 @@ var data = [
 				<div class="col-xs-12" style="text-align: center;">
 					<div class="spinner" id="wait"></div>
 				</div>
-
+				<!-- 더보기 버튼 -->
 				<div class="col-xs-12" style="text-align: center;">
-					<button type="button" class="btn btn-primary" id="more">More
-						List..</button>
+					<button type="button" class="btn btn-primary" id="more">More List..</button>
 				</div>
 			</div>
 		</div>
@@ -1001,8 +1000,7 @@ var data = [
 				<div class="row">
 					<!-- 사진 -->
 					<div class="col-xs-7" style="margin-top: 10px; float: left; margin-bottom: 10px; overflow: hidden;">
-						<div id="jssor_1"
-							style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 480px; height: 270px;; overflow: hidden; visibility: hidden;">
+						<div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 480px; height: 270px;; overflow: hidden; visibility: hidden;">
 							<!-- Loading Screen -->
 							<div data-u="loading" class="jssorl-009-spin"
 								style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.7);">
