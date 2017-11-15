@@ -68,7 +68,7 @@ public class ContentController {
 		
 		HashMap<String,List<MemberDTO>> groupList = new HashMap<String, List<MemberDTO>>();
 		
-		//List<String> groupKeys = new ArrayList<String>();
+		List<String> groupValues = new ArrayList<String>();
 		
 		for(FriendDTO fdto : fdtoList){
 			
@@ -77,18 +77,25 @@ public class ContentController {
 			
 			List<MemberDTO> group = new ArrayList<MemberDTO>();
 			String groupname = null;
+			String groupIdxs = "";
+			
 			for(GroupDTO gdto : groupMembers){
 				
 				//key
-				groupname = gdto.getGroup_name();
-				//groupKeys.add(groupname);
+				groupname = gdto.getGroup_name(); 
 				
 				//values
 				int member = gdto.getIdx_to();
 				MemberDTO mdto = mdao.getUserInfo_idx(member);
+				
 				group.add(mdto);
+
+				groupIdxs += member+",";
+				
+				System.out.println(" 그룹 idx 추가  :  "+groupIdxs);
 			}
 			groupList.put(groupname, group);
+			groupValues.add(groupIdxs);
 		}
 		
 		String path =  null;
@@ -104,13 +111,15 @@ public class ContentController {
 		mav.addObject("profile", mhdto.getProfile_img());
 		mav.addObject("followerList", followerList);
 		mav.addObject("groupList",groupList);
+		mav.addObject("groupValues", groupValues);
 		mav.setViewName(path);
 		return mav;
 	}
 	
 	@RequestMapping("/uploadText.do")
 	public ModelAndView uploadText(@RequestParam("useridx")String member_idx,
-			@RequestParam("tag")String tag,
+			@RequestParam("htag")String htag,
+			@RequestParam("mtag")String mtag,
 			@RequestParam("title")String title,
 			@RequestParam("coverage_list")String cl,
 			@RequestParam("coverage_state")String cs,
@@ -152,11 +161,12 @@ public class ContentController {
 	@RequestMapping("/uploadPhoto.do")
 	public ModelAndView uploadPhoto(@RequestParam("useridx")String member_idx,
 			@RequestParam("content")String content,
-			@RequestParam("tag")String tag,
+			@RequestParam("htag")String htag,
+			@RequestParam("mtag")String mtag,
 			@RequestParam("coverage_list")String cl,
 			@RequestParam("coverage_state")String cs,
 			MultipartHttpServletRequest req,HttpServletRequest req2) {
-		
+
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
 		
 		String path = "";
@@ -228,7 +238,8 @@ public class ContentController {
 	@RequestMapping("/uploadVideo.do")
 	public ModelAndView uploadVideo(@RequestParam("useridx")String member_idx,
 			@RequestParam("content")String content,@RequestParam("not_upload")String list,
-			@RequestParam("tag")String tag,
+			@RequestParam("htag")String htag,
+			@RequestParam("mtag")String mtag,
 			@RequestParam("coverage_list")String cl,
 			@RequestParam("coverage_state")String cs,
 			@RequestParam("sel")String sel,HttpServletRequest req) {

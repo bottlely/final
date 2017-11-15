@@ -82,7 +82,13 @@ function uploadText(){
 	
 	var data = new FormData();
 	data.append("useridx", '${sessionScope.useridx}'); 
-	data.append("tag",document.getElementById("tag").value);
+
+	var htag =  document.getElementById("htag").value;
+	 data.append("htag",htag);
+	 
+	 var mtag =  document.getElementById("mtag").value;
+	 data.append("mtag",mtag);
+	
 	data.append("title", title);
 	data.append("content",content);
 
@@ -211,9 +217,13 @@ $(document).ready(function(){
    <form id="uploadForm" method="post">
       <div class="row">
          <div class="col-sm-12">
-            <input type="text" class="form-control" id="tag" name="tag"
-               placeholder="해시태그">
-         </div>
+				<input type="text" class="form-control" id="mtag" name="mtag"
+					placeholder="친구태그" onFocus="clearText(this)" onBlur="clearText(this)">
+			</div>
+			<div class="col-sm-12">
+				<input type="text" class="form-control" id="htag" name="htag"
+					placeholder="해시태그" onFocus="clearText(this)" onBlur="clearText(this)">
+			</div>
          <div class="col-sm-12">
             <input type="text" id="title" name="title" class="form-control" placeholder="제목" required>
          </div>

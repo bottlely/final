@@ -152,9 +152,12 @@ select {
     			 data.append("image_count", sel_files.length);
     			 data.append("useridx", '${sessionScope.useridx}');
     			 
-    			 var tag =  document.getElementById("tag").value;
-    			 data.append("tag",tag);
+    			 var htag =  document.getElementById("htag").value;
+    			 data.append("htag",htag);
             	 
+    			 var mtag =  document.getElementById("mtag").value;
+    			 data.append("mtag",mtag);
+    			 
     			 var content =document.getElementById("content").value;
     			 data.append("content",content);
     			 
@@ -307,10 +310,13 @@ select {
 	<hr>
 	<div class="row">
 			<div class="col-sm-12">
-				<input type="text" class="form-control" id="tag" name="tag"
+				<input type="text" class="form-control" id="mtag" name="mtag"
+					placeholder="친구태그" onFocus="clearText(this)" onBlur="clearText(this)">
+			</div>
+			<div class="col-sm-12">
+				<input type="text" class="form-control" id="htag" name="htag"
 					placeholder="해시태그" onFocus="clearText(this)" onBlur="clearText(this)">
 			</div>
-			<hr>
 			<div class="col-sm-12">
 				<div class="form-group">
 					<textarea class="form-control" rows="5" id="content" name="content" placeholder="사진에 대해 이야기 해주세요 :)" onFocus="clearText(this)" onBlur="clearText(this)"></textarea>
@@ -364,16 +370,18 @@ select {
 				</c:forEach>
 				<hr>
 				<c:forEach var="group" items="${groupList}">
-					<li class="list-group-item" 
-						onclick="sel_coverage()">
-					<font id="" color="gray"><strong>${group.key}</strong></font>
-					</li>
-					<c:forEach var="member" items="${group.value}">
-						<li class="list-group-item">
-							<font color="lightgray"><strong>${member.name}</strong></font>
+					<c:forEach var="idxs" items="${groupValues}">
+						<li class="list-group-item" 
+							onclick="sel_coverage(${idxs})">
+						<font id="${idxs}" color="gray"><strong>${group.key}</strong></font>
 						</li>
+						<c:forEach var="member" items="${group.value}">
+							<li class="list-group-item">
+								<font color="lightgray"><strong>${member.name}</strong></font>
+							</li>
+						</c:forEach>
+					<hr>
 					</c:forEach>
-				<hr>
 				</c:forEach>
 			</ul>
 		</div>

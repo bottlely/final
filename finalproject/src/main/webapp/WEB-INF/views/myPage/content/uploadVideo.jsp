@@ -150,8 +150,11 @@ select {
             
             data.append("useridx", '${sessionScope.useridx}');
             
-            var tag =  document.getElementById("tag").value;
-          data.append("tag",tag);
+            var htag =  document.getElementById("htag").value;
+			 data.append("htag",htag);
+       	 
+			 var mtag =  document.getElementById("mtag").value;
+			 data.append("mtag",mtag);
             
           var content =document.getElementById("content").value;
           data.append("content",content);
@@ -286,10 +289,13 @@ select {
       <hr>
       <div class="row">
          <div class="col-sm-12">
-            <input type="text" class="form-control" id="tag" name="tag"
-               placeholder="해시태그" onFocus="clearText(this)"
-               onBlur="clearText(this)">
-         </div>
+				<input type="text" class="form-control" id="mtag" name="mtag"
+					placeholder="친구태그" onFocus="clearText(this)" onBlur="clearText(this)">
+			</div>
+			<div class="col-sm-12">
+				<input type="text" class="form-control" id="htag" name="htag"
+					placeholder="해시태그" onFocus="clearText(this)" onBlur="clearText(this)">
+			</div>
          <hr>
          <div class="col-sm-12">
             <div class="form-group">
