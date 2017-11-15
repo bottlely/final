@@ -91,16 +91,12 @@ public class AdController {
 	}
 	
 	@RequestMapping("/insertOkSign.do")
-	public void insertOkSign(@RequestParam("ad_idx")String ad_idx, @RequestParam("status")String status){
+	public void insertOkSign(@RequestParam("ad_idx")String ad_idx){
 
 		int adidx = Integer.parseInt(ad_idx);
-		int r_status = Integer.parseInt(status);
-		if(r_status==3){
+		
 			adDao.insertOkSign(adidx);
-		}
-		else{
-			adDao.insertWaitSign(adidx);
-		}
+		
 		
 	//	ModelAndView mav = new ModelAndView();
 	//	mav.addObject("ok", 1);

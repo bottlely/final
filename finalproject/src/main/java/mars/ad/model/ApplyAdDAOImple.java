@@ -61,14 +61,7 @@ public class ApplyAdDAOImple implements ApplyAdDAO {
 	}
 	
 	public void insertOkSign(int ad_idx){
-		//System.out.println("get");
 		sqlMap.update("insertOk", ad_idx);
-		//System.out.println("skdha");
-	}
-	public void insertWaitSign(int ad_idx){
-	//	System.out.println("get");
-		sqlMap.update("insertWait", ad_idx);
-		//System.out.println("skdha");
 	}
 
 }

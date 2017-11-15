@@ -30,10 +30,7 @@
   	</insert>
   	
   	<update id="insertOk">
-  	update ad set status=3 where ad_idx = #{ad_idx}
+  	update ad set status=1 where ad_idx = #{ad_idx}
   	</update>
   	
-  	<update id="insertWait">
-  	update ad set status=3 where ad_idx = #{ad_idx}
-  	</update>
   </mapper>
