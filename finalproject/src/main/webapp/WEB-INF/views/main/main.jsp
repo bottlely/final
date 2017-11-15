@@ -177,6 +177,25 @@ var data = [
 		   );
 		 
 	});
+			
+			
+
+	$(document).ready(function() {
+		var dd = document.getElementById("content").value;
+			
+		  $("#content").autocomplete(data, {
+		    matchContains: true,
+		    minChars: 0,
+		   width: 120,
+		   max: 10,
+		   multiple: false,
+		   scroll: true,
+		   scrollHeight: 300,
+		    formatItem: function(item){ return item.name; }
+		     }
+		   );
+			
+	});
 	
 
           $(document).ready(function(){
