@@ -31,7 +31,7 @@ function uploadData(){
 	data.append("fromIdx", '${sessionScope.useridx}'); 
 	data.append("toIdx", '${toIdx}'); 
 	data.append("report",report);
-	data.append("category", category);
+	data.append("category", 3);
 	 
      var xhr = new XMLHttpRequest();
      xhr.open("POST","report.do");
@@ -42,7 +42,7 @@ function uploadData(){
            if(jsonResponse["result"] > 0){
               alert('업로드 완료!');
               window.opener.location.reload();
-            window.close();
+              window.close();
            }else{
               alert('업로드 실패!');
            }

@@ -59,9 +59,9 @@ public class MyHomeDAOImple implements MyHomeDAO {
 		return result;
 	}
 
-	public int reportSend_user(ReportDTO dto) {
+	public int reportSend(ReportDTO dto) {
 		int result = sqlMap.insert("sendReport_user", dto);
-		return 0;
+		return result;
 	}
 
 }

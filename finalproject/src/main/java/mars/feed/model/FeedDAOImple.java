@@ -15,15 +15,9 @@ public class FeedDAOImple implements FeedDAO {
 		this.sqlMap = sqlMap;
 	}
 
-	/**전체 피드 가져오기*/
+	/**�쟾泥� �뵾�뱶 媛��졇�삤湲�*/
 	public List<ContentDTO> showFeed(int idx) {
 		List<ContentDTO> list = sqlMap.selectList("showFeed", idx);
 		return list;
 	}
-
-	public List<ContentDTO> photoFeed(int idx) {
-		List<ContentDTO> list = sqlMap.selectList("photoFeed", idx);
-		return list;
-	}
-
 }
