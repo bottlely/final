@@ -158,7 +158,11 @@ var data = [
 	
 	];
 
+		function showList(){
+			  var dd = document.getElementById("content").value;
+			  window.alert(dd);
 	
+			}
 
 			/**해쉬태그*/
 
@@ -178,12 +182,13 @@ var data = [
 		 
 	});
 			
-			
+
 
 	$(document).ready(function() {
-		var dd = document.getElementById("content").value;
+		
 			
 		  $("#content").autocomplete(data, {
+			
 		    matchContains: true,
 		    minChars: 0,
 		   width: 120,
@@ -625,7 +630,9 @@ var data = [
 								</a>
 									<div class="dropdown-menu" aria-labelledby="alertsDropdown">
 										<h6 class="dropdown-header">New Alerts:</h6>
-										<%@include file="feedList.jsp"%>
+										
+										<iframe src="main_feedList.do?idx=${sessionScope.useridx}"
+						width="100%" height="100%" frameborder="0"></iframe>
 
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item small" href="#">View all alerts</a>
@@ -772,7 +779,7 @@ var data = [
 					<label id="c_content"></label>
 					<h2>좋아요</h2>
 					<input type="text" name="content" id="content" value=""><input
-						type="button" onclick="addReply()" value="작성"><br>
+						type="button" onclick="addReply()" value="작성" onkeydown="showList()"><br>
 					<h2 id="reply_List">댓글 내용</h2>
 				</div>
 			</div>
