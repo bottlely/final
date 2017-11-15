@@ -31,34 +31,39 @@ public class ApplyAdDAOImple implements ApplyAdDAO {
 		return cnt;
 	}
 	
-	//현재까지 내가 신청한 광고들 상태
-	public List<ApplyAdDTO> showCurList(){
-		//member_idx 찾아서 넘겨야함! 임의로 줌!(로그인한)
-		Map<String, Integer> data = new HashMap<String, Integer>();  
+	public List<ApplyAdDTO> showCurList(int member_idx){
+		Map<String, Integer> data = new HashMap<String, Integer>();
+		data.put("member_idx", member_idx);
 		List<ApplyAdDTO> list = sqlMap.selectList("showCurList", data);
 		return list;
 	}
 	
 	public String showAveNum(Integer i){
-		//member_idx 찾아서 넘겨야함! 임의로 줌!(로그인한)
-		//어떤 광고 인지 check!
-		//지금 구하는 str에서 / 로 구분해서 최대 뒤에서 7개 자르기!
-		
-	//	Map<String, Integer> data = new HashMap<String, Integer>();
-	//	data.put("ad_idx", i);
-	//	List<ApplyAdDTO> list = sqlMap.selectList("showAve", data);
 		String str = sqlMap.selectOne("showAve", i);
-		//null이거나 all_amount값!
-	//	System.out.println(str);
-	//	return list;
 		return str;
 	}
 	
-	public List<ApplyAdDTO> showNum(){
-		Map<String, Integer> data = new HashMap<String, Integer>();  
+	public List<ApplyAdDTO> showNum(int member_idx){
+		
+		Map<String, Integer> data = new HashMap<String, Integer>();
+		data.put("member_idx", member_idx);
 		List<ApplyAdDTO> list = sqlMap.selectList("showNum", data);
-	//	System.out.println("list = "+list.size());
 		return list;
+	}
+	
+	public List<ApplyAdDTO> showList(String ad_idx){
+		
+		int adidx = Integer.parseInt(ad_idx);
+		Map<String, Integer> data = new HashMap<String, Integer>();
+		data.put("ad_idx", adidx);
+		List<ApplyAdDTO> list = sqlMap.selectList("showList", data);
+		return list;
+	}
+	
+	public void insertOkSign(int ad_idx){
+		System.out.println("get");
+		sqlMap.update("insertOk", ad_idx);
+		System.out.println("skdha");
 	}
 
 }

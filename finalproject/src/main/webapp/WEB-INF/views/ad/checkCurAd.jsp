@@ -30,7 +30,7 @@
 
 
 function showCur(){
-	sendRequest('showCur.do', null, showCurResult, 'GET');
+	sendRequest('showCur.do?user_idx=${sessionScope.useridx}', null, showCurResult, 'GET');
 }
 
 function showCurResult(){
@@ -48,7 +48,7 @@ function showCurResult(){
 			else{
 				for(var i=0; i<lists.list.length; i++){
 					var l = lists.list[i];
-					str += '<a href="showAve.do?ad_idx='+l.ad_idx+'">'+l.ad_name+'</a><hr>';
+					str += '<a href="showAve.do?ad_idx='+l.ad_idx+'&user_idx=${sessionScope.useridx}">'+l.ad_name+'</a><hr>';
 				}
 				p1.innerHTML = str;
 			}
@@ -97,7 +97,7 @@ function showAve(){
 }
 
 function showNum(){	
-	sendRequest('showNum.do', null, showNumResult, 'GET');
+	sendRequest('showNum.do?user_idx=${sessionScope.useridx}', null, showNumResult, 'GET');
 }
 
 function showNumResult(){
