@@ -278,7 +278,7 @@
 	</select>
 	<select id="usercount" resultType="int" parameterType="String">
 	<![CDATA[
-	select count(to_char(joindate,'YYYY-MM-DD')) from mars_member where joindate <= #{date}
+	select count(to_char(joindate,'YYYY-MM-DD')) from mars_member where joindate < #{date}
 	]]>
 	</select>
 		<select id="todayjoin" resultType="int" parameterType="String">

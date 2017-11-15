@@ -223,10 +223,10 @@ public class AdminDAOImple implements AdminDAO {
 	 
 	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
 	   Date currentTime = new Date ( );
-	   Date countTime = new Date ( currentTime.getTime() - 7*( (long) 1000 * 60 * 60 * 24 ));
+	   Date countTime = new Date ( currentTime.getTime() - 6*( (long) 1000 * 60 * 60 * 24 ));
 	   String dTime = formatter.format ( countTime );
 	   
-	  
+	  System.out.println("날짜"+dTime);
 	  
 	   int count7 = sqlMap.selectOne("usercount",dTime);
 	   return count7;
@@ -236,7 +236,7 @@ public class AdminDAOImple implements AdminDAO {
 		 
 	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
 	   Date currentTime = new Date ( );
-	   Date countTime = new Date ( currentTime.getTime() - 6*( (long) 1000 * 60 * 60 * 24 ));
+	   Date countTime = new Date ( currentTime.getTime() - 5*( (long) 1000 * 60 * 60 * 24 ));
 	   String dTime = formatter.format ( countTime );
 	   
 	  
@@ -249,7 +249,7 @@ public class AdminDAOImple implements AdminDAO {
 		 
 	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
 	   Date currentTime = new Date ( );
-	   Date countTime = new Date ( currentTime.getTime() - 5*( (long) 1000 * 60 * 60 * 24 ));
+	   Date countTime = new Date ( currentTime.getTime() - 4*( (long) 1000 * 60 * 60 * 24 ));
 	   String dTime = formatter.format ( countTime );
 	   
 	  
@@ -262,7 +262,7 @@ public class AdminDAOImple implements AdminDAO {
 		 
 	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
 	   Date currentTime = new Date ( );
-	   Date countTime = new Date ( currentTime.getTime() - 4*( (long) 1000 * 60 * 60 * 24 ));
+	   Date countTime = new Date ( currentTime.getTime() - 3*( (long) 1000 * 60 * 60 * 24 ));
 	   String dTime = formatter.format ( countTime );
 	   
 	  
@@ -275,7 +275,7 @@ public class AdminDAOImple implements AdminDAO {
 		 
 	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
 	   Date currentTime = new Date ( );
-	   Date countTime = new Date ( currentTime.getTime() - 3*( (long) 1000 * 60 * 60 * 24 ));
+	   Date countTime = new Date ( currentTime.getTime() - 2*( (long) 1000 * 60 * 60 * 24 ));
 	   String dTime = formatter.format ( countTime );
 	   
 	  
@@ -288,7 +288,7 @@ public class AdminDAOImple implements AdminDAO {
 		 
 	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
 	   Date currentTime = new Date ( );
-	   Date countTime = new Date ( currentTime.getTime() - 2*( (long) 1000 * 60 * 60 * 24 ));
+	   Date countTime = new Date ( currentTime.getTime() - 1*( (long) 1000 * 60 * 60 * 24 ));
 	   String dTime = formatter.format ( countTime );
 	   
 	  
@@ -301,7 +301,7 @@ public class AdminDAOImple implements AdminDAO {
 		 
 	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
 	   Date currentTime = new Date ( );
-	   Date countTime = new Date ( currentTime.getTime() - 1*( (long) 1000 * 60 * 60 * 24 ));
+	   Date countTime = new Date ( currentTime.getTime());
 	   String dTime = formatter.format ( countTime );
 	   
 	  
