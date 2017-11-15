@@ -802,14 +802,7 @@ var data = [
 								<li><a href="#" onclick="voice()"> <i
 										class="pe-7s-search"></i>
 								</a></li>
-								<li><a href="#"
-									onclick="window.open('applyAdForm.do', '광고 주문서', 'scrollbars=no width=400, height=450')">
-										<i class="pe-7s-search"></i>
-								</a></li>
-								<li><a href="#"
-									onclick="window.open('checkCurAd.do', '광고 통계', 'scrollbars=no width=400, height=350')">
-										<i class="pe-7s-search"></i>
-								</a></li>
+							
 
 
 

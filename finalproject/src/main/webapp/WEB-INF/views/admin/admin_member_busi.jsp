@@ -232,8 +232,10 @@ function requestResult(){
 				adChan.appendChild(newDiv);
 			}
 			else{
+	
 				
 				for(var i=0; i<lists.list.length; i++){
+				
 					cnt1++;
 					var trDiv = document.createElement('tr');
 					
@@ -251,7 +253,7 @@ function requestResult(){
 	 				trDiv.appendChild(newDiv2);
 	 				
 	 				var newDiv3 = document.createElement('td');
-	 				newDiv3.innerHTML = list.link;
+	 				newDiv3.innerHTML = '<a href="#" onclick="list('+list.ad_idx+')">'+list.link+'</a>';
 	 				trDiv.appendChild(newDiv3);
 	 			}
 				
@@ -261,6 +263,12 @@ function requestResult(){
 	 }
      
 }
+
+function list(data){
+	//alert(data);
+	window.open('list.do?ad_idx='+data, '광고', 'scrollbars=no width=400, height=450');
+}
+
 
 function pay(){
 	var oneTag = document.all.a;

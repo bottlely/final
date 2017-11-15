@@ -458,8 +458,8 @@ function showResult2(){
 		   <div class="mask3"></div>
 		    <div class="window3" style="cursor: pointer;">
 		       <table align="center">
-		          <tr onclick="#"><td colspan="2">광고 신청하기</td></tr>
-		          <tr onclick="#"><td colspan="2">광고 신청현황</td></tr>
+		          <tr onclick="window.open('applyAdForm.do', '광고 주문서', 'scrollbars=no width=400, height=450')"><td colspan="2">광고 신청하기</td></tr>
+		          <tr onclick="window.open('checkCurAd.do', '광고 통계', 'scrollbars=no width=400, height=350')"><td colspan="2">광고 신청현황</td></tr>
 		          </table>
 		     </div>     
 		</span>

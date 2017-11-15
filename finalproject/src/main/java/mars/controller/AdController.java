@@ -30,7 +30,6 @@ public class AdController {
 	
 	@RequestMapping("/applyAd.do")
 	public ModelAndView applyAd(@ModelAttribute("cmd")ApplyAdDTO command){	
-		//만일 게시된 광고 이전, 즉 결제 이전 광고가 존재하면 신청 불가!
 		int result = adDao.insert(command);
 		String msg = result>0?"광고 신청을 완료했습니다.":"광고 신청이 실패했습니다.";
 		ModelAndView mav = new ModelAndView();
@@ -41,7 +40,6 @@ public class AdController {
 	
 	@RequestMapping("/goMyPage.do")
 	public String goMyPage(){
-		//광고 신청 후 돌아갈 page
 		return "main/main";
 	}
 	
@@ -50,36 +48,28 @@ public class AdController {
 		return "ad/checkCurAd";
 	}
 	
-	
 	@RequestMapping("/showCur.do")
-	public ModelAndView showCur(){
-		List<ApplyAdDTO> list =	adDao.showCurList();
+	public ModelAndView showCur(@RequestParam("user_idx")String user_idx){
+		int member_idx = Integer.parseInt(user_idx);
+		List<ApplyAdDTO> list =	adDao.showCurList(member_idx);
 		ModelAndView mav = new ModelAndView("marsJson","list",list);
 		return mav;
 	}
 	
 	@RequestMapping("/showAve.do")
 	public ModelAndView showAve(@RequestParam(value="ad_idx")Integer i){
-		//ajax에서 보낸값 controller에서 바로 받는 방법(requestparam!)
-		//System.out.println("ad_idx = "+i);
-	//	List<ApplyAdDTO> list = adDao.showAveNum(i);
 		String str = adDao.showAveNum(i);
 		ModelAndView mav = new ModelAndView();
-	//	System.out.println(str);
-	//	Model model=null;
-//		ModelAndView mav = new ModelAndView("marsJson","list",list);
-	//	model.addAttribute("i", i);
 		mav.addObject("i", i);
 		mav.addObject("str", str);
 		mav.setViewName("ad/checkCurAd");
-//		return mav;
-		
 		return mav;
 	}
 	
 	@RequestMapping("/showNum.do")
-	public ModelAndView showNum(){
-		List<ApplyAdDTO> list =	adDao.showNum();
+	public ModelAndView showNum(@RequestParam("user_idx")String user_idx){
+		int member_idx = Integer.parseInt(user_idx);
+		List<ApplyAdDTO> list =	adDao.showNum(member_idx);
 		ModelAndView mav = new ModelAndView("marsJson","list",list);
 		return mav;
 	}
@@ -89,6 +79,27 @@ public class AdController {
 		List<ApplyAdDTO> list =	adDao.adList();
 		ModelAndView mav = new ModelAndView("marsJson","list",list);
 		return mav;
+	}
+	
+	@RequestMapping("/list.do")
+	public ModelAndView getList(@RequestParam("ad_idx")String ad_idx){
+		List<ApplyAdDTO> list =	adDao.showList(ad_idx);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("list", list);
+		mav.setViewName("ad/showList");
+	//	System.out.println(list.get(0).getAd_idx());
+		return mav;
+	}
+	
+	@RequestMapping("/insertOkSign.do")
+	public void insertOkSign(@RequestParam("ad_idx")String ad_idx){
+	//	System.out.println(ad_idx);
+		int adidx = Integer.parseInt(ad_idx);
+		adDao.insertOkSign(adidx);
+	//	ModelAndView mav = new ModelAndView();
+	//	mav.addObject("ok", 1);
+	//	mav.setViewName("ad/showList");
+	//	return mav;
 	}
 	
 

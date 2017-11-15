@@ -10,18 +10,26 @@
   	</select>
   	
   	<select id="showCurList" parameterType="Map" resultType="mars.ad.model.ApplyAdDTO">
-  		select * from ad where member_idx=32
+  		select * from ad where member_idx=#{member_idx}
   	</select>
   	
-  	<select id="showAve" parameterType="Map" resultType="String">
-  		select all_amount from ad where member_idx=32 and ad_idx=#{ad_idx} and status=3
+  	<select id="showList" parameterType="Map" resultType="mars.ad.model.ApplyAdDTO">
+  		select * from ad where ad_idx=#{ad_idx}
+  	</select>
+  	
+  	<select id="showAve"  resultType="String">
+  		select all_amount from ad where ad_idx=#{i} and status=3
   	</select>
   	
   	<select id="showNum" parameterType="Map" resultType="mars.ad.model.ApplyAdDTO">
-  		select * from ad where member_idx=32 and status=3
+  		select * from ad where member_idx=#{member_idx} and status=3
   	</select>
   	
   	<insert id="addAdForm" parameterType="mars.ad.model.ApplyAdDTO">
-  	insert into ad values(ad_ad_idx.nextval, 32, #{name}, #{type}, #{link}, 'no', #{fee}, #{favor_movie}, #{favor_sport}, #{favor_fashion}, #{favor_beauty}, #{favor_travel}, #{favor_music}, #{favor_dance}, #{favor_food}, 0, '', '', sysdate, '', #{s_date}, #{e_date}, #{ad_name}, '')
+  	insert into ad values(ad_ad_idx.nextval, #{member_idx}, #{name}, #{type}, #{link}, 'no', #{fee}, #{favor_movie}, #{favor_sport}, #{favor_fashion}, #{favor_beauty}, #{favor_travel}, #{favor_music}, #{favor_dance}, #{favor_food}, 0, '', '', sysdate, '', #{s_date}, #{e_date}, #{ad_name}, '', 0)
   	</insert>
+  	
+  	<update id="insertOk">
+  	update ad set status=3 where ad_idx = #{ad_idx}
+  	</update>
   </mapper>

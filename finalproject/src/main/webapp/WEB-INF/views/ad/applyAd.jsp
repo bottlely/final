@@ -65,9 +65,9 @@ h2 {
 				<div class="col-sm-10">
 					<label style="font-size: 13px;">From</label> <input
 						class="form-control" id="focusedInput" type="text"
-						placeholder="yymmdd" name="s_date"> <label
+						placeholder="yy-mm-dd" name="s_date"> <label
 						style="font-size: 13px;">To</label> <input class="form-control"
-						id="focusedInput" type="text" placeholder="yymmdd" name="e_date">
+						id="focusedInput" type="text" placeholder="yy-mm-dd" name="e_date">
 				</div>
 			</div>
 			<div class="form-group">
@@ -97,6 +97,7 @@ h2 {
 					<input type="reset" value="reset">
 				</div>
 			</div>
+			<input type="hidden" name="member_idx" value="${sessionScope.useridx}">
 		</form>
 	</div>
 </body>
