@@ -11,8 +11,9 @@
 </head>
 <body>
 	<form name="updateGroup" action="updateGroup.do">
-		<input type="text" name="group_name" placeholder="GroupName"
-			value="${groupName }">
+	<input type="hidden" name="idx_from" value="${idx_from }">
+	<input type="hidden" name="idx_ff" value="${param.idx_ff }">
+		<input type="text" name="group_name" placeholder="GroupName" value="${groupName }">
 		<ul>
 			<c:if test="${empty arr }">
 				<li>친구가 존재하지 않습니다.</li>

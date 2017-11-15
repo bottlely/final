@@ -1,6 +1,7 @@
 package mars.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,7 +16,6 @@ import mars.friend.model.FriendDTO;
 import mars.group.model.GroupDTO;
 import mars.member.model.MemberDTO;
 import mars.report.model.ReportDTO;
-import mars.setting.model.GroupListDTO;
 import mars.setting.model.SettingDAO;
 import mars.setting.model.UpdateListDTO;
 
@@ -192,7 +192,7 @@ public class SettingController {
 
 	@RequestMapping("updateGroupForm.do")
 	public ModelAndView updateGroupForm(int idx_ff, int idx) {
-		List<MemberDTO> list = settingDao.getFollowingList(idx);
+		List<MemberDTO> list =  settingDao.getFollowingList(idx);
 		List<GroupDTO> group = settingDao.showGroup(idx_ff);
 
 		HashMap map = new HashMap<String, String>();
@@ -202,42 +202,60 @@ public class SettingController {
 
 		List<UpdateListDTO> arr = new ArrayList<UpdateListDTO>();
 
-		int result = 0;
-		String name = "";
-		int getIdx = 0;
-
-		for (int i = 0; i < list.size(); i++) {
-			for (int j = 0; j < group.size(); j++) {
-				if (list.get(i).getIdx() == group.get(j).getIdx_to()) {
-					result = 1;
-					name = list.get(i).getName();
-					getIdx = list.get(i).getIdx();
-
-				} else {
-					result = 0;
-					name = list.get(i).getName();
-					getIdx = list.get(i).getIdx();
+		for (int j = 0; j < list.size(); j++) {
+			for (int i = 0; i < group.size(); i++) {
+				boolean a = Arrays.asList(list.get(j).getIdx()).contains(group.get(i).getIdx_to());
+				if (a) {
+					UpdateListDTO dto = new UpdateListDTO(list.get(j).getName(), list.get(j).getIdx(), true);
+					arr.add(dto);
+					list.remove(j);
 				}
-			}
-			
-			if (result == 1) {
-				UpdateListDTO dto = new UpdateListDTO(list.get(i).getName(), list.get(i).getIdx(), true);
-				System.out.println("1_" + list.get(i).getIdx());
-				arr.add(dto);
-			} else {
-				UpdateListDTO dto = new UpdateListDTO(list.get(i).getName(), list.get(i).getIdx(), false);
-				System.out.println("0_" + list.get(i).getIdx());
-				arr.add(dto);
 			}
 		}
 
-		System.out.println(arr.size());
+		for (int i = 0; i < list.size(); i++) {
+			UpdateListDTO dto = new UpdateListDTO(list.get(i).getName(), list.get(i).getIdx(), false);
+			arr.add(dto);
+		}
 
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("arr", arr);
 		mav.addObject("groupName", groupName);
+		mav.addObject("idx_from", idx);
 		mav.setViewName("setting/updateGroupForm");
 		return mav;
-
 	}
+	
+	@RequestMapping("updateGroup.do")
+	public ModelAndView updateGroup(@RequestParam("group_name") String group_name, @RequestParam("idx_to") int[] idx_to, int idx_from, int idx_ff) {
+		int result = 0;
+		ModelAndView mav = new ModelAndView();
+
+		int count = settingDao.deleteGroup(idx_ff);
+		if (count > 0) {
+			count = settingDao.deleteff(idx_ff);
+
+			if (count > 0) {
+				int group_cnt = settingDao.getGroupCnt(idx_from);
+				FriendDTO dto = new FriendDTO(idx_from, group_name, group_cnt + 1);
+				count = settingDao.addGroup(dto);
+
+				if (count > 0) {
+					idx_ff = settingDao.getGroupIdx(dto);
+					for (int i = 0; i < idx_to.length; i++) {
+						GroupDTO gdto = new GroupDTO(idx_from, idx_to[i], idx_ff, group_name);
+						count = settingDao.insertGroup(gdto);
+						result = count > 0 ? result + 1 : result;
+					}
+				}
+			}
+		}
+
+		String msg = result == idx_to.length ? "그룹이 생성되었습니다." : "그룹 생성에 실패하였습니다. 다시 시도하여주십시오";
+		mav.addObject("msg", msg);
+		mav.addObject("gourl", "friendSetting.do?idx=" + idx_from);
+		mav.setViewName("setting/popupMsg");
+		return mav;
+	}
+
 }

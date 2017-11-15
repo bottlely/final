@@ -104,7 +104,6 @@
 	}
 	
  	function updateGroup(group_idx){
- 		window.alert(group_idx);
  		window.open('updateGroupForm.do?idx_ff='+group_idx+'&idx=${sessionScope.useridx}', 'updateGroupForm', 'width=400, height=800');
  	}
  	
