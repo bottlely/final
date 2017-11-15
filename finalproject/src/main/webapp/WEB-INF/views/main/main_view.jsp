@@ -152,176 +152,238 @@
 </script> 
 <body onload="reply_List(${content_idx})">
 <header>
-<div id="navbar-full">
-<span style="float: left;">
+		<form name="hidden_value">
+			<input type="hidden" name="hidden_other_idx" id="hidden_other_idx"
+				value=""> <input type="hidden" name="hidden_other_name"
+				id="hidden_other_name" value=""> <input type="hidden"
+				name="hidden_other_profile_img" id="hidden_other_profile_img"
+				value="">
+		</form>
+		<div id="navbar-full">
+			<span style="float: left;">
+				<div id="friends2"
+					style="background: #935d8c; height: 100%; width: 40%; position: absolute; float: left; display: none; z-index: 4">
+					<div
+						style="background-color: white; align-content: center; text-align: right;">
+						<a href="#" id="cl1">Close</a>
+					</div>
+					<c:url var="frListUrl" value="main_frList.do">
+						<c:param name="member_idx" value="${sessionScope.useridx }" />
+					</c:url>
+					<iframe src="${frListUrl }" width="100%" height="100%" name="ppp"
+						frameborder="0"></iframe>
+				</div>
+			</span> <span style="float: right;">
+				<div id="mypage2"
+					style="background: #935d8c; height: 100%; width: 60%; position: absolute; float: right; display: none; z-index: 4">
+					<div style="background-color: white; align-content: center;">
+						<a href="#" id="cl2">Close</a>
+					</div>
+					<iframe src="myHomeForm.do?useridx=${sessionScope.useridx}"
+						width="100%" height="100%" name="ppp" id="ppp" frameborder="0"></iframe>
+				</div>
+			</span>
 
-            <div id="friends2" style="background:#935d8c;height:100%;width:25%; position: absolute; float: left; display: none; z-index: 4">
-      <div style="background-color: white; align-content:center; "><a href="#" id="cl1">Close</a></div> 
-   <c:url var="frListUrl" value="main_frList.do">
-      <c:param name="user_idx" value="${sessionScope.useridx }" />
-   </c:url>
-   <iframe src="${frListUrl }" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+			<div id="msgTest2"
+				style="background: #935d8c; height: 50%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 30%; margin-left: 78%">
+				<div style="background-color: white; align-content: center;">
+					<a href="#" id="cl3">Close</a>
+				</div>
 
-   </div>
-       </span>
-       <span style="float: right;">
+				<H1>채팅창 태스트</H1>
 
-          <div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
-      <div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
-   
-   <c:url var="myHomeUrl" value="myHomeForm.do">
-      <c:param name="useridx" value="${sessionScope.useridx}"/>
-   </c:url>
-   <iframe src="${myHomeUrl}" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+			</div>
+			<!-- 개인설정 창 부분(more)___followingList -->
+			<div id="more2"
+				style="background: white; height: 50%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%">
+				<div
+					style="background-color: white; align-content: center; text-align: right;">
+					<a href="#" id="cl4" style="font-size: 11px;">Close</a>
+				</div>
+				<div style="text-align: center; border: thick;">
+					<img src="" id="following_img_id" alt=""
+						style="border-radius: 50%; width: 50px;">
+				</div>
+				<br>
+				<p
+					style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
+					id="following_name_id"></p>
+				<div style="text-align: center;">
+					<input type="button" value="팔로우취소" onclick="unfollowing()"
+						class="frbutton"><br>
+					<br> <input type="button" value="그룹설정"
+						onclick="settingGroup()" class="frbutton"><br>
+					<br> <input type="button" value="취소하기" onclick="btn_cancle1()"
+						class="frbutton"><br>
+				</div>
+			</div>
 
-   </div>
-       
-       </span>
-          <div  id="msgTest2" style="background:#935d8c;height:50%;width:20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 30%; margin-left: 78%">
-      <div style="background-color: white; align-content:center; "><a href="#" id="cl3">Close</a></div>
-   
-      <H1>채팅창 태스트</H1>
+			<!-- 개인설정 창 부분(more)___followerList -->
+			<div id="more3"
+				style="background: white; height: 20%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%">
+				<div
+					style="background-color: white; align-content: center; text-align: right;">
+					<a href="#" id="cl6" style="font-size: 11px;">Close</a>
+				</div>
+				<div style="text-align: center; border: thick;">
+					<img src="" id="follower_img_id" alt=""
+						style="border-radius: 50%; width: 50px;">
+				</div>
+				<br>
+				<p
+					style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
+					id="follower_name_id"></p>
+				<div style="text-align: center;">
+					<input type="button" value="팔로우하기" onclick="following()"
+						class="frbutton"><br>
+					<br> <input type="button" value="팔로워삭제"
+						onclick="removeFollower()" class="frbutton"><br>
+					<br> <input type="button" value="차단하기" onclick="block()"
+						class="frbutton"><br>
+					<br> <input type="button" value="그룹설정"
+						onclick="settingGroup()" class="frbutton"><br>
+					<br> <input type="button" value="취소하기" onclick="btn_cancle2()"
+						class="frbutton"><br>
+				</div>
+			</div>
 
-   </div>
-   
-   <div id="navbar-blue">
-    <nav class="navbar navbar-ct-blue" role="navigation">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-<ul class="nav navbar-nav navbar-left">
-                <li>
-               <a href="main.do">
-                          <img src="assets_main/images/logo.svg" alt="" />
-                           
-                       </a>
-                
-                </li>
-                   <li>
-                        <a href="main.do">
-                          <h3>MARS</h3>
-                           
-                       </a>
-                   </li>         
 
-               </ul>
-    
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        
-              <ul class="nav navbar-nav navbar-right">
+			<div id="navbar-blue">
+				<nav class="navbar navbar-ct-blue" role="navigation">
+					<div class="container-fluid">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<ul class="nav navbar-nav navbar-left">
+							<li><a href="main.do"> <img
+									src="assets_main/images/logo.svg" alt="" />
 
-                       <!-- 다운 광고 추가 임시 버튼 -->
-              <li>
-              <a href="#" onclick="window.open('applyAdForm.do', '광고 주문서', 'scrollbars=no width=400, height=450')">
-                           <i class="pe-7s-search"></i>       
-              </a>
-              </li>
-              <li>
-              <a href="#" onclick="window.open('checkCurAd.do', '광고 통계', 'scrollbars=no width=400, height=350')">
-                           <i class="pe-7s-search"></i>       
-              </a>
-              </li>
-              
-        
-              
-              <!--  -->
-              
-                    <li>
-                        <a href="javascript:void(0);" data-toggle="search" class="hidden-xs">
-                            <i class="pe-7s-search"></i>
-                            
-                        </a>
-                    </li>
-                                        <li>
-                       <a href="#" id="mypage1">
-                             <i class="pe-7s-user"></i>
-                             
-                        </a>
-                    </li>
-                                        <li>
-                        <a href="javascript:void(0);" class="hidden-xs" id="friends1">
-                            <i class="pe-7s-note2"></i>
-                           
-                        </a>
-                    </li>
-       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="pe-7s-global"></i>
-            
-              <span class="badge badge-pill badge-warning">6 New</span>
-            
-            <span class="indicator text-warning d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
-            </span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-            <h6 class="dropdown-header">New Alerts:</h6>
-         <%@include file="feedList.jsp" %>
+							</a></li>
+							<li><a href="main.do">
+									<h3>MARS</h3>
 
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item small" href="#">View all alerts</a>
-          </div>
-        </li>         
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="pe-7s-mail"></i>
-            <span class="d-lg-none">
-              <span class="badge badge-pill badge-primary">12 New</span>
-            </span>
-            <span class="indicator text-primary d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
-            </span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="messagesDropdown">
-            <h6 class="dropdown-header">New Messages:</h6>
-         <%@include file="msgList.jsp" %>
-         
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item small" href="#">View all messages</a>
-          </div>
-        </li>
+							</a></li>
 
-                    
-                                        <li>
-               <div class="dropdown">
-        <a class="btn btn-default dropdown-toggle"  data-toggle="dropdown">
-        <i class="pe-7s-menu"></i>
-        <span class="caret"></span></a>
-           <ul class="dropdown-menu">
-              <li><a href="infoSetting.do?idx=${sessionScope.useridx }">SETTINGS</a></li>
-             <li><a href="serviceCenter.do">CUSTOMER CENTER</a></li>
-             <li><a href="#">Logout</a></li>
-         <li> <a href="#" id="msgTest1">MSGTEST</a></li>
-   
-    </ul>
-  </div></li>
-           </ul>
-         </div>
-                    </li>
-               </ul>
-                <form name="search" action="membersearch.do" class="navbar-form navbar-right navbar-search-form">
-                
-                  <div class="form-group">
-                        <input type="text" name="name" class="form-control" placeholder="Search...">
-                
+						</ul>
+
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse"
+							id="bs-example-navbar-collapse-1">
+
+							<ul class="nav navbar-nav navbar-right">
+
+								<!-- 다운 광고 추가 임시 버튼 -->
+
+								<script>
+                  function voice(){
+                     sendRequest('voice.do', null, voiceResult, 'GET');
+                  }
+                  function voiceResult(){
                      
-                 </div> 
-                
-                 </form>
+                  }
+               </script>
 
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-</div><!--  end navbar -->
-</header>
+
+								<li><a href="#" onclick="voice()"> <i
+										class="pe-7s-search"></i>
+								</a></li>
+							
+
+
+
+								<!--  -->
+
+								<li style="margin-top: 15px;">		
+								<form name="search" action="membersearch.do">
+								<input type="text" name="name" 
+									 id='searchForm' value="" autocomplete="on" 
+									placeholder="Search...">
+									</form>
+									</li>
+								<li><a href="#" id="mypage1"> <i class="pe-7s-home"></i>
+
+								</a></li>
+								<li><a href="javascript:void(0);" class="hidden-xs"
+									id="friends1"> <i class="pe-7s-chat"></i>
+
+								</a></li>
+								<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown"
+									href="#" data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"> <i class="pe-7s-global"></i> <span
+										class="badge badge-pill badge-warning">6 New</span> <span
+										class="indicator text-warning d-none d-lg-block"> <i
+											class="fa fa-fw fa-circle"></i>
+									</span>
+								</a>
+									<div class="dropdown-menu" aria-labelledby="alertsDropdown" style="width: 400px;;">
+										<h6 class="dropdown-header">New Alerts:</h6>
+										
+										<iframe src="main_feedList.do?idx=${sessionScope.useridx}"
+						width="100%" height="100%" frameborder="0"></iframe>
+
+										<div class="dropdown-divider"></div>
+										
+									</div></li>
+								<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown"
+									href="#" data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"> <i class="pe-7s-mail"></i> <span
+										class="d-lg-none"> <span
+											class="badge badge-pill badge-primary">12 New</span>
+									</span> <span class="indicator text-primary d-none d-lg-block">
+											<i class="fa fa-fw fa-circle"></i>
+									</span>
+								</a>
+									<div class="dropdown-menu" aria-labelledby="messagesDropdown">
+										<h6 class="dropdown-header">New Messages:</h6>
+										<%@include file="msgList.jsp"%>
+
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item small" href="#">View all messages</a>
+									</div></li>
+
+
+								<li>
+									<div class="dropdown">
+										<a class="btn btn-default dropdown-toggle"
+											data-toggle="dropdown"> <i class="pe-7s-menu"></i> <span
+											class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a
+												href="infoSetting.do?idx=${sessionScope.useridx }">SETTINGS</a></li>
+											<li><a
+												href="serviceCenter.do?idx=${sessionScope.useridx }">CUSTOMER
+													CENTER</a></li>
+											<li><a href="#">Logout</a></li>
+											<li><a href="#" id="msgTest1">MSGTEST</a></li>
+											<li><a href="#" id="more1">MORETEST</a></li>
+
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+						</li>
+						</ul>
+				
+
+					</div>
+					<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container-fluid -->
+			</nav>
+		</div>
+		<!--  end navbar -->
+	</header>
 
 
 <div class="container-fluid text-center">    
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
+  <div class="row content" >
+    <div class="col-sm-2 sidenav"  >
    
     </div>
-    <div class="col-sm-8 text-center"  style="background-color: white; border-radius: 5%;"> 
+    <div class="col-sm-8 text-center" style="background-color: white; border-top-left-radius: 5%; border-top-right-radius: 5%;"> 
+    <div style="margin: 10px; background: #f4f4f4; border-radius: 50%;"><img src="assets_main/images/아이유6.jpg"  style="width: 40px;height: 40px; border-radius: 50%;"> 아이유님의 게시물</div>
+    <hr>
       <img src="assets_main/images/아이유6.jpg" alt="" style="margin: 1%" class="img-thumbnail">
     </div>
     <div class="col-sm-2 sidenav">
@@ -333,7 +395,7 @@
   <div class="col-sm-4 text-center" >
     
   </div>
-  <div class="col-sm-4 text-left"  style="background-color: white; border-radius: 5%;">
+  <div class="col-sm-4 text-left"  >
         <img src=""><input type="button" value="발자취" onclick="like(${content_idx})">
   </div>
   <div class="col-sm-4 text-center">
@@ -345,7 +407,7 @@
     <div class="col-sm-2 sidenav">
    
     </div>
-    <div class="col-sm-8 text-left"  style="background-color: white; border-radius: 5%;"> 
+    <div class="col-sm-8 text-left"> 
     <input type="hidden" id="content_idx" name="content_idx" value="${content_idx  }">
       <input type="text" id="content" name="content" value=""><input type="button" value="작성" onclick="addReply()"><br>
       

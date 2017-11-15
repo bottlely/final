@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-xs-6">
         
-        <c:if test="${empty like }"> 댓글 내용이 없습니다. </c:if>
+        <c:if test="${empty reply }"> 댓글 내용이 없습니다. </c:if>
 		<c:forEach var="dto" items="${reply }">
 			<div class="dropdown-divider">
 				<!-- 게시물 하나당 a태그하나 -->
