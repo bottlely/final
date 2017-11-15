@@ -69,7 +69,10 @@ public class MyHomeController{
 					following = 1;
 					
 					//차단인지
-					block = friendDao.relation(Integer.parseInt(member_idx),loginIdx).getBlack_state();
+					FriendDTO fdto2 = friendDao.relation(Integer.parseInt(member_idx),loginIdx);
+					if(fdto2 != null){
+						block = fdto2.getBlack_state();
+					}
 			}
 			
 			mav.addObject("block", block);

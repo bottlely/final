@@ -47,7 +47,7 @@ public class FriendController {
 		return mav;
 	}
 	/**unfollowing_mypage*/
-	@RequestMapping("/deleteFriend.do")
+	@RequestMapping("/deleteFriend_mypage.do")
 	public ModelAndView unFollowing_mypage(FriendDTO dto) {
 		int result = friendDao.deleteFriend(dto);
 		return new ModelAndView("marsJson","result",result);
