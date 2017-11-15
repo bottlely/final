@@ -59,7 +59,7 @@ function uploadData(){
     </div>
     <div class="panel panel-info">
       <div class="panel-heading">신고 대상</div>
-      <div class="panel-body">${toName} / ${toIdx}</div>
+      <div class="panel-body">${toName} (${toId}) </div>
     </div>
     <div class="panel panel-info">
       <div class="panel-heading">신고 사유</div>

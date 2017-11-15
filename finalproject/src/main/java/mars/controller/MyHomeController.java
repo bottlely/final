@@ -19,6 +19,7 @@ import mars.content.model.ContentDAO;
 import mars.content.model.ContentDTO;
 import mars.coverage.model.CoverageDTO;
 import mars.friend.model.FriendDAO;
+import mars.friend.model.FriendDTO;
 import mars.member.model.MemberDAO;
 import mars.member.model.MemberDTO;
 import mars.myHome.model.*;
@@ -49,25 +50,43 @@ public class MyHomeController{
 	@RequestMapping(value="/myHomeForm.do")
 	public ModelAndView myHomeForm(@RequestParam("useridx")String member_idx,
 			@RequestParam(value="cp",defaultValue="1")int cp,
-			@RequestParam(value="category",defaultValue="0")int category,HttpSession session) {
+			@RequestParam(value="category",defaultValue="0")int category,HttpServletRequest req) {
+		
+		ModelAndView mav = new ModelAndView();
 		
 		mhdao.visitorUpdate(member_idx);
+		
+		String loginIdx_s = (String) req.getSession().getAttribute("useridx");
+		int loginIdx =Integer.parseInt(loginIdx_s);
+		
+		if(Integer.parseInt(member_idx) != loginIdx){
+			
+			//친구인지
+			int following = 0;
+			int block = 0;
+			FriendDTO fdto = friendDao.relation(loginIdx,Integer.parseInt(member_idx));
+			if(fdto != null){ //팔로잉하고 있다면
+					following = 1;
+					
+					//차단인지
+					FriendDTO fdto2 = friendDao.relation(Integer.parseInt(member_idx),loginIdx);
+					if(fdto2 != null){
+						block = fdto2.getBlack_state();
+					}
+			}
+			
+			mav.addObject("block", block);
+			mav.addObject("following", following);
+		}
 		
 		//개인인지 기업인지
 		int userType = mdao.getUserInfo_idx(Integer.parseInt(member_idx)).getUsertype();
 		
 		List<ContentDTO> contentList = cdao.contentList(member_idx);
 		
-		//블랙리스트인지
-		HashMap<String, String> info = new HashMap<String, String>();
-		info.put("user1_idx ",(String)session.getAttribute("useridx"));
-		info.put("user2_idx ", member_idx);
-		
 		//상대가 비공개 계정으로 설정했는지
+		int homeCoverage = mhdao.myHomeSource(member_idx).getOpen_coverage();
 		
-		//친구인지
-		List<MemberDTO> followerList = friendDao.followerList(Integer.parseInt(member_idx));
-			
 		List<CoverageDTO> coverageList = cdao.coverageList(member_idx);
 		
 		List<String> imgList = new ArrayList<String>();
@@ -89,7 +108,7 @@ public class MyHomeController{
 				}
 		}
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
-		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("mhdto", mhdto);
 		mav.addObject("cdao", cdao);
 		mav.addObject("imgList", imgList);
@@ -126,7 +145,7 @@ public class MyHomeController{
 	public ModelAndView reportUserForm(@RequestParam("toIdx")int toIdx) {
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("toIdx",toIdx);
+		mav.addObject("toId",mdao.getUserInfo_idx(toIdx).getId());
 		mav.addObject("toName",mdao.getUserInfo_idx(toIdx).getName());
 		mav.setViewName("myPage/more/reportUser");
 		return mav;

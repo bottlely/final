@@ -29,6 +29,12 @@ public class FriendController {
 		return mav;
 	}
 	
+	@RequestMapping("/following_mypage.do")
+	public ModelAndView addFollowing_mypage(FriendDTO dto) {
+		int result = friendDao.following(dto);
+		return new ModelAndView("marsJson","result",result);
+	}
+	
 	/**unfollowing*/
 	@RequestMapping("/deleteFriend.do")
 	public ModelAndView unFollowing(FriendDTO dto) {
@@ -39,6 +45,12 @@ public class FriendController {
 		mav.addObject("msg", msg);
 		mav.setViewName("main/friendMsg");
 		return mav;
+	}
+	/**unfollowing_mypage*/
+	@RequestMapping("/deleteFriend_mypage.do")
+	public ModelAndView unFollowing_mypage(FriendDTO dto) {
+		int result = friendDao.deleteFriend(dto);
+		return new ModelAndView("marsJson","result",result);
 	}
 	
 	/*@RequestMapping("/removeFollower.do")
@@ -107,6 +119,12 @@ public class FriendController {
 		return mav;
 	}
 	
+	@RequestMapping("/friend_unblock_mypage.do")
+	public ModelAndView unblock_mypage(@RequestParam("user1_idx")int user1_idx, @RequestParam("user2_idx")int user2_idx) {
+		int res = friendDao.unblock(user1_idx, user2_idx);
+		return new ModelAndView("marsJson","result",res);
+	}
+	
 	@RequestMapping("/myhome_unblock.do")
 	public ModelAndView myhomeUnblock(@RequestParam("user1_idx")int user1_idx, @RequestParam("user2_idx")int user2_idx) {
 		int res = friendDao.unblock(user1_idx, user2_idx);
@@ -125,6 +143,11 @@ public class FriendController {
 		mav.addObject("msg", msg);
 		mav.setViewName("main/friendMsg");
 		return mav;
+	}
+	@RequestMapping("/friend_block_mypage.do")
+	public ModelAndView block_mypage(@RequestParam("user1_idx")int user1_idx, @RequestParam("user2_idx")int user2_idx) {
+		int res = friendDao.block(user1_idx, user2_idx);
+		return new ModelAndView("marsJson","result",res);
 	}
 	
 	@RequestMapping("/removeFollower.do")
