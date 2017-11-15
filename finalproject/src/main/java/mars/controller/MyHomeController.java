@@ -63,9 +63,11 @@ public class MyHomeController{
 		info.put("user1_idx ",(String)session.getAttribute("useridx"));
 		info.put("user2_idx ", member_idx);
 		
+		//상대가 비공개 계정으로 설정했는지
+		
 		//친구인지
 		List<MemberDTO> followerList = friendDao.followerList(Integer.parseInt(member_idx));
-				
+			
 		List<CoverageDTO> coverageList = cdao.coverageList(member_idx);
 		
 		List<String> imgList = new ArrayList<String>();

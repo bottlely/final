@@ -67,8 +67,7 @@ public class ContentController {
 		List<FriendDTO> fdtoList = settingDao.getGroupList(Integer.parseInt(member_idx));
 		
 		HashMap<String,List<MemberDTO>> groupList = new HashMap<String, List<MemberDTO>>();
-		
-		List<String> groupValues = new ArrayList<String>();
+		HashMap<String,Integer> groupList_idx = new HashMap<String,Integer>();
 		
 		for(FriendDTO fdto : fdtoList){
 			
@@ -77,7 +76,6 @@ public class ContentController {
 			
 			List<MemberDTO> group = new ArrayList<MemberDTO>();
 			String groupname = null;
-			String groupIdxs = "";
 			
 			for(GroupDTO gdto : groupMembers){
 				
@@ -89,13 +87,9 @@ public class ContentController {
 				MemberDTO mdto = mdao.getUserInfo_idx(member);
 				
 				group.add(mdto);
-
-				groupIdxs += member+",";
-				
-				System.out.println(" 그룹 idx 추가  :  "+groupIdxs);
 			}
 			groupList.put(groupname, group);
-			groupValues.add(groupIdxs);
+			groupList_idx.put(groupname, groupIdx);
 		}
 		
 		String path =  null;
@@ -111,7 +105,7 @@ public class ContentController {
 		mav.addObject("profile", mhdto.getProfile_img());
 		mav.addObject("followerList", followerList);
 		mav.addObject("groupList",groupList);
-		mav.addObject("groupValues", groupValues);
+		mav.addObject("groupList_idx",groupList_idx);
 		mav.setViewName(path);
 		return mav;
 	}
@@ -121,7 +115,8 @@ public class ContentController {
 			@RequestParam("htag")String htag,
 			@RequestParam("mtag")String mtag,
 			@RequestParam("title")String title,
-			@RequestParam("coverage_list")String cl,
+			@RequestParam(value="coverage_list_group",required=false)String cl_group,
+			@RequestParam(value="coverage_list",required=false)String cl,
 			@RequestParam("coverage_state")String cs,
 			@RequestParam("content")String content) {
 		
@@ -135,23 +130,51 @@ public class ContentController {
         info.put("type", "3");
 		int result = cdao.uploadContent(info);
 		int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
+
+        int result2 = -1;
         
-		int result2 = 0;
-        
-        CoverageDTO dto = new CoverageDTO(contentIdx,0,Integer.parseInt(cs),0,Integer.parseInt(member_idx));
-        
-        if(cl != null && cl.length() != 0){
-	        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
-	        for(String toIdx : toIdxList){
-	        	dto.setIdx_to(Integer.parseInt(toIdx));
+        if(contentIdx > 0){
+        	int state = Integer.parseInt(cs);
+            CoverageDTO dto = new CoverageDTO(contentIdx,0,state,0,Integer.parseInt(member_idx));
+            
+            if(state == 2 || state==3){
+            	
+            if(cl != null && !cl.equals("")){
+    	        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
+    	        for(String toIdx : toIdxList){
+    	        	dto.setIdx_to(Integer.parseInt(toIdx));
+    	        	result2 = cdao.coverageInsert(dto);
+    	        	if(result2 < 0){
+    	        		return  new ModelAndView("marsJson","result",result2);
+    	        	}
+    	        }
+            }
+            
+    	        if(cl_group != null && !cl_group.equals("")){
+    	        	   List<String> groupIdxList = new ArrayList<String>(Arrays.asList(cl_group.split(",")));
+    	   	        for(String groupIdx : groupIdxList){
+    	   	        	List<GroupDTO> groupMembers = settingDao.showGroup(Integer.parseInt(groupIdx));
+    	   	        	for(GroupDTO gdto : groupMembers){
+    	   	        		dto.setIdx_to(gdto.getIdx_to());
+    	   	        		result2 = cdao.coverageInsert(dto);
+    	   	        		if(result2 < 0){
+    	   	   	        		return  new ModelAndView("marsJson","result",result2);
+    	   	   	        	}
+    	   	        	}
+    	   	        }
+    	        }
+    	        else{
+    	        	dto.setCoverage_state(0);
+    	        	result2 = cdao.coverageInsert(dto);
+    	        }
+            }
+            else{
 	        	result2 = cdao.coverageInsert(dto);
-	        	if(result2 < 0){
-	        		return  new ModelAndView("marsJson","result",result2);
-	        	}
 	        }
-        }else{
-        	result2 = cdao.coverageInsert(dto);
-        }
+            
+            }else{
+            	return  new ModelAndView("marsJson","result",result2);
+            }
         
         ModelAndView mav = new ModelAndView("marsJson","result",result2);
 		return mav;
@@ -163,7 +186,8 @@ public class ContentController {
 			@RequestParam("content")String content,
 			@RequestParam("htag")String htag,
 			@RequestParam("mtag")String mtag,
-			@RequestParam("coverage_list")String cl,
+			@RequestParam(value="coverage_list_group",required=false)String cl_group,
+			@RequestParam(value="coverage_list",required=false)String cl,
 			@RequestParam("coverage_state")String cs,
 			MultipartHttpServletRequest req,HttpServletRequest req2) {
 
@@ -195,22 +219,50 @@ public class ContentController {
         int result = cdao.uploadContent(info);
         int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
         
-        int result2 = 0;
+        int result2 = -1;
         
-        CoverageDTO dto = new CoverageDTO(contentIdx,0,Integer.parseInt(cs),0,Integer.parseInt(member_idx));
-        
-        if(cl != null && cl.length() != 0){
-	        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
-	        for(String toIdx : toIdxList){
-	        	dto.setIdx_to(Integer.parseInt(toIdx));
+        if(contentIdx > 0){
+        	int state = Integer.parseInt(cs);
+            CoverageDTO dto = new CoverageDTO(contentIdx,0,state,0,Integer.parseInt(member_idx));
+            
+            if(state == 2 || state==3){
+            	
+            if(cl != null && !cl.equals("")){
+    	        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
+    	        for(String toIdx : toIdxList){
+    	        	dto.setIdx_to(Integer.parseInt(toIdx));
+    	        	result2 = cdao.coverageInsert(dto);
+    	        	if(result2 < 0){
+    	        		return  new ModelAndView("marsJson","result",result2);
+    	        	}
+    	        }
+            }
+            
+    	        if(cl_group != null && !cl_group.equals("")){
+    	        	   List<String> groupIdxList = new ArrayList<String>(Arrays.asList(cl_group.split(",")));
+    	   	        for(String groupIdx : groupIdxList){
+    	   	        	List<GroupDTO> groupMembers = settingDao.showGroup(Integer.parseInt(groupIdx));
+    	   	        	for(GroupDTO gdto : groupMembers){
+    	   	        		dto.setIdx_to(gdto.getIdx_to());
+    	   	        		result2 = cdao.coverageInsert(dto);
+    	   	        		if(result2 < 0){
+    	   	   	        		return  new ModelAndView("marsJson","result",result2);
+    	   	   	        	}
+    	   	        	}
+    	   	        }
+    	        }
+    	        else{
+    	        	dto.setCoverage_state(0);
+    	        	result2 = cdao.coverageInsert(dto);
+    	        }
+            }
+            else{
 	        	result2 = cdao.coverageInsert(dto);
-	        	if(result2 < 0){
-	        		return  new ModelAndView("marsJson","result",result2);
-	        	}
 	        }
-        }else{
-        	result2 = cdao.coverageInsert(dto);
-        }
+            
+            }else{
+            	return  new ModelAndView("marsJson","result",result2);
+            }
         
         ModelAndView mav = new ModelAndView("marsJson","result",result2);
 		return mav;
@@ -240,7 +292,8 @@ public class ContentController {
 			@RequestParam("content")String content,@RequestParam("not_upload")String list,
 			@RequestParam("htag")String htag,
 			@RequestParam("mtag")String mtag,
-			@RequestParam("coverage_list")String cl,
+			@RequestParam(value="coverage_list_group",required=false)String cl_group,
+			@RequestParam(value="coverage_list",required=false)String cl,
 			@RequestParam("coverage_state")String cs,
 			@RequestParam("sel")String sel,HttpServletRequest req) {
 
@@ -257,22 +310,50 @@ public class ContentController {
         int result = cdao.uploadContent(info);
         int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
         
-        int result2 = 0;
+        int result2 = -1;
         
-        CoverageDTO dto = new CoverageDTO(contentIdx,0,Integer.parseInt(cs),0,Integer.parseInt(member_idx));
-        
-        if(cl != null && cl.length() != 0){
-	        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
-	        for(String toIdx : toIdxList){
-	        	dto.setIdx_to(Integer.parseInt(toIdx));
+        if(contentIdx > 0){
+        	int state = Integer.parseInt(cs);
+            CoverageDTO dto = new CoverageDTO(contentIdx,0,state,0,Integer.parseInt(member_idx));
+            
+            if(state == 2 || state==3){
+            	
+            if(cl != null && !cl.equals("")){
+    	        List<String> toIdxList = new ArrayList<String>(Arrays.asList(cl.split(",")));
+    	        for(String toIdx : toIdxList){
+    	        	dto.setIdx_to(Integer.parseInt(toIdx));
+    	        	result2 = cdao.coverageInsert(dto);
+    	        	if(result2 < 0){
+    	        		return  new ModelAndView("marsJson","result",result2);
+    	        	}
+    	        }
+            }
+            
+    	        if(cl_group != null && !cl_group.equals("")){
+    	        	   List<String> groupIdxList = new ArrayList<String>(Arrays.asList(cl_group.split(",")));
+    	   	        for(String groupIdx : groupIdxList){
+    	   	        	List<GroupDTO> groupMembers = settingDao.showGroup(Integer.parseInt(groupIdx));
+    	   	        	for(GroupDTO gdto : groupMembers){
+    	   	        		dto.setIdx_to(gdto.getIdx_to());
+    	   	        		result2 = cdao.coverageInsert(dto);
+    	   	        		if(result2 < 0){
+    	   	   	        		return  new ModelAndView("marsJson","result",result2);
+    	   	   	        	}
+    	   	        	}
+    	   	        }
+    	        }
+    	        else{
+    	        	dto.setCoverage_state(0);
+    	        	result2 = cdao.coverageInsert(dto);
+    	        }
+            }
+            else{
 	        	result2 = cdao.coverageInsert(dto);
-	        	if(result2 < 0){
-	        		return  new ModelAndView("marsJson","result",result2);
-	        	}
 	        }
-        }else{
-        	result2 = cdao.coverageInsert(dto);
-        }
+            
+            }else{
+            	return  new ModelAndView("marsJson","result",result2);
+            }
         
         ModelAndView mav = new ModelAndView("marsJson","result",result2);
 		return mav;

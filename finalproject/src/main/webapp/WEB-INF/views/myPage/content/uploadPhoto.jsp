@@ -82,6 +82,9 @@ select {
 		
         //공개범위 사용자 정의 리스트
         var sel_list = [];
+        
+      //공개범위 사용자 정의 리스트(그룹)
+        var sel_list_group = [];
 
         $(document).ready(function() {
             $("#input_imgs").on("change", handleImgFileSelect);
@@ -165,11 +168,9 @@ select {
     			 data.append("coverage_state",coverage_state);
     			 
     			 if(coverage_state == 2 || coverage_state == 3){
-    				 data.append("coverage_list",sel_list);
-    			 }else{
-    				 data.append("coverage_list","");
+    				data.append("coverage_list",sel_list);
+    				data.append("coverage_list_group",sel_list_group);
     			 }
-    			 
     			 //data.append("type",1);
     			 
     	        /* $.ajax({
@@ -227,23 +228,33 @@ select {
         	}
          }
         
-        function sel_coverage(idx){
-        	alert(idx.value+'---------------');
+        function sel_coverage(idx,Flag){
+		
         	var color = document.getElementById(idx).color;
         	        	
         	if(color == "gray"){
         	      document.getElementById(idx).color = "007bff";
-        	      sel_list.push(idx);
-        	      //alert("1 : "+ sel_list.length);
-        	      //alert(sel_list[sel_list.length-1]);
+        	      if(!Flag){
+        	      	sel_list.push(idx);
+        	      }else{
+        	    	  sel_list_group.push(idx);
+        	      }
         	}else{
         	     document.getElementById(idx).color = "gray";
-        	  for(var i=0, len=sel_list.length; i<len; i++) {
-        		  if(idx == sel_list[i]){
-        			  	sel_list.splice(i, 1);
-        			 }
-        		}
-        	 	 //alert("2 : "+ sel_list.length);
+        	     
+        	     if(!Flag){
+        	  		for(var i=0, len=sel_list.length; i<len; i++) {
+        		 		 if(idx == sel_list[i]){
+        			  		sel_list.splice(i, 1);
+        				 }
+        			}
+        		}else{
+        			for(var i=0, len=sel_list_group.length; i<len; i++) {
+	       		 		 if(idx == sel_list_group[i]){
+	       		 			sel_list_group.splice(i, 1);
+	       				 }
+       				}
+       	      	}
         	}
         }
         
@@ -362,7 +373,7 @@ select {
 			<ul class="list-group" id="myList" style="border:;">
 				<c:forEach var="follower_list" items="${followerList}">
 					<li class="list-group-item"
-						onclick="sel_coverage(${follower_list.member_idx})"><img
+						onclick="sel_coverage(${follower_list.member_idx},false)"><img
 						src="myHomeFolder/profile_img/${follower_list.profile_img}" alt=""
 						width="20" height="20" style="border-radius: 50%"> <font
 						id="${follower_list.member_idx}" color="gray"><strong>${follower_list.name}</strong></font>
@@ -370,10 +381,9 @@ select {
 				</c:forEach>
 				<hr>
 				<c:forEach var="group" items="${groupList}">
-					<c:forEach var="idxs" items="${groupValues}">
 						<li class="list-group-item" 
-							onclick="sel_coverage(${idxs})">
-						<font id="${idxs}" color="gray"><strong>${group.key}</strong></font>
+							onclick="sel_coverage('${groupList_idx[group.key]}',true)">
+						<font id="${groupList_idx[group.key]}" color="gray"><strong>${group.key}</strong></font>
 						</li>
 						<c:forEach var="member" items="${group.value}">
 							<li class="list-group-item">
@@ -381,7 +391,6 @@ select {
 							</li>
 						</c:forEach>
 					<hr>
-					</c:forEach>
 				</c:forEach>
 			</ul>
 		</div>
