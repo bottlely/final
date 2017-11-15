@@ -280,21 +280,18 @@ function pay(){
 	threeTag.innerHTML='Payment Status';
 	
 	
-//	alert('1');
 	if(cnt1!=0){
 		for(var i=cnt2; i<=cnt1; i++){
 			var rItem = document.getElementById('isId'+i);
 			if(rItem!=null){
-	//			alert('2');
 				rItem.parentNode.removeChild(rItem);
 			}
 		}
 	}
 	
 	cnt2 = cnt1;
-//	alert('3');
 	
-	sendRequest('getAdRequest.do', null, payResult, 'GET');
+	sendRequest('getPayRequest.do', null, payResult, 'GET');
 }
 
 function payResult(){
@@ -330,8 +327,15 @@ function payResult(){
  	 				newDiv2.innerHTML = list.apply_date;
  	 				trDiv.appendChild(newDiv2);
  	 				
+ 	 				var msg='';
+ 	 				if(list.status==1){
+ 	 					msg='미 결제';
+ 	 				}
+ 	 				else if(list.status==2){
+ 	 					msg='결제 완료';
+ 	 				}
  	 				var newDiv3 = document.createElement('td');
- 	 				newDiv3.innerHTML = list.link;
+ 	 				newDiv3.innerHTML = msg;
  	 				trDiv.appendChild(newDiv3);
  	 			}
  				

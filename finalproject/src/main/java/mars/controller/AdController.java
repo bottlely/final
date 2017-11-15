@@ -91,6 +91,13 @@ public class AdController {
 		return mav;
 	}
 	
+	@RequestMapping("/getPayRequest.do")
+	public ModelAndView getPayRequest(){
+		List<ApplyAdDTO> list =	adDao.adPayList();//
+		ModelAndView mav = new ModelAndView("marsJson","list",list);
+		return mav;
+	}
+	
 	@RequestMapping("/list.do")
 	public ModelAndView getList(@RequestParam("ad_idx")String ad_idx){
 		List<ApplyAdDTO> list =	adDao.showList(ad_idx);

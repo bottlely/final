@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface ApplyAdDAO {
 
 	public List<ApplyAdDTO> adList();
+	public List<ApplyAdDTO> adPayList();
 	public int insert(ApplyAdDTO adDto);
 	public List<ApplyAdDTO> showCurList(int member_idx);
 	public String showAveNum(Integer i);

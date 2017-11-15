@@ -26,6 +26,13 @@ public class ApplyAdDAOImple implements ApplyAdDAO {
 		return list;
 	}
 	
+	public List<ApplyAdDTO> adPayList(){
+		Map<String, Integer> data = new HashMap<String, Integer>();  
+		List<ApplyAdDTO> list = sqlMap.selectList("adPayList", data);
+		System.out.println(list.size());
+		return list;
+	}
+	
 	public int insert(ApplyAdDTO adDto){
 		int cnt = sqlMap.insert("addAdForm", adDto);
 		return cnt;
