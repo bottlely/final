@@ -9,7 +9,7 @@
 </head>
 <body>	
 		
-		<c:if test="${empty reply }"> 내역이 없습니다. </c:if>
+		<c:if test="${empty reply }"> 내용이 없습니다. </c:if>
 		<c:forEach var="list" items="${reply }">
             <div class="dropdown-divider"></div>
             <!-- 게시물 하나당 a태그하나 -->
