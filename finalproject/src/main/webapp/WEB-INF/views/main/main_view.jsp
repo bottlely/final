@@ -1,75 +1,87 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="utf-8" />
-   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <link href="assets_main/css/bootstrap.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets_main/css/style.css" type="text/css">
-    <link href="assets_main/css/pe-icon-7-stroke.css" rel="stylesheet" />
-   <link href="assets_main/css/ct-navbar.css" rel="stylesheet" />  
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- <script type="text/javascript" src="js/httpRequest.js"></script>
-  
-  <title>MARS</title>
-    <!--     Font Awesome     -->
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<link href="assets_main/css/bootstrap.css" rel="stylesheet" />
+<link rel="stylesheet" href="assets_main/css/style.css" type="text/css">
+<link href="assets_main/css/pe-icon-7-stroke.css" rel="stylesheet" />
+<link href="assets_main/css/ct-navbar.css" rel="stylesheet" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/httpRequest.js"></script>
 
-    <link href='http://fonts.googleapis.com/css?family=Grand+Hotel' rel='stylesheet' type='text/css'>
-    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
-    <style>
-    
-    
-         @keyframes spin {
-      100% {
-         transform: rotate(360deg);
-         }
-      }
-      .spinner {
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      border: 5px solid yellow;
-      border-color: yellow transparent transparent;
-      border-radius: 50%;
-      animation: spin 1s linear  infinite;
-      }    
-    
-        .fa-heart{
-            color: #F74933;
-        }   
-        .space-100{
-            height: 100px;
-            display: block;
-        }
-        pre.prettyprint{
-            background-color: #ffffff;
-            border: 1px solid #999;
-            margin-top: 20px;
-            padding: 20px;
-            text-align: left;
-        }
-        .atv, .str{
-            color: #05AE0E;
-        }
-        .tag, .pln, .kwd{
-             color: #3472F7;
-        }
-        .atn{
-          color: #2C93FF;
-        }
-        .pln{
-           color: #333;
-        }
-        .com{
-            color: #999;
-        } 
-    </style>
+<title>MARS</title>
+<!--     Font Awesome     -->
+<link
+	href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+	rel="stylesheet">
+
+<link href='http://fonts.googleapis.com/css?family=Grand+Hotel'
+	rel='stylesheet' type='text/css'>
+<script
+	src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+<style>
+@
+keyframes spin { 100% {
+	transform: rotate(360deg);
+}
+
+}
+.spinner {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	border: 5px solid yellow;
+	border-color: yellow transparent transparent;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+
+.fa-heart {
+	color: #F74933;
+}
+
+.space-100 {
+	height: 100px;
+	display: block;
+}
+
+pre.prettyprint {
+	background-color: #ffffff;
+	border: 1px solid #999;
+	margin-top: 20px;
+	padding: 20px;
+	text-align: left;
+}
+
+.atv, .str {
+	color: #05AE0E;
+}
+
+.tag, .pln, .kwd {
+	color: #3472F7;
+}
+
+.atn {
+	color: #2C93FF;
+}
+
+.pln {
+	color: #333;
+}
+
+.com {
+	color: #999;
+}
+</style>
 </head>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-         <script> 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script> 
 
          $(document).ready(function(){
              $("#friends1").click(function(){
@@ -149,9 +161,9 @@
             $('#galleryImage').attr("src",div);
             } 
 
-</script> 
+</script>
 <body onload="reply_List(${content_idx})">
-<header>
+	<header>
 		<form name="hidden_value">
 			<input type="hidden" name="hidden_other_idx" id="hidden_other_idx"
 				value=""> <input type="hidden" name="hidden_other_name"
@@ -210,9 +222,8 @@
 					id="following_name_id"></p>
 				<div style="text-align: center;">
 					<input type="button" value="팔로우취소" onclick="unfollowing()"
-						class="frbutton"><br>
-					<br> <input type="button" value="그룹설정"
-						onclick="settingGroup()" class="frbutton"><br>
+						class="frbutton"><br> <br> <input type="button"
+						value="그룹설정" onclick="settingGroup()" class="frbutton"><br>
 					<br> <input type="button" value="취소하기" onclick="btn_cancle1()"
 						class="frbutton"><br>
 				</div>
@@ -235,13 +246,11 @@
 					id="follower_name_id"></p>
 				<div style="text-align: center;">
 					<input type="button" value="팔로우하기" onclick="following()"
-						class="frbutton"><br>
-					<br> <input type="button" value="팔로워삭제"
-						onclick="removeFollower()" class="frbutton"><br>
+						class="frbutton"><br> <br> <input type="button"
+						value="팔로워삭제" onclick="removeFollower()" class="frbutton"><br>
 					<br> <input type="button" value="차단하기" onclick="block()"
-						class="frbutton"><br>
-					<br> <input type="button" value="그룹설정"
-						onclick="settingGroup()" class="frbutton"><br>
+						class="frbutton"><br> <br> <input type="button"
+						value="그룹설정" onclick="settingGroup()" class="frbutton"><br>
 					<br> <input type="button" value="취소하기" onclick="btn_cancle2()"
 						class="frbutton"><br>
 				</div>
@@ -285,19 +294,18 @@
 								<li><a href="#" onclick="voice()"> <i
 										class="pe-7s-search"></i>
 								</a></li>
-							
+
 
 
 
 								<!--  -->
 
-								<li style="margin-top: 15px;">		
-								<form name="search" action="membersearch.do">
-								<input type="text" name="name" 
-									 id='searchForm' value="" autocomplete="on" 
-									placeholder="Search...">
+								<li style="margin-top: 15px;">
+									<form name="search" action="membersearch.do">
+										<input type="text" name="name" id='searchForm' value=""
+											autocomplete="on" placeholder="Search...">
 									</form>
-									</li>
+								</li>
 								<li><a href="#" id="mypage1"> <i class="pe-7s-home"></i>
 
 								</a></li>
@@ -314,14 +322,15 @@
 											class="fa fa-fw fa-circle"></i>
 									</span>
 								</a>
-									<div class="dropdown-menu" aria-labelledby="alertsDropdown" style="width: 400px;;">
+									<div class="dropdown-menu" aria-labelledby="alertsDropdown"
+										style="width: 400px;">
 										<h6 class="dropdown-header">New Alerts:</h6>
-										
+
 										<iframe src="main_feedList.do?idx=${sessionScope.useridx}"
-						width="100%" height="100%" frameborder="0"></iframe>
+											width="100%" height="100%" frameborder="0"></iframe>
 
 										<div class="dropdown-divider"></div>
-										
+
 									</div></li>
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown"
@@ -364,7 +373,7 @@
 						</div>
 						</li>
 						</ul>
-				
+
 
 					</div>
 					<!-- /.navbar-collapse -->
@@ -376,45 +385,61 @@
 	</header>
 
 
-<div class="container-fluid text-center">    
-  <div class="row content" >
-    <div class="col-sm-2 sidenav"  >
-   
-    </div>
-    <div class="col-sm-8 text-center" style="background-color: white; border-top-left-radius: 5%; border-top-right-radius: 5%;"> 
-    <div style="margin: 10px; background: #f4f4f4; border-radius: 50%;"><img src="assets_main/images/아이유6.jpg"  style="width: 40px;height: 40px; border-radius: 50%;"> 아이유님의 게시물</div>
-    <hr>
-      <img src="assets_main/images/아이유6.jpg" alt="" style="margin: 1%" class="img-thumbnail">
-    </div>
-    <div class="col-sm-2 sidenav">
-     
- 
-    </div>
-  </div>
-  <div class="row content">
-  <div class="col-sm-4 text-center" >
-    
-  </div>
-  <div class="col-sm-4 text-left"  >
-        <img src=""><input type="button" value="발자취" onclick="like(${content_idx})">
-  </div>
-  <div class="col-sm-4 text-center">
-  
-  </div>
-  </div>
-  
-    <div class="row content">
-    <div class="col-sm-2 sidenav">
-   
-    </div>
-    <div class="col-sm-8 text-left"> 
-    <input type="hidden" id="content_idx" name="content_idx" value="${content_idx  }">
-      <input type="text" id="content" name="content" value=""><input type="button" value="작성" onclick="addReply()"><br>
-      
-      <h2 id="reply_List"></h2>
-      <input type="hidden" id="session_idx" value="${sessionScope.useridx }">
-      <input type="hidden" id="session_name" value="${sessionScope.username }">
-      <script>
+	<div class="container-fluid text-center">
+		<div class="row content">
+			<div class="col-sm-2 sidenav"></div>
+			<div class="col-sm-8 text-center" style="background: #f4f4f4;">
+				<div style="text-align: left;">
+					<img src="assets_main/images/아이유6.jpg"
+						style="width: 60px; height: 60px; border-radius: 50%; margin: 10px;">
+					<font color="blue" size="3px;"><b>아이유</b></font> <font>님의
+						게시물</font>
+				</div>
+			</div>
+			<div class="col-sm-2 sidenav"></div>
+		</div>
+		<div class="row content">
+			<div class="col-sm-2 sidenav"></div>
+			<div class="col-sm-8 text-center" style="background-color: white;">
+				<div style="text-align: left; margin: 10px;">
+					<font size="3px;"><b>오늘 셀카는 상콤하다★</b></font>
+				</div>
+				<hr>
+				<img src="assets_main/images/아이유6.jpg" alt="" style="margin: 1%"
+					class="img-thumbnail">
+			</div>
+			<div class="col-sm-2 sidenav"></div>
+		</div>
+		<div class="row content">
+			<div class="col-sm-2 text-center"></div>
+			<div class="col-sm-8 text-left" style="background: #f4f4f4;">
+				<a href="#" onclick="like(${content_idx})"><img
+					src="assets_main/images/발자취전.png" width="40px" height="40px;"
+					style="margin-left: 15px; margin-top: 10px;"></a>
+				<%-- <img src=""><input type="button" value="발자취"
+					onclick="like(${content_idx})"> --%>
+				<hr>
+			</div>
+			<div class="col-sm-2 text-center"></div>
+		</div>
+
+		<div class="row content">
+			<div class="col-sm-2 sidenav"></div>
+			<div class="col-sm-8 text-center" style="background: #f4f4f4;">
+
+				<img src="assets_main/images/아이유6.jpg"
+					style="width: 60px; height: 60px; border-radius: 50%; margin: 10px;">
+				<input type="hidden" id="content_idx" name="content_idx"
+					value="${content_idx  }"> <input type="text" id="content"
+					name="content" value="" placeholder="댓글을 입력하세요." size="70"
+					style="font-size: 12pt; color: black; font-weight: bold;"><input
+					type="button" value="작성" onclick="addReply()"><br>
+				<hr>
+				<h2 id="reply_List"></h2>
+				<input type="hidden" id="session_idx"
+					value="${sessionScope.useridx }"> <input type="hidden"
+					id="session_name" value="${sessionScope.username }">
+				<script>
          function like(content_idx){
             document.getElementById("session_idx").value;
             
@@ -517,32 +542,31 @@
          
          
       </script>
-       
-    </div>
-    <div class="col-sm-2 sidenav">
-     
- 
-    </div>
-  </div>
-  
-</div>
 
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
+			</div>
+			<div class="col-sm-2 sidenav"></div>
+		</div>
+
+	</div>
+
+	<footer class="container-fluid text-center">
+		<p>Footer Text</p>
+	</footer>
 
 
 
 </body>
 
-    <script src="assets_main/js_1/jquery-1.10.2.js" type="text/javascript"></script>
-   <script src="assets_main/js_1/bootstrap.js" type="text/javascript"></script>
-   <script type="text/javascript" src="assets_main/js_1/main.js"></script>
-   <script src="assets_main/js_1/ct-navbar.js"></script>
-   <script type="text/javascript" src="assets_main/owl-carousel/owl.carousel.min.js"></script>
-   
+<script src="assets_main/js_1/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="assets_main/js_1/bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript" src="assets_main/js_1/main.js"></script>
+<script src="assets_main/js_1/ct-navbar.js"></script>
+<script type="text/javascript"
+	src="assets_main/owl-carousel/owl.carousel.min.js"></script>
+
 <!--Parallax-->
-<script type="text/javascript" src="assets_main/js/jquery.stellar.min.js"></script>
+<script type="text/javascript"
+	src="assets_main/js/jquery.stellar.min.js"></script>
 <!--IsoTop-->
 <script type="text/javascript" src="assets_main/js/isotope.pkgd.min.js"></script>
 <!--Typed js-->
