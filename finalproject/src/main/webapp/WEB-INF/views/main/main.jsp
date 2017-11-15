@@ -491,18 +491,20 @@ var data = [
                
          function openpic(content_idx){
             document.getElementById('c_idx').value=content_idx;
+            var category = document.getElementById('category_'+content_idx).value;
             var path = document.getElementById('path_'+content_idx).value;
             var writer = document.getElementById('writer_'+content_idx).value;
             var content = document.getElementById('content_'+content_idx).value;
             
-            window.alert(path);
-            window.alert(writer);
-            window.alert(content);
-         /*    document.getElementById('pic_idx').value = i; */
-            
             sendRequest('replyList.do?content_idx='+content_idx, null, replyList, 'GET');
+         
+         if(category==1){
+        	 $('#galleryImage').attr("src",path);
+         }else if(category==2){
+        	 $('#galleryVideo').html('<source src="'+path+'" type="video/mp4" autoplay="autoplay"></source>' );
+        	 document.getElementById("galleryVideo").play();
+         }
             
-            $('#galleryImage').attr("src",path);
             document.getElementById('c_writer').innerHTML = writer;
             document.getElementById('c_content').innerHTML = content;
             /* $("#galleryImage").load("#galleryImage"); */
@@ -898,44 +900,58 @@ var data = [
 			<div class="row text-center">
 				<div class="works-category" data-sr='enter top, wait 0.2s'>
 					<ul class="statistics">
-						<li class="style1"><a href="#" data-filter="*"
-							class="current">All</a></li>
-						<li class="style2"><a
-							href="#
-                  
-                  "
-							data-filter=".jpg">PHOTO</a></li>
+						<li class="style1"><a href="#" data-filter="*" class="current">All</a></li>
+						<li class="style2"><a href="# " data-filter=".photo">PHOTO</a></li>
 						<li class="style3"><a href="#" data-filter=".video">VIDEO</a></li>
 						<li class="style4"><a href="#" data-filter=".text">TEXT</a></li>
-						<li class="style1"><a href="#" data-filter=".strategy">HOT</a></li>
 					</ul>
 				</div>
 
+<!--  전체 피드 목록 -->
 				<div class="works-area">
 					<c:set var="list" value="${list }"></c:set>
 					<c:if test="${empty list }"> 게시물 없음! </c:if>
 					<c:forEach var="list" items="${list }">
-						<div class="col-md-4 col-sm-6 col-xs-12  jpg">
+						<c:if test="${list.category==1 }">
+						<div class="col-md-4 col-sm-6 col-xs-12  photo">
 							<div class="works">
-								<img src="myHomeFolder/content/${list.path }" alt=""
-									style="width: 431px; height: 431px;">
+								<img src="myHomeFolder/content/${list.path }" alt="" style="width: 431px; height: 431px;">
 								<div class="work-overlay text-center">
 									<div class="overlay-caption">
 										<h4>PHOTO</h4>
-										<a href="#galleryModal" class="gallery-box"
-											data-toggle="modal" data-src="${list.path }"
-											onclick="openpic(${list.content_idx})"> <input
-											type="hidden" id="path_${list.content_idx }"
-											value="myHomeFolder/content/${list.path }"> <input
-											type="hidden" id="writer_${list.content_idx }"
-											value="${list.writer }"> <input type="hidden"
-											id="content_${list.content_idx }" value="${list.content }">
+										<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})">
+										<input type="hidden" id="category_${list.content_idx }" value="${list.category }">
+										<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
+										<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
+										<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
 											<p>${list.writer}</p>
 										</a>
 									</div>
 								</div>
 							</div>
 						</div>
+						</c:if>
+						<c:if test="${list.category==2 }">
+						<div class="col-md-4 col-sm-6 col-xs-12  video">
+							<div class="works">
+								<video height="431" width="431" autoplay="autoplay" loop="loop">
+								<source src="myHomeFolder/content/${list.path }" type="video/mp4">
+								</video>
+								<div class="work-overlay text-center">
+									<div class="overlay-caption">
+										<h4>VIDEO</h4>
+										<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})">
+										<input type="hidden" id="category_${list.content_idx }" value="${list.category }">
+										<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
+										<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
+										<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
+											<p>${list.writer}</p>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						</c:if>
 					</c:forEach>
 				</div>
 			</div>
@@ -982,6 +998,7 @@ var data = [
 								style="cursor: default; position: relative; top: 0px; left: 0px; width: 480px; height: 270px; overflow: hidden;">
 								<div>
 									<img data-u="image" src="default_content.jpg" id="galleryImage"/>
+									<video id="galleryVideo" loop="loop" autoplay="autoplay"></video>
 								</div>
 							</div>
 							<!-- Bullet Navigator -->
