@@ -317,7 +317,7 @@ $(document).ready(function(){
 function contentDate(){
        var uploadDate=$('.datepicker-here').val();
        window.alert(uploadDate);
-       sendRequest('uploadDateContent.do?uploadDate='+uploadDate+'&member_idx=${sessionScope.useridx}', null ,showResult,'POST');
+       sendRequest('uploadDateContent.do?uploadDate='+uploadDate+'&member_idx=${mhdto.getMember_idx()}', null ,showResult,'POST');
 }
 
 function showResult(){
@@ -330,13 +330,23 @@ function showResult(){
             str='<table><tr><td>검색결과가 없습니다.</td></tr></table>';
             myFeedTable.innerHTML=str;
          }else{
-         for(var i=0; i<data.list.length; i++){
-            var contentDate=data.list[i].path;
-            
-            str='<table><tr><td><img src="myHomeFolder/content/'+contentDate+'"></td></tr></table>';
-            myFeedTable.innerHTML=str;
-         }
-      
+        	 
+        	 //document.removeChild(myFeedTable);
+        	 //var searchTable=document.creatElement('table');
+        	 //var myFeedDiv=document.getElementsByClassName('myfeed');
+        	 //window.alert(myFeedDiv);
+        	 //myFeedDiv.appendChild(searchTable);
+        	 
+      		//myFeedTable.innerHTML='<tr>';
+       // for(var i=0; i<data.list.length; i++){
+        	str='<tr><td><img src="myHomeFolder/content/'+data.list[0].path+'" width="180",height="180"></td>'
+        	+'<td><img src="myHomeFolder/content/'+data.list[1].path+'" width="180",height="180"></td>'
+        	+'<td><img src="myHomeFolder/content/'+data.list[2].path+'" width="180",height="180"></td></tr>';
+        	myFeedTable.innerHTML=str;
+        	//if(i%3==0){
+        		
+        	//}
+          //}
          }
       }
    }
