@@ -214,63 +214,75 @@ to {
 }
 
 .modal2 {
-        display: none; /* Hidden by default */
-        position: fixed; /* Stay in place */
-        z-index: 1; /* Sit on top */
-        padding-top: 100px; /* Location of the box */
-        left: 0;
-        top: 0;
-        width: 100%; /* Full width */
-        height: 100%; /* Full height */
-        overflow: auto; /* Enable scroll if needed */
-        background-color: rgb(0,0,0); /* Fallback color */
-        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    }
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
 
-    /* Modal Content */
-    .modal-content {
-        position: relative;
-        background-color: #fefefe;
-        margin: auto;
-        padding: 0;
-        border: 1px solid #888;
-        width: 20%;
-        height: 24%;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-        -webkit-animation-name: animatetop;
-        -webkit-animation-duration: 0.4s;
-        animation-name: animatetop;
-        animation-duration: 0.4s
-    }
-    
-    /* Add Animation */
-    @-webkit-keyframes animatetop {
-        from {top:-300px; opacity:0} 
-        to {top:0; opacity:1}
-    }
+/* Modal Content */
+.modal-content {
+	position: relative;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 0;
+	border: 1px solid #888;
+	width: 20%;
+	height: 24%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	-webkit-animation-name: animatetop;
+	-webkit-animation-duration: 0.4s;
+	animation-name: animatetop;
+	animation-duration: 0.4s
+}
 
-    @keyframes animatetop {
-        from {top:-300px; opacity:0}
-        to {top:0; opacity:1}
-    }
-    
-    /* The Close Button */
-    .close {
-        color: white;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
+/* Add Animation */
+@
+-webkit-keyframes animatetop {
+	from {top: -300px;
+	opacity: 0
+}
 
-    .close:hover,
-    .close:focus {
-        color: #000;
-        text-decoration: none;
-        cursor: pointer;
-    }
+to {
+	top: 0;
+	opacity: 1
+}
 
+}
+@
+keyframes animatetop {
+	from {top: -300px;
+	opacity: 0
+}
 
-    
+to {
+	top: 0;
+	opacity: 1
+}
+
+}
+
+/* The Close Button */
+.close {
+	color: white;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
 </style>
 
 <script type="text/javascript">
@@ -501,13 +513,14 @@ var data = [
          if(category==1){
         	 $('#galleryImage').attr("src",path);
          }else if(category==2){
-        	 $('#galleryVideo').html('<source src="'+path+'" type="video/mp4" autoplay="autoplay"></source>' );
-        	 document.getElementById("galleryVideo").play();
+        	 $('#galleryImage').attr("src","");
+        	$('#galleryVideo').attr("src", path);
+        	$("#a_video").load();
+			document.getElementById("a_video").play();
          }
             
             document.getElementById('c_writer').innerHTML = writer;
             document.getElementById('c_content').innerHTML = content;
-            /* $("#galleryImage").load("#galleryImage"); */
          } 
          
          function replyList(){
@@ -729,9 +742,8 @@ var data = [
 					id="following_name_id"></p>
 				<div style="text-align: center;">
 					<input type="button" value="팔로우취소" onclick="unfollowing()"
-						class="frbutton"><br>
-					<br> <input type="button" value="그룹설정"
-						onclick="settingGroup()" class="frbutton"><br>
+						class="frbutton"><br> <br> <input type="button"
+						value="그룹설정" onclick="settingGroup()" class="frbutton"><br>
 					<br> <input type="button" value="취소하기" onclick="btn_cancle1()"
 						class="frbutton"><br>
 				</div>
@@ -754,13 +766,11 @@ var data = [
 					id="follower_name_id"></p>
 				<div style="text-align: center;">
 					<input type="button" value="팔로우하기" onclick="following()"
-						class="frbutton"><br>
-					<br> <input type="button" value="팔로워삭제"
-						onclick="removeFollower()" class="frbutton"><br>
+						class="frbutton"><br> <br> <input type="button"
+						value="팔로워삭제" onclick="removeFollower()" class="frbutton"><br>
 					<br> <input type="button" value="차단하기" onclick="block()"
-						class="frbutton"><br>
-					<br> <input type="button" value="그룹설정"
-						onclick="settingGroup()" class="frbutton"><br>
+						class="frbutton"><br> <br> <input type="button"
+						value="그룹설정" onclick="settingGroup()" class="frbutton"><br>
 					<br> <input type="button" value="취소하기" onclick="btn_cancle2()"
 						class="frbutton"><br>
 				</div>
@@ -804,19 +814,18 @@ var data = [
 								<li><a href="#" onclick="voice()"> <i
 										class="pe-7s-search"></i>
 								</a></li>
-							
+
 
 
 
 								<!--  -->
 
-								<li style="margin-top: 15px;">		
-								<form name="search" action="membersearch.do">
-								<input type="text" name="name" 
-									 id='searchForm' value="" autocomplete="on" 
-									placeholder="Search...">
+								<li style="margin-top: 15px;">
+									<form name="search" action="membersearch.do">
+										<input type="text" name="name" id='searchForm' value=""
+											autocomplete="on" placeholder="Search...">
 									</form>
-									</li>
+								</li>
 								<li><a href="#" id="mypage1"> <i class="pe-7s-home"></i>
 
 								</a></li>
@@ -835,9 +844,9 @@ var data = [
 								</a>
 									<div class="dropdown-menu" aria-labelledby="alertsDropdown">
 										<h6 class="dropdown-header">New Alerts:</h6>
-										
+
 										<iframe src="main_feedList.do?idx=${sessionScope.useridx}"
-						width="100%" height="100%" frameborder="0"></iframe>
+											width="100%" height="100%" frameborder="0"></iframe>
 
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item small" href="#">View all alerts</a>
@@ -883,7 +892,7 @@ var data = [
 						</div>
 						</li>
 						</ul>
-				
+
 
 					</div>
 					<!-- /.navbar-collapse -->
@@ -900,59 +909,62 @@ var data = [
 			<div class="row text-center">
 				<div class="works-category" data-sr='enter top, wait 0.2s'>
 					<ul class="statistics">
-						<li class="style1"><a href="#" data-filter="*" class="current">All</a></li>
+						<li class="style1"><a href="#" data-filter="*"
+							class="current">All</a></li>
 						<li class="style2"><a href="# " data-filter=".photo">PHOTO</a></li>
 						<li class="style3"><a href="#" data-filter=".video">VIDEO</a></li>
 						<li class="style4"><a href="#" data-filter=".text">TEXT</a></li>
 					</ul>
 				</div>
 
-<!--  전체 피드 목록 -->
+				<!--  전체 피드 목록 -->
 				<div class="works-area">
 					<c:set var="list" value="${list }"></c:set>
 					<c:if test="${empty list }"> 게시물 없음! </c:if>
 					<c:forEach var="list" items="${list }">
+					<!--사진  -->
 						<c:if test="${list.category==1 }">
-						<div class="col-md-4 col-sm-6 col-xs-12  photo">
-							<div class="works">
-								<img src="myHomeFolder/content/${list.path }" alt="" style="width: 431px; height: 431px;">
-								<div class="work-overlay text-center">
-									<div class="overlay-caption">
-										<h4>PHOTO</h4>
-										<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})">
-										<input type="hidden" id="category_${list.content_idx }" value="${list.category }">
-										<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
-										<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
-										<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
-										<input type="hidden" id="memberidx_${list.content_idx }" value="${list.member_idx }">
-											<p>${list.writer}</p>
-										</a>
+							<div class="col-md-4 col-sm-6 col-xs-12  photo">
+								<div class="works">
+									<img src="myHomeFolder/content/${list.path }" alt="" style="width: 431px; height: 431px;">
+									<div class="work-overlay text-center">
+										<div class="overlay-caption">
+											<h4>PHOTO</h4>
+											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
+											<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
+											<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
+											<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
+											<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
+											<input type="hidden" id="memberidx_${list.content_idx }" value="${list.member_idx }">
+												<p>${list.writer}</p>
+											</a>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 						</c:if>
+						<!-- 동영상 -->
 						<c:if test="${list.category==2 }">
-						<div class="col-md-4 col-sm-6 col-xs-12  video">
-							<div class="works">
-								<video height="431" width="431" autoplay="autoplay" loop="loop">
-								<source src="myHomeFolder/content/${list.path }" type="video/mp4">
-								</video>
-								<div class="work-overlay text-center">
-									<div class="overlay-caption">
-										<h4>VIDEO</h4>
-										<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})">
-										<input type="hidden" id="category_${list.content_idx }" value="${list.category }">
-										<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
-										<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
-										<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
-										<input type="hidden" id="memberidx_${list.content_idx }" value="${list.member_idx }">
-											<p>${list.writer}</p>
-										</a>
+							<div class="col-md-4 col-sm-6 col-xs-12  video">
+								<div class="works">
+									<video autoplay="autoplay" loop="loop" style="width: 431px; height: 431px;">
+										<source src="myHomeFolder/content/${list.path }" type="video/mp4">
+									</video>
+									<div class="work-overlay text-center">
+										<div class="overlay-caption">
+											<h4>VIDEO</h4>
+											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
+											<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
+											<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
+											<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
+											<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
+											<input type="hidden" id="memberidx_${list.content_idx }" value="${list.member_idx }">
+												<p>${list.writer}</p>
+											</a>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 						</c:if>
 					</c:forEach>
 				</div>
@@ -982,25 +994,26 @@ var data = [
 		value="${sessionScope.username }">
 	<div id="galleryModal" class="modal fade" tabindex="-1" role="dialog"
 		aria-hidden="true"
-		style="margin: 5% 10%; background: #f4f4f4; border: solid; overflow:hidden;">
-		<section id="viewForm" style="overflow:hidden;">
-			<div class="container" style="width: 100%; font-size: 15px; overflow:hidden;">
-
+		style="margin: 5% 10%; background: #f4f4f4; border: solid; overflow: hidden;">
+		<section id="viewForm" style="overflow: hidden;">
+			<div class="container"
+				style="width: 100%; font-size: 15px; overflow: hidden;">
 				<div class="row">
-				<!-- 사진 -->
-				<div class="col-xs-7" style="margin-top: 10px; float: left; margin-bottom: 10px; overflow: hidden;">
-					<div id="jssor_1"
+					<!-- 사진 -->
+					<div class="col-xs-7" style="margin-top: 10px; float: left; margin-bottom: 10px; overflow: hidden;">
+						<div id="jssor_1"
 							style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 480px; height: 270px;; overflow: hidden; visibility: hidden;">
 							<!-- Loading Screen -->
 							<div data-u="loading" class="jssorl-009-spin"
 								style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.7);">
-								
+
 							</div>
-							<div data-u="slides"
-								style="cursor: default; position: relative; top: 0px; left: 0px; width: 480px; height: 270px; overflow: hidden;">
+							<div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 480px; height: 270px; overflow: hidden;">
 								<div>
-									<img data-u="image" src="default_content.jpg" id="galleryImage"/>
-									<video id="galleryVideo" loop="loop" autoplay="autoplay"></video>
+									<img data-u="image" src="myHomeFolder/content/default_content.jpg" id="galleryImage" />
+									<video id="a_video" loop="loop" autoplay="autoplay">
+										<source src="" id="galleryVideo" type="video/mp4">
+									</video>
 								</div>
 							</div>
 							<!-- Bullet Navigator -->
@@ -1036,8 +1049,8 @@ var data = [
 							</div>
 						</div>
 						<script type="text/javascript">jssor_1_slider_init();</script>
-				</div>
-	
+					</div>
+
 					<!-- 내용 -->
 					<input type="hidden" id="c_idx" value="">
 					<div class="col-xs-5"
@@ -1045,26 +1058,20 @@ var data = [
 						<div class="col-sm-12" id="cntInfoBar">
 							<span class="avatar"> <img src="js/profile.png" alt=""
 								id="pf" />
-							</span> <label id="c_writer"></label>
-							
-							
-							
-							<span>
-								<button class="btn btn-info" id="myBtn" style="background:gray;">설정</button>
-				
-									<!-- The Modal -->
-									<div id="myModal2" class="modal2">
-									
-									  <!-- Modal content -->
-											<div class="list-group" style="width:20%; margin:5% auto;">
-											<span class="close">&times;</span>
-											
-											    <a href="#" class="list-group-item list-group-item-success">수정</a>
-											    <a href="#" class="list-group-item list-group-item-info">삭제</a>
-											    <a href="#" class="list-group-item list-group-item-warning">신고</a>
-											  </div>
-																	
+							</span> <label id="c_writer"></label> <span>
+								<button class="btn btn-info" id="myBtn"
+									style="background: gray;">설정</button> <!-- The Modal -->
+								<div id="myModal2" class="modal2">
+
+									<!-- Modal content -->
+									<div class="list-group" style="width: 20%; margin: 5% auto;">
+										<span class="close">&times;</span> <a href="#"
+											class="list-group-item list-group-item-success">수정</a> <a
+											href="#" class="list-group-item list-group-item-info">삭제</a>
+										<a href="#" class="list-group-item list-group-item-warning">신고</a>
 									</div>
+
+								</div>
 							</span>
 
 						</div>
@@ -1072,34 +1079,36 @@ var data = [
 							<span>좋아요</span>
 						</div>
 
-						<div class="col-sm-12" id="cntInfoBar" style="overflow:auto; height:70px;">
+						<div class="col-sm-12" id="cntInfoBar"
+							style="overflow: auto; height: 70px;">
 							<span><label id="c_content"></label></span>
 						</div>
 
 
-						<div class="col-sm-12" id="cntInfoBar" style="overflow:auto; height:200px;">
+						<div class="col-sm-12" id="cntInfoBar"
+							style="overflow: auto; height: 200px;">
 							<div class="col-sm-12" id="reply1">
 								<span class="avatar"> <img src="js/profile.png" alt=""
 									id="pf2" />
 								</span> <label>사용자1</label> <span id="reply_List">댓글 내용</span>
 							</div>
-						
+
 
 						</div>
 
 						<div class="col-sm-12">
 							<div class="input-group">
-								<input id="content" type="text" class="form-control" name="content"
-									placeholder="댓글 입력"> 
-								<label class="input-group-addon"
-									onclick="addReply()" onkeydown="showList()">작성</label>
+								<input id="content" type="text" class="form-control"
+									name="content" placeholder="댓글 입력"> <label
+									class="input-group-addon" onclick="addReply()"
+									onkeydown="showList()">작성</label>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		</div>
+	</div>
 </body>
 
 <script>
@@ -1149,9 +1158,12 @@ window.onclick = function(event) {
 <!--Reveal JS-->
 <script type="text/javascript" src="assets_main/js/scrollReveal.min.js"></script>
 
-<script type="text/javascript" src="assets_main/js/jquery.autocomplete.js"></script>
+<script type="text/javascript"
+	src="assets_main/js/jquery.autocomplete.js"></script>
 
-<script type="text/javascript" src="assets_main/js/jquery.autocomplete.min.js"></script>
+<script type="text/javascript"
+	src="assets_main/js/jquery.autocomplete.min.js"></script>
 
-<script type="text/javascript" src="assets_main/js/jquery.autocomplete.pack.js"></script>
+<script type="text/javascript"
+	src="assets_main/js/jquery.autocomplete.pack.js"></script>
 </html>
