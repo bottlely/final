@@ -521,6 +521,43 @@ var data = [
             
             document.getElementById('c_writer').innerHTML = writer;
             document.getElementById('c_content').innerHTML = content;
+            
+          //contentMore
+            var memberidx = document.getElementById('memberidx_'+content_idx).value;
+            if(memberidx == '${sessionScope.useridx}'){
+               document.getElementById('contentMore').innerHTML = 
+                  '<a class="list-group-item list-group-item-success"> 수정 </a><a class="list-group-item list-group-item-info" onclick="deleteContent('+content_idx+')">삭제</a>';
+            }else{
+               document.getElementById('contentMore').innerHTML = '<a class="list-group-item list-group-item-warning" onclick="reportContent('+content_idx+')"> 신고 </a>';
+            }
+         } 
+         
+         //contentMore
+         function deleteContent(content_idx){
+            
+            var data = new FormData();
+            data.append("content_idx", content_idx);
+             var xhr = new XMLHttpRequest();
+               xhr.open("POST","deleteContent.do");
+               xhr.send(data);
+               xhr.onload = function(e) {
+                   if(this.status == 200) {
+                      var jsonResponse = JSON.parse(e.currentTarget.responseText);
+                       if(jsonResponse["result"] > 0){
+                          alert('삭제 완료!');
+                          window.location.reload();
+                       }else{
+                          alert('삭제 실패!');
+                       }
+                   }
+               }
+         }
+         
+       //contentMore
+       function reportContent(content_idx){
+            
+              window.open('reportContentForm.do?toIdx='+content_idx,'reportOpen','width=600,height=500');
+         }
          } 
          
          function replyList(){
