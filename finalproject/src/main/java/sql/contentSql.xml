@@ -8,7 +8,7 @@
 
 	<insert id="uploadContent" parameterType="HashMap">
 		insert into content values
-		(#{idx}, content_idx.nextval,#{type},sysdate,#{path},#{content},#{writer})
+		(#{idx}, content_idx.nextval,#{type},sysdate,#{path},#{content},#{writer},#{profile})
 	</insert>
 	
 	<insert id="coverageInsert" parameterType="mars.coverage.model.CoverageDTO">

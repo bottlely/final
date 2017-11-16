@@ -330,9 +330,7 @@ select {
 			</div>
 			<div class="col-sm-12">
 				<div class="form-group">
-					<textarea class="form-control" rows="5" id="content" name="content" placeholder="사진에 대해 이야기 해주세요 :)" onFocus="clearText(this)" onBlur="clearText(this)">
-					${cdto.content}
-					</textarea>
+					<textarea class="form-control" rows="5" id="content" name="content">${cdto.content}</textarea>
 				</div>
 			</div>
 		</div>

@@ -11,13 +11,15 @@ public class ContentDTO {
 	private String path;
 	private String content;
 	private String writer;
+	private String profile;
 	
 	public ContentDTO() {
 		super();
 	}
 
+
 	public ContentDTO(int member_idx, int content_idx, int category, Date writetime, String path, String content,
-			String writer) {
+			String writer, String profile) {
 		super();
 		this.member_idx = member_idx;
 		this.content_idx = content_idx;
@@ -26,7 +28,9 @@ public class ContentDTO {
 		this.path = path;
 		this.content = content;
 		this.writer = writer;
+		this.profile = profile;
 	}
+
 
 	public int getMember_idx() {
 		return member_idx;
@@ -82,6 +86,16 @@ public class ContentDTO {
 
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+
+
+	public String getProfile() {
+		return profile;
+	}
+
+
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
 	
 }

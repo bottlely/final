@@ -118,6 +118,7 @@ public class ContentController {
 			@RequestParam(value="coverage_list_group",required=false)String cl_group,
 			@RequestParam(value="coverage_list",required=false)String cl,
 			@RequestParam("coverage_state")String cs,
+			@RequestParam("profile")String profile,
 			@RequestParam("content")String content) {
 		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
@@ -128,6 +129,7 @@ public class ContentController {
         info.put("content", content);
         info.put("writer", mhdto.getName());
         info.put("type", "3");
+        info.put("profile",profile);
 		int result = cdao.uploadContent(info);
 		int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
 
@@ -202,6 +204,7 @@ public class ContentController {
 			@RequestParam(value="coverage_list_group",required=false)String cl_group,
 			@RequestParam(value="coverage_list",required=false)String cl,
 			@RequestParam("coverage_state")String cs,
+			@RequestParam("profile")String profile,
 			MultipartHttpServletRequest req,HttpServletRequest req2) {
 
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
@@ -229,6 +232,7 @@ public class ContentController {
         info.put("content", content);
         info.put("writer", mhdto.getName());
         info.put("type", "1");
+        info.put("profile",profile);
         int result = cdao.uploadContent(info);
         int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
         
@@ -321,6 +325,7 @@ public class ContentController {
 			@RequestParam(value="coverage_list_group",required=false)String cl_group,
 			@RequestParam(value="coverage_list",required=false)String cl,
 			@RequestParam("coverage_state")String cs,
+			@RequestParam("profile")String profile,
 			@RequestParam("sel")String sel,HttpServletRequest req) {
 
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
@@ -333,6 +338,7 @@ public class ContentController {
         info.put("content", content);
         info.put("writer", mhdto.getName());
         info.put("type", "2");
+        info.put("profile", profile);
         int result = cdao.uploadContent(info);
         int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
         
@@ -615,6 +621,7 @@ public class ContentController {
 		String idx = Integer.toString(contentidx);
 		ContentDTO cdto = cdao.contentOne(idx);
 		CoverageDTO cvdto = cdao.coverageOne(idx);
+		
 		ModelAndView mav=new ModelAndView();
 		mav.addObject("profile", mhdto.getProfile_img());
 		mav.addObject("followerList", followerList);

@@ -101,7 +101,10 @@ function uploadText(){
 	 if(coverage_state == 2 || coverage_state == 3){
 			data.append("coverage_list",sel_list);
 			data.append("coverage_list_group",sel_list_group);
-		 }
+	 }
+	 
+	 var profile = 'myHomeFolder/profile_img/${profile}';
+	 data.append("profile",profile);
 	 
      var xhr = new XMLHttpRequest();
      xhr.open("POST","uploadText.do");

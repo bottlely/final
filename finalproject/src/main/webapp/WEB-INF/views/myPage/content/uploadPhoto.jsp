@@ -171,7 +171,9 @@ select {
     				data.append("coverage_list",sel_list);
     				data.append("coverage_list_group",sel_list_group);
     			 }
-    			 //data.append("type",1);
+    			 
+    			 var profile = 'myHomeFolder/profile_img/${profile}';
+    			 data.append("profile",profile);
     			 
     	        /* $.ajax({
     	            type : 'post',
