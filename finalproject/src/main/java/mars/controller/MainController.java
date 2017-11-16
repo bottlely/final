@@ -15,7 +15,7 @@ import mars.feed.model.FeedDAO;
 import mars.reply.model.MyHomeReplyDTO;
 import mars.reply.model.ReplyDAO;
 import mars.reply.model.ReplyDTO;
-
+import mars.content.model.ContentDAO;
 @Controller
 public class MainController {
    @Autowired
@@ -23,6 +23,9 @@ public class MainController {
    
    @Autowired
    private FeedDAO feedDao;
+   
+   @Autowired
+   private ContentDAO cDao;
 
    @RequestMapping("main.do")
    public ModelAndView mainPage() {
@@ -40,9 +43,10 @@ public class MainController {
       List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
       
       ModelAndView mav = new ModelAndView();
-      
+      String str = String.valueOf(content_idx);
+      ContentDTO dto = cDao.contentOne(str);
       mav.addObject("list", list);
-      
+      mav.addObject("content",dto);
       mav.addObject("content_idx", content_idx);
       
       mav.setViewName("main/main_view");

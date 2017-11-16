@@ -392,24 +392,41 @@ pre.prettyprint {
 				<div style="text-align: left;">
 					<img src="assets_main/images/아이유6.jpg"
 						style="width: 60px; height: 60px; border-radius: 50%; margin: 10px;">
-					<font color="blue" size="3px;"><b>아이유</b></font> <font>님의
+					<font color="blue" size="3px;"><b>${content.writer }</b></font> <font>님의
 						게시물</font>
 				</div>
 			</div>
 			<div class="col-sm-2 sidenav"></div>
 		</div>
-		<div class="row content">
-			<div class="col-sm-2 sidenav"></div>
-			<div class="col-sm-8 text-center" style="background-color: white;">
-				<div style="text-align: left; margin: 10px;">
-					<font size="3px;"><b>오늘 셀카는 상콤하다★</b></font>
+		<c:if test="${content.category==1 }">
+			<div class="row content">
+				<div class="col-sm-2 sidenav"></div>
+				<div class="col-sm-8 text-center" style="background-color: white;">
+					<div style="text-align: left; margin: 10px;">
+						<font size="3px;"><b>${content.content }</b></font>
+					</div>
+					<hr>
+					<img src="myHomeFolder/content/${content.path }" alt="" style="margin: 1%; width: 600px;height: 600px;"
+						class="img-thumbnail" >
 				</div>
-				<hr>
-				<img src="assets_main/images/아이유6.jpg" alt="" style="margin: 1%"
-					class="img-thumbnail">
+				<div class="col-sm-2 sidenav"></div>
 			</div>
-			<div class="col-sm-2 sidenav"></div>
-		</div>
+		</c:if>
+				<c:if test="${content.category==2 }">
+			<div class="row content">
+				<div class="col-sm-2 sidenav"></div>
+				<div class="col-sm-8 text-center" style="background-color: white;">
+					<div style="text-align: left; margin: 10px;">
+						<font size="3px;"><b>${content.content }</b></font>
+					</div>
+					<hr>
+			<video autoplay="autoplay" loop="loop" style="width: 600px; height:600px;">
+										<source src="myHomeFolder/content/${content.path }" type="video/mp4">
+										</video>
+				</div>
+				<div class="col-sm-2 sidenav"></div>
+			</div>
+		</c:if>
 		<div class="row content">
 			<div class="col-sm-2 text-center"></div>
 			<div class="col-sm-8 text-left" style="background: #f4f4f4;">
@@ -439,12 +456,13 @@ pre.prettyprint {
 				<input type="hidden" id="session_idx"
 					value="${sessionScope.useridx }"> <input type="hidden"
 					id="session_name" value="${sessionScope.username }">
-								</div>
+			</div>
 			<div class="col-sm-2 sidenav"></div>
 		</div>
 		<div class="row content">
 			<div class="col-sm-2 sidenav"></div>
-			<div class="col-sm-8 text-left" style="background: #f4f4f4; text-align: left;">
+			<div class="col-sm-8 text-left"
+				style="background: #f4f4f4; text-align: left;">
 				<script>
          function like(content_idx){
             document.getElementById("session_idx").value;

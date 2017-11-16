@@ -27,6 +27,7 @@
 					class="text-success"> <strong> <i
 							class="fa fa-long-arrow-up fa-fw"></i>${dto.name}님이 댓글을남겼습니다
 							<p>${dto.actdate }</p>
+							
 					</strong>
 				</span>
 
@@ -46,6 +47,7 @@
 					class="text-success"> <strong> <i
 							class="fa fa-long-arrow-up fa-fw"></i>${dto.name}님이 회원님 게시물에 발자취를 남겼습니다.
 							<p>${dto.actdate }</p>
+							
 					</strong>
 				</span>
 
