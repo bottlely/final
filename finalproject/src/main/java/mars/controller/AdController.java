@@ -1,7 +1,11 @@
 package mars.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import mars.ad.model.ApplyAdDAO;
@@ -38,13 +44,27 @@ public class AdController {
 	     return mav;
 	}
 	
+	
 	@RequestMapping("/applyAd.do")
-	public ModelAndView applyAd(@ModelAttribute("cmd")ApplyAdDTO command){	
-		int result = adDao.insert(command);
+	public ModelAndView applyAd(@ModelAttribute("cmd")ApplyAdDTO command, @RequestParam("file")MultipartFile file, @RequestParam("member_idx")String m_idx,
+			 @RequestParam("name")String name,  @RequestParam("ad_name")String ad_name,
+			 MultipartHttpServletRequest req, HttpServletRequest req2)
+	{
+		MultipartFile profile = req.getFile("file");
+		//System.out.println(file.getOriginalFilename());
+	
+	//	System.out.println(name);
+		String ad_content = name+ad_name+m_idx+profile.getOriginalFilename();
+		String type = "ad_content";
+	//	System.out.println(ad_content);
+		
+		copyInto(ad_content,profile,req2);
+		
+		
+		int result = adDao.insert(command, ad_content);
 		String msg = result>0?"광고 신청을 완료했습니다.":"광고 신청이 실패했습니다.";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
-	//	mav.addObject("gourl", "myHomeForm.do");
 		mav.setViewName("ad/adMsg");
 		return mav;
 	}
@@ -134,6 +154,30 @@ public class AdController {
 		boolean check = mailService.send(subject, sb.toString(), "jungdu92@gmail.com", mail);
 
 	}
+	
+	public void copyInto(String filename, MultipartFile upload, HttpServletRequest req2){
+		
+		try {
+			byte bytes[] = upload.getBytes();
+			
+			String realPath = req2.getSession().getServletContext().getRealPath("");
+	//		System.out.println("real = "+realPath);
+			realPath = realPath.replaceAll("\\\\","/");
+	//		System.out.println("real = "+realPath);
+			
+			File newfile = new File(realPath+"/adFolder/"+filename);
+			
+			FileOutputStream fos = new FileOutputStream(newfile);
+			fos.write(bytes);
+			fos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+
+
 	
 
 }
