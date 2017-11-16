@@ -28,13 +28,9 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
-	function disInfo(i) {
-		var e = document.getElementById(i);
-		if (e.style.display === 'block')
-			e.style.display = 'none';
-		else
-			e.style.display = 'block';
-
+	function update(i) {
+		
+		location.href="admin_c.do?cate="+i;
 	}
 	
 	
@@ -202,6 +198,7 @@
 				<div class="col-12">
 					<h3>
 						<select onchange="update(this.value)" id ="tabChange">Category
+						<option value="0">-Category-</option>
 							<option value="11">검색/인기태그</option>
 							<option value="12">공개범위</option>
 							<option value="13">친구</option>
@@ -227,7 +224,7 @@
 							<tbody>
 								<c:if test="${empty lists }">내용이 없습니다. </c:if>
 								<c:forEach var="dto" items="${lists }">
-									<tr>
+									<tr id="${dto.category }">
 										<td>${dto.name}</td>
 										<td>${dto.content}</td>
 										<td><c:if test="${dto.category == 11 }">검색/인기태그</c:if>

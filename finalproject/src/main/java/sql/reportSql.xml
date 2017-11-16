@@ -14,4 +14,11 @@ where rnum<![CDATA[>=]]>#{startnum} and rnum<![CDATA[<=]]>#{endnum}
 	   <select id="allreport" resultType="int">
       select count(*) from mars_report
    </select>
+   
+   	   <select id="partList" resultType="mars.report.model.ReportDTO" parameterType="Map">
+        select * from
+(select rownum as rnum,a.* from
+(select name,reportdate,category,content from mars_member,(select category,reportdate,idx_from,content from mars_report  where category = #{cate} order by reportdate desc) where idx = idx_from)a)b
+where rnum<![CDATA[>=]]>#{startnum} and rnum<![CDATA[<=]]>#{endnum}
+   </select>
 </mapper>
