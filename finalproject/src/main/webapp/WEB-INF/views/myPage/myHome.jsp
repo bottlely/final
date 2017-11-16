@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -554,22 +556,16 @@ function showResult2(){
          		<td colspan="3" align="center">게시글 없음</td>
          	</tr>
          </c:if>
-             <tr>
-               <td style="background-color:blue;"></td>
-               <td style="background-color:blue;"></td>
-               <td style="background-color:blue;"></td>
-            </tr>
-            <tr>
-               <td style="background-color:blue;"></td>
-               <td style="background-color:blue;"></td>
-               <td style="background-color:blue;"></td>
-            </tr>
-            <tr>
-               <td style="background-color:blue;"></td>
-               <td style="background-color:blue;"></td>
-               <td style="background-color:blue;"></td>
-            </tr>
-         </table>
+         	<tr>
+         <c:forEach var="contentList" items="${contentList }">
+      
+         	<td><img src="myHomeFolder/content/${contentList.path}"></td>
+         	
+         </c:forEach>
+         
+         	</tr>
+         	</table>
+             
       </div>   
       
 </section>
