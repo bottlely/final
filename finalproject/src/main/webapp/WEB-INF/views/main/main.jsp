@@ -873,12 +873,12 @@ var data = [
 						        		   if($('#speechbbbbox .cning').length < 1) $('#speechbbbbox').append('<span class="cning"></span>');
 						        		   $('#speechbbbbox .cning').text(b);
 						        		   if(c) $('#speechbbbbox .cning').removeClass('cning');
+						        		   mic.stop();
 						        		   };
 						        		   
 						        		mic.onend = function() {
 						        		   $('#speechbbbbox').removeClass('on');
 						        		   };
-						        		mic.stop();
 						        }
 						        else{
 						        	$('#speechbbbbox').html('<strong>지원하지 않는 브라우저입니다.</strong>');
