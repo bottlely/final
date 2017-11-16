@@ -846,7 +846,7 @@ var data = [
 
 								<li>
 									<div id="speechbbbbox"></div>
-									<button onClick="startConverting();" type="button">
+									<button onClick="startConverting();" type="button" style="margin-top: 14px;">
 										<i class="fa fa-microphone"></i>
 									</button>
 								</li>
@@ -870,8 +870,9 @@ var data = [
 						        		   b += e.results[i][0].transcript;
 						        		   c = e.results[i].isFinal;
 						        		   }
-						        		   if($('#speechbbbbox .cning').length < 1) $('#speechbbbbox').append('<span class="cning"></span>');
+						        		   if($('#speechbbbbox .cning').length < 1) $('#speechbbbbox').append('<span class="cning" style="display:none"></span>');
 						        		   $('#speechbbbbox .cning').text(b);
+						        		   $("#searchForm").val(b);
 						        		   if(c) $('#speechbbbbox .cning').removeClass('cning');
 						        		   mic.stop();
 						        		   };
