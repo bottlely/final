@@ -390,7 +390,7 @@ pre.prettyprint {
 			<div class="col-sm-2 sidenav"></div>
 			<div class="col-sm-8 text-center" style="background: #f4f4f4;">
 				<div style="text-align: left;">
-					<img src="assets_main/images/아이유6.jpg"
+					<img src="assets_main/images/logo.svg"
 						style="width: 60px; height: 60px; border-radius: 50%; margin: 10px;">
 					<font color="blue" size="3px;"><b>${content.writer }</b></font> <font>님의
 						게시물</font>
@@ -444,7 +444,7 @@ pre.prettyprint {
 			<div class="col-sm-2 sidenav"></div>
 			<div class="col-sm-8 text-center" style="background: #f4f4f4;">
 
-				<img src="assets_main/images/아이유6.jpg"
+				<img src="assets_main/images/logo.svg"
 					style="width: 60px; height: 60px; border-radius: 50%; margin: 10px;">
 				<input type="hidden" id="content_idx" name="content_idx"
 					value="${content_idx  }"> <input type="text" id="content"
