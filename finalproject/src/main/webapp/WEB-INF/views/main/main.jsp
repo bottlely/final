@@ -526,7 +526,7 @@ var data = [
             var memberidx = document.getElementById('memberidx_'+content_idx).value;
             if(memberidx == '${sessionScope.useridx}'){
                document.getElementById('contentMore').innerHTML = 
-                  '<a class="list-group-item list-group-item-success"> 수정 </a><a class="list-group-item list-group-item-info" onclick="deleteContent('+content_idx+')">삭제</a>';
+                  '<a class="list-group-item list-group-item-success" onclick="modifyContent('+content_idx+')"> 수정 </a><a class="list-group-item list-group-item-info" onclick="deleteContent('+content_idx+')">삭제</a>';
             }else{
                document.getElementById('contentMore').innerHTML = '<a class="list-group-item list-group-item-warning" onclick="reportContent('+content_idx+')"> 신고 </a>';
             }
@@ -553,6 +553,11 @@ var data = [
                }
          }
          
+       //contentMore
+         function modifyContent(content_idx){
+        	 window.open('modifyContentForm.do?contentidx='+content_idx,'modifyOpen','width=600,height=500');
+         }
+       
 	      //contentMore
 	     function reportContent(content_idx){
 	            window.open('reportContentForm.do?toIdx='+content_idx,'reportOpen','width=600,height=500');
