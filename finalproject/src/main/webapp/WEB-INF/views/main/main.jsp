@@ -1055,8 +1055,9 @@ var data = [
 		value="${sessionScope.username }">
 	<div id="galleryModal" class="modal fade" tabindex="-1" role="dialog"
 		aria-hidden="true"
-		style="margin: 5% 10%; background: #f4f4f4; border: solid; overflow: hidden;">
-		<section id="viewForm" style="overflow: hidden;">
+		style="border: solid; overflow: auto; background-color: rgba(0, 0, 0, 0.2);">
+		<div style="margin:2% 10%;">
+		<section id="viewForm" style="overflow: auto;">
 			<div class="container"
 				style="width: 100%; font-size: 15px; overflow: hidden;">
 				<div class="row">
@@ -1165,6 +1166,7 @@ var data = [
 				</div>
 			</div>
 		</section>
+		</div>
 	</div>
 </body>
 
