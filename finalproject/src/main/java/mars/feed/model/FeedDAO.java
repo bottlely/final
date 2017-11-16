@@ -5,5 +5,5 @@ import java.util.*;
 
 public interface FeedDAO {
 
-	public List<ContentDTO> showFeed(int idx);
+	public List<ContentDTO> showFeed(HashMap<String, String> map);
 }

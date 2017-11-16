@@ -1,5 +1,6 @@
 package mars.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,12 @@ public class MainController {
    @RequestMapping("main.do")
    public ModelAndView mainPage() {
       int idx = 12;
-      List<ContentDTO> list = feedDao.showFeed(idx);
+      
+      HashMap<String, String> map = new HashMap<String, String>();
+      map.put("idx", String.valueOf(idx));
+      map.put("idx_like", "%"+idx+"%");
+      
+      List<ContentDTO> list = feedDao.showFeed(map);
       
       ModelAndView mav = new ModelAndView();
       mav.addObject("list", list);
@@ -51,17 +57,6 @@ public class MainController {
       
       mav.setViewName("main/main_view");
       
-      return mav;
-   }
-
-   @RequestMapping("showFeed.do")
-   public ModelAndView showFeed(int idx) {
-      idx = 12;
-      List<ContentDTO> list = feedDao.showFeed(idx);
-      
-      ModelAndView mav = new ModelAndView();
-      mav.addObject("list", list);
-      mav.setViewName("main/main");
       return mav;
    }
 }

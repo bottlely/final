@@ -1,5 +1,6 @@
 package mars.feed.model;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,8 +17,8 @@ public class FeedDAOImple implements FeedDAO {
 	}
 
 	/**�쟾泥� �뵾�뱶 媛��졇�삤湲�*/
-	public List<ContentDTO> showFeed(int idx) {
-		List<ContentDTO> list = sqlMap.selectList("showFeed", idx);
+	public List<ContentDTO> showFeed(HashMap<String, String> map) {
+		List<ContentDTO> list = sqlMap.selectList("showFeed", map);
 		return list;
 	}
 }
