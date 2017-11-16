@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,6 +19,261 @@
   <link href="assets_admin/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="assets_admin/css/sb-admin.css" rel="stylesheet">
+  
+ <script type="text/javascript">
+	//7일전
+	var nday = new Date();    
+	nday.setDate(nday.getDate() - 7); //오늘 날짜에서 days만큼을 뒤로 이동 
+	var yy = nday.getFullYear();
+	var mm = nday.getMonth()+1;
+	var dd = nday.getDate();
+
+		if( mm<10) mm="0"+mm;
+		if( dd<10) dd="0"+dd;
+		var day7 = yy+"-"+mm+"-"+dd;
+		//6일전
+		var nday1 = new Date();    
+		nday1.setDate(nday1.getDate() - 6); //오늘 날짜에서 days만큼을 뒤로 이동 
+		var yy1 = nday1.getFullYear();
+		var mm1 = nday1.getMonth()+1;
+		var dd1 = nday1.getDate();
+
+			if( mm1<10) mm1="0"+mm1;
+			if( dd1<10) dd1="0"+dd1;
+			var day6 = yy1+"-"+mm1+"-"+dd1;
+			
+			//5일전
+			var nday2 = new Date();    
+			nday2.setDate(nday2.getDate() - 5); //오늘 날짜에서 days만큼을 뒤로 이동 
+			var yy2 = nday2.getFullYear();
+			var mm2 = nday2.getMonth()+1;
+			var dd2 = nday2.getDate();
+
+				if( mm2<10) mm2="0"+mm2;
+				if( dd2<10) dd2="0"+dd2;
+				var day5 = yy2+"-"+mm2+"-"+dd2;
+				
+				//4일전
+				var nday3 = new Date();    
+				nday3.setDate(nday3.getDate() - 4); //오늘 날짜에서 days만큼을 뒤로 이동 
+				var yy3 = nday3.getFullYear();
+				var mm3 = nday3.getMonth()+1;
+				var dd3 = nday3.getDate();
+
+					if( mm3<10) mm3="0"+mm3;
+					if( dd3<10) dd3="0"+dd3;
+					var day4 = yy3+"-"+mm3+"-"+dd3;
+					
+					//3일전
+					var nday4 = new Date();    
+					nday4.setDate(nday4.getDate() - 3); //오늘 날짜에서 days만큼을 뒤로 이동 
+					var yy4 = nday4.getFullYear();
+					var mm4 = nday4.getMonth()+1;
+					var dd4 = nday4.getDate();
+
+						if( mm4<10) mm4="0"+mm4;
+						if( dd4<10) dd4="0"+dd4;
+						var day3 = yy4+"-"+mm4+"-"+dd4;
+						
+						//2일전
+						var nday5 = new Date();    
+						nday5.setDate(nday5.getDate() - 2); //오늘 날짜에서 days만큼을 뒤로 이동 
+						var yy5 = nday5.getFullYear();
+						var mm5 = nday5.getMonth()+1;
+						var dd5 = nday5.getDate();
+
+							if( mm5<10) mm5="0"+mm5;
+							if( dd5<10) dd5="0"+dd5;
+							var day2 = yy5+"-"+mm5+"-"+dd5;
+							
+							//1일전
+							var nday6 = new Date();    
+							nday6.setDate(nday6.getDate() - 1); //오늘 날짜에서 days만큼을 뒤로 이동 
+							var yy6 = nday6.getFullYear();
+							var mm6 = nday6.getMonth()+1;
+							var dd6 = nday6.getDate();
+
+								if( mm6<10) mm1="0"+mm6;
+								if( dd6<10) dd1="0"+dd6;
+								var day1 = yy6+"-"+mm6+"-"+dd6;
+			function chart() {
+
+		//Chart.js scripts
+		//-- Set new default font family and font color to mimic Bootstrap's default styling
+		Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
+		Chart.defaults.global.defaultFontColor = '#292b2c';
+		//-- Area Chart Example
+		var ctx = document.getElementById("myAreaChart");
+		var myLineChart = new Chart(ctx, {
+
+			type : 'line',
+			data : {
+				labels : [ day7, day6, day5, day4, day3, day2,
+						day1 , "now" ],
+				datasets : [ {
+					label : "",
+					lineTension : 0.3,
+					backgroundColor : "rgba(2,117,216,0.2)",
+					borderColor : "rgba(2,117,216,1)",
+					pointRadius : 5,
+					pointBackgroundColor : "rgba(2,117,216,1)",
+					pointBorderColor : "rgba(255,255,255,0.8)",
+					pointHoverRadius : 5,
+					pointHoverBackgroundColor : "rgba(2,117,216,1)",
+					pointHitRadius : 20,
+					pointBorderWidth : 2,
+					data : [ ${count7}, ${count6},${count5},${count4},${count3},${count2},${count1}, ${allcount} ],
+				} ],
+			},
+			options : {
+				scales : {
+					xAxes : [ {
+						time : {
+							unit : 'date'
+						},
+						gridLines : {
+							display : false
+						},
+						ticks : {
+							maxTicksLimit : 7
+						}
+					} ],
+					yAxes : [ {
+						ticks : {
+							min : 0,
+							max : ${allcount}*2,
+							maxTicksLimit : 5
+						},
+						gridLines : {
+							color : "rgba(0, 0, 0, .125)",
+						}
+					} ],
+				},
+				legend : {
+					display : false
+				}
+			}
+		});
+		//-- city
+		var ctx = document.getElementById("myBarChart");
+		var myLineChart = new Chart(ctx, {
+			type : 'bar',
+			data : {
+				labels : [ "서울", "인천", "수원", "대전", "대구",
+						"일산","부산","기타" ],
+				datasets : [ {
+					label : "회원수",
+					backgroundColor : "rgba(2,117,216,1)",
+					borderColor : "rgba(2,117,216,1)",
+					data : [ ${seoul},${incheon}, ${suwon}, ${daejeon}, ${daejeon}, ${daegu},${ilsan},${busan},0 ],
+				} ],
+			},
+			options : {
+				scales : {
+					xAxes : [ {
+						time : {
+							unit : 'month'
+						},
+						gridLines : {
+							display : false
+						},
+						ticks : {
+							maxTicksLimit : 6
+						}
+					} ],
+					yAxes : [ {
+						ticks : {
+							min : 0,
+							max : ${allcount},
+							maxTicksLimit : 5
+						},
+						gridLines : {
+							display : true
+						}
+					} ],
+				},
+				legend : {
+					display : false
+				}
+			}
+		});
+		//-- favor
+		var ctx = document.getElementById("myPieChart");
+		var myPieChart = new Chart(ctx, {
+			type : 'pie',
+			data : {
+				
+				labels : [ "영화", "스포츠", "패션", "뷰티", "여행", "음악", "댄스", "음식" ],
+				datasets : [ {
+					data : [ ${movie},${sport},${fashion},${beauty},${travel},${music},${dance},${food} ],
+					backgroundColor : [ '#007bff', '#dc3545', '#ffc107',
+							'#FF5E00', '#28a745', '#0100FF', '#5F00FF',
+							'#FF007F' ],
+				} ],
+			},
+		});
+ 		// -- Gender
+ 		
+		var ctx = document.getElementById("myPieChart1");
+		var myPieChart = new Chart(ctx, {
+			type : 'pie',
+			data : {
+				
+				labels : [ "Man", "Girl" ],
+				datasets : [ {
+					data : [ ${gender1},${gender2} ],
+					backgroundColor : [ '#007bff', '#dc3545', '#ffc107',
+							'#28a745', '#28a745', '#28a745', '#28a745',
+							'#28a745' ],
+				} ],
+			},
+		});
+		//-- age
+		var ctx = document.getElementById("myBarChart1");
+		var myLineChart = new Chart(ctx, {
+			type : 'bar',
+			data : {
+				labels : [ "10s/Man", "10s/Girl", "20s/Man", "20s/Girl", "30s/Man",
+						"30s/Girl","40s/Man","40s/Girl","Other" ],
+				datasets : [ {
+					label : "회원수",
+					backgroundColor : "rgba(2,117,216,1)",
+					borderColor : "rgba(2,117,216,1)",
+					data : [ ${man1}, ${girl1}, ${man2}, ${girl2}, ${man3}, ${girl3},
+						 ${man4}, ${girl4},${others} ],
+				} ],
+			},
+			options : {
+				scales : {
+					xAxes : [ {
+						time : {
+							unit : 'month'
+						},
+						gridLines : {
+							display : false
+						},
+						ticks : {
+							maxTicksLimit : 6
+						}
+					} ],
+					yAxes : [ {
+						ticks : {
+							min : 0,
+							max : ${allcount},
+							maxTicksLimit : 5
+						},
+						gridLines : {
+							display : true
+						}
+					} ],
+				},
+				legend : {
+					display : false
+				}
+			}
+		});
+	}
+</script>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
  <!-- Navigation-->

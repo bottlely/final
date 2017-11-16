@@ -1,7 +1,7 @@
 package mars.ad.model;
 
 import java.sql.*;
-import java.util.Date;
+import java.sql.Date;
 
 public class ApplyAdDTO {
 	
