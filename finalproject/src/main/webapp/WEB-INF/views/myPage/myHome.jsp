@@ -549,6 +549,11 @@ function showResult2(){
       
       <div class="myfeed" id="myfeed">
          <table style="border-spacing:10px;" id="myfeedtable">
+         <c:if test="${empty contentList}">
+         	<tr>
+         		<td colspan="3" align="center">게시글 없음</td>
+         	</tr>
+         </c:if>
              <tr>
                <td style="background-color:blue;"></td>
                <td style="background-color:blue;"></td>

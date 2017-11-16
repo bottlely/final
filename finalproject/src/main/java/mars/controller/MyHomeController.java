@@ -115,6 +115,7 @@ public class MyHomeController{
 		mav.addObject("imgList", imgList);
 		mav.addObject("videoList", videoList);
 		mav.addObject("userType", userType);
+		mav.addObject("contentList", contentList);
 		mav.setViewName("myPage/myHome");
 		return mav;
 	}
