@@ -14,12 +14,15 @@ import mars.friend.model.FriendDAO;
 import mars.member.model.MemberDAO;
 import mars.member.model.MemberDTO;
 import mars.myHome.model.MyHomeDTO;
+import mars.report.model.ReportDAO;
+import mars.report.model.ReportDTO;
 @Controller
 public class AdminController {
    @Autowired
    private AdminDAO aDao;
    
-   
+   @Autowired
+   private ReportDAO rDao;
    
    @RequestMapping("/admin.do")
    public ModelAndView adminMain() {
@@ -231,8 +234,12 @@ public class AdminController {
       return "admin/admin_data_busi";
    }
    @RequestMapping("/admin_c.do")
-   public String admin_c() {
-      return "admin/admin_customer";
+   public  ModelAndView admin_c() {
+	   ModelAndView mav = new ModelAndView();
+	   List<ReportDTO> lists = rDao.list();
+	   mav.addObject("lists",lists);
+	   mav.setViewName("admin/admin_customer");
+      return mav;
    }
    @RequestMapping("/admin_p.do")
    public String admin_p() {

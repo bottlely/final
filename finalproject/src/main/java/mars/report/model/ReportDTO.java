@@ -8,13 +8,25 @@ public class ReportDTO {
 	int idx_from;
 	int idx_to;
 	String content;
-	int category;	//11:寃��깋,�씤湲고깭洹� , 12:怨듦컻踰붿쐞 , 13:移쒓뎄 , 14:�뵾�뱶 , 15:寃뚯떆臾쇱옉�꽦 16_�븣由�
-	String link;
+	int category;	//11:野껓옙占쎄퉳,占쎌뵥疫꿸퀬源�域뱄옙 , 12:�⑤벀而삭린遺우맄 , 13:燁살뮄�럡 , 14:占쎈돗占쎈굡 , 15:野껊슣�뻻�눧�눘�삂占쎄쉐 16_占쎈르�뵳占�
+	String name;
 	Date reportdate;
 	int state;
 	
 	public ReportDTO() {
 	}
+	
+	
+
+	public ReportDTO(String name, Date reportdate,int category,String content) {
+		super();
+		this.content = content;
+		this.category = category;
+		this.name = name;
+		this.reportdate = reportdate;
+	}
+
+
 
 	public ReportDTO(int idx_from, String content, int category) {
 		super();
@@ -31,7 +43,7 @@ public class ReportDTO {
 		this.category = category;
 	}
 
-	public ReportDTO(int idx, int idx_from, int idx_to, String content, int category, String link, Date reportdate,
+	public ReportDTO(int idx, int idx_from, int idx_to, String content, int category, String name, Date reportdate,
 			int state) {
 		super();
 		this.idx = idx;
@@ -39,7 +51,7 @@ public class ReportDTO {
 		this.idx_to = idx_to;
 		this.content = content;
 		this.category = category;
-		this.link = link;
+		this.name = name;
 		this.reportdate = reportdate;
 		this.state = state;
 	}
@@ -84,12 +96,12 @@ public class ReportDTO {
 		this.category = category;
 	}
 
-	public String getLink() {
-		return link;
+	public String getname() {
+		return name;
 	}
 
-	public void setLink(String link) {
-		this.link = link;
+	public void setname(String name) {
+		this.name = name;
 	}
 
 	public Date getReportdate() {

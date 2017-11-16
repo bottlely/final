@@ -142,6 +142,12 @@
 		</constructor-arg>
 	</bean>
 	
+		<bean id="reportDao" class="mars.report.model.ReportDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+	</bean>
+	
 	<!-- views -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"/>
