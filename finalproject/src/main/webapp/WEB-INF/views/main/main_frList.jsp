@@ -109,7 +109,7 @@
      } */
      
      function chatting(other_idx, other_name, other_profile_img) {
-    	 window.open('http://192.168.43.202:9090/finalproject/chat.do?user2_name='+other_name+'&user2_idx='+other_idx+'&user2_profile_img='+other_profile_img,'chat','width=300, height=300');
+    	 window.open('http://192.168.20.174:9090/finalproject/chat.do?user2_name='+other_name+'&user2_idx='+other_idx+'&user2_profile_img='+other_profile_img,'chat','width=300, height=300');
      }
      
      

@@ -1,35 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%
-	String id = "";
-	if (session.getAttribute("userid") != null) {
-		id = (String) session.getAttribute("userid");
-	}
 
-	String nick = "";
-	if (session.getAttribute("username") != null) {
-		nick = (String) session.getAttribute("username");
-	} else {
-		nick = "NICK NULL";
-	}
-%> --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-.user-photo {
- width: 60px;
- height: 60px;
- background: #ccc;
- border-radius: 50%;
-}
-</style>
+
 </head>
 <body>
 	<div id="messageWindow2" style="padding:10px 0;height: 15em; overflow: auto; background-color: #FBEFFB;">
-		<%-- <div class="user-photo"><img src="myHomeFolder/profile_img/'+${user2_profile_img }+'"></div> --%>
 		<p class="chat-message" id="from_text"></p>
 	</div>
 <!-- onkeydown을 통해서 엔터키로도 입력되도록 설정. -->
@@ -49,7 +29,7 @@
 	var strTime = nowHour+":"+nowMin+' '+ampm;
 	
 	//웹소켓 설정
-	var webSocket = new WebSocket('ws://192.168.43.202:9090/finalproject/broadcasting');
+	var webSocket = new WebSocket('ws://192.168.20.174:9090/finalproject/broadcasting');
 	//var webSocket = new WebSocket('ws://localhost:8080/프로젝트명/broadcasting');
 	var inputMessage = document.getElementById('inputMessage');
 	//같은 이가 여러번 보낼때 이름 판별할 변수
@@ -82,61 +62,74 @@
 			//금방 보낸 이를 re_send에 저장하고,
 			//금방 보낸 이가 다시 보낼경우 보낸이 출력 없도록 함.
 			if(message[0] != re_send){
-				
-				//messageWindow2에 붙이기
-				/* var who = document.createElement('div');
-
-				who.style["padding"]="3px";
-				who.style["margin-left"]="80%";
-				who.style["order"]="-1";
-
-				who.innerHTML = message[0];
-				document.getElementById('messageWindow2').appendChild(who); */
-
 				re_send = message[0];
 			}
 			
 			//div는 받은 메시지 출력할 공간.
-			var div1=document.createElement('div'); //시간
-			var div=document.createElement('div');
-			var photo=document.createElement('img');
+			var time = document.createElement('div'); //시간
+			var msg = document.createElement('div');
+			var photo = document.createElement('img');
 			var name = document.createElement('elem');
+			var div = document.createElement('div');
+			var table = document.createElement('table');
+			var tr1 = document.createElement('tr');
+			var tr2 = document.createElement('tr');
+			var td1 = document.createElement('td');
+			var td2 = document.createElement('td');
+			var td3 = document.createElement('td');
 			
 			div.style["width"]="auto";
 			div.style["word-wrap"]="break-word";
-			//div.style["float"]="right";
-			div.style["display"]="inline-block";
-			div.style["background-color"]="#FFFFFF";
+			div.style["background-color"]="#FBEFFB";
 			div.style["padding"]="3px";
-			div.style["border-radius"]="3px";
-			div.style["margin-left"]="8px";
-			div.style["margin-right"]="3px";
 			
-			div1.style["width"]="auto"; //시간
-			div1.style["word-wrap"]="break-word";
-			//div1.style["float"]="right";
-			div1.style["display"]="inline-block";
-			div1.style["padding"]="3px";
-			div1.style["border-radius"]="3px";
-			div1.style["margin-right"]="3px";
+			msg.style["width"]="auto";
+			msg.style["word-wrap"]="break-word";
+			msg.style["display"]="inline-block";
+			msg.style["background-color"]="#FFFFFF";
+			msg.style["padding"]="3px";
+			msg.style["border-radius"]="3px";
+			msg.style["margin-left"]="8px";
+			msg.style["margin-right"]="3px";
+			
+			time.style["width"]="auto"; //시간
+			time.style["word-wrap"]="break-word";
+			time.style["display"]="inline-block";
+			time.style["padding"]="3px";
+			time.style["border-radius"]="3px";
+			time.style["margin-right"]="3px";
+			time.style["margin-left"]="5px";
 			
 			photo.setAttribute("src", "myHomeFolder/profile_img/"+'${user2_profile_img}');
-			//alert('${user2_profile_img}');
 			photo.setAttribute("width", "30px");
 			photo.setAttribute("height", "25px");
 			photo.setAttribute("background", "#ccc");
-			photo.setAttribute("display", "inline-block");
-			photo.setAttribute("style", "margin-left: 7px; margin-right: 1px; border-radius: 50%;");
+			photo.setAttribute("style", "margin-left: 7px; margin-right: 1px; border-radius: 50%; float: left; overflow: auto;");
 			
-			
-			div.innerHTML = message[1];
-			div1.innerHTML = strTime;
+			msg.innerHTML = message[1];
+			time.innerHTML = strTime;
 			name.innerHTML = '${user2_name}';
-			document.getElementById('messageWindow2').appendChild(photo);
-			document.getElementById('messageWindow2').appendChild(name);
+			
+			table.appendChild(tr1);
+			table.appendChild(tr2);
+			tr1.appendChild(td1);
+			tr1.appendChild(td2);
+			tr2.appendChild(td3);
+			
+			div.appendChild(table);
+			
+			td1.appendChild(photo);
+			td2.appendChild(name);
+			td3.appendChild(msg);
+			td3.appendChild(time);
+			
+			td1.setAttribute("rowspan","2");
+			td1.setAttribute("valign", "top");
+			td2.setAttribute("style", "text-align: left; padding-left: 8px;");
+			
+			
 			document.getElementById('messageWindow2').appendChild(div);
-			document.getElementById('messageWindow2').appendChild(div1);
-		
+			
 		//clear div 추가. 줄바꿈용.		
 		var clear=document.createElement('div');
 		clear.style["clear"]="both";
@@ -149,14 +142,6 @@
 
 	//	OnOpen은 서버 측에서 클라이언트와 웹 소켓 연결이 되었을 때 호출되는 함수.
 	function onOpen(event) {
-
-		/* //접속했을 때, 내 영역에 보이는 글.
-		var div=document.createElement('div');
-		
-		div.style["text-align"]="center";
-		
-		div.innerHTML = strTime;
-		document.getElementById('messageWindow2').appendChild(div); */
 		
 		var clear=document.createElement('div');
 		clear.style["clear"]="both";
@@ -183,7 +168,10 @@
 			// 채팅화면 div에 붙일 내용
 			var div1=document.createElement('div'); //시간
 			var div=document.createElement('div');
-			//var photo=document.createElement('img');
+			var bg_div = document.createElement('div');
+			
+			bg_div.style["width"]="auto";
+			bg_div.style["margin-top"]="7px";
 			
 			div.style["width"]="auto";
 			div.style["word-wrap"]="break-word";
@@ -203,18 +191,11 @@
 			div1.style["border-radius"]="3px";
 			div1.style["margin-right"]="3px";
 			
-			/* photo.setAttribute("src", "myHomeFolder/profile_img/'${user2_profile_img}'");
-			photo.setAttribute("width", "20px");
-			photo.setAttribute("height", "20px");
-			photo.setAttribute("background", "#ccc");
-			photo.setAttribute("display", "inline-block");
-			photo.setAttribute("border-radius", "50%"); */
-
 			//div에 innerHTML로 문자 넣기
 			div1.innerHTML = strTime;
 			div.innerHTML = inputMessage.value;
-			//document.getElementById('messageWindow2').appendChild(photo);
-			document.getElementById('messageWindow2').appendChild(div);
+			bg_div.appendChild(div);
+			document.getElementById('messageWindow2').appendChild(bg_div);
 			document.getElementById('messageWindow2').appendChild(div1); //시간
 
 			//clear div 추가
@@ -233,6 +214,7 @@
 			
 			//	금방 보낸 사람을 임시 저장한다.
 			re_send = ${user2_name};
+			
 		}//inputMessage가 있을때만 전송가능 끝.
 		
 	}
