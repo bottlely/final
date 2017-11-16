@@ -1,35 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%-- <%
+	String id = "";
+	if (session.getAttribute("userid") != null) {
+		id = (String) session.getAttribute("userid");
+	}
 
+	String nick = "";
+	if (session.getAttribute("username") != null) {
+		nick = (String) session.getAttribute("username");
+	} else {
+		nick = "NICK NULL";
+	}
+%> --%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Chatting</title>
 
 </head>
 <body>
-	<div id="messageWindow2" style="padding:10px 0;height: 15em; overflow: auto; background-color: #FBEFFB;">
+	<div id="messageWindow2" style="padding:10px 0;height: 20em; overflow: auto; background-color: #FBEFFB;">
+		<%-- <div class="user-photo"><img src="myHomeFolder/profile_img/'+${user2_profile_img }+'"></div> --%>
 		<p class="chat-message" id="from_text"></p>
 	</div>
 <!-- onkeydown을 통해서 엔터키로도 입력되도록 설정. -->
-<input id="inputMessage" type="text" onkeydown="if(event.keyCode==13){send('${user2_name}');}" />
-<input type="submit" value="send" onclick="send('${user2_name}');" />
+<textarea rows="2" cols="40" id="inputMessage" onkeydown="if(event.keyCode==13){send('${user2_name}');}" style="resize: none; float: left; wrap:off;"></textarea>
+<input type="submit" value="send" onclick="send('${user2_name}');" style="height: 70px;" />
 
 <link rel="stylesheet" href="assets_myPage/assets/css/main.css" />
+
 <script type="text/javascript">
 	//시간띄우기
-	var now = new Date(); 
-	var nowHour = now.getHours();
-	var nowMin = now.getMinutes();
-	var ampm = nowHour>= 12 ? 'pm' : 'am';
-	nowHour = nowHour%12;
-	nowHour = nowHour?nowHour: 12;
-	nowMin = nowMin<10 ? '0'+nowMin : nowMin;
-	var strTime = nowHour+":"+nowMin+' '+ampm;
+	var now; 
+	var nowHour;
+	var nowMin;
+	var ampm;
+	var strTime;
 	
 	//웹소켓 설정
-	var webSocket = new WebSocket('ws://192.168.20.174:9090/finalproject/broadcasting');
+	var webSocket = new WebSocket('ws://172.30.4.142:9090/finalproject/broadcasting');
 	//var webSocket = new WebSocket('ws://localhost:8080/프로젝트명/broadcasting');
 	var inputMessage = document.getElementById('inputMessage');
 	//같은 이가 여러번 보낼때 이름 판별할 변수
@@ -55,13 +66,33 @@
 
 	//	OnMessage는 클라이언트에서 서버 측으로 메시지를 보내면 호출되는 함수.
 	function onMessage(event) {
-        
+		//시간띄우기
+		now = new Date(); 
+		nowHour = now.getHours();
+		nowMin = now.getMinutes();
+		ampm = nowHour>= 12 ? 'pm' : 'am';
+		nowHour = nowHour%12;
+		nowHour = nowHour?nowHour: 12;
+		nowMin = nowMin<10 ? '0'+nowMin : nowMin;
+		strTime = nowHour+":"+nowMin+' '+ampm;
+		
 		//클라이언트에서 날아온 메시지를 |\| 단위로 분리한다
 		var message = event.data.split("|\|");
 		
 			//금방 보낸 이를 re_send에 저장하고,
 			//금방 보낸 이가 다시 보낼경우 보낸이 출력 없도록 함.
 			if(message[0] != re_send){
+				
+				//messageWindow2에 붙이기
+				/* var who = document.createElement('div');
+
+				who.style["padding"]="3px";
+				who.style["margin-left"]="80%";
+				who.style["order"]="-1";
+
+				who.innerHTML = message[0];
+				document.getElementById('messageWindow2').appendChild(who); */
+
 				re_send = message[0];
 			}
 			
@@ -82,9 +113,11 @@
 			div.style["word-wrap"]="break-word";
 			div.style["background-color"]="#FBEFFB";
 			div.style["padding"]="3px";
+			div.style["align"]="middle";
 			
 			msg.style["width"]="auto";
 			msg.style["word-wrap"]="break-word";
+			//msg.style["float"]="right";
 			msg.style["display"]="inline-block";
 			msg.style["background-color"]="#FFFFFF";
 			msg.style["padding"]="3px";
@@ -98,7 +131,6 @@
 			time.style["padding"]="3px";
 			time.style["border-radius"]="3px";
 			time.style["margin-right"]="3px";
-			time.style["margin-left"]="5px";
 			
 			photo.setAttribute("src", "myHomeFolder/profile_img/"+'${user2_profile_img}');
 			photo.setAttribute("width", "30px");
@@ -124,7 +156,7 @@
 			td3.appendChild(time);
 			
 			td1.setAttribute("rowspan","2");
-			td1.setAttribute("valign", "top");
+			td1.setAttribute("valign","top");
 			td2.setAttribute("style", "text-align: left; padding-left: 8px;");
 			
 			
@@ -142,6 +174,19 @@
 
 	//	OnOpen은 서버 측에서 클라이언트와 웹 소켓 연결이 되었을 때 호출되는 함수.
 	function onOpen(event) {
+		var now1 = new Date(); 
+		
+		var nowYear = now1.getFullYear();
+		var nowMonth = now1.getMonth()+1;
+		var nowDay = now1.getDate();
+		
+		var strDate = nowYear+"년 "+nowMonth+"월 "+nowDay+"일 ";
+		
+		//접속했을 때, 내 영역에 보이는 글.
+		var div = document.createElement('div');
+		div.style["text-align"]="center";
+		div.innerHTML = strDate;
+		document.getElementById('messageWindow2').appendChild(div);
 		
 		var clear=document.createElement('div');
 		clear.style["clear"]="both";
@@ -158,7 +203,15 @@
 	
 	// send 함수를 통해서 웹소켓으로 메시지를 보낸다.
 	function send(user2_name) {
-
+		now = new Date(); 
+		nowHour = now.getHours();
+		nowMin = now.getMinutes();
+		ampm = nowHour>= 12 ? 'pm' : 'am';
+		nowHour = nowHour%12;
+		nowHour = nowHour?nowHour: 12;
+		nowMin = nowMin<10 ? '0'+nowMin : nowMin;
+		strTime = nowHour+":"+nowMin+' '+ampm;
+		
 		//inputMessage가 있을때만 전송가능
 		if(inputMessage.value!=""){
 	        
@@ -171,7 +224,8 @@
 			var bg_div = document.createElement('div');
 			
 			bg_div.style["width"]="auto";
-			bg_div.style["margin-top"]="7px";
+			bg_div.style["margin-top"]="9px";
+			bg_div.style["margin-left"]="5px";
 			
 			div.style["width"]="auto";
 			div.style["word-wrap"]="break-word";
@@ -214,7 +268,6 @@
 			
 			//	금방 보낸 사람을 임시 저장한다.
 			re_send = ${user2_name};
-			
 		}//inputMessage가 있을때만 전송가능 끝.
 		
 	}
