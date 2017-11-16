@@ -349,24 +349,44 @@ function showResult(){
       if(XHR.status==200){
          var data=eval('('+XHR.responseText+')');
          var myFeedTable=document.all.myfeedtable;
+         var myFeedDiv=document.all.myfeed;
          var str='';
+         var paths='';
          if(data.list.length==0){
             str='<table><tr><td>검색결과가 없습니다.</td></tr></table>';
             myFeedTable.innerHTML=str;
          }else{
-        	 
-        	 //document.removeChild(myFeedTable);
-        	 //var searchTable=document.creatElement('table');
-        	 //var myFeedDiv=document.getElementsByClassName('myfeed');
-        	 //window.alert(myFeedDiv);
-        	 //myFeedDiv.appendChild(searchTable);
-        	 
-      		//myFeedTable.innerHTML='<tr>';
-       // for(var i=0; i<data.list.length; i++){
-        	str='<tr><td><img src="myHomeFolder/content/'+data.list[0].path+'" width="180",height="180"></td>'
+        	 myFeedDiv.removeChild(myFeedTable);
+        	var table=document.createElement('table');
+        		table.setAttribute("border-spacing", "10px");
+        	var tr=document.createElement('tr');
+        	table.appendChild(tr);
+        	var count=0;
+        	for(var i=0; i<data.list.length; i++){
+        		count++;
+        		var td=document.createElement('td');
+        		var patharr=data.list[i].path.split('?');
+        		//var indexnum=patharr[0].lastIndexOf(".");
+        		//var pathname=patharr[0].substring(0,indexnum+1);
+       			var img=document.createElement('img');
+       				img.setAttribute("src", "myHomeFolder/content/"+patharr[0]);
+       				img.setAttribute("width", "180px");
+       				img.setAttribute("height", "180px");
+       			td.appendChild(img);
+       			tr.appendChild(td);
+       				if(count>3){
+       					count=0;
+       					table.appenChild(tr);
+       				}
+       				
+       				if(data.list.length/i==1){
+       					table.appenChild(tr);
+       				}
+       			}myFeedDiv.appendChild(table);
+        	/*str='<tr><td><img src="myHomeFolder/content/'+data.list[0].path+'" width="180",height="180"></td>'
         	+'<td><img src="myHomeFolder/content/'+data.list[1].path+'" width="180",height="180"></td>'
         	+'<td><img src="myHomeFolder/content/'+data.list[2].path+'" width="180",height="180"></td></tr>';
-        	myFeedTable.innerHTML=str;
+        	myFeedTable.innerHTML=str;*/
         	//if(i%3==0){
         		
         	//}
@@ -527,7 +547,7 @@ function showResult2(){
       </ul>
       </div>
       
-      <div class="myfeed">
+      <div class="myfeed" id="myfeed">
          <table style="border-spacing:10px;" id="myfeedtable">
              <tr>
                <td style="background-color:blue;"></td>
