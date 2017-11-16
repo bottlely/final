@@ -9,6 +9,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
+<script>
+function openParent(content_idx) {
+	parent.openContent(content_idx);
+}
+
+
+</script>
 </head>
 <body>
 	<div class="container">
@@ -23,7 +30,7 @@
 		<c:forEach var="dto" items="${reply }">
 			<div class="dropdown-divider">
 				<!-- 게시물 하나당 a태그하나 -->
-				<a class="dropdown-item" href="main_view.do?content_idx=${dto.content_idx }"> <span
+				<a class="dropdown-item" href="javascript: openParent('${dto.content_idx }')" > <span
 					class="text-success"> <strong> <i
 							class="fa fa-long-arrow-up fa-fw"></i>${dto.name}님이 댓글을남겼습니다
 							<p>${dto.actdate }</p>
@@ -43,9 +50,9 @@
 		<c:forEach var="dto" items="${like }">
 			<div class="dropdown-divider">
 				<!-- 게시물 하나당 a태그하나 -->
-				<a class="dropdown-item" href="main_view.do?content_idx=${dto.content_idx }"> <span
+				<a class="dropdown-item" href="javascript: openParent('${dto.content_idx }')" > <span
 					class="text-success"> <strong> <i
-							class="fa fa-long-arrow-up fa-fw"></i>${dto.name}님이 회원님 게시물에 발자취를 남겼습니다.
+							class="fa fa-long-arrow-up fa-fw"></i>${dto.name}님이 발자취를 남겼습니다.
 							<p>${dto.actdate }</p>
 							
 					</strong>

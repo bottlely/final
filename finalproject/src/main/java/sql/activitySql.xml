@@ -10,11 +10,11 @@
 	</insert>
 	
 		<select id="active_reply" resultType="mars.activity.model.ActivityDTO" parameterType="int">
-		select name,content_idx,replydate as actdate from mars_member ,(select from_idx,content_idx,replydate from mars_reply where to_idx = #{idx} order by replydate desc)a where mars_member.idx = a.from_idx
+		select name,content_idx,replydate as actdate from mars_member ,(select from_idx,to_idx,content_idx,replydate from mars_reply where from_idx = #{idx} order by replydate desc)a where mars_member.idx = a.to_idx
 	</select>
 	
 		<select id="active_like" resultType="mars.activity.model.ActivityDTO" parameterType="int">
 		
-		select name,content_idx,likedate as actdate from mars_member ,(select from_idx,content_idx,likedate from mars_like where to_idx = #{idx} order by likedate desc)a where mars_member.idx = a.from_idx
+		select name,content_idx,likedate as actdate from mars_member ,(select from_idx,to_idx,content_idx,likedate from mars_like where from_idx = #{idx} order by likedate desc)a where mars_member.idx = a.to_idx
 	</select>
 </mapper>

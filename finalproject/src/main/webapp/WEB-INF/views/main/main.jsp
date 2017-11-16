@@ -716,7 +716,9 @@ var data = [
                 document.getElementById('hidden_other_idx').value=other_idx;
              }
 
-         
+             function openContent(content_idx) {
+            	 location.href='main_view.do?content_idx='+content_idx;
+             }
 </script>
 <body>
 	<header>
@@ -836,14 +838,16 @@ var data = [
 							<ul class="nav navbar-nav navbar-right">
 
 								<!-- 다운 음성인식 -->
-								
-						<li>							
-						<div id="speechbbbbox"></div>
-					    <button onClick="startConverting();" type="button"><i class="fa fa-microphone"></i></button>
-					    </li>
-					
-					
-						<script type="text/javascript">
+
+								<li>
+									<div id="speechbbbbox"></div>
+									<button onClick="startConverting();" type="button">
+										<i class="fa fa-microphone"></i>
+									</button>
+								</li>
+
+
+								<script type="text/javascript">
 						 
 						function startConverting ()
 						{
@@ -984,20 +988,27 @@ var data = [
 					<c:set var="list" value="${list }"></c:set>
 					<c:if test="${empty list }"> 게시물 없음! </c:if>
 					<c:forEach var="list" items="${list }">
-					<!--사진  -->
+						<!--사진  -->
 						<c:if test="${list.category==1 }">
 							<div class="col-md-4 col-sm-6 col-xs-12  photo">
 								<div class="works" style="height: 431px;">
-									<img src="myHomeFolder/content/${list.path }" alt="" style="width: 431px; height: 431px;">
+									<img src="myHomeFolder/content/${list.path }" alt=""
+										style="width: 431px; height: 431px;">
 									<div class="work-overlay text-center">
 										<div class="overlay-caption">
 											<h4>PHOTO</h4>
-											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
-											<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
-											<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
-											<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
-											<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
-											<input type="hidden" id="memberidx_${list.content_idx }" value="${list.member_idx }">
+											<a href="#galleryModal" class="gallery-box"
+												data-toggle="modal" data-src="${list.path }"
+												onclick="openpic(${list.content_idx})"> <input
+												type="hidden" id="category_${list.content_idx }"
+												value="${list.category }"> <input type="hidden"
+												id="path_${list.content_idx }"
+												value="myHomeFolder/content/${list.path }"> <input
+												type="hidden" id="writer_${list.content_idx }"
+												value="${list.writer }"> <input type="hidden"
+												id="content_${list.content_idx }" value="${list.content }">
+												<input type="hidden" id="memberidx_${list.content_idx }"
+												value="${list.member_idx }">
 												<p>${list.writer}</p>
 											</a>
 										</div>
@@ -1009,18 +1020,26 @@ var data = [
 						<c:if test="${list.category==2 }">
 							<div class="col-md-4 col-sm-6 col-xs-12  video">
 								<div class="works">
-									<video autoplay="autoplay" loop="loop" style="width: 431px; height: 431px;">
-										<source src="myHomeFolder/content/${list.path }" type="video/mp4">
+									<video autoplay="autoplay" loop="loop"
+										style="width: 431px; height: 431px;">
+										<source src="myHomeFolder/content/${list.path }"
+											type="video/mp4">
 									</video>
 									<div class="work-overlay text-center">
 										<div class="overlay-caption">
 											<h4>VIDEO</h4>
-											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
-											<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
-											<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
-											<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
-											<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
-											<input type="hidden" id="memberidx_${list.content_idx }" value="${list.member_idx }">
+											<a href="#galleryModal" class="gallery-box"
+												data-toggle="modal" data-src="${list.path }"
+												onclick="openpic(${list.content_idx})"> <input
+												type="hidden" id="category_${list.content_idx }"
+												value="${list.category }"> <input type="hidden"
+												id="path_${list.content_idx }"
+												value="myHomeFolder/content/${list.path }"> <input
+												type="hidden" id="writer_${list.content_idx }"
+												value="${list.writer }"> <input type="hidden"
+												id="content_${list.content_idx }" value="${list.content }">
+												<input type="hidden" id="memberidx_${list.content_idx }"
+												value="${list.member_idx }">
 												<p>${list.writer}</p>
 											</a>
 										</div>
@@ -1043,7 +1062,8 @@ var data = [
 				</div>
 				<!-- 더보기 버튼 -->
 				<div class="col-xs-12" style="text-align: center;">
-					<button type="button" class="btn btn-primary" id="more">More List..</button>
+					<button type="button" class="btn btn-primary" id="more">More
+						List..</button>
 				</div>
 			</div>
 		</div>
@@ -1056,116 +1076,122 @@ var data = [
 	<div id="galleryModal" class="modal fade" tabindex="-1" role="dialog"
 		aria-hidden="true"
 		style="border: solid; overflow: auto; background-color: rgba(0, 0, 0, 0.2);">
-		<div style="margin:2% 10%;">
-		<section id="viewForm" style="overflow: auto;">
-			<div class="container"
-				style="width: 100%; font-size: 15px; overflow: hidden;">
-				<div class="row">
-					<!-- 사진 -->
-					<div class="col-xs-7" style="margin-top: 10px; float: left; margin-bottom: 10px; overflow: hidden;">
-						<div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 480px; height: 270px;; overflow: hidden; visibility: hidden;">
-							<!-- Loading Screen -->
-							<div data-u="loading" class="jssorl-009-spin"
-								style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.7);">
+		<div style="margin: 2% 10%;">
+			<section id="viewForm" style="overflow: auto;">
+				<div class="container"
+					style="width: 100%; font-size: 15px; overflow: hidden;">
+					<div class="row">
+						<!-- 사진 -->
+						<div class="col-xs-7"
+							style="margin-top: 10px; float: left; margin-bottom: 10px; overflow: hidden;">
+							<div id="jssor_1"
+								style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 480px; height: 270px;; overflow: hidden; visibility: hidden;">
+								<!-- Loading Screen -->
+								<div data-u="loading" class="jssorl-009-spin"
+									style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.7);">
 
-							</div>
-							<div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 480px; height: 270px; overflow: hidden;">
-								<div>
-									<img data-u="image" src="myHomeFolder/content/default_content.jpg" id="galleryImage" />
-									<video id="a_video" loop="loop" autoplay="autoplay">
-										<source src="" id="galleryVideo" type="video/mp4">
-									</video>
 								</div>
-							</div>
-							<!-- Bullet Navigator -->
-							<div data-u="navigator" class="jssorb051"
-								style="position: absolute; bottom: 12px; right: 12px;"
-								data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
-								<div data-u="prototype" class="i"
-									style="width: 16px; height: 16px;">
-									<svg viewbox="0 0 16000 16000"
-										style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+								<div data-u="slides"
+									style="cursor: default; position: relative; top: 0px; left: 0px; width: 480px; height: 270px; overflow: hidden;">
+									<div>
+										<img data-u="image"
+											src="myHomeFolder/content/default_content.jpg"
+											id="galleryImage" />
+										<video id="a_video" loop="loop" autoplay="autoplay">
+											<source src="" id="galleryVideo" type="video/mp4">
+										</video>
+									</div>
+								</div>
+								<!-- Bullet Navigator -->
+								<div data-u="navigator" class="jssorb051"
+									style="position: absolute; bottom: 12px; right: 12px;"
+									data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+									<div data-u="prototype" class="i"
+										style="width: 16px; height: 16px;">
+										<svg viewbox="0 0 16000 16000"
+											style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
 					                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
 					                </svg>
-								</div>
-							</div>
-							<!-- Arrow Navigator -->
-							<div data-u="arrowleft" class="jssora051"
-								style="width: 55px; height: 55px; top: 0px; left: 25px;"
-								data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
-								<svg viewbox="0 0 16000 16000"
-									style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-					                <polyline class="a"
-										points="11040,1920 4960,8000 11040,14080 "></polyline>
-					            </svg>
-							</div>
-							<div data-u="arrowright" class="jssora051"
-								style="width: 55px; height: 55px; top: 0px; right: 25px;"
-								data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
-								<svg viewbox="0 0 16000 16000"
-									style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-					                <polyline class="a"
-										points="4960,1920 11040,8000 4960,14080 "></polyline>
-					            </svg>
-							</div>
-						</div>
-						<script type="text/javascript">jssor_1_slider_init();</script>
-					</div>
-
-					<!-- 내용 -->
-					<input type="hidden" id="c_idx" value="">
-					<div class="col-xs-5"
-						style="margin-top: 10px; margin-bottom: 10px;">
-						<div class="col-sm-12" id="cntInfoBar">
-							<span class="avatar"> <img src="js/profile.png" alt=""
-								id="pf" />
-							</span> <label id="c_writer"></label> <span>
-								<button class="btn btn-info" id="myBtn"
-									style="background: gray;">설정</button> <!-- The Modal -->
-								<div id="myModal2" class="modal2">
-
-									<!-- Modal content // contentMore -->
-									<div class="list-group" style="width: 20%; margin: 5% auto;" id="contentMore">
-										<span class="close">&times;</span>
 									</div>
-
 								</div>
-							</span>
-
+								<!-- Arrow Navigator -->
+								<div data-u="arrowleft" class="jssora051"
+									style="width: 55px; height: 55px; top: 0px; left: 25px;"
+									data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+									<svg viewbox="0 0 16000 16000"
+										style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+					                <polyline class="a"
+											points="11040,1920 4960,8000 11040,14080 "></polyline>
+					            </svg>
+								</div>
+								<div data-u="arrowright" class="jssora051"
+									style="width: 55px; height: 55px; top: 0px; right: 25px;"
+									data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+									<svg viewbox="0 0 16000 16000"
+										style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+					                <polyline class="a"
+											points="4960,1920 11040,8000 4960,14080 "></polyline>
+					            </svg>
+								</div>
+							</div>
+							<script type="text/javascript">jssor_1_slider_init();</script>
 						</div>
-						<div class="col-sm-12" id="cntInfoBar">
-							<span>좋아요</span>
-						</div>
 
-						<div class="col-sm-12" id="cntInfoBar"
-							style="overflow: auto; height: 70px;">
-							<span><label id="c_content"></label></span>
-						</div>
-
-
-						<div class="col-sm-12" id="cntInfoBar"
-							style="overflow: auto; height: 200px;">
-							<div class="col-sm-12" id="reply1">
+						<!-- 내용 -->
+						<input type="hidden" id="c_idx" value="">
+						<div class="col-xs-5"
+							style="margin-top: 10px; margin-bottom: 10px;">
+							<div class="col-sm-12" id="cntInfoBar">
 								<span class="avatar"> <img src="js/profile.png" alt=""
-									id="pf2" />
-								</span> <label>사용자1</label> <span id="reply_List">댓글 내용</span>
+									id="pf" />
+								</span> <label id="c_writer"></label> <span>
+									<button class="btn btn-info" id="myBtn"
+										style="background: gray;">설정</button> <!-- The Modal -->
+									<div id="myModal2" class="modal2">
+
+										<!-- Modal content // contentMore -->
+										<div class="list-group" style="width: 20%; margin: 5% auto;"
+											id="contentMore">
+											<span class="close">&times;</span>
+										</div>
+
+									</div>
+								</span>
+
+							</div>
+							<div class="col-sm-12" id="cntInfoBar">
+								<span>좋아요</span>
+							</div>
+
+							<div class="col-sm-12" id="cntInfoBar"
+								style="overflow: auto; height: 70px;">
+								<span><label id="c_content"></label></span>
 							</div>
 
 
-						</div>
+							<div class="col-sm-12" id="cntInfoBar"
+								style="overflow: auto; height: 200px;">
+								<div class="col-sm-12" id="reply1">
+									<span class="avatar"> <img src="js/profile.png" alt=""
+										id="pf2" />
+									</span> <label>사용자1</label> <span id="reply_List">댓글 내용</span>
+								</div>
 
-						<div class="col-sm-12">
-							<div class="input-group">
-								<input id="content" type="text" class="form-control"
-									name="content" placeholder="댓글 입력"> <label
-									class="input-group-addon" onclick="addReply()"
-									onkeydown="showList()">작성</label>
+
+							</div>
+
+							<div class="col-sm-12">
+								<div class="input-group">
+									<input id="content" type="text" class="form-control"
+										name="content" placeholder="댓글 입력"> <label
+										class="input-group-addon" onclick="addReply()"
+										onkeydown="showList()">작성</label>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</section>
 		</div>
 	</div>
 </body>
