@@ -44,6 +44,7 @@ public class AdController {
 		String msg = result>0?"광고 신청을 완료했습니다.":"광고 신청이 실패했습니다.";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
+	//	mav.addObject("gourl", "myHomeForm.do");
 		mav.setViewName("ad/adMsg");
 		return mav;
 	}

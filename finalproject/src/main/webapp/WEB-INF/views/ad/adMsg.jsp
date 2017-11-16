@@ -2,5 +2,5 @@
     pageEncoding="UTF-8"%>
 <script>
 	window.alert('${msg}');
-//	location.href='goMyPage.do';
+	window.self.close();
 </script>
