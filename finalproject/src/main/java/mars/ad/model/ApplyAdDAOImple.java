@@ -33,7 +33,8 @@ public class ApplyAdDAOImple implements ApplyAdDAO {
 		return list;
 	}
 	
-	public int insert(ApplyAdDTO adDto){
+	public int insert(ApplyAdDTO adDto, String ad_content){
+		adDto.setAd_content(ad_content);
 		int cnt = sqlMap.insert("addAdForm", adDto);
 		return cnt;
 	}

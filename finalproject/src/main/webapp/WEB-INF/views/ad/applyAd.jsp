@@ -25,7 +25,7 @@ h2 {
 	<div class="container" style="background-color:#f2fdff;">
 		<h2>광고 주문서</h2>
 		<form class="form-horizontal" name="applyAd" action="applyAd.do"
-			method="post">
+			method="post" enctype="multipart/form-data">
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Company Name</label>
 				<div class="col-sm-10">
@@ -57,7 +57,7 @@ h2 {
 			<div class="form-group">
 				<label class="col-sm-2 control-label">Link</label>
 				<div class="col-sm-10">
-					<input type="file">
+					<input type="file" id="file" name="file">
 				</div>
 			</div>
 			<div class="form-group">

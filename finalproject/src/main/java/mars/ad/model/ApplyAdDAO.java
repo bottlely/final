@@ -8,7 +8,7 @@ public interface ApplyAdDAO {
 
 	public List<ApplyAdDTO> adList();
 	public List<ApplyAdDTO> adPayList();
-	public int insert(ApplyAdDTO adDto);
+	public int insert(ApplyAdDTO adDto, String ad_content);
 	public List<ApplyAdDTO> showCurList(int member_idx);
 	public String showAveNum(Integer i);
 	public List<ApplyAdDTO> showNum(int member_idx);
