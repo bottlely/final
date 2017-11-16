@@ -16,6 +16,5 @@
 		<mapper resource="sql/activitySql.xml" />
 		<mapper resource="sql/replySql.xml" />
 		<mapper resource="sql/feedSql.xml" />
-		<mapper resource="sql/chatSql.xml"/>
 	</mappers> 
 </configuration>

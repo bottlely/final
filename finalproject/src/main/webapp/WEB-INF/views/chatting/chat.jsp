@@ -16,7 +16,7 @@
 <input id="inputMessage" type="text" onkeydown="if(event.keyCode==13){send('${user2_name}');}" />
 <input type="submit" value="send" onclick="send('${user2_name}');" />
 
-
+<link rel="stylesheet" href="assets_myPage/assets/css/main.css" />
 <script type="text/javascript">
 	//시간띄우기
 	var now = new Date(); 

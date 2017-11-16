@@ -141,11 +141,6 @@
 			<ref bean="sqlSessionTemplate"></ref>
 		</constructor-arg>
 	</bean>
-	<bean id="chatDao" class="mars.chat.model.ChattingDAOImple">
-		<constructor-arg>
-			<ref bean="sqlSessionTemplate" />
-		</constructor-arg>
-	</bean>
 	
 	<!-- views -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
