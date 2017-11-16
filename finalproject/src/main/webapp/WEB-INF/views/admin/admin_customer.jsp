@@ -36,6 +36,9 @@
 			e.style.display = 'block';
 
 	}
+	
+	
+	
 </script>
 
 </head>
@@ -198,15 +201,15 @@
 			<div class="row">
 				<div class="col-12">
 					<h3>
-						<select>Category
-							<option>검색/인기태그</option>
-							<option>공개범위</option>
-							<option>친구</option>
-							<option>피드</option>
-							<option>게시물작성</option>
-							<option>알림</option>
-							<option>회원신고</option>
-							<option>게시물신고</option>
+						<select onchange="update(this.value)" id ="tabChange">Category
+							<option value="11">검색/인기태그</option>
+							<option value="12">공개범위</option>
+							<option value="13">친구</option>
+							<option value="14">피드</option>
+							<option value="15">게시물작성</option>
+							<option value="16">알림</option>
+							<option value="2">회원신고</option>
+							<option value="3">게시물신고</option>
 						</select>
 
 
@@ -227,8 +230,20 @@
 									<tr>
 										<td>${dto.name}</td>
 										<td>${dto.content}</td>
-										<td>${dto.category}</td>
-										<td>${dto.reportdate}</td>
+										<td><c:if test="${dto.category == 11 }">검색/인기태그</c:if>
+											<c:if test="${dto.category == 12 }">공개범위</c:if>
+											<c:if test="${dto.category == 13 }">친구</c:if>
+											<c:if test="${dto.category == 14 }">피드</c:if>
+											<c:if test="${dto.category == 15 }">게시물작성</c:if>
+											<c:if test="${dto.category == 16 }">알림</c:if>
+											<c:if test="${dto.category == 2 }">회원신고</c:if>
+											<c:if test="${dto.category == 3 }">게시물신고</c:if>
+										
+										
+										</td>
+										<td>${dto.reportdate}
+										<c:if test="${dto.category == 3 }"><input type="button" value="Delete"></c:if>
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
