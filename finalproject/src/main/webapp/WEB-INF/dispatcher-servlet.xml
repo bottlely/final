@@ -78,6 +78,7 @@
 	<bean id="replyController" class="mars.controller.ReplyController"></bean>
 	<bean id="activityController" class="mars.controller.ActivityController"></bean>
 	<bean id="chattingController" class="mars.controller.ChattingController"></bean>
+	<bean id="followController" class="mars.controller.FollowController"></bean>
 
 	<!-- service -->
 	
@@ -145,6 +146,11 @@
 		<bean id="reportDao" class="mars.report.model.ReportDAOImple">
 		<constructor-arg>
 			<ref bean="sqlSessionTemplate"></ref>
+		</constructor-arg>
+	</bean>
+	<bean id="followDao" class="mars.follow.model.FollowDAOImple">
+		<constructor-arg>
+			<ref bean="sqlSessionTemplate" />
 		</constructor-arg>
 	</bean>
 	

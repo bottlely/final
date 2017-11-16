@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%-- <%
-	String id = "";
-	if (session.getAttribute("userid") != null) {
-		id = (String) session.getAttribute("userid");
-	}
 
-	String nick = "";
-	if (session.getAttribute("username") != null) {
-		nick = (String) session.getAttribute("username");
-	} else {
-		nick = "NICK NULL";
-	}
-%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,17 +71,8 @@
 			//금방 보낸 이가 다시 보낼경우 보낸이 출력 없도록 함.
 			if(message[0] != re_send){
 				
-				//messageWindow2에 붙이기
-				/* var who = document.createElement('div');
-
-				who.style["padding"]="3px";
-				who.style["margin-left"]="80%";
-				who.style["order"]="-1";
-
-				who.innerHTML = message[0];
-				document.getElementById('messageWindow2').appendChild(who); */
-
 				re_send = message[0];
+				
 			}
 			
 			//div는 받은 메시지 출력할 공간.
@@ -117,7 +96,6 @@
 			
 			msg.style["width"]="auto";
 			msg.style["word-wrap"]="break-word";
-			//msg.style["float"]="right";
 			msg.style["display"]="inline-block";
 			msg.style["background-color"]="#FFFFFF";
 			msg.style["padding"]="3px";
