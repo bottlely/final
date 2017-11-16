@@ -278,5 +278,15 @@ public class MyHomeController{
  		ModelAndView mav = new ModelAndView("marsJson","result",result);
 		return mav;
 	}
+	
+	/*비공개 설정하기*/
+	@RequestMapping("/visitorTodayReset.do")
+	public ModelAndView visitorTodayReset(){
+		System.out.println("in");
+		int result = mhdao.visitorTodayReset();
+		System.out.println(result);
+ 		ModelAndView mav = new ModelAndView("marsJson","result",result);
+		return mav;
+	}
 
 }

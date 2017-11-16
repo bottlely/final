@@ -45,10 +45,6 @@ public class MyHomeDAOImple implements MyHomeDAO {
 		sqlMap.update("visitorUpdate", member_idx);
 	}
 
-	public void visitorTodayReset(String member_idx) { //李⑦썑 愿�由ъ옄 �럹�씠吏��뿉 �꽔�븘�빞 �븿.  
-		sqlMap.update("visitorTodayReset", member_idx);
-	}
-
 	public MyHomeDTO myHomeSource(String member_idx) {
 		MyHomeDTO dto  = sqlMap.selectOne("myHomeSource",member_idx);
 		return dto;
@@ -61,6 +57,11 @@ public class MyHomeDAOImple implements MyHomeDAO {
 
 	public int reportSend(ReportDTO dto) {
 		int result = sqlMap.insert("sendReport_user", dto);
+		return result;
+	}
+
+	public int visitorTodayReset() {
+		int result = sqlMap.update("visitorTodayReset");
 		return result;
 	}
 

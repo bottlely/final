@@ -15,11 +15,12 @@ public interface MyHomeDAO {
 	public int openCoverage(HashMap<String, Integer> info);
 	
 	public void visitorUpdate(String member_idx);
-	public void visitorTodayReset(String member_idx);
 	
 	public String refreshPage();
 	public String moreButtonForm();
 	
 	public int reportSend(ReportDTO dto);
+	
+	public int visitorTodayReset();
 
 }

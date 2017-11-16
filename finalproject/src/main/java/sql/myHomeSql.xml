@@ -23,7 +23,7 @@
 		update myPage set visitor_today = visitor_today + 1, visitor_total = visitor_total + 1, entertime = sysdate
 		where member_idx = #{member_idx}
 	</update>
-	<update id="visitorTodayReset" parameterType="String">
+	<update id="visitorTodayReset">
 		update myPage set visitor_today = 0
 	</update>
 	
