@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -222,16 +222,23 @@
 								</tr>
 							</thead>
 							<tbody>
-						<c:if test="${empty lists }">내용이 없습니다. </c:if>	
-						<c:forEach var="dto" items="${lists }">	
-								<tr>
-									<td>${dto.name}</td>
-									<td>${dto.content}</td>
-									<td>${dto.category}</td>
-									<td>${dto.reportdate}</td>
-								</tr>
-							</c:forEach>
+								<c:if test="${empty lists }">내용이 없습니다. </c:if>
+								<c:forEach var="dto" items="${lists }">
+									<tr>
+										<td>${dto.name}</td>
+										<td>${dto.content}</td>
+										<td>${dto.category}</td>
+										<td>${dto.reportdate}</td>
+									</tr>
+								</c:forEach>
 							</tbody>
+							<tfoot>
+								<tr>
+									<td></td>
+									<td>${pageStr}</td>
+									<td></td>
+								</tr>
+							</tfoot>
 						</table>
 					</div>
 				</div>

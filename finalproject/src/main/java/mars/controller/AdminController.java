@@ -234,10 +234,15 @@ public class AdminController {
       return "admin/admin_data_busi";
    }
    @RequestMapping("/admin_c.do")
-   public  ModelAndView admin_c() {
+   public  ModelAndView admin_c(@RequestParam(value="cp",defaultValue="1")int cp) {
 	   ModelAndView mav = new ModelAndView();
-	   List<ReportDTO> lists = rDao.list();
+		int totalCnt = rDao.allReport();
+		int listSize=3;
+		int pageSize=3;
+	   String pageStr=mars.page.PageModule.makePage("admin_c.do", totalCnt, listSize, pageSize, cp);
+	   List<ReportDTO> lists = rDao.list(cp, listSize);
 	   mav.addObject("lists",lists);
+	   mav.addObject("pageStr",pageStr);
 	   mav.setViewName("admin/admin_customer");
       return mav;
    }
