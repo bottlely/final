@@ -1,5 +1,6 @@
 package mars.ad.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,6 +79,32 @@ public class ApplyAdDAOImple implements ApplyAdDAO {
 		sqlMap.update("insertNo", ad_idx);
 		String email = sqlMap.selectOne("getMail", member_idx);
 		return email;
+	}
+	
+	public List<ApplyAdDTO> showAd(String str){
+		Map<String, String> data = new HashMap<String, String>();
+		
+		//Map<String, Integer> data = new HashMap<String, Integer>();
+	//	data.put("favor_movie", String.valueOf(str.charAt(0)));
+		String[] arr = new String[8];
+		List<ApplyAdDTO> list = new ArrayList<ApplyAdDTO>();
+		
+		arr = str.split("/");
+		for(int i=0; i<arr.length; i++){
+			List<ApplyAdDTO> newList = new ArrayList<ApplyAdDTO>();
+			data.put("favor", arr[i]);
+			newList = sqlMap.selectList("showAd", data);
+			//System.out.println(list.get(0).getName());
+			list.addAll(newList);		
+		}
+		
+	//	for(int i=0; i<list.size(); i++){
+	//		System.out.println(list.get(i).getAd_name());
+	//	}
+			
+	//	List<ApplyAdDTO> list = sqlMap.selectList("showAd", str);
+		
+		return list;
 	}
 
 }

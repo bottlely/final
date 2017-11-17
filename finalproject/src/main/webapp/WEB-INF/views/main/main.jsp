@@ -1114,6 +1114,37 @@ var data = [
 		</div>
 
 	</section>
+	
+	
+	<!-- 다운 광고 추가  -->
+
+	
+	
+	<section>
+	<c:set var="list" value="${adList }"></c:set>
+		<c:if test="${empty list }"> 선호 광고 없음 </c:if>
+			<c:forEach var="list" items="${list }">
+					
+		<div class="col-md-4 col-sm-6 col-xs-12  photo">
+			<div class="works" style="height: 431px;">
+				<img src="${list.ad_content} " alt=""
+										style="width: 431px; height: 431px;">
+					<div class="work-overlay text-center">
+						<div class="overlay-caption">
+							<h4>Ad</h4>
+							<a href="http://${list.link}">
+							${list.ad_name}</a>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			</c:forEach>
+
+	</section>
+	
+	
+	
 	<section>
 		<div class="container">
 

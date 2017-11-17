@@ -18,6 +18,8 @@ import mars.member.model.MemberDTO;
 import mars.reply.model.MyHomeReplyDTO;
 import mars.reply.model.ReplyDAO;
 import mars.reply.model.ReplyDTO;
+import mars.ad.model.ApplyAdDAO;
+import mars.ad.model.ApplyAdDTO;
 import mars.content.model.ContentDAO;
 @Controller
 public class MainController {
@@ -26,6 +28,9 @@ public class MainController {
    
    @Autowired
    private FeedDAO feedDao;
+	
+	@Autowired
+	private ApplyAdDAO adDao;
    
    @Autowired
    private ContentDAO cDao;
@@ -43,8 +48,12 @@ public class MainController {
       
       List<ContentDTO> list = feedDao.showFeed(map);
       
+      String str = mdao.getFavor(idx);
+      List<ApplyAdDTO> adList = adDao.showAd(str);
+      
       ModelAndView mav = new ModelAndView();
       mav.addObject("list", list);
+      mav.addObject("adList", adList);
       mav.setViewName("main/main");
       return mav;
    }
