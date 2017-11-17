@@ -125,8 +125,8 @@
 											</tr>
 											<tr>
 												<th>Content</th>
-												<td colspan="3"><textarea name="content" cols="30"
-														rows="10"></textarea></td>
+												<td colspan="3"><textarea name="content" cols="40"
+														rows="15" style="width: 600px;"></textarea></td>
 											</tr>
 											<tr>
 												<td colspan="4" align="center"><input type="submit"
