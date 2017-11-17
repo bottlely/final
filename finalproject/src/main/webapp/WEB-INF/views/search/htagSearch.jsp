@@ -172,14 +172,14 @@
         <!-- Brand and toggle get grouped for better mobile display -->
 <ul class="nav navbar-nav navbar-left">
 					 <li>
-					<a href="main.do">
+					<a href="main.do?idx=${sessionScope.useridx }">
                           <img src="assets_main/images/logo.svg" alt="" />
                            
                        </a>
 					 
 					 </li>
 		             <li>
-                        <a href="main.do">
+                        <a href="main.do?idx=${sessionScope.useridx }">
                           <h3>MARS</h3>
                            
                        </a>

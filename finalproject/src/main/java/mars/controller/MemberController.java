@@ -77,10 +77,6 @@ public class MemberController {
 		if(idCheckResult==1) {  // Id exist.
 			String dbpwd = mdao.pwdCheck(userid);
 			if(dbpwd.equals(userpwd)) {  //id&pwd correct!
-				String msg = "로그인 성공";
-				String gourl = "main.do";
-				mav.addObject("msg", msg);
-				mav.addObject("gourl", gourl);
 				
 				/*login info save in Session*/
 				MemberDTO dto = new MemberDTO();
@@ -91,6 +87,11 @@ public class MemberController {
 				session.setAttribute("userid", userid);
 				session.setAttribute("username", username);
 				session.setAttribute("userEmail", dto.getId());
+				
+				String msg = "로그인 성공";
+				String gourl = "main.do?idx="+useridx;
+				mav.addObject("msg", msg);
+				mav.addObject("gourl", gourl);
 				
 				/*Cookie Save*/
 				String saveid = req.getParameter("saveid");

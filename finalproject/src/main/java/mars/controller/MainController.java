@@ -39,21 +39,19 @@ public class MainController {
    private MemberDAO mdao;
 
    @RequestMapping("main.do")
-   public ModelAndView mainPage() {
-      int idx = 12;
-      
+   public ModelAndView mainPage(int idx) {
       HashMap<String, String> map = new HashMap<String, String>();
       map.put("idx", String.valueOf(idx));
       map.put("idx_like", "%"+idx+"%");
       
       List<ContentDTO> list = feedDao.showFeed(map);
       
-      String str = mdao.getFavor(idx);
-      List<ApplyAdDTO> adList = adDao.showAd(str);
+//      String str = mdao.getFavor(idx);
+      //List<ApplyAdDTO> adList = adDao.showAd(str);
       
       ModelAndView mav = new ModelAndView();
       mav.addObject("list", list);
-      mav.addObject("adList", adList);
+      //mav.addObject("adList", adList);
       mav.setViewName("main/main");
       return mav;
    }
