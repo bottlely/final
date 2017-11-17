@@ -18,12 +18,13 @@ public class ReportDTO {
 	
 	
 
-	public ReportDTO(String name, Date reportdate,int category,String content) {
+	public ReportDTO(String name, Date reportdate,int category,String content,int idx_to) {
 		super();
 		this.content = content;
 		this.category = category;
 		this.name = name;
 		this.reportdate = reportdate;
+		this.idx_to = idx_to;
 	}
 
 

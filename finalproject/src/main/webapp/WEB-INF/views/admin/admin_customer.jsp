@@ -33,7 +33,31 @@
 		location.href="admin_c.do?cate="+i;
 	}
 	
+	function View(i) {
+		
+		location.href="main_view.do?content_idx="+i;
+	}
 	
+	 //contentMore
+    function deleteContent(content_idx){
+       
+       var data = new FormData();
+       data.append("contentidx", content_idx);
+        var xhr = new XMLHttpRequest();
+          xhr.open("POST","deleteContent.do");
+          xhr.send(data);
+          xhr.onload = function(e) {
+              if(this.status == 200) {
+                 var jsonResponse = JSON.parse(e.currentTarget.responseText);
+                  if(jsonResponse["result"] > 0){
+                     alert('게시물 삭제 완료하였습니다!');
+                     window.location.reload();
+                  }else{
+                     alert('이미 삭제하였습니다!');
+                  }
+              }
+          }
+    }
 	
 </script>
 
@@ -226,7 +250,10 @@
 								<c:forEach var="dto" items="${lists }">
 									<tr id="${dto.category }">
 										<td>${dto.name}</td>
-										<td>${dto.content}</td>
+										<td>${dto.content}
+										<c:if test="${dto.category == 3 }"><input type="button" value="View" onclick="View(${dto.idx_to})"></c:if>
+										
+										</td>
 										<td><c:if test="${dto.category == 11 }">검색/인기태그</c:if>
 											<c:if test="${dto.category == 12 }">공개범위</c:if>
 											<c:if test="${dto.category == 13 }">친구</c:if>
@@ -239,7 +266,7 @@
 										
 										</td>
 										<td>${dto.reportdate}
-										<c:if test="${dto.category == 3 }"><input type="button" value="Delete"></c:if>
+										<c:if test="${dto.category == 3 }"><input type="button" value="Delete" onclick="deleteContent(${dto.idx_to})"></c:if>
 										</td>
 									</tr>
 								</c:forEach>
@@ -247,7 +274,13 @@
 							<tfoot>
 								<tr>
 									<td></td>
-									<td>${pageStr}</td>
+									<td>
+										
+										<c:if test="${empty cate || cate == 0}"> ${pageStr } </c:if>
+										<c:if test="${ cate != 0}"> ${pageStr2}	 </c:if>
+																	
+									
+									</td>
 									<td></td>
 								</tr>
 							</tfoot>

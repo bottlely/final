@@ -282,13 +282,15 @@ public class AdminController {
    public  ModelAndView admin_c(@RequestParam(value="cp",defaultValue="1")int cp,@RequestParam(value="cate",defaultValue="0")int cate) {
 	   ModelAndView mav = new ModelAndView();
 		int totalCnt = rDao.allReport();
+		int totalCnt2 = rDao.partReport(cate);
 		int listSize=3;
 		int pageSize=3;
+		String pageStr2=mars.page.PageModule_Part.makePage("admin_c.do", totalCnt2, listSize, pageSize, cp,cate);
 	   String pageStr=mars.page.PageModule.makePage("admin_c.do", totalCnt, listSize, pageSize, cp);
 	   List<ReportDTO> lists = rDao.list(cp, listSize,cate);
-
+	   	   mav.addObject("pageStr2",pageStr2);
 		   mav.addObject("lists",lists);
-	   
+	   mav.addObject("cate",cate);
 	   mav.addObject("pageStr",pageStr);
 	   mav.setViewName("admin/admin_customer");
       return mav;
