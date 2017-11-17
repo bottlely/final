@@ -38,4 +38,9 @@ public class ReportDAOImple implements ReportDAO{
 		int all = sqlMap.selectOne("allreport");
 		return all;
 	}
+	
+	public int partReport(int cate) {
+		int part = sqlMap.selectOne("partreport",cate);
+		return part;
+	}
 }
