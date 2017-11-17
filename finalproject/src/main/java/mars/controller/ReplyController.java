@@ -174,7 +174,7 @@ public class ReplyController {
          //like를 안눌렀을 때는 db에 데이타없어
          MyHomeDTO list = followDao.ac_name_img(member_idx);
          ReplyDTO rdto = actDao.ac_reply_list(member_idx, content_idx, session_idx);
-         actDao.ac_insert(session_idx, member_idx, content_idx, rdto.getLikedate(), list.getName(), list.getProfile_img());
+         actDao.ac_insert_like(session_idx, member_idx, content_idx, rdto.getLikedate(), list.getName(), list.getProfile_img());
       }
       
       ModelAndView mav = new ModelAndView("marsJson", "img_Path", img_Path); //, "", 蹂��닔 蹂대궡湲�

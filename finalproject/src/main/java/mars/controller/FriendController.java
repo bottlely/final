@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import mars.member.model.*;
+import mars.myHome.model.MyHomeDTO;
+import mars.activity.model.ActivityDAO;
+import mars.follow.model.FollowDAO;
 import mars.friend.model.*;
 
 import java.util.*;
@@ -17,11 +20,21 @@ public class FriendController {
 	@Autowired
 	private FriendDAO friendDao;
 	
+	@Autowired
+	private FollowDAO followDao;
+	   
+	@Autowired
+	private ActivityDAO actDao;
+	
 	/**following*/
 	@RequestMapping("/following.do")
 	public ModelAndView addFollowing(FriendDTO dto) {
 		int result = friendDao.following(dto);
 		String msg = result>0? "Success" : "Fail";
+		
+		MyHomeDTO list = followDao.ac_name_img(dto.getUser2_idx());
+		int res = actDao.ac_insert_follow(dto, list.getName(), list.getProfile_img());
+		System.out.println("활동내역 ok?    "+res);
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
@@ -40,6 +53,8 @@ public class FriendController {
 	public ModelAndView unFollowing(FriendDTO dto) {
 		int result = friendDao.deleteFriend(dto);
 		String msg = result>0? "Sucess" : "Fail";
+		
+		actDao.ac_delete_follow(dto.getUser1_idx(), dto.getUser2_idx());
 		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
