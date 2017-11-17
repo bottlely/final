@@ -506,6 +506,7 @@ var data = [
         	 document.getElementById('c_idx').value=content_idx;
              var category = document.getElementById('category_'+content_idx).value;
              var path = document.getElementById('path_'+content_idx).value;
+             var profile = document.getElementById('profile_'+content_idx).value;
              var session_idx = '${sessionScope.useridx}';
              
              var cut = path.split('?');
@@ -543,6 +544,7 @@ var data = [
                 
                 document.getElementById('c_writer').innerHTML = writer;
                 document.getElementById('c_content').innerHTML = content;
+                $('#pf').attr("src", profile);
             
           //contentMore
             var memberidx = document.getElementById('memberidx_'+content_idx).value;
@@ -1050,18 +1052,13 @@ var data = [
 									<div class="work-overlay text-center">
 										<div class="overlay-caption">
 											<h4>PHOTO</h4>
-											<a href="#galleryModal" class="gallery-box"
-												data-toggle="modal" data-src="${list.path }"
-												onclick="openpic(${list.content_idx})"> <input
-												type="hidden" id="category_${list.content_idx }"
-												value="${list.category }"> <input type="hidden"
-												id="path_${list.content_idx }"
-												value="myHomeFolder/content/${list.path }"> <input
-												type="hidden" id="writer_${list.content_idx }"
-												value="${list.writer }"> <input type="hidden"
-												id="content_${list.content_idx }" value="${list.content }">
-												<input type="hidden" id="memberidx_${list.content_idx }"
-												value="${list.member_idx }">
+											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
+											<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
+											<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
+											<input type="hidden" id="profile_${list.content_idx }" value="myHomeFolder/profile_img/${list.profile }">
+											<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
+											<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
+											<input type="hidden" id="memberidx_${list.content_idx }" value="${list.member_idx }">
 												<p>${list.writer}</p>
 											</a>
 										</div>
@@ -1072,27 +1069,21 @@ var data = [
 						<!-- 동영상 -->
 						<c:if test="${list.category==2 }">
 							<div class="col-md-4 col-sm-6 col-xs-12  video">
-								<div class="works">
-									<video autoplay="autoplay" loop="loop"
-										style="width: 431px; height: 431px;">
+								<div class="works" style="height: 431px;">
+									<video autoplay="autoplay" loop="loop" style="width: 300px; height: 431px;">
 										<source src="myHomeFolder/content/${list.path }"
 											type="video/mp4">
 									</video>
 									<div class="work-overlay text-center">
 										<div class="overlay-caption">
 											<h4>VIDEO</h4>
-											<a href="#galleryModal" class="gallery-box"
-												data-toggle="modal" data-src="${list.path }"
-												onclick="openpic(${list.content_idx})"> <input
-												type="hidden" id="category_${list.content_idx }"
-												value="${list.category }"> <input type="hidden"
-												id="path_${list.content_idx }"
-												value="myHomeFolder/content/${list.path }"> <input
-												type="hidden" id="writer_${list.content_idx }"
-												value="${list.writer }"> <input type="hidden"
-												id="content_${list.content_idx }" value="${list.content }">
-												<input type="hidden" id="memberidx_${list.content_idx }"
-												value="${list.member_idx }">
+											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
+												<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
+												<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
+												<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
+												<input type="hidden" id="profile_${list.content_idx }" value="myHomeFolder/profile_img/${list.profile }">
+												<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
+												<input type="hidden" id="memberidx_${list.content_idx }" value="${list.member_idx }">
 												<p>${list.writer}</p>
 											</a>
 										</div>
@@ -1192,8 +1183,12 @@ var data = [
 						<div class="col-xs-5"
 							style="margin-top: 10px; margin-bottom: 10px;">
 							<div class="col-sm-12" id="cntInfoBar">
-								<span class="avatar"> <img src="js/profile.png" alt=""
-									id="pf" />
+								<span class="avatar"> <img src="js/profile.png" alt="" id="pf" style="
+                            border-radius: 70px;
+                            -moz-border-radius: 70px;
+                            -khtml-border-radius: 70px;
+                            -webkit-border-radius: 70px;
+                            "/>
 								</span> <label id="c_writer"></label> <span>
 									<button class="btn btn-info" id="myBtn"
 										style="background: gray;">· · · </button> <!-- The Modal -->
