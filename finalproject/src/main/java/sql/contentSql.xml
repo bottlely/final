@@ -30,6 +30,14 @@
 		select * from content where member_idx = #{member_idx} order by content_idx desc
 	</select>
 	
+	<select id="contentList_ff" parameterType="HashMap" resultType="mars.content.model.ContentDTO">
+	select * from content where member_idx = #{idx} and content_idx
+	in (select content_idx from coverage where
+	coverage_state=0 or coverage_State=1 or coverage_state=2 and idx_to like #{idx_like} or
+	coverage_state=3 and idx_to not like #{idx_like})
+	order by writetime desc
+	</select>
+	
 	<select id="contentIdxSearch" parameterType="String" resultType="Integer">
 		select max(content_idx) from content where member_idx = #{member_idx}
 	</select>

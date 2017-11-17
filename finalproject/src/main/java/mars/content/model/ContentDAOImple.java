@@ -75,4 +75,9 @@ public class ContentDAOImple implements ContentDAO {
 		int result = sqlMap.update("coverageUpdate", info);
 		return result;
 	}
+
+	public List<ContentDTO> contentList_ff(HashMap<String, String> info) {
+		List<ContentDTO> list = sqlMap.selectList("contentList_ff", info);
+		return list;
+	}
 }

@@ -53,6 +53,7 @@ public class MyHomeController{
 			@RequestParam(value="cp",defaultValue="1")int cp,
 			@RequestParam(value="category",defaultValue="0")int category,HttpServletRequest req) {
 		
+		//나던 아니던 
 		ModelAndView mav = new ModelAndView();
 		
 		mhdao.visitorUpdate(member_idx);
@@ -60,7 +61,16 @@ public class MyHomeController{
 		String loginIdx_s = (String) req.getSession().getAttribute("useridx");
 		int loginIdx =Integer.parseInt(loginIdx_s);
 		
-		if(Integer.parseInt(member_idx) != loginIdx){
+		//개인인지 기업인지
+		int userType = mdao.getUserInfo_idx(Integer.parseInt(member_idx)).getUsertype();
+		
+		List<ContentDTO> contentList = null;
+		
+		if(Integer.parseInt(member_idx) == loginIdx){ //나라면
+			
+			contentList = cdao.contentList(member_idx);
+			
+		}else{ //내가 아니라면 
 			
 			//친구인지
 			int following = 0;
@@ -70,55 +80,34 @@ public class MyHomeController{
 			if(fdto != null){ //팔로잉하고 있다면
 					following = 1;
 					
-					//차단인지
 					FriendDTO fdto2 = friendDao.relation(Integer.parseInt(member_idx),loginIdx);
-					if(fdto2 != null){
+					if(fdto2 != null){//차단인지
+						
 						block = fdto2.getBlack_state();
-					}else{
+						
+						if(block == 0){ // 차단하지 않았다면
+							
+						      HashMap<String, String> info = new HashMap<String, String>();
+						      info.put("idx", member_idx);
+						      info.put("idx_like", "%"+loginIdx+"%");
+						      contentList = cdao.contentList_ff(info);
+						}
+						
+					}else{ //팔로워가 아니면 
 						block = -1;
 					}
 			}
 			
 			mav.addObject("block", block);
 			mav.addObject("following", following);
-		}
-		
-		//개인인지 기업인지
-		int userType = mdao.getUserInfo_idx(Integer.parseInt(member_idx)).getUsertype();
-		
-		List<ContentDTO> contentList = cdao.contentList(member_idx);
-		
-		//상대가 비공개 계정으로 설정했는지
-		int homeCoverage = mhdao.myHomeSource(member_idx).getOpen_coverage();
-		
-		List<CoverageDTO> coverageList = cdao.coverageList(member_idx);
-		
-		List<String> imgList = new ArrayList<String>();
-		List<String> videoList = new ArrayList<String>();
-		
-		for(int i=0; i < contentList.size(); i++){
-			int content_category = contentList.get(i).getCategory();
 			
-				switch(content_category){
-				
-					case 1 : {imgList.addAll(Arrays.asList(contentList.get(i).getPath().split(",")));} break;
-					
-					case 2 : {String path = contentList.get(i).getPath();
-							  videoList.add(path.substring(0, path.indexOf("."))+ ".jpg");} break;
-							  
-					case 3 : {} break;
-					case 4 : {} break;
-					default : {};
-				}
+			List<CoverageDTO> coverageList = cdao.coverageList(member_idx);
 		}
+
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
-		
 		mav.addObject("mhdto", mhdto);
 		mav.addObject("cdao", cdao);
-		mav.addObject("imgList", imgList);
-		mav.addObject("videoList", videoList);
 		mav.addObject("userType", userType);
-		mav.addObject("contentList", contentList);
 		mav.setViewName("myPage/myHome");
 		return mav;
 	}
