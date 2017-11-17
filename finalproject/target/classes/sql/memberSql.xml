@@ -35,5 +35,7 @@
 		select * from mars_member where idx = #{idx}
 	</select>
 	
+	
+   
 </mapper>
 

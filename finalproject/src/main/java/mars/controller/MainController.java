@@ -72,12 +72,12 @@ public class MainController {
       return mav;
    }
    
-   @RequestMapping("filter.do")
+ /*  @RequestMapping("filter.do")
    public ModelAndView filter(){
       List<MemberDTO> list = mdao.memberSearch();
       
       ModelAndView mav = new ModelAndView("mars", "memberList", list);
       
       return mav;
-   }
+   }*/
 }

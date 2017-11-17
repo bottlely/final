@@ -56,10 +56,10 @@ public class MemberDAOImple implements MemberDAO {
 		return dto;
 	}
 
-	public List<MemberDTO> memberSearch() {
+	/*public List<MemberDTO> memberSearch() {
 		List<MemberDTO> list = sqlMap.selectList("memberSearch");
 
 		return list;
-	}
+	}*/
 
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="mars.htag">
+   <insert id="add_Htag" parameterType="HashMap">
+      insert into mars_htag values(mars_htag_idx.nextval, #{content_idx}, #{htag}, sysdate,0,0,0,0)
+   </insert>
+</mapper>
