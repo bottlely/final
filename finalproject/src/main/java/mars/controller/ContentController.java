@@ -171,7 +171,7 @@ public class ContentController {
 	       	   	        	 String temp2 = "";
 			       	   	      for(int j=0; j <groupMembers.size(); j++){
 			       	   	    	  temp2 += groupMembers.get(j).getIdx_to();
-					       	   		if(j != groupMembers.size()-1){
+			       	   	    	  if(j != groupMembers.size()-1 || i != groupIdxList.size()-1){
 				  	        				temp2 += ",";
 				  	        		}
 			       	   	      }
@@ -268,7 +268,6 @@ public class ContentController {
 	    	   	        	}
 	            		}else{
 	            			temp += cl +",";
-		            		dto.setIdx_to(temp);
 	            		}
 	            }
             
@@ -287,7 +286,7 @@ public class ContentController {
 	       	   	        	 String temp2 = "";
 			       	   	      for(int j=0; j <groupMembers.size(); j++){
 			       	   	    	  temp2 += groupMembers.get(j).getIdx_to();
-					       	   		if(j != groupMembers.size()-1){
+					       	   		if(j != groupMembers.size()-1 || i != groupIdxList.size()-1){
 				  	        				temp2 += ",";
 				  	        		}
 			       	   	      }
@@ -374,7 +373,7 @@ public class ContentController {
         	int state = Integer.parseInt(cs); 
             CoverageDTO dto = new CoverageDTO(contentIdx,0,state,"0",Integer.parseInt(member_idx),"0"); //toldx를 제외한 기본 dto
             
- if(state == 2 || state==3){ //특정 또는 제외 상태 일 때 
+            if(state == 2 || state==3){ //특정 또는 제외 상태 일 때 
             	
             	String temp = "";
             	
@@ -406,7 +405,7 @@ public class ContentController {
 	       	   	        	 String temp2 = "";
 			       	   	      for(int j=0; j <groupMembers.size(); j++){
 			       	   	    	  temp2 += groupMembers.get(j).getIdx_to();
-					       	   		if(j != groupMembers.size()-1){
+			       	   	    	  if(j != groupMembers.size()-1 || i != groupIdxList.size()-1){
 				  	        				temp2 += ",";
 				  	        		}
 			       	   	      }
@@ -682,7 +681,9 @@ public class ContentController {
 			@RequestParam(value="coverage_list",required=false)String cl,
 			@RequestParam("coverage_state")String cs,
 			@RequestParam("content")String content) {
-		System.out.println("in");
+		System.out.println("c1 : " + cl);
+		System.out.println("cs : " + cs);
+		System.out.println("cl_group : " + cl_group );
 		HashMap<String, String> info = new HashMap<String, String>();
 		info.put("midx",member_idx);
         info.put("content", content);
@@ -699,22 +700,23 @@ public class ContentController {
         	info2.put("idx_to","0");
         	info2.put("idx_group", "0");
         	info2.put("coverage_state", cs);
-            if(state == 2 || state==3){ //특정 또는 제외 상태 일 때 
+            if(state == 2 || state == 3 ){ //특정 또는 제외 상태 일 때 
             	
             	String temp = "";
-            	
 	            if(cl != null && !cl.equals("")){ //개인 설정 리스트가 있다면
-	            		temp += cl+",";
-	            		
 	            		if(cl_group == null || cl_group.equals("")){ //그룹 리스트가 더 없다면 인서트
-	            			info.put("idx_to", cl);
+	            			info2.put("idx_to", cl);
+	            			result2 = cdao.coverageUpdate(info2);
+	    	        		if(result2 < 0){
+	    	   	        		return  new ModelAndView("marsJson","result",result2);
+	    	   	        	}
 	            		}else{
 	            			temp += cl +",";
 	            		}
 	            }
             
 	            if(cl_group != null && !cl_group.equals("")){ //그룹 리스트가 있다면
-	            	
+
 	            	 String tempGroup = "";
     	        	   List<String> groupIdxList = new ArrayList<String>(Arrays.asList(cl_group.split(",")));
     	        	  
@@ -728,7 +730,7 @@ public class ContentController {
 	       	   	        	 String temp2 = "";
 			       	   	      for(int j=0; j <groupMembers.size(); j++){
 			       	   	    	  temp2 += groupMembers.get(j).getIdx_to();
-					       	   		if(j != groupMembers.size()-1){
+			       	   	    	  if(j != groupMembers.size()-1 || i != groupIdxList.size()-1){
 				  	        				temp2 += ",";
 				  	        		}
 			       	   	      }
