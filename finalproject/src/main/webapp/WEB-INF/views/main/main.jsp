@@ -505,7 +505,9 @@ var data = [
             document.getElementById('c_idx').value=content_idx;
             var category = document.getElementById('category_'+content_idx).value;
             var path = document.getElementById('path_'+content_idx).value;
-        	 alert(content_idx);
+            
+            var cut = path.split('?');
+            window.alert(cut.length);
         	 document.getElementById('c_idx').value=content_idx;
              var category = document.getElementById('category_'+content_idx).value;
              var path = document.getElementById('path_'+content_idx).value;
@@ -516,15 +518,99 @@ var data = [
              
              var writer = document.getElementById('writer_'+content_idx).value;
              var content = document.getElementById('content_'+content_idx).value;
+        	 document.getElementById('c_idx').value=content_idx;
+             var category = document.getElementById('category_'+content_idx).value;
+             var path = document.getElementById('path_'+content_idx).value;
+             var session_idx = '${sessionScope.useridx}';
+             
+             var cut = path.split('?');
+             window.alert(cut.length);
+             
+             var writer = document.getElementById('writer_'+content_idx).value;
+             var content = document.getElementById('content_'+content_idx).value;
+        	 document.getElementById('c_idx').value=content_idx;
+             var category = document.getElementById('category_'+content_idx).value;
+             var path = document.getElementById('path_'+content_idx).value;
+             var session_idx = '${sessionScope.useridx}';
+             
+             var cut = path.split('?');
+             window.alert(cut.length);
+             
+             var writer = document.getElementById('writer_'+content_idx).value;
+             var content = document.getElementById('content_'+content_idx).value;
+        	 document.getElementById('c_idx').value=content_idx;
+             var category = document.getElementById('category_'+content_idx).value;
+             var path = document.getElementById('path_'+content_idx).value;
+             var session_idx = '${sessionScope.useridx}';
+             
+             var cut = path.split('?');
+             window.alert(cut.length);
+             
+             var writer = document.getElementById('writer_'+content_idx).value;
+             var content = document.getElementById('content_'+content_idx).value;
+        	 document.getElementById('c_idx').value=content_idx;
+             var category = document.getElementById('category_'+content_idx).value;
+             var path = document.getElementById('path_'+content_idx).value;
+             var session_idx = '${sessionScope.useridx}';
+             
+             var cut = path.split('?');
+             window.alert(cut.length);
+             
+             var writer = document.getElementById('writer_'+content_idx).value;
+             var content = document.getElementById('content_'+content_idx).value;
+        	 document.getElementById('c_idx').value=content_idx;
+             var category = document.getElementById('category_'+content_idx).value;
+             var path = document.getElementById('path_'+content_idx).value;
+             var session_idx = '${sessionScope.useridx}';
+             
+             var cut = path.split('?');
+             window.alert(cut.length);
+             
+             var writer = document.getElementById('writer_'+content_idx).value;
+             var content = document.getElementById('content_'+content_idx).value;
+        	 document.getElementById('c_idx').value=content_idx;
+             var category = document.getElementById('category_'+content_idx).value;
+             var path = document.getElementById('path_'+content_idx).value;
+             var session_idx = '${sessionScope.useridx}';
+             
+             var cut = path.split('?');
+             window.alert(cut.length);
+             
+             var writer = document.getElementById('writer_'+content_idx).value;
+             var content = document.getElementById('content_'+content_idx).value;
+        	 document.getElementById('c_idx').value=content_idx;
+             var category = document.getElementById('category_'+content_idx).value;
+             var path = document.getElementById('path_'+content_idx).value;
+             var session_idx = '${sessionScope.useridx}';
+             
+             var cut = path.split('?');
+             window.alert(cut.length);
+             
+             var writer = document.getElementById('writer_'+content_idx).value;
+             var content = document.getElementById('content_'+content_idx).value;
+        	 document.getElementById('c_idx').value=content_idx;
+             var category = document.getElementById('category_'+content_idx).value;
+             var path = document.getElementById('path_'+content_idx).value;
+             var session_idx = '${sessionScope.useridx}';
+             
+             var cut = path.split('?');
+             window.alert(cut.length);
+             
+             var writer = document.getElementById('writer_'+content_idx).value;
+             var content = document.getElementById('content_'+content_idx).value;
+        	 document.getElementById('c_idx').value=content_idx;
+             var category = document.getElementById('category_'+content_idx).value;
+             var path = document.getElementById('path_'+content_idx).value;
+             var session_idx = '${sessionScope.useridx}';
+             
+             var cut = path.split('?');
+             window.alert(cut.length);
+             
+             var writer = document.getElementById('writer_'+content_idx).value;
+             var content = document.getElementById('content_'+content_idx).value;
+        	 alert(content_idx);
             
-            var cut = path.split('?');
-            window.alert(cut.length);
-            
-            var writer = document.getElementById('writer_'+content_idx).value;
-            var content = document.getElementById('content_'+content_idx).value;
-            var profile = document.getElementById('profile_'+content_idx).value;
-            window.alert(profile);
-            sendRequest('replyList.do?content_idx='+content_idx, null, replyList, 'GET');
+            sendRequest('likeList.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
          
          if(category==1){
         	 $('#galleryImage').attr("src",path);
@@ -565,6 +651,60 @@ var data = [
                 
                 document.getElementById('c_writer').innerHTML = writer;
                 document.getElementById('c_content').innerHTML = content;
+            if(category==1){
+                $('#galleryImage').attr("src",path);
+                 /*  var bg_div = document.createElement('div');
+                 
+                 for(var i=0; i < cut.length-1; i++) {
+                    alert(cut[i]);
+                    var div = document.createElement('div');
+                     var img = document.createElement('img');
+                     
+                     img.setAttribute("data-u", "image");
+                     alert(cut[i]);
+                     img.setAttribute("src", cut[i]);
+                     
+                     div.appendChild(img);
+                     bg_div.appendChild(div);
+                 }
+                 
+                 document.getElementById('slide_div').appendChild(bg_div); */
+             }else if(category==2){
+                $('#galleryImage').attr("src","");
+               $('#galleryVideo').attr("src", path);
+               $("#a_video").load();
+             document.getElementById("a_video").play();
+             }
+                
+                document.getElementById('c_writer').innerHTML = writer;
+                document.getElementById('c_content').innerHTML = content;
+            if(category==1){
+                $('#galleryImage').attr("src",path);
+                 /*  var bg_div = document.createElement('div');
+                 
+                 for(var i=0; i < cut.length-1; i++) {
+                    alert(cut[i]);
+                    var div = document.createElement('div');
+                     var img = document.createElement('img');
+                     
+                     img.setAttribute("data-u", "image");
+                     alert(cut[i]);
+                     img.setAttribute("src", cut[i]);
+                     
+                     div.appendChild(img);
+                     bg_div.appendChild(div);
+                 }
+                 
+                 document.getElementById('slide_div').appendChild(bg_div); */
+             }else if(category==2){
+                $('#galleryImage').attr("src","");
+               $('#galleryVideo').attr("src", path);
+               $("#a_video").load();
+             document.getElementById("a_video").play();
+             }
+                
+                document.getElementById('c_writer').innerHTML = writer;
+                document.getElementById('c_content').innerHTML = content;
             
           //contentMore
             var memberidx = document.getElementById('memberidx_'+content_idx).value;
@@ -575,6 +715,30 @@ var data = [
                document.getElementById('contentMore').innerHTML = '<a class="list-group-item list-group-item-warning" onclick="reportContent('+content_idx+')"> 신고 </a>';
             }
          } 
+         
+         function like(){
+             var session_idx = document.getElementById("session_idx").value;
+           var content_idx = document.getElementById("c_idx").value;
+           
+              sendRequest('like.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
+          }
+          
+          function likeList(){
+              if(XHR.readyState==4){
+                if(XHR.status==200){
+                   var content_idx = document.getElementById("c_idx").value;
+                   var data = XHR.responseText;
+                   var lists = eval('('+data+')');
+                   var like_List = document.all.like_List;
+                
+                   document.getElementById('like_Img').src=lists.img_Path;
+                   
+                   XHR = getXHR();
+                   
+                   sendRequest('replyList.do?content_idx='+content_idx, null, replyList, 'GET');
+                }
+             } 
+          }
          
          //contentMore
          function deleteContent(content_idx){
@@ -608,7 +772,7 @@ var data = [
 	         
 	      } 
          
-	     function replyList(){
+         function replyList(){
              if(XHR.readyState==4){
                 if(XHR.status==200){
                    var data = XHR.responseText;
@@ -628,69 +792,66 @@ var data = [
                          
                          if(l.lev == 0){
                             if(l.name == userName){
-                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+                               str += l.profile_img + " : " + l.name + " : " + '<input type="text" id="' + l.idx + 'update_content" style="display: none;" value="' + l.content + '">'+l.content+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
                             }else{
-                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
+                               str += l.profile_img + " : " + l.name + " : " + l.content + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
                             }
                             
                          }else{
                             if(l.name == userName){
-                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
+                               str += '=>' + l.profile_img + " : " + l.name + " : " + l.content + '<br>' + '<input type="button" value="수정" >' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
                             }else{
-                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<hr>';
+                               str += '=>' + l.profile_img + " : " + l.name + " : " + l.content + '<hr>';
                             }
                          }
                       }
                       reply_list.innerHTML = str;
                    }
-                   
-                   XHR = getXHR();
                 }
              }
           }
          
-        function re_Reply(idx){
-               var re_content = document.getElementById(idx+"text")
-               var re_ok = document.getElementById(idx+"btn")
-                var content = document.getElementById(idx+"text").value;
-                var content_idx = document.getElementById("c_idx").value;
-                var session_idx = document.getElementById("session_idx").value;
-                
-                sendRequest('re_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx+'&session_idx='+session_idx, null, replyList,'GET');
-                
-                re_content.style.display = 'none';
-                  re_ok.style.display = 'none';
-             }
-            
-            function ondisplay(idx){
-                var re_content = document.getElementById(idx+"text");
-                var re_ok = document.getElementById(idx+"btn");
-                
-                re_content.style.display = 'block';
-                re_ok.style.display = 'block';
-             }
-            
-            function updateDisplay(idx){
-                var update_content = document.getElementById(idx+"update_content");
-                var update_ok = document.getElementById(idx+"update_ok");
-                
-                update_content.readOnly = false;
-                update_content.style.border = '1px solid';
-                update_ok.style.display = 'block';
-             }
-            
-            function update_Reply(idx){
-                var content = document.getElementById(idx+"update_content").value;
-                var content_idx = document.getElementById("c_idx").value;
-                
-                sendRequest('update_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx, null, replyList,'GET');
-             } 
+         function re_Reply(idx){
+        	 var re_content = document.getElementById(idx+"text")
+        	 var re_ok = document.getElementById(idx+"btn")
+             var content = document.getElementById(idx+"text").value;
+             var content_idx = document.getElementById("c_idx").value;
+             var session_idx = document.getElementById("session_idx").value;
              
-              function delete_Reply(idx){
-                var content_idx = document.getElementById('c_idx').value;
-                
-                sendRequest('delete_Reply.do?reply_idx='+idx+'&content_idx='+content_idx, null, replyList,'GET');
-             }
+             sendRequest('re_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx+'&session_idx='+session_idx, null, replyList,'GET');
+             
+             re_content.style.display = 'none';
+               re_ok.style.display = 'none';
+          }
+         
+         function ondisplay(idx){
+             var re_content = document.getElementById(idx+"text");
+             var re_ok = document.getElementById(idx+"btn");
+             
+             re_content.style.display = 'block';
+             re_ok.style.display = 'block';
+          }
+         
+         function updateDisplay(idx){
+             var update_content = document.getElementById(idx+"update_content");
+             var update_ok = document.getElementById(idx+"update_ok");
+             
+             update_content.style.display = 'block';
+             update_ok.style.display = 'block';
+          }
+         
+         function update_Reply(idx){
+             var content = document.getElementById("content").value;
+             var content_idx = document.getElementById("c_idx").value;
+             
+             location.href="update_Reply.do?reply_idx="+idx+"&content="+content+"&content_idx="+content_idx;
+          } 
+          
+           function delete_Reply(idx){
+             var content_idx = document.getElementById('c_idx').value;
+             
+             sendRequest('delete_Reply.do?reply_idx='+idx+'&content_idx='+content_idx, null, replyList,'GET');
+          }
          
             function test1(idx) {
                   document.getElementById('ppp').src='myHomeForm.do?useridx='+idx;
@@ -770,8 +931,6 @@ var data = [
 
              function openContent(content_idx) {
             	 location.href='main_view.do?content_idx='+content_idx;
-             function openContent(content_idx, useridx) {
-            	 location.href='main_view.do?content_idx='+content_idx+'&session_idx='+useridx;
              }
 </script>
 <body>
@@ -1211,7 +1370,7 @@ var data = [
                             -khtml-border-radius: 70px;
                             -webkit-border-radius: 70px;
                             "/>
-								 <label id="c_writer"></label> <span>
+								</span> <label id="c_writer"></label> <span>
 									<button class="btn btn-info" id="myBtn" style="background: gray;">설정</button> <!-- The Modal -->
 									<div id="myModal2" class="modal2">
 
@@ -1228,24 +1387,19 @@ var data = [
 							<div class="col-sm-12" id="cntInfoBar">
 								<span>좋아요</span>
 							</div>
-							
 
 							<div class="col-sm-12" id="cntInfoBar"
 								style="overflow: auto; height: 70px;">
 								<span><label id="c_content"></label></span>
 							</div>
-							
-							<div class="col-sm-12" id="cntInfoBar">
-								<span><a href="#" onclick="like()">
-				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a><input type="button" value="발자취" onclick="like()"></span>
-							</div>
 
-	
+
 							<div class="col-sm-12" id="cntInfoBar"
 								style="overflow: auto; height: 200px;">
-								<div class="col-sm-12" id="reply_List">
-									<span class="avatar"> 
-									</span>
+								<div class="col-sm-12" id="reply1">
+									<span class="avatar"> <img src="js/profile.png" alt=""
+										id="pf2" />
+									</span> <label>사용자1</label> <span id="reply_List">댓글 내용</span>
 								</div>
 
 
