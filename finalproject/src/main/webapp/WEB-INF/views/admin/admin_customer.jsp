@@ -22,7 +22,22 @@
 	rel="stylesheet">
 <!-- Custom styles for this template-->
 <link href="assets_admin/css/sb-admin.css" rel="stylesheet">
+<style>
+.rounded {
+	border-radius: 100em !important;
+}
 
+.darkGrey {
+	background: #595770;
+	color: #fff;
+	border: none;
+	font-size: 15px;
+	width: 80px;
+}
+
+
+
+</style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
@@ -251,7 +266,7 @@
 									<tr id="${dto.category }">
 										<td>${dto.name}</td>
 										<td>${dto.content}
-										<c:if test="${dto.category == 3 }"><input type="button" value="View" onclick="View(${dto.idx_to})"></c:if>
+										<c:if test="${dto.category == 3 }"><input type="button" value="View" onclick="View(${dto.idx_to})" class="darkGrey rounded"></c:if>
 										
 										</td>
 										<td><c:if test="${dto.category == 11 }">검색/인기태그</c:if>
@@ -266,7 +281,7 @@
 										
 										</td>
 										<td>${dto.reportdate}
-										<c:if test="${dto.category == 3 }"><input type="button" value="Delete" onclick="deleteContent(${dto.idx_to})"></c:if>
+										<c:if test="${dto.category == 3 }"><input type="button" value="Delete" onclick="deleteContent(${dto.idx_to})" class="darkGrey rounded"></c:if>
 										</td>
 									</tr>
 								</c:forEach>

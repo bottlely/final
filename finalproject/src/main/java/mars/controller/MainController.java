@@ -55,14 +55,15 @@ public class MainController {
       List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
       
       HashMap map = new HashMap<String, String>();
-      
+     String str = String.valueOf(content_idx);
+     ContentDTO dto = cDao.contentOne(str);
       map.put("content_idx", content_idx);
       map.put("session_idx", session_idx);
       
       int result = replydao.likeSelect(map);
       
       ModelAndView mav = new ModelAndView();
-      
+      mav.addObject("content",dto);
       mav.addObject("list", list);
       mav.addObject("result", result);
       mav.addObject("content_idx", content_idx);
