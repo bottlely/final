@@ -509,31 +509,39 @@ var data = [
              var profile = document.getElementById('profile_'+content_idx).value;
              var session_idx = '${sessionScope.useridx}';
              
-             var cut = path.split('?');
-             
+			             
              var writer = document.getElementById('writer_'+content_idx).value;
              var content = document.getElementById('content_'+content_idx).value;
+             
+             var detail_media = document.getElementById('detail_media');
             
             sendRequest('likeList.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
          
             if(category==1){
-            	/*     $('#galleryImage').attr("src",path); */
-                for(var i=0; i<cut.length-1; i++){
-                	var div1 = document.createElement('div');
-                	var img_slide = document.createElement('img');
-                	var src = "myHomeFolder/content/"+cut[i];
-                	img_slide.src = src;
-                	img_slide.setAttribute("data-u", "image");
-                	div1.appendChild(img_slide);
-                	var tt=document.getElementById('slide_div');
-                	//alert(src+'/'+tt+'/'+tt.nodeName+'/'+tt.getAttribute('id'));
-                	document.getElementById('slide_div').appendChild(div1); 
-                }
+            	if($('#detail_media').children().size()>0){
+            		detail_media.removeChild(document.getElementById('detail'));
+            	}
+            
+            	var img_slide = document.createElement('img');
+            	img_slide.src = path;
+            	img_slide.id='detail';
+            	detail_media.appendChild(img_slide);
              }else if(category==2){
-              /*   $('#galleryImage').attr("src","");
-               $('#galleryVideo').attr("src", path);
-               $("#a_video").load();
-             document.getElementById("a_video").play(); */
+            	 if($('#detail_media').children().size()>0){
+             		detail_media.removeChild(document.getElementById('detail'));
+             	}
+            	 
+            	 var video_slide = document.createElement('video');
+            	 var source = document.createElement('source');
+            	 video_slide.id='detail';
+            	 video_slide.autoplay=true;
+            	 video_slide.loop=true;
+            	 
+            	 source.src = path;
+            	 source.type = "video/mp4";
+            	 
+            	 video_slide.appendChild(source);
+            	 detail_media.appendChild(video_slide);
              }
                 
                 document.getElementById('c_writer').innerHTML = writer;
@@ -1047,7 +1055,7 @@ var data = [
 											<h4>PHOTO</h4>
 											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
 											<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
-											<input type="hidden" id="path_${list.content_idx }" value="${list.path }"> 
+											<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
 											<input type="hidden" id="profile_${list.content_idx }" value="myHomeFolder/profile_img/${list.profile }">
 											<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
 											<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
@@ -1062,8 +1070,8 @@ var data = [
 						<!-- 동영상 -->
 						<c:if test="${list.category==2 }">
 							<div class="col-md-4 col-sm-6 col-xs-12  video">
-								<div class="works" style="height: 431px;">
-									<video autoplay="autoplay" loop="loop" style="width: 300px; height: 431px;">
+								<div class="works" style="height: 431px; background-color: white; max-width: 431px;">
+                        		   <video autoplay="autoplay" loop="loop" style="width:300px; height:100%;  ">
 										<source src="myHomeFolder/content/${list.path }"
 											type="video/mp4">
 									</video>
@@ -1088,15 +1096,15 @@ var data = [
 						<c:if test="${list.category==3 }">
 						<div class="col-md-4 col-sm-6 col-xs-12  text">
 								<div class="works" style="height: 431px;">
-								<div style="background-color: white; height: 431px;">
-								<label>${list.path }</label>
-								</div>
+								      <div style="background-color: white; height: 431px; width:100%; display: table; ">
+                       					 <h3 style="display: table-cell; vertical-align: middle;">${list.path }</h3>
+                       				 </div>
 									<div class="work-overlay text-center">
 										<div class="overlay-caption">
 											<h4>TEXT</h4>
 											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
 												<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
-												<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
+												<input type="hidden" id="path_${list.content_idx }" value="${list.path }"> 
 												<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
 												<input type="hidden" id="profile_${list.content_idx }" value="myHomeFolder/profile_img/${list.profile }">
 												<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
@@ -1172,55 +1180,8 @@ var data = [
 					<div class="row">
 						<!-- 사진 -->
 						<div class="col-xs-7"
-							style="margin-top: 10px; float: left; margin-bottom: 10px; overflow: hidden;">
-							<div id="jssor_1"
-								style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 480px; height: 270px;; overflow: hidden; visibility: hidden;">
-								<!-- Loading Screen -->
-								<div data-u="loading" class="jssorl-009-spin" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.7);">
-								</div>
-								<div id="slide_div" data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 480px; height: 270px;">
+							style="margin-top: 10px; float: left; margin-bottom: 10px; overflow: hidden; height:440px;" id="detail_media">
 							
-								<!-- 사진 반복 -->
-									<!-- <div>
-										<img data-u="image" src="myHomeFolder/content/default_content.jpg" id="galleryImage" />
-									</div>
-									<div>
-										<img data-u="image" src="myHomeFolder/content/default_content.jpg" id="galleryImage" />
-									</div> -->
-								</div>
-								<!-- Bullet Navigator -->
-								<div data-u="navigator" class="jssorb051"
-									style="position: absolute; bottom: 12px; right: 12px;"
-									data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
-									<div data-u="prototype" class="i"
-										style="width: 16px; height: 16px;">
-										<svg viewbox="0 0 16000 16000"
-											style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-					                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
-					                </svg>
-									</div>
-								</div>
-								<!-- Arrow Navigator -->
-								<div data-u="arrowleft" class="jssora051"
-									style="width: 55px; height: 55px; top: 0px; left: 25px;"
-									data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
-									<svg viewbox="0 0 16000 16000"
-										style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-					                <polyline class="a"
-											points="11040,1920 4960,8000 11040,14080 "></polyline>
-					            </svg>
-								</div>
-								<div data-u="arrowright" class="jssora051"
-									style="width: 55px; height: 55px; top: 0px; right: 25px;"
-									data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
-									<svg viewbox="0 0 16000 16000"
-										style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-					                <polyline class="a"
-											points="4960,1920 11040,8000 4960,14080 "></polyline>
-					            </svg>
-								</div>
-							</div>
-							<script type="text/javascript">jssor_1_slider_init();</script>
 						</div>
 
 						<!-- 내용 -->
