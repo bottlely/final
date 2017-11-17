@@ -57,6 +57,8 @@ public class MyHomeController{
 		ModelAndView mav = new ModelAndView();
 		
 		mhdao.visitorUpdate(member_idx);
+
+		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
 		
 		String loginIdx_s = (String) req.getSession().getAttribute("useridx");
 		int loginIdx =Integer.parseInt(loginIdx_s);
@@ -96,15 +98,16 @@ public class MyHomeController{
 					}else{ //팔로워가 아니면 
 						block = -1;
 					}
+					
+					mav.addObject("block", block);
+					mav.addObject("following", following);
+					
+			}else{ //팔로잉이 아니라면
+				if(mhdto.getOpen_coverage() == 0){ //공개 계정이면
+					contentList = cdao.contentList_other(member_idx);
+				}
 			}
-			
-			mav.addObject("block", block);
-			mav.addObject("following", following);
-			
-			List<CoverageDTO> coverageList = cdao.coverageList(member_idx);
 		}
-
-		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
 		mav.addObject("mhdto", mhdto);
 		mav.addObject("cdao", cdao);
 		mav.addObject("userType", userType);

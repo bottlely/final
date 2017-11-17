@@ -80,4 +80,9 @@ public class ContentDAOImple implements ContentDAO {
 		List<ContentDTO> list = sqlMap.selectList("contentList_ff", info);
 		return list;
 	}
+
+	public List<ContentDTO> contentList_other(String idx) {
+		List<ContentDTO> list = sqlMap.selectList("contentList_other", idx);
+		return list;
+	}
 }

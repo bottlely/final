@@ -114,8 +114,6 @@ select {
     	}
     	
 	    function check(){
-	    	alert(sel_list);
-	    	alert(sel_list_group);
 	    	
 	    	document.getElementById("coverage_state").value = state;
 	    	

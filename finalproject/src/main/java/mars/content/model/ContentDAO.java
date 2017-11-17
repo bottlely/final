@@ -35,5 +35,6 @@ public interface ContentDAO {
 	public int contentUpdate(HashMap<String, String> info);
 	public int coverageUpdate(HashMap<String, String> info);
 	public List<ContentDTO> contentList_ff(HashMap<String, String> info);
+	public List<ContentDTO> contentList_other(String idx);
 }
 
