@@ -9,14 +9,14 @@ public class FollowDTO {
 	private String name;
 	private String profile_img;
 	private Date followdate;
-	private int numtype1;
+	private int content_idx;
 	private String vartype1;
 	
 	public FollowDTO() {
 		super();
 	}
 
-	public FollowDTO(int idx, int from_idx, int to_idx, String name, String profile_img, Date followdate, int numtype1,
+	public FollowDTO(int idx, int from_idx, int to_idx, String name, String profile_img, Date followdate, int content_idx,
 			String vartype1) {
 		super();
 		this.idx = idx;
@@ -25,7 +25,7 @@ public class FollowDTO {
 		this.name = name;
 		this.profile_img = profile_img;
 		this.followdate = followdate;
-		this.numtype1 = numtype1;
+		this.content_idx = content_idx;
 		this.vartype1 = vartype1;
 	}
 
@@ -77,12 +77,12 @@ public class FollowDTO {
 		this.followdate = followdate;
 	}
 
-	public int getNumtype1() {
-		return numtype1;
+	public int getContent_idx() {
+		return content_idx;
 	}
 
-	public void setNumtype1(int numtype1) {
-		this.numtype1 = numtype1;
+	public void setContent_idx(int content_idx) {
+		this.content_idx = content_idx;
 	}
 
 	public String getVartype1() {

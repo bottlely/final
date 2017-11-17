@@ -5,9 +5,33 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="mars.activity">
-	<insert id="">
-	
+	<select id="ac_list">
+		select * from mars_activity where to_idx=#{to_idx} order by actdate
+	</select>
+	<insert id="ac_insert_like">
+		insert into mars_activity 
+		values(mars_activity_idx.nextval, #{from_idx}, #{to_idx}, 1, #{content_idx},
+				0, 0, #{actdate}, 0, 0, #{name}, #{profile_img}, '') 
 	</insert>
+	<select id="ac_name_img" parameterType="Integer" resultType="mars.myHome.model.MyHomeDTO">
+		select * from mypage where member_idx=#{to_idx}
+	</select>
+	<delete id="ac_delete">
+		delete from mars_activity 
+		where from_idx=#{from_idx} and to_idx=#{to_idx} and content_idx=#{content_idx} and flag=#{flag}
+	</delete>
+	<insert id="ac_insert_follow">
+		insert into mars_activity
+		values(mars_activity_idx.nextval, #{from_idx}, #{to_idx}, 3, 0,
+				0, 0, sysdate, 0, 0, #{name}, #{profile_img}, '')
+	</insert>
+	<select id="ac_insert_reply">
+		insert into mars_activity 
+		values(mars_activity_idx.nextval, #{from_idx}, #{to_idx}, 2, #{content_idx},
+				0, 0, #{actdate}, 0, 0, #{name}, #{profile_img}, #{content}) 
+	</select>
+	
+	
 	
 		<select id="active_reply" resultType="mars.activity.model.ActivityDTO" parameterType="int">
 		select name,content_idx,replydate as actdate from mars_member ,(select from_idx,to_idx,content_idx,replydate from mars_reply where from_idx = #{idx} order by replydate desc)a where mars_member.idx = a.to_idx

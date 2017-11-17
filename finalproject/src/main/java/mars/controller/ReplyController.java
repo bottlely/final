@@ -57,6 +57,9 @@ public class ReplyController {
       
       replydao.addReply(map);
       
+      MyHomeDTO mdto = followDao.ac_name_img(session_idx);
+      actDao.ac_insert_reply(session_idx, member_idx, content_idx, content, dto.getReplydate(), mdto.getName(), mdto.getProfile_img());
+      
       List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
 
       ModelAndView mav = new ModelAndView("marsJson", "replyList", list);
@@ -88,6 +91,12 @@ public class ReplyController {
       map.put("ref", rdto_ref);
       
       replydao.re_AddReply(map);
+      
+      //select
+     // rd
+      
+      //MyHomeDTO mdto = followDao.ac_name_img(session_idx);
+      //actDao.ac_insert_reply(session_idx, member_idx, content_idx, content, dto.getReplydate(), mdto.getName(), mdto.getProfile_img());
       
       List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
 

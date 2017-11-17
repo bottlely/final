@@ -6,7 +6,7 @@ public class ActivityDTO {
 	private int idx;
 	private int from_idx;
 	private int to_idx;
-	private int type; //(like or reply or follow)
+	private int flag; //(like or reply or follow)
 	private int content_idx;
 	private int reply_idx;
 	private int like_idx;
@@ -14,7 +14,7 @@ public class ActivityDTO {
 	private int numtype1;
 	private int numtype2;
 	private String name;
-	private String vartype2;
+	private String profile_img;
 	
 	public ActivityDTO() {
 		super();
@@ -27,13 +27,13 @@ public class ActivityDTO {
 		this.name = name;
 	}
 
-	public ActivityDTO(int idx, int from_idx, int to_idx, int type, int content_idx, int reply_idx, int like_idx,
-			Date actdate, int numtype1, int numtype2, String name, String vartype2) {
+	public ActivityDTO(int idx, int from_idx, int to_idx, int flag, int content_idx, int reply_idx, int like_idx,
+			Date actdate, int numtype1, int numtype2, String name, String profile_img) {
 		super();
 		this.idx = idx;
 		this.from_idx = from_idx;
 		this.to_idx = to_idx;
-		this.type = type;
+		this.flag = flag;
 		this.content_idx = content_idx;
 		this.reply_idx = reply_idx;
 		this.like_idx = like_idx;
@@ -41,7 +41,7 @@ public class ActivityDTO {
 		this.numtype1 = numtype1;
 		this.numtype2 = numtype2;
 		this.name = name;
-		this.vartype2 = vartype2;
+		this.profile_img = profile_img;
 	}
 
 	public int getIdx() {
@@ -68,13 +68,7 @@ public class ActivityDTO {
 		this.to_idx = to_idx;
 	}
 
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
-	}
+	
 
 	public int getContent_idx() {
 		return content_idx;
@@ -132,14 +126,28 @@ public class ActivityDTO {
 		this.name = name;
 	}
 
-	public String getVartype2() {
-		return vartype2;
+	public int getFlag() {
+		return flag;
 	}
 
-	public void setVartype2(String vartype2) {
-		this.vartype2 = vartype2;
+	public void setFlag(int flag) {
+		this.flag = flag;
 	}
 
-	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getProfile_img() {
+		return profile_img;
+	}
+
+	public void setProfile_img(String profile_img) {
+		this.profile_img = profile_img;
+	}
 	
 }
