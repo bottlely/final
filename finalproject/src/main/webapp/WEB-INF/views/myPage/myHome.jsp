@@ -808,134 +808,92 @@ function showResult2(){
 
 
 		<!-- The Modal -->
-		<div class="container">
+	<div class="container">
 		<div class="modal fade" id="myModal">
-			<div class="modal-dialog" style="width:70%; overflow:hidden;">
-			<div class="modal-content" style="width:100%; overflow:hidden;">
-				<section id="viewForm" style="">
-					<!-- Modal body -->
-						<div class="container" style="width: 100%; font-size: 15px; overflow: hidden; ">
+			<div class="modal-dialog" style="width: 70%; overflow: hidden;">
+				<div class="modal-content" style="width: 100%; overflow: hidden;">
+					<section id="viewForm" style="">
+						<!-- Modal body -->
+						<div class="container"
+							style="width: 100%; font-size: 15px; overflow: hidden;">
 							<div class="row">
-								<div class="col-md-12" style="margin-top:50px; margin-right:10px;">
-									<div id="jssor_1"
-										style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 360px; height: 270px; overflow: hidden; visibility: hidden;">
-										<!-- Loading Screen -->
-										<div data-u="loading" class="jssorl-009-spin"
-											style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.7);">
-
-										</div>
-										<div data-u="slides"
-											style="cursor: default; position: relative; top: 0px; left: 0px; width: 360px; height: 270px; overflow: hidden;">
-											<div>
-												<img data-u="image" src="js/profile.png" />
-											</div>
-										</div>
-										<!-- Bullet Navigator -->
-										<div data-u="navigator" class="jssorb051"
-											style="position: absolute; bottom: 12px; right: 12px;"
-											data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
-											<div data-u="prototype" class="i"
-												style="width: 16px; height: 16px;">
-												<svg viewbox="0 0 16000 16000"
-													style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-					                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
-					                </svg>
-											</div>
-										</div>
-										<!-- Arrow Navigator -->
-										<div data-u="arrowleft" class="jssora051"
-											style="width: 55px; height: 55px; top: 0px; left: 25px;"
-											data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
-											<svg viewbox="0 0 16000 16000"
-												style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-					                <polyline class="a"
-													points="11040,1920 4960,8000 11040,14080 "></polyline>
-					            </svg>
-										</div>
-										<div data-u="arrowright" class="jssora051"
-											style="width: 55px; height: 55px; top: 0px; right: 25px;"
-											data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
-											<svg viewbox="0 0 16000 16000"
-												style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-					                <polyline class="a"
-													points="4960,1920 11040,8000 4960,14080 "></polyline>
-					            </svg>
-										</div>
+								<div class="col-md-12"
+									style="margin-top: 50px; margin-right: 10px;">
+									<div class="thumbnail">
+										<img src="js/profile.png">
 									</div>
-									<script type="text/javascript">
-										jssor_1_slider_init();
-									</script>
-
 								</div>
-							</div>
 
-							<div class="row">
-								<div class="col-md-12">
-									<div class="col-sm-12" id="cntInfoBar">
-										<span class="avatar">
-										<img src="js/profile.png" alt="" id="pf" style="float:left;"/>
-										<label id="c_writer" style="float:left;">작성자</label>
-										</span>
-										
-										<button class="btn btn-info" id="myBtn"	style="background: gray;">· · ·</button>										
-										<div id="myModal2" class="modal2">
-										<!-- Modal content // contentMore -->
-										<!-- Modal content -->
-										  <div class="modal-content">
-										      <span class="close"></span>
-										    <div class="modal-body">
-										      <a href="#" class="list-group-item list-group-item-success">수정</a>
-											    <a href="#" class="list-group-item list-group-item-info">삭제</a>
-											    <a href="#" class="list-group-item list-group-item-warning">신고</a>
-										    </div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="col-sm-12" id="cntInfoBar">
+											<span class="avatar"> <img src="js/profile.png" alt=""
+												id="pf" style="float: left;" /> <label id="c_writer"
+												style="float: left;">작성자</label>
+											</span>
 
-										  </div>
+											<button class="btn btn-info" id="myBtn"
+												style="background: gray;">· · ·</button>
+											<div id="myModal2" class="modal2">
+												<!-- Modal content // contentMore -->
+												<!-- Modal content -->
+												<div class="modal-content">
+													<span class="close"></span>
+													<div class="modal-body">
+														<a href="#"
+															class="list-group-item list-group-item-success">수정</a> <a
+															href="#" class="list-group-item list-group-item-info">삭제</a>
+														<a href="#"
+															class="list-group-item list-group-item-warning">신고</a>
+													</div>
 
-										</div>
-										
+												</div>
 
-									</div>
-
-
-									<div class="col-sm-12" id="cntInfoBar"
-										style="overflow: auto; height: 70px;">
-										<span><label id="c_content"></label></span>
-									</div>
-
-									<div class="col-sm-12" id="cntInfoBar" style="align:left;">
-										<span style="align:left;"><a href="#" onclick="like()"> <img src=""
-												id="like_Img" width="40px" height="40px;"
-												style="margin-left: 15px; margin-top: 10px;"></a><input
-											type="button" value="발자취" onclick="like()"></span>
-									</div>
+											</div>
 
 
-									<div class="col-sm-12" id="cntInfoBar"
-										style="overflow: auto; height: 200px;">
-										<div class="col-sm-12" id="reply_List">
-											<span class="avatar"> </span>
 										</div>
 
 
-									</div>
+										<div class="col-sm-12" id="cntInfoBar"
+											style="overflow: auto; height: 70px;">
+											<span><label id="c_content"></label></span>
+										</div>
 
-									<div class="col-sm-12">
-										<div class="input-group">
-											<input id="content" type="text" class="form-control"
-												name="content" placeholder="댓글 입력"> <label
-												class="input-group-addon" onclick="addReply()"
-												onkeydown="showList()">작성</label>
+										<div class="col-sm-12" id="cntInfoBar" style="align: left;">
+											<span style="align: left;"><a href="#"
+												onclick="like()"> <img src="" id="like_Img" width="40px"
+													height="40px;" style="margin-left: 15px; margin-top: 10px;"></a><input
+												type="button" value="발자취" onclick="like()"></span>
+										</div>
+
+
+										<div class="col-sm-12" id="cntInfoBar"
+											style="overflow: auto; height: 200px;">
+											<div class="col-sm-12" id="reply_List">
+												<span class="avatar"> </span>
+											</div>
+
+
+										</div>
+
+										<div class="col-sm-12">
+											<div class="input-group">
+												<input id="content" type="text" class="form-control"
+													name="content" placeholder="댓글 입력"> <label
+													class="input-group-addon" onclick="addReply()"
+													onkeydown="showList()">작성</label>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							
 						</div>
-				</section>
-			</div>
+					</section>
+				</div>
 			</div>
 		</div>
-		</div>
+	</div>
 </body>
 
 <script>
