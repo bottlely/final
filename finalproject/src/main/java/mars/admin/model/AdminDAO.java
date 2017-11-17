@@ -58,5 +58,6 @@ public interface AdminDAO {
    public MyHomeDTO userInfo2();
    public MyHomeDTO userInfo3();
    public int todayAd();
+public int allcount();
    
 }
