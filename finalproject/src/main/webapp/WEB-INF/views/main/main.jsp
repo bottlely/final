@@ -1047,8 +1047,7 @@ var data = [
 						<c:if test="${list.category==1 }">
 							<div class="col-md-4 col-sm-6 col-xs-12  photo">
 								<div class="works" style="height: 431px;">
-									<img src="myHomeFolder/content/${list.path }" alt=""
-										style="width: 431px; height: 431px;">
+									<img src="myHomeFolder/content/${list.path }" alt="" style="width: 431px; height: 431px;">
 									<div class="work-overlay text-center">
 										<div class="overlay-caption">
 											<h4>PHOTO</h4>
@@ -1077,6 +1076,30 @@ var data = [
 									<div class="work-overlay text-center">
 										<div class="overlay-caption">
 											<h4>VIDEO</h4>
+											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
+												<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
+												<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
+												<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
+												<input type="hidden" id="profile_${list.content_idx }" value="myHomeFolder/profile_img/${list.profile }">
+												<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
+												<input type="hidden" id="memberidx_${list.content_idx }" value="${list.member_idx }">
+												<p>${list.writer}</p>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:if>
+						<!-- 텍스트 -->
+						<c:if test="${list.category==3 }">
+						<div class="col-md-4 col-sm-6 col-xs-12  text">
+								<div class="works" style="height: 431px;">
+								<div style="background-color: white; height: 431px;">
+								<label>${list.path }</label>
+								</div>
+									<div class="work-overlay text-center">
+										<div class="overlay-caption">
+											<h4>TEXT</h4>
 											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
 												<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
 												<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
