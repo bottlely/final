@@ -628,7 +628,7 @@ function showResult2(){
        <table align="center">
        
           <tr onclick="reportOpen()"><td>신고하기</td></tr>
-          <c:if test="${block eq -1}">
+          <c:if test="${block ne -1}">
 	          <c:if test="${block eq 0}">
 	          <tr onclick="UserHomeMore('friend_block_mypage')"><td>차단하기</td></tr>
 	          </c:if>

@@ -111,6 +111,8 @@ public class MyHomeController{
 		mav.addObject("mhdto", mhdto);
 		mav.addObject("cdao", cdao);
 		mav.addObject("userType", userType);
+		mav.addObject("size", contentList.size());
+		mav.addObject("contentList", contentList);
 		mav.setViewName("myPage/myHome");
 		return mav;
 	}
