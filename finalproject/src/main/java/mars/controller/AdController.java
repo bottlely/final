@@ -134,7 +134,7 @@ public class AdController {
 		int memberidx = Integer.parseInt(member_idx);
 		String mail = adDao.insertOkSign(adidx, memberidx);
 		
-		String subject = "귀하의 광고신청이 승인되었습니다.";
+		String subject = "MARS에서 귀하의 광고신청이 승인되었습니다.";
 		StringBuilder sb = new StringBuilder();
 		sb.append("결제부탁.");
 		boolean check = mailService.send(subject, sb.toString(), "jungdu92@gmail.com", mail);
@@ -148,11 +148,25 @@ public class AdController {
 		int memberidx = Integer.parseInt(member_idx);
 		String mail = adDao.insertNoSign(adidx, memberidx);
 		
-		String subject = "귀하의 광고신청이 거절되었습니다.";
+		String subject = "MARS에서 귀하의 광고신청이 거절되었습니다.";
 		StringBuilder sb = new StringBuilder();
-		sb.append("거절.");
+		sb.append("귀하의 광고가 거절되었습니다.");
 		boolean check = mailService.send(subject, sb.toString(), "jungdu92@gmail.com", mail);
 
+	}
+	
+	@RequestMapping("/goCount.do")
+	public void goCount(@RequestParam("data")String data){
+		//System.out.println("come");
+		//System.out.println(data);
+		adDao.goCount(data);
+	}
+	
+	@RequestMapping("/postAd.do")
+	public void postAd(@RequestParam("ad_idx")String data){
+		//System.out.println("come");
+		//System.out.println(data);
+		adDao.postAd(data);
 	}
 	
 	public void copyInto(String filename, MultipartFile upload, HttpServletRequest req2){

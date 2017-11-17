@@ -81,6 +81,18 @@ public class ApplyAdDAOImple implements ApplyAdDAO {
 		return email;
 	}
 	
+	public void goCount(String data){
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("ad_idx", Integer.parseInt(data));
+		sqlMap.update("goCount", map);
+	}
+	
+	public void postAd(String data){
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("ad_idx", Integer.parseInt(data));
+		sqlMap.update("postAd", map);
+	}
+	
 	public List<ApplyAdDTO> showAd(String str){
 		Map<String, String> data = new HashMap<String, String>();
 		

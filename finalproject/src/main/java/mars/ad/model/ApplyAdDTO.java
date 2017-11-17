@@ -5,13 +5,13 @@ import java.sql.Date;
 
 public class ApplyAdDTO {
 	
-	private int ad_idx; //È¸¿ø °¡ÀÔ½Ã idx, primary key
-	private int member_idx; //È¸¿ø °¡ÀÔÇÏ´Â »ç¶÷ÀÇ idx
-	private String name; //È¸»ç ÀÌ¸§
-	private String type; //È¸»ç Å¸ÀÔ
-	private String link; //È¸»ç ¸µÅ©, Å¸°í°¥ ¸µÅ©
-	private String ad_content; //È«º¸ÇÒ ÄÁÅÙÆ®
-	private int fee; //¿ä±Ý
+	private int ad_idx; //È¸ï¿½ï¿½ ï¿½ï¿½ï¿½Ô½ï¿½ idx, primary key
+	private int member_idx; //È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ idx
+	private String name; //È¸ï¿½ï¿½ ï¿½Ì¸ï¿½
+	private String type; //È¸ï¿½ï¿½ Å¸ï¿½ï¿½
+	private String link; //È¸ï¿½ï¿½ ï¿½ï¿½Å©, Å¸ï¿½ï¿½ ï¿½ï¿½Å©
+	private String ad_content; //È«ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+	private int fee; //ï¿½ï¿½ï¿½
 	private int favor_movie;
 	private int favor_sport;
 	private int favor_fashion;
@@ -20,16 +20,16 @@ public class ApplyAdDTO {
 	private int favor_music;
 	private int favor_dance;
 	private int favor_food;
-	private int status; //0:½ÅÃ»&½É»çÁß 1:½É»ç ¿Ï·á/°áÁ¦ 2:°áÁ¦¿Ï·á 3:°Ô½Ã 4:°ÅÀý
-	private String post; //ÆÛ°£???
-	private String follow; //ÆÈ·Î¿ö?ÆÈ·ÎÀ×
-	private Date apply_date; //½ÅÃ» ³¯Â¥ -> ½ÂÀÎÇÏ¸é ½ÂÀÎ³¯Â¥·Î
+	private int status; //0:ï¿½ï¿½Ã»&ï¿½É»ï¿½ï¿½ï¿½ 1:ï¿½É»ï¿½ ï¿½Ï·ï¿½/ï¿½ï¿½ï¿½ï¿½ 2:ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ 3:ï¿½Ô½ï¿½ 4:ï¿½ï¿½ï¿½ï¿½
+	private String post; //í¼ê°€ëŠ”
+	private String follow; //followìˆ˜, ì§€ì›Œë„ ë ë“¯
+	private Date apply_date; //ï¿½ï¿½Ã» ï¿½ï¿½Â¥ -> ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½Î³ï¿½Â¥ï¿½ï¿½
 	private int amount;
-	private String s_date; //±¤°í ½ÃÀÛ ³¯Â¥
-	private String e_date; //±¤°í ³¡³ª´Â ³¯Â¥
-	private String ad_name; //±¤°í ÀÌ¸§
-	private String all_amount; //stringÀ¸·Î ¸ÅÀÏ amount ÀúÀåÇÏ±â
-	private int num_amount; //amount¸¦ ¸ÅÀÏ ´õÇÑ °ª
+	private String s_date; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥
+	private String e_date; //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥
+	private String ad_name; //ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+	private String all_amount; //stringï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ amount ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½
+	private int num_amount; //amountï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	
 	public ApplyAdDTO() {
 		// TODO Auto-generated constructor stub

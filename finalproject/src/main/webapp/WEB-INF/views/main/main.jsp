@@ -1125,6 +1125,20 @@ var data = [
 	
 	
 	<!-- 다운 광고 추가  -->
+	
+	<script>
+	
+	function goCount(data){
+		
+		alert(data);
+		
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST","goCount.do?data="+data);
+        xhr.send(data);
+        
+       
+	}
+	</script>
 
 	
 	
@@ -1135,12 +1149,12 @@ var data = [
 					
 		<div class="col-md-4 col-sm-6 col-xs-12  photo">
 			<div class="works" style="height: 431px;">
-				<img src="${list.ad_content} " alt=""
+				<img src="${list.ad_content}.jpg " alt=""
 										style="width: 431px; height: 431px;">
 					<div class="work-overlay text-center">
 						<div class="overlay-caption">
 							<h4>Ad</h4>
-							<a href="http://${list.link}">
+							<a href="http://${list.link}" onclick="goCount(${list.ad_idx})">
 							${list.ad_name}</a>
 							
 						</div>

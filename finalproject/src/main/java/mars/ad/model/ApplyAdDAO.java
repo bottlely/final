@@ -16,5 +16,7 @@ public interface ApplyAdDAO {
 	public String insertOkSign(int ad_idx, int member_idx);
 	public String insertNoSign(int ad_idx, int member_idx);
 	public List<ApplyAdDTO> showAd(String str);
+	public void goCount(String data);
+	public void postAd(String data);
 
 }

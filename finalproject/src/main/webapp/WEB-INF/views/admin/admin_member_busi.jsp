@@ -244,7 +244,7 @@ function payResult(){
  	 					msg='미 결제';
  	 				}
  	 				else if(list.status==2){
- 	 					msg='결제 완료';
+ 	 					msg='<a href="#" onclick="postAd('+list.ad_idx+')">결제 완료</a>';
  	 				}
  	 				var newDiv3 = document.createElement('td');
  	 				newDiv3.innerHTML = msg;
@@ -254,6 +254,15 @@ function payResult(){
  			}
          
          }
+	 }
+	 
+	 function postAd(data){
+	//	 alert(data);
+		 alert('광고물을 게시했습니다.');
+		 
+		 var xhr = new XMLHttpRequest();
+		xhr.open("POST","postAd.do?ad_idx="+data);
+	      xhr.send(data);
 	 }
       
 }
