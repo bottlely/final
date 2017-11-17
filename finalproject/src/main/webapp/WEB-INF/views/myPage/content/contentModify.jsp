@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -17,7 +17,7 @@
 
 <style>
 body {
-	background-color:#f2fdff;
+	background-color: #f2fdff;
 }
 
 .container {
@@ -33,34 +33,33 @@ body {
 	width: 67%;
 }
 
-	input[type=file] {
-        display: none;
-  	}
-  	
-  	.imgs_wrap img {
-        max-width: 150px;
-        margin-left: 10px;
-        margin-right: 10px;
-     }
-     
-select {
-    width: 100px;
-    height: 30px;
-    padding-left: 10px;
-    font-size: 12px;
-    color: #006fff;
-    border: 1px solid #006fff;
-    border-radius: 3px;
+input[type=file] {
+	display: none;
 }
 
-.mask{
+.imgs_wrap img {
+	max-width: 150px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+select {
+	width: 100px;
+	height: 30px;
+	padding-left: 10px;
+	font-size: 12px;
+	color: #006fff;
+	border: 1px solid #006fff;
+	border-radius: 3px;
+}
+
+.mask {
 	position: absolute;
 	left: 0;
 	top: 0;
 	z-index: 9999;
 	background-color: #000;
 	display: none;
-	
 }
 
 .window {
@@ -70,89 +69,68 @@ select {
 	width: 200px;
 	height: 150px;
 	z-index: 99999;
-	overflow:scroll;
+	overflow: scroll;
 }
-
 </style>
- <script type="text/javascript" src="js/jquery-3.1.0.min.js" charset="utf-8"></script>
-    <script type="text/javascript">
-    
-        // 이미지 정보들을 담을 배열
-        var sel_files = [];
-		
-        //공개범위 사용자 정의 리스트
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"
+	charset="utf-8"></script>
+<script type="text/javascript">
+    	
+    	//공개범위 사용자 정의 리스트
         var sel_list = [];
         
-      //공개범위 사용자 정의 리스트(그룹)
+      	//공개범위 사용자 정의 리스트(그룹)
         var sel_list_group = [];
+      
+    	var state = '${cvdto.coverage_state}';
+    	
+    	if(state == "2" || state == "3"){
+    		 var str_group ='${cvdto.idx_group}';
+    		 
+    		 if(str_group != "0"){
+    			 sel_list_group = str_group.split(',');
+    		 }
+    	
 
-        $(document).ready(function() {
-            $("#input_imgs").on("change", handleImgFileSelect);
-        }); 
-
-        function fileUploadAction() {
-            console.log("fileUploadAction");
-            $("#input_imgs").trigger('click');
-        }
-
-        function handleImgFileSelect(e) {
-
-            // 이미지 정보들을 초기화
-            sel_files = [];
-            $(".imgs_wrap").empty();
-
-            var files = e.target.files;
-            var filesArr = Array.prototype.slice.call(files);
-
-            var index = 0;
-            filesArr.forEach(function(f) {
-                if(!f.type.match("image.*")) {
-                    alert("확장자는 이미지 확장자만 가능합니다.");
-                    return;
-                }
-
-                sel_files.push(f);
-                console.log(f);
-
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    var html = "<a href=\"javascript:void(0);\" onclick=\"deleteImageAction("+index+")\" id=\"img_id_"+index+"\"><img src=\"" + e.target.result + "\" data-file='"+f.name+"' class='selProductFile' title='Click to remove'></a>";
-                    $(".imgs_wrap").append(html);
-                    index++;
-
-                }
-                reader.readAsDataURL(f);
-                
-            });
-        }
-
-
-
-        function deleteImageAction(index) {
-            console.log("index : "+index);
-            console.log("sel length : "+sel_files.length);
-
-            sel_files.splice(index, 1);
-
-            var img_id = "#img_id_"+index;
-            $(img_id).remove(); 
-        }
-
+    	var str_to = '${cvdto.idx_to}';
+    	sel_list = str_to.split(',');
+	    
+	    Array.prototype.unique = function() {
+	        var a = {};
+	        for (var i = 0; i < this.length; i++) {
+	            if (typeof a[this[i]] == 'undefined') {
+	                a[this[i]] = 1;
+	            }
+	        }
+	        this.length = 0;
+	        for (var i in a) {
+	            this[this.length] = i;
+	        }
+	        return this;
+	    };
+	
+	   	 sel_list = sel_list.unique();
+		
+    	}
+    	
+	    function check(){
+	    	alert(sel_list);
+	    	alert(sel_list_group);
+	    	
+	    	document.getElementById("coverage_state").value = state;
+	    	
+	       for(var i=0, len=sel_list.length; i<len; i++) {
+	       	document.getElementById(sel_list[i]).color = "007bff";
+	       }
+	       for(var i=0, len=sel_list_group.length; i<len; i++) {
+	       	document.getElementById(sel_list_group[i]).color = "007bff";
+	       }
+	     }
+    
         function submitAction() {
-             
-            if(sel_files.length < 1) {
-                alert("한 개 이상의 파일을 선택해주세요.");
-                return;
-            }   
-    			
+        		 
     			 var data = new FormData();
-    			
-    			 for(var i=0, len=sel_files.length; i<len; i++) {
-    	                var name = "image_"+i;
-    	                data.append(name, sel_files[i]);
-    	            }
     			 
-    			 data.append("image_count", sel_files.length);
     			 data.append("useridx", '${sessionScope.useridx}');
     			 
     			 var htag =  document.getElementById("htag").value;
@@ -171,39 +149,19 @@ select {
     				data.append("coverage_list",sel_list);
     				data.append("coverage_list_group",sel_list_group);
     			 }
-    			 //data.append("type",1);
-    			 
-    	        /* $.ajax({
-    	            type : 'post',
-    	            url : 'uploadPhoto.do',
-    	            data : data ,
-    	            processData : false,
-    	            contentType : false
-    	           }).error(function(msg) {
-    	            	alert('error: 업로드할 수 없습니다.');
-    	           }).done(function(msg) {
-    	           
-    	            if(msg==1){
-    	             	alert('정상적으로 취소처리가 되었습니다. 리스트 페이지로 이동합니다.');
-    	             	document.getElementById('frm').submit();
-    	            }else{
-    	             alert('취소처리가 되지 않았습니다. 잠시 후에 시도해 주십시오.');
-    	            }
-
-    	           }); */
     	           
 		            var xhr = new XMLHttpRequest();
-		            xhr.open("POST","uploadPhoto.do");
+		            xhr.open("POST","contentModify.do");
 		            xhr.send(data);
 		            xhr.onload = function(e) {
 		                if(this.status == 200) {
 		                	var jsonResponse = JSON.parse(e.currentTarget.responseText);
 		                    if(jsonResponse["result"] > 0){
-		                    	alert('업로드 완료!');
+		                    	alert('수정 완료!');
 		                    	window.opener.location.reload();
 		                    	window.close();
 		                    }else{
-		                    	alert('업로드 실패!');
+		                    	alert('수정 실패!');
 		                    }
 		                }
 		            }
@@ -245,11 +203,13 @@ select {
         	     if(!Flag){
         	  		for(var i=0, len=sel_list.length; i<len; i++) {
         		 		 if(idx == sel_list[i]){
+        		 			 alert(idx);
         			  		sel_list.splice(i, 1);
         				 }
         			}
         		}else{
         			for(var i=0, len=sel_list_group.length; i<len; i++) {
+        				 	alert(idx);
 	       		 		 if(idx == sel_list_group[i]){
 	       		 			sel_list_group.splice(i, 1);
 	       				 }
@@ -300,33 +260,35 @@ select {
     </script>
 </head>
 
-<body>
+<body onload="check()">
 
-<div class="container" style="background-color: white;">
-	<div class="row" style="padding-top:10px;">
-		<div class="col-sm-12">
-			<span class="avatar">
-			<img src="myHomeFolder/profile_img/${profile}" alt="" id="pf"/>
-			</span>
-		    <label id="name">${cdto.writer}</label>
-		    <select id="coverage_state" name="coverage" onclick="fflist(this)">
-			    <option value="0">전체공개</option>
-			    <option value="1">친구만</option>
-			    <option value="2">특정 대상</option>
-			    <option value="3">제외할 대상</option>
-		    	<option value="4">나만</option>
-			</select>
+	<div class="container" style="background-color: white;">
+		<div class="row" style="padding-top: 10px;">
+			<div class="col-sm-12">
+				<span class="avatar"> <img
+					src="myHomeFolder/profile_img/${profile}" alt="" id="pf"
+					style="border-radius: 70px; -moz-border-radius: 70px; -khtml-border-radius: 70px; -webkit-border-radius: 70px;" />
+				</span> <label id="name">${cdto.writer}</label> <select id="coverage_state"
+					name="coverage" onclick="fflist(this)">
+					<option value="0">전체공개</option>
+					<option value="1">친구만</option>
+					<option value="2">특정 대상</option>
+					<option value="3">제외할 대상</option>
+					<option value="4">나만</option>
+				</select>
+			</div>
 		</div>
-	</div>
-	<hr>
-	<div class="row">
+		<hr>
+		<div class="row">
 			<div class="col-sm-12">
 				<input type="text" class="form-control" id="mtag" name="mtag"
-					placeholder="친구태그" onFocus="clearText(this)" onBlur="clearText(this)">
+					placeholder="친구태그" onFocus="clearText(this)"
+					onBlur="clearText(this)">
 			</div>
 			<div class="col-sm-12">
 				<input type="text" class="form-control" id="htag" name="htag"
-					placeholder="해시태그" onFocus="clearText(this)" onBlur="clearText(this)">
+					placeholder="해시태그" onFocus="clearText(this)"
+					onBlur="clearText(this)">
 			</div>
 			<div class="col-sm-12">
 				<div class="form-group">
@@ -335,20 +297,20 @@ select {
 			</div>
 		</div>
 		<hr>
-     
-    <div class="row" style="padding-bottom:10px;">
-    	<div class="col-sm-12">
-			<input type="button" value="업로드" class="btn btn-success" onclick="submitAction();">
-			<input type="submit" value="취소" class="btn btn-Info" onclick="back()">
-	
-	<!--   <form id="myHome" action="myHomeForm.do" method="post">
+
+		<div class="row" style="padding-bottom: 10px;">
+			<div class="col-sm-12">
+				<input type="button" value="수정" class="btn btn-success" onclick="submitAction()"> 
+					<input type="submit" value="취소" class="btn btn-Info" onclick="back()">
+
+				<!--   <form id="myHome" action="myHomeForm.do" method="post">
 		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
 		<input type="submit" value="back">
 		</form>
 	-->
+			</div>
 		</div>
 	</div>
-</div>
 	<div class="mask"></div>
 	<div class="window"
 		style="width: 300px; height: 400px; overflow: auto;">
@@ -367,15 +329,14 @@ select {
 				</c:forEach>
 				<hr>
 				<c:forEach var="group" items="${groupList}">
-						<li class="list-group-item" 
-							onclick="sel_coverage('${groupList_idx[group.key]}',true)">
-						<font id="${groupList_idx[group.key]}" color="gray"><strong>${group.key}</strong></font>
+					<li class="list-group-item"
+						onclick="sel_coverage('${groupList_idx[group.key]}',true)"><font
+						id="${groupList_idx[group.key]}" color="gray"> <strong>${group.key}</strong></font>
+					</li>
+					<c:forEach var="member" items="${group.value}">
+						<li class="list-group-item"><font color="lightgray"><strong>${member.name}</strong></font>
 						</li>
-						<c:forEach var="member" items="${group.value}">
-							<li class="list-group-item">
-								<font color="lightgray"><strong>${member.name}</strong></font>
-							</li>
-						</c:forEach>
+					</c:forEach>
 					<hr>
 				</c:forEach>
 			</ul>

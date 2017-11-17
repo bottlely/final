@@ -37,6 +37,8 @@ public class AdminController {
       int ranksize1 = aDao.followingSize1();
       int ranksize2 = aDao.followingSize2();
       int ranksize3 = aDao.followingSize3();
+      int todayAd = aDao.todayAd();
+      mav.addObject("todayAd",todayAd);
       mav.addObject("ranksize1",ranksize1);
       mav.addObject("ranksize2",ranksize2);
       mav.addObject("ranksize3",ranksize3);

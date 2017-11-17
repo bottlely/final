@@ -66,6 +66,7 @@ public class MyHomeController{
 			int following = 0;
 			int block = 0;
 			FriendDTO fdto = friendDao.relation(loginIdx,Integer.parseInt(member_idx));
+			
 			if(fdto != null){ //팔로잉하고 있다면
 					following = 1;
 					
@@ -73,6 +74,8 @@ public class MyHomeController{
 					FriendDTO fdto2 = friendDao.relation(Integer.parseInt(member_idx),loginIdx);
 					if(fdto2 != null){
 						block = fdto2.getBlack_state();
+					}else{
+						block = -1;
 					}
 			}
 			

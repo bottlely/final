@@ -61,5 +61,30 @@ public class MemberDAOImple implements MemberDAO {
 
 		return list;
 	}*/
+	
+	public String getFavor(int idx){
+		String str="";
+		MemberDTO dto = new MemberDTO();
+		dto = sqlMap.selectOne("getAd", idx);
+		
+		if(dto.getFavorite_movie()!=0) 
+			str += "favor_movie/";
+		if(dto.getFavorite_sport()!=0)
+			str += "favor_sport/";
+		if(dto.getFavorite_fashion()!=0)
+			str += "favor_fashion/";
+		if(dto.getFavorite_beauty()!=0)
+			str += "FAVOR_BEAUTY/";
+		if(dto.getFavorite_travel()==1) 
+			str += "favor_travel/";
+		if(dto.getFavorite_music()==1) 
+			str += "favor_music/";
+		if(dto.getFavorite_dance()==1) 
+			str += "favor_dance/";
+		if(dto.getFavorite_food()==1) 
+			str += "favor_food";
+		
+		return str;
+	}
 
 }

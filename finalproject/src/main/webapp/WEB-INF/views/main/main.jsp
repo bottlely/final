@@ -502,14 +502,14 @@ var data = [
          });
                
          function openpic(content_idx){
-        	 alert(content_idx);
         	 document.getElementById('c_idx').value=content_idx;
              var category = document.getElementById('category_'+content_idx).value;
              var path = document.getElementById('path_'+content_idx).value;
+             
+             var profile = document.getElementById('profile_'+content_idx).value;
              var session_idx = '${sessionScope.useridx}';
              
              var cut = path.split('?');
-             window.alert(cut.length);
              
              var writer = document.getElementById('writer_'+content_idx).value;
              var content = document.getElementById('content_'+content_idx).value;
@@ -517,32 +517,28 @@ var data = [
             sendRequest('likeList.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
          
             if(category==1){
-                $('#galleryImage').attr("src",path);
-                 /*  var bg_div = document.createElement('div');
-                 
-                 for(var i=0; i < cut.length-1; i++) {
-                    alert(cut[i]);
-                    var div = document.createElement('div');
-                     var img = document.createElement('img');
-                     
-                     img.setAttribute("data-u", "image");
-                     alert(cut[i]);
-                     img.setAttribute("src", cut[i]);
-                     
-                     div.appendChild(img);
-                     bg_div.appendChild(div);
-                 }
-                 
-                 document.getElementById('slide_div').appendChild(bg_div); */
+            	/*     $('#galleryImage').attr("src",path); */
+                for(var i=0; i<cut.length-1; i++){
+                	var div1 = document.createElement('div');
+                	var img_slide = document.createElement('img');
+                	var src = "myHomeFolder/content/"+cut[i];
+                	img_slide.src = src;
+                	img_slide.setAttribute("data-u", "image");
+                	div1.appendChild(img_slide);
+                	var tt=document.getElementById('slide_div');
+                	//alert(src+'/'+tt+'/'+tt.nodeName+'/'+tt.getAttribute('id'));
+                	document.getElementById('slide_div').appendChild(div1); 
+                }
              }else if(category==2){
-                $('#galleryImage').attr("src","");
+              /*   $('#galleryImage').attr("src","");
                $('#galleryVideo').attr("src", path);
                $("#a_video").load();
-             document.getElementById("a_video").play();
+             document.getElementById("a_video").play(); */
              }
                 
                 document.getElementById('c_writer').innerHTML = writer;
                 document.getElementById('c_content').innerHTML = content;
+                $('#pf').attr("src", profile);
             
           //contentMore
             var memberidx = document.getElementById('memberidx_'+content_idx).value;
@@ -852,7 +848,7 @@ var data = [
 				</div>
 				<br>
 				<p
-					style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
+				dropdown-toggle	style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
 					id="follower_name_id"></p>
 				<div style="text-align: center;">
 					<input type="button" value="팔로우하기" onclick="following()"
@@ -1045,23 +1041,17 @@ var data = [
 						<c:if test="${list.category==1 }">
 							<div class="col-md-4 col-sm-6 col-xs-12  photo">
 								<div class="works" style="height: 431px;">
-									<img src="myHomeFolder/content/${list.path }" alt=""
-										style="width: 431px; height: 431px;">
+									<img src="myHomeFolder/content/${list.path }" alt="" style="width: 431px; height: 431px;">
 									<div class="work-overlay text-center">
 										<div class="overlay-caption">
 											<h4>PHOTO</h4>
-											<a href="#galleryModal" class="gallery-box"
-												data-toggle="modal" data-src="${list.path }"
-												onclick="openpic(${list.content_idx})"> <input
-												type="hidden" id="category_${list.content_idx }"
-												value="${list.category }"> <input type="hidden"
-												id="path_${list.content_idx }"
-												value="myHomeFolder/content/${list.path }"> <input
-												type="hidden" id="writer_${list.content_idx }"
-												value="${list.writer }"> <input type="hidden"
-												id="content_${list.content_idx }" value="${list.content }">
-												<input type="hidden" id="memberidx_${list.content_idx }"
-												value="${list.member_idx }">
+											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
+											<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
+											<input type="hidden" id="path_${list.content_idx }" value="${list.path }"> 
+											<input type="hidden" id="profile_${list.content_idx }" value="myHomeFolder/profile_img/${list.profile }">
+											<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
+											<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
+											<input type="hidden" id="memberidx_${list.content_idx }" value="${list.member_idx }">
 												<p>${list.writer}</p>
 											</a>
 										</div>
@@ -1072,27 +1062,45 @@ var data = [
 						<!-- 동영상 -->
 						<c:if test="${list.category==2 }">
 							<div class="col-md-4 col-sm-6 col-xs-12  video">
-								<div class="works">
-									<video autoplay="autoplay" loop="loop"
-										style="width: 431px; height: 431px;">
+								<div class="works" style="height: 431px;">
+									<video autoplay="autoplay" loop="loop" style="width: 300px; height: 431px;">
 										<source src="myHomeFolder/content/${list.path }"
 											type="video/mp4">
 									</video>
 									<div class="work-overlay text-center">
 										<div class="overlay-caption">
 											<h4>VIDEO</h4>
-											<a href="#galleryModal" class="gallery-box"
-												data-toggle="modal" data-src="${list.path }"
-												onclick="openpic(${list.content_idx})"> <input
-												type="hidden" id="category_${list.content_idx }"
-												value="${list.category }"> <input type="hidden"
-												id="path_${list.content_idx }"
-												value="myHomeFolder/content/${list.path }"> <input
-												type="hidden" id="writer_${list.content_idx }"
-												value="${list.writer }"> <input type="hidden"
-												id="content_${list.content_idx }" value="${list.content }">
-												<input type="hidden" id="memberidx_${list.content_idx }"
-												value="${list.member_idx }">
+											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
+												<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
+												<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
+												<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
+												<input type="hidden" id="profile_${list.content_idx }" value="myHomeFolder/profile_img/${list.profile }">
+												<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
+												<input type="hidden" id="memberidx_${list.content_idx }" value="${list.member_idx }">
+												<p>${list.writer}</p>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</c:if>
+						<!-- 텍스트 -->
+						<c:if test="${list.category==3 }">
+						<div class="col-md-4 col-sm-6 col-xs-12  text">
+								<div class="works" style="height: 431px;">
+								<div style="background-color: white; height: 431px;">
+								<label>${list.path }</label>
+								</div>
+									<div class="work-overlay text-center">
+										<div class="overlay-caption">
+											<h4>TEXT</h4>
+											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
+												<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
+												<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
+												<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
+												<input type="hidden" id="profile_${list.content_idx }" value="myHomeFolder/profile_img/${list.profile }">
+												<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
+												<input type="hidden" id="memberidx_${list.content_idx }" value="${list.member_idx }">
 												<p>${list.writer}</p>
 											</a>
 										</div>
@@ -1106,6 +1114,37 @@ var data = [
 		</div>
 
 	</section>
+	
+	
+	<!-- 다운 광고 추가  -->
+
+	
+	
+	<section>
+	<c:set var="list" value="${adList }"></c:set>
+		<c:if test="${empty list }"> 선호 광고 없음 </c:if>
+			<c:forEach var="list" items="${list }">
+					
+		<div class="col-md-4 col-sm-6 col-xs-12  photo">
+			<div class="works" style="height: 431px;">
+				<img src="${list.ad_content} " alt=""
+										style="width: 431px; height: 431px;">
+					<div class="work-overlay text-center">
+						<div class="overlay-caption">
+							<h4>Ad</h4>
+							<a href="http://${list.link}">
+							${list.ad_name}</a>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			</c:forEach>
+
+	</section>
+	
+	
+	
 	<section>
 		<div class="container">
 
@@ -1137,20 +1176,17 @@ var data = [
 							<div id="jssor_1"
 								style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 480px; height: 270px;; overflow: hidden; visibility: hidden;">
 								<!-- Loading Screen -->
-								<div data-u="loading" class="jssorl-009-spin"
-									style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.7);">
-
+								<div data-u="loading" class="jssorl-009-spin" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.7);">
 								</div>
-								<div data-u="slides"
-									style="cursor: default; position: relative; top: 0px; left: 0px; width: 480px; height: 270px; overflow: hidden;">
-									<div>
-										<img data-u="image"
-											src="myHomeFolder/content/default_content.jpg"
-											id="galleryImage" />
-										<video id="a_video" loop="loop" autoplay="autoplay">
-											<source src="" id="galleryVideo" type="video/mp4">
-										</video>
+								<div id="slide_div" data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 480px; height: 270px;">
+							
+								<!-- 사진 반복 -->
+									<!-- <div>
+										<img data-u="image" src="myHomeFolder/content/default_content.jpg" id="galleryImage" />
 									</div>
+									<div>
+										<img data-u="image" src="myHomeFolder/content/default_content.jpg" id="galleryImage" />
+									</div> -->
 								</div>
 								<!-- Bullet Navigator -->
 								<div data-u="navigator" class="jssorb051"
@@ -1192,8 +1228,12 @@ var data = [
 						<div class="col-xs-5"
 							style="margin-top: 10px; margin-bottom: 10px;">
 							<div class="col-sm-12" id="cntInfoBar">
-								<span class="avatar"> <img src="js/profile.png" alt=""
-									id="pf" />
+								<span class="avatar"> <img src="js/profile.png" alt="" id="pf" style="
+                            border-radius: 70px;
+                            -moz-border-radius: 70px;
+                            -khtml-border-radius: 70px;
+                            -webkit-border-radius: 70px;
+                            "/>
 								</span> <label id="c_writer"></label> <span>
 									<button class="btn btn-info" id="myBtn"
 										style="background: gray;">· · · </button> <!-- The Modal -->

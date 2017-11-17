@@ -149,7 +149,7 @@ function checkPwd(){
 				<td colspan="2" align="center" id="pwsame"></td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center"><input type="submit" value="수정하기" id="btn_ok" disabled="disabled">   <input type="reset" value="다시 작성"></td>
+				<td colspan="2" align="center"><input type="submit" value="수정하기" id="btn_ok" disabled="disabled"  class="btn btn-default">   <input type="reset" value="다시 작성"  class="btn btn-default"></td>
 			</tr>
 		</table>
 	</form>

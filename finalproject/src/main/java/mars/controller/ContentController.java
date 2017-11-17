@@ -144,33 +144,39 @@ public class ContentController {
             	String temp = "";
             	
 	            if(cl != null && !cl.equals("")){ //개인 설정 리스트가 있다면
-	            		temp += cl+",";
-	            		dto.setIdx_to(temp); //toldx 설정
-	            		
 	            		if(cl_group == null || cl_group.equals("")){ //그룹 리스트가 더 없다면 인서트
+	            			dto.setIdx_to(cl);
 	            			result2 = cdao.coverageInsert(dto);
 	    	        		if(result2 < 0){
 	    	   	        		return  new ModelAndView("marsJson","result",result2);
 	    	   	        	}
+	            		}else{
+	            			temp += cl +",";
+		            		dto.setIdx_to(temp);
 	            		}
 	            }
             
 	            if(cl_group != null && !cl_group.equals("")){ //그룹 리스트가 있다면
 	            	
-	            		String tempGroup = "";
+	            	String tempGroup = "";
     	        	   List<String> groupIdxList = new ArrayList<String>(Arrays.asList(cl_group.split(",")));
     	        	   
-    	   	        for(String groupIdx : groupIdxList){
-    	   	        	
-    	   	        	List<GroupDTO> groupMembers = settingDao.showGroup(Integer.parseInt(groupIdx));
-    	   	        	tempGroup += groupIdx+ ",";
-    	   	        	
-    	   	        	String temp2 = "";
-    	   	        	for(GroupDTO gdto : groupMembers){ //그룹의 멤버 idx를 String 하나로 묶음
-    	   	        		temp2 += gdto.getIdx_to()+",";
-    	   	        	} 
-    	   	        	temp += temp2; //그룹마다 더함
-    	   	        }
+    	        	   for(int i=0; i <groupIdxList.size(); i++){
+	    	        		List<GroupDTO> groupMembers = settingDao.showGroup(Integer.parseInt(groupIdxList.get(i)));
+	       	   	        	tempGroup += groupIdxList.get(i);
+	       	   	        			if(i != groupIdxList.size()-1){
+	       	   	        				tempGroup += ",";
+	       	   	        			}
+	       	   	        	
+	       	   	        	 String temp2 = "";
+			       	   	      for(int j=0; j <groupMembers.size(); j++){
+			       	   	    	  temp2 += groupMembers.get(j).getIdx_to();
+					       	   		if(j != groupMembers.size()-1){
+				  	        				temp2 += ",";
+				  	        		}
+			       	   	      }
+	       	   	        	temp += temp2; //그룹마다 더함
+    	        	  }
     	   	        dto.setIdx_to(temp); //toldx 설정
     	   	        dto.setIdx_group(tempGroup); //그룹 idx 설정
 	        		result2 = cdao.coverageInsert(dto); // (개인) + 그룹 인서트
@@ -249,45 +255,51 @@ public class ContentController {
         	int state = Integer.parseInt(cs); 
             CoverageDTO dto = new CoverageDTO(contentIdx,0,state,"0",Integer.parseInt(member_idx),"0"); //toldx를 제외한 기본 dto
             
-            if(state == 2 || state==3){ //특정 또는 제외 상태 일 때 
+ if(state == 2 || state==3){ //특정 또는 제외 상태 일 때 
             	
             	String temp = "";
             	
 	            if(cl != null && !cl.equals("")){ //개인 설정 리스트가 있다면
-	            		temp += cl+",";
-	            		dto.setIdx_to(temp); //toldx 설정
-	            		
 	            		if(cl_group == null || cl_group.equals("")){ //그룹 리스트가 더 없다면 인서트
+	            			dto.setIdx_to(cl);
 	            			result2 = cdao.coverageInsert(dto);
 	    	        		if(result2 < 0){
 	    	   	        		return  new ModelAndView("marsJson","result",result2);
 	    	   	        	}
+	            		}else{
+	            			temp += cl +",";
+		            		dto.setIdx_to(temp);
 	            		}
 	            }
             
 	            if(cl_group != null && !cl_group.equals("")){ //그룹 리스트가 있다면
 	            	
-            		String tempGroup = "";
-	        	   List<String> groupIdxList = new ArrayList<String>(Arrays.asList(cl_group.split(",")));
-	        	   
-	   	        for(String groupIdx : groupIdxList){
-	   	        	
-	   	        	List<GroupDTO> groupMembers = settingDao.showGroup(Integer.parseInt(groupIdx));
-	   	        	tempGroup += groupIdx+ ",";
-	   	        	
-	   	        	String temp2 = "";
-	   	        	for(GroupDTO gdto : groupMembers){ //그룹의 멤버 idx를 String 하나로 묶음
-	   	        		temp2 += gdto.getIdx_to()+",";
-	   	        	} 
-	   	        	temp += temp2; //그룹마다 더함
-	   	        }
-	   	        dto.setIdx_to(temp); //toldx 설정
-	   	        dto.setIdx_group(tempGroup); //그룹 idx 설정
-        		result2 = cdao.coverageInsert(dto); // (개인) + 그룹 인서트
-        		if(result2 < 0){
-   	        		return  new ModelAndView("marsJson","result",result2);
-   	        	}
-	        }
+	            	String tempGroup = "";
+    	        	   List<String> groupIdxList = new ArrayList<String>(Arrays.asList(cl_group.split(",")));
+    	        	   
+    	        	   for(int i=0; i <groupIdxList.size(); i++){
+	    	        		List<GroupDTO> groupMembers = settingDao.showGroup(Integer.parseInt(groupIdxList.get(i)));
+	       	   	        	tempGroup += groupIdxList.get(i);
+	       	   	        			if(i != groupIdxList.size()-1){
+	       	   	        				tempGroup += ",";
+	       	   	        			}
+	       	   	        	
+	       	   	        	 String temp2 = "";
+			       	   	      for(int j=0; j <groupMembers.size(); j++){
+			       	   	    	  temp2 += groupMembers.get(j).getIdx_to();
+					       	   		if(j != groupMembers.size()-1){
+				  	        				temp2 += ",";
+				  	        		}
+			       	   	      }
+	       	   	        	temp += temp2; //그룹마다 더함
+    	        	  }
+    	   	        dto.setIdx_to(temp); //toldx 설정
+    	   	        dto.setIdx_group(tempGroup); //그룹 idx 설정
+	        		result2 = cdao.coverageInsert(dto); // (개인) + 그룹 인서트
+	        		if(result2 < 0){
+	   	        		return  new ModelAndView("marsJson","result",result2);
+	   	        	}
+    	        }
 	            
     	        if((cl == null || cl.equals("")) && (cl_group == null || cl_group.equals(""))){ //리스트가 아무것도 없다면
     	        	dto.setCoverage_state(0); //상태 변경
@@ -362,45 +374,51 @@ public class ContentController {
         	int state = Integer.parseInt(cs); 
             CoverageDTO dto = new CoverageDTO(contentIdx,0,state,"0",Integer.parseInt(member_idx),"0"); //toldx를 제외한 기본 dto
             
-            if(state == 2 || state==3){ //특정 또는 제외 상태 일 때 
+ if(state == 2 || state==3){ //특정 또는 제외 상태 일 때 
             	
             	String temp = "";
             	
 	            if(cl != null && !cl.equals("")){ //개인 설정 리스트가 있다면
-	            		temp += cl+",";
-	            		dto.setIdx_to(temp); //toldx 설정
-	            		
 	            		if(cl_group == null || cl_group.equals("")){ //그룹 리스트가 더 없다면 인서트
+	            			dto.setIdx_to(cl);
 	            			result2 = cdao.coverageInsert(dto);
 	    	        		if(result2 < 0){
 	    	   	        		return  new ModelAndView("marsJson","result",result2);
 	    	   	        	}
+	            		}else{
+	            			temp += cl +",";
+		            		dto.setIdx_to(temp);
 	            		}
 	            }
             
 	            if(cl_group != null && !cl_group.equals("")){ //그룹 리스트가 있다면
 	            	
-            		String tempGroup = "";
-	        	   List<String> groupIdxList = new ArrayList<String>(Arrays.asList(cl_group.split(",")));
-	        	   
-	   	        for(String groupIdx : groupIdxList){
-	   	        	
-	   	        	List<GroupDTO> groupMembers = settingDao.showGroup(Integer.parseInt(groupIdx));
-	   	        	tempGroup += groupIdx+ ",";
-	   	        	
-	   	        	String temp2 = "";
-	   	        	for(GroupDTO gdto : groupMembers){ //그룹의 멤버 idx를 String 하나로 묶음
-	   	        		temp2 += gdto.getIdx_to()+",";
-	   	        	} 
-	   	        	temp += temp2; //그룹마다 더함
-	   	        }
-	   	        dto.setIdx_to(temp); //toldx 설정
-	   	        dto.setIdx_group(tempGroup); //그룹 idx 설정
-        		result2 = cdao.coverageInsert(dto); // (개인) + 그룹 인서트
-        		if(result2 < 0){
-   	        		return  new ModelAndView("marsJson","result",result2);
-   	        	}
-	        }
+	            	String tempGroup = "";
+    	        	   List<String> groupIdxList = new ArrayList<String>(Arrays.asList(cl_group.split(",")));
+    	        	   
+    	        	   for(int i=0; i <groupIdxList.size(); i++){
+	    	        		List<GroupDTO> groupMembers = settingDao.showGroup(Integer.parseInt(groupIdxList.get(i)));
+	       	   	        	tempGroup += groupIdxList.get(i);
+	       	   	        			if(i != groupIdxList.size()-1){
+	       	   	        				tempGroup += ",";
+	       	   	        			}
+	       	   	        	
+	       	   	        	 String temp2 = "";
+			       	   	      for(int j=0; j <groupMembers.size(); j++){
+			       	   	    	  temp2 += groupMembers.get(j).getIdx_to();
+					       	   		if(j != groupMembers.size()-1){
+				  	        				temp2 += ",";
+				  	        		}
+			       	   	      }
+	       	   	        	temp += temp2; //그룹마다 더함
+    	        	  }
+    	   	        dto.setIdx_to(temp); //toldx 설정
+    	   	        dto.setIdx_group(tempGroup); //그룹 idx 설정
+	        		result2 = cdao.coverageInsert(dto); // (개인) + 그룹 인서트
+	        		if(result2 < 0){
+	   	        		return  new ModelAndView("marsJson","result",result2);
+	   	        	}
+    	        }
 	            
     	        if((cl == null || cl.equals("")) && (cl_group == null || cl_group.equals(""))){ //리스트가 아무것도 없다면
     	        	dto.setCoverage_state(0); //상태 변경
@@ -641,6 +659,7 @@ public class ContentController {
 		
 		String idx = Integer.toString(contentidx);
 		ContentDTO cdto = cdao.contentOne(idx);
+		
 		CoverageDTO cvdto = cdao.coverageOne(idx);
 		
 		ModelAndView mav=new ModelAndView();
@@ -650,17 +669,101 @@ public class ContentController {
 		mav.addObject("groupList_idx",groupList_idx);
 		mav.addObject("cdto",cdto);
 		mav.addObject("cvdto", cvdto);
-		
-		String path = null;
-		
-		switch(cdto.getCategory()){
-		case 1: path = "myPage/content/contentModify"; break;
-		case 2: path = "myPage/content/contentModify"; break;
-		case 3: path = "myPage/content/textModify"; break;
-		}
-		mav.setViewName(path);
+		mav.setViewName("myPage/content/contentModify");
 		return mav;
 		
 	}
+	
+	@RequestMapping("/contentModify.do")
+	public ModelAndView contentModify(@RequestParam("useridx")String member_idx,
+			@RequestParam("htag")String htag,
+			@RequestParam("mtag")String mtag,
+			@RequestParam(value="coverage_list_group",required=false)String cl_group,
+			@RequestParam(value="coverage_list",required=false)String cl,
+			@RequestParam("coverage_state")String cs,
+			@RequestParam("content")String content) {
+		System.out.println("in");
+		HashMap<String, String> info = new HashMap<String, String>();
+		info.put("midx",member_idx);
+        info.put("content", content);
+		int result = cdao.contentUpdate(info);
+		int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
+
+        int result2 = -1;
+        
+        if(contentIdx > 0){ //content idx가 있다면
+        	int state = Integer.parseInt(cs); 
+        	
+        	HashMap<String, String> info2 = new HashMap<String, String>();
+        	info2.put("cidx",Integer.toString(contentIdx));
+        	info2.put("idx_to","0");
+        	info2.put("idx_group", "0");
+        	info2.put("coverage_state", cs);
+            if(state == 2 || state==3){ //특정 또는 제외 상태 일 때 
+            	
+            	String temp = "";
+            	
+	            if(cl != null && !cl.equals("")){ //개인 설정 리스트가 있다면
+	            		temp += cl+",";
+	            		
+	            		if(cl_group == null || cl_group.equals("")){ //그룹 리스트가 더 없다면 인서트
+	            			info.put("idx_to", cl);
+	            		}else{
+	            			temp += cl +",";
+	            		}
+	            }
+            
+	            if(cl_group != null && !cl_group.equals("")){ //그룹 리스트가 있다면
+	            	
+	            	 String tempGroup = "";
+    	        	   List<String> groupIdxList = new ArrayList<String>(Arrays.asList(cl_group.split(",")));
+    	        	  
+    	        	   for(int i=0; i <groupIdxList.size(); i++){
+	    	        		List<GroupDTO> groupMembers = settingDao.showGroup(Integer.parseInt(groupIdxList.get(i)));
+	       	   	        	tempGroup += groupIdxList.get(i);
+	       	   	        			if(i != groupIdxList.size()-1){
+	       	   	        				tempGroup += ",";
+	       	   	        			}
+	       	   	        	
+	       	   	        	 String temp2 = "";
+			       	   	      for(int j=0; j <groupMembers.size(); j++){
+			       	   	    	  temp2 += groupMembers.get(j).getIdx_to();
+					       	   		if(j != groupMembers.size()-1){
+				  	        				temp2 += ",";
+				  	        		}
+			       	   	      }
+	       	   	        	temp += temp2; //그룹마다 더함
+    	        	  }
+    	   	        info2.put("idx_to", temp);
+    	   	        info2.put("idx_group", tempGroup); //그룹 idx 설정
+	        		result2 = cdao.coverageUpdate(info2);
+	        		if(result2 < 0){
+	   	        		return  new ModelAndView("marsJson","result",result2);
+	   	        	}
+    	        }
+	            
+    	        if((cl == null || cl.equals("")) && (cl_group == null || cl_group.equals(""))){ //리스트가 아무것도 없다면
+    	        	info.put("coverage_state", "0");
+    	        	result2 = cdao.coverageUpdate(info2); //인서트
+    	        	if(result2 < 0){
+	   	        		return  new ModelAndView("marsJson","result",result2);
+	   	        	}
+    	        }
+            }
+            else{ //아니라면 기본 dto인서트
+            	result2 = cdao.coverageUpdate(info2);
+	        	if(result2 < 0){
+   	        		return  new ModelAndView("marsJson","result",result2);
+   	        	}
+	        }
+            
+            }else{ //없으면 -1 
+            	return  new ModelAndView("marsJson","result",result2);
+            }
+        
+        ModelAndView mav = new ModelAndView("marsJson","result",result2);
+		return mav;
+	}
+	
 	
 }

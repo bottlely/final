@@ -25,6 +25,19 @@
 <script
 	src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
 <style>
+
+.rounded {
+	border-radius: 100em !important;
+}
+
+.darkGrey {
+	background: #595770;
+	color: #fff;
+	border: none;
+	font-size: 15px;
+	width: 80px;
+}
+
 @
 keyframes spin { 100% {
 	transform: rotate(360deg);
@@ -77,12 +90,17 @@ pre.prettyprint {
 .com {
 	color: #999;
 }
+
+
 </style>
 </head>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script> 
-
+function openContent(content_idx, useridx) {
+	 location.href='main_view.do?content_idx='+content_idx+'&session_idx='+useridx;
+}
+		
          $(document).ready(function(){
              $("#friends1").click(function(){
                 ppp.location.reload();
@@ -160,6 +178,7 @@ pre.prettyprint {
                
             $('#galleryImage').attr("src",div);
             } 
+         	
 
 </script>
 <body onload="reply_List(${content_idx})">
@@ -279,21 +298,50 @@ pre.prettyprint {
 
 							<ul class="nav navbar-nav navbar-right">
 
-								<!-- 다운 광고 추가 임시 버튼 -->
+								<!-- 다운 음성인식 -->
 
-								<script>
-                  function voice(){
-                     sendRequest('voice.do', null, voiceResult, 'GET');
-                  }
-                  function voiceResult(){
-                     
-                  }
-               </script>
+								<li>
+									<div id="speechbbbbox"></div>
+									<button onClick="startConverting();" type="button" style="margin-top: 14px;">
+										<i class="fa fa-microphone"></i>
+									</button>
+								</li>
 
 
-								<li><a href="#" onclick="voice()"> <i
-										class="pe-7s-search"></i>
-								</a></li>
+								<script type="text/javascript">
+						 
+						function startConverting ()
+						{
+						        if('webkitSpeechRecognition'in window)
+						        {
+						        	 var mic = new webkitSpeechRecognition();
+						        	   mic.continuous = true;
+						        	   mic.interimResults = true;
+						        	   mic.lang = 'ko-KR';
+						        	   mic.start();
+						        	   
+						        	   mic.onresult = function(e) {
+						        		   var b = '', c = false;
+						        		   for(var i = e.resultIndex; i < e.results.length; ++i) {
+						        		   b += e.results[i][0].transcript;
+						        		   c = e.results[i].isFinal;
+						        		   }
+						        		   if($('#speechbbbbox .cning').length < 1) $('#speechbbbbox').append('<span class="cning" style="display:none"></span>');
+						        		   $('#speechbbbbox .cning').text(b);
+						        		   $("#searchForm").val(b);
+						        		   if(c) $('#speechbbbbox .cning').removeClass('cning');
+						        		   mic.stop();
+						        		   };
+						        		   
+						        		mic.onend = function() {
+						        		   $('#speechbbbbox').removeClass('on');
+						        		   };
+						        }
+						        else{
+						        	$('#speechbbbbox').html('<strong>지원하지 않는 브라우저입니다.</strong>');
+						        }
+						    }
+						</script>
 
 
 
@@ -322,15 +370,14 @@ pre.prettyprint {
 											class="fa fa-fw fa-circle"></i>
 									</span>
 								</a>
-									<div class="dropdown-menu" aria-labelledby="alertsDropdown"
-										style="width: 400px;">
+									<div class="dropdown-menu" aria-labelledby="alertsDropdown">
 										<h6 class="dropdown-header">New Alerts:</h6>
 
 										<iframe src="main_feedList.do?idx=${sessionScope.useridx}"
 											width="100%" height="100%" frameborder="0"></iframe>
 
 										<div class="dropdown-divider"></div>
-
+										<a class="dropdown-item small" href="#">View all alerts</a>
 									</div></li>
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown"
@@ -432,7 +479,7 @@ pre.prettyprint {
 			<div class="col-sm-8 text-left" style="background: #f4f4f4;">
 				<a href="#" onclick="like(${content_idx})">
 				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a>
-					<input type="button" value="발자취" onclick="like(${content_idx})">
+					<input type="button" value="발자취" onclick="like(${content_idx})" >
 				<%-- <img src=""><input type="button" value="발자취"
 					onclick="like(${content_idx})"> --%>
 				<hr>

@@ -129,7 +129,7 @@
 	</p>
 	<form action="leaveMars.do" method="post">
 	<input type="hidden" name="idx" value="${sessionScope.useridx }">
-		<input type="submit" value="탈퇴">
+		<input type="submit" value="탈퇴"  class="btn btn-default">
 	</form>
                             </div>
                         </div>

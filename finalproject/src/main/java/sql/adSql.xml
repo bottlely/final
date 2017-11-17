@@ -45,6 +45,10 @@
   	select id from mars_member where idx = #{member_idx}
   	</select>
   	
+  	<select id="showAd" resultType="mars.ad.model.ApplyAdDTO">
+  	select * from ad where ${favor}=1
+  	</select>
+  	
   	
   	
   </mapper>

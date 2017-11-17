@@ -13,5 +13,5 @@ public interface MemberDAO {
 	public MemberDTO getUserInfo(String userid);
 	public MemberDTO getUserInfo_idx(int userid);
 	//public List<MemberDTO> memberSearch();
-	
+	public String getFavor(int idx);
 }
