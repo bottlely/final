@@ -374,5 +374,12 @@ public class AdminDAOImple implements AdminDAO {
 	   return dto;
 	   
    }
-
+   public int todayAd() {
+	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+	   Date currentTime = new Date ( );
+	   Date countTime = new Date ( currentTime.getTime());
+	   String dTime = formatter.format ( countTime );
+	   int ad = sqlMap.selectOne("countAd",dTime);
+	   return ad;
+   }
 }

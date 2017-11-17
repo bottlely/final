@@ -102,7 +102,7 @@
 							<div class="card-body-icon">
 								<i class="fa fa-fw fa-comments"></i>
 							</div>
-							<div class="mr-5">불편사항:0개 </div>
+							<div class="mr-5">Today Report :0개 </div>
 						</div>
 						<a class="card-footer text-white clearfix small z-1" href="#">
 							
@@ -115,7 +115,7 @@
 							<div class="card-body-icon">
 								<i class="fa fa-fw fa-list"></i>
 							</div>
-							<div class="mr-5">오늘가입한회원수:${todayjoin }명</div>
+							<div class="mr-5">Today Join :${todayjoin }명</div>
 						</div>
 						<a class="card-footer text-white clearfix small z-1" href="#">
 							
@@ -128,7 +128,7 @@
 							<div class="card-body-icon">
 								<i class="fa fa-fw fa-shopping-cart"></i>
 							</div>
-							<div class="mr-5">광고주문:0개</div>
+							<div class="mr-5">Today Order :${todayAd }개</div>
 						</div>
 						<a class="card-footer text-white clearfix small z-1" href="#">
 							
