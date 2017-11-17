@@ -1071,7 +1071,7 @@ var data = [
 						<c:if test="${list.category==2 }">
 							<div class="col-md-4 col-sm-6 col-xs-12  video">
 								<div class="works" style="height: 431px; background-color: white; max-width: 431px;">
-                        		   <video autoplay="autoplay" loop="loop" style="width:300px; height:100%;  ">
+                        		   <video autoplay="autoplay" muted loop="loop" style="width:300px; height:100%;  ">
 										<source src="myHomeFolder/content/${list.path }"
 											type="video/mp4">
 									</video>
