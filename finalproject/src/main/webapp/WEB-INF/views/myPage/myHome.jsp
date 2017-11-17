@@ -151,71 +151,6 @@ input:checked+.slider:before {
 }
 
 
-/* jssor slider loading skin spin css */
-.jssorl-009-spin img {
-	animation-name: jssorl-009-spin;
-	animation-duration: 1.6s;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
-}
-
-@
-keyframes jssorl-009-spin {from { transform:rotate(0deg);
-	
-}
-
-to {
-	transform: rotate(360deg);
-}
-
-}
-.jssorb051 .i {
-	position: absolute;
-	cursor: pointer;
-}
-
-.jssorb051 .i .b {
-	fill: #fff;
-	fill-opacity: 0.5;
-}
-
-.jssorb051 .i:hover .b {
-	fill-opacity: .7;
-}
-
-.jssorb051 .iav .b {
-	fill-opacity: 1;
-}
-
-.jssorb051 .i.idn {
-	opacity: .3;
-}
-
-.jssora051 {
-	display: block;
-	position: absolute;
-	cursor: pointer;
-}
-
-.jssora051 .a {
-	fill: none;
-	stroke: #fff;
-	stroke-width: 360;
-	stroke-miterlimit: 10;
-}
-
-.jssora051:hover {
-	opacity: .8;
-}
-
-.jssora051.jssora051dn {
-	opacity: .5;
-}
-
-.jssora051.jssora051ds {
-	opacity: .3;
-	pointer-events: none;
-}
 
 .modal2 {
 	display: none; /* Hidden by default */
@@ -234,14 +169,12 @@ to {
 /* Modal Content */
 .modal-content {
 	position: relative;
-	background-color: #fefefe;
+	background-color:blue;
 	margin: auto;
 	padding: 0;
-	border: 1px solid #888;
 	width: 40%;
 	height: 24%;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
-		rgba(0, 0, 0, 0.19);
+	box-shadow:none;
 	-webkit-animation-name: animatetop;
 	-webkit-animation-duration: 0.4s;
 	animation-name: animatetop;
@@ -815,14 +748,14 @@ function showResult2(){
 					<section id="viewForm" style="">
 						<!-- Modal body -->
 						<div class="container"
-							style="width: 100%; font-size: 15px; overflow: hidden;">
+							style="width: 100%; font-size: 15px; overflow: hidden; margin-top:10px;">
 							<div class="row">
-								<div class="col-md-12"
-									style="margin-top: 50px; margin-right: 10px;">
+								<div class="col-md-12">
 									<div class="thumbnail">
 										<img src="js/profile.png">
 									</div>
 								</div>
+							</div>
 
 								<div class="row">
 									<div class="col-md-12">
@@ -837,7 +770,7 @@ function showResult2(){
 											<div id="myModal2" class="modal2">
 												<!-- Modal content // contentMore -->
 												<!-- Modal content -->
-												<div class="modal-content">
+												<div class="modal-content" style="background:none; box-shadow:none; border:0px;">
 													<span class="close"></span>
 													<div class="modal-body">
 														<a href="#"
@@ -887,13 +820,12 @@ function showResult2(){
 										</div>
 									</div>
 								</div>
-							</div>
 						</div>
 					</section>
 				</div>
 			</div>
 		</div>
-	</div>
+		</div>
 </body>
 
 <script>
