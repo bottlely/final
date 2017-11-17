@@ -33,9 +33,7 @@
 <link href="assets_setting/css/demo.css" rel="stylesheet" />
 
 <!--  Fonts and icons     -->
-<link
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
-	rel="stylesheet">
+
 <link href='https://fonts.googleapis.com/css?family=Muli:400,300'
 	rel='stylesheet' type='text/css'>
 <link href="assets_setting/css/themify-icons.css" rel="stylesheet">
@@ -150,7 +148,7 @@
 												<td><input type="text" name="tel" value="${dto.tel }"></td>
 											</tr>
 										</table>
-										<h1>추가설정</h1>
+										<h3>Add <small>Settings</small></h3>
 										<hr>
 										<table>
 											<tr>
@@ -192,7 +190,7 @@
 											</tr>
 										</table>
 										<p>
-											<input type="submit" value="수정">
+											<input type="submit" value="수정"  class="btn btn-default">
 										</p>
 									</form>
 								</div>

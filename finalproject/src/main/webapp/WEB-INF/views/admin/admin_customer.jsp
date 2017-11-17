@@ -173,7 +173,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:if test="${empty lists }">내용이 없습니다. </c:if>
+								<c:if test="${empty lists }"> </c:if>
 								<c:forEach var="dto" items="${lists }">
 									<tr id="${dto.category }">
 										<td>${dto.name}</td>

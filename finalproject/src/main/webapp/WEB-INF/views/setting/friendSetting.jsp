@@ -213,7 +213,7 @@ $(document).ready(function(){
 									<hr>
 									<!--친구목록  -->
 									<p align="right">
-										<input type="button" value="+" onclick="addGroupForm()">
+										<input type="button" value="+" onclick="addGroupForm()"  class="btn btn-default">
 									</p>
 									<ul>
 										<c:if test="${empty g_list }">

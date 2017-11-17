@@ -130,7 +130,7 @@
 											</tr>
 											<tr>
 												<td colspan="4" align="center"><input type="submit"
-													value="Send"><input type="reset" value="Reset"></td>
+													value="Send"  class="btn btn-default"><input type="reset" value="Reset"  class="btn btn-default"></td>
 											</tr>
 										</table>
 									</form>
