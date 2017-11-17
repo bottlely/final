@@ -220,6 +220,224 @@ to {
 	text-decoration: none;
 	cursor: pointer;
 }
+
+/*   ===========================================================
+   06. Latest Works
+   =========================================================== */
+.works-category {
+   margin-bottom: 65px;
+}
+
+.works-category li {
+   font-size: 16px;
+   padding-left: 12px;
+   padding-right: 12px;
+}
+
+.works-category li .current {
+   color: #C0301C;
+   text-decoration: none;
+}
+
+.works {
+   margin-top: 30px;
+   position: relative;
+}
+
+.work-overlay {
+   opacity: 0;
+   background: rgba(192, 48, 28, 0.7);
+   position: absolute;
+   left: 0;
+   right: 0;
+   top: 0;
+   bottom: 0;
+   /*to Centralize*/
+   display: flex;
+   justify-content: center;
+   flex-direction: column;
+
+   -webkit-transition: 400ms;
+   -moz-transition: 400ms;
+   -ms-transition: 400ms;
+   -o-transition: 400ms;
+   transition: 400ms;
+}
+
+.overlay-caption {
+   margin: 0 auto;
+   color: #fff;
+}
+
+.overlay-caption p {
+   font-size: 12px;
+}
+
+.overlay-caption {
+   padding-top: 10px;
+   -webkit-transition: 300ms ease-in-out;
+   -moz-transition: 300ms ease-in-out;
+   -ms-transition: 300ms ease-in-out;
+   -o-transition: 300ms ease-in-out;
+   transition: 300ms ease-in-out;
+}
+
+a.btn-view {
+   font-family: 'Roboto Slab', serif;
+   text-align: left;
+   padding-left: 26px;
+   font-size: 14px;
+   width: 100px;
+   height: 40px;
+   line-height: 40px;
+   border: 1px solid #fff;
+   display: block;
+   letter-spacing: 1px;
+   -webkit-transition: 20ms;
+   -moz-transition: 20ms;
+   -ms-transition: 20ms;
+   -o-transition: 20ms;
+   transition: 20ms;
+
+}
+
+.btn-view i {
+   font-size: 17px;
+   -webkit-transition: 300ms;
+   -moz-transition: 300ms;
+   -ms-transition: 300ms;
+   -o-transition: 300ms;
+   transition: 300ms;
+
+}
+
+.works:hover .work-overlay {
+   opacity: 1;
+}
+
+.works:hover .overlay-caption {
+   padding-top: 0px;
+   margin-bottom: 10px;
+}
+
+.btn-view:hover {
+   background: #fff;
+   color: #c0301c;
+}
+
+.btn-view:hover i {
+   padding-left: 5px;
+   opacity: 1;
+}
+
+/* Statistics */
+
+   .statistics {
+      display: -moz-flex;
+      display: -webkit-flex;
+      display: -ms-flex;
+      display: flex;
+      width: 100%;
+      margin: 0 0 3em 0;
+      padding: 0;
+      list-style: none;
+      cursor: default;
+   }
+
+      .statistics li {
+         -moz-flex: 1;
+         -webkit-flex: 1;
+         -ms-flex: 1;
+         flex: 1;
+         padding: 1.5em;
+         color: #ffffff;
+         text-align: center;
+      }
+
+         .statistics li.style1 {
+            background-color: #efa8b0;
+         }
+
+         .statistics li.style2 {
+            background-color: #c79cc8;
+         }
+
+         .statistics li.style3 {
+            background-color: #a89cc8;
+         }
+
+         .statistics li.style4 {
+            background-color: #9bb2e1;
+         }
+
+         .statistics li.style5 {
+            background-color: #8cc9f0;
+         }
+
+         .statistics li strong, .statistics li b {
+            display: block;
+            font-size: 2em;
+            line-height: 1.1;
+            color: inherit !important;
+            font-weight: 300;
+            letter-spacing: -0.025em;
+         }
+
+         .statistics li:first-child {
+            border-top-left-radius: 8px;
+            border-bottom-left-radius: 8px;
+         }
+
+         .statistics li:last-child {
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+         }
+
+         .statistics li .icon {
+            display: inline-block;
+         }
+
+            .statistics li .icon:before {
+               font-size: 2.75rem;
+               line-height: 1.3;
+            }
+
+      @media screen and (max-width: 980px) {
+
+         .statistics li strong, .statistics li b {
+            font-size: 1.5em;
+         }
+
+      }
+
+      @media screen and (max-width: 736px) {
+
+         .statistics {
+            display: block;
+            width: 20em;
+            max-width: 100%;
+            margin: 0 auto 2em auto;
+         }
+
+            .statistics li:first-child {
+               border-bottom-left-radius: 0;
+               border-top-right-radius: 8px;
+            }
+
+            .statistics li:last-child {
+               border-top-right-radius: 0;
+               border-bottom-left-radius: 8px;
+            }
+
+            .statistics li .icon:before {
+               font-size: 3.75rem;
+            }
+
+            .statistics li strong, .statistics li b {
+               font-size: 2.5em;
+            }
+}
+      
 </style>
 
 <script type="text/javascript">
@@ -648,11 +866,9 @@ function showResult2(){
 </span>
 
 <!-- 게시물작성아이콘 -->
-
-<span id="plusicon">
 <c:if test="${sessionScope.useridx eq mhdto.getMember_idx()}">
+<span id="plusicon">
 
-   
    <button style="width:30px;border:0px;padding:none;" class="showMask2">
    <i class="fa fa-plus-square-o" style="position:relative;font-size: 30px;color: #BDBDBD;"></i></button>
 
@@ -670,7 +886,6 @@ function showResult2(){
                <img width="50" height="50"
                src="myHomeFolder/category/shootIcon.png" onclick="uploadOpen(4)">
          </div>
-   </c:if>
 </span>
 
 	<!-- 광고관리 아이콘-->
@@ -688,6 +903,7 @@ function showResult2(){
 		     </div>     
 		</span>
 	</c:if>
+</c:if>
 </div>
 
 
@@ -706,15 +922,58 @@ function showResult2(){
    
 </header>
 </section>
+      
+      <!-- 내피드 -->         
+   <div class="container">
+         <div class="row"></div>
+         <div class="row text-center">
+            <div class="works-category" data-sr='enter top, wait 0.2s'>
+               <ul class="statistics">
+                  <li class="style1"><a href="#" data-filter="*"
+                     class="current">All</a></li>
+                  <li class="style2"><a href="# " data-filter=".photo">PHOTO</a></li>
+                  <li class="style3"><a href="#" data-filter=".video">VIDEO</a></li>
+                  <li class="style4"><a href="#" data-filter=".text">TEXT</a></li>
+               </ul>
+            </div>
+
+            <!--  전체 피드 목록 -->
+            <div class="works-area">
                
+               <c:if test="${empty contentList}">게시글 없음</c:if>
+                <c:forEach var="contentList" items="${contentList }">
+                  <!--사진  -->
+                  
+                     <div class="col-md-4 col-sm-4 col-xs-4  photo">
+                        <div class="works" style="height: 180px;">
+                           <img src="myHomeFolder/content/${contentList.path}" alt="" style="width: 180px; height: 180px;">
+                           <div class="work-overlay text-center">
+                              <div class="overlay-caption">
+                                 <h4>PHOTO</h4>
+                              
+                                    
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
                
-   <section id="middle">         
-         <!-- 내 피드 -->            
+                  <!-- 동영상 -->
+               
+                  <!-- 텍스트 -->
+            
+               </c:forEach>
+            </div>
+         </div>
+      </div>         
+               
+  <!--  <section id="middle">         
+         내 피드 
       
       <div class="myfeedcategory">
       <ul>
          <li><input type="button" value="PHOTO" onclick="showMyPhoto()"></li>
-         <li><input type="button" value="VIEDEO"></li>
+         <li><input type="button" value="VIDEO"></li>
          <li><input type="button" value="TEXT"></li>
       </ul>
       </div>
@@ -728,17 +987,23 @@ function showResult2(){
          	</tr>
          </c:if>
          	<tr>
-         <c:forEach var="contentList" items="${contentList }">
+         <c:forEach var="contentList" items="${contentList }" varStatus="aa">
       		
          	<td><a href="#myModal" data-toggle="modal" data-target="#myModal"><img src="myHomeFolder/content/${contentList.path}"></a></td>
+         <c:if test="${contentList.category==2 }">
+         	<td><a href="#myModal" data-toggle="modal" data-target="#myModal"><video autoplay="autoplay" loop="loop" style="width: 180px; height: 180px;">
+				<source src="myHomeFolder/content/${contentList.path }" type="video/mp4"></video></a></td>
+         	</c:if>
+         	<c:if test="${aa.count%3==0 && aa.count!=size}">
+         	</tr><tr>
+         	</c:if>
          </c:forEach>
          
          	</tr>
          	</table>
              
       </div>
-      </section>
-
+      </section> -->
 
 		<!-- The Modal -->
 	<div class="container">
@@ -855,4 +1120,23 @@ window.onclick = function(event) {
     }
 }
 </script>
+<script src="assets_main/js_1/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="assets_main/js_1/bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript"
+   src="assets_main/owl-carousel/owl.carousel.min.js"></script>
+<script type="text/javascript" src="assets_main/js_1/main.js"></script>
+<script type="text/javascript"
+   src="assets_main/js/jquery.stellar.min.js"></script>
+
+
+<script src="assets_main/js_1/ct-navbar.js"></script>
+<!--Parallax-->
+<!--IsoTop-->
+<script type="text/javascript" src="assets_main/js/isotope.pkgd.min.js"></script>
+<!--Typed js-->
+<script type="text/javascript" src="assets_main/js/typed.js"></script>
+<!--Smooth Scroll-->
+<script type="text/javascript" src="assets_main/js/smooth-scroll.js"></script>
+<!--Reveal JS-->
+<script type="text/javascript" src="assets_main/js/scrollReveal.min.js"></script>
 </html>
