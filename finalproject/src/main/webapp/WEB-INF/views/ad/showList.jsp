@@ -8,15 +8,14 @@
 <meta content="text/html; charser=UTF-8" http-equiv="Content-Type">
 <title>Insert title here</title>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
 </head>
 <style>
 body {
-	background-color:#f2fdff;
+	background-color:white;
 }
 
 </style>
@@ -24,35 +23,32 @@ body {
 
 <c:forEach var="o" items="${list}">
 <div class="container" style="margin-top:10px;">
-<div class="card bg-success text-white">
-    <div class="card-body"><h5>${o.name}.Company 광고 요청서</h5></div>
-
+<div >
+    <div class="card-body"><h3>${o.name}.Company <small> 광고 요청서</small></h3></div>
+	
 </div>
 <table class="table">
-	<tr class="table-primary">
+	<tr class="success">
 		<th>Ad_Name</th>
 		<td>${o.ad_name }</td>
 	</tr>
-	<tr class="table-info">
+	<tr class="danger">
 		<th>Type</th>
 		<td>${o.type }</td>
 	</tr>
-	<tr class="table-primary">
+	<tr class="info">
 		<th>Link</th>
 		<td>${o.link }</td>
 	</tr>
-	<tr class="table-info">
+	<tr class="warning">
 		<th>Fee</th>
 		<td>${o.fee }</td>
 	</tr>
-	<tr class="table-primary">
-		<td  colspan="2">During</td>
-	</tr>
-	<tr class="table-info">
+	<tr class="success">
 		<th>From</th>
 		<td>${o.s_date }</td>
 	</tr>
-	<tr class="table-primary">
+	<tr class="danger">
 		<th>To</th>
 		<td>${o.e_date }</td>
 	</tr>

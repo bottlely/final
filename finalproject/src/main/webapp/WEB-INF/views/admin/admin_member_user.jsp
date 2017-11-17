@@ -9,6 +9,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <style>
+  .rounded {
+	border-radius: 100em !important;
+}
+
+.darkGrey {
+	background: #595770;
+	color: #fff;
+	border: none;
+	
+}
+
+  
+  
+  </style>
  <title>MARS - Admin</title>
    <!-- Bootstrap core CSS-->
   <link href="assets_admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -182,25 +197,30 @@
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="#">Dashboard</a>
+          <a href="#">Member</a>
         </li>
-        <li class="breadcrumb-item active">Tables</li>
+        <li class="breadcrumb-item active">Users</li>
       </ol>
       <!-- Example DataTables Card-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-table"></i> Data Table Example</div>
+          <i class="fa fa-table"></i> Search</div>
         <div class="card-body">
         <select name="select" id="select">
            <option value="0">이름</option>
            <option value="1">ID</option>
         </select>
         <input type="text" id="search">
-        <input type="button" value="검색" onclick="search()">
+        <input type="button" value="검색" onclick="search()" class="btn btn-primary">
+        <br><br>
+        <div class="card-header">
+        	 상세검색</div>
         <form name="detail_Search" action="detail_Search.do">
            <section>
-              <fieldset>
-                 <legend>상세 검색</legend>
+           <br>
+              <fieldset >
+                  
+          
                  YEAR :  <select name="startYear">
                           <option value="1950">시작 년도</option>
                              <c:forEach var="startYear" begin="1950" end="2012" step="1">
@@ -231,8 +251,8 @@
                           <option value="daegu">daegu</option>
                           <option value="daejeon">daejeon</option>
                           <option value="busan">busan</option>
-                       </select><br>
-                       <input type="submit" value="상세 검색">
+                       </select><br><br>
+                       <input type="submit" value="상세 검색" class="btn btn-primary">
               </fieldset>
            </section>
         </form>
@@ -249,6 +269,7 @@
            }
         </script>
           <div class="table-responsive">
+          <br>
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
@@ -265,7 +286,7 @@
                  <c:forEach var="dto" items="${list }">
                    <tr>
                       <td>${dto.name } // ${dto.idx }</td>
-                      <td><input type="button" value="회원 탈퇴" onclick="memberDelete('${dto.idx}')"></td>
+                      <td><input type="button" value="회원 탈퇴" onclick="memberDelete('${dto.idx}')" class="btn btn-danger"></td>
                       <script>
                          function memberDelete(idx){
                             location.href='admin_memberDelete.do?idx='+idx;
