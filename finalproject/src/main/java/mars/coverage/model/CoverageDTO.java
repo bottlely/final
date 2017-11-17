@@ -7,19 +7,24 @@ public class CoverageDTO {
 	private int coverage_state;
 	private String idx_to;
 	private int idx_from;
+	private String idx_group;
 	
 	public CoverageDTO() {
 		super();
 	}
-
-	public CoverageDTO(int content_idx, int coverage_idx, int coverage_state, String idx_to, int idx_from) {
+	
+	public CoverageDTO(int content_idx, int coverage_idx, int coverage_state, String idx_to, int idx_from,
+			String idx_group) {
 		super();
 		this.content_idx = content_idx;
 		this.coverage_idx = coverage_idx;
 		this.coverage_state = coverage_state;
 		this.idx_to = idx_to;
 		this.idx_from = idx_from;
+		this.idx_group = idx_group;
 	}
+
+
 
 	public int getContent_idx() {
 		return content_idx;
@@ -59,6 +64,14 @@ public class CoverageDTO {
 
 	public void setIdx_from(int idx_from) {
 		this.idx_from = idx_from;
+	}
+
+	public String getIdx_group() {
+		return idx_group;
+	}
+
+	public void setIdx_group(String idx_group) {
+		this.idx_group = idx_group;
 	}
 	
 }

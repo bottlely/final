@@ -13,7 +13,7 @@
 	
 	<insert id="coverageInsert" parameterType="mars.coverage.model.CoverageDTO">
 		insert into coverage values
-		(#{content_idx}, coverage_idx.nextval, #{coverage_state},#{idx_to},#{idx_from})
+		(#{content_idx}, coverage_idx.nextval, #{coverage_state},#{idx_to},#{idx_from},#{idx_group})
 	</insert>
 	
 	<select id="coverageList" parameterType="String" resultType="mars.coverage.model.CoverageDTO">
