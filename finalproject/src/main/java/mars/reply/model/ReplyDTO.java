@@ -18,6 +18,7 @@ public class ReplyDTO {
    private int numtype2;
    private String vartype1;
    private String vartype2;
+   private Date likedate;
  
    private MyHomeDTO myhome;
    
@@ -125,6 +126,18 @@ public ReplyDTO() {
    public void setVartype2(String vartype2) {
       this.vartype2 = vartype2;
    }
+public Date getLikedate() {
+	return likedate;
+}
+public void setLikedate(Date likedate) {
+	this.likedate = likedate;
+}
+public MyHomeDTO getMyhome() {
+	return myhome;
+}
+public void setMyhome(MyHomeDTO myhome) {
+	this.myhome = myhome;
+}
    
    
 }

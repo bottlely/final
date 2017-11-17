@@ -1,5 +1,6 @@
 package mars.controller;
 
+import java.sql.Date;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import mars.activity.model.ActivityDAO;
+import mars.activity.model.ActivityDTO;
+import mars.follow.model.FollowDAO;
+import mars.myHome.model.MyHomeDTO;
 import mars.reply.model.*;
 
 @Controller
@@ -14,6 +20,12 @@ public class ReplyController {
 
    @Autowired
    private ReplyDAO replydao;
+   
+   @Autowired
+   private FollowDAO followDao;
+   
+   @Autowired
+	private ActivityDAO actDao;
 
    @RequestMapping("/replyList.do")
    public ModelAndView replyList(@RequestParam("content_idx") int content_idx) {
@@ -139,23 +151,30 @@ public class ReplyController {
       
       HashMap map = new HashMap<String, String>();
 
-      map.put("member_idx", member_idx);
+      map.put("member_idx", member_idx); //to_idx
       map.put("content_idx", content_idx);
-      map.put("session_idx", session_idx);
+      map.put("session_idx", session_idx); //from_idx
       
       int result = replydao.likeSelect(map);
       
       String img_Path;
-      
+     
       System.out.println(result);
       if(result == 1){
          replydao.like_delete(map);
          
          img_Path = "likeImg/unlike.png";
+        
+         actDao.ac_delete(session_idx, member_idx, content_idx);
       }else{
          replydao.like(map);
          
          img_Path = "likeImg/like.png";
+         
+         //like를 안눌렀을 때는 db에 데이타없어
+         MyHomeDTO list = followDao.ac_name_img(member_idx);
+         ReplyDTO rdto = actDao.ac_reply_list(member_idx, content_idx, session_idx);
+         actDao.ac_insert(session_idx, member_idx, content_idx, rdto.getLikedate(), list.getName(), list.getProfile_img());
       }
       
       ModelAndView mav = new ModelAndView("marsJson", "img_Path", img_Path); //, "", 蹂��닔 蹂대궡湲�

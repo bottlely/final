@@ -58,4 +58,7 @@
    <select id="lev" parameterType="HashMap" resultType="Integer">
          select lev from mars_reply where idx=#{reply_idx}
    </select>
+   <select id="ac_like" parameterType="hashMap" resultType="mars.reply.model.ReplyDTO">
+		select * from mars_like where from_idx=#{from_idx} and to_idx=#{to_idx} and content_idx=#{content_idx}   
+   </select>
 </mapper>
