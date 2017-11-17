@@ -16,4 +16,6 @@ public interface ReplyDAO {
    public void like(HashMap<String, String> map);
    public int likeSelect(HashMap<String, String> map);
    public void like_delete(HashMap<String, String> map);
+   public void delete_re_Reply(HashMap<String, String> map);
+   public int lev(HashMap<String, String> map);
 }

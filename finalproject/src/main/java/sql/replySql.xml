@@ -22,17 +22,14 @@
    <insert id="re_AddReply" parameterType="HashMap">
       insert into mars_reply values(mars_reply_idx.nextval, #{member_idx}, #{content_idx}, #{session_idx}, #{content}, 1, #{sunbun}, sysdate,  #{ref}, 0, 0, 0)
    </insert>
-   <!-- <update id="update_Reply" parameterType="HashMap">
-         update from mars_reply set content=#{content} where idx={reply_idx}
-   </update> -->
+   <update id="update_reply" parameterType="HashMap">
+         update mars_reply set content=#{content} where idx=#{reply_idx}
+   </update>
    <delete id="delete_Reply" parameterType="Integer">
-         delete from mars_reply where idx=#{reply_idx} and 
-         <if test="#{ref == 0}">
-         	ref=#{ref}
-         </if>
-         <if test="#{ref == 1}">
-         	ref=#{ref} or ref=0
-         </if>
+         delete from mars_reply where idx=#{reply_idx}
+   </delete>
+   <delete id="delete_re_Reply" parameterType="HashMap">
+         delete from mars_reply where ref=#{ref} 
    </delete>
    <select id="ref" parameterType="Integer" resultType="Integer">
          select ref from mars_reply where idx=#{reply_idx}
@@ -53,9 +50,12 @@
          insert into mars_like values(mars_like_idx.nextval, #{member_idx}, #{content_idx}, #{session_idx}, sysdate, 1, 0, 0, 0)
    </insert>
    <select id="likeSelect" parameterType="HashMap" resultType="Integer">
-         select nvl(count(flag),0) from mars_like where content_idx=20 and to_idx=27
+         select nvl(count(flag),0) from mars_like where content_idx=#{content_idx} and to_idx=#{session_idx}
    </select>
    <delete id="like_delete" parameterType="HashMap">
          delete from mars_like where content_idx=#{content_idx} and to_idx=#{session_idx}
    </delete>
+   <select id="lev" parameterType="HashMap" resultType="Integer">
+         select lev from mars_reply where idx=#{reply_idx}
+   </select>
 </mapper>

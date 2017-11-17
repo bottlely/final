@@ -28,7 +28,7 @@ public class ReplyDAOImple implements ReplyDAO {
    }
 
    public void update_Reply(HashMap<String, String> map) {
-      sqlMap.update("update_Reply", map);
+      sqlMap.update("update_reply", map);
    }
 
    public void delete_Reply(HashMap<String, String> map) {
@@ -76,5 +76,15 @@ public class ReplyDAOImple implements ReplyDAO {
 
    public void like_delete(HashMap<String, String> map) {
       sqlMap.delete("like_delete", map);
+   }
+
+   public void delete_re_Reply(HashMap<String, String> map) {
+      sqlMap.delete("delete_re_Reply", map);
+   }
+
+   public int lev(HashMap<String, String> map) {
+      int lev = sqlMap.selectOne("lev", map);
+      
+      return lev;
    }
 }

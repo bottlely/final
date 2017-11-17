@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import mars.content.model.ContentDTO;
 import mars.feed.model.FeedDAO;
+import mars.member.model.MemberDAO;
+import mars.member.model.MemberDTO;
 import mars.reply.model.MyHomeReplyDTO;
 import mars.reply.model.ReplyDAO;
 import mars.reply.model.ReplyDTO;
@@ -27,6 +29,9 @@ public class MainController {
    
    @Autowired
    private ContentDAO cDao;
+   
+   @Autowired
+   private MemberDAO mdao;
 
    @RequestMapping("main.do")
    public ModelAndView mainPage() {
@@ -45,17 +50,33 @@ public class MainController {
    }
 
    @RequestMapping("main_view.do")
-   public ModelAndView main_viewPage(@RequestParam("content_idx")int content_idx) {
+   public ModelAndView main_viewPage(@RequestParam("content_idx")int content_idx,
+                               @RequestParam("session_idx")int session_idx) {
       List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
       
+      HashMap map = new HashMap<String, String>();
+      
+      map.put("content_idx", content_idx);
+      map.put("session_idx", session_idx);
+      
+      int result = replydao.likeSelect(map);
+      
       ModelAndView mav = new ModelAndView();
-      String str = String.valueOf(content_idx);
-      ContentDTO dto = cDao.contentOne(str);
+      
       mav.addObject("list", list);
-      mav.addObject("content",dto);
+      mav.addObject("result", result);
       mav.addObject("content_idx", content_idx);
       
       mav.setViewName("main/main_view");
+      
+      return mav;
+   }
+   
+   @RequestMapping("filter.do")
+   public ModelAndView filter(){
+      List<MemberDTO> list = mdao.memberSearch();
+      
+      ModelAndView mav = new ModelAndView("mars", "memberList", list);
       
       return mav;
    }

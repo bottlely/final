@@ -502,25 +502,48 @@ var data = [
          });
                
          function openpic(content_idx){
-            document.getElementById('c_idx').value=content_idx;
-            var category = document.getElementById('category_'+content_idx).value;
-            var path = document.getElementById('path_'+content_idx).value;
-            var writer = document.getElementById('writer_'+content_idx).value;
-            var content = document.getElementById('content_'+content_idx).value;
+        	 document.getElementById('c_idx').value=content_idx;
+             var category = document.getElementById('category_'+content_idx).value;
+             var path = document.getElementById('path_'+content_idx).value;
+             
+             var cut = path.split('?');
+             window.alert(cut.length);
+             
+             var writer = document.getElementById('writer_'+content_idx).value;
+             var content = document.getElementById('content_'+content_idx).value;
+             var profile = document.getElementById('profile_'+content_idx).value;
+             window.alert(profile);
             
-            sendRequest('replyList.do?content_idx='+content_idx, null, replyList, 'GET');
+            sendRequest('likeList.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
          
-         if(category==1){
-        	 $('#galleryImage').attr("src",path);
-         }else if(category==2){
-        	 $('#galleryImage').attr("src","");
-        	$('#galleryVideo').attr("src", path);
-        	$("#a_video").load();
-			document.getElementById("a_video").play();
-         }
-            
-            document.getElementById('c_writer').innerHTML = writer;
-            document.getElementById('c_content').innerHTML = content;
+            if(category==1){
+                $('#galleryImage').attr("src",path);
+                 /*  var bg_div = document.createElement('div');
+                 
+                 for(var i=0; i < cut.length-1; i++) {
+                    alert(cut[i]);
+                    var div = document.createElement('div');
+                     var img = document.createElement('img');
+                     
+                     img.setAttribute("data-u", "image");
+                     alert(cut[i]);
+                     img.setAttribute("src", cut[i]);
+                     
+                     div.appendChild(img);
+                     bg_div.appendChild(div);
+                 }
+                 
+                 document.getElementById('slide_div').appendChild(bg_div); */
+             }else if(category==2){
+                $('#galleryImage').attr("src","");
+               $('#galleryVideo').attr("src", path);
+               $("#a_video").load();
+             document.getElementById("a_video").play();
+             }
+                
+                document.getElementById('c_writer').innerHTML = writer;
+                document.getElementById('c_content').innerHTML = content;
+                $('#c_profile').attr("src", "myHomeFolder/profile_img/"+profile);
             
           //contentMore
             var memberidx = document.getElementById('memberidx_'+content_idx).value;
@@ -531,6 +554,30 @@ var data = [
                document.getElementById('contentMore').innerHTML = '<a class="list-group-item list-group-item-warning" onclick="reportContent('+content_idx+')"> 신고 </a>';
             }
          } 
+         
+         function like(){
+             var session_idx = document.getElementById("session_idx").value;
+           var content_idx = document.getElementById("c_idx").value;
+           
+              sendRequest('like.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
+          }
+          
+          function likeList(){
+              if(XHR.readyState==4){
+                if(XHR.status==200){
+                   var content_idx = document.getElementById("c_idx").value;
+                   var data = XHR.responseText;
+                   var lists = eval('('+data+')');
+                   var like_List = document.all.like_List;
+                
+                   document.getElementById('like_Img').src=lists.img_Path;
+                   
+                   XHR = getXHR();
+                   
+                   sendRequest('replyList.do?content_idx='+content_idx, null, replyList, 'GET');
+                }
+             } 
+          }
          
          //contentMore
          function deleteContent(content_idx){
@@ -564,7 +611,7 @@ var data = [
 	         
 	      } 
          
-         function replyList(){
+	     function replyList(){
              if(XHR.readyState==4){
                 if(XHR.status==200){
                    var data = XHR.responseText;
@@ -584,66 +631,69 @@ var data = [
                          
                          if(l.lev == 0){
                             if(l.name == userName){
-                               str += l.profile_img + " : " + l.name + " : " + '<input type="text" id="' + l.idx + 'update_content" style="display: none;" value="' + l.content + '">'+l.content+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
                             }else{
-                               str += l.profile_img + " : " + l.name + " : " + l.content + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
+                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
                             }
                             
                          }else{
                             if(l.name == userName){
-                               str += '=>' + l.profile_img + " : " + l.name + " : " + l.content + '<br>' + '<input type="button" value="수정" >' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
+                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
                             }else{
-                               str += '=>' + l.profile_img + " : " + l.name + " : " + l.content + '<hr>';
+                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<hr>';
                             }
                          }
                       }
                       reply_list.innerHTML = str;
                    }
+                   
+                   XHR = getXHR();
                 }
              }
           }
          
-         function re_Reply(idx){
-        	 var re_content = document.getElementById(idx+"text")
-        	 var re_ok = document.getElementById(idx+"btn")
-             var content = document.getElementById(idx+"text").value;
-             var content_idx = document.getElementById("c_idx").value;
-             var session_idx = document.getElementById("session_idx").value;
-             
-             sendRequest('re_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx+'&session_idx='+session_idx, null, replyList,'GET');
-             
-             re_content.style.display = 'none';
-               re_ok.style.display = 'none';
-          }
-         
-         function ondisplay(idx){
-             var re_content = document.getElementById(idx+"text");
-             var re_ok = document.getElementById(idx+"btn");
-             
-             re_content.style.display = 'block';
-             re_ok.style.display = 'block';
-          }
-         
-         function updateDisplay(idx){
-             var update_content = document.getElementById(idx+"update_content");
-             var update_ok = document.getElementById(idx+"update_ok");
-             
-             update_content.style.display = 'block';
-             update_ok.style.display = 'block';
-          }
-         
-         function update_Reply(idx){
-             var content = document.getElementById("content").value;
-             var content_idx = document.getElementById("c_idx").value;
-             
-             location.href="update_Reply.do?reply_idx="+idx+"&content="+content+"&content_idx="+content_idx;
-          } 
-          
-           function delete_Reply(idx){
-             var content_idx = document.getElementById('c_idx').value;
-             
-             sendRequest('delete_Reply.do?reply_idx='+idx+'&content_idx='+content_idx, null, replyList,'GET');
-          }
+	     function re_Reply(idx){
+	            var re_content = document.getElementById(idx+"text")
+	            var re_ok = document.getElementById(idx+"btn")
+	             var content = document.getElementById(idx+"text").value;
+	             var content_idx = document.getElementById("c_idx").value;
+	             var session_idx = document.getElementById("session_idx").value;
+	             
+	             sendRequest('re_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx+'&session_idx='+session_idx, null, replyList,'GET');
+	             
+	             re_content.style.display = 'none';
+	               re_ok.style.display = 'none';
+	          }
+	         
+	         function ondisplay(idx){
+	             var re_content = document.getElementById(idx+"text");
+	             var re_ok = document.getElementById(idx+"btn");
+	             
+	             re_content.style.display = 'block';
+	             re_ok.style.display = 'block';
+	          }
+	         
+	         function updateDisplay(idx){
+	             var update_content = document.getElementById(idx+"update_content");
+	             var update_ok = document.getElementById(idx+"update_ok");
+	             
+	             update_content.readOnly = false;
+	             update_content.style.border = '1px solid';
+	             update_ok.style.display = 'block';
+	          }
+	         
+	         function update_Reply(idx){
+	             var content = document.getElementById(idx+"update_content").value;
+	             var content_idx = document.getElementById("c_idx").value;
+	             
+	             sendRequest('update_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx, null, replyList,'GET');
+	          } 
+	          
+	           function delete_Reply(idx){
+	             var content_idx = document.getElementById('c_idx').value;
+	             
+	             sendRequest('delete_Reply.do?reply_idx='+idx+'&content_idx='+content_idx, null, replyList,'GET');
+	          }
          
             function test1(idx) {
                   document.getElementById('ppp').src='myHomeForm.do?useridx='+idx;
@@ -659,15 +709,13 @@ var data = [
                   } */
                }
          
-          function addReply(){
-               var session_idx = document.getElementById('session_idx').value;
-               
-               var c_idx = document.getElementById('c_idx').value;
-               window.alert(c_idx);
-                  var content = document.getElementById('content').value;
-                  
-                  sendRequest("reply.do?content="+content+"&content_idx="+c_idx+"&session_idx="+session_idx, null, replyList, 'GET');
-               }
+            function addReply(){
+	                var session_idx = document.getElementById('session_idx').value;
+	                var c_idx = document.getElementById('c_idx').value;
+	                var content = document.getElementById('content').value;
+	                   
+	                sendRequest("reply.do?content="+content+"&content_idx="+c_idx+"&session_idx="+session_idx, null, replyList, 'GET');
+	           }
          
           function btn_cancle1() {
                 var more2 = document.getElementById('more2');
@@ -721,8 +769,8 @@ var data = [
                 document.getElementById('hidden_other_idx').value=other_idx;
              }
 
-             function openContent(content_idx) {
-            	 location.href='main_view.do?content_idx='+content_idx;
+             function openContent(content_idx, uesridx) {
+            	 location.href='main_view.do?content_idx='+content_idx+'&session_idx='+useridx;
              }
 </script>
 <body>
@@ -1077,15 +1125,12 @@ var data = [
 	</section>
 	<!-- end main -->
 	<input type="hidden" id="session_idx" value="${sessionScope.useridx }">
-	<input type="hidden" id="session_name"
-		value="${sessionScope.username }">
+	<input type="hidden" id="session_name" value="${sessionScope.username }">
 	<div id="galleryModal" class="modal fade" tabindex="-1" role="dialog"
-		aria-hidden="true"
-		style="border: solid; overflow: auto; background-color: rgba(0, 0, 0, 0.2);">
+		aria-hidden="true" style="border: solid; overflow: auto; background-color: rgba(0, 0, 0, 0.2);">
 		<div style="margin: 2% 10%;">
 			<section id="viewForm" style="overflow: auto;">
-				<div class="container"
-					style="width: 100%; font-size: 15px; overflow: hidden;">
+				<div class="container" style="width: 100%; font-size: 15px; overflow: hidden;">
 					<div class="row">
 						<!-- 사진 -->
 						<div class="col-xs-7"
@@ -1148,11 +1193,11 @@ var data = [
 						<div class="col-xs-5"
 							style="margin-top: 10px; margin-bottom: 10px;">
 							<div class="col-sm-12" id="cntInfoBar">
-								<span class="avatar"> <img src="js/profile.png" alt=""
+								<span class="avatar"> <img id="c_profile" src="js/profile.png" alt=""
 									id="pf" />
 								</span> <label id="c_writer"></label> <span>
 									<button class="btn btn-info" id="myBtn"
-										style="background: gray;">설정</button> <!-- The Modal -->
+										style="background: gray;">· · · </button> <!-- The Modal -->
 									<div id="myModal2" class="modal2">
 
 										<!-- Modal content // contentMore -->
@@ -1166,7 +1211,8 @@ var data = [
 
 							</div>
 							<div class="col-sm-12" id="cntInfoBar">
-								<span>좋아요</span>
+								<span><a href="#" onclick="like()">
+				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a><input type="button" value="발자취" onclick="like()"></span>
 							</div>
 
 							<div class="col-sm-12" id="cntInfoBar"

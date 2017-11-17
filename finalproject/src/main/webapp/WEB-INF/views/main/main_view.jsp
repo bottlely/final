@@ -430,9 +430,9 @@ pre.prettyprint {
 		<div class="row content">
 			<div class="col-sm-2 text-center"></div>
 			<div class="col-sm-8 text-left" style="background: #f4f4f4;">
-				<a href="#" onclick="like(${content_idx})"><img
-					src="assets_main/images/발자취전.png" width="40px" height="40px;"
-					style="margin-left: 15px; margin-top: 10px;"></a>
+				<a href="#" onclick="like(${content_idx})">
+				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a>
+					<input type="button" value="발자취" onclick="like(${content_idx})">
 				<%-- <img src=""><input type="button" value="발자취"
 					onclick="like(${content_idx})"> --%>
 				<hr>
@@ -453,9 +453,8 @@ pre.prettyprint {
 					type="button" value="작성" onclick="addReply()"><br>
 				<hr>
 				<h2 id="reply_List"></h2>
-				<input type="hidden" id="session_idx"
-					value="${sessionScope.useridx }"> <input type="hidden"
-					id="session_name" value="${sessionScope.username }">
+				<input type="hidden" id="session_idx" value="${sessionScope.useridx }">
+				<input type="hidden" id="session_name" value="${sessionScope.username }">
 			</div>
 			<div class="col-sm-2 sidenav"></div>
 		</div>
@@ -464,105 +463,119 @@ pre.prettyprint {
 			<div class="col-sm-8 text-left"
 				style="background: #f4f4f4; text-align: left;">
 				<script>
-         function like(content_idx){
-            document.getElementById("session_idx").value;
-            
-            sendRequest('like.do?session_idx='+session_idx+'content_idx='+content_idx, null, likeList, 'GET');
-         }
-         
-         function likeList(){
-         if(XHR.readyState==4){
-            if(XHR.status==200){
-               var data = XHR.responseText;
-               var lists = eval('('+data+')');
-               
-               
-               
-            }
-         }
-      }
-         
-         function reply_List(content_idx){
-            sendRequest('replyList.do?content_idx=' + content_idx, null, replyList, 'GET');
-         }
-         
-         function addReply(){
-            var content_idx = document.getElementById("content_idx").value;
-            var session_idx = document.getElementById("session_idx").value;
-            var content = document.getElementById("content").value;
-            
-            sendRequest('reply.do?content='+content+"&content_idx=20&session_idx="+session_idx, null, replyList,'GET');
-         }
-         
-         function replyList(){
-         if(XHR.readyState==4){
-            if(XHR.status==200){
-               var data = XHR.responseText;
-               var lists = eval('('+data+')');
-               var content_writer = '박연수';
-               var content_content = '하이하이';
-               var reply_list = document.all.reply_List;
-               var str='';
-               var userName = document.getElementById("session_name").value;
+				function like(content_idx){
+		            var session_idx = document.getElementById("session_idx").value;
 
-               if(lists.replyList.length==0){
-                  str = '댓글 없습니다.'
-                  reply_list.innerHTML = str;
-               }else{
-                  for(var i=0; i<lists.replyList.length; i++){
-                     var l = lists.replyList[i];
-                     
-                     if(l.lev == 0){
-                        if(l.name == userName){
-                           str += l.profile_img + " : " + l.name + " : " + l.content + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" >' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
-                        }else{
-                           str += l.profile_img + " : " + l.name + " : " + l.content + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
-                        }
-                        
-                     }else{
-                        if(l.name == userName){
-                           str += '=>' + l.profile_img + " : " + l.name + " : " + l.content + '<br>' + '<input type="button" value="수정" >' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
-                        }else{
-                           str += '=>' + l.profile_img + " : " + l.name + " : " + l.content + '<hr>';
-                        }
-                     }
-                  }
-                  reply_list.innerHTML = str;
-               }
-            }
-         }
-      }
-         
-         function re_Reply(idx){
-            var content = document.getElementById(idx+"text").value;
-            var content_idx = document.getElementById("content_idx").value;
-            var session_idx = document.getElementById("session_idx").value;
-            
-            sendRequest('re_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx+'&session_idx='+session_idx, null, replyList,'GET');
-            
-            re_content.style.display = 'none';
-              re_ok.style.display = 'none';
-         }
-         
-         function ondisplay(idx){
-            var re_content = document.getElementById(idx+"text");
-            var re_ok = document.getElementById(idx+"btn");
-            
-            re_content.style.display = 'block';
-            re_ok.style.display = 'block';
-         }
-         
-         /* function update_Reply(idx){
-            var content = document.getElementById("content").value;
-            alert('content' + content + 'idx' + idx);
-            location.href="update_Reply.do?reply_idx="+idx+"&content="+content;
-         } */
-         
-          function delete_Reply(idx){
-            var content_idx = document.getElementById('content_idx').value;
-            
-            location.href="delete_Reply.do?reply_idx="+idx+"&content_idx="+content_idx;
-         }
+		            sendRequest('like.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
+		         }
+		         
+		         function likeList(){
+		             if(XHR.readyState==4){
+		               if(XHR.status==200){
+		                  var data = XHR.responseText;
+		                  var lists = eval('('+data+')');
+		                  var like_List = document.all.like_List;
+
+		                  document.getElementById('like_Img').src=lists.img_Path;
+		               }
+		            } 
+		         }
+		         
+		         function reply_List(content_idx,session_idx){
+		            sendRequest('replyList.do?content_idx=' + content_idx, null, replyList, 'GET');
+		         }
+		         
+		         function addReply(){
+		            var content_idx = document.getElementById("content_idx").value;
+		            var session_idx = document.getElementById("session_idx").value;
+		            var content = document.getElementById("content").value;
+		            
+		            sendRequest('reply.do?content='+content+"&content_idx="+content_idx+"&session_idx="+session_idx, null, replyList,'GET');
+		         }
+		         
+		         function replyList(){
+		             if(XHR.readyState==4){
+		                if(XHR.status==200){
+		                   var data = XHR.responseText;
+		                   var lists = eval('('+data+')');
+		                   var reply_list = document.all.reply_List;
+		                   var str='';
+		                   var userName = document.getElementById("session_name").value;
+		                   var likeResult = ${result};
+		                   if(likeResult == 0){
+		                      document.getElementById('like_Img').src='likeImg/unlike.png';
+		                   }else{
+		                      document.getElementById('like_Img').src='likeImg/like.png';
+		                   }
+
+		                   if(lists.replyList.length==0){
+		                       str = '댓글 없습니다.'
+		                       reply_list.innerHTML = str;
+		                    }else{
+		                       for(var i=0; i<lists.replyList.length; i++){
+		                          var l = lists.replyList[i];
+		                          
+		                          if(l.lev == 0){
+		                             if(l.name == userName){
+		                                str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+		                             }else{
+		                                str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
+		                             }
+		                             
+		                          }else{
+		                             if(l.name == userName){
+		                                str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
+		                             }else{
+		                                str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<hr>';
+		                             }
+		                          }
+		                       }
+		                       reply_list.innerHTML = str;
+		                    }
+		                }
+		             }
+		          }
+		         
+		         function re_Reply(idx){
+		            var content = document.getElementById(idx+"text").value;
+		            var content_idx = document.getElementById("content_idx").value;
+		            var session_idx = document.getElementById("session_idx").value;
+		            
+		            sendRequest('re_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx+'&session_idx='+session_idx, null, replyList,'GET');
+		            
+		            re_content.style.display = 'none';
+		              re_ok.style.display = 'none';
+		         }
+		         
+		         function ondisplay(idx){
+		            var re_content = document.getElementById(idx+"text");
+		            var re_ok = document.getElementById(idx+"btn");
+		            
+		            re_content.style.display = 'block';
+		            re_ok.style.display = 'block';
+		         }
+		         
+		         function updateDisplay(idx){
+		             var update_content = document.getElementById(idx+"update_content");
+		             var update_ok = document.getElementById(idx+"update_ok");
+		             
+		             update_content.readOnly = false;
+		             update_content.style.border = '1px solid';
+		             update_ok.style.display = 'block';
+		          }
+		         
+		         function update_Reply(idx){
+		             var content = document.getElementById(idx+"update_content").value;
+		             var content_idx = document.getElementById("content_idx").value;
+		             
+		             sendRequest('update_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx, null, replyList,'GET');
+		          } 
+		         
+		         function delete_Reply(idx){
+		             var content_idx = document.getElementById('content_idx').value;
+		              
+		             sendRequest('delete_Reply.do?reply_idx='+idx+'&content_idx='+content_idx, null, replyList,'GET');
+		         }
          
          
       </script>

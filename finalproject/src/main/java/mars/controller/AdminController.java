@@ -110,18 +110,63 @@ public class AdminController {
    public ModelAndView detail_Search(
          @RequestParam(value="startYear", required=true, defaultValue="0")String startYear,
          @RequestParam(value="endYear", required=true, defaultValue="0")String endYear,
-         @RequestParam(value="city", required=true, defaultValue="a")String city, 
-         @RequestParam(value="favorite_Movie", required=true, defaultValue="0")String favorite_Movie, 
-         @RequestParam(value="favorite_Sport", required=true, defaultValue="0")String favorite_Sport, 
-         @RequestParam(value="favorite_Fashion", required=true, defaultValue="0")String favorite_Fashion, 
-         @RequestParam(value="favorite_Beauty", required=true, defaultValue="0")String favorite_Beauty, 
-         @RequestParam(value="favorite_Travel", required=true, defaultValue="0")String favorite_Travel, 
-         @RequestParam(value="favorite_Music", required=true, defaultValue="0")String favorite_Music, 
-         @RequestParam(value="favorite_Dance", required=true, defaultValue="0")String favorite_Dance, 
-         @RequestParam(value="favorite_Food", required=true, defaultValue="0")String favorite_Food, 
-         @RequestParam(value="man", required=true, defaultValue="6")int man,
-         @RequestParam(value="woman", required=true, defaultValue="6")int woman){
+         @RequestParam(value="city", required=true, defaultValue="city")String city, 
+         @RequestParam(value="hobby", required=true, defaultValue="0")String[] hobby, 
+         @RequestParam(value="man", required=true, defaultValue="0")int man,
+         @RequestParam(value="woman", required=true, defaultValue="0")int woman){
       ModelAndView mav = new ModelAndView();
+      
+      String movie = "favorite_movie";
+      String sport = "favorite_sport";
+      String food = "favorite_food";
+      String fashion = "favorite_fashion";
+      String music = "favorite_music";
+      String dance = "favorite_dance";
+      String travel = "favorite_travel";
+      String beauty = "favorite_beauty";
+      
+      int moviecount=0;
+      int sportcount=0;
+      int foodcount=0;
+      int fashioncount=0;
+      int musiccount=0;
+      int dancecount=0;
+      int travelcount=0;
+      int beautycount=0;
+      
+      for(int i = 0; i < hobby.length; i++){
+         if(movie.equals(hobby[i])){
+            moviecount = 1;
+         }
+         
+         if(sport.equals(hobby[i])){
+            sportcount = 1;
+         }
+         
+         if(beauty.equals(hobby[i])){
+            beautycount = 1;
+         }
+         
+         if(fashion.equals(hobby[i])){
+            fashioncount = 1;
+         }
+         
+         if(music.equals(hobby[i])){
+            musiccount = 1;
+         }
+         
+         if(dance.equals(hobby[i])){
+            dancecount = 1;
+         }
+         
+         if(travel.equals(hobby[i])){
+            travelcount = 1;
+         }
+         
+         if(food.equals(hobby[i])){
+            foodcount = 1;
+         }
+      }
       
       HashMap map = new HashMap<String, String>();
       
@@ -130,20 +175,20 @@ public class AdminController {
       map.put("man", man);
       map.put("woman", woman);
       map.put("city", city);
-      map.put("favorite_movie", favorite_Movie);
-      map.put("favorite_sport", favorite_Sport);
-      map.put("favorite_fashion", favorite_Fashion);
-      map.put("favorite_beauty", favorite_Beauty);
-      map.put("favorite_travel", favorite_Travel);
-      map.put("favorite_music", favorite_Music);
-      map.put("favorite_dance", favorite_Dance);
-      map.put("favorite_food", favorite_Food);
-
-      if(city.equals("city")){
-         List<MemberDTO> list = aDao.noCity_Detail_Search(map);
-      }else{
-         List<MemberDTO> list = aDao.detail_Search(map);
-      }
+      map.put("hobby", hobby);
+      map.put("moviecount", moviecount);
+      map.put("sportcount", sportcount);
+      map.put("foodcount", foodcount);
+      map.put("travelcount", travelcount);
+      map.put("beautycount", beautycount);
+      map.put("musiccount", musiccount);
+      map.put("dancecount", dancecount);
+      map.put("fashioncount", fashioncount);
+      
+      List<MemberDTO> list = aDao.detail_Search(map);
+     
+      mav.addObject("list", list);
+      
       mav.setViewName("admin/admin_member_user");
       
       return mav;

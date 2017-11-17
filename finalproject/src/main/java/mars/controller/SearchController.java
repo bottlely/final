@@ -47,7 +47,7 @@ public class SearchController {
       
       mav.addObject("find", list);
       
-      mav.setViewName("/search/htagSearch");
+      mav.setViewName("search/htagSearch");
       
       return mav;
    }

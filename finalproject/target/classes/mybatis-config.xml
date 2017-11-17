@@ -18,5 +18,7 @@
 		<mapper resource="sql/feedSql.xml" />
 		<mapper resource="sql/reportSql.xml" />
 		<mapper resource="sql/followSql.xml" />
+		<mapper resource="sql/htagSql.xml" />
+      	<mapper resource="sql/mtagSql.xml" />
 	</mappers> 
 </configuration>

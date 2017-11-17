@@ -214,7 +214,7 @@
                              </c:forEach>
                        </select><br>
                  GENDER : <input type="checkbox" name="man" value="1">남자&emsp;&emsp;<input type="checkbox" name="women" value="2">여자<br>
-                 HOBBY : &nbsp;<input type="checkbox" name="hobby" value="favorite_Moive"> Movie
+                 HOBBY : &nbsp;<input type="checkbox" name="hobby" value="favorite_Movie"> Movie
                        <input type="checkbox" name="hobby" value="favorite_Sport"> Sport
                        <input type="checkbox" name="hobby" value="favorite_Fashion"> Fashion
                        <input type="checkbox" name="hobby" value="favorite_Beauty"> Beauty<br>&emsp;&emsp;&emsp;&emsp;
@@ -264,7 +264,7 @@
                  </c:if>
                  <c:forEach var="dto" items="${list }">
                    <tr>
-                      <td>${dto.name }</td>
+                      <td>${dto.name } // ${dto.idx }</td>
                       <td><input type="button" value="회원 탈퇴" onclick="memberDelete('${dto.idx}')"></td>
                       <script>
                          function memberDelete(idx){

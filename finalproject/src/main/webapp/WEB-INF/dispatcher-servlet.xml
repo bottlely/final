@@ -153,6 +153,11 @@
 			<ref bean="sqlSessionTemplate" />
 		</constructor-arg>
 	</bean>
+	<bean id="mtagdao" class="mars.mtag.model.mtagDAOImple">
+      <constructor-arg>
+         <ref bean="sqlSessionTemplate"></ref>
+      </constructor-arg>
+   </bean>
 	
 	<!-- views -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
