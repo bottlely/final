@@ -307,10 +307,10 @@ select {
 <div class="container" style="background-color: white;">
 	<div class="row" style="padding-top:10px;">
 		<div class="col-sm-12">
-			<span class="avatar">
-			<img src="myHomeFolder/profile_img/${profile}" alt="" id="pf"/>
-			</span>
-		    <label id="name">${writer}</label>
+				<span class="avatar"> <img
+					src="myHomeFolder/profile_img/${profile}" alt="" id="pf"
+					style="border-radius: 70px; -moz-border-radius: 70px; -khtml-border-radius: 70px; -webkit-border-radius: 70px;" />
+				</span> <label id="name">${writer}</label>
 		    <select id="coverage_state" name="coverage" onclick="fflist(this)">
 			    <option value="0">전체공개</option>
 			    <option value="1">친구만</option>

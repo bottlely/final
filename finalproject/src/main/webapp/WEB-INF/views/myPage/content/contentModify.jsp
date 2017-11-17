@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -17,7 +17,7 @@
 
 <style>
 body {
-	background-color:#f2fdff;
+	background-color: #f2fdff;
 }
 
 .container {
@@ -33,34 +33,33 @@ body {
 	width: 67%;
 }
 
-	input[type=file] {
-        display: none;
-  	}
-  	
-  	.imgs_wrap img {
-        max-width: 150px;
-        margin-left: 10px;
-        margin-right: 10px;
-     }
-     
-select {
-    width: 100px;
-    height: 30px;
-    padding-left: 10px;
-    font-size: 12px;
-    color: #006fff;
-    border: 1px solid #006fff;
-    border-radius: 3px;
+input[type=file] {
+	display: none;
 }
 
-.mask{
+.imgs_wrap img {
+	max-width: 150px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+select {
+	width: 100px;
+	height: 30px;
+	padding-left: 10px;
+	font-size: 12px;
+	color: #006fff;
+	border: 1px solid #006fff;
+	border-radius: 3px;
+}
+
+.mask {
 	position: absolute;
 	left: 0;
 	top: 0;
 	z-index: 9999;
 	background-color: #000;
 	display: none;
-	
 }
 
 .window {
@@ -70,18 +69,31 @@ select {
 	width: 200px;
 	height: 150px;
 	z-index: 99999;
-	overflow:scroll;
+	overflow: scroll;
 }
-
 </style>
- <script type="text/javascript" src="js/jquery-3.1.0.min.js" charset="utf-8"></script>
-    <script type="text/javascript">
-    
-    	var str_to = '${cvdto.idx_to}';
-    	var str_group ='${cvdto.idx_group}';
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"
+	charset="utf-8"></script>
+<script type="text/javascript">
     	
     	//공개범위 사용자 정의 리스트
-	    var sel_list = str_to.split(',');
+        var sel_list = [];
+        
+      	//공개범위 사용자 정의 리스트(그룹)
+        var sel_list_group = [];
+      
+    	var state = '${cvdto.coverage_state}';
+    	
+    	if(state == "2" || state == "3"){
+    		 var str_group ='${cvdto.idx_group}';
+    		 
+    		 if(str_group != "0"){
+    			 sel_list_group = str_group.split(',');
+    		 }
+    	
+
+    	var str_to = '${cvdto.idx_to}';
+    	sel_list = str_to.split(',');
 	    
 	    Array.prototype.unique = function() {
 	        var a = {};
@@ -97,13 +109,16 @@ select {
 	        return this;
 	    };
 	
-	    sel_list = sel_list.unique();
-	    
-		//공개범위 사용자 정의 리스트(그룹)
-		 var sel_list_group = str_group.split(',');
+	   	 sel_list = sel_list.unique();
+		
+    	}
+    	
 	    function check(){
 	    	alert(sel_list);
 	    	alert(sel_list_group);
+	    	
+	    	document.getElementById("coverage_state").value = state;
+	    	
 	       for(var i=0, len=sel_list.length; i<len; i++) {
 	       	document.getElementById(sel_list[i]).color = "007bff";
 	       }
@@ -113,7 +128,7 @@ select {
 	     }
     
         function submitAction() {
-        	
+        		 
     			 var data = new FormData();
     			 
     			 data.append("useridx", '${sessionScope.useridx}');
@@ -247,31 +262,33 @@ select {
 
 <body onload="check()">
 
-<div class="container" style="background-color: white;">
-	<div class="row" style="padding-top:10px;">
-		<div class="col-sm-12">
-			<span class="avatar">
-			<img src="myHomeFolder/profile_img/${profile}" alt="" id="pf"/>
-			</span>
-		    <label id="name">${cdto.writer}</label>
-		    <select id="coverage_state" name="coverage" onclick="fflist(this)">
-			    <option value="0">전체공개</option>
-			    <option value="1">친구만</option>
-			    <option value="2">특정 대상</option>
-			    <option value="3">제외할 대상</option>
-		    	<option value="4">나만</option>
-			</select>
+	<div class="container" style="background-color: white;">
+		<div class="row" style="padding-top: 10px;">
+			<div class="col-sm-12">
+				<span class="avatar"> <img
+					src="myHomeFolder/profile_img/${profile}" alt="" id="pf"
+					style="border-radius: 70px; -moz-border-radius: 70px; -khtml-border-radius: 70px; -webkit-border-radius: 70px;" />
+				</span> <label id="name">${cdto.writer}</label> <select id="coverage_state"
+					name="coverage" onclick="fflist(this)">
+					<option value="0">전체공개</option>
+					<option value="1">친구만</option>
+					<option value="2">특정 대상</option>
+					<option value="3">제외할 대상</option>
+					<option value="4">나만</option>
+				</select>
+			</div>
 		</div>
-	</div>
-	<hr>
-	<div class="row">
+		<hr>
+		<div class="row">
 			<div class="col-sm-12">
 				<input type="text" class="form-control" id="mtag" name="mtag"
-					placeholder="친구태그" onFocus="clearText(this)" onBlur="clearText(this)">
+					placeholder="친구태그" onFocus="clearText(this)"
+					onBlur="clearText(this)">
 			</div>
 			<div class="col-sm-12">
 				<input type="text" class="form-control" id="htag" name="htag"
-					placeholder="해시태그" onFocus="clearText(this)" onBlur="clearText(this)">
+					placeholder="해시태그" onFocus="clearText(this)"
+					onBlur="clearText(this)">
 			</div>
 			<div class="col-sm-12">
 				<div class="form-group">
@@ -280,20 +297,20 @@ select {
 			</div>
 		</div>
 		<hr>
-     
-    <div class="row" style="padding-bottom:10px;">
-    	<div class="col-sm-12">
-			<input type="button" value="수정" class="btn btn-success" onclick="submitAction();">
-			<input type="submit" value="취소" class="btn btn-Info" onclick="back()">
-	
-	<!--   <form id="myHome" action="myHomeForm.do" method="post">
+
+		<div class="row" style="padding-bottom: 10px;">
+			<div class="col-sm-12">
+				<input type="button" value="수정" class="btn btn-success" onclick="submitAction()"> 
+					<input type="submit" value="취소" class="btn btn-Info" onclick="back()">
+
+				<!--   <form id="myHome" action="myHomeForm.do" method="post">
 		<input type="hidden" name="useridx" value="${sessionScope.useridx}">
 		<input type="submit" value="back">
 		</form>
 	-->
+			</div>
 		</div>
 	</div>
-</div>
 	<div class="mask"></div>
 	<div class="window"
 		style="width: 300px; height: 400px; overflow: auto;">
@@ -312,15 +329,14 @@ select {
 				</c:forEach>
 				<hr>
 				<c:forEach var="group" items="${groupList}">
-						<li class="list-group-item"
-							onclick="sel_coverage('${groupList_idx[group.key]}',true)">
-							<font id="${groupList_idx[group.key]}" color="gray"> <strong>${group.key}</strong></font>
-						</li>
+					<li class="list-group-item"
+						onclick="sel_coverage('${groupList_idx[group.key]}',true)"><font
+						id="${groupList_idx[group.key]}" color="gray"> <strong>${group.key}</strong></font>
+					</li>
 					<c:forEach var="member" items="${group.value}">
-							<li class="list-group-item">
-								<font color="lightgray"><strong>${member.name}</strong></font>
-							</li>
-						</c:forEach>
+						<li class="list-group-item"><font color="lightgray"><strong>${member.name}</strong></font>
+						</li>
+					</c:forEach>
 					<hr>
 				</c:forEach>
 			</ul>

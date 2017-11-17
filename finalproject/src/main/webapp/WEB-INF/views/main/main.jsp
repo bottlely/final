@@ -502,15 +502,14 @@ var data = [
          });
                
          function openpic(content_idx){
-        	 alert(content_idx);
         	 document.getElementById('c_idx').value=content_idx;
              var category = document.getElementById('category_'+content_idx).value;
              var path = document.getElementById('path_'+content_idx).value;
+             
              var profile = document.getElementById('profile_'+content_idx).value;
              var session_idx = '${sessionScope.useridx}';
              
              var cut = path.split('?');
-             window.alert(cut.length);
              
              var writer = document.getElementById('writer_'+content_idx).value;
              var content = document.getElementById('content_'+content_idx).value;
@@ -518,28 +517,23 @@ var data = [
             sendRequest('likeList.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
          
             if(category==1){
-                $('#galleryImage').attr("src",path);
-                 /*  var bg_div = document.createElement('div');
-                 
-                 for(var i=0; i < cut.length-1; i++) {
-                    alert(cut[i]);
-                    var div = document.createElement('div');
-                     var img = document.createElement('img');
-                     
-                     img.setAttribute("data-u", "image");
-                     alert(cut[i]);
-                     img.setAttribute("src", cut[i]);
-                     
-                     div.appendChild(img);
-                     bg_div.appendChild(div);
-                 }
-                 
-                 document.getElementById('slide_div').appendChild(bg_div); */
+            	/*     $('#galleryImage').attr("src",path); */
+                for(var i=0; i<cut.length-1; i++){
+                	var div1 = document.createElement('div');
+                	var img_slide = document.createElement('img');
+                	var src = "myHomeFolder/content/"+cut[i];
+                	img_slide.src = src;
+                	img_slide.setAttribute("data-u", "image");
+                	div1.appendChild(img_slide);
+                	var tt=document.getElementById('slide_div');
+                	//alert(src+'/'+tt+'/'+tt.nodeName+'/'+tt.getAttribute('id'));
+                	document.getElementById('slide_div').appendChild(div1); 
+                }
              }else if(category==2){
-                $('#galleryImage').attr("src","");
+              /*   $('#galleryImage').attr("src","");
                $('#galleryVideo').attr("src", path);
                $("#a_video").load();
-             document.getElementById("a_video").play();
+             document.getElementById("a_video").play(); */
              }
                 
                 document.getElementById('c_writer').innerHTML = writer;
@@ -1053,7 +1047,7 @@ var data = [
 											<h4>PHOTO</h4>
 											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
 											<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
-											<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
+											<input type="hidden" id="path_${list.content_idx }" value="${list.path }"> 
 											<input type="hidden" id="profile_${list.content_idx }" value="myHomeFolder/profile_img/${list.profile }">
 											<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
 											<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
@@ -1151,20 +1145,17 @@ var data = [
 							<div id="jssor_1"
 								style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 480px; height: 270px;; overflow: hidden; visibility: hidden;">
 								<!-- Loading Screen -->
-								<div data-u="loading" class="jssorl-009-spin"
-									style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.7);">
-
+								<div data-u="loading" class="jssorl-009-spin" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.7);">
 								</div>
-								<div data-u="slides"
-									style="cursor: default; position: relative; top: 0px; left: 0px; width: 480px; height: 270px; overflow: hidden;">
-									<div>
-										<img data-u="image"
-											src="myHomeFolder/content/default_content.jpg"
-											id="galleryImage" />
-										<video id="a_video" loop="loop" autoplay="autoplay">
-											<source src="" id="galleryVideo" type="video/mp4">
-										</video>
+								<div id="slide_div" data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 480px; height: 270px;">
+							
+								<!-- 사진 반복 -->
+									<!-- <div>
+										<img data-u="image" src="myHomeFolder/content/default_content.jpg" id="galleryImage" />
 									</div>
+									<div>
+										<img data-u="image" src="myHomeFolder/content/default_content.jpg" id="galleryImage" />
+									</div> -->
 								</div>
 								<!-- Bullet Navigator -->
 								<div data-u="navigator" class="jssorb051"

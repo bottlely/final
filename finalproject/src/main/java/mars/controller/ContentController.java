@@ -681,11 +681,8 @@ public class ContentController {
 			@RequestParam(value="coverage_list_group",required=false)String cl_group,
 			@RequestParam(value="coverage_list",required=false)String cl,
 			@RequestParam("coverage_state")String cs,
-			@RequestParam("profile")String profile,
 			@RequestParam("content")String content) {
-		
-		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
-		
+		System.out.println("in");
 		HashMap<String, String> info = new HashMap<String, String>();
 		info.put("midx",member_idx);
         info.put("content", content);
@@ -699,8 +696,8 @@ public class ContentController {
         	
         	HashMap<String, String> info2 = new HashMap<String, String>();
         	info2.put("cidx",Integer.toString(contentIdx));
-        	info2.put("idx_to","");
-        	info2.put("idx_group", "");
+        	info2.put("idx_to","0");
+        	info2.put("idx_group", "0");
         	info2.put("coverage_state", cs);
             if(state == 2 || state==3){ //특정 또는 제외 상태 일 때 
             	
@@ -718,7 +715,7 @@ public class ContentController {
             
 	            if(cl_group != null && !cl_group.equals("")){ //그룹 리스트가 있다면
 	            	
-	            		String tempGroup = "";
+	            	 String tempGroup = "";
     	        	   List<String> groupIdxList = new ArrayList<String>(Arrays.asList(cl_group.split(",")));
     	        	  
     	        	   for(int i=0; i <groupIdxList.size(); i++){
