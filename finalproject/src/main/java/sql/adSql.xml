@@ -45,8 +45,10 @@
   	select id from mars_member where idx = #{member_idx}
   	</select>
   	
-  	<select id="countAd" resultType="int" parameterType="String">
-  	select count(*) from (select to_char(apply_date,'YYYY-MM-DD')as a from ad) where a = #{date}
+  	<select id="showAd" resultType="mars.ad.model.ApplyAdDTO">
+  	select * from ad where ${favor}=1
   	</select>
+  	
+  	
   	
   </mapper>
