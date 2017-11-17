@@ -13,6 +13,8 @@
 <script src="http://code.jquery.com/jquery-3.2.1.js" type="text/javascript"></script>
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script type="text/javascript" src="js/httpRequest.js"></script>
+   <script src="js/jssor.slider-26.5.0.min.js" type="text/javascript"></script>
+ 
 <style>
 .mask,
 .mask2,
@@ -117,12 +119,243 @@ input:checked+.slider:before {
 
 </style>
 
+<style>
+
+#viewForm {
+	background-color: #f2fdff;
+}
+
+#pf {
+	width: 50px;
+	heigth: 50px;
+}
+
+#pf2 {
+	width: 30px;
+	height: 30px;
+}
+
+#reply1 {
+	margin-bottom: 10px;
+}
+
+#name {
+	width: 50%;
+}
+
+#cntInfoBar {
+	border-bottom: 0.5px solid #d1c8ff;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+	overflow:hidden;
+}
+
+
+/* jssor slider loading skin spin css */
+.jssorl-009-spin img {
+	animation-name: jssorl-009-spin;
+	animation-duration: 1.6s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@
+keyframes jssorl-009-spin {from { transform:rotate(0deg);
+	
+}
+
+to {
+	transform: rotate(360deg);
+}
+
+}
+.jssorb051 .i {
+	position: absolute;
+	cursor: pointer;
+}
+
+.jssorb051 .i .b {
+	fill: #fff;
+	fill-opacity: 0.5;
+}
+
+.jssorb051 .i:hover .b {
+	fill-opacity: .7;
+}
+
+.jssorb051 .iav .b {
+	fill-opacity: 1;
+}
+
+.jssorb051 .i.idn {
+	opacity: .3;
+}
+
+.jssora051 {
+	display: block;
+	position: absolute;
+	cursor: pointer;
+}
+
+.jssora051 .a {
+	fill: none;
+	stroke: #fff;
+	stroke-width: 360;
+	stroke-miterlimit: 10;
+}
+
+.jssora051:hover {
+	opacity: .8;
+}
+
+.jssora051.jssora051dn {
+	opacity: .5;
+}
+
+.jssora051.jssora051ds {
+	opacity: .3;
+	pointer-events: none;
+}
+
+.modal2 {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	position: relative;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 0;
+	border: 1px solid #888;
+	width: 40%;
+	height: 24%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	-webkit-animation-name: animatetop;
+	-webkit-animation-duration: 0.4s;
+	animation-name: animatetop;
+	animation-duration: 0.4s
+}
+
+/* Add Animation */
+@
+-webkit-keyframes animatetop {
+	from {top: -300px;
+	opacity: 0
+}
+
+to {
+	top: 0;
+	opacity: 1
+}
+
+}
+@
+keyframes animatetop {
+	from {top: -300px;
+	opacity: 0
+}
+
+to {
+	top: 0;
+	opacity: 1
+}
+
+}
+
+/* The Close Button */
+.close {
+	color: white;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+</style>
+
+<script type="text/javascript">
+        jssor_1_slider_init = function() {
+
+            var jssor_1_SlideshowTransitions = [
+              {$Duration:800,$Opacity:2}
+            ];
+
+            var jssor_1_options = {
+              $AutoPlay: 1,
+              $Align: 0,
+              $SlideshowOptions: {
+                $Class: $JssorSlideshowRunner$,
+                $Transitions: jssor_1_SlideshowTransitions,
+                $TransitionsOrder: 1
+              },
+              $ArrowNavigatorOptions: {
+                $Class: $JssorArrowNavigator$
+              },
+              $BulletNavigatorOptions: {
+                $Class: $JssorBulletNavigator$
+              }
+            };
+
+            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+            /*#region responsive code begin*/
+
+            var MAX_WIDTH = 980;
+
+            function ScaleSlider() {
+                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+
+                if (containerWidth) {
+
+                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                    jssor_1_slider.$ScaleWidth(expectedWidth);
+                }
+                else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+
+            ScaleSlider();
+
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            /*#endregion responsive code end*/
+        };
+        
+
+    </script>
+
 <!-- datepicker -->
 
 <link href="assets_myPage/dist/css/datepicker.min.css" rel="stylesheet" type="text/css">
 <script src="assets_myPage/dist/js/datepicker.min.js"></script>
 <!-- Include English language -->
 <script src="assets_myPage/dist/js/i18n/datepicker.en.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
 
 <!-- main, menu -->    
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -132,6 +365,8 @@ input:checked+.slider:before {
 <noscript><link rel="stylesheet" href="assets_myPage/assets/css/noscript.css" /></noscript>
 
 
+
+  
 <script type="text/javascript">
         var BPOPUP='';
         (function($) {
@@ -460,11 +695,13 @@ function showResult2(){
        <table align="center">
        
           <tr onclick="reportOpen()"><td>신고하기</td></tr>
-          <c:if test="${block eq 0}">
-          <tr onclick="UserHomeMore('friend_block_mypage')"><td>차단하기</td></tr>
-          </c:if>
-          <c:if test="${block eq 1}">
-          <tr onclick="UserHomeMore('friend_unblock_mypage')"><td>차단해제</td></tr>
+          <c:if test="${block eq -1}">
+	          <c:if test="${block eq 0}">
+	          <tr onclick="UserHomeMore('friend_block_mypage')"><td>차단하기</td></tr>
+	          </c:if>
+	          <c:if test="${block eq 1}">
+	          <tr onclick="UserHomeMore('friend_unblock_mypage')"><td>차단해제</td></tr>
+	          </c:if>
           </c:if>
           <c:if test="${following eq 0}">
           <tr onclick="UserHomeMore('following_mypage')"><td>팔로우</td></tr>
@@ -550,6 +787,7 @@ function showResult2(){
       </div>
       
       <div class="myfeed" id="myfeed">
+
          <table style="border-spacing:10px;" id="myfeedtable">
          <c:if test="${empty contentList}">
          	<tr>
@@ -558,17 +796,173 @@ function showResult2(){
          </c:if>
          	<tr>
          <c:forEach var="contentList" items="${contentList }">
-      
-         	<td><img src="myHomeFolder/content/${contentList.path}"></td>
-         	
+      		
+         	<td><a href="#myModal" data-toggle="modal" data-target="#myModal"><img src="myHomeFolder/content/${contentList.path}"></a></td>
          </c:forEach>
          
          	</tr>
          	</table>
              
-      </div>   
-      
-</section>
+      </div>
+      </section>
 
+
+		<!-- The Modal -->
+		<div class="container">
+		<div class="modal fade" id="myModal">
+			<div class="modal-dialog" style="width:70%; overflow:hidden;">
+			<div class="modal-content" style="width:100%; overflow:hidden;">
+				<section id="viewForm" style="">
+					<!-- Modal body -->
+						<div class="container" style="width: 100%; font-size: 15px; overflow: hidden; ">
+							<div class="row">
+								<div class="col-md-12" style="margin-top:50px; margin-right:10px;">
+									<div id="jssor_1"
+										style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 360px; height: 270px; overflow: hidden; visibility: hidden;">
+										<!-- Loading Screen -->
+										<div data-u="loading" class="jssorl-009-spin"
+											style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; text-align: center; background-color: rgba(0, 0, 0, 0.7);">
+
+										</div>
+										<div data-u="slides"
+											style="cursor: default; position: relative; top: 0px; left: 0px; width: 360px; height: 270px; overflow: hidden;">
+											<div>
+												<img data-u="image" src="js/profile.png" />
+											</div>
+										</div>
+										<!-- Bullet Navigator -->
+										<div data-u="navigator" class="jssorb051"
+											style="position: absolute; bottom: 12px; right: 12px;"
+											data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+											<div data-u="prototype" class="i"
+												style="width: 16px; height: 16px;">
+												<svg viewbox="0 0 16000 16000"
+													style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+					                    <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+					                </svg>
+											</div>
+										</div>
+										<!-- Arrow Navigator -->
+										<div data-u="arrowleft" class="jssora051"
+											style="width: 55px; height: 55px; top: 0px; left: 25px;"
+											data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+											<svg viewbox="0 0 16000 16000"
+												style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+					                <polyline class="a"
+													points="11040,1920 4960,8000 11040,14080 "></polyline>
+					            </svg>
+										</div>
+										<div data-u="arrowright" class="jssora051"
+											style="width: 55px; height: 55px; top: 0px; right: 25px;"
+											data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+											<svg viewbox="0 0 16000 16000"
+												style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+					                <polyline class="a"
+													points="4960,1920 11040,8000 4960,14080 "></polyline>
+					            </svg>
+										</div>
+									</div>
+									<script type="text/javascript">
+										jssor_1_slider_init();
+									</script>
+
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<div class="col-sm-12" id="cntInfoBar">
+										<span class="avatar">
+										<img src="js/profile.png" alt="" id="pf" style="float:left;"/>
+										<label id="c_writer" style="float:left;">작성자</label>
+										</span>
+										
+										<button class="btn btn-info" id="myBtn"	style="background: gray;">· · ·</button>										
+										<div id="myModal2" class="modal2">
+										<!-- Modal content // contentMore -->
+										<!-- Modal content -->
+										  <div class="modal-content">
+										      <span class="close"></span>
+										    <div class="modal-body">
+										      <a href="#" class="list-group-item list-group-item-success">수정</a>
+											    <a href="#" class="list-group-item list-group-item-info">삭제</a>
+											    <a href="#" class="list-group-item list-group-item-warning">신고</a>
+										    </div>
+
+										  </div>
+
+										</div>
+										
+
+									</div>
+
+
+									<div class="col-sm-12" id="cntInfoBar"
+										style="overflow: auto; height: 70px;">
+										<span><label id="c_content"></label></span>
+									</div>
+
+									<div class="col-sm-12" id="cntInfoBar" style="align:left;">
+										<span style="align:left;"><a href="#" onclick="like()"> <img src=""
+												id="like_Img" width="40px" height="40px;"
+												style="margin-left: 15px; margin-top: 10px;"></a><input
+											type="button" value="발자취" onclick="like()"></span>
+									</div>
+
+
+									<div class="col-sm-12" id="cntInfoBar"
+										style="overflow: auto; height: 200px;">
+										<div class="col-sm-12" id="reply_List">
+											<span class="avatar"> </span>
+										</div>
+
+
+									</div>
+
+									<div class="col-sm-12">
+										<div class="input-group">
+											<input id="content" type="text" class="form-control"
+												name="content" placeholder="댓글 입력"> <label
+												class="input-group-addon" onclick="addReply()"
+												onkeydown="showList()">작성</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+				</section>
+			</div>
+			</div>
+		</div>
+		</div>
 </body>
+
+<script>
+// Get the modal
+var modal = document.getElementById('myModal2');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 </html>
