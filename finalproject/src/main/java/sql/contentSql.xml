@@ -48,4 +48,12 @@
 	<update id="profileUpdate" parameterType="HashMap">
 		update content set profile = #{path} where member_idx = #{member_idx}
 	</update>
+	
+	<update id="contentUpdate" parameterType="HashMap">
+		update content set writetime = sysdate, content = #{content} where member_idx = #{midx}
+	</update>
+	
+	<update id="coverageUpdate" parameterType="HashMap">
+		update content set coverage_state = #{coverage_state}, idx_to = #{idx_to}, idx_group = #{idx_group} where content_idx = #{cidx}
+	</update>
 </mapper>

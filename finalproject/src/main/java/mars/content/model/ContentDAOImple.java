@@ -65,4 +65,14 @@ public class ContentDAOImple implements ContentDAO {
 		int result = sqlMap.update("profileUpdate", info);
 		return result;
 	}
+
+	public int contentUpdate(HashMap<String, String> info) {
+		int result = sqlMap.update("contentUpdate", info);
+		return result;
+	}
+
+	public int coverageUpdate(HashMap<String, String> info) {
+		int result = sqlMap.update("coverageUpdate", info);
+		return result;
+	}
 }
