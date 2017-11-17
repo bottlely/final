@@ -10,7 +10,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <title>Insert title here</title>
 <script>
-function openParent(content_idx, useridx) {
+function openContent(content_idx, useridx) {
 	parent.openContent(content_idx, useridx);
 }
 
@@ -30,7 +30,7 @@ function openParent(content_idx, useridx) {
 		<c:forEach var="dto" items="${reply }">
 			<div class="dropdown-divider">
 				<!-- 게시물 하나당 a태그하나 -->
-				<a class="dropdown-item" href="javascript: openParent('${dto.content_idx }', '${sessionScope.useridx }')" > <span
+				<a class="dropdown-item" href="javascript: openContent(${dto.content_idx }, ${sessionScope.useridx })" > <span
 					class="text-success"> <strong> <i
 							class="fa fa-long-arrow-up fa-fw"></i>${dto.name}님이 댓글을남겼습니다
 							<p>${dto.actdate }</p>

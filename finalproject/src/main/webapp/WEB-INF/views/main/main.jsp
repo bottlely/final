@@ -768,7 +768,7 @@ var data = [
                 document.getElementById('hidden_other_idx').value=other_idx;
              }
 
-             function openContent(content_idx, uesridx) {
+             function openContent(content_idx, useridx) {
             	 location.href='main_view.do?content_idx='+content_idx+'&session_idx='+useridx;
              }
 </script>
