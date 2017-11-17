@@ -60,4 +60,9 @@ public class ContentDAOImple implements ContentDAO {
 		CoverageDTO result = sqlMap.selectOne("coverageOne", content_idx);
 		return result;
 	}
+
+	public int profileUpdate(HashMap<String, String> info) {
+		int result = sqlMap.update("profileUpdate", info);
+		return result;
+	}
 }

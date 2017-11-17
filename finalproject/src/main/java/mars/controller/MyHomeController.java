@@ -195,13 +195,13 @@ public class MyHomeController{
 		
 		HashMap<String, String> info = new HashMap<String, String>();
 		info.put("member_idx",member_idx);
-		
+
 		if(profile != null){
 		
 		String type = "profile_img";
 		
 		MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
-		String filename= member_idx+mhdto.getName()+profile.getOriginalFilename();
+		String filename= member_idx+mhdto.getName()+System.currentTimeMillis()+profile.getOriginalFilename();
 		
 		copyInto(filename,type,profile,req2);
 		
@@ -212,9 +212,12 @@ public class MyHomeController{
 		}
 		
 		int result = mhdao.profileUpload(info);
-		 ModelAndView mav = new ModelAndView("marsJson","result",result);
+		int result2 = result > 0 ? cdao.profileUpdate(info): -1;
+		System.out.println(cdao.profileUpdate(info));
+		 ModelAndView mav = new ModelAndView("marsJson","result",result2);
 		return mav;
 	}
+
 	
 	@RequestMapping("/backgroundUpload.do")
 	public ModelAndView backgroundUpload(MultipartHttpServletRequest req,HttpServletRequest req2) {
@@ -230,7 +233,7 @@ public class MyHomeController{
 			String type = "background_img";
 				
 			MyHomeDTO mhdto = mhdao.myHomeSource(member_idx);
-			String filename= member_idx+mhdto.getName()+background.getOriginalFilename();
+			String filename= member_idx+mhdto.getName()+System.currentTimeMillis()+background.getOriginalFilename();
 			
 			copyInto(filename,type,background,req2);
 			

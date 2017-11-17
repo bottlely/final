@@ -45,4 +45,7 @@
 		select * from content where content_idx = #{content_idx}
 	</select>
 	
+	<update id="profileUpdate" parameterType="HashMap">
+		update content set profile = #{path} where member_idx = #{member_idx}
+	</update>
 </mapper>

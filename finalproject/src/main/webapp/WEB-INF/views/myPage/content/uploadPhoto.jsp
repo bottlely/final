@@ -172,7 +172,7 @@ select {
     				data.append("coverage_list_group",sel_list_group);
     			 }
     			 
-    			 var profile = 'myHomeFolder/profile_img/${profile}';
+    			 var profile = '${profile}';
     			 data.append("profile",profile);
     			 
     	        /* $.ajax({

@@ -31,4 +31,5 @@ public interface ContentDAO {
 	public int contentDel (String content_idx);
 	public ContentDTO contentOne (String content_idx);
 	public CoverageDTO coverageOne (String content_idx);
+	public int profileUpdate (HashMap<String, String> info);
 }
