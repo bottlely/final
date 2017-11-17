@@ -502,17 +502,17 @@ var data = [
          });
                
          function openpic(content_idx){
+        	 alert(content_idx);
         	 document.getElementById('c_idx').value=content_idx;
              var category = document.getElementById('category_'+content_idx).value;
              var path = document.getElementById('path_'+content_idx).value;
+             var session_idx = '${sessionScope.useridx}';
              
              var cut = path.split('?');
              window.alert(cut.length);
              
              var writer = document.getElementById('writer_'+content_idx).value;
              var content = document.getElementById('content_'+content_idx).value;
-             var profile = document.getElementById('profile_'+content_idx).value;
-             window.alert(profile);
             
             sendRequest('likeList.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
          
@@ -543,7 +543,6 @@ var data = [
                 
                 document.getElementById('c_writer').innerHTML = writer;
                 document.getElementById('c_content').innerHTML = content;
-                $('#c_profile').attr("src", "myHomeFolder/profile_img/"+profile);
             
           //contentMore
             var memberidx = document.getElementById('memberidx_'+content_idx).value;
@@ -1193,7 +1192,7 @@ var data = [
 						<div class="col-xs-5"
 							style="margin-top: 10px; margin-bottom: 10px;">
 							<div class="col-sm-12" id="cntInfoBar">
-								<span class="avatar"> <img id="c_profile" src="js/profile.png" alt=""
+								<span class="avatar"> <img src="js/profile.png" alt=""
 									id="pf" />
 								</span> <label id="c_writer"></label> <span>
 									<button class="btn btn-info" id="myBtn"
@@ -1210,23 +1209,24 @@ var data = [
 								</span>
 
 							</div>
-							<div class="col-sm-12" id="cntInfoBar">
-								<span><a href="#" onclick="like()">
-				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a><input type="button" value="발자취" onclick="like()"></span>
-							</div>
+							
 
 							<div class="col-sm-12" id="cntInfoBar"
 								style="overflow: auto; height: 70px;">
 								<span><label id="c_content"></label></span>
 							</div>
+							
+							<div class="col-sm-12" id="cntInfoBar">
+								<span><a href="#" onclick="like()">
+				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a><input type="button" value="발자취" onclick="like()"></span>
+							</div>
 
-
+	
 							<div class="col-sm-12" id="cntInfoBar"
 								style="overflow: auto; height: 200px;">
-								<div class="col-sm-12" id="reply1">
-									<span class="avatar"> <img src="js/profile.png" alt=""
-										id="pf2" />
-									</span> <label>사용자1</label> <span id="reply_List">댓글 내용</span>
+								<div class="col-sm-12" id="reply_List">
+									<span class="avatar"> 
+									</span>
 								</div>
 
 
