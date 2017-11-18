@@ -751,52 +751,51 @@ var data = [
 
 			<!-- 개인설정 창 부분(more)___followingList -->
 			<div id="more2"
-				style="background: white; height: 50%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%">
-				<div
-					style="background-color: white; align-content: center; text-align: right;">
-					<a href="#" id="cl4" style="font-size: 11px;">Close</a>
-				</div>
-				<div style="text-align: center; border: thick;">
+				style="background: #f2fdff; height: 50%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%; border:0.3px solid gray;">
+
+				<div style="text-align: center; border: thick; margin-top:20px;">
 					<img src="" id="following_img_id" alt=""
-						style="border-radius: 50%; width: 50px;">
+						style="border-radius: 50%; width: 50px; height:50px;">
 				</div>
 				<br>
 				<p
 					style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
 					id="following_name_id"></p>
 				<div style="text-align: center;">
-					<input type="button" value="팔로우취소" onclick="unfollowing()"
-						class="frbutton"><br> <br> <input type="button"
-						value="그룹설정" onclick="settingGroup()" class="frbutton"><br>
-					<br> <input type="button" value="취소하기" onclick="btn_cancle1()"
-						class="frbutton"><br>
+				<button type="button" class="btn btn-success" onclick="unfollowing()" style="background-color:green; width:150px;">팔로우취소</button>
+					<br> <br> 
+					<button type="button" class="btn btn-success" onclick="settingGroup()" style="background-color:green; width:150px;">그룹설정</button>
+					<br>
+					<br>
+					<button type="button" class="btn btn-success" onclick="btn_cancle1()" style="background-color:green; width:150px;">닫기</button>
+					 <br>
 				</div>
 			</div>
 
 			<!-- 개인설정 창 부분(more)___followerList -->
 			<div id="more3"
-				style="background: white; height: 20%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%">
-				<div
-					style="background-color: white; align-content: center; text-align: right;">
-					<a href="#" id="cl6" style="font-size: 11px;">Close</a>
-				</div>
-				<div style="text-align: center; border: thick;">
+				style="background: #f2fdff; height: 20%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%; border:0.3px solid gray;">
+
+				<div style="text-align: center; border: thick; margin-top:20px;">
 					<img src="" id="follower_img_id" alt=""
-						style="border-radius: 50%; width: 50px;">
+						style="border-radius: 50%; width: 50px; height:50px;">
 				</div>
 				<br>
 				<p
 				dropdown-toggle	style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
 					id="follower_name_id"></p>
 				<div style="text-align: center;">
-					<input type="button" value="팔로우하기" onclick="following()"
-						class="frbutton"><br> <br> <input type="button"
-						value="팔로워삭제" onclick="removeFollower()" class="frbutton"><br>
-					<br> <input type="button" value="차단하기" onclick="block()"
-						class="frbutton"><br> <br> <input type="button"
-						value="그룹설정" onclick="settingGroup()" class="frbutton"><br>
-					<br> <input type="button" value="취소하기" onclick="btn_cancle2()"
-						class="frbutton"><br>
+					<button type="button" class="btn btn-success" onclick="following()" style="background-color:green; width:150px;">팔로우</button>
+					
+					<br> <br> 
+					<button type="button" class="btn btn-success" onclick="removeFollower()" style="background-color:green; width:150px;">팔로워 삭제</button>
+					<br> <br> 
+					<button type="button" class="btn btn-success" onclick="block()" style="background-color:green; width:150px;">차단하기</button>
+					<br> <br>
+					<button type="button" class="btn btn-success" onclick="settingGroup()" style="background-color:green; width:150px;">그룹설정</button>
+					<br> <br> 
+					<button type="button" class="btn btn-success" onclick="btn_cancle2()" style="background-color:green; width:150px;">닫기</button>
+					<br>
 				</div>
 			</div>
 
@@ -1133,9 +1132,8 @@ var data = [
 	<input type="hidden" id="session_name" value="${sessionScope.username }">
 	<div id="galleryModal" class="modal fade" tabindex="-1" role="dialog"
 		aria-hidden="true" style="border: solid; overflow: auto; background-color: rgba(0, 0, 0, 0.2);">
-		<div style="margin: 2% 10%;">
-			<section id="viewForm" style="overflow: auto;">
-				<div class="container" style="width: 100%; font-size: 15px; overflow: hidden;">
+		<div style="margin: 10% 10%;">
+				<div class="container" style="width: 100%; height:100%; font-size: 15px; overflow: hidden; background-color:white;">
 					<div class="row">
 						<!-- 사진 -->
 						<div class="col-xs-7" align="center"
@@ -1148,12 +1146,14 @@ var data = [
 						<div class="col-xs-5"
 							style="margin-top: 10px; margin-bottom: 10px;">
 							<div class="col-sm-12" id="cntInfoBar">
-								<span class="avatar"> <img src="js/profile.png" alt="" id="pf" style="
-                            border-radius: 70px;
-                            -moz-border-radius: 70px;
-                            -khtml-border-radius: 70px;
-                            -webkit-border-radius: 70px;
-                            "/>
+								<span class="avatar">
+								<img src="js/profile.png" alt="" id="pf" style="
+								border-radius: 70px; 
+								-moz-border-radius: 70px;
+								-khtml-border-radius: 70px;
+								-webkit-border-radius: 70px;
+								width:50px; height:50px;
+								"/>
 								</span> <label id="c_writer"></label> <span>
 									<button class="btn btn-info" id="myBtn"
 										style="background: gray;">· · · </button> <!-- The Modal -->
@@ -1203,7 +1203,6 @@ var data = [
 						</div>
 					</div>
 				</div>
-			</section>
 		</div>
 	</div>
 </body>

@@ -16,5 +16,6 @@ public interface FriendDAO {
 	public int removeFollower(int user1_idx, int user2_idx);
 	public FriendDTO relation(int user1_idx, int user2_idx);
 	//public List<MemberDTO> blackCheck(String user1_idx, String user2_idx);
+	public int insert_following(int user1_idx, int user2_idx);
 	
 }

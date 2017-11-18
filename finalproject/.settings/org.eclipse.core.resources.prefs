@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/main/java/mars/activity/model/ActivityDAOImple.java=UTF-8
 encoding//src/main/java/mars/ad/model/ApplyAdDTO.java=UTF-8
 encoding//src/main/java/mars/controller/AdController.java=UTF-8
 encoding//src/main/java/mars/controller/ContentController.java=UTF-8
