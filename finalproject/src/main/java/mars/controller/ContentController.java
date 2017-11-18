@@ -274,6 +274,21 @@ public class ContentController {
         
         int result2 = -1;
         
+        int content_idx = cdao.contentIdxSearch(member_idx);
+        
+        String htagList[] = htag.split("#");
+		for(int i = 1; i < htagList.length; i++){
+			info.put("content_idx", String.valueOf(content_idx));
+			info.put("htag", htagList[i]);
+			htagdao.add_Htag(info);
+		}
+		
+		/*String mtagList[] = mtag.split("@");
+		for(int i = 1; i < mtagList.length; i++){
+			info.put("mtag", mtagList[i]);
+			mtagdao.add_Mtag(info);
+		}*/
+		
         if(contentIdx > 0){ //content idx가 있다면
         	int state = Integer.parseInt(cs); 
             CoverageDTO dto = new CoverageDTO(contentIdx,0,state,"0",Integer.parseInt(member_idx),"0"); //toldx를 제외한 기본 dto
@@ -391,6 +406,21 @@ public class ContentController {
         int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
         
         int result2 = -1;
+        
+        int content_idx = cdao.contentIdxSearch(member_idx);
+        
+        String htagList[] = htag.split("#");
+		for(int i = 1; i < htagList.length; i++){
+			info.put("content_idx", String.valueOf(content_idx));
+			info.put("htag", htagList[i]);
+			htagdao.add_Htag(info);
+		}
+		
+		/*String mtagList[] = mtag.split("@");
+		for(int i = 1; i < mtagList.length; i++){
+			info.put("mtag", mtagList[i]);
+			mtagdao.add_Mtag(info);
+		}*/
         
         if(contentIdx > 0){ //content idx가 있다면
         	int state = Integer.parseInt(cs); 
