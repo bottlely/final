@@ -33,6 +33,11 @@ public class MemberController {
 	public String memberJoinForm() {
 		return "member/memberJoin";
 	}
+	
+	@RequestMapping("/agree.do")
+	public String agreement() {
+		return "member/agreement";
+	}
 
 	/*Sing-in*/
 	@RequestMapping("/join.do")

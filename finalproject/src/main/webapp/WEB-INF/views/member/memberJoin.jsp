@@ -222,7 +222,7 @@ function showResult() {
 							<div class="col-sm-3"></div>
 							<div class="col-sm-12"
 								style="text-align: center; font-size: 18px; color: black;">
-								<label>가입하면 Mars의 약관 및 개인정보처리방침에 동의하게 됩니다.</label>
+								<label>가입하면 Mars의 <a href="agree.do">약관 및 개인정보처리방침</a>에 동의하게 됩니다.</label>
 								<button type="submit" id="signupbtn"class="btn btn-send">Sign Up</button>
 							</div>
 							<div class="col-sm-3"></div>
