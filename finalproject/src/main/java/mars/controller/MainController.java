@@ -46,12 +46,13 @@ public class MainController {
       
       List<ContentDTO> list = feedDao.showFeed(map);
       
-//      String str = mdao.getFavor(idx);
-      //List<ApplyAdDTO> adList = adDao.showAd(str);
+      String str = mdao.getFavor(idx);
+    //  String str = mdao.getFavor(26);
+      List<ApplyAdDTO> adList = adDao.showAd(str);
       
       ModelAndView mav = new ModelAndView();
       mav.addObject("list", list);
-      //mav.addObject("adList", adList);
+      mav.addObject("adList", adList);
       mav.setViewName("main/main");
       return mav;
    }

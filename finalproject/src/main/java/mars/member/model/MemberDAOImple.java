@@ -68,21 +68,21 @@ public class MemberDAOImple implements MemberDAO {
 		dto = sqlMap.selectOne("getAd", idx);
 		
 		if(dto.getFavorite_movie()!=0) 
-			str += "favor_movie/";
+			str += "FAVOR_MOVIE/";
 		if(dto.getFavorite_sport()!=0)
-			str += "favor_sport/";
+			str += "FAVOR_SPORT/";
 		if(dto.getFavorite_fashion()!=0)
-			str += "favor_fashion/";
+			str += "FAVOR_FASHION/";
 		if(dto.getFavorite_beauty()!=0)
 			str += "FAVOR_BEAUTY/";
 		if(dto.getFavorite_travel()==1) 
-			str += "favor_travel/";
+			str += "FAVOR_TRAVEL/";
 		if(dto.getFavorite_music()==1) 
-			str += "favor_music/";
+			str += "FAVOR_MUSIC/";
 		if(dto.getFavorite_dance()==1) 
-			str += "favor_dance/";
+			str += "FAVOR_DANCE/";
 		if(dto.getFavorite_food()==1) 
-			str += "favor_food";
+			str += "FAVOR_FOOD";
 		
 		return str;
 	}
