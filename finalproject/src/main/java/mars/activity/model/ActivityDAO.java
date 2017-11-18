@@ -15,9 +15,13 @@ public interface ActivityDAO {
 	 public void ac_delete(int from_idx, int to_idx, int content_idx);
 	 public int ac_insert_follow(FriendDTO dto, String name, String profile_img);
 	 public void ac_delete_follow(int from_idx, int to_idx);
-	 public void ac_insert_reply(int from_idx, int to_idx, int content_idx, String content, String name, String profile_img, int reply_idx);
+	 public void ac_insert_reply(int from_idx, int to_idx, int content_idx, String content, String name, String profile_img, int reply_idx, int ref, int lev);
 	 /*public ReplyDTO ac_new_list(int from_idx, int to_idx, int content_idx, String content);*/
 	 public ReplyDTO ac_getIdx(int from_idx, int to_idx, int content_idx, String content);
+	 public ReplyDTO ac_getRef(int from_idx, int to_idx, int content_idx, String content);
+	 public ReplyDTO ac_getLev(int reply_idx, int ref, int content_idx);
 	 public int ac_reply_update(String content, int reply_idx);
+	 public int ac_reply_delete(int reply_idx, int ref, int content_idx, int lev);
+	 public int ac_re_reply_delete(int ref, int content_idx);
 	 
 }

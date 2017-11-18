@@ -102,240 +102,715 @@
             
             sendRequest("search.do?name="+name, null, search, 'GET');
          }
+         
+         function mtag(name){
+            var htagSearch = document.getElementById("htagSearch");
+             var peopleSearch = document.getElementById("peoplesearch");
+             
+             htagSearch.style.display = 'none';
+             peopleSearch.style.display = 'block';
+             
+             sendRequest("mtagSearch.do?name="+name, null, memberSearch, 'GET');
+         }
 
+         function memberSearch(){
+            if(XHR.readyState==4){
+                 if(XHR.status==200){
+                    var data = XHR.responseText;
+                    var lists = eval('('+data+')');
+                    var table = document.getElementById('peopleTable');
+                    var str = '';
+                   
+                    if(lists.find.length == 0){
+                        str = '<tr><td>프로필 사진</td><td>이름(한줄소개)</td><td>생년월일</td><td>성별</td><td></td></tr><tr><td colspan="5" style="text-align: center;">찾으시는 회원이 존재하지 않습니다.</td></tr>';
+                    }else{
+                       for(var i = 0; i < lists.find.length; i++) {
+                          var l = lists.find[i];
+                          if(l.gender == 1){
+                              str +=  '<tr><td>프로필 사진</td><td>이름(한줄소개)</td><td>생년월일</td><td>성별</td><td></td></tr><tr><td><img src="myHomeFolder/profile_img/' + l.profile_img + '"></td><td>' + l.name + '<br>' + l.intro + '</td><td>' + l.birth_y + '년 ' + l.birth_m + '월 ' + l.birth_d + '일</td><td>남자</td><td><input type="button" value="피드 보기" + onclick=""></td></tr>'  
+                          }else{
+                             str +=  '<tr><td>프로필 사진</td><td>이름(한줄소개)</td><td>생년월일</td><td>성별</td><td></td></tr><tr><td><img src="myHomeFolder/profile_img/' + l.profile_img + '"></td><td>' + l.name + '<br>' + l.intro + '</td><td>' + l.birth_y + '년 ' + l.birth_m + '월 ' + l.birth_d + '일</td><td>여자</td><td><input type="button" value="피드 보기" + onclick=""></td></tr>'
+                          }
+                       }
+                    }
+                    
+                    table.innerHTML = str;
+                 }
+            }
+         }
+         
          function search(){
             if(XHR.readyState==4){
                  if(XHR.status==200){
                     var data = XHR.responseText;
                     var lists = eval('('+data+')');
-                    //var str = document.createElement('img');
-                    var div = document.getElementById('htagSearch');
+                    var div = document.all.htagSearch;
+                    var str = '';
                     
-                    alert(lists.find[0].path);
+                    if(lists.find.length == 0){
+                       str = "찾으시는 해시태그가 존재하지 않습니다.";
+                    }else{
+                       for(var i = 0; i < lists.find.length; i++){
+                          var l = lists.find[i];
+                         
+                          str += '<img src="myHomeFolder/content/' + l.path + '">';
+                         }
+                   }
                     
-                    for(var i = 0; i < lists.find.length; i++){
-                       var l = lists.find[i];
-                       var str = document.createElement('img');
-                       //photo.setAttribute("src", "myHomeFolder/profile_img/"+'${user2_profile_img}');
-                       
-                        str.setAttribute("src", "myHomeFolder/content/"+l.path);
-                        document.getElementById('htagSearch').appendChild(str);
-                    }
+                    div.innerHTML = str;
                  }
             }
          }
          
-         function mtag(name){
-            location.href='membersearch.do?name='+name;
-         }
-         
-         $(document).ready(function(){
-             $("#friends1").click(function(){
-                ppp.location.reload();
-                 var div = $("#friends2");
-                 div.animate({height: '100%'}, "slow");
-                 div.animate({width:'toggle'}, "slow");
-             });
-         });
-         $(document).ready(function(){
-             $("#mypage1").click(function(){
-                 var div = $("#mypage2");
-                 div.animate({left: '35%'}, "fast");
-                 div.animate({height: '100%'}, "slow");
-                 div.animate({width:'toggle'}, "slow");
-               
-             });
-         });
+         var data = [
+        	 {name : '양진모'}
+        	,{name : '박연수'}
+        	,{name : '오현경'}
+        	,{name : '한미연'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	,{name : '정다운'}
+        	
+        	];
 
+        		function showList(){
+        			  var dd = document.getElementById("content").value;
+        			  window.alert(dd);
+        	
+        			}
 
-         
-         $(document).ready(function(){
-             $("#cl1").click(function(){
-                 var div = $("#friends2");
-                 div.animate({height: '100%'}, "slow");
-                 div.animate({width:'toggle'}, "slow");
-               
-             });
-         });
-         
-         $(document).ready(function(){
-             $("#cl2").click(function(){
-                 var div = $("#mypage2");
-                 div.animate({height: '100%'}, "slow");
-                 div.animate({width:'toggle'}, "slow");
+        			/**해쉬태그*/
+
+        	$(document).ready(function() {
+        		  $("#searchForm").autocomplete(data, {
+        		    matchContains: true,
+        		    minChars: 0,
+        		   width: 120,
+        		   max: 10,
+        		   multiple: false,
+        		   scroll: true,
+        		   scrollHeight: 300,
+        		    formatItem: function(item){ return item.name; }
+        		     }
+        		   );
+        	});
+        			
+        	$(document).ready(function() {
+        		  $("#content").autocomplete(data, {
+        		    matchContains: true,
+        		    minChars: 0,
+        		   width: 120,
+        		   max: 10,
+        		   multiple: false,
+        		   scroll: true,
+        		   scrollHeight: 300,
+        		    formatItem: function(item){ return item.name; }
+        		     }
+        		   );
+        			
+        	});
+        	
+
+                  $(document).ready(function(){
+                        $("#friends1").click(function(){
+                           $('#more2').fadeOut();
+                           $('#more3').fadeOut();
+                           ppp.location.reload();
+                           var div = $("#friends2");
+                           div.animate({height: '100%'}, "slow");
+                           div.animate({width:'toggle'}, "slow");
+                        });
+                    });
                  
-             });
-         });
-         
-         
+                 $(document).ready(function(){
+                     $("#mypage1").click(function(){
+                        document.getElementById('ppp').src='myHomeForm.do?useridx='+${sessionScope.useridx};
+                        var div = $("#mypage2");
+                         div.animate({right: '0px'}, "fast");
+                         div.animate({height: '100%'}, "slow");
+                         div.animate({width:'toggle'}, "slow");
+                       
+                     });
+                 });
 
-         
-         $(document).ready(function(){
-             $("#more").click(function(){
-                 var div = $("#wait");
-               div.toggle('slow');
+                  $(document).ready(function(){
+                        $("#cl1").click(function(){
+                            var div = $("#friends2");
+                            div.animate({height: '100%'}, "slow");
+                            div.animate({width:'toggle'}, "slow");
+                          
+                        });
+                    });
+
                  
-             });
-         });
-         
-
-         
-         function openpic(i){
-            var div = document.getElementById('pic'+i).value;
-            window.alert(i);
-               window.alert(div);
+                 $(document).ready(function(){
+                     $("#cl2").click(function(){
+                         var div = $("#mypage2");
+                         div.animate({height: '100%'}, "slow");
+                         div.animate({width:'toggle'}, "slow");
+                         
+                     });
+                 });
+                 
+                 $(document).ready(function(){
+                     $("#cl4").click(function(){
+                         var div = $("#more2");
+                         div.animate({height: '0%'}, "slow");
+                         div.animate({width:'toggle'}, "slow");
+                         
+                     });
+                 });
+                 
+                 $(document).ready(function(){
+                     $("#cl5").click(function(){
+                         var div = $("#black2");
+                         div.animate({height: '0%'}, "slow");
+                         div.animate({width:'toggle'}, "slow");
+                         
+                     });
+                 });
+                 
+                 $(document).ready(function(){
+                     $("#cl6").click(function(){
+                         var div = $("#more3");
+                         div.animate({height: '0%'}, "slow");
+                         div.animate({width:'toggle'}, "slow");
+                         
+                     });
+                 });
+                 
+                 $(document).ready(function(){
+                     $("#more1").click(function(){
+                         var div = $("#more2");
+                       div.toggle('slow');
+                         
+                     });
+                 });
+                       
+                 function openpic(content_idx){
+                	 document.getElementById('c_idx').value=content_idx;
+                     var category = document.getElementById('category_'+content_idx).value;
+                     var path = document.getElementById('path_'+content_idx).value;
+                     
+                     var profile = document.getElementById('profile_'+content_idx).value;
+                     var session_idx = '${sessionScope.useridx}';
+                     
+        			             
+                     var writer = document.getElementById('writer_'+content_idx).value;
+                     var content = document.getElementById('content_'+content_idx).value;
+                     
+                     var detail_media = document.getElementById('detail_media');
+                    
+                    sendRequest('likeList.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
+                 
+                    if(category==1){
+                    	if($('#detail_media').children().size()>0){
+                    		detail_media.removeChild(document.getElementById('detail'));
+                    	}
+                    
+                    	var img_slide = document.createElement('img');
+                    	img_slide.src = path;
+                    	img_slide.id='detail';
+                    	detail_media.appendChild(img_slide);
+                     }else if(category==2){
+                    	 if($('#detail_media').children().size()>0){
+                     		detail_media.removeChild(document.getElementById('detail'));
+                     	}
+                    	 
+                    	 var video_slide = document.createElement('video');
+                    	 var source = document.createElement('source');
+                    	 video_slide.id='detail';
+                    	 video_slide.autoplay=true;
+                    	 video_slide.loop=true;
+                    	 
+                    	 source.src = path;
+                    	 source.type = "video/mp4";
+                    	 
+                    	 video_slide.appendChild(source);
+                    	 detail_media.appendChild(video_slide);
+                     }
+                        
+                        document.getElementById('c_writer').innerHTML = writer;
+                        document.getElementById('c_content').innerHTML = content;
+                        $('#pf').attr("src", profile);
+                    
+                  //contentMore
+                    var memberidx = document.getElementById('memberidx_'+content_idx).value;
+                    if(memberidx == '${sessionScope.useridx}'){
+                       document.getElementById('contentMore').innerHTML = 
+                          '<a class="list-group-item list-group-item-success" onclick="modifyContent('+content_idx+')"> 수정 </a><a class="list-group-item list-group-item-info" onclick="deleteContent('+content_idx+')">삭제</a>';
+                    }else{
+                       document.getElementById('contentMore').innerHTML = '<a class="list-group-item list-group-item-warning" onclick="reportContent('+content_idx+')"> 신고 </a>';
+                    }
+                 } 
+                 
+                 function like(){
+                     var session_idx = document.getElementById("session_idx").value;
+                   var content_idx = document.getElementById("c_idx").value;
+                   
+                      sendRequest('like.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
+                  }
+                  
+                  function likeList(){
+                      if(XHR.readyState==4){
+                        if(XHR.status==200){
+                           var content_idx = document.getElementById("c_idx").value;
+                           var data = XHR.responseText;
+                           var lists = eval('('+data+')');
+                           var like_List = document.all.like_List;
+                        
+                           document.getElementById('like_Img').src=lists.img_Path;
+                           
+                           XHR = getXHR();
+                           
+                           sendRequest('replyList.do?content_idx='+content_idx, null, replyList, 'GET');
+                        }
+                     } 
+                  }
+                 
+                 //contentMore
+                 function deleteContent(content_idx){
+                    
+                    var data = new FormData();
+                    data.append("contentidx", content_idx);
+                     var xhr = new XMLHttpRequest();
+                       xhr.open("POST","deleteContent.do");
+                       xhr.send(data);
+                       xhr.onload = function(e) {
+                           if(this.status == 200) {
+                              var jsonResponse = JSON.parse(e.currentTarget.responseText);
+                               if(jsonResponse["result"] > 0){
+                                  alert('삭제 완료!');
+                                  window.location.reload();
+                               }else{
+                                  alert('삭제 실패!');
+                               }
+                           }
+                       }
+                 }
+                 
+               //contentMore
+                 function modifyContent(content_idx){
+                	 window.open('modifyContentForm.do?contentidx='+content_idx,'modifyOpen','width=600,height=500');
+                 }
                
-            $('#galleryImage').attr("src",div);
-            } 
-         
-          /*  function pageOpen(idx) {
-                  document.getElementById('pageIframe').src='myHomeForm.do?useridx='+idx;
-                  var div = $("#mypage2");
-                  div.animate({right: '0px'}, "fast");
-                  div.animate({height: '100%'}, "slow");
-                  div.animate({width:'toggle'}, "slow");
-               } */
+        	      //contentMore
+        	     function reportContent(content_idx){
+        	            window.open('reportContentForm.do?toIdx='+content_idx,'reportOpen','width=600,height=500');
+        	         
+        	      } 
+                 
+        	     function replyList(){
+                     if(XHR.readyState==4){
+                        if(XHR.status==200){
+                           var data = XHR.responseText;
+                           var lists = eval('('+data+')');
+                           var content_writer = '박연수';
+                           var content_content = '하이하이';
+                           var reply_list = document.all.reply_List;
+                           var str='';
+                           var userName = document.getElementById("session_name").value;
+
+                           if(lists.replyList.length==0){
+                              str = '댓글 없습니다.'
+                              reply_list.innerHTML = str;
+                           }else{
+                              for(var i=0; i<lists.replyList.length; i++){
+                                 var l = lists.replyList[i];
+                                 
+                                 if(l.lev == 0){
+                                    if(l.name == userName){
+                                       str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+                                    }else{
+                                       str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
+                                    }
+                                    
+                                 }else{
+                                    if(l.name == userName){
+                                       str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
+                                    }else{
+                                       str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<hr>';
+                                    }
+                                 }
+                              }
+                              reply_list.innerHTML = str;
+                           }
+                           
+                           XHR = getXHR();
+                        }
+                     }
+                  }
+                 
+        	     function re_Reply(idx){
+        	            var re_content = document.getElementById(idx+"text")
+        	            var re_ok = document.getElementById(idx+"btn")
+        	             var content = document.getElementById(idx+"text").value;
+        	             var content_idx = document.getElementById("c_idx").value;
+        	             var session_idx = document.getElementById("session_idx").value;
+        	             
+        	             sendRequest('re_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx+'&session_idx='+session_idx, null, replyList,'GET');
+        	             
+        	             re_content.style.display = 'none';
+        	               re_ok.style.display = 'none';
+        	          }
+        	         
+        	         function ondisplay(idx){
+        	             var re_content = document.getElementById(idx+"text");
+        	             var re_ok = document.getElementById(idx+"btn");
+        	             
+        	             re_content.style.display = 'block';
+        	             re_ok.style.display = 'block';
+        	          }
+        	         
+        	         function updateDisplay(idx){
+        	             var update_content = document.getElementById(idx+"update_content");
+        	             var update_ok = document.getElementById(idx+"update_ok");
+        	             
+        	             update_content.readOnly = false;
+        	             update_content.style.border = '1px solid';
+        	             update_ok.style.display = 'block';
+        	          }
+        	         
+        	         function update_Reply(idx){
+        	             var content = document.getElementById(idx+"update_content").value;
+        	             var content_idx = document.getElementById("c_idx").value;
+        	             
+        	             sendRequest('update_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx, null, replyList,'GET');
+        	          } 
+        	          
+        	           function delete_Reply(idx){
+        	             var content_idx = document.getElementById('c_idx').value;
+        	             
+        	             sendRequest('delete_Reply.do?reply_idx='+idx+'&content_idx='+content_idx, null, replyList,'GET');
+        	          }
+                 
+                    function test1(idx) {
+                          document.getElementById('ppp').src='myHomeForm.do?useridx='+idx;
+                          var div = $("#mypage2");
+                          div.animate({right: '0px'}, "fast");
+                          div.animate({height: '100%'}, "slow");
+                          div.animate({width:'toggle'}, "slow");
+                          /* if(div.height() == '0%'){
+                          div.animate({width:'toggle'},"slow"); 
+                          }
+                          else{
+                             div.animate({width:'60%'},"slow");
+                          } */
+                       }
+                 
+                    function addReply(){
+        	                var session_idx = document.getElementById('session_idx').value;
+        	                var c_idx = document.getElementById('c_idx').value;
+        	                var content = document.getElementById('content').value;
+        	                   
+        	                sendRequest("reply.do?content="+content+"&content_idx="+c_idx+"&session_idx="+session_idx, null, replyList, 'GET');
+        	           }
+                 
+                  function btn_cancle1() {
+                        var more2 = document.getElementById('more2');
+                        more2.style.display='none';
+                     }
+                  
+                  function btn_cancle2() {
+                        var more3 = document.getElementById('more3');
+                        more3.style.display='none';
+                     }
+                     
+                     function settingGroup() {
+                        location.href='infoSetting.do?idx='+${sessionScope.useridx};
+                     }
+                     
+                     function removeFollower() {
+                        var user2_idx = document.getElementById('hidden_other_idx').value;
+                        location.href='removeFollower.do?user1_idx='+${sessionScope.useridx}+'&user2_idx='+user2_idx;
+                     }
+                     
+                     function block() {
+                       //alert('차단하기');
+                        var user2_idx = document.getElementById('hidden_other_idx').value;
+                        location.href="friend_block.do?user1_idx="+${sessionScope.useridx}+"&user2_idx="+user2_idx;
+                     }
+                     
+                     function following() {
+                        //alert('following');
+                        var user2_idx = document.getElementById('hidden_other_idx').value;
+                        location.href='following.do?user1_idx='+${sessionScope.useridx}+'&user2_idx='+user2_idx;
+                     }
+                     
+                     function unfollowing() {
+                        //alert('unfollowing');
+                        var user2_idx = document.getElementById('hidden_other_idx').value;
+                        location.href='deleteFriend.do?user1_idx='+${sessionScope.useridx}+'&user2_idx='+user2_idx;
+                     }
+                     
+                     function fwer(other_idx, other_name, other_profile_img) { //follower
+                        document.getElementById('follower_img_id').src='myHomeFolder/profile_img/'+other_profile_img;
+                        document.getElementById('follower_name_id').innerHTML=other_name;
+                        
+                        document.getElementById('hidden_other_idx').value=other_idx;
+                        
+                     }
+                     
+                     function fwing(other_idx, other_name, other_profile_img) { //following
+                        document.getElementById('following_img_id').src='myHomeFolder/profile_img/'+other_profile_img;
+                        document.getElementById('following_name_id').innerHTML=other_name;
+                        
+                        document.getElementById('hidden_other_idx').value=other_idx;
+                     }
+
+                     function openContent(content_idx, useridx) {
+                    	 location.href='main_view.do?content_idx='+content_idx+'&session_idx='+useridx;
+                     }
          
 
 </script> 
-<body>
+<body onload="mtag('${name}')">
 <header>
-<div id="navbar-full">
-<span style="float: left;">
+<form name="hidden_value">
+			<input type="hidden" name="hidden_other_idx" id="hidden_other_idx"
+				value=""> <input type="hidden" name="hidden_other_name"
+				id="hidden_other_name" value=""> <input type="hidden"
+				name="hidden_other_profile_img" id="hidden_other_profile_img"
+				value="">
+		</form>
+		<div id="navbar-full">
+			<span style="float: left;">
+				<div id="friends2"
+					style="background: #935d8c; height: 100%; width: 28%; position: absolute; float: left; display: none; z-index: 4">
+					<div
+						style="background-color: white; align-content: center; text-align: right;">
+						<a href="#" id="cl1">Close</a>
+					</div>
+					<c:url var="frListUrl" value="main_frList.do">
+						<c:param name="member_idx" value="${sessionScope.useridx }" />
+					</c:url>
+					<iframe src="${frListUrl }" width="100%" height="100%" name="ppp"
+						frameborder="0"></iframe>
+				</div>
+			</span> <span style="float: right;">
+				<div id="mypage2"
+					style="background: #935d8c; height: 100%; width: 60%; position: absolute; float: right; display: none; z-index: 4">
+					<div style="background-color: white; align-content: center;">
+						<a href="#" id="cl2">Close</a>
+					</div>
+					<iframe src="myHomeForm.do?useridx=${sessionScope.useridx}"
+						width="100%" height="100%" name="ppp" id="ppp" frameborder="0"></iframe>
+				</div>
+			</span>
 
-            <div id="friends2" style="background:#935d8c;height:100%;width:25%; position: absolute; float: left; display: none; z-index: 4">
-      <div style="background-color: white; align-content:center; "><a href="#" id="cl1">Close</a></div> 
-   <c:url var="frListUrl" value="main_frList.do">
-      <c:param name="member_idx" value="${sessionScope.useridx}" />
-   </c:url>
-   <iframe src="${frListUrl}" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+			<!-- 개인설정 창 부분(more)___followingList -->
+			<div id="more2"
+				style="background: white; height: 50%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%">
+				<div
+					style="background-color: white; align-content: center; text-align: right;">
+					<a href="#" id="cl4" style="font-size: 11px;">Close</a>
+				</div>
+				<div style="text-align: center; border: thick;">
+					<img src="" id="following_img_id" alt=""
+						style="border-radius: 50%; width: 50px;">
+				</div>
+				<br>
+				<p
+					style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
+					id="following_name_id"></p>
+				<div style="text-align: center;">
+					<input type="button" value="팔로우취소" onclick="unfollowing()"
+						class="frbutton"><br> <br> <input type="button"
+						value="그룹설정" onclick="settingGroup()" class="frbutton"><br>
+					<br> <input type="button" value="취소하기" onclick="btn_cancle1()"
+						class="frbutton"><br>
+				</div>
+			</div>
 
-   </div>
-       </span>
-       <span style="float: right;">
+			<!-- 개인설정 창 부분(more)___followerList -->
+			<div id="more3"
+				style="background: white; height: 20%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%">
+				<div
+					style="background-color: white; align-content: center; text-align: right;">
+					<a href="#" id="cl6" style="font-size: 11px;">Close</a>
+				</div>
+				<div style="text-align: center; border: thick;">
+					<img src="" id="follower_img_id" alt=""
+						style="border-radius: 50%; width: 50px;">
+				</div>
+				<br>
+				<p
+				dropdown-toggle	style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
+					id="follower_name_id"></p>
+				<div style="text-align: center;">
+					<input type="button" value="팔로우하기" onclick="following()"
+						class="frbutton"><br> <br> <input type="button"
+						value="팔로워삭제" onclick="removeFollower()" class="frbutton"><br>
+					<br> <input type="button" value="차단하기" onclick="block()"
+						class="frbutton"><br> <br> <input type="button"
+						value="그룹설정" onclick="settingGroup()" class="frbutton"><br>
+					<br> <input type="button" value="취소하기" onclick="btn_cancle2()"
+						class="frbutton"><br>
+				</div>
+			</div>
 
-          <div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
-      <div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
-   
-   <c:url var="myHomeUrl" value="myHomeForm.do">
-      <c:param name="useridx" value="${sessionScope.useridx}"/>
-   </c:url>
-   <iframe src="${myHomeUrl}" width="100%" height="100%"  id="pageIframe" name="ppp" frameborder="0"></iframe>
 
-   </div>
-       
-       </span>
-   <div id="navbar-blue">
-    <nav class="navbar navbar-ct-blue" role="navigation">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-<ul class="nav navbar-nav navbar-left">
-                <li>
-               <a href="main.do">
-                          <img src="assets_main/images/logo.svg" alt="" />
-                           
-                       </a>
-                
-                </li>
-                   <li>
-                        <a href="main.do">
-                          <h3>MARS</h3>
-                           
-                       </a>
-                   </li>         
+			<div id="navbar-blue">
+				<nav class="navbar navbar-ct-blue" role="navigation">
+					<div class="container-fluid">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<ul class="nav navbar-nav navbar-left">
+							<li><a href="main.do?idx=${sessionScope.useridx }"> <img
+									src="assets_main/images/logo.svg" alt="" />
 
-               </ul>
+							</a></li>
+							<li><a href="main.do?idx=${sessionScope.useridx }">
+									<h3>MARS</h3>
+
+							</a></li>
+
+						</ul>
     
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        
-              <ul class="nav navbar-nav navbar-right">
+						<div class="collapse navbar-collapse"
+							id="bs-example-navbar-collapse-1">
 
-                       <!-- 다운 광고 추가 임시 버튼 -->
-              <li>
-              <a href="#" onclick="window.open('applyAdForm.do', '광고 주문서', 'scrollbars=no width=400, height=450')">
-                           <i class="pe-7s-search"></i>       
-              </a>
-              </li>
-              <li>
-              <a href="#" onclick="window.open('checkCurAd.do', '광고 통계', 'scrollbars=no width=400, height=350')">
-                           <i class="pe-7s-search"></i>       
-              </a>
-              </li>
-              
-        
-              
+							<ul class="nav navbar-nav navbar-right">
+
+								<!-- 다운 음성인식 -->
+
+								<li>
+									<div id="speechbbbbox"></div>
+									<button onClick="startConverting();" type="button" style="margin-top: 14px;">
+										<i class="fa fa-microphone"></i>
+									</button>
+								</li>
+
+
+								<script type="text/javascript">
+						 
+						function startConverting ()
+						{
+						        if('webkitSpeechRecognition'in window)
+						        {
+						        	 var mic = new webkitSpeechRecognition();
+						        	   mic.continuous = true;
+						        	   mic.interimResults = true;
+						        	   mic.lang = 'ko-KR';
+						        	   mic.start();
+						        	   
+						        	   mic.onresult = function(e) {
+						        		   var b = '', c = false;
+						        		   for(var i = e.resultIndex; i < e.results.length; ++i) {
+						        		   b += e.results[i][0].transcript;
+						        		   c = e.results[i].isFinal;
+						        		   }
+						        		   if($('#speechbbbbox .cning').length < 1) $('#speechbbbbox').append('<span class="cning" style="display:none"></span>');
+						        		   $('#speechbbbbox .cning').text(b);
+						        		   $("#searchForm").val(b);
+						        		   if(c) $('#speechbbbbox .cning').removeClass('cning');
+						        		   mic.stop();
+						        		   };
+						        		   
+						        		mic.onend = function() {
+						        		   $('#speechbbbbox').removeClass('on');
+						        		   };
+						        }
+						        else{
+						        	$('#speechbbbbox').html('<strong>지원하지 않는 브라우저입니다.</strong>');
+						        }
+						    }
+						</script>
+						
               <!--  -->
               
-                    <li>
-                        <a href="javascript:void(0);" data-toggle="search" class="hidden-xs">
-                            <i class="pe-7s-search"></i>
-                            
-                        </a>
-                    </li>
-                                        <li>
-                       <a href="#" id="mypage1">
-                             <i class="pe-7s-user"></i>
-                             
-                        </a>
-                    </li>
-                                        <li>
-                        <a href="javascript:void(0);" class="hidden-xs" id="friends1">
-                            <i class="pe-7s-note2"></i>
-                           
-                        </a>
-                    </li>
-       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="pe-7s-global"></i>
-            
-              <span class="badge badge-pill badge-warning">6 New</span>
-            
-            <span class="indicator text-warning d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
-            </span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="alertsDropdown">
-            <h6 class="dropdown-header">New Alerts:</h6>
-         <%@include file="../main/feedList.jsp" %>
+                   <!--  -->
 
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item small" href="#">View all alerts</a>
-          </div>
-        </li>         
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="pe-7s-mail"></i>
-            <span class="d-lg-none">
-              <span class="badge badge-pill badge-primary">12 New</span>
-            </span>
-            <span class="indicator text-primary d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
-            </span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="messagesDropdown">
-            <h6 class="dropdown-header">New Messages:</h6>
-         <%@include file="../main/msgList.jsp" %>
-         
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item small" href="#">View all messages</a>
-          </div>
-        </li>
+								<li style="margin-top: 15px;">
+									<form name="search" action="membersearch.do">
+										<input type="text" name="name" id='searchForm' value=""
+											autocomplete="on" placeholder="Search...">
+									</form>
+								</li>
+								<li><a href="#" id="mypage1"> <i class="pe-7s-home"></i>
+
+								</a></li>
+								<li><a href="javascript:void(0);" class="hidden-xs"
+									id="friends1"> <i class="pe-7s-chat"></i>
+
+								</a></li>
+								<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown"
+									href="#" data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"> <i class="pe-7s-global"></i> <span
+										class="badge badge-pill badge-warning">6 New</span> <span
+										class="indicator text-warning d-none d-lg-block"> <i
+											class="fa fa-fw fa-circle"></i>
+									</span>
+								</a>
+									<div class="dropdown-menu" aria-labelledby="alertsDropdown">
+										<h6 class="dropdown-header">New Alerts:</h6>
+
+										<iframe src="main_feedList.do?idx=${sessionScope.useridx}"
+											width="100%" height="100%" frameborder="0"></iframe>
+
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item small" href="#">View all alerts</a>
+									</div></li>
+								<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown"
+									href="#" data-toggle="dropdown" aria-haspopup="true"
+									aria-expanded="false"> <i class="pe-7s-mail"></i> <span
+										class="d-lg-none"> <span
+											class="badge badge-pill badge-primary">12 New</span>
+									</span> <span class="indicator text-primary d-none d-lg-block">
+											<i class="fa fa-fw fa-circle"></i>
+									</span>
+								</a>
+									<div class="dropdown-menu" aria-labelledby="messagesDropdown">
+										<h6 class="dropdown-header">New Messages:</h6>
+										<%-- <%@include file="msgList.jsp"%> --%>
+
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item small" href="#">View all messages</a>
+									</div></li>
 
                     
                                         <li>
-               <div class="dropdown">
-        <a class="btn btn-default dropdown-toggle"  data-toggle="dropdown">
-        <i class="pe-7s-menu"></i>
-        <span class="caret"></span></a>
-           <ul class="dropdown-menu">
-              <li><a href="infoSetting.do?idx=${sessionScope.useridx }">SETTINGS</a></li>
-             <li><a href="serviceCenter.do">CUSTOMER CENTER</a></li>
-             <li><a href="#">LOGIUT</a></li>
+									<div class="dropdown">
+										<a class="btn btn-default dropdown-toggle"
+											data-toggle="dropdown"> <i class="pe-7s-menu"></i> <span
+											class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a
+												href="infoSetting.do?idx=${sessionScope.useridx }">SETTINGS</a></li>
+											<li><a
+												href="serviceCenter.do?idx=${sessionScope.useridx }">CUSTOMER
+													CENTER</a></li>
+											<li><a href="#">Logout</a></li>
+											<li><a href="#" id="msgTest1">MSGTEST</a></li>
+											<li><a href="#" id="more1">MORETEST</a></li>
 
-           </ul>
-         </div>
-                    </li>
+										</ul>
+									</div>
+								</li>
+								
                </ul>
                 <form name="search" action="membersearch.do" class="navbar-form navbar-right navbar-search-form">
                 
@@ -402,47 +877,19 @@
       <!-- 서치결과뜨는곳(사람) -->
       <div id="peoplesearch">
       
-      <table class="peoplesearchtable">
+      <table class="peoplesearchtable" id="peopleTable">
          <tr>
             <td>프로필 사진</td>
-            <td>이름(한줄 소개)</td>
+            <td>이름 (한줄 소개)</td>
             <td>생년월일</td>
             <td>성별</td>
             <td></td>
          </tr>
-         <c:if test="${empty find }">
-            <tr>
-               <td colspan="5">
-                  찾으시는 회원이 존재하지 않습니다.
-               </td>
-            </tr>
-         </c:if>
-         <c:forEach var="find" items="${find }">
-            <tr>
-               <td><img src="myHomeFolder/profile_img/${find.profile_img }"></td>
-               <td>${find.name } <br> ${find.intro }</td>
-               <td>${find.birth_y }년 ${find.birth_m }월 ${find.birth_d }일</td>
-               <td>
-                  <c:if test="${find.gender == 1}">
-                     남자
-                  </c:if>
-                  <c:if test="${find.gender == 2}">
-                     여자
-                  </c:if>
-               </td>
-               <td>
-                  <input type="button" value="피드 보기" onclick="">
-               </td>
-            </tr>
-         </c:forEach>
       </table>
       </div>
       <div class="col-md-4 col-sm-6 col-xs-12  jpg">
-         <div class="works" id="htagSearch" style="display:none;">
+         <div class="works" id="htagSearch" style="display:none; margin-left: 230px; width: 300px;">
             <!-- 결과사진 foreach로 뿌려주세요 -->
-            <c:forEach var="find" items="${find }">
-               <img id="imgList" src="myHomeFolder/content/${find.path }" alt="" style="width: 400px; height: 400px;">
-            </c:forEach>
          </div>
       </div>
 </section>
@@ -480,27 +927,139 @@
               
     </div>
 </div>
-         <div class="container" style="background-color: white;">
-    <div class="row">
-        <div class="col-sm-12">
-              <p>
-            <br/>
-         <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
-              </p>
-        </div>
-    </div>
-</div>
-    </div>
+        <div class="container">
+
+			<div class="row">
+				<div class="col-xs-12" style="text-align: center;">
+					<div class="spinner" id="wait"></div>
+				</div>
+				<!-- 더보기 버튼 -->
+				<div class="col-xs-12" style="text-align: center;">
+					<button type="button" class="btn btn-primary" id="more">More
+						List..</button>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<!-- end main -->
+	<input type="hidden" id="session_idx" value="${sessionScope.useridx }">
+	<input type="hidden" id="session_name" value="${sessionScope.username }">
+	<div id="galleryModal" class="modal fade" tabindex="-1" role="dialog"
+		aria-hidden="true" style="border: solid; overflow: auto; background-color: rgba(0, 0, 0, 0.2);">
+		<div style="margin: 2% 10%;">
+			<section id="viewForm" style="overflow: auto;">
+				<div class="container" style="width: 100%; font-size: 15px; overflow: hidden;">
+					<div class="row">
+						<!-- 사진 -->
+						<div class="col-xs-7"
+							style="margin-top: 10px; float: left; margin-bottom: 10px; overflow: hidden; height:440px;" id="detail_media">
+							
+						</div>
+
+						<!-- 내용 -->
+						<input type="hidden" id="c_idx" value="">
+						<div class="col-xs-5"
+							style="margin-top: 10px; margin-bottom: 10px;">
+							<div class="col-sm-12" id="cntInfoBar">
+								<span class="avatar"> <img src="js/profile.png" alt="" id="pf" style="
+                            border-radius: 70px;
+                            -moz-border-radius: 70px;
+                            -khtml-border-radius: 70px;
+                            -webkit-border-radius: 70px;
+                            "/>
+								</span> <label id="c_writer"></label> <span>
+									<button class="btn btn-info" id="myBtn"
+										style="background: gray;">· · · </button> <!-- The Modal -->
+									<div id="myModal2" class="modal2">
+
+										<!-- Modal content // contentMore -->
+										<div class="list-group" style="width: 20%; margin: 5% auto;"
+											id="contentMore">
+											<span class="close">&times;</span>
+										</div>
+
+									</div>
+								</span>
+
+							</div>
+							
+
+							<div class="col-sm-12" id="cntInfoBar"
+								style="overflow: auto; height: 70px;">
+								<span><label id="c_content"></label></span>
+							</div>
+							
+							<div class="col-sm-12" id="cntInfoBar">
+								<span><a href="#" onclick="like()">
+				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a><input type="button" value="발자취" onclick="like()"></span>
+							</div>
+
+	
+							<div class="col-sm-12" id="cntInfoBar"
+								style="overflow: auto; height: 200px;">
+								<div class="col-sm-12" id="reply_List">
+									<span class="avatar"> 
+									</span>
+								</div>
+
+
+							</div>
+
+							<div class="col-sm-12">
+								<div class="input-group">
+									<input id="content" type="text" class="form-control"
+										name="content" placeholder="댓글 입력"> <label
+										class="input-group-addon" onclick="addReply()"
+										onkeydown="showList()">작성</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
 </body>
 
-    <script src="assets_main/js_1/jquery-1.10.2.js" type="text/javascript"></script>
-   <script src="assets_main/js_1/bootstrap.js" type="text/javascript"></script>
-   <script type="text/javascript" src="assets_main/js_1/main.js"></script>
-   <script src="assets_main/js_1/ct-navbar.js"></script>
-   <script type="text/javascript" src="assets_main/owl-carousel/owl.carousel.min.js"></script>
-   
+<script>
+// Get the modal
+var modal = document.getElementById('myModal2');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+
+<script src="assets_main/js_1/jquery-1.10.2.js" type="text/javascript"></script>
+<script src="assets_main/js_1/bootstrap.js" type="text/javascript"></script>
+<script type="text/javascript" src="assets_main/js_1/main.js"></script>
+<script src="assets_main/js_1/ct-navbar.js"></script>
+<script type="text/javascript"
+	src="assets_main/owl-carousel/owl.carousel.min.js"></script>
+
 <!--Parallax-->
-<script type="text/javascript" src="assets_main/js/jquery.stellar.min.js"></script>
+<script type="text/javascript"
+	src="assets_main/js/jquery.stellar.min.js"></script>
 <!--IsoTop-->
 <script type="text/javascript" src="assets_main/js/isotope.pkgd.min.js"></script>
 <!--Typed js-->
@@ -509,4 +1068,12 @@
 <script type="text/javascript" src="assets_main/js/smooth-scroll.js"></script>
 <!--Reveal JS-->
 <script type="text/javascript" src="assets_main/js/scrollReveal.min.js"></script>
-</html>
+
+<script type="text/javascript"
+	src="assets_main/js/jquery.autocomplete.js"></script>
+
+<script type="text/javascript"
+	src="assets_main/js/jquery.autocomplete.min.js"></script>
+
+<script type="text/javascript"
+	src="assets_main/js/jquery.autocomplete.pack.js"></script>

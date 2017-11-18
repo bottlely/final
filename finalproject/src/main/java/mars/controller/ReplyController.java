@@ -56,19 +56,14 @@ public class ReplyController {
       map.put("member_idx", member_idx);
       
       replydao.addReply(map);
-      
-      System.out.println("content: "+content);
-      System.out.println("content_idx: "+content_idx);
-      System.out.println("session_idx: "+session_idx);
-      System.out.println("member_idx: "+member_idx);
-      
+
       //getIdx
       ReplyDTO rdto = actDao.ac_getIdx(member_idx, session_idx, content_idx, content);
-      System.out.println("22: "+rdto.getIdx());
+      ReplyDTO rdto_ref = actDao.ac_getRef(member_idx, session_idx, content_idx, content);
       
       MyHomeDTO mdto = followDao.ac_name_img(session_idx);
       
-      actDao.ac_insert_reply(session_idx, member_idx, content_idx, content, mdto.getName(), mdto.getProfile_img(), rdto.getIdx());
+      actDao.ac_insert_reply(session_idx, member_idx, content_idx, content, mdto.getName(), mdto.getProfile_img(), rdto.getIdx(), rdto_ref.getRef(), 0);
       
       List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
 
@@ -104,11 +99,11 @@ public class ReplyController {
       
       //getIdx
       ReplyDTO rdto = actDao.ac_getIdx(member_idx, session_idx, content_idx, content);
-      System.out.println("22: "+rdto.getIdx());
+      ReplyDTO rdto_ref2 = actDao.ac_getRef(member_idx, session_idx, content_idx, content);
       
       MyHomeDTO mdto = followDao.ac_name_img(session_idx);
       
-      actDao.ac_insert_reply(session_idx, member_idx, content_idx, content, mdto.getName(), mdto.getProfile_img(), rdto.getIdx());
+      actDao.ac_insert_reply(session_idx, member_idx, content_idx, content, mdto.getName(), mdto.getProfile_img(), rdto.getIdx(), rdto_ref2.getRef(), 1);
       
       List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
 
@@ -129,8 +124,7 @@ public class ReplyController {
        
        replydao.update_Reply(map);
        
-       //ReplyDTO rdto = actDao.ac_getIdx(reply_idx);
-       actDao.ac_reply_update(content, reply_idx);
+       int res = actDao.ac_reply_update(content, reply_idx);
        
        List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
        
@@ -157,10 +151,15 @@ public class ReplyController {
       if(lev == 0){
          replydao.delete_Reply(map);
          replydao.delete_re_Reply(map);
+         
+         int res = actDao.ac_reply_delete(reply_idx, ref, content_idx, lev);
+         int res2 = actDao.ac_re_reply_delete(ref, content_idx);
       }else{
          replydao.delete_Reply(map);
+         
+         int res = actDao.ac_reply_delete(reply_idx, ref, content_idx, lev);
       }
-      
+     
       List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
       
       ModelAndView mav = new ModelAndView("marsJson" , "replyList", list);

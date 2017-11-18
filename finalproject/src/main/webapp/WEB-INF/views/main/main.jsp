@@ -389,7 +389,6 @@ var data = [
 			/**해쉬태그*/
 
 	$(document).ready(function() {
-
 		  $("#searchForm").autocomplete(data, {
 		    matchContains: true,
 		    minChars: 0,
@@ -401,16 +400,10 @@ var data = [
 		    formatItem: function(item){ return item.name; }
 		     }
 		   );
-		 
 	});
 			
-
-
 	$(document).ready(function() {
-		
-			
 		  $("#content").autocomplete(data, {
-			
 		    matchContains: true,
 		    minChars: 0,
 		   width: 120,
@@ -788,7 +781,7 @@ var data = [
 		<div id="navbar-full">
 			<span style="float: left;">
 				<div id="friends2"
-					style="background: #935d8c; height: 100%; width: 40%; position: absolute; float: left; display: none; z-index: 4">
+					style="background: #935d8c; height: 100%; width: 28%; position: absolute; float: left; display: none; z-index: 4">
 					<div
 						style="background-color: white; align-content: center; text-align: right;">
 						<a href="#" id="cl1">Close</a>
@@ -810,15 +803,6 @@ var data = [
 				</div>
 			</span>
 
-			<div id="msgTest2"
-				style="background: #935d8c; height: 50%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 30%; margin-left: 78%">
-				<div style="background-color: white; align-content: center;">
-					<a href="#" id="cl3">Close</a>
-				</div>
-
-				<H1>채팅창 태스트</H1>
-
-			</div>
 			<!-- 개인설정 창 부분(more)___followingList -->
 			<div id="more2"
 				style="background: white; height: 50%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%">
@@ -992,7 +976,7 @@ var data = [
 										<a class="dropdown-item small" href="#">View all messages</a>
 									</div></li>
 
-
+								<!-- d -->
 								<li>
 									<div class="dropdown">
 										<a class="btn btn-default dropdown-toggle"

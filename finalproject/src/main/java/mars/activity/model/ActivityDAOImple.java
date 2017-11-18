@@ -74,7 +74,7 @@ public class ActivityDAOImple implements ActivityDAO {
 	}
 	
 	public void ac_insert_reply(int from_idx, int to_idx, int content_idx, String content, String name,
-			String profile_img, int reply_idx) {
+			String profile_img, int reply_idx, int ref, int lev) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("from_idx", String.valueOf(from_idx));
 		map.put("to_idx", String.valueOf(to_idx));
@@ -83,6 +83,8 @@ public class ActivityDAOImple implements ActivityDAO {
 		map.put("name", name);
 		map.put("profile_img", profile_img);
 		map.put("reply_idx", String.valueOf(reply_idx));
+		map.put("ref", String.valueOf(ref));
+		map.put("lev", String.valueOf(lev));
 		
 		sqlMap.insert("ac_insert_reply", map);
 		
@@ -111,15 +113,53 @@ public class ActivityDAOImple implements ActivityDAO {
 		return dto;
 	}
 	
-	public int ac_reply_update(String content, int reply_idx) {
-		System.out.println("content; "+content);
-		System.out.println("reply_idx: "+reply_idx);
+	public ReplyDTO ac_getRef(int from_idx, int to_idx, int content_idx, String content) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("from_idx", String.valueOf(from_idx));
+		map.put("to_idx", String.valueOf(to_idx));
+		map.put("content_idx", String.valueOf(content_idx));
+		map.put("content", content);
 		
+		ReplyDTO dto = sqlMap.selectOne("ac_getRef", map);
+		return dto;
+	}
+	
+	public ReplyDTO ac_getLev(int reply_idx, int ref, int content_idx) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("reply_idx", reply_idx);
+		map.put("ref", ref);
+		map.put("content_idx", content_idx);
+		
+		ReplyDTO dto = sqlMap.selectOne("ac_getLev", map);
+		return dto;
+	}
+	
+	public int ac_reply_update(String content, int reply_idx) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("content", content);
 		map.put("reply_idx", String.valueOf(reply_idx));
 		
-		int res = sqlMap.selectOne("ac_reply_update", map);
+		int res = sqlMap.update("ac_reply_update", map);
+		return res;
+	}
+	
+	public int ac_reply_delete(int reply_idx, int ref, int content_idx, int lev) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("reply_idx", reply_idx);
+		map.put("ref", ref);
+		map.put("content_idx", content_idx);
+		map.put("lev", lev);
+		
+		int res = sqlMap.delete("ac_reply_delete", map);
+		return res;
+	}
+	
+	public int ac_re_reply_delete(int ref, int content_idx) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("ref", ref);
+		map.put("content_idx", content_idx);
+		
+		int res = sqlMap.delete("ac_re_reply_delete", map);
 		return res;
 	}
 	
