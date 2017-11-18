@@ -1144,7 +1144,22 @@ var data = [
 	
 	<section>
 	<c:set var="list" value="${adList }"></c:set>
-		<c:if test="${empty list }"> 선호 광고 없음 </c:if>
+		<c:if test="${empty list }"> 
+		<div class="col-md-4 col-sm-6 col-xs-12  photo">
+			<div class="works" style="height: 431px;">
+			
+			<img src="adFolder/default.png " alt=""
+										style="width: 431px; height: 431px;">
+										
+				<div class="work-overlay text-center">
+				<div class="overlay-caption">
+				선호도 조사를 먼저 해주세요~ 
+				선호에 맞는 광고를 추천해 드립니당!^^
+				</div>
+				</div>
+			</div>
+		</div>
+		</c:if>
 			<c:forEach var="list" items="${list }">
 					
 		<div class="col-md-4 col-sm-6 col-xs-12  photo">

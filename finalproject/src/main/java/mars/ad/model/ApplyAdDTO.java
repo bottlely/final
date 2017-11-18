@@ -5,13 +5,13 @@ import java.sql.Date;
 
 public class ApplyAdDTO {
 	
-	private int ad_idx; //ȸ�� ���Խ� idx, primary key
-	private int member_idx; //ȸ�� �����ϴ� ����� idx
-	private String name; //ȸ�� �̸�
-	private String type; //ȸ�� Ÿ��
-	private String link; //ȸ�� ��ũ, Ÿ�� ��ũ
-	private String ad_content; //ȫ���� ����Ʈ
-	private int fee; //���
+	private int ad_idx; //회占쏙옙 占쏙옙占쌉쏙옙 idx, primary key
+	private int member_idx; //회占쏙옙 占쏙옙占쏙옙占싹댐옙 占쏙옙占쏙옙占� idx
+	private String name; //회占쏙옙 占싱몌옙
+	private String type; //회占쏙옙 타占쏙옙
+	private String link; //회占쏙옙 占쏙옙크, 타占쏙옙 占쏙옙크
+	private String ad_content; //홍占쏙옙占쏙옙 占쏙옙占쏙옙트
+	private int fee; //占쏙옙占�
 	private int favor_movie;
 	private int favor_sport;
 	private int favor_fashion;
@@ -20,16 +20,16 @@ public class ApplyAdDTO {
 	private int favor_music;
 	private int favor_dance;
 	private int favor_food;
-	private int status; //0:��û&�ɻ��� 1:�ɻ� �Ϸ�/���� 2:�����Ϸ� 3:�Խ� 4:����
-	private String post; //퍼가는
-	private String follow; //follow수, 지워도 될듯
-	private Date apply_date; //��û ��¥ -> �����ϸ� ���γ�¥��
+	private int status; 
+	private String post; //�띁媛��뒗
+	private String follow; //follow�닔, 吏��썙�룄 �맆�벏
+	private Date apply_date; //占쏙옙청 占쏙옙짜 -> 占쏙옙占쏙옙占싹몌옙 占쏙옙占싸놂옙짜占쏙옙
 	private int amount;
-	private String s_date; //���� ���� ��¥
-	private String e_date; //���� ������ ��¥
-	private String ad_name; //���� �̸�
-	private String all_amount; //string���� ���� amount �����ϱ�
-	private int num_amount; //amount�� ���� ���� ��
+	private String s_date; //占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙짜
+	private String e_date; //占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙 占쏙옙짜
+	private String ad_name; //占쏙옙占쏙옙 占싱몌옙
+	private String all_amount; //string占쏙옙占쏙옙 占쏙옙占쏙옙 amount 占쏙옙占쏙옙占싹깍옙
+	private int num_amount; //amount占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙
 	
 	public ApplyAdDTO() {
 		// TODO Auto-generated constructor stub

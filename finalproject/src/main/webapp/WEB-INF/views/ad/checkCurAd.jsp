@@ -20,7 +20,6 @@
 (function imme(){
 	
 	if("${i}"==""){
-		//alert("시작하자마자 날 보게 될거야");
 	}
 	else{
 		//alert(${i});
@@ -48,7 +47,25 @@ function showCurResult(){
 			else{
 				for(var i=0; i<lists.list.length; i++){
 					var l = lists.list[i];
-					str += '<a href="showAve.do?ad_idx='+l.ad_idx+'&user_idx=${sessionScope.useridx}">'+l.ad_name+'</a><hr>';
+					
+					var sss="";
+	 				if(l.status==0){
+	 					sss="(승인 기다리는 중)";
+	 				}
+	 				else if(l.status==1){
+	 					sss="(승인완료 & 결제 전)";
+	 				}
+	 				else if(l.status==2){
+	 					sss="(결제완료 & 게시 전)";
+	 				}
+	 				else if(l.status==3){
+	 					sss="(결제확인 & 게시 완료)";
+	 				}
+	 				else if(l.status==4){
+	 					sss="(광고 거절)";
+	 				}
+	 				
+					str += '<a href="showAve.do?ad_idx='+l.ad_idx+'&user_idx=${sessionScope.useridx}">'+l.ad_name+sss+'</a><hr>';
 				}
 				p1.innerHTML = str;
 			}
@@ -61,11 +78,8 @@ function showAve(){
 	var str = "${str}";
 	var p1 = document.all.ave;
 	var strGo='';
-//	alert(i);
-//	alert(str);
 	
 	if(str==""){
-		//저장된 정보가 없음. 즉 status!=3
 		strGo='등록된 게시물이 아닙니다!';
 	}
 	else{
@@ -114,26 +128,18 @@ function showNumResult(){
 				p1.innerHTML = str;
 			}
 			else{
-				//alert(lists.list.length);
 				var newArr = new Array(lists.list.length);
 				var nameArr = new Array(lists.list.length);
 				
 				for(var i=0; i<lists.list.length; i++){
 					var l = lists.list[i];
-				//	alert(l.num_amount);
 					newArr[i] = l.num_amount;
-				//	nameArr[i] = l.ad_name;
-//					alert(newArr[i]);
-					//str += '<a href="showAve.do?ad_idx='+l.ad_idx+'">'+l.ad_name+'</a><hr>';
 				}
-//				alert('2');
 				newArr.sort(function(a, b){
 					return b-a;
 				});
-//				alert('3');
 				
 				for(var i=0; i<lists.list.length; i++){
-//					alert('d');
 					var cnt=0;
 					while(true){
 						var l = lists.list[cnt];
@@ -147,7 +153,6 @@ function showNumResult(){
 				
 				for(var i=0; i<newArr.length; i++){
 					str += (i+1)+'위.      '+nameArr[i]+'의 현재까지 총 유입량?  '+newArr[i]+'<hr>';
-					//str += (i+1)+'.  의 현재까지 총 유입량?  '+newArr[i].num_amount+'<hr>';
 				}
 				p1.innerHTML = str;
 			}		

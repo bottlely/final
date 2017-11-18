@@ -111,12 +111,10 @@ function request(){
 		twoTag.innerHTML='Request Date';
 		threeTag.innerHTML='show';
 		
-		//alert('1');
 		if(cnt1!=0){
 			for(var i=cnt2; i<=cnt1; i++){
 				var rItem = document.getElementById('isId'+i);
 				if(rItem!=null){
-				//	alert('2');
 					rItem.parentNode.removeChild(rItem);
 				}
 			}
@@ -156,6 +154,7 @@ function requestResult(){
  					
  					
 	 				var list = lists.list[i];
+	 				
 	 				var newDiv = document.createElement('td');
 	 				newDiv.innerHTML = list.name;
 	 				trDiv.appendChild(newDiv);
@@ -177,7 +176,6 @@ function requestResult(){
 }
 
 function list(data){
-	//alert(data);
 	window.open('list.do?ad_idx='+data, '광고', 'scrollbars=no width=400, height=450');
 }
 
@@ -255,16 +253,16 @@ function payResult(){
          
          }
 	 }
-	 
-	 function postAd(data){
-	//	 alert(data);
-		 alert('광고물을 게시했습니다.');
-		 
-		 var xhr = new XMLHttpRequest();
-		xhr.open("POST","postAd.do?ad_idx="+data);
-	      xhr.send(data);
-	 }
       
+}
+
+function postAd(data){
+//	 alert(data);
+	 alert('광고물을 게시했습니다.');
+	 
+	 var xhr = new XMLHttpRequest();
+	xhr.open("POST","postAd.do?ad_idx="+data);
+     xhr.send(data);
 }
 
 </script>

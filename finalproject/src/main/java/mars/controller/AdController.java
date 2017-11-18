@@ -51,16 +51,9 @@ public class AdController {
 			 MultipartHttpServletRequest req, HttpServletRequest req2)
 	{
 		MultipartFile profile = req.getFile("file");
-		//System.out.println(file.getOriginalFilename());
-	
-	//	System.out.println(name);
 		String ad_content = name+ad_name+m_idx+profile.getOriginalFilename();
 		String type = "ad_content";
-	//	System.out.println(ad_content);
-		
 		copyInto(ad_content,profile,req2);
-		
-		
 		int result = adDao.insert(command, ad_content);
 		String msg = result>0?"광고 신청을 완료했습니다.":"광고 신청이 실패했습니다.";
 		ModelAndView mav = new ModelAndView();
@@ -157,15 +150,11 @@ public class AdController {
 	
 	@RequestMapping("/goCount.do")
 	public void goCount(@RequestParam("data")String data){
-		//System.out.println("come");
-		//System.out.println(data);
 		adDao.goCount(data);
 	}
 	
 	@RequestMapping("/postAd.do")
 	public void postAd(@RequestParam("ad_idx")String data){
-		//System.out.println("come");
-		//System.out.println(data);
 		adDao.postAd(data);
 	}
 	
@@ -173,14 +162,9 @@ public class AdController {
 		
 		try {
 			byte bytes[] = upload.getBytes();
-			
 			String realPath = req2.getSession().getServletContext().getRealPath("");
-	//		System.out.println("real = "+realPath);
 			realPath = realPath.replaceAll("\\\\","/");
-	//		System.out.println("real = "+realPath);
-			
 			File newfile = new File(realPath+"/adFolder/"+filename);
-			
 			FileOutputStream fos = new FileOutputStream(newfile);
 			fos.write(bytes);
 			fos.close();

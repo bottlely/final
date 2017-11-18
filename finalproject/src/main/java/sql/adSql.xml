@@ -46,7 +46,7 @@
   	</select>
   	
   	<select id="showAd" resultType="mars.ad.model.ApplyAdDTO">
-  	select * from ad where ${favor}=1 and status=4
+  	select * from ad where ${favor}=1 and status=3
   	</select>
   	
   	<update id="goCount" parameterType="Map">
@@ -54,7 +54,7 @@
   	</update>
   	
   	<update id="postAd" parameterType="Map">
-  	update ad set status=4 where ad_idx=#{ad_idx}
+  	update ad set status=3 where ad_idx=#{ad_idx}
   	</update>
   	
   	
