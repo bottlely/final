@@ -17,7 +17,12 @@ public class ActivityDAOImple implements ActivityDAO {
 	public ActivityDAOImple(SqlSessionTemplate sqlMap) {
 		super();
 		this.sqlMap = sqlMap;
-	}	
+	}
+	
+	public List<ActivityDTO> ac_list(int to_idx) {
+		List<ActivityDTO> list = sqlMap.selectList("ac_list", to_idx);
+		return list;
+	}
 	
 	public void ac_insert_like(int from_idx, int to_idx, int content_idx, Date actdate, String name, String profile_img) {
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -90,18 +95,6 @@ public class ActivityDAOImple implements ActivityDAO {
 		
 	}
 	
-	/*public ReplyDTO ac_new_list(int from_idx, int to_idx, int content_idx, String content) {
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("from_idx", String.valueOf(from_idx));
-		map.put("to_idx", String.valueOf(to_idx));
-		map.put("content_idx", String.valueOf(content_idx));
-		map.put("content", content);
-		map.put("reply_idx", String.valueOf(0));
-		
-		ReplyDTO list = sqlMap.selectOne("ac_insert_reply", map);
-		return list;
-	}
-	*/
 	public ReplyDTO ac_getIdx(int from_idx, int to_idx, int content_idx, String content) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("from_idx", String.valueOf(from_idx));

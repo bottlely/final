@@ -15,6 +15,7 @@ public class ActivityDTO {
 	private int numtype2;
 	private String name;
 	private String profile_img;
+	private String content;
 	
 	public ActivityDTO() {
 		super();
@@ -25,23 +26,6 @@ public class ActivityDTO {
 		this.content_idx = content_idx;
 		this.actdate = actdate;
 		this.name = name;
-	}
-
-	public ActivityDTO(int idx, int from_idx, int to_idx, int flag, int content_idx, int reply_idx, int like_idx,
-			Date actdate, int numtype1, int numtype2, String name, String profile_img) {
-		super();
-		this.idx = idx;
-		this.from_idx = from_idx;
-		this.to_idx = to_idx;
-		this.flag = flag;
-		this.content_idx = content_idx;
-		this.reply_idx = reply_idx;
-		this.like_idx = like_idx;
-		this.actdate = actdate;
-		this.numtype1 = numtype1;
-		this.numtype2 = numtype2;
-		this.name = name;
-		this.profile_img = profile_img;
 	}
 
 	public int getIdx() {
@@ -68,7 +52,13 @@ public class ActivityDTO {
 		this.to_idx = to_idx;
 	}
 
-	
+	public int getFlag() {
+		return flag;
+	}
+
+	public void setFlag(int flag) {
+		this.flag = flag;
+	}
 
 	public int getContent_idx() {
 		return content_idx;
@@ -118,22 +108,6 @@ public class ActivityDTO {
 		this.numtype2 = numtype2;
 	}
 
-	public String getname() {
-		return name;
-	}
-
-	public void setname(String name) {
-		this.name = name;
-	}
-
-	public int getFlag() {
-		return flag;
-	}
-
-	public void setFlag(int flag) {
-		this.flag = flag;
-	}
-
 	public String getName() {
 		return name;
 	}
@@ -149,5 +123,14 @@ public class ActivityDTO {
 	public void setProfile_img(String profile_img) {
 		this.profile_img = profile_img;
 	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
 	
 }
