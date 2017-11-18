@@ -303,6 +303,14 @@ to {
 </head>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
          <script> 
+         function shome(d){
+             document.getElementById('ppp').src='myHomeForm.do?useridx='+d;
+              var div = $("#mypage2");
+               div.animate({right: '0px'}, "fast");
+               div.animate({height: '100%'}, "slow");
+               div.animate({width:'toggle'}, "slow");
+          }
+         
          function htag(name){
             var htagSearch = document.getElementById("htagSearch");
             var peopleSearch = document.getElementById("peoplesearch");
@@ -337,9 +345,9 @@ to {
                        for(var i = 0; i < lists.find.length; i++) {
                           var l = lists.find[i];
                           if(l.gender == 1){
-                              str +=  '<tr><td>프로필 사진</td><td>이름(한줄소개)</td><td>생년월일</td><td>성별</td><td></td></tr><tr><td><img src="myHomeFolder/profile_img/' + l.profile_img + '"></td><td>' + l.name + '<br>' + l.intro + '</td><td>' + l.birth_y + '년 ' + l.birth_m + '월 ' + l.birth_d + '일</td><td>남자</td><td><input type="button" value="피드 보기" + onclick=""></td></tr>'  
+                              str +=  '<tr><td>프로필 사진</td><td>이름(한줄소개)</td><td>생년월일</td><td>성별</td><td></td></tr><tr><td><img src="myHomeFolder/profile_img/' + l.profile_img + '"></td><td>' + l.name + '<br>' + l.intro + '</td><td>' + l.birth_y + '년 ' + l.birth_m + '월 ' + l.birth_d + '일</td><td>남자</td><td><input type="button" value="View" id="shome" onclick="shome('+ l.idx +')"></td></tr>'  
                           }else{
-                             str +=  '<tr><td>프로필 사진</td><td>이름(한줄소개)</td><td>생년월일</td><td>성별</td><td></td></tr><tr><td><img src="myHomeFolder/profile_img/' + l.profile_img + '"></td><td>' + l.name + '<br>' + l.intro + '</td><td>' + l.birth_y + '년 ' + l.birth_m + '월 ' + l.birth_d + '일</td><td>여자</td><td><input type="button" value="피드 보기" + onclick=""></td></tr>'
+                             str +=  '<tr><td>프로필 사진</td><td>이름(한줄소개)</td><td>생년월일</td><td>성별</td><td></td></tr><tr><td><img src="myHomeFolder/profile_img/' + l.profile_img + '"></td><td>' + l.name + '<br>' + l.intro + '</td><td>' + l.birth_y + '년 ' + l.birth_m + '월 ' + l.birth_d + '일</td><td>여자</td><td><input type="button" value="View" id="shome" onclick="shome('+ l.idx +')"></td></tr>'
                           }
                        }
                     }
@@ -374,33 +382,6 @@ to {
          
          var data = [
         	 {name : '양진모'}
-        	,{name : '박연수'}
-        	,{name : '오현경'}
-        	,{name : '한미연'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
-        	,{name : '정다운'}
         	
         	];
 
