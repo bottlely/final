@@ -949,11 +949,11 @@ var data = [
 											class="fa fa-fw fa-circle"></i>
 									</span>
 								</a>
-									<div class="dropdown-menu" aria-labelledby="alertsDropdown">
+									<div class="dropdown-menu" aria-labelledby="alertsDropdown" style="width: 400px; border: 6px; text-align: center;">
 										<h6 class="dropdown-header">New Alerts:</h6>
 										<!-- 활동내역 -->
 										<iframe src="activityList.do?idx=${sessionScope.useridx}"
-											width="100%" height="100%" frameborder="0"></iframe>
+											width="380px" height="100%" frameborder="0" align="middle" border-top="10px"></iframe>
 
 										<!-- <div class="dropdown-divider"></div>
 										<a class="dropdown-item small" href="#">View all alerts</a> -->
