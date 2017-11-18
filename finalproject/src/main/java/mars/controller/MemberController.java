@@ -72,9 +72,6 @@ public class MemberController {
 	@RequestMapping("/login.do")
 	public ModelAndView loginCheck(@RequestParam("id")String userid, @RequestParam("pwd")String userpwd,
 			HttpSession session, HttpServletResponse resp, HttpServletRequest req) {
-	
-		System.out.println(userid);
-		System.out.println(userpwd);
 		
 		ModelAndView mav = new ModelAndView();
 		int idCheckResult = mdao.loginIdCheck(userid);

@@ -163,7 +163,7 @@ String idx = (String)session.getAttribute("useridx");
 					
 				</div>
 				<div class="col-sm-8" data-sr="enter right, hustle 80px">
-					<form class="st-form" action="login.do">
+					<form class="st-form" action="login.do" method="post">
 						<div class="row">
 							<div class="col-sm-6">
 								<div class="form-group ">
