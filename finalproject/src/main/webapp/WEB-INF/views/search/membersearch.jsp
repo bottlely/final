@@ -153,7 +153,7 @@
                        for(var i = 0; i < lists.find.length; i++){
                           var l = lists.find[i];
                          
-                          str += ' <div class="col-md-4 col-sm-4 col-xs-12"> <div class="works" style="height: 431px; width:360px;"> <img src="myHomeFolder/content/' + l.path + ' alt="" style="width: 431px; height: 431px;"> <div class="work-overlay text-center"> <div class="overlay-caption"> <h4>HASH</h4> </div></div></div> </div> ';
+                          str += ' <div class="col-md-4 col-sm-4 col-xs-12"> <div class="works" style="height: 431px; width:360px;"> <img src="myHomeFolder/content/' + l.path + ' alt="" style="width: 431px; height: 431px;"> <div class="work-overlay text-center"> <div class="overlay-caption"> <h4>HASH</h4> <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="' + l.path + '" onclick="openpic(' + l.content_idx + ')"><p>' + l.content + '</p></div></div></div> </div> ';
                          }
                    }
                     
