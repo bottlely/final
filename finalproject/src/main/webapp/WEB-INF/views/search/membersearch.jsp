@@ -95,8 +95,10 @@
          <script> 
          function htag(name){
             var htagSearch = document.getElementById("htagSearch");
+            var peopleSearch = document.getElementById("peoplesearch");
             
             htagSearch.style.display = 'block';
+            peopleSearch.style.display = 'none';
             
             sendRequest("search.do?name="+name, null, search, 'GET');
          }
@@ -116,8 +118,8 @@
                        var str = document.createElement('img');
                        //photo.setAttribute("src", "myHomeFolder/profile_img/"+'${user2_profile_img}');
                        
-                     	str.setAttribute("src", "myHomeFolder/content/"+l.path);
-                     	document.getElementById('htagSearch').appendChild(str);
+                        str.setAttribute("src", "myHomeFolder/content/"+l.path);
+                        document.getElementById('htagSearch').appendChild(str);
                     }
                  }
             }
