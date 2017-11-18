@@ -94,4 +94,9 @@ public class FriendDAOImple implements FriendDAO {
 		return list;
 	}*/
 	
+	public int insert_following(int user1_idx, int user2_idx) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
 }

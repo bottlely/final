@@ -29,7 +29,7 @@ public class ActivityDAOImple implements ActivityDAO {
 		map.put("from_idx", String.valueOf(from_idx));
 		map.put("to_idx", String.valueOf(to_idx));
 		map.put("content_idx", String.valueOf(content_idx));
-		map.put("actdate", String.valueOf(actdate));//諛쏆븘�삱�븣 stinrg->date �삎蹂��솚�빐�빞�븿
+		map.put("actdate", String.valueOf(actdate));//獄쏆룇釉섓옙�궞占쎈르 stinrg->date 占쎌굨癰귨옙占쎌넎占쎈퉸占쎈튊占쎈맙
 		map.put("name", name);
 		map.put("profile_img", profile_img);
 		
@@ -57,7 +57,26 @@ public class ActivityDAOImple implements ActivityDAO {
 		sqlMap.delete("ac_delete", map);
 	}
 	
-	public int ac_insert_follow(FriendDTO dto, String name, String profile_img) {
+	public void ac_del_followdb(int from_idx, int to_idx) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("from_idx", from_idx);
+		map.put("to_idx", to_idx);
+		
+		sqlMap.delete("ac_del_followdb", map);
+	}
+	
+	public int ac_insert_followdb(FriendDTO dto, String name, String profile_img) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("from_idx", String.valueOf(dto.getUser1_idx()));
+		map.put("to_idx", String.valueOf(dto.getUser2_idx()));
+		map.put("name", name);
+		map.put("profile_img", profile_img);
+		
+		int res = sqlMap.insert("ac_follow", map);
+		return res;
+	}
+	
+	public int ac_follow_to_act(FriendDTO dto, String name, String profile_img) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("from_idx", String.valueOf(dto.getUser2_idx()));
 		map.put("to_idx", String.valueOf(dto.getUser1_idx()));

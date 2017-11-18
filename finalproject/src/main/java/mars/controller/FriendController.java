@@ -30,15 +30,13 @@ public class FriendController {
 	@RequestMapping("/following.do")
 	public ModelAndView addFollowing(FriendDTO dto) {
 		int result = friendDao.following(dto);
-		String msg = result>0? "Success" : "Fail";
 		
 		MyHomeDTO list = followDao.ac_name_img(dto.getUser2_idx());
-		int res = actDao.ac_insert_follow(dto, list.getName(), list.getProfile_img());
-		System.out.println("활동내역 ok?    "+res);
+		int res1 = actDao.ac_insert_followdb(dto, list.getName(), list.getProfile_img());
+		int res2 = actDao.ac_follow_to_act(dto, list.getName(), list.getProfile_img());
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("msg", msg);
-		mav.setViewName("main/friendMsg");
+		mav.setViewName("main/main");
 		return mav;
 	}
 	
@@ -52,13 +50,12 @@ public class FriendController {
 	@RequestMapping("/deleteFriend.do")
 	public ModelAndView unFollowing(FriendDTO dto) {
 		int result = friendDao.deleteFriend(dto);
-		String msg = result>0? "Sucess" : "Fail";
 		
+		actDao.ac_del_followdb(dto.getUser1_idx(), dto.getUser2_idx());
 		actDao.ac_delete_follow(dto.getUser1_idx(), dto.getUser2_idx());
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("msg", msg);
-		mav.setViewName("main/friendMsg");
+		mav.setViewName("main/main");
 		return mav;
 	}
 	/**unfollowing_mypage*/
@@ -67,24 +64,6 @@ public class FriendController {
 		int result = friendDao.deleteFriend(dto);
 		return new ModelAndView("marsJson","result",result);
 	}
-	
-	/*@RequestMapping("/removeFollower.do")
-	public ModelAndView removeFollower(FriendDTO dto) {
-		ModelAndView mav = new ModelAndView();
-		
-	}*/
-	
-	/*@RequestMapping("/test.do")
-	public ModelAndView test(@RequestParam("user_idx")int user_idx) {
-		List<MemberDTO> list1 = friendDao.followerList(user_idx);
-		List<MemberDTO> list2 = friendDao.followingList(user_idx);
-		//MyHomeDTO mhdto = mhdao.myHomeSource(String.valueOf(user_idx));
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("followerList", list1);
-		mav.addObject("followingList", list2);
-		mav.setViewName("friend/test");
-		return mav;
-	}*/
 	
 	@RequestMapping("/main_frList.do")
 	public ModelAndView followingList(@RequestParam("member_idx")int member_idx) {
@@ -154,9 +133,7 @@ public class FriendController {
 		int res = friendDao.block(user1_idx, user2_idx);
 		
 		ModelAndView mav = new ModelAndView();
-		String msg = res>0? "Success" : "Fail";
-		mav.addObject("msg", msg);
-		mav.setViewName("main/friendMsg");
+		mav.setViewName("main/main");
 		return mav;
 	}
 	@RequestMapping("/friend_block_mypage.do")
@@ -170,9 +147,7 @@ public class FriendController {
 		int res = friendDao.removeFollower(user1_idx, user2_idx);
 		
 		ModelAndView mav = new ModelAndView();
-		String msg = res>0? "Success" : "Fail";
-		mav.addObject("msg", msg);
-		mav.setViewName("main/friendMsg");
+		mav.setViewName("main/main");
 		return mav;
 	}
 	

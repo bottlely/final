@@ -16,10 +16,18 @@
 	<select id="ac_name_img" parameterType="Integer" resultType="mars.myHome.model.MyHomeDTO">
 		select * from mypage where member_idx=#{to_idx}
 	</select>
+	<delete id="ac_del_followdb">
+		delete from mars_follow
+		where from_idx=#{from_idx} and to_idx=#{to_idx}
+	</delete>
 	<delete id="ac_delete">
 		delete from mars_activity 
 		where from_idx=#{from_idx} and to_idx=#{to_idx} and content_idx=#{content_idx} and flag=#{flag}
 	</delete>
+	<insert id="ac_follow">
+		insert into mars_follow
+		values(mars_follow_idx.nextval, #{from_idx}, #{to_idx}, #{name}, #{profile_img}, sysdate, 0, '')
+	</insert>
 	<insert id="ac_insert_follow">
 		insert into mars_activity
 		values(mars_activity_idx.nextval, #{from_idx}, #{to_idx}, 3, 0,
@@ -52,4 +60,5 @@
    		delete from mars_activity 
 		where content_idx=#{content_idx} and numtype1=#{ref}
    </delete>
+   
 </mapper>
