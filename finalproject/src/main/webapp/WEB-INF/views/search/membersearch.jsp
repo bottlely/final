@@ -23,51 +23,260 @@
     <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
     <style>
     
-    
-         @keyframes spin {
-      100% {
-         transform: rotate(360deg);
-         }
-      }
-      .spinner {
-      display: inline-block;
-      width: 50px;
-      height: 50px;
-      border: 5px solid yellow;
-      border-color: yellow transparent transparent;
-      border-radius: 50%;
-      animation: spin 1s linear  infinite;
-      }    
-    
-        .fa-heart{
-            color: #F74933;
-        }   
-        .space-100{
-            height: 100px;
-            display: block;
-        }
-        pre.prettyprint{
-            background-color: #ffffff;
-            border: 1px solid #999;
-            margin-top: 20px;
-            padding: 20px;
-            text-align: left;
-        }
-        .atv, .str{
-            color: #05AE0E;
-        }
-        .tag, .pln, .kwd{
-             color: #3472F7;
-        }
-        .atn{
-          color: #2C93FF;
-        }
-        .pln{
-           color: #333;
-        }
-        .com{
-            color: #999;
-        } 
+.frbutton {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	-moz-transition: background-color 0.2s ease, box-shadow 0.2s ease, color
+		0.2s ease;
+	-webkit-transition: background-color 0.2s ease, box-shadow 0.2s ease,
+		color 0.2s ease;
+	-ms-transition: background-color 0.2s ease, box-shadow 0.2s ease, color
+		0.2s ease;
+	transition: background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s
+		ease;
+	background-color: transparent;
+	border: 0;
+	box-shadow: inset 0 0 0 1px rgba(160, 160, 160, 0.3);
+	color: #3c3b3b !important;
+	cursor: pointer;
+	display: inline-block;
+	font-family: "Raleway", Helvetica, sans-serif;
+	font-size: 0.6em;
+	font-weight: 800;
+	height: 20px;
+	letter-spacing: 0.25em;
+	line-height: 4.8125em;
+	padding: 0 2.5em;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.frbutton:hover {
+	box-shadow: inset 0 0 0 1px #2ebaae;
+	color: #2ebaae !important;
+}
+
+@
+keyframes spin { 100% {
+	transform: rotate(360deg);
+}
+
+}
+.spinner {
+	display: inline-block;
+	width: 50px;
+	height: 50px;
+	border: 5px solid yellow;
+	border-color: yellow transparent transparent;
+	border-radius: 50%;
+	animation: spin 1s linear infinite;
+}
+
+.fa-heart {
+	color: #F74933;
+}
+
+.space-100 {
+	height: 100px;
+	display: block;
+}
+
+pre.prettyprint {
+	background-color: #ffffff;
+	border: 1px solid #999;
+	margin-top: 20px;
+	padding: 20px;
+	text-align: left;
+}
+
+.atv, .str {
+	color: #05AE0E;
+}
+
+.tag, .pln, .kwd {
+	color: #3472F7;
+}
+
+.atn {
+	color: #2C93FF;
+}
+
+.pln {
+	color: #333;
+}
+
+.com {
+	color: #999;
+}
+
+#viewForm {
+	background-color: #f2fdff;
+}
+
+#pf {
+	width: 50px;
+	heigth: 50px;
+}
+
+#pf2 {
+	width: 30px;
+	height: 30px;
+}
+
+#reply1 {
+	margin-bottom: 10px;
+}
+
+#name {
+	width: 50%;
+}
+
+#cntInfoBar {
+	border-bottom: 0.5px solid #d1c8ff;
+	margin-bottom: 10px;
+	padding-bottom: 5px;
+}
+
+/* jssor slider loading skin spin css */
+.jssorl-009-spin img {
+	animation-name: jssorl-009-spin;
+	animation-duration: 1.6s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@
+keyframes jssorl-009-spin {from { transform:rotate(0deg);
+	
+}
+
+to {
+	transform: rotate(360deg);
+}
+
+}
+.jssorb051 .i {
+	position: absolute;
+	cursor: pointer;
+}
+
+.jssorb051 .i .b {
+	fill: #fff;
+	fill-opacity: 0.5;
+}
+
+.jssorb051 .i:hover .b {
+	fill-opacity: .7;
+}
+
+.jssorb051 .iav .b {
+	fill-opacity: 1;
+}
+
+.jssorb051 .i.idn {
+	opacity: .3;
+}
+
+.jssora051 {
+	display: block;
+	position: absolute;
+	cursor: pointer;
+}
+
+.jssora051 .a {
+	fill: none;
+	stroke: #fff;
+	stroke-width: 360;
+	stroke-miterlimit: 10;
+}
+
+.jssora051:hover {
+	opacity: .8;
+}
+
+.jssora051.jssora051dn {
+	opacity: .5;
+}
+
+.jssora051.jssora051ds {
+	opacity: .3;
+	pointer-events: none;
+}
+
+.modal2 {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	position: relative;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 0;
+	border: 1px solid #888;
+	width: 20%;
+	height: 24%;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+	-webkit-animation-name: animatetop;
+	-webkit-animation-duration: 0.4s;
+	animation-name: animatetop;
+	animation-duration: 0.4s
+}
+
+/* Add Animation */
+@
+-webkit-keyframes animatetop {
+	from {top: -300px;
+	opacity: 0
+}
+
+to {
+	top: 0;
+	opacity: 1
+}
+
+}
+@
+keyframes animatetop {
+	from {top: -300px;
+	opacity: 0
+}
+
+to {
+	top: 0;
+	opacity: 1
+}
+
+}
+
+/* The Close Button */
+.close {
+	color: white;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
         #peoplesearch .peoplesearchtable{
           width:645px;
         margin:0px auto;
@@ -912,24 +1121,7 @@
   
   </section>
 <!-- end main -->
-    <div id="galleryModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="container" style="background-color: white;">
-    <div class="row">
-        <div class="col-xs-6">
-        
-        <img src="" id="galleryImage" class="img-responsive">
-        
-        </div>
-        <div class="col-xs-6" style="float: left;">
-       <h2> 제목 </h2><br>
-        내용 <br>
-      댓글1<br>
-      댓글2<br>
-        </div>
-        
-              
-    </div>
-</div>
+
         <div class="container">
 
 			<div class="row">
