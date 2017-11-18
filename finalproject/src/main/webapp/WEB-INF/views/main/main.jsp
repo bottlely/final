@@ -444,7 +444,9 @@ var data = [
             
             sendRequest('likeList.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
          
+            
             if(category==1){
+            	//사진
             	if($('#detail_media').children().size()>0){
             		detail_media.removeChild(document.getElementById('detail'));
             	}
@@ -453,7 +455,10 @@ var data = [
             	img_slide.src = path;
             	img_slide.id='detail';
             	detail_media.appendChild(img_slide);
+            	
+            	document.getElementById('c_content').innerHTML = content;
              }else if(category==2){
+            	 //동영상
             	 if($('#detail_media').children().size()>0){
              		detail_media.removeChild(document.getElementById('detail'));
              	}
@@ -469,10 +474,22 @@ var data = [
             	 
             	 video_slide.appendChild(source);
             	 detail_media.appendChild(video_slide);
+            	 
+            	 document.getElementById('c_content').innerHTML = content;
+             }else if(category==3){
+            	 //텍스트
+            	 if($('#detail_media').children().size()>0){
+             		detail_media.removeChild(document.getElementById('detail'));
+             	}
+            	 
+            	 var label = document.createElement('label');
+            	 label.innerText = content;
+            	 document.getElementById('c_content').innerHTML = path;
+            	 detail_media.appendChild(label);
+            	 
              }
                 
                 document.getElementById('c_writer').innerHTML = writer;
-                document.getElementById('c_content').innerHTML = content;
                 $('#pf').attr("src", profile);
             
           //contentMore
