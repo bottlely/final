@@ -62,7 +62,7 @@
 
 			<div class="sidebar-wrapper">
 				<div class="logo">
-					<a href="infoSetting.do?idx=${sessionScope.useridx}" class="simple-text"> MARS </a>
+					<a href="main.do?idx=${sessionScope.useridx}" class="simple-text"> MARS </a>
 				</div>
 
 				<ul class="nav">

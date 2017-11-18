@@ -448,19 +448,17 @@ var data = [
             if(category==1){
             	//사진
             	if($('#detail_media').children().size()>0){
-            		detail_media.removeChild(document.getElementById('detail'));
+            		$('#detail_media').children().remove();
             	}
             
             	var img_slide = document.createElement('img');
             	img_slide.src = path;
             	img_slide.id='detail';
             	detail_media.appendChild(img_slide);
-            	
-            	document.getElementById('c_content').innerHTML = content;
              }else if(category==2){
             	 //동영상
             	 if($('#detail_media').children().size()>0){
-             		detail_media.removeChild(document.getElementById('detail'));
+            		 $('#detail_media').children().remove();
              	}
             	 
             	 var video_slide = document.createElement('video');
@@ -474,21 +472,18 @@ var data = [
             	 
             	 video_slide.appendChild(source);
             	 detail_media.appendChild(video_slide);
-            	 
-            	 document.getElementById('c_content').innerHTML = content;
              }else if(category==3){
             	 //텍스트
             	 if($('#detail_media').children().size()>0){
-             		detail_media.removeChild(document.getElementById('detail'));
+            		 $('#detail_media').children().remove();
              	}
             	 
             	 var label = document.createElement('label');
-            	 label.innerText = content;
-            	 document.getElementById('c_content').innerHTML = path;
+            	 label.innerHTML = content;
             	 detail_media.appendChild(label);
             	 
              }
-                
+          		document.getElementById('c_content').innerHTML = category==3? path:content;
                 document.getElementById('c_writer').innerHTML = writer;
                 $('#pf').attr("src", profile);
             
@@ -1006,7 +1001,7 @@ var data = [
 						<c:if test="${list.category==2 }">
 							<div class="col-md-4 col-sm-6 col-xs-12  video">
 								<div class="works" style="height: 431px; background-color: white; max-width: 431px;">
-                        		   <video autoplay="autoplay" muted loop="loop" style="width:300px; height:100%;  ">
+                        		   <video autoplay="autoplay" muted loop="loop" style="width:100%; height:100%;  ">
 										<source src="myHomeFolder/content/${list.path }"
 											type="video/mp4">
 									</video>
@@ -1143,8 +1138,8 @@ var data = [
 				<div class="container" style="width: 100%; font-size: 15px; overflow: hidden;">
 					<div class="row">
 						<!-- 사진 -->
-						<div class="col-xs-7"
-							style="margin-top: 10px; float: left; margin-bottom: 10px; overflow: hidden; height:440px;" id="detail_media">
+						<div class="col-xs-7" align="center"
+							style="margin-top: 10px; float: left; margin-bottom: 10px; overflow: hidden;" id="detail_media">
 							
 						</div>
 
