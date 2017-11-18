@@ -122,7 +122,7 @@ input:checked+.slider:before {
 <style>
 
 #viewForm {
-	background-color: #f2fdff;
+	background-color: #ffffff;
 }
 
 #pf {
@@ -131,8 +131,8 @@ input:checked+.slider:before {
 }
 
 #pf2 {
-	width: 30px;
-	height: 30px;
+	width: 50px;
+	height: 50px;
 }
 
 #reply1 {
@@ -172,8 +172,7 @@ input:checked+.slider:before {
 	background-color:blue;
 	margin: auto;
 	padding: 0;
-	width: 40%;
-	height: 24%;
+	
 	box-shadow:none;
 	-webkit-animation-name: animatetop;
 	-webkit-animation-duration: 0.4s;
@@ -785,17 +784,226 @@ function showResult(){
 }
 </script>
 <script>
-//내 게시물 사진만 보기
-function showMyPhoto(){
-   sendRequest('showMyPhoto.do','member_idx=${sessionScope.useridx}',showResult2(),'POST');
-}
-function showResult2(){
-   if(XHR.readyState==4){
-      if(XHR.status==200){
-         var data=eval('('+XHR.responseText+')');
-      }
-   }
-}
+//상세보기function
+function openpic(content_idx){
+        	 document.getElementById('c_idx').value=content_idx;
+             var category = document.getElementById('category_'+content_idx).value;
+             var path = document.getElementById('path_'+content_idx).value;
+             
+             var profile = document.getElementById('profile_'+content_idx).value;
+             var session_idx = '${sessionScope.useridx}';
+             
+			             
+             var writer = document.getElementById('writer_'+content_idx).value;
+             var content = document.getElementById('content_'+content_idx).value;
+             
+             var detail_media = document.getElementById('detail_media');
+            
+            sendRequest('likeList.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
+         
+            if(category==1){
+            	if($('#detail_media').children().size()>0){
+            		detail_media.removeChild(document.getElementById('detail'));
+            	}
+            
+            	var img_slide = document.createElement('img');
+            	img_slide.src = path;
+            	img_slide.id='detail';
+            	detail_media.appendChild(img_slide);
+             }else if(category==2){
+            	 if($('#detail_media').children().size()>0){
+             		detail_media.removeChild(document.getElementById('detail'));
+             	}
+            	 
+            	 var video_slide = document.createElement('video');
+            	 var source = document.createElement('source');
+            	 video_slide.id='detail';
+            	 video_slide.autoplay=true;
+            	 video_slide.loop=true;
+            	 
+            	 source.src = path;
+            	 source.type = "video/mp4";
+            	 
+            	 video_slide.appendChild(source);
+            	 detail_media.appendChild(video_slide);
+             }
+                
+                document.getElementById('c_writer').innerHTML = writer;
+                document.getElementById('c_content').innerHTML = content;
+                $('#pf').attr("src", profile);
+            
+          //contentMore
+            var memberidx = document.getElementById('memberidx_'+content_idx).value;
+            if(memberidx == '${sessionScope.useridx}'){
+               document.getElementById('contentMore').innerHTML = 
+                  '<a class="list-group-item list-group-item-success" onclick="modifyContent('+content_idx+')"> 수정 </a><a class="list-group-item list-group-item-info" onclick="deleteContent('+content_idx+')">삭제</a>';
+            }else{
+               document.getElementById('contentMore').innerHTML = '<a class="list-group-item list-group-item-warning" onclick="reportContent('+content_idx+')"> 신고 </a>';
+            }
+         } 
+         
+         function like(){
+             var session_idx = document.getElementById("session_idx").value;
+           var content_idx = document.getElementById("c_idx").value;
+           
+              sendRequest('like.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
+          }
+          
+          function likeList(){
+              if(XHR.readyState==4){
+                if(XHR.status==200){
+                   var content_idx = document.getElementById("c_idx").value;
+                   var data = XHR.responseText;
+                   var lists = eval('('+data+')');
+                   var like_List = document.all.like_List;
+                
+                   document.getElementById('like_Img').src=lists.img_Path;
+                   
+                   XHR = getXHR();
+                   
+                   sendRequest('replyList.do?content_idx='+content_idx, null, replyList, 'GET');
+                }
+             } 
+          }
+         
+         //contentMore
+         function deleteContent(content_idx){
+            
+            var data = new FormData();
+            data.append("contentidx", content_idx);
+             var xhr = new XMLHttpRequest();
+               xhr.open("POST","deleteContent.do");
+               xhr.send(data);
+               xhr.onload = function(e) {
+                   if(this.status == 200) {
+                      var jsonResponse = JSON.parse(e.currentTarget.responseText);
+                       if(jsonResponse["result"] > 0){
+                          alert('삭제 완료!');
+                          window.location.reload();
+                       }else{
+                          alert('삭제 실패!');
+                       }
+                   }
+               }
+         }
+         
+       //contentMore
+         function modifyContent(content_idx){
+        	 window.open('modifyContentForm.do?contentidx='+content_idx,'modifyOpen','width=600,height=500');
+         }
+       
+	      //contentMore
+	     function reportContent(content_idx){
+	            window.open('reportContentForm.do?toIdx='+content_idx,'reportOpen','width=600,height=500');
+	         
+	      } 
+         
+	     function replyList(){
+             if(XHR.readyState==4){
+                if(XHR.status==200){
+                   var data = XHR.responseText;
+                   var lists = eval('('+data+')');
+                   var content_writer = '박연수';
+                   var content_content = '하이하이';
+                   var reply_list = document.all.reply_List;
+                   var str='';
+                   var userName = document.getElementById("session_name").value;
+
+                   if(lists.replyList.length==0){
+                      str = '댓글 없습니다.'
+                      reply_list.innerHTML = str;
+                   }else{
+                      for(var i=0; i<lists.replyList.length; i++){
+                         var l = lists.replyList[i];
+                         
+                         if(l.lev == 0){
+                            if(l.name == userName){
+                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+                            }else{
+                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
+                            }
+                            
+                         }else{
+                            if(l.name == userName){
+                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
+                            }else{
+                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<hr>';
+                            }
+                         }
+                      }
+                      reply_list.innerHTML = str;
+                   }
+                   
+                   XHR = getXHR();
+                }
+             }
+          }
+         
+	     function re_Reply(idx){
+	            var re_content = document.getElementById(idx+"text")
+	            var re_ok = document.getElementById(idx+"btn")
+	             var content = document.getElementById(idx+"text").value;
+	             var content_idx = document.getElementById("c_idx").value;
+	             var session_idx = document.getElementById("session_idx").value;
+	             
+	             sendRequest('re_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx+'&session_idx='+session_idx, null, replyList,'GET');
+	             
+	             re_content.style.display = 'none';
+	               re_ok.style.display = 'none';
+	          }
+	         
+	         function ondisplay(idx){
+	             var re_content = document.getElementById(idx+"text");
+	             var re_ok = document.getElementById(idx+"btn");
+	             
+	             re_content.style.display = 'block';
+	             re_ok.style.display = 'block';
+	          }
+	         
+	         function updateDisplay(idx){
+	             var update_content = document.getElementById(idx+"update_content");
+	             var update_ok = document.getElementById(idx+"update_ok");
+	             
+	             update_content.readOnly = false;
+	             update_content.style.border = '1px solid';
+	             update_ok.style.display = 'block';
+	          }
+	         
+	         function update_Reply(idx){
+	             var content = document.getElementById(idx+"update_content").value;
+	             var content_idx = document.getElementById("c_idx").value;
+	             
+	             sendRequest('update_Reply.do?reply_idx='+idx+'&content='+content+'&content_idx='+content_idx, null, replyList,'GET');
+	          } 
+	          
+	           function delete_Reply(idx){
+	             var content_idx = document.getElementById('c_idx').value;
+	             
+	             sendRequest('delete_Reply.do?reply_idx='+idx+'&content_idx='+content_idx, null, replyList,'GET');
+	          }
+         
+            function test1(idx) {
+                  document.getElementById('ppp').src='myHomeForm.do?useridx='+idx;
+                  var div = $("#mypage2");
+                  div.animate({right: '0px'}, "fast");
+                  div.animate({height: '100%'}, "slow");
+                  div.animate({width:'toggle'}, "slow");
+                  /* if(div.height() == '0%'){
+                  div.animate({width:'toggle'},"slow"); 
+                  }
+                  else{
+                     div.animate({width:'60%'},"slow");
+                  } */
+               }
+         
+            function addReply(){
+	                var session_idx = document.getElementById('session_idx').value;
+	                var c_idx = document.getElementById('c_idx').value;
+	                var content = document.getElementById('content').value;
+	                   
+	                sendRequest("reply.do?content="+content+"&content_idx="+c_idx+"&session_idx="+session_idx, null, replyList, 'GET');
+	           }
+         
 </script>
 </head>
 <body onload="check()">
@@ -922,175 +1130,191 @@ function showResult2(){
    
 </header>
 </section>
-      
-      <!-- 내피드 -->         
+   <!-- 내피드 -->         
    <div class="container">
-         <div class="row"></div>
-         <div class="row text-center">
-            <div class="works-category" data-sr='enter top, wait 0.2s'>
-               <ul class="statistics">
-                  <li class="style1"><a href="#" data-filter="*"
-                     class="current">All</a></li>
-                  <li class="style2"><a href="# " data-filter=".photo">PHOTO</a></li>
-                  <li class="style3"><a href="#" data-filter=".video">VIDEO</a></li>
-                  <li class="style4"><a href="#" data-filter=".text">TEXT</a></li>
-               </ul>
-            </div>
+    <div class="row"></div>
+     <div class="row text-center">
+      <div class="works-category" data-sr='enter top, wait 0.2s'>
+        <ul class="statistics">
+          <li class="style1"><a href="#" data-filter="*" class="current">All</a></li>
+          <li class="style2"><a href="# " data-filter=".photo">PHOTO</a></li>
+          <li class="style3"><a href="#" data-filter=".video">VIDEO</a></li>
+          <li class="style4"><a href="#" data-filter=".text">TEXT</a></li>
+         </ul>
+       </div>
 
-            <!--  전체 피드 목록 -->
-            <div class="works-area">
-               
-               <c:if test="${empty contentList}">게시글 없음</c:if>
-                <c:forEach var="contentList" items="${contentList }">
-                  <!--사진  -->
-                  
-                     <div class="col-md-4 col-sm-4 col-xs-4  photo">
-                        <div class="works" style="height: 180px;">
-                           <img src="myHomeFolder/content/${contentList.path}" alt="" style="width: 180px; height: 180px;">
-                           <div class="work-overlay text-center">
-                              <div class="overlay-caption">
-                                 <h4>PHOTO</h4>
-                              
-                                    
-                                 </a>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-               
-                  <!-- 동영상 -->
-               
-                  <!-- 텍스트 -->
-            
-               </c:forEach>
-            </div>
-         </div>
-      </div>         
-               
-  <!--  <section id="middle">         
-         내 피드 
-      
-      <div class="myfeedcategory">
-      <ul>
-         <li><input type="button" value="PHOTO" onclick="showMyPhoto()"></li>
-         <li><input type="button" value="VIDEO"></li>
-         <li><input type="button" value="TEXT"></li>
-      </ul>
-      </div>
-      
-      <div class="myfeed" id="myfeed">
 
-         <table style="border-spacing:10px;" id="myfeedtable">
-         <c:if test="${empty contentList}">
-         	<tr>
-         		<td colspan="3" align="center">게시글 없음</td>
-         	</tr>
-         </c:if>
-         	<tr>
-         <c:forEach var="contentList" items="${contentList }" varStatus="aa">
-      		
-         	<td><a href="#myModal" data-toggle="modal" data-target="#myModal"><img src="myHomeFolder/content/${contentList.path}"></a></td>
-         <c:if test="${contentList.category==2 }">
-         	<td><a href="#myModal" data-toggle="modal" data-target="#myModal"><video autoplay="autoplay" loop="loop" style="width: 180px; height: 180px;">
-				<source src="myHomeFolder/content/${contentList.path }" type="video/mp4"></video></a></td>
-         	</c:if>
-         	<c:if test="${aa.count%3==0 && aa.count!=size}">
-         	</tr><tr>
-         	</c:if>
-         </c:forEach>
-         
-         	</tr>
-         	</table>
+<!--  전체 피드 목록 -->
+      <div class="works-area">
+               
+      <c:if test="${empty contentList}">게시글 없음</c:if>
+        <c:forEach var="contentList" items="${contentList }">
+
+<!--사진  -->
+        <c:if test="${contentList.category==1 }">        
+         <div class="col-md-4 col-sm-4 col-xs-4  photo">
+           <div class="works" style="height: 200px;">
+            <a href="#myModal" data-toggle="modal" data-target="#myModal" data-src="${contentList.path }" onclick="openpic(${contentList.content_idx})">
+            <img src="myHomeFolder/content/${contentList.path}" alt="" style="width: 200px; height: 200px;">
+               <div class="work-overlay text-center">
+                <div class="overlay-caption">
+                <h4>PHOTO</h4>
+                 <input type="hidden" id="category_${contentList.content_idx }" value="${contentList.category }"> 
+				 <input type="hidden" id="path_${contentList.content_idx }" value="myHomeFolder/content/${contentList.path }"> 
+				 <input type="hidden" id="profile_${contentList.content_idx }" value="myHomeFolder/profile_img/${contentList.profile }">
+				 <input type="hidden" id="writer_${contentList.content_idx }" value="${contentList.writer }"> 
+				 <input type="hidden" id="content_${contentList.content_idx }" value="${contentList.content }">
+				 <input type="hidden" id="memberidx_${contentList.content_idx }" value="${contentList.member_idx }">            
+                 <p>${contentList.content}</p> 
+                </div>
+                </div>                
+               </a>
+             </div>
+             </div>
+            </c:if>  
              
-      </div>
-      </section> -->
+<!-- 동영상 -->
+         <c:if test="${contentList.category==2 }">
+		  <div class="col-md-4 col-sm-4 col-xs-4  video">
+			<div class="works" style="height: 200px;">
+			<a href="#myModal" data-toggle="modal" data-target="#myModal" data-src="${contentList.path }" onclick="openpic(${contentList.content_idx})">
+             <video autoplay="autoplay" loop="loop" style="width:200px; height:200px;">
+				<source src="myHomeFolder/content/${contentList.path }" type="video/mp4">
+			 </video>
+			<div class="work-overlay text-center">
+			<div class="overlay-caption">
+				<h4>VIDEO</h4>
+				<input type="hidden" id="category_${contentList.content_idx }" value="${contentList.category }"> 
+				<input type="hidden" id="path_${contentList.content_idx }" value="myHomeFolder/content/${contentList.path }"> 
+				<input type="hidden" id="writer_${contentList.content_idx }" value="${contentList.writer }"> 
+				<input type="hidden" id="profile_${contentList.content_idx }" value="myHomeFolder/profile_img/${contentList.profile }">
+				<input type="hidden" id="content_${contentList.content_idx }" value="${contentList.content }">
+				<input type="hidden" id="memberidx_${contentList.content_idx }" value="${contentList.member_idx }">
+				<p>${contentList.content}</p>
+			</div>
+			</div>
+			</a>
+		   </div>
+		   </div>
+		</c:if>
+		
+<!-- 텍스트 -->
+		<c:if test="${contentList.category==3 }">
+		 <div class="col-md-4 col-sm-4 col-xs-4  text">
+		  <div class="works" style="height: 200px;">
+		  <a href="#myModal" data-toggle="modal" data-target="#myModal" data-src="${contentList.path }" onclick="openpic(${contentList.content_idx})">
+			<div style="height: 200px; width:200px; display: table;">
+            <h3 style="display: table-cell; vertical-align: middle;">${contentList.path }</h3>
+            </div>
+		  <div class="work-overlay text-center">
+			<div class="overlay-caption">
+			<h4>TEXT</h4> 
+				<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
+				<input type="hidden" id="path_${list.content_idx }" value="${list.path }"> 
+				<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
+				<input type="hidden" id="profile_${list.content_idx }" value="myHomeFolder/profile_img/${list.profile }">
+				<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
+				<input type="hidden" id="memberidx_${list.content_idx }" value="${list.member_idx }">
+			</div>
+			</div>
+			</a>
+		  </div>
+		</div>
+		</c:if>
+        </c:forEach>
+        </div>
+       </div>
+       </div>       
 
-		<!-- The Modal -->
-	<div class="container">
-		<div class="modal fade" id="myModal">
-			<div class="modal-dialog" style="width: 70%; overflow: hidden;">
-				<div class="modal-content" style="width: 100%; overflow: hidden;">
-					<section id="viewForm" style="">
-						<!-- Modal body -->
-						<div class="container"
-							style="width: 100%; font-size: 15px; overflow: hidden; margin-top:10px;">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="thumbnail">
-										<img src="js/profile.png">
+	<!-- The Modal 상세보기 -->
+	<input type="hidden" id="session_idx" value="${sessionScope.useridx }">
+	<input type="hidden" id="session_name" value="${sessionScope.username }">
+	
+	 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-hidden="true" style="border: solid; overflow: auto; background-color: rgba(0, 0, 0, 0.2);">
+	  <div style="margin: 2% 10%;">
+			<section id="viewForm" style="overflow: auto;">
+				<div class="container" style="width: 100%; font-size: 15px; overflow: hidden;">
+					<div class="row">
+						<!-- 사진 -->
+						<div class="col-xs-10"
+							style="margin-top: 10px; float: left; margin-bottom: 10px; overflow: hidden; height:440px;" id="detail_media">
+							
+						</div>
+
+						<!-- 내용 -->
+						<input type="hidden" id="c_idx" value="">
+						<div class="col-xs-5"
+							style="margin-top: 10px; margin-bottom: 10px;">
+							<div class="col-sm-12" id="cntInfoBar">
+								<span class="avatar"> <img src="js/profile.png" alt="" id="pf" style="
+                            border-radius: 70px;
+                            -moz-border-radius: 70px;
+                            -khtml-border-radius: 70px;
+                            -webkit-border-radius: 70px;
+                            "/>
+								</span> <label id="c_writer"></label> <span>
+									<button class="btn btn-info" id="myBtn"
+										style="background: gray;">· · · </button> <!-- The Modal -->
+									<div id="myModal2" class="modal2">
+
+										<!-- Modal content // contentMore -->
+										<div class="list-group" style="width: 20%; margin: 5% auto;"
+											id="contentMore">
+											<span class="close">&times;</span>
+										</div>
+
 									</div>
-								</div>
+								</span>
+
+							</div>
+							
+		<span class="modal-body">
+ 		 <a data-toggle="dropdown">
+ 		 <i class="fa fa-ellipsis-h"></i>
+ 		 <span class="caret"></span></a>
+ 			 <ul class="dropdown-menu">
+   			  <li><a href="#" class="list-group-item list-group-item-success">수정</a> </li>
+   			 <li> <a href="#" class="list-group-item list-group-item-info">삭제</a></li>
+   			 <li><a href="#" class="list-group-item list-group-item-warning">신고</a></li>
+   			 </ul></span>
+		
+		
+	  <div class="col-sm-12" id="cntInfoBar"
+								style="overflow: auto; height: 70px;">
+								<span><label id="c_content"></label></span>
+							</div>
+							
+							<div class="col-sm-12" id="cntInfoBar">
+								<span><a href="#" onclick="like()">
+				<img src="" id="like_Img" width="20px" height="20px;"></a><input type="button" value="발자취" onclick="like()" style="width:55px;height:25px;font-size:11px;padding:0;margin-left:10px;"></span>
 							</div>
 
-								<div class="row">
-									<div class="col-md-12">
-										<div class="col-sm-12" id="cntInfoBar">
-											<span class="avatar"> <img src="js/profile.png" alt=""
-												id="pf" style="float: left;" /> <label id="c_writer"
-												style="float: left;">작성자</label>
-											</span>
-
-											<button class="btn btn-info" id="myBtn"
-												style="background: gray;">· · ·</button>
-											<div id="myModal2" class="modal2">
-												<!-- Modal content // contentMore -->
-												<!-- Modal content -->
-												<div class="modal-content" style="background:none; box-shadow:none; border:0px;">
-													<span class="close"></span>
-													<div class="modal-body">
-														<a href="#"
-															class="list-group-item list-group-item-success">수정</a> <a
-															href="#" class="list-group-item list-group-item-info">삭제</a>
-														<a href="#"
-															class="list-group-item list-group-item-warning">신고</a>
-													</div>
-
-												</div>
-
-											</div>
-
-
-										</div>
-
-
-										<div class="col-sm-12" id="cntInfoBar"
-											style="overflow: auto; height: 70px;">
-											<span><label id="c_content"></label></span>
-										</div>
-
-										<div class="col-sm-12" id="cntInfoBar" style="align: left;">
-											<span style="align: left;"><a href="#"
-												onclick="like()"> <img src="" id="like_Img" width="40px"
-													height="40px;" style="margin-left: 15px; margin-top: 10px;"></a><input
-												type="button" value="발자취" onclick="like()"></span>
-										</div>
-
-
-										<div class="col-sm-12" id="cntInfoBar"
-											style="overflow: auto; height: 200px;">
-											<div class="col-sm-12" id="reply_List">
-												<span class="avatar"> </span>
-											</div>
-
-
-										</div>
-
-										<div class="col-sm-12">
-											<div class="input-group">
-												<input id="content" type="text" class="form-control"
-													name="content" placeholder="댓글 입력"> <label
-													class="input-group-addon" onclick="addReply()"
-													onkeydown="showList()">작성</label>
-											</div>
-										</div>
-									</div>
+	
+							<div class="col-sm-4" id="cntInfoBar"
+								style="overflow: auto; height: 200px;">
+								<div class="col-sm-12" id="reply_List">
+									<span class="avatar"> 
+									</span>
 								</div>
+
+
+							</div>
+
+							<div class="col-sm-4">
+								<div class="input-group">
+									<input id="content" type="text" class="form-control"
+										name="content" placeholder="댓글 입력"> <label
+										class="input-group-addon" onclick="addReply()"
+										onkeydown="showList()">작성</label>
+								</div>
+							</div>
 						</div>
-					</section>
+					</div>
 				</div>
-			</div>
+			</section>
 		</div>
-		</div>
+	</div>
 </body>
 
 <script>
