@@ -24,4 +24,10 @@ public class htagDAOImple implements htagDAO {
    public void add_Htag(HashMap<String, String> map) {
       sqlMap.insert("add_Htag", map);
    }
+
+	public int content_idx(int member_idx) {
+		int content_idx = sqlMap.selectOne("content_idx", member_idx);
+		
+		return content_idx;
+	}
 }

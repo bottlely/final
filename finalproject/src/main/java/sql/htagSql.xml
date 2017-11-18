@@ -8,4 +8,7 @@
    <insert id="add_Htag" parameterType="HashMap">
       insert into mars_htag values(mars_htag_idx.nextval, #{content_idx}, #{htag}, sysdate,0,0,0,0)
    </insert>
+   <select id="content_idx" parameterType="Integer" resultType="mars.content.model.ContentDTO">
+   		select max(content_idx) from content where member_idx = #{member_idx}
+   </select>
 </mapper>

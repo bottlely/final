@@ -20,8 +20,10 @@ import mars.coverage.model.CoverageDTO;
 import mars.friend.model.FriendDAO;
 import mars.friend.model.FriendDTO;
 import mars.group.model.GroupDTO;
+import mars.htag.model.htagDAO;
 import mars.member.model.MemberDAO;
 import mars.member.model.MemberDTO;
+import mars.mtag.model.mtagDAO;
 import mars.myHome.model.*;
 import mars.setting.model.SettingDAO;
 
@@ -44,6 +46,12 @@ public class ContentController {
 	
 	@Autowired
 	private MemberDAO mdao;
+	
+	@Autowired
+	private htagDAO htagdao;
+	
+	@Autowired
+	private mtagDAO mtagdao;
 	
 	public ContentController() {
 		
@@ -134,6 +142,21 @@ public class ContentController {
 		int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
 
         int result2 = -1;
+        
+        int content_idx = cdao.contentIdxSearch(member_idx);
+        
+        String htagList[] = htag.split("#");
+		for(int i = 1; i < htagList.length; i++){
+			info.put("content_idx", String.valueOf(content_idx));
+			info.put("htag", htagList[i]);
+			htagdao.add_Htag(info);
+		}
+		
+		/*String mtagList[] = mtag.split("@");
+		for(int i = 1; i < mtagList.length; i++){
+			info.put("mtag", mtagList[i]);
+			mtagdao.add_Mtag(info);
+		}*/
         
         if(contentIdx > 0){ //content idx가 있다면
         	int state = Integer.parseInt(cs); 

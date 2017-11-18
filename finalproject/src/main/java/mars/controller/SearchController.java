@@ -57,7 +57,7 @@ public class SearchController {
    @RequestMapping("/search.do")
    public ModelAndView search(@RequestParam("name")String name){
       List<ContentDTO> list = htagdao.htagSearch(name);
-      System.out.println("여기: "+list.get(0).getContent());
+
       ModelAndView mav = new ModelAndView("marsJson", "find", list);
       
       return mav;
