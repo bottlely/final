@@ -153,7 +153,7 @@
                        for(var i = 0; i < lists.find.length; i++){
                           var l = lists.find[i];
                          
-                          str += '<img src="myHomeFolder/content/' + l.path + '">';
+                          str += ' <div class="col-md-4 col-sm-4 col-xs-12"> <div class="works" style="height: 431px; width:360px;"> <img src="myHomeFolder/content/' + l.path + ' alt="" style="width: 431px; height: 431px;"> <div class="work-overlay text-center"> <div class="overlay-caption"> <h4>HASH</h4> </div></div></div> </div> ';
                          }
                    }
                     
@@ -887,11 +887,14 @@
          </tr>
       </table>
       </div>
-      <div class="col-md-4 col-sm-6 col-xs-12  jpg">
-         <div class="works" id="htagSearch" style="display:none; margin-left: 230px; width: 300px;">
+     
+         <div class="works" id="htagSearch" style="display:none; margin-left: 80px; ">
             <!-- 결과사진 foreach로 뿌려주세요 -->
+            
+            
+            
          </div>
-      </div>
+    
 </section>
   <section>
   <div class="container">
