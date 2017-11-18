@@ -951,12 +951,12 @@ var data = [
 								</a>
 									<div class="dropdown-menu" aria-labelledby="alertsDropdown">
 										<h6 class="dropdown-header">New Alerts:</h6>
-
-										<iframe src="main_feedList.do?idx=${sessionScope.useridx}"
+										<!-- 활동내역 -->
+										<iframe src="activityList.do?idx=${sessionScope.useridx}"
 											width="100%" height="100%" frameborder="0"></iframe>
 
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item small" href="#">View all alerts</a>
+										<!-- <div class="dropdown-divider"></div>
+										<a class="dropdown-item small" href="#">View all alerts</a> -->
 									</div></li>
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown"
