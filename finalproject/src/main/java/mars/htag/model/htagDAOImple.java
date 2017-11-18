@@ -3,6 +3,8 @@ package mars.htag.model;
 import java.util.HashMap;
 import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
+
+import mars.content.model.ContentDTO;
 import mars.htag.model.htagDTO;
 
 public class htagDAOImple implements htagDAO {
@@ -13,8 +15,8 @@ public class htagDAOImple implements htagDAO {
       this.sqlMap = sqlMap;
    }
    
-   public List<htagDTO> htagSearch(String name) {
-      List<htagDTO> list = sqlMap.selectList("htagSearch", name);
+   public List<ContentDTO> htagSearch(String name) {
+      List<ContentDTO> list = sqlMap.selectList("htagSearch", name);
       
       return list;
    }

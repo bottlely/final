@@ -1,21 +1,21 @@
 package mars.myHome.model;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 
 import mars.report.model.ReportDTO;
 
-
 public class MyHomeDAOImple implements MyHomeDAO {
-	
+
 	private SqlSessionTemplate sqlMap;
 
-	public MyHomeDAOImple (SqlSessionTemplate sqlMap) {
+	public MyHomeDAOImple(SqlSessionTemplate sqlMap) {
 		super();
 		this.sqlMap = sqlMap;
 	}
-	
+
 	public String refreshPage() {
 		// TODO Auto-generated method stub
 		return null;
@@ -46,7 +46,7 @@ public class MyHomeDAOImple implements MyHomeDAO {
 	}
 
 	public MyHomeDTO myHomeSource(String member_idx) {
-		MyHomeDTO dto  = sqlMap.selectOne("myHomeSource",member_idx);
+		MyHomeDTO dto = sqlMap.selectOne("myHomeSource", member_idx);
 		return dto;
 	}
 
@@ -63,6 +63,11 @@ public class MyHomeDAOImple implements MyHomeDAO {
 	public int visitorTodayReset() {
 		int result = sqlMap.update("visitorTodayReset");
 		return result;
+	}
+
+	public List<MyHomeDTO> nameList() {
+		List<MyHomeDTO> nameList = sqlMap.selectList("nameList");
+		return nameList;
 	}
 
 }

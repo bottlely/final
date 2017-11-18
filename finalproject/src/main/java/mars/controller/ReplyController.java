@@ -57,8 +57,18 @@ public class ReplyController {
       
       replydao.addReply(map);
       
+      System.out.println("content: "+content);
+      System.out.println("content_idx: "+content_idx);
+      System.out.println("session_idx: "+session_idx);
+      System.out.println("member_idx: "+member_idx);
+      
+      //getIdx
+      ReplyDTO rdto = actDao.ac_getIdx(member_idx, session_idx, content_idx, content);
+      System.out.println("22: "+rdto.getIdx());
+      
       MyHomeDTO mdto = followDao.ac_name_img(session_idx);
-      actDao.ac_insert_reply(session_idx, member_idx, content_idx, content, dto.getReplydate(), mdto.getName(), mdto.getProfile_img());
+      
+      actDao.ac_insert_reply(session_idx, member_idx, content_idx, content, mdto.getName(), mdto.getProfile_img(), rdto.getIdx());
       
       List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
 
@@ -92,11 +102,13 @@ public class ReplyController {
       
       replydao.re_AddReply(map);
       
-      //select
-     // rd
+      //getIdx
+      ReplyDTO rdto = actDao.ac_getIdx(member_idx, session_idx, content_idx, content);
+      System.out.println("22: "+rdto.getIdx());
       
-      //MyHomeDTO mdto = followDao.ac_name_img(session_idx);
-      //actDao.ac_insert_reply(session_idx, member_idx, content_idx, content, dto.getReplydate(), mdto.getName(), mdto.getProfile_img());
+      MyHomeDTO mdto = followDao.ac_name_img(session_idx);
+      
+      actDao.ac_insert_reply(session_idx, member_idx, content_idx, content, mdto.getName(), mdto.getProfile_img(), rdto.getIdx());
       
       List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
 
@@ -116,6 +128,9 @@ public class ReplyController {
        map.put("content", content);
        
        replydao.update_Reply(map);
+       
+       //ReplyDTO rdto = actDao.ac_getIdx(reply_idx);
+       actDao.ac_reply_update(content, reply_idx);
        
        List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
        

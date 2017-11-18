@@ -3,12 +3,28 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
-<mapper namespace="mars.member">
-   <select id="memberSearch" resultType="mars.member.model.MemberDTO">
-      select * from mars_member where name=#{name} order by idx desc
+
+<mapper namespace="mars.search">
+   <resultMap type="mars.member.model.MyHomeMemberDTO" id="memberMyHome">
+      <result property="profile_img" column="profile_img" />
+      <result property="name" column="name" />
+      <result property="intro" column="intro" />
+   </resultMap>
+   <select id="memberSearch" resultMap="memberMyHome">
+      select mars_member.idx,
+      mypage.name, mars_member.gender,
+      mars_member.birth_y,
+      mars_member.birth_m, mars_member.birth_d,
+      mypage.profile_img,
+      mypage.intro
+      from mypage
+      inner join mars_member on
+      (mars_member.idx =
+      mypage.member_idx and mars_member.name=#{name})
    </select>
-   <select id="htagSearch" parameterType="String" resultType="mars.htag.model.htagDTO">
-      select * from mars_htag where content=#{name} 
+   <select id="htagSearch" parameterType="String" resultType="mars.content.model.ContentDTO">
+      select *
+      from content, mars_htag
+      where content.content_idx=mars_htag.content_idx and mars_htag.content=#{name}
    </select>
 </mapper>

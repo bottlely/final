@@ -5,13 +5,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <link href="assets_main/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets_main/css/style.css" type="text/css">
     <link href="assets_main/css/pe-icon-7-stroke.css" rel="stylesheet" />
-	<link href="assets_main/css/ct-navbar.css" rel="stylesheet" />  
-	
+   <link href="assets_main/css/ct-navbar.css" rel="stylesheet" />  
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/httpRequest.js"></script>
 
   
   <title>MARS</title>
@@ -23,20 +24,20 @@
     <style>
     
     
-			@keyframes spin {
-		100% {
-			transform: rotate(360deg);
-			}
-		}
-		.spinner {
-		display: inline-block;
-		width: 50px;
-		height: 50px;
-		border: 5px solid yellow;
-		border-color: yellow transparent transparent;
-		border-radius: 50%;
-		animation: spin 1s linear  infinite;
-		}    
+         @keyframes spin {
+      100% {
+         transform: rotate(360deg);
+         }
+      }
+      .spinner {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      border: 5px solid yellow;
+      border-color: yellow transparent transparent;
+      border-radius: 50%;
+      animation: spin 1s linear  infinite;
+      }    
     
         .fa-heart{
             color: #F74933;
@@ -68,7 +69,7 @@
             color: #999;
         } 
         #peoplesearch .peoplesearchtable{
-       	width:645px;
+          width:645px;
         margin:0px auto;
         }
         #peoplesearch .peoplesearchtable tr{
@@ -90,82 +91,108 @@
         }
     </style>
 </head>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-			<script> 
-			function htag(name){
-				location.href='htagSearch.do?name='+name;
-			}
-			
-			function mtag(name){
-				location.href='membersearch.do?name='+name;
-			}
-			
-			$(document).ready(function(){
-			    $("#friends1").click(function(){
-			    	ppp.location.reload();
-			        var div = $("#friends2");
-			        div.animate({height: '100%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-			    });
-			});
-			$(document).ready(function(){
-			    $("#mypage1").click(function(){
-			        var div = $("#mypage2");
-			        div.animate({left: '35%'}, "fast");
-			        div.animate({height: '100%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-					
-			    });
-			});
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+         <script> 
+         function htag(name){
+            var htagSearch = document.getElementById("htagSearch");
+            
+            htagSearch.style.display = 'block';
+            
+            sendRequest("search.do?name="+name, null, search, 'GET');
+         }
+
+         function search(){
+            if(XHR.readyState==4){
+                 if(XHR.status==200){
+                    var data = XHR.responseText;
+                    var lists = eval('('+data+')');
+                    //var str = document.createElement('img');
+                    var div = document.getElementById('htagSearch');
+                    
+                    alert(lists.find[0].path);
+                    
+                    for(var i = 0; i < lists.find.length; i++){
+                       var l = lists.find[i];
+                       var str = document.createElement('img');
+                       //photo.setAttribute("src", "myHomeFolder/profile_img/"+'${user2_profile_img}');
+                       
+                     	str.setAttribute("src", "myHomeFolder/content/"+l.path);
+                     	document.getElementById('htagSearch').appendChild(str);
+                    }
+                 }
+            }
+         }
+         
+         function mtag(name){
+            location.href='membersearch.do?name='+name;
+         }
+         
+         $(document).ready(function(){
+             $("#friends1").click(function(){
+                ppp.location.reload();
+                 var div = $("#friends2");
+                 div.animate({height: '100%'}, "slow");
+                 div.animate({width:'toggle'}, "slow");
+             });
+         });
+         $(document).ready(function(){
+             $("#mypage1").click(function(){
+                 var div = $("#mypage2");
+                 div.animate({left: '35%'}, "fast");
+                 div.animate({height: '100%'}, "slow");
+                 div.animate({width:'toggle'}, "slow");
+               
+             });
+         });
 
 
-			
-			$(document).ready(function(){
-			    $("#cl1").click(function(){
-			        var div = $("#friends2");
-			        div.animate({height: '100%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-					
-			    });
-			});
-			
-			$(document).ready(function(){
-			    $("#cl2").click(function(){
-			        var div = $("#mypage2");
-			        div.animate({height: '100%'}, "slow");
-			        div.animate({width:'toggle'}, "slow");
-			        
-			    });
-			});
-			
-			
+         
+         $(document).ready(function(){
+             $("#cl1").click(function(){
+                 var div = $("#friends2");
+                 div.animate({height: '100%'}, "slow");
+                 div.animate({width:'toggle'}, "slow");
+               
+             });
+         });
+         
+         $(document).ready(function(){
+             $("#cl2").click(function(){
+                 var div = $("#mypage2");
+                 div.animate({height: '100%'}, "slow");
+                 div.animate({width:'toggle'}, "slow");
+                 
+             });
+         });
+         
+         
 
-			
-			$(document).ready(function(){
-			    $("#more").click(function(){
-			        var div = $("#wait");
-					div.toggle('slow');
-			        
-			    });
-			});
-			
+         
+         $(document).ready(function(){
+             $("#more").click(function(){
+                 var div = $("#wait");
+               div.toggle('slow');
+                 
+             });
+         });
+         
 
-			
-			function openpic(i){
-				var div = document.getElementById('pic'+i).value;
-				window.alert(i);
-				   window.alert(div);
-				   
-				$('#galleryImage').attr("src",div);
-				} 
-			
-			  function pageOpen(idx) {
+         
+         function openpic(i){
+            var div = document.getElementById('pic'+i).value;
+            window.alert(i);
+               window.alert(div);
+               
+            $('#galleryImage').attr("src",div);
+            } 
+         
+          /*  function pageOpen(idx) {
                   document.getElementById('pageIframe').src='myHomeForm.do?useridx='+idx;
                   var div = $("#mypage2");
                   div.animate({right: '0px'}, "fast");
                   div.animate({height: '100%'}, "slow");
                   div.animate({width:'toggle'}, "slow");
-               }
+               } */
          
 
 </script> 
@@ -174,46 +201,46 @@
 <div id="navbar-full">
 <span style="float: left;">
 
-				<div id="friends2" style="background:#935d8c;height:100%;width:25%; position: absolute; float: left; display: none; z-index: 4">
-		<div style="background-color: white; align-content:center; "><a href="#" id="cl1">Close</a></div> 
-	<c:url var="frListUrl" value="main_frList.do">
-		<c:param name="member_idx" value="${sessionScope.useridx}" />
-	</c:url>
-	<iframe src="${frListUrl}" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
+            <div id="friends2" style="background:#935d8c;height:100%;width:25%; position: absolute; float: left; display: none; z-index: 4">
+      <div style="background-color: white; align-content:center; "><a href="#" id="cl1">Close</a></div> 
+   <c:url var="frListUrl" value="main_frList.do">
+      <c:param name="member_idx" value="${sessionScope.useridx}" />
+   </c:url>
+   <iframe src="${frListUrl}" width="100%" height="100%" name="ppp" frameborder="0"></iframe>
 
-	</div>
-		 </span>
-		 <span style="float: right;">
+   </div>
+       </span>
+       <span style="float: right;">
 
-		 	<div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
-		<div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
-	
-	<c:url var="myHomeUrl" value="myHomeForm.do">
-		<c:param name="useridx" value="${sessionScope.useridx}"/>
-	</c:url>
-	<iframe src="${myHomeUrl}" width="100%" height="100%"  id="pageIframe" name="ppp" frameborder="0"></iframe>
+          <div  id="mypage2" style="background:#935d8c;height:100%;width:60%; position: absolute; float: right; display: none; z-index: 4">
+      <div style="background-color: white; align-content:center; "><a href="#" id="cl2">Close</a></div>
+   
+   <c:url var="myHomeUrl" value="myHomeForm.do">
+      <c:param name="useridx" value="${sessionScope.useridx}"/>
+   </c:url>
+   <iframe src="${myHomeUrl}" width="100%" height="100%"  id="pageIframe" name="ppp" frameborder="0"></iframe>
 
-	</div>
-		 
-		 </span>
+   </div>
+       
+       </span>
    <div id="navbar-blue">
     <nav class="navbar navbar-ct-blue" role="navigation">
       <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
 <ul class="nav navbar-nav navbar-left">
-					 <li>
-					<a href="main.do?idx=${sessionScope.useridx }">
+                <li>
+               <a href="main.do">
                           <img src="assets_main/images/logo.svg" alt="" />
                            
                        </a>
-					 
-					 </li>
-		             <li>
-                        <a href="main.do?idx=${sessionScope.useridx }">
+                
+                </li>
+                   <li>
+                        <a href="main.do">
                           <h3>MARS</h3>
                            
                        </a>
-                   </li>			
+                   </li>         
 
                </ul>
     
@@ -222,7 +249,7 @@
         
               <ul class="nav navbar-nav navbar-right">
 
-           				<!-- 다운 광고 추가 임시 버튼 -->
+                       <!-- 다운 광고 추가 임시 버튼 -->
               <li>
               <a href="#" onclick="window.open('applyAdForm.do', '광고 주문서', 'scrollbars=no width=400, height=450')">
                            <i class="pe-7s-search"></i>       
@@ -268,12 +295,12 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="alertsDropdown">
             <h6 class="dropdown-header">New Alerts:</h6>
-			<%@include file="../main/feedList.jsp" %>
+         <%@include file="../main/feedList.jsp" %>
 
             <div class="dropdown-divider"></div>
             <a class="dropdown-item small" href="#">View all alerts</a>
           </div>
-        </li>			
+        </li>         
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="pe-7s-mail"></i>
@@ -286,7 +313,7 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="messagesDropdown">
             <h6 class="dropdown-header">New Messages:</h6>
-			<%@include file="../main/msgList.jsp" %>
+         <%@include file="../main/msgList.jsp" %>
          
             <div class="dropdown-divider"></div>
             <a class="dropdown-item small" href="#">View all messages</a>
@@ -295,28 +322,28 @@
 
                     
                                         <li>
-					<div class="dropdown">
- 		 <a class="btn btn-default dropdown-toggle"  data-toggle="dropdown">
- 		 <i class="pe-7s-menu"></i>
- 		 <span class="caret"></span></a>
- 			 <ul class="dropdown-menu">
-   			  <li><a href="infoSetting.do?idx=${sessionScope.useridx }">SETTINGS</a></li>
-   			 <li><a href="serviceCenter.do">CUSTOMER CENTER</a></li>
-   			 <li><a href="#">LOGIUT</a></li>
+               <div class="dropdown">
+        <a class="btn btn-default dropdown-toggle"  data-toggle="dropdown">
+        <i class="pe-7s-menu"></i>
+        <span class="caret"></span></a>
+           <ul class="dropdown-menu">
+              <li><a href="infoSetting.do?idx=${sessionScope.useridx }">SETTINGS</a></li>
+             <li><a href="serviceCenter.do">CUSTOMER CENTER</a></li>
+             <li><a href="#">LOGIUT</a></li>
 
- 			 </ul>
-			</div>
+           </ul>
+         </div>
                     </li>
                </ul>
                 <form name="search" action="membersearch.do" class="navbar-form navbar-right navbar-search-form">
                 
                   <div class="form-group">
-                  		<input type="text" name="name" class="form-control" placeholder="Search...">
-	             
+                        <input type="text" name="name" class="form-control" placeholder="Search...">
+                
                      
                  </div> 
-	             
-	              </form>
+                
+                 </form>
 
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -328,74 +355,100 @@
 
 
    <section id="latest-works">
-	<div class="container">
-		<div class="row">
+   <div class="container">
+      <div class="row">
 
-		</div>
-		<div class="row text-center">
-			<div class="works-category"  data-sr='enter top, wait 0.2s'>
-				<ul class="statistics" style="width:700px;height:70px;margin:0px auto;">
-					
-					<li class="style1"><a href="#" data-filter=".photo">PEOPLE</a></li>
-					<li class="style2"><a href="#" data-filter=".viedeo">HASH</a></li>
-				</ul>
-			</div>
+      </div>
+      <div class="row text-center">
+         <div class="works-category"  data-sr='enter top, wait 0.2s'>
+            <ul class="statistics" style="width:700px;height:70px;margin:0px auto;">
+               <li class="style1"><a href="#" data-filter=".photo" onclick="mtag('${name}')" >PEOPLE</a></li>
+               <li class="style2"><a href="#" data-filter=".viedeo" onclick="htag('${name}')">HASH</a></li>
+            </ul>
+         </div>
 
-				<div class="works-area" >
-				<c:set var="txtfind" value="${find }" /> 
-<form name="reSearch" action="membersearch.do">
+            <div class="works-area" >
+            <c:set var="txtfind" value="${find }" /> 
+<%-- <form name="reSearch" action="membersearch.do">
 <input type="text" name="name" value="${name}"><input type="submit" value="검색"><br>
  <c:forEach var="txtfind" items="${txtfind }" begin="0" end="0"> 
-	<input type="button" value="사람" onclick="mtag('${name}')">
-	<input type="button" value="hash" onclick="htag('${name}')">
-	
+   <input type="button" value="사람" onclick="mtag('${name}')">
+   <input type="button" value="hash" onclick="htag('${name}')">
+   
  </c:forEach> 
-	<table border="1px">
-		<c:if test="${empty find}">
-			<input type="button" value="사람" onclick="mtag('${name}')">
-			<input type="button" value="해시태그" onclick="htag('${name}')">
-			<tr>
-				<td colspan="4" align="center">찾으시는 사람이 존재하지 않습니다.</td>
-			</tr>
-		</c:if>
-		<c:forEach var="find" items="${find}">
-			<tr onclick="pageOpen(${find.idx})">
-				<td>${find.name}</td>
-			</tr>
-		</c:forEach>
-	</table>
+   <table border="1px">
+      <c:if test="${empty find}">
+         <input type="button" value="사람" onclick="mtag('${name}')">
+         <input type="button" value="해시태그" onclick="htag('${name}')">
+         <tr>
+            <td colspan="4" align="center">찾으시는 사람이 존재하지 않습니다.</td>
+         </tr>
+      </c:if>
+      <c:forEach var="find" items="${find}">
+         <tr onclick="pageOpen(${find.idx})">
+            <td>${find.name}</td>
+         </tr>
+      </c:forEach>
+   </table>
 </form>
-				
+             --%>
 
-			</div> 
-		</div>
-		</div>
-		
-		<!-- 서치결과뜨는곳(사람) -->
-		<div id="peoplesearch">
-		
-		<table class="peoplesearchtable">
-			<tr>
-				<td><img src="myHomeFolder/profile_img/default_profile.jpg"></td>
-				<td colspan="3">한미연 <br> miyoniyam_hoho</td>
-			</tr>
-			<tr>
-				<td><img width="50" height="50" src="myHomeFolder/profile_img/default_profile.jpg"></td>
-				<td colspan="3">한미연 <br> miyoniyam_hoho</td>
-			</tr>
-		</table>
-		</div>
-		
-		
-		
+         </div> 
+      </div>
+      </div>
+      
+      <!-- 서치결과뜨는곳(사람) -->
+      <div id="peoplesearch">
+      
+      <table class="peoplesearchtable">
+         <tr>
+            <td>프로필 사진</td>
+            <td>이름(한줄 소개)</td>
+            <td>생년월일</td>
+            <td>성별</td>
+            <td></td>
+         </tr>
+         <c:if test="${empty find }">
+            <tr>
+               <td colspan="5">
+                  찾으시는 회원이 존재하지 않습니다.
+               </td>
+            </tr>
+         </c:if>
+         <c:forEach var="find" items="${find }">
+            <tr>
+               <td><img src="myHomeFolder/profile_img/${find.profile_img }"></td>
+               <td>${find.name } <br> ${find.intro }</td>
+               <td>${find.birth_y }년 ${find.birth_m }월 ${find.birth_d }일</td>
+               <td>
+                  <c:if test="${find.gender == 1}">
+                     남자
+                  </c:if>
+                  <c:if test="${find.gender == 2}">
+                     여자
+                  </c:if>
+               </td>
+               <td>
+                  <input type="button" value="피드 보기" onclick="">
+               </td>
+            </tr>
+         </c:forEach>
+      </table>
+      </div>
+      <div class="col-md-4 col-sm-6 col-xs-12  jpg">
+         <div class="works" id="htagSearch" style="display:none;">
+            <!-- 결과사진 foreach로 뿌려주세요 -->
+            <c:forEach var="find" items="${find }">
+               <img id="imgList" src="myHomeFolder/content/${find.path }" alt="" style="width: 400px; height: 400px;">
+            </c:forEach>
+         </div>
+      </div>
 </section>
-
-
   <section>
   <div class="container">
    
     <div class="row">
-    		 <div class="col-xs-12" style="text-align: center;">
+           <div class="col-xs-12" style="text-align: center;">
                    <div class="spinner" id="wait"></div>
         </div>
     
@@ -422,16 +475,16 @@
       댓글2<br>
         </div>
         
-        		
+              
     </div>
 </div>
-      	<div class="container" style="background-color: white;">
+         <div class="container" style="background-color: white;">
     <div class="row">
         <div class="col-sm-12">
-      		  <p>
-        	 <br/>
+              <p>
+            <br/>
          <button class="btn btn-primary btn-lg center-block" data-dismiss="modal" aria-hidden="true">Close <i class="ion-android-close"></i></button>
-        		</p>
+              </p>
         </div>
     </div>
 </div>
@@ -439,11 +492,11 @@
 </body>
 
     <script src="assets_main/js_1/jquery-1.10.2.js" type="text/javascript"></script>
-	<script src="assets_main/js_1/bootstrap.js" type="text/javascript"></script>
-	<script type="text/javascript" src="assets_main/js_1/main.js"></script>
-	<script src="assets_main/js_1/ct-navbar.js"></script>
-	<script type="text/javascript" src="assets_main/owl-carousel/owl.carousel.min.js"></script>
-	
+   <script src="assets_main/js_1/bootstrap.js" type="text/javascript"></script>
+   <script type="text/javascript" src="assets_main/js_1/main.js"></script>
+   <script src="assets_main/js_1/ct-navbar.js"></script>
+   <script type="text/javascript" src="assets_main/owl-carousel/owl.carousel.min.js"></script>
+   
 <!--Parallax-->
 <script type="text/javascript" src="assets_main/js/jquery.stellar.min.js"></script>
 <!--IsoTop-->

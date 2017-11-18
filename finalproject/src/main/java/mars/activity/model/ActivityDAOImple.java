@@ -12,31 +12,19 @@ import mars.reply.model.ReplyDTO;
 
 public class ActivityDAOImple implements ActivityDAO {
 	
-	private SqlSessionTemplate sqlMap;
-
+	private SqlSessionTemplate sqlMap;	
+	
 	public ActivityDAOImple(SqlSessionTemplate sqlMap) {
 		super();
 		this.sqlMap = sqlMap;
-	}
-	
-	
-	public List<ActivityDTO> active_like(int i) {
-	
-	     List<ActivityDTO> list1 = sqlMap.selectList("active_like",i);
-	      return list1;
-		
-	}
-	public List<ActivityDTO> active_reply(int i) {
-		 List<ActivityDTO> list1 = sqlMap.selectList("active_reply",i);
-	      return list1;
-	}
+	}	
 	
 	public void ac_insert_like(int from_idx, int to_idx, int content_idx, Date actdate, String name, String profile_img) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("from_idx", String.valueOf(from_idx));
 		map.put("to_idx", String.valueOf(to_idx));
 		map.put("content_idx", String.valueOf(content_idx));
-		map.put("actdate", String.valueOf(actdate));//받아올때 stinrg->date 형변환해야함
+		map.put("actdate", String.valueOf(actdate));//諛쏆븘�삱�븣 stinrg->date �삎蹂��솚�빐�빞�븿
 		map.put("name", name);
 		map.put("profile_img", profile_img);
 		
@@ -85,18 +73,54 @@ public class ActivityDAOImple implements ActivityDAO {
 		sqlMap.delete("ac_delete", map);
 	}
 	
-	public void ac_insert_reply(int from_idx, int to_idx, int content_idx, String content, Date actdate, String name,
-			String profile_img) {
+	public void ac_insert_reply(int from_idx, int to_idx, int content_idx, String content, String name,
+			String profile_img, int reply_idx) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("from_idx", String.valueOf(from_idx));
 		map.put("to_idx", String.valueOf(to_idx));
 		map.put("content_idx", String.valueOf(content_idx));
 		map.put("content", content);
-		map.put("actdate", String.valueOf(actdate));//받아올때 stinrg->date 형변환해야함
 		map.put("name", name);
 		map.put("profile_img", profile_img);
+		map.put("reply_idx", String.valueOf(reply_idx));
 		
-		sqlMap.insert("ac_insert_like", map);
+		sqlMap.insert("ac_insert_reply", map);
 		
 	}
+	
+	/*public ReplyDTO ac_new_list(int from_idx, int to_idx, int content_idx, String content) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("from_idx", String.valueOf(from_idx));
+		map.put("to_idx", String.valueOf(to_idx));
+		map.put("content_idx", String.valueOf(content_idx));
+		map.put("content", content);
+		map.put("reply_idx", String.valueOf(0));
+		
+		ReplyDTO list = sqlMap.selectOne("ac_insert_reply", map);
+		return list;
+	}
+	*/
+	public ReplyDTO ac_getIdx(int from_idx, int to_idx, int content_idx, String content) {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("from_idx", String.valueOf(from_idx));
+		map.put("to_idx", String.valueOf(to_idx));
+		map.put("content_idx", String.valueOf(content_idx));
+		map.put("content", content);
+		
+		ReplyDTO dto = sqlMap.selectOne("ac_getIdx", map);
+		return dto;
+	}
+	
+	public int ac_reply_update(String content, int reply_idx) {
+		System.out.println("content; "+content);
+		System.out.println("reply_idx: "+reply_idx);
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("content", content);
+		map.put("reply_idx", String.valueOf(reply_idx));
+		
+		int res = sqlMap.selectOne("ac_reply_update", map);
+		return res;
+	}
+	
 }

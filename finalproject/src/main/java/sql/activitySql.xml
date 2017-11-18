@@ -28,17 +28,19 @@
 	<select id="ac_insert_reply">
 		insert into mars_activity 
 		values(mars_activity_idx.nextval, #{from_idx}, #{to_idx}, 2, #{content_idx},
-				0, 0, #{actdate}, 0, 0, #{name}, #{profile_img}, #{content}) 
+				#{reply_idx}, 0, sysdate, 0, 0, #{name}, #{profile_img}, #{content}) 
 	</select>
+	<select id="ac_like" parameterType="hashMap" resultType="mars.reply.model.ReplyDTO">
+		select * from mars_like where from_idx=#{from_idx} and to_idx=#{to_idx} and content_idx=#{content_idx}   
+   </select>
+   <select id="ac_getIdx" parameterType="hashMap" resultType="mars.reply.model.ReplyDTO">
+   		select idx from mars_reply where from_idx=#{from_idx} and to_idx=#{to_idx} and content_idx=#{content_idx} and content=#{content}
+   </select>
+   <update id="ac_reply_update" parameterType="hashMap">
+		update mars_activity set content=#{content} where reply_idx=#{reply_idx}
+   </update>
+   <delete id="ac_reply_delete" parameterType="hashMap">
+   		delete from mars_activity where content_idx=#{content_idx} and reply_idx=#{reply_idx}
+   </delete>
 	
-	
-	
-		<select id="active_reply" resultType="mars.activity.model.ActivityDTO" parameterType="int">
-		select name,content_idx,replydate as actdate from mars_member ,(select from_idx,to_idx,content_idx,replydate from mars_reply where from_idx = #{idx} order by replydate desc)a where mars_member.idx = a.to_idx
-	</select>
-	
-		<select id="active_like" resultType="mars.activity.model.ActivityDTO" parameterType="int">
-		
-		select name,content_idx,likedate as actdate from mars_member ,(select from_idx,to_idx,content_idx,likedate from mars_like where from_idx = #{idx} order by likedate desc)a where mars_member.idx = a.to_idx
-	</select>
 </mapper>

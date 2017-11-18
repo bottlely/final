@@ -39,4 +39,9 @@
 		insert into mars_report values(mars_report_idx.nextval, #{idx_from}, #{idx_to},
 		#{content}, #{category}, '', sysdate, 0)
 	</insert>
+	
+	<select id="nameList" resultType="mars.myHome.model.MyHomeDTO">
+      	select * from mypage
+   </select>
+   
 </mapper>

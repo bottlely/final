@@ -1,6 +1,7 @@
 package mars.friend.model;
 
 import java.sql.*;
+
 import java.util.*;
 import mars.member.model.*;
 import mars.myHome.model.*;

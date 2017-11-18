@@ -1,6 +1,7 @@
 package mars.myHome.model;
 
 import java.util.HashMap;
+import java.util.List;
 
 import mars.report.model.ReportDTO;
 
@@ -22,5 +23,7 @@ public interface MyHomeDAO {
 	public int reportSend(ReportDTO dto);
 	
 	public int visitorTodayReset();
+	
+	public List<MyHomeDTO> nameList();
 
 }
