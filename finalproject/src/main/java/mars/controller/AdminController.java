@@ -38,6 +38,7 @@ public class AdminController {
       int ranksize2 = aDao.followingSize2();
       int ranksize3 = aDao.followingSize3();
       int todayAd = aDao.todayAd();
+      int todayReport = aDao.todayReport();
       mav.addObject("todayAd",todayAd);
       mav.addObject("ranksize1",ranksize1);
       mav.addObject("ranksize2",ranksize2);
@@ -47,6 +48,7 @@ public class AdminController {
       mav.addObject("userInfo3",dto3);
       mav.addObject("userrank",userrank);
       mav.addObject("todayjoin",todayjoin);
+      mav.addObject("toReport",todayReport);
       mav.setViewName("admin/admin_main");
       return mav;
    }
@@ -73,7 +75,7 @@ public class AdminController {
          aDao.ff_delete(idx);
       }
       
-      String msg = result > 0 ? "탈퇴 성공" : "탈퇴 실패";
+      String msg = result > 0 ? "�깉�눜 �꽦怨�" : "�깉�눜 �떎�뙣";
       
       mav.addObject("msg", msg);
       
@@ -222,7 +224,7 @@ public class AdminController {
       int girl4 = aDao.girl4();
       int man4 = aDao.man4();
       int others = aDao.others();
-      
+     
       String seoul = aDao.seoul();
       String suwon = aDao.suwon();
       String daejeon = aDao.daejeon();

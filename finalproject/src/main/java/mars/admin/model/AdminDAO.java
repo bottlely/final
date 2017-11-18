@@ -27,7 +27,7 @@ public interface AdminDAO {
    public int gender_2();
    public int girl1();
    public int man1();
-
+   public int todayReport();
    public int girl2();
    public int man2();
    public int girl3();

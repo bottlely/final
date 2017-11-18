@@ -102,7 +102,7 @@
 							<div class="card-body-icon">
 								<i class="fa fa-fw fa-comments"></i>
 							</div>
-							<div class="mr-5">Today Report :0개 </div>
+							<div class="mr-5">Today Report :${toReport }개 </div>
 						</div>
 						<a class="card-footer text-white clearfix small z-1" href="#">
 							

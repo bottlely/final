@@ -339,16 +339,17 @@
       </div>
       
       <!-- 서치결과뜨는곳(해시태그) -->
-      <div class="col-md-4 col-sm-6 col-xs-12  jpg">
+      <div class="col-md-4 col-sm-6 col-xs-6  jpg">
                      <div class="works">
                      <!-- 결과사진 foreach로 뿌려주세요 -->
                      <c:forEach var="find" items="${find }">
                      <img src="myHomeFolder/content/${find.path }" alt=""
                            style="width: 400px; height: 400px;">
+                  
                      </c:forEach>
       </div>
       </div>
-
+	
 </section>
   <section>
   <div class="container">

@@ -270,4 +270,9 @@
 		from mypage
 		inner join mars_ff on mypage.member_idx=mars_ff.user1_idx and mars_ff.user2_idx=#{idx} and mars_ff.black_state=0
 	</select>
+	
+	<select id="todayReport" resultType="int" parameterType="String">
+	
+	select count(*) from (select to_char(reportdate,'YYYY-MM-DD')as a from mars_report) where a = #{date}
+	</select>
 </mapper>

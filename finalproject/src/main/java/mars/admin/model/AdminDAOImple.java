@@ -13,11 +13,22 @@ import mars.myHome.model.MyHomeDTO;
 public class AdminDAOImple implements AdminDAO {
    
    private SqlSessionTemplate sqlMap;   
+   
 
    public AdminDAOImple(SqlSessionTemplate sqlMap) {
       super();
       this.sqlMap = sqlMap;
    }
+   
+   
+   public int todayReport() {
+	   SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd", Locale.KOREA );
+	   Date currentTime = new Date ( );
+	   Date countTime = new Date ( currentTime.getTime());
+	   String dTime = formatter.format ( countTime );
+		int tR = sqlMap.selectOne("todayReport",dTime);
+		return tR;
+	}
    
    public List<MemberDTO> admin_member() {
       List<MemberDTO> list = sqlMap.selectList("admin_member"); 
@@ -61,7 +72,7 @@ public class AdminDAOImple implements AdminDAO {
       return list;
    }
 
-   /*愿��떖�궗�넻怨�*/
+   /*�꽴占쏙옙�뼎占쎄텢占쎈꽰�⑨옙*/
    public int favor_movie() {
       
       int favor_movies=sqlMap.selectOne("favor_movie");
@@ -122,60 +133,60 @@ public class AdminDAOImple implements AdminDAO {
    
    public int girl1() {
 	   Date now = new Date();
-	   System.out.println("異쒕젰 :"+ now.getYear());
+	   
 	   int girl=sqlMap.selectOne("1girl",now.getYear()+1900);
 	      return girl;
    }
    public int man1() {
 	   Date now = new Date();
 	   
-	   System.out.println("異쒕젰 :"+ now.getYear());
+	   
 	   int man=sqlMap.selectOne("1man",now.getYear()+1900);
 	      return man;
    }
    public int girl2() {
 	   Date now = new Date();
-	   System.out.println("異쒕젰 :"+ now.getYear());
+	   
 	   int girl=sqlMap.selectOne("2girl",now.getYear()+1900);
 	      return girl;
    }
    public int man2() {
 	   Date now = new Date();
 	   
-	   System.out.println("異쒕젰 :"+ now.getYear());
+	   
 	   int man=sqlMap.selectOne("2man",now.getYear()+1900);
 	      return man;
    }
    public int girl3() {
 	   Date now = new Date();
-	   System.out.println("異쒕젰 :"+ now.getYear());
+	   
 	   int girl=sqlMap.selectOne("3girl",now.getYear()+1900);
 	      return girl;
    }
    public int man3() {
 	   Date now = new Date();
 	   
-	   System.out.println("異쒕젰 :"+ now.getYear());
+	   
 	   int man=sqlMap.selectOne("3man",now.getYear()+1900);
 	      return man;
    }
    public int girl4() {
 	   Date now = new Date();
-	   System.out.println("異쒕젰 :"+ now.getYear());
+	  
 	   int girl=sqlMap.selectOne("4girl",now.getYear()+1900);
 	      return girl;
    }
    public int man4() {
 	   Date now = new Date();
 	   
-	   System.out.println("異쒕젰 :"+ now.getYear());
+	 
 	   int man=sqlMap.selectOne("4man",now.getYear()+1900);
 	      return man;
    }
    public int others() {
 	   Date now = new Date();
 	   
-	   System.out.println("異쒕젰 :"+ now.getYear());
+	  
 	   int man=sqlMap.selectOne("others",now.getYear()+1900);
 	      return man;
    }
@@ -226,7 +237,7 @@ public class AdminDAOImple implements AdminDAO {
 	   Date countTime = new Date ( currentTime.getTime() - 6*( (long) 1000 * 60 * 60 * 24 ));
 	   String dTime = formatter.format ( countTime );
 	   
-	  System.out.println("�궇吏�"+dTime);
+	  System.out.println("占쎄텊筌욑옙"+dTime);
 	  
 	   int count7 = sqlMap.selectOne("usercount",dTime);
 	   return count7;
