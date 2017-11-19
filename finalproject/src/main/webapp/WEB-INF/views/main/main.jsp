@@ -1050,7 +1050,7 @@ var nameList = new Array();
 		<div class="col-md-4 col-sm-6 col-xs-12  photo">
 			<div class="works" style="height: 431px;">
 			
-			<img src="adFolder/default.png " alt="" style="width: 431px; height: 431px;">
+			<img src="adFolder/default.jpg " alt="" style="width: 431px; height: 431px;">
 										
 				<div class="work-overlay text-center">
 				<div class="overlay-caption">
