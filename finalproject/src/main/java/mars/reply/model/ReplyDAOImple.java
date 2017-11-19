@@ -87,4 +87,10 @@ public class ReplyDAOImple implements ReplyDAO {
       
       return lev;
    }
+
+	public int likeCount(int content_idx) {
+		int count = sqlMap.selectOne("likeCount", content_idx);
+		
+		return count;
+	}
 }

@@ -409,7 +409,7 @@ to {
 		   );
 	});
 			
-	$(document).ready(function() {
+	/* $(document).ready(function() {
 		  $("#content").autocomplete(nameList, {
 		    matchContains: true,
 		    minChars: 0,
@@ -422,7 +422,7 @@ to {
 		     }
 		   );
 			
-	});
+	}); */
         	
 
                   $(document).ready(function(){
@@ -514,11 +514,6 @@ to {
                      var content = document.getElementById('content_'+content_idx).value;
                      
                      var detail_media = document.getElementById('detail_media');
-                     
-                     alert(writer + " writer");
-                     alert(profile + " profile");
-                     alert(content + " content");
-                     alert(category + " category");
                     
                     sendRequest('likeList.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
                  
@@ -641,6 +636,7 @@ to {
                            var reply_list = document.all.reply_List;
                            var str='';
                            var userName = document.getElementById("session_name").value;
+                           var content_idx = document.getElementById("c_idx").value;
 
                            if(lists.replyList.length==0){
                               str = '댓글 없습니다.'
@@ -668,9 +664,22 @@ to {
                            }
                            
                            XHR = getXHR();
+                           
+                           sendRequest('likeCount.do?content_idx='+content_idx, null, likeCount, 'GET');
                         }
                      }
                   }
+        	     
+        	     function likeCount(){
+		        	 if(XHR.readyState==4){
+			               if(XHR.status==200){
+			                  var data = XHR.responseText;
+			                  var lists = eval('('+data+')');
+
+			                  document.getElementById('likeCount').value = '발자취 ' + lists.count + '개';
+			               }
+			            } 
+		         }
                  
         	     function re_Reply(idx){
         	            var re_content = document.getElementById(idx+"text")
@@ -735,6 +744,8 @@ to {
         	                var content = document.getElementById('content').value;
         	                   
         	                sendRequest("reply.do?content="+content+"&content_idx="+c_idx+"&session_idx="+session_idx, null, replyList, 'GET');
+        	                
+        	                document.getElementById("content").value = "";
         	           }
                  
                   function btn_cancle1() {
@@ -1180,7 +1191,7 @@ to {
 							
 							<div class="col-sm-12" id="cntInfoBar">
 								<span><a href="#" onclick="like()">
-				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a><input type="button" value="발자취" onclick="like()"></span>
+				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a><input type="button" value="발자취" onclick="like()"><input type="text" id="likeCount" value="" readonly style="border: 0px;"></span>
 							</div>
 
 	

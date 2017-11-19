@@ -58,4 +58,7 @@
    <select id="lev" parameterType="HashMap" resultType="Integer">
          select lev from mars_reply where idx=#{reply_idx}
    </select>
+   <select id="likeCount" parameterType="Integer" resultType="Integer">
+   		select count(content_idx) from mars_like where content_idx = #{content_idx}
+   </select>
 </mapper>

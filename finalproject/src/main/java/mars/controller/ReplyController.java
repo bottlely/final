@@ -182,7 +182,6 @@ public class ReplyController {
       
       String img_Path;
      
-      System.out.println(result);
       if(result == 1){
          replydao.like_delete(map);
          
@@ -226,5 +225,14 @@ public class ReplyController {
       ModelAndView mav = new ModelAndView("marsJson", "img_Path", img_Path);
       
       return mav;
+   }
+   
+   @RequestMapping("likeCount.do")
+   public ModelAndView likeCount(@RequestParam("content_idx")int content_idx){
+	   int count = replydao.likeCount(content_idx);
+	   
+	   ModelAndView mav = new ModelAndView("marsJson", "count", count);
+	   
+	   return mav;
    }
 }

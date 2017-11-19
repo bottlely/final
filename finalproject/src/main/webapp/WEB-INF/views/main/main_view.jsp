@@ -479,7 +479,7 @@ function openContent(content_idx, useridx) {
 			<div class="col-sm-8 text-left" style="background: #f4f4f4;">
 				<a href="#" onclick="like(${content_idx})">
 				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a>
-					<input type="button" value="발자취" onclick="like(${content_idx})" >
+					<input type="button" value="발자취" onclick="like(${content_idx})" ><input type="text" id="likeCount" value="" readonly style="border: 0px;">
 				<%-- <img src=""><input type="button" value="발자취"
 					onclick="like(${content_idx})"> --%>
 				<hr>
@@ -522,10 +522,24 @@ function openContent(content_idx, useridx) {
 		                  var data = XHR.responseText;
 		                  var lists = eval('('+data+')');
 		                  var like_List = document.all.like_List;
+		                  var content_idx = '${content_idx}';
 
 		                  document.getElementById('like_Img').src=lists.img_Path;
+		                  
+		                  sendRequest('likeCount.do?content_idx='+content_idx, null, likeCount, 'GET');
 		               }
 		            } 
+		         }
+		         
+		         function likeCount(){
+		        	 if(XHR.readyState==4){
+			               if(XHR.status==200){
+			                  var data = XHR.responseText;
+			                  var lists = eval('('+data+')');
+
+			                  document.getElementById('likeCount').value = '발자취 ' + lists.count + '개';
+			               }
+			            } 
 		         }
 		         
 		         function reply_List(content_idx,session_idx){

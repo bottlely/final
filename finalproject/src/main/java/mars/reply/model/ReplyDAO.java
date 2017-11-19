@@ -18,4 +18,5 @@ public interface ReplyDAO {
    public void like_delete(HashMap<String, String> map);
    public void delete_re_Reply(HashMap<String, String> map);
    public int lev(HashMap<String, String> map);
+   public int likeCount(int content_idx);
 }
