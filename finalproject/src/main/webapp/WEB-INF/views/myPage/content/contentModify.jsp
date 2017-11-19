@@ -129,7 +129,7 @@ select {
         		 
     			 var data = new FormData();
     			 
-    			 data.append("useridx", '${sessionScope.useridx}');
+    			 data.append("content_idx", '${contentidx}');
     			 
     			 var htag =  document.getElementById("htag").value;
     			 data.append("htag",htag);

@@ -721,35 +721,33 @@ public class ContentController {
 		mav.addObject("groupList_idx",groupList_idx);
 		mav.addObject("cdto",cdto);
 		mav.addObject("cvdto", cvdto);
+		mav.addObject("contentidx", contentidx);
 		mav.setViewName("myPage/content/contentModify");
 		return mav;
 		
 	}
 	
 	@RequestMapping("/contentModify.do")
-	public ModelAndView contentModify(@RequestParam("useridx")String member_idx,
+	public ModelAndView contentModify(@RequestParam("content_idx")String content_idx,
 			@RequestParam("htag")String htag,
 			@RequestParam("mtag")String mtag,
 			@RequestParam(value="coverage_list_group",required=false)String cl_group,
 			@RequestParam(value="coverage_list",required=false)String cl,
 			@RequestParam("coverage_state")String cs,
 			@RequestParam("content")String content) {
-		System.out.println("c1 : " + cl);
-		System.out.println("cs : " + cs);
-		System.out.println("cl_group : " + cl_group );
 		HashMap<String, String> info = new HashMap<String, String>();
-		info.put("midx",member_idx);
+		info.put("content_idx",content_idx);
         info.put("content", content);
 		int result = cdao.contentUpdate(info);
-		int contentIdx = result > 0 ? cdao.contentIdxSearch(member_idx) : -1;
 
         int result2 = -1;
         
-        if(contentIdx > 0){ //content idx가 있다면
+		if(result > 0){
+        
         	int state = Integer.parseInt(cs); 
         	
         	HashMap<String, String> info2 = new HashMap<String, String>();
-        	info2.put("cidx",Integer.toString(contentIdx));
+        	info2.put("cidx",content_idx);
         	info2.put("idx_to","0");
         	info2.put("idx_group", "0");
         	info2.put("coverage_state", cs);
@@ -812,10 +810,7 @@ public class ContentController {
    	        	}
 	        }
             
-            }else{ //없으면 -1 
-            	return  new ModelAndView("marsJson","result",result2);
-            }
-        
+		}
         ModelAndView mav = new ModelAndView("marsJson","result",result2);
 		return mav;
 	}
