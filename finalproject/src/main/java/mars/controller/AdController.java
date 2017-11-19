@@ -51,7 +51,7 @@ public class AdController {
 			 MultipartHttpServletRequest req, HttpServletRequest req2)
 	{
 		MultipartFile profile = req.getFile("file");
-		String ad_content = name+ad_name+m_idx+profile.getOriginalFilename();
+		String ad_content = "adFolder/"+name+ad_name+m_idx+profile.getOriginalFilename();
 		String type = "ad_content";
 		copyInto(ad_content,profile,req2);
 		int result = adDao.insert(command, ad_content);

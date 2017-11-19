@@ -1065,7 +1065,7 @@ var nameList = new Array();
 					
 		<div class="col-md-4 col-sm-6 col-xs-12  ad">
 			<div class="works" style="height: 431px;">
-				<img src="${list.ad_content}.jpg " alt="" style="width: 431px; height: 431px;">
+				<img src="${list.ad_content} " alt="" style="width: 431px; height: 431px;">
 					<div class="work-overlay text-center">
 						<div class="overlay-caption">
 							<h4>Ad</h4>
