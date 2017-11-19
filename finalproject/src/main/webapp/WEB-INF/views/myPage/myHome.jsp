@@ -245,7 +245,7 @@ to {
 
 .work-overlay {
    opacity: 0;
-   background: rgba(192, 48, 28, 0.7);
+   background: rgba(255, 255, 255, 0.5);
    position: absolute;
    left: 0;
    right: 0;
@@ -505,7 +505,7 @@ a.btn-view {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+
 
 <!-- main, menu -->    
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -809,6 +809,8 @@ function openpic(content_idx){
             	var img_slide = document.createElement('img');
             	img_slide.src = path;
             	img_slide.id='detail';
+            	img_slide.setAttribute("width","400px");
+            	img_slide.setAttribute("height","350px");
             	detail_media.appendChild(img_slide);
              }else if(category==2){
             	 if($('#detail_media').children().size()>0){
@@ -820,6 +822,8 @@ function openpic(content_idx){
             	 video_slide.id='detail';
             	 video_slide.autoplay=true;
             	 video_slide.loop=true;
+            	 video_slide.setAttribute("width","400px");
+             	 video_slide.setAttribute("height","350px");
             	 
             	 source.src = path;
             	 source.type = "video/mp4";
@@ -918,16 +922,16 @@ function openpic(content_idx){
                          
                          if(l.lev == 0){
                             if(l.name == userName){
-                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; float: left;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;margin:0; float: left;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; float: left;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none; float: left;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none; float: left;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none; float: left;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')" style="width:55px;height:25px;font-size:11px;padding:0;margin-left:10px; float: left;">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
                             }else{
-                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
+                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; float: left;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;margin:0; float: left;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; float: left;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none; float: left;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none; float: left;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')" style="width:55px;height:25px;font-size:11px;padding:0;margin-left:10px;float: left;">' + '<hr>';
                             }
                             
                          }else{
                             if(l.name == userName){
-                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
+                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; float: left;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; float: left;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; float: left;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none; float: left;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
                             }else{
-                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<hr>';
+                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; float: left;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; float: left;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; float: left;" readonly>' + '<hr>';
                             }
                          }
                       }
@@ -1209,12 +1213,12 @@ function openpic(content_idx){
 		  <div class="work-overlay text-center">
 			<div class="overlay-caption">
 			<h4>TEXT</h4> 
-				<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
-				<input type="hidden" id="path_${list.content_idx }" value="${list.path }"> 
-				<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
-				<input type="hidden" id="profile_${list.content_idx }" value="myHomeFolder/profile_img/${list.profile }">
-				<input type="hidden" id="content_${list.content_idx }" value="${list.content }">
-				<input type="hidden" id="memberidx_${list.content_idx }" value="${list.member_idx }">
+				<input type="hidden" id="category_${contentList.content_idx }" value="${contentList.category }"> 
+				<input type="hidden" id="path_${contentList.content_idx }" value="${contentList.path }"> 
+				<input type="hidden" id="writer_${contentList.content_idx }" value="${contentList.writer }"> 
+				<input type="hidden" id="profile_${contentList.content_idx }" value="myHomeFolder/profile_img/${contentList.profile }">
+				<input type="hidden" id="content_${contentList.content_idx }" value="${contentList.content }">
+				<input type="hidden" id="memberidx_${contentList.content_idx }" value="${contentList.member_idx }">
 			</div>
 			</div>
 			</a>
@@ -1232,30 +1236,37 @@ function openpic(content_idx){
 	
 	 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-hidden="true" style="border: solid; overflow: auto; background-color: rgba(0, 0, 0, 0.2);">
-	  <div style="margin: 2% 10%;">
+	  <div style="margin: 20% 10%;">
 			<section id="viewForm" style="overflow: auto;">
 				<div class="container" style="width: 100%; font-size: 15px; overflow: hidden;">
 					<div class="row">
 						<!-- 사진 -->
-						<div class="col-xs-10"
-							style="margin-top: 10px; float: left; margin-bottom: 10px; overflow: hidden; height:440px;" id="detail_media">
+						<div class="col-xs-12"
+							style="margin:10px auto;float: left;overflow: hidden;" id="detail_media">
 							
 						</div>
 
 						<!-- 내용 -->
 						<input type="hidden" id="c_idx" value="">
-						<div class="col-xs-5"
-							style="margin-top: 10px; margin-bottom: 10px;">
-							<div class="col-sm-12" id="cntInfoBar">
+						<div class="col-xs-12"
+							style="position: relative;margin-top: 10px; margin-bottom: 10px;">
+							<div class="col-sm-12" id="cntInfoBar" style="width:100%;text-align:left;">
 								<span class="avatar"> <img src="js/profile.png" alt="" id="pf" style="
-                            border-radius: 70px;
-                            -moz-border-radius: 70px;
-                            -khtml-border-radius: 70px;
-                            -webkit-border-radius: 70px;
+                            border-radius: 50%;
+                            -moz-border-radius: 50%;
+                            -khtml-border-radius: 50%;
+                            -webkit-border-radius: 50%;
                             "/>
-								</span> <label id="c_writer"></label> <span>
-									<button class="btn btn-info" id="myBtn"
-										style="background: gray;">· · · </button> <!-- The Modal -->
+								</span> <label id="c_writer"></label> 
+		<span class="dropdown">
+		<button class="btn btn-info" id="myBtn" style="background: gray;" type="button" data-toggle="dropdown">· · ·</button> <!-- The Modal -->
+		<ul class="dropdown-menu">
+   		<li><a href="#" class="list-group-item list-group-item-success">수정</a> </li>
+   		<li> <a href="#" class="list-group-item list-group-item-info">삭제</a></li>
+   		<li><a href="#" class="list-group-item list-group-item-warning">신고</a></li>
+   		</ul>
+   		</span>
+									
 									<div id="myModal2" class="modal2">
 
 										<!-- Modal content // contentMore -->
@@ -1268,16 +1279,7 @@ function openpic(content_idx){
 								</span>
 
 							</div>
-							
-		<span class="modal-body">
- 		 <a data-toggle="dropdown">
- 		 <i class="fa fa-ellipsis-h"></i>
- 		 <span class="caret"></span></a>
- 			 <ul class="dropdown-menu">
-   			  <li><a href="#" class="list-group-item list-group-item-success">수정</a> </li>
-   			 <li> <a href="#" class="list-group-item list-group-item-info">삭제</a></li>
-   			 <li><a href="#" class="list-group-item list-group-item-warning">신고</a></li>
-   			 </ul></span>
+		
 		
 		
 	  <div class="col-sm-12" id="cntInfoBar"
@@ -1291,9 +1293,9 @@ function openpic(content_idx){
 							</div>
 
 	
-							<div class="col-sm-4" id="cntInfoBar"
+							<div class="col-sm-12" id="cntInfoBar"
 								style="overflow: auto; height: 200px;">
-								<div class="col-sm-12" id="reply_List">
+								<div class="col-sm-12" id="reply_List" style="width:100%;float:left;">
 									<span class="avatar"> 
 									</span>
 								</div>
@@ -1301,7 +1303,7 @@ function openpic(content_idx){
 
 							</div>
 
-							<div class="col-sm-4">
+							<div class="col-sm-12">
 								<div class="input-group">
 									<input id="content" type="text" class="form-control"
 										name="content" placeholder="댓글 입력"> <label
@@ -1327,10 +1329,7 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
+
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
