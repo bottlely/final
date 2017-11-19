@@ -14,7 +14,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-
+   <link href="assets_main/css/jquery.autocomplete.css" rel="stylesheet" />
 <style>
 body {
 	background-color:#f2fdff;
@@ -299,6 +299,33 @@ select {
     	    });
     	  });
     	});
+    
+    //@기능
+    var nameList = ['양진모','양진모','양진모','양진모','양진모'];
+ function mtagLists(){
+    	
+    		var text = document.getElementById("mtag").value;
+    		
+    		if(text == '@'){
+    			window.alert(text);
+    		$(document).ready(function() {
+    			  $("#mtag").autocomplete(nameList, {
+    			    matchContains: true,
+    			    minChars: 0,
+    			   width: 120,
+    			   max: 10,
+    			   multiple: false,
+    			   scroll: true,
+    			   scrollHeight: 300,
+    			    selectFirst: false
+    			     }
+    			   );
+    		});
+    		}
+    	
+	    	
+    }
+
     </script>
 </head>
 
@@ -324,7 +351,9 @@ select {
 	<div class="row">
 			<div class="col-sm-12">
 				<input type="text" class="form-control" id="mtag" name="mtag"
-					placeholder="친구태그" onFocus="clearText(this)" onBlur="clearText(this)">
+					placeholder="친구태그" onFocus="clearText(this)" onBlur="clearText(this)" autocomplete="on" onkeyup = "javascript:mtagLists();" > 
+
+					
 			</div>
 			<div class="col-sm-12">
 				<input type="text" class="form-control" id="htag" name="htag"
@@ -398,4 +427,12 @@ select {
 		</div>
 	</div>
 </body>
+<script type="text/javascript"
+	src="assets_main/js/jquery.autocomplete.js"></script>
+
+<script type="text/javascript"
+	src="assets_main/js/jquery.autocomplete.min.js"></script>
+
+<script type="text/javascript"
+	src="assets_main/js/jquery.autocomplete.pack.js"></script>
 </html>
