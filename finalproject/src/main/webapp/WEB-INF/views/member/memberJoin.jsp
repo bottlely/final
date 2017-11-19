@@ -177,7 +177,14 @@ function showResult() {
 							<div class="col-sm-6">
 								<div class="form-group ">
 									<input type="text" class="form-control" placeholder="YOUR NAME or COMPANY NAME"
-										name="name" required>
+										name="name" id="name" required>
+										<input type="hidden" name="add1" value="">
+										<script>
+											var add1 = document.getElementById("name").value;
+											var tag = '@';
+											
+											document.getElementById("add1").value = tag + add1;
+										</script>
 								</div>
 							</div>
 							<div class="col-sm-6">
