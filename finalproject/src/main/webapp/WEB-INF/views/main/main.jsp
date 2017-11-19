@@ -1089,8 +1089,7 @@ var nameList = new Array();
 	<script>
 	
 	function goCount(data){
-		
-		alert(data);
+
 		
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST","goCount.do?data="+data);

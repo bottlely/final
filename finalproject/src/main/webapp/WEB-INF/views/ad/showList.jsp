@@ -62,16 +62,6 @@ body {
 </div>
 <script>
 
-//(function imme(){
-	
-//	if("${ok}"==""){
-//		alert('1');
-//	}
-//	else if("${ok}"==="1"){
-//		alert('2');
-//		close();
-//	}
-//})()
 
 function no(){
 	window.location="insertNoSign.do?ad_idx="+${o.ad_idx}+"&member_idx="+${o.member_idx};
@@ -80,14 +70,7 @@ function ok(){
 
 	window.location="insertOkSign.do?ad_idx="+${o.ad_idx}+"&member_idx="+${o.member_idx};
 	
-	
-	//setTimeout('window.close()',10000);
 }
-
-//function close(){
-//	alert('come');
-//	window.close();
-//}
 </script>
 
 	
