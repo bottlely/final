@@ -47,11 +47,6 @@ function activityList() {
                			var td2 = document.createElement('td');
             			var img = document.createElement('img');
             			
-						/* input.type='hidden';
-            			input.name='content_idx';
-            			input.value=lists.feed[i].content_idx;
-            			input.id='content_idx'; */
-            			
             			big_div.style["width"]="auto";
             			big_div.style["padding"]="3px";
             			big_div.style["margin-top"]="5px";
@@ -73,7 +68,6 @@ function activityList() {
             			td2.appendChild(txt);
             			div.appendChild(table);
             			big_div.appendChild(div);
-            			big_div.appendChild(input);
            			}
            		}
            		
@@ -87,13 +81,6 @@ function activityList() {
                			var td1 = document.createElement('td');
                			var td2 = document.createElement('td');
             			var img = document.createElement('img');
-            			//var a = document.createElement('a');
-            			var input = document.createElement('input');
-            			
-						input.type='hidden';
-            			input.name='content_idx';
-            			input.value=lists.feed[i].content_idx;
-            			input.id='content_idx';
             			
             			big_div.style["width"]="auto";
             			big_div.style["padding"]="3px";
@@ -116,7 +103,6 @@ function activityList() {
             			td2.appendChild(txt);
             			div.appendChild(table);
             			big_div.appendChild(div);
-            			big_div.appendChild(input);
            			}
            		}
            		
@@ -129,13 +115,6 @@ function activityList() {
                			var td1 = document.createElement('td');
                			var td2 = document.createElement('td');
             			var img = document.createElement('img');
-            			//var a = document.createElement('a');
-            			var input = document.createElement('input');
-            			
-						input.type='hidden';
-            			input.name='content_idx';
-            			input.value=lists.feed[i].content_idx;
-            			input.id='content_idx';
             			
             			big_div.style["width"]="auto";
             			big_div.style["padding"]="3px";
@@ -158,7 +137,6 @@ function activityList() {
             			td2.appendChild(txt);
             			div.appendChild(table);
             			big_div.appendChild(div);
-            			big_div.appendChild(input);
            			}
            		}
            		
