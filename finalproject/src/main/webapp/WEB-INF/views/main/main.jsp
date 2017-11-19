@@ -408,8 +408,15 @@ var nameList = new Array();
              var date = document.getElementById('date_'+content_idx).value;
              var profile = document.getElementById('profile_'+content_idx).value;
              var session_idx = '${sessionScope.useridx}';
-             
+             var htag;
+            
+            if(document.getElementById('htag_'+content_idx)==null){
+            	 htag='';
+             }else{
+            	 htag= document.getElementById('htag_'+content_idx).value;
+             }
 			             
+            window.alert(htag);
              var writer = document.getElementById('writer_'+content_idx).value;
              var content = document.getElementById('content_'+content_idx).value;
              
@@ -462,7 +469,9 @@ var nameList = new Array();
           		document.getElementById('c_content').innerHTML = category==3? path:content;
                 document.getElementById('c_writer').innerHTML = writer;
                 document.getElementById('c_date').innerHTML = date;
-
+                document.getElementById('c_htag').innerHTML = '#'+htag;
+                
+                $('#c_htag').attr("href",'membersearch.do?name='+htag);
                 $('#pf').attr("src", profile);
             
           //contentMore
@@ -1050,7 +1059,10 @@ var nameList = new Array();
 							</div>
 						</c:if>
 					</c:forEach>
-					
+					<c:set var="hlist" value="${hlist }"></c:set>
+					<c:forEach var="hlist" items="${hlist }">
+					<input type="hidden" id="htag_${hlist.content_idx }" value="${hlist.content }">
+					</c:forEach>
 					
 					<c:set var="list" value="${adList }"></c:set>
 		<c:if test="${empty list }"> 
@@ -1176,6 +1188,11 @@ var nameList = new Array();
 							<div class="col-sm-12" id="cntInfoBar"
 								style="overflow: auto; height: 70px;">
 								<span><label id="c_content"></label></span>
+							</div>
+							
+							<div class="col-sm-12" id="cntInfoBar"
+								style="overflow: auto; height: 70px;">
+								<span><a id="c_htag"></a></span>
 							</div>
 							
 							<div class="col-sm-12" id="cntInfoBar">

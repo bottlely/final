@@ -22,6 +22,8 @@ import mars.reply.model.ReplyDTO;
 import mars.ad.model.ApplyAdDAO;
 import mars.ad.model.ApplyAdDTO;
 import mars.content.model.ContentDAO;
+import mars.htag.model.htagDTO;
+
 @Controller
 public class MainController {
    @Autowired
@@ -46,7 +48,7 @@ public class MainController {
       map.put("idx_like", "%"+idx+"%");
       
       List<ContentDTO> list = feedDao.showFeed(map);
-      
+      List<htagDTO> hlist = feedDao.getHtag();
       List<MemberDTO> nameList = mdao.memberSearch();
       
       List<Object> list1 = new ArrayList<Object>();
@@ -63,7 +65,7 @@ public class MainController {
       mav.addObject("list", list);
       mav.addObject("adList", adList);
       mav.addObject("nameList", list1);
-      
+      mav.addObject("hlist", hlist);
       mav.setViewName("main/main");
       return mav;
    }
