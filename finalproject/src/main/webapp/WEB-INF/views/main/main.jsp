@@ -946,9 +946,9 @@ var nameList = new Array();
 					<ul class="statistics">
 						<li class="style1"><a href="#" data-filter="*"
 							class="current">All</a></li>
-						<li class="style2"><a href="# " data-filter=".photo">PHOTO</a></li>
-						<li class="style3"><a href="#" data-filter=".video">VIDEO</a></li>
-						<li class="style4"><a href="#" data-filter=".text">TEXT</a></li>
+						<li class="style2"><a href="# " data-filter=".photo, .ad">PHOTO</a></li>
+						<li class="style3"><a href="#" data-filter=".video, .ad">VIDEO</a></li>
+						<li class="style4"><a href="#" data-filter=".text, .ad">TEXT</a></li>
 					</ul>
 				</div>
 
@@ -1029,6 +1029,40 @@ var nameList = new Array();
 							</div>
 						</c:if>
 					</c:forEach>
+					
+					
+					<c:set var="list" value="${adList }"></c:set>
+		<c:if test="${empty list }"> 
+		<div class="col-md-4 col-sm-6 col-xs-12  photo">
+			<div class="works" style="height: 431px;">
+			
+			<img src="adFolder/default.png " alt="" style="width: 431px; height: 431px;">
+										
+				<div class="work-overlay text-center">
+				<div class="overlay-caption">
+				선호도 조사를 먼저 해주세요~ 
+				선호에 맞는 광고를 추천해 드립니당!^^
+				</div>
+				</div>
+			</div>
+		</div>
+		</c:if>
+			<c:forEach var="list" items="${list }">
+					
+		<div class="col-md-4 col-sm-6 col-xs-12  ad">
+			<div class="works" style="height: 431px;">
+				<img src="${list.ad_content}.jpg " alt="" style="width: 431px; height: 431px;">
+					<div class="work-overlay text-center">
+						<div class="overlay-caption">
+							<h4>Ad</h4>
+							<a href="http://${list.link}" onclick="goCount(${list.ad_idx})">
+							${list.ad_name}</a>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -1054,43 +1088,7 @@ var nameList = new Array();
 
 	
 	
-	<section>
-	<c:set var="list" value="${adList }"></c:set>
-		<c:if test="${empty list }"> 
-		<div class="col-md-4 col-sm-6 col-xs-12  photo">
-			<div class="works" style="height: 431px;">
-			
-			<img src="adFolder/default.png " alt=""
-										style="width: 431px; height: 431px;">
-										
-				<div class="work-overlay text-center">
-				<div class="overlay-caption">
-				선호도 조사를 먼저 해주세요~ 
-				선호에 맞는 광고를 추천해 드립니당!^^
-				</div>
-				</div>
-			</div>
-		</div>
-		</c:if>
-			<c:forEach var="list" items="${list }">
-					
-		<div class="col-md-4 col-sm-6 col-xs-12  photo">
-			<div class="works" style="height: 431px;">
-				<img src="${list.ad_content}.jpg " alt=""
-										style="width: 431px; height: 431px;">
-					<div class="work-overlay text-center">
-						<div class="overlay-caption">
-							<h4>Ad</h4>
-							<a href="http://${list.link}" onclick="goCount(${list.ad_idx})">
-							${list.ad_name}</a>
-							
-						</div>
-					</div>
-				</div>
-			</div>
-			</c:forEach>
-
-	</section>
+	
 	
 	
 	
