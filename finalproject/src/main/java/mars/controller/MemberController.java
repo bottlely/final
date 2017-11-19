@@ -46,6 +46,7 @@ public class MemberController {
 		MemberDTO dtoIdx = mdao.idxSearch(dto);
 		int result2 = result > 0 ? mdao.myHomeCreate(dtoIdx) : -1;
 		String msg = result2>0?"Success":"Fail";
+		
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
 		mav.setViewName("member/memberMsg");
