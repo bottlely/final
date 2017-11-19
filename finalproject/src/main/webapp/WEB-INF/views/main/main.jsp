@@ -807,12 +807,7 @@ var nameList = new Array();
 
 								<!-- 다운 음성인식 -->
 
-								<li>
-									<div id="speechbbbbox"></div>
-									<button onClick="startConverting();" type="button" style="margin-top: 14px;">
-										<i class="fa fa-microphone"></i>
-									</button>
-								</li>
+
 
 
 								<script type="text/javascript">
@@ -855,12 +850,31 @@ var nameList = new Array();
 
 								<!--  -->
 
-								<li style="margin-top: 15px;">
-									<form name="search" action="membersearch.do">
-										<input type="text" name="name" id='searchForm' value=""
-											autocomplete="on" placeholder="Search...">
-									</form>
-								</li>
+					
+								
+								
+
+								<li>
+									<form name="search" action="membersearch.do"
+                      class="navbar-form navbar-right navbar-search-form">
+ 							<div id="speechbbbbox"></div>
+								<a href="#" onClick="startConverting();">
+										<i class="pe-7s-micro"></i>
+									</a>	
+                      <div class="form-group">
+                         <input type="text" name="name" class="form-control" id='searchForm' autocomplete="on" value=""
+                            placeholder="Search...">
+ 							
+ 
+                      </div>
+ 						
+                   </form>
+                   	
+                   </li>
+								 <li><a href="javascript:void(0);" data-toggle="search"
+                           class="hidden-xs"> <i class="pe-7s-search"></i>
+                           </a>
+                           </li>
 								<li><a href="#" id="mypage1"> <i class="pe-7s-home"></i>
 
 								</a></li>
