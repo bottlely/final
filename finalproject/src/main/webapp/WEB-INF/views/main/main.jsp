@@ -716,7 +716,7 @@ var data = [
              
              $(document).ready(function(){
                  $("#alertsDropdown").click(function(){
-                	 document.getElementById('activity_iframe').src="activityList.do?idx="+${sessionScope.useridx};
+                	 document.getElementById('activity_iframe').src="activityListForm.do?idx=${sessionScope.useridx}";
                  });
              });
              

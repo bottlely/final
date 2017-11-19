@@ -18,12 +18,16 @@ public class ActivityController {
 	@Autowired
 	private ActivityDAO actDao;
 	
+	@RequestMapping("/activityListForm.do")
+	public String activityListForm(@RequestParam("idx")int idx) {
+		return "main/feedList";
+	}
+	
 	@RequestMapping("/activityList.do")
-	public ModelAndView activityListForm(@RequestParam("idx")int idx) {
+	public ModelAndView activityList(@RequestParam("idx")int idx) {
 		List<ActivityDTO> list = actDao.ac_list(idx);
 		
 		ModelAndView mav = new ModelAndView("marsJson", "feed", list);
-		mav.setViewName("/main/feedList");
 		return mav;
 	}
 	

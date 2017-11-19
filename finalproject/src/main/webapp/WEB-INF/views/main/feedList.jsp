@@ -24,25 +24,106 @@ function openContent(content_idx, useridx) {
 	parent.openContent(content_idx, useridx);
 }
 function sender() {
-	alert('hi');
 	sendRequest('activityList.do?idx=${sessionScope.useridx}', null, activityList, 'GET');
+
 }
 function activityList() {
-	alert('22');
 	if(XHR.readyState==4){
 		if(XHR.status==200){
 			var data = XHR.responseText;
-			var lists = eval('('+data+')');
-			var table = document.getElementById('feedList_table');
-			var str = '';
-			
-			XHR = getXHR();
-	
-			alert(lists.get(0).getIdx());
+            var lists = eval('('+data+')');
+            var big_div = document.createElement('div');
+           
+           	for(var i=0; i < lists.feed.length; i++) {
+           		if(lists.feed[i].flag==1) { //like
+           			if(lists.feed[i].to_idx=='${sessionScope.useridx}') {
+           				var txt = document.createTextNode(lists.feed[i].name+'님이 좋아요를 눌렀습니다.');
+           				var div = document.createElement('div');
+           				var table = document.createElement('table');
+           				var tr = document.createElement('tr');
+               			var td1 = document.createElement('td');
+               			var td2 = document.createElement('td');
+            			var img = document.createElement('img');
+            			
+            			td1.setAttribute("valign", "middle");
+            			td1.setAttribute("colspan", "2");
+            			td2.setAttribute("valign", "middle");
+            			img.setAttribute("src", "myHomeFolder/profile_img/"+lists.feed[i].profile_img);
+            			img.setAttribute("width", "30px");
+            			img.setAttribute("height", "30px");
+            			img.setAttribute("style", "border-radius: 50%;");
+            			
+            			table.appendChild(tr);
+            			tr.appendChild(td1);
+            			tr.appendChild(td2);
+            			td1.appendChild(img);
+            			td2.appendChild(txt);
+            			div.appendChild(table);
+           			}
+           		}
+           		big_div.appendChild(div);
+           		
+           		if(lists.feed[i].flag==2) { //reply
+           			if(lists.feed[i].to_idx=='${sessionScope.useridx}') {
+           				var txt = document.createTextNode(lists.feed[i].name+'님이 댓글을 남겼습니다. "'+lists.feed[i].content+'"');
+           				var div = document.createElement('div');
+           				var table = document.createElement('table');
+           				var tr = document.createElement('tr');
+               			var td1 = document.createElement('td');
+               			var td2 = document.createElement('td');
+            			var img = document.createElement('img');
+            			
+            			td1.setAttribute("valign", "middle");
+            			td1.setAttribute("colspan", "2");
+            			td2.setAttribute("valign", "middle");
+            			img.setAttribute("src", "myHomeFolder/profile_img/"+lists.feed[i].profile_img);
+            			img.setAttribute("width", "30px");
+            			img.setAttribute("height", "30px");
+            			img.setAttribute("style", "border-radius: 50%;");
+            			
+            			table.appendChild(tr);
+            			tr.appendChild(td1);
+            			tr.appendChild(td2);
+            			td1.appendChild(img);
+            			td2.appendChild(txt);
+            			div.appendChild(table);
+           			}
+           		}
+           		big_div.appendChild(div);
+           		
+           		if(lists.feed[i].flag==3) { //follow
+           			if(lists.feed[i].to_idx=='${sessionScope.useridx}') {
+           				var txt = document.createTextNode(lists.feed[i].name+'님이 회원님을 팔로우하기 시작했습니다.');
+           				var div = document.createElement('div');
+           				var table = document.createElement('table');
+           				var tr = document.createElement('tr');
+               			var td1 = document.createElement('td');
+               			var td2 = document.createElement('td');
+            			var img = document.createElement('img');
+            			
+            			td1.setAttribute("valign", "middle");
+            			td1.setAttribute("colspan", "2");
+            			td2.setAttribute("valign", "middle");
+            			img.setAttribute("src", "myHomeFolder/profile_img/"+lists.feed[i].profile_img);
+            			img.setAttribute("width", "30px");
+            			img.setAttribute("height", "30px");
+            			img.setAttribute("style", "border-radius: 50%;");
+            			
+            			table.appendChild(tr);
+            			tr.appendChild(td1);
+            			tr.appendChild(td2);
+            			td1.appendChild(img);
+            			td2.appendChild(txt);
+            			div.appendChild(table);
+           			}
+           		}
+           		big_div.appendChild(div);
+           		
+           	}
+           	document.getElementById('total_feedList').appendChild(big_div);
 		}
-	} else {
-		alert('bad');
-	}
+	} 
+	
 } 
 </script>
 </head>
@@ -50,10 +131,8 @@ function activityList() {
 	<!-- 
 	to_idx를 기준으로 피드를 불러와서 거기서 그냥 쌓아야해
 	 -->
-	<div class="total_feedList">
-		<table id="feedList_table">
+	<div id="total_feedList">
 		
-		</table>
     </div>
 </body>
 
