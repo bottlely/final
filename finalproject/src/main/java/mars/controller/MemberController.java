@@ -80,6 +80,8 @@ public class MemberController {
 			String dbpwd = mdao.pwdCheck(userid);
 			if(dbpwd.equals(userpwd)) {  //id&pwd correct!
 				
+				String msg = "";
+				String gourl = "";
 				/*login info save in Session*/
 				MemberDTO dto = new MemberDTO();
 				dto = mdao.getUserInfo(userid);
@@ -90,8 +92,13 @@ public class MemberController {
 				session.setAttribute("username", username);
 				session.setAttribute("userEmail", dto.getId());
 				
-				String msg = "로그인 성공";
-				String gourl = "main.do?idx="+useridx;
+				if(dto.getIdx()==3) {
+					msg = "관리자님 환영합니다";
+					gourl = "admin.do";
+				}else{
+					msg = "로그인 성공";
+					gourl = "main.do?idx="+useridx;
+				}
 				mav.addObject("msg", msg);
 				mav.addObject("gourl", gourl);
 				

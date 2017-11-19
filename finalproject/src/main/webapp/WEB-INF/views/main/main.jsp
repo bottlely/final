@@ -939,7 +939,7 @@ var data = [
 											<li><a
 												href="serviceCenter.do?idx=${sessionScope.useridx }">CUSTOMER
 													CENTER</a></li>
-											<li><a href="#">Logout</a></li>
+											<li><a href="logout.do">Logout</a></li>
 											<li><a href="#" id="msgTest1">MSGTEST</a></li>
 											<li><a href="#" id="more1">MORETEST</a></li>
 

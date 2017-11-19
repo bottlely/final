@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,10 +88,7 @@ String idx = (String)session.getAttribute("useridx");
 							<li><a data-scroll href="#login">Login</a></li>
 							<li><a href="joinForm.do">Sign Up</a></li>
 							<li><a data-scroll href="#about-us">About</a></li>
-							<li><a href="admin.do">admin</a></li>
-							<li><a href="main.do?idx=${sessionScope.useridx }">Main Page</a></li>
-							<li><a href="myHomeForm.do?useridx=<%=idx%>">MyPage</a></li>
-							<li><a href="logout.do">Log-out</a></li>
+							
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
