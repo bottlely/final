@@ -309,7 +309,7 @@ var nameList = new Array();
 		   );
 	});
 			
-	$(document).ready(function() {
+	/* $(document).ready(function() {
 		  $("#content").autocomplete(nameList, {
 		    matchContains: true,
 		    minChars: 0,
@@ -322,7 +322,7 @@ var nameList = new Array();
 		     }
 		   );
 			
-	});
+	}); */
 	
 
           $(document).ready(function(){
@@ -405,7 +405,7 @@ var nameList = new Array();
         	 document.getElementById('c_idx').value=content_idx;
              var category = document.getElementById('category_'+content_idx).value;
              var path = document.getElementById('path_'+content_idx).value;
-             
+             var date = document.getElementById('date_'+content_idx).value;
              var profile = document.getElementById('profile_'+content_idx).value;
              var session_idx = '${sessionScope.useridx}';
              
@@ -461,6 +461,8 @@ var nameList = new Array();
              }
           		document.getElementById('c_content').innerHTML = category==3? path:content;
                 document.getElementById('c_writer').innerHTML = writer;
+                document.getElementById('c_date').innerHTML = date;
+
                 $('#pf').attr("src", profile);
             
           //contentMore
@@ -628,12 +630,14 @@ var nameList = new Array();
                }
          
             function addReply(){
-	                var session_idx = document.getElementById('session_idx').value;
-	                var c_idx = document.getElementById('c_idx').value;
-	                var content = document.getElementById('content').value;
-	                   
-	                sendRequest("reply.do?content="+content+"&content_idx="+c_idx+"&session_idx="+session_idx, null, replyList, 'GET');
-	           }
+                var session_idx = document.getElementById('session_idx').value;
+                var c_idx = document.getElementById('c_idx').value;
+                var content = document.getElementById('content').value;
+                   
+                sendRequest("reply.do?content="+content+"&content_idx="+c_idx+"&session_idx="+session_idx, null, replyList, 'GET');
+                
+                document.getElementById("content").value = "";
+           }
          
           function btn_cancle1() {
                 var more2 = document.getElementById('more2');
@@ -969,7 +973,7 @@ var nameList = new Array();
 				<!--  전체 피드 목록 -->
 				<div class="works-area">
 					<c:set var="list" value="${list }"></c:set>
-					<c:if test="${empty list }"> 게시물 없음! </c:if>
+					<c:if test="${empty list }"></c:if>
 					<c:forEach var="list" items="${list }">
 						<!--사진  -->
 						<c:if test="${list.category==1 }">
@@ -981,6 +985,7 @@ var nameList = new Array();
 											<h4>PHOTO</h4>
 											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
 											<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
+											<input type="hidden" id="date_${list.content_idx }" value="${list.writetime }">
 											<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
 											<input type="hidden" id="profile_${list.content_idx }" value="myHomeFolder/profile_img/${list.profile }">
 											<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
@@ -1006,6 +1011,7 @@ var nameList = new Array();
 											<h4>VIDEO</h4>
 											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
 												<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
+												<input type="hidden" id="date_${list.content_idx }" value="${list.writetime }">
 												<input type="hidden" id="path_${list.content_idx }" value="myHomeFolder/content/${list.path }"> 
 												<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
 												<input type="hidden" id="profile_${list.content_idx }" value="myHomeFolder/profile_img/${list.profile }">
@@ -1030,6 +1036,7 @@ var nameList = new Array();
 											<h4>TEXT</h4>
 											<a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="${list.path }" onclick="openpic(${list.content_idx})"> 
 												<input type="hidden" id="category_${list.content_idx }" value="${list.category }"> 
+												<input type="hidden" id="date_${list.content_idx }" value="${list.writetime }">
 												<input type="hidden" id="path_${list.content_idx }" value="${list.path }"> 
 												<input type="hidden" id="writer_${list.content_idx }" value="${list.writer }"> 
 												<input type="hidden" id="profile_${list.content_idx }" value="myHomeFolder/profile_img/${list.profile }">
@@ -1054,8 +1061,8 @@ var nameList = new Array();
 										
 				<div class="work-overlay text-center">
 				<div class="overlay-caption">
-				선호도 조사를 먼저 해주세요~ 
-				선호에 맞는 광고를 추천해 드립니당!^^
+				<a href="infoSetting.do?idx=${sessionScope.useridx }">선호도 조사를 먼저 해주세요~ 
+				선호에 맞는 광고를 추천해 드립니당!^^</a>
 				</div>
 				</div>
 			</div>
@@ -1104,7 +1111,7 @@ var nameList = new Array();
 	
 	
 	
-	
+<!-- 	
 	<section>
 		<div class="container">
 
@@ -1112,7 +1119,7 @@ var nameList = new Array();
 				<div class="col-xs-12" style="text-align: center;">
 					<div class="spinner" id="wait"></div>
 				</div>
-				<!-- 더보기 버튼 -->
+				더보기 버튼
 				<div class="col-xs-12" style="text-align: center;">
 					<button type="button" class="btn btn-primary" id="more">More
 						List..</button>
@@ -1120,7 +1127,7 @@ var nameList = new Array();
 			</div>
 		</div>
 
-	</section>
+	</section> -->
 	<!-- end main -->
 	<input type="hidden" id="session_idx" value="${sessionScope.useridx }">
 	<input type="hidden" id="session_name" value="${sessionScope.username }">
@@ -1148,8 +1155,9 @@ var nameList = new Array();
 								-webkit-border-radius: 70px;
 								width:50px; height:50px;
 								"/>
-								</span> <label id="c_writer"></label> <span>
-									<button class="btn btn-info" id="myBtn"
+								
+							</span> &nbsp;<label id="c_writer"></label> &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id="c_date"></label><span>
+									&nbsp;&nbsp;<button class="btn btn-info" id="myBtn"
 										style="background: gray;">· · · </button> <!-- The Modal -->
 									<div id="myModal2" class="modal2">
 
