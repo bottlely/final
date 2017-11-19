@@ -68,8 +68,8 @@ public class MyHomeController{
 		
 		List<ContentDTO> contentList = null;
 
-		int following = 0;
-		int block = 0;
+		int following = 0; //친구 아님
+		int block = -1;
 		
 		if(Integer.parseInt(member_idx) == loginIdx){ //나라면
 			
@@ -84,23 +84,16 @@ public class MyHomeController{
 					following = 1;
 					
 					FriendDTO fdto2 = friendDao.relation(Integer.parseInt(member_idx),loginIdx);
-					if(fdto2 != null){//차단인지
+					if(fdto2 != null){//상대가 나를 팔로잉 한다면
 						
 						block = fdto2.getBlack_state();
-						
 						if(block == 0){ // 차단하지 않았다면
 							
 						      HashMap<String, String> info = new HashMap<String, String>();
 						      info.put("idx", member_idx);
 						      info.put("idx_like", "%"+loginIdx+"%");
 						      contentList = cdao.contentList_ff(info);
-						      
-						}else{ //차단했다면
-							block = 1;
 						}
-						
-					}else{ //팔로워가 아니면 
-						block = -1;
 					}
 					
 			}else{ //팔로잉이 아니라면
@@ -114,7 +107,6 @@ public class MyHomeController{
 		mav.addObject("mhdto", mhdto);
 		mav.addObject("cdao", cdao);
 		mav.addObject("userType", userType);
-		mav.addObject("size", contentList.size());
 		mav.addObject("contentList", contentList);
 		mav.setViewName("myPage/myHome");
 		return mav;
