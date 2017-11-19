@@ -21,7 +21,9 @@
 
 <script>
 function openContent(content_idx, useridx) {
-	parent.openContent(content_idx, useridx);
+	alert('hi');
+	var con_idx = document.getElementById('content_idx').value;
+	parent.openContent(con_idx, '${sessionScope.useridx}');
 }
 function sender() {
 	sendRequest('activityList.do?idx=${sessionScope.useridx}', null, activityList, 'GET');
@@ -44,11 +46,18 @@ function activityList() {
                			var td1 = document.createElement('td');
                			var td2 = document.createElement('td');
             			var img = document.createElement('img');
-            			var a = document.createElement('a');
             			
-            			//////
-            			a.setAttribute("href", "javascript: openContent(lists.feed[i].content_idx, ${sessionScope.useridx })");
-            			a.appendChild(txt);
+						/* input.type='hidden';
+            			input.name='content_idx';
+            			input.value=lists.feed[i].content_idx;
+            			input.id='content_idx'; */
+            			
+            			big_div.style["width"]="auto";
+            			big_div.style["padding"]="3px";
+            			big_div.style["margin-top"]="5px";
+            			
+            			txt.innerHTML='<a href="javascript: openContent(lists.feed[i].content_idx, ${sessionScope.useridx})">'+lists.feed[i].name+'님이 댓글을 남겼습니다. "'+lists.feed[i].content+'"'+'</a>';
+            			
             			td1.setAttribute("valign", "middle");
             			td1.setAttribute("colspan", "2");
             			td2.setAttribute("valign", "middle");
@@ -63,9 +72,11 @@ function activityList() {
             			td1.appendChild(img);
             			td2.appendChild(txt);
             			div.appendChild(table);
+            			big_div.appendChild(div);
+            			big_div.appendChild(input);
            			}
            		}
-           		big_div.appendChild(div);
+           		
            		
            		if(lists.feed[i].flag==2) { //reply
            			if(lists.feed[i].to_idx=='${sessionScope.useridx}') {
@@ -76,8 +87,20 @@ function activityList() {
                			var td1 = document.createElement('td');
                			var td2 = document.createElement('td');
             			var img = document.createElement('img');
+            			//var a = document.createElement('a');
+            			var input = document.createElement('input');
             			
-            			txt.setAttribute("href", "javascript: openContent(lists.feed[i].content_idx, ${sessionScope.useridx })");
+						input.type='hidden';
+            			input.name='content_idx';
+            			input.value=lists.feed[i].content_idx;
+            			input.id='content_idx';
+            			
+            			big_div.style["width"]="auto";
+            			big_div.style["padding"]="3px";
+            			big_div.style["margin-top"]="5px";
+            			
+            			txt.innerHTML='<a href="javascript: openContent(lists.feed[i].content_idx, ${sessionScope.useridx})">'+lists.feed[i].name+'님이 댓글을 남겼습니다. "'+lists.feed[i].content+'"'+'</a>';
+            			
             			td1.setAttribute("valign", "middle");
             			td1.setAttribute("colspan", "2");
             			td2.setAttribute("valign", "middle");
@@ -92,9 +115,10 @@ function activityList() {
             			td1.appendChild(img);
             			td2.appendChild(txt);
             			div.appendChild(table);
+            			big_div.appendChild(div);
+            			big_div.appendChild(input);
            			}
            		}
-           		big_div.appendChild(div);
            		
            		if(lists.feed[i].flag==3) { //follow
            			if(lists.feed[i].to_idx=='${sessionScope.useridx}') {
@@ -105,8 +129,20 @@ function activityList() {
                			var td1 = document.createElement('td');
                			var td2 = document.createElement('td');
             			var img = document.createElement('img');
+            			//var a = document.createElement('a');
+            			var input = document.createElement('input');
             			
-            			txt.setAttribute("href", "javascript: openContent(lists.feed[i].content_idx, ${sessionScope.useridx })");
+						input.type='hidden';
+            			input.name='content_idx';
+            			input.value=lists.feed[i].content_idx;
+            			input.id='content_idx';
+            			
+            			big_div.style["width"]="auto";
+            			big_div.style["padding"]="3px";
+            			big_div.style["margin-top"]="5px";
+            			
+            			txt.innerHTML='<a href="javascript: openContent(lists.feed[i].content_idx, ${sessionScope.useridx})">'+lists.feed[i].name+'님이 댓글을 남겼습니다. "'+lists.feed[i].content+'"'+'</a>';
+            			
             			td1.setAttribute("valign", "middle");
             			td1.setAttribute("colspan", "2");
             			td2.setAttribute("valign", "middle");
@@ -121,9 +157,10 @@ function activityList() {
             			td1.appendChild(img);
             			td2.appendChild(txt);
             			div.appendChild(table);
+            			big_div.appendChild(div);
+            			big_div.appendChild(input);
            			}
            		}
-           		big_div.appendChild(div);
            		
            	}
            	document.getElementById('total_feedList').appendChild(big_div);

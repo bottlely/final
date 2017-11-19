@@ -6,7 +6,9 @@
   
 <mapper namespace="mars.activity">
 	<select id="ac_list" resultType="mars.activity.model.ActivityDTO">
-		select * from mars_activity where to_idx=#{to_idx} and from_idx!=#{to_idx} order by actdate
+		select *
+		from mars_activity
+		where to_idx=#{to_idx} and from_idx!=#{to_idx} order by actdate desc
 	</select>
 	<insert id="ac_insert_like">
 		insert into mars_activity 
