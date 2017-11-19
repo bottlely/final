@@ -121,7 +121,6 @@ function request(){
 		}
 		
 		cnt2 = cnt1;
-//		alert('3');
 		
 		
 		sendRequest('getAdRequest.do', null, requestResult, 'GET');

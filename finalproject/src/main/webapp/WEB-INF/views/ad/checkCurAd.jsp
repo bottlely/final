@@ -41,7 +41,7 @@ function showCurResult(){
 			var str='';
 		
 			if(lists.list.length==0){
-				str = '신청한 광고가 없습니다.'
+				str = '신청한 광고가 없습니다.';
 				p1.innerHTML = str;
 			}
 			else{

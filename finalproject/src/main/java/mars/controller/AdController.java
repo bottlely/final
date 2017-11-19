@@ -122,7 +122,7 @@ public class AdController {
 	}
 	
 	@RequestMapping("/insertOkSign.do")
-	public void insertOkSign(@RequestParam("ad_idx")String ad_idx, @RequestParam("member_idx")String member_idx){
+	public ModelAndView insertOkSign(@RequestParam("ad_idx")String ad_idx, @RequestParam("member_idx")String member_idx){
 		int adidx = Integer.parseInt(ad_idx);
 		int memberidx = Integer.parseInt(member_idx);
 		String mail = adDao.insertOkSign(adidx, memberidx);
@@ -131,11 +131,14 @@ public class AdController {
 		StringBuilder sb = new StringBuilder();
 		sb.append("결제부탁.");
 		boolean check = mailService.send(subject, sb.toString(), "jungdu92@gmail.com", mail);
-		
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", "승인 완료");
+		mav.setViewName("ad/adMsg");
+		return mav;
 	}
 	
 	@RequestMapping("/insertNoSign.do")
-	public void insertNoSign(@RequestParam("ad_idx")String ad_idx, @RequestParam("member_idx")String member_idx){
+	public ModelAndView insertNoSign(@RequestParam("ad_idx")String ad_idx, @RequestParam("member_idx")String member_idx){
 
 		int adidx = Integer.parseInt(ad_idx);
 		int memberidx = Integer.parseInt(member_idx);
@@ -145,7 +148,10 @@ public class AdController {
 		StringBuilder sb = new StringBuilder();
 		sb.append("귀하의 광고가 거절되었습니다.");
 		boolean check = mailService.send(subject, sb.toString(), "jungdu92@gmail.com", mail);
-
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", "거절 완료");
+		mav.setViewName("ad/adMsg");
+		return mav;
 	}
 	
 	@RequestMapping("/goCount.do")
