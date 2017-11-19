@@ -36,7 +36,9 @@ public class FriendController {
 		int res2 = actDao.ac_follow_to_act(dto, list.getName(), list.getProfile_img());
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main/main");
+		String msg = result>0? "Success" : "Fail";
+		mav.addObject("msg", msg);
+		mav.setViewName("main/friendMsg");
 		return mav;
 	}
 	
@@ -55,7 +57,9 @@ public class FriendController {
 		actDao.ac_delete_follow(dto.getUser1_idx(), dto.getUser2_idx());
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main/main");
+		String msg = result>0? "Success" : "Fail";
+		mav.addObject("msg", msg);
+		mav.setViewName("main/friendMsg");
 		return mav;
 	}
 	/**unfollowing_mypage*/
@@ -133,7 +137,9 @@ public class FriendController {
 		int res = friendDao.block(user1_idx, user2_idx);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main/main");
+		String msg = res>0? "Success" : "Fail";
+		mav.addObject("msg", msg);
+		mav.setViewName("main/friendMsg");
 		return mav;
 	}
 	@RequestMapping("/friend_block_mypage.do")
@@ -147,7 +153,9 @@ public class FriendController {
 		int res = friendDao.removeFollower(user1_idx, user2_idx);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main/main");
+		String msg = res>0? "Success" : "Fail";
+		mav.addObject("msg", msg);
+		mav.setViewName("main/friendMsg");
 		return mav;
 	}
 	

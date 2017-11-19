@@ -28,23 +28,25 @@ function sender() {
 	sendRequest('activityList.do?idx=${sessionScope.useridx}', null, activityList, 'GET');
 }
 function activityList() {
+	alert('22');
 	if(XHR.readyState==4){
 		if(XHR.status==200){
 			var data = XHR.responseText;
 			var lists = eval('('+data+')');
-			var div = document.fr.feedList_table;
-			//var str = '';
-			alert(aaa);
-			if(lists.feed.length == 0){
-				alert(aaa);
-			}
+			var table = document.getElementById('feedList_table');
+			var str = '';
+			
+			XHR = getXHR();
+	
+			alert(lists.get(0).getIdx());
 		}
+	} else {
+		alert('bad');
 	}
 } 
 </script>
 </head>
 <body onload="sender()">
-<form name="fr">
 	<!-- 
 	to_idx를 기준으로 피드를 불러와서 거기서 그냥 쌓아야해
 	 -->
@@ -53,7 +55,6 @@ function activityList() {
 		
 		</table>
     </div>
-</form>
 </body>
 
 
