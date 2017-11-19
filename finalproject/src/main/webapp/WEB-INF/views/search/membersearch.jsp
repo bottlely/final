@@ -12,6 +12,7 @@
     <link href="assets_main/css/pe-icon-7-stroke.css" rel="stylesheet" />
    <link href="assets_main/css/ct-navbar.css" rel="stylesheet" />  
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <link href="assets_main/css/jquery.autocomplete.css" rel="stylesheet" />
 <script type="text/javascript" src="js/httpRequest.js"></script>
 
   
