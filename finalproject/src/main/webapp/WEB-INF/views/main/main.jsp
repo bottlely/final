@@ -1069,7 +1069,7 @@ var nameList = new Array();
 					<div class="work-overlay text-center">
 						<div class="overlay-caption">
 							<h4>Ad</h4>
-							<a href="http://${list.link}" onclick="goCount(${list.ad_idx})">
+							<a href="${list.link}" onclick="goCount(${list.ad_idx})">
 							${list.ad_name}</a>
 							
 						</div>
