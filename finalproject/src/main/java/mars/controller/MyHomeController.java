@@ -67,6 +67,9 @@ public class MyHomeController{
 		int userType = mdao.getUserInfo_idx(Integer.parseInt(member_idx)).getUsertype();
 		
 		List<ContentDTO> contentList = null;
+
+		int following = 0;
+		int block = 0;
 		
 		if(Integer.parseInt(member_idx) == loginIdx){ //나라면
 			
@@ -75,8 +78,6 @@ public class MyHomeController{
 		}else{ //내가 아니라면 
 			
 			//친구인지
-			int following = 0;
-			int block = 0;
 			FriendDTO fdto = friendDao.relation(loginIdx,Integer.parseInt(member_idx));
 			
 			if(fdto != null){ //팔로잉하고 있다면
@@ -93,14 +94,14 @@ public class MyHomeController{
 						      info.put("idx", member_idx);
 						      info.put("idx_like", "%"+loginIdx+"%");
 						      contentList = cdao.contentList_ff(info);
+						      
+						}else{ //차단했다면
+							block = 1;
 						}
 						
 					}else{ //팔로워가 아니면 
 						block = -1;
 					}
-					
-					mav.addObject("block", block);
-					mav.addObject("following", following);
 					
 			}else{ //팔로잉이 아니라면
 				if(mhdto.getOpen_coverage() == 0){ //공개 계정이면
@@ -108,6 +109,8 @@ public class MyHomeController{
 				}
 			}
 		}
+		mav.addObject("block", block);
+		mav.addObject("following", following);
 		mav.addObject("mhdto", mhdto);
 		mav.addObject("cdao", cdao);
 		mav.addObject("userType", userType);
