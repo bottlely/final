@@ -337,17 +337,17 @@ to {
                     var data = XHR.responseText;
                     var lists = eval('('+data+')');
                     var table = document.getElementById('peopleTable');
-                    var str = '';
+                    var str = '<tr><td>프로필 사진</td><td>이름(한줄소개)</td><td>생년월일</td><td>성별</td><td></td></tr>';
                    
                     if(lists.find.length == 0){
-                        str = '<tr><td>프로필 사진</td><td>이름(한줄소개)</td><td>생년월일</td><td>성별</td><td></td></tr><tr><td colspan="5" style="text-align: center;">찾으시는 회원이 존재하지 않습니다.</td></tr>';
+                        str += '<tr><td colspan="5" style="text-align: center;">찾으시는 회원이 존재하지 않습니다.</td></tr>';
                     }else{
                        for(var i = 0; i < lists.find.length; i++) {
                           var l = lists.find[i];
                           if(l.gender == 1){
-                              str +=  '<tr><td>프로필 사진</td><td>이름(한줄소개)</td><td>생년월일</td><td>성별</td><td></td></tr><tr><td><img src="myHomeFolder/profile_img/' + l.profile_img + '"></td><td>' + l.name + '<br>' + l.intro + '</td><td>' + l.birth_y + '년 ' + l.birth_m + '월 ' + l.birth_d + '일</td><td>남자</td><td><input type="button" value="View" id="shome" onclick="shome('+ l.idx +')"></td></tr>'  
+                              str +=  '<tr><td><img src="myHomeFolder/profile_img/' + l.profile_img + '"></td><td>' + l.name + '<br>' + l.intro + '</td><td>' + l.birth_y + '년 ' + l.birth_m + '월 ' + l.birth_d + '일</td><td>남자</td><td><input type="button" value="View" id="shome" onclick="shome('+ l.idx +')"></td></tr>'  
                           }else{
-                             str +=  '<tr><td>프로필 사진</td><td>이름(한줄소개)</td><td>생년월일</td><td>성별</td><td></td></tr><tr><td><img src="myHomeFolder/profile_img/' + l.profile_img + '"></td><td>' + l.name + '<br>' + l.intro + '</td><td>' + l.birth_y + '년 ' + l.birth_m + '월 ' + l.birth_d + '일</td><td>여자</td><td><input type="button" value="View" id="shome" onclick="shome('+ l.idx +')"></td></tr>'
+                             str +=  '<tr><td><img src="myHomeFolder/profile_img/' + l.profile_img + '"></td><td>' + l.name + '<br>' + l.intro + '</td><td>' + l.birth_y + '년 ' + l.birth_m + '월 ' + l.birth_d + '일</td><td>여자</td><td><input type="button" value="View" id="shome" onclick="shome('+ l.idx +')"></td></tr>'
                           }
                        }
                     }
@@ -371,7 +371,7 @@ to {
                        for(var i = 0; i < lists.find.length; i++){
                           var l = lists.find[i];
                          
-                          str += ' <div class="col-md-4 col-sm-4 col-xs-12"> <div class="works" style="height: 431px; width:360px;"> <img src="myHomeFolder/content/' + l.path + ' alt="" style="width: 431px; height: 431px;"> <div class="work-overlay text-center"> <div class="overlay-caption"> <h4>HASH</h4> <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="' + l.path + '" onclick="openpic(' + l.content_idx + ')"><p>' + l.content + '</p></div></div></div> </div> ';
+                         str += '<input type="hidden" id="category_'+ l.content_idx +'" value="'+l.category+'"><input type="hidden" id="path_'+l.content_idx+'" value="myHomeFolder/content/'+l.path+'"><input type="hidden" id="profile_'+l.content_idx+'" value="'+l.profile+'"><input type="hidden" id="writer_'+l.content_idx+'" value="'+l.writer+'"><input type="hidden" id="content_'+l.content_idx+'" value="'+l.content+'"><input type="hidden" id="memberidx_'+ l.content_idx +'" value="'+l.member_idx+'"> <div class="col-md-4 col-sm-4 col-xs-12"> <div class="works" style="height: 431px; width:360px;"> <img src="myHomeFolder/content/' + l.path + ' alt="" style="width: 431px; height: 431px;"> <div class="work-overlay text-center"> <div class="overlay-caption"> <h4>HASH</h4> <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="' + l.path + '" onclick="openpic(' + l.content_idx + ')"><p>' + l.content + '</p></div></div></div> </div> ';
                          }
                    }
                     
@@ -380,10 +380,11 @@ to {
             }
          }
          
-         var data = [
-        	 {name : '양진모'}
-        	
-        	];
+         var nameList = new Array();
+
+         <c:forEach var="nameList" items="${nameList }">
+         	nameList.push(JSON.parse('"${nameList}"'));
+         </c:forEach>
 
         		function showList(){
         			  var dd = document.getElementById("content").value;
@@ -394,33 +395,33 @@ to {
         			/**해쉬태그*/
 
         	$(document).ready(function() {
-        		  $("#searchForm").autocomplete(data, {
-        		    matchContains: true,
-        		    minChars: 0,
-        		   width: 120,
-        		   max: 10,
-        		   multiple: false,
-        		   scroll: true,
-        		   scrollHeight: 300,
-        		    formatItem: function(item){ return item.name; }
-        		     }
-        		   );
-        	});
-        			
-        	$(document).ready(function() {
-        		  $("#content").autocomplete(data, {
-        		    matchContains: true,
-        		    minChars: 0,
-        		   width: 120,
-        		   max: 10,
-        		   multiple: false,
-        		   scroll: true,
-        		   scrollHeight: 300,
-        		    formatItem: function(item){ return item.name; }
-        		     }
-        		   );
-        			
-        	});
+		  $("#searchForm").autocomplete(nameList, {
+		    matchContains: true,
+		    minChars: 0,
+		   width: 120,
+		   max: 10,
+		   multiple: false,
+		   scroll: true,
+		   scrollHeight: 300,
+		    selectFirst: false
+		     }
+		   );
+	});
+			
+	$(document).ready(function() {
+		  $("#content").autocomplete(nameList, {
+		    matchContains: true,
+		    minChars: 0,
+		   width: 120,
+		   max: 10,
+		   multiple: false,
+		   scroll: true,
+		   scrollHeight: 300,
+		   selectFirst: false
+		     }
+		   );
+			
+	});
         	
 
                   $(document).ready(function(){
@@ -512,12 +513,18 @@ to {
                      var content = document.getElementById('content_'+content_idx).value;
                      
                      var detail_media = document.getElementById('detail_media');
+                     
+                     alert(writer + " writer");
+                     alert(profile + " profile");
+                     alert(content + " content");
+                     alert(category + " category");
                     
                     sendRequest('likeList.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
                  
                     if(category==1){
+                    	//사진
                     	if($('#detail_media').children().size()>0){
-                    		detail_media.removeChild(document.getElementById('detail'));
+                    		$('#detail_media').children().remove();
                     	}
                     
                     	var img_slide = document.createElement('img');
@@ -525,8 +532,9 @@ to {
                     	img_slide.id='detail';
                     	detail_media.appendChild(img_slide);
                      }else if(category==2){
+                    	 //동영상
                     	 if($('#detail_media').children().size()>0){
-                     		detail_media.removeChild(document.getElementById('detail'));
+                    		 $('#detail_media').children().remove();
                      	}
                     	 
                     	 var video_slide = document.createElement('video');
@@ -540,6 +548,16 @@ to {
                     	 
                     	 video_slide.appendChild(source);
                     	 detail_media.appendChild(video_slide);
+                     }else if(category==3){
+                    	 //텍스트
+                    	 if($('#detail_media').children().size()>0){
+                    		 $('#detail_media').children().remove();
+                     	}
+                    	 
+                    	 var label = document.createElement('label');
+                    	 label.innerHTML = content;
+                    	 detail_media.appendChild(label);
+                    	 
                      }
                         
                         document.getElementById('c_writer').innerHTML = writer;
@@ -1090,14 +1108,6 @@ to {
   <section>
   <div class="container">
    
-    <div class="row">
-           <div class="col-xs-12" style="text-align: center;">
-                   <div class="spinner" id="wait"></div>
-        </div>
-    
-        <div class="col-xs-12" style="text-align: center;">
-                     <button type="button" class="btn btn-primary" id="more">More List..</button>
-        </div>
     </div>
 </div>
   

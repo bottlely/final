@@ -56,11 +56,11 @@ public class MemberDAOImple implements MemberDAO {
 		return dto;
 	}
 
-	/*public List<MemberDTO> memberSearch() {
-		List<MemberDTO> list = sqlMap.selectList("memberSearch");
+	public List<MemberDTO> memberSearch() {
+		List<MemberDTO> list = sqlMap.selectList("nameSearch");
 
 		return list;
-	}*/
+	}
 	
 	public String getFavor(int idx){
 		String str="";

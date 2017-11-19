@@ -37,8 +37,8 @@
 	<select id="getAd" parameterType="Integer" resultType="mars.member.model.MemberDTO">
 		select * from mars_member where idx=#{idx}
 	</select>
-	
-	
-   
+	<select id="nameSearch" resultType="mars.member.model.MemberDTO">
+		select * from mars_member
+    </select>
 </mapper>
 

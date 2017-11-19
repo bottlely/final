@@ -1,5 +1,6 @@
 package mars.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -46,6 +47,14 @@ public class MainController {
       
       List<ContentDTO> list = feedDao.showFeed(map);
       
+      List<MemberDTO> nameList = mdao.memberSearch();
+      
+      List<Object> list1 = new ArrayList<Object>();
+      
+      for(int i = 1; i < nameList.size(); i++){
+    	  list1.add(nameList.get(i).getName());
+      }
+      
       String str = mdao.getFavor(idx);
     //  String str = mdao.getFavor(26);
       List<ApplyAdDTO> adList = adDao.showAd(str);
@@ -53,6 +62,8 @@ public class MainController {
       ModelAndView mav = new ModelAndView();
       mav.addObject("list", list);
       mav.addObject("adList", adList);
+      mav.addObject("nameList", list1);
+      
       mav.setViewName("main/main");
       return mav;
    }

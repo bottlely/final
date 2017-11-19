@@ -281,37 +281,11 @@ to {
 
 <script type="text/javascript"> 
 
-var data = [
-	 {name : '양진모'}
-	,{name : '박연수'}
-	,{name : '오현경'}
-	,{name : '한미연'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	,{name : '정다운'}
-	
-	];
+var nameList = new Array();
+
+<c:forEach var="nameList" items="${nameList }">
+	nameList.push(JSON.parse('"${nameList}"'));
+</c:forEach>
 
 		function showList(){
 			  var dd = document.getElementById("content").value;
@@ -322,7 +296,7 @@ var data = [
 			/**해쉬태그*/
 
 	$(document).ready(function() {
-		  $("#searchForm").autocomplete(data, {
+		  $("#searchForm").autocomplete(nameList, {
 		    matchContains: true,
 		    minChars: 0,
 		   width: 120,
@@ -330,13 +304,13 @@ var data = [
 		   multiple: false,
 		   scroll: true,
 		   scrollHeight: 300,
-		    formatItem: function(item){ return item.name; }
+		    selectFirst: false
 		     }
 		   );
 	});
 			
 	$(document).ready(function() {
-		  $("#content").autocomplete(data, {
+		  $("#content").autocomplete(nameList, {
 		    matchContains: true,
 		    minChars: 0,
 		   width: 120,
@@ -344,7 +318,7 @@ var data = [
 		   multiple: false,
 		   scroll: true,
 		   scrollHeight: 300,
-		    formatItem: function(item){ return item.name; }
+		   selectFirst: false
 		     }
 		   );
 			
@@ -477,9 +451,12 @@ var data = [
             		 $('#detail_media').children().remove();
              	}
             	 
-            	 var label = document.createElement('label');
-            	 label.innerHTML = content;
-            	 detail_media.appendChild(label);
+            	 var h3 = document.createElement('h3');
+                 h3.style.backgroundColor = 'pink';
+                 h3.style.height='400px';
+                 h3.style.width='800px';
+                 h3.innerHTML = content;
+                 detail_media.appendChild(h3); 
             	 
              }
           		document.getElementById('c_content').innerHTML = category==3? path:content;

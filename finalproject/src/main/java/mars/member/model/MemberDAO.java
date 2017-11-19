@@ -1,6 +1,6 @@
 package mars.member.model;
 
-
+import java.util.List;
 
 public interface MemberDAO {
 	
@@ -12,6 +12,6 @@ public interface MemberDAO {
 	public String pwdCheck(String userid);
 	public MemberDTO getUserInfo(String userid);
 	public MemberDTO getUserInfo_idx(int userid);
-	//public List<MemberDTO> memberSearch();
+	public List<MemberDTO> memberSearch();
 	public String getFavor(int idx);
 }

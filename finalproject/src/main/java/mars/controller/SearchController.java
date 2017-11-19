@@ -1,5 +1,6 @@
 package mars.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import mars.content.model.ContentDTO;
 import mars.htag.model.htagDAO;
 import mars.htag.model.htagDTO;
+import mars.member.model.MemberDAO;
 import mars.member.model.MemberDTO;
 import mars.member.model.MyHomeMemberDTO;
 import mars.myHome.model.MyHomeDAO;
@@ -30,15 +32,28 @@ public class SearchController {
    @Autowired
    private MyHomeDAO mhdao;
    
+   @Autowired
+   private MemberDAO mdao;
+   
    @RequestMapping("/membersearch.do")
    public ModelAndView memberSearch(@RequestParam("name")String name){
       ModelAndView mav = new ModelAndView();
       
       List<MyHomeMemberDTO> list = searchdao.memberSearch(name);
+      List<MemberDTO> nameList = mdao.memberSearch();
+      
+      List<Object> list1 = new ArrayList<Object>();
+      
+      for(int i = 1; i < nameList.size(); i++){
+    	  list1.add(nameList.get(i).getName());
+      }
+      
       
       mav.addObject("name", name);
       
       mav.addObject("find", list);
+      
+      mav.addObject("nameList", list1);
       
       mav.setViewName("search/membersearch");
       
