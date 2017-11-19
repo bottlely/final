@@ -44,7 +44,11 @@ function activityList() {
                			var td1 = document.createElement('td');
                			var td2 = document.createElement('td');
             			var img = document.createElement('img');
+            			var a = document.createElement('a');
             			
+            			//////
+            			a.setAttribute("href", "javascript: openContent(lists.feed[i].content_idx, ${sessionScope.useridx })");
+            			a.appendChild(txt);
             			td1.setAttribute("valign", "middle");
             			td1.setAttribute("colspan", "2");
             			td2.setAttribute("valign", "middle");
@@ -73,6 +77,7 @@ function activityList() {
                			var td2 = document.createElement('td');
             			var img = document.createElement('img');
             			
+            			txt.setAttribute("href", "javascript: openContent(lists.feed[i].content_idx, ${sessionScope.useridx })");
             			td1.setAttribute("valign", "middle");
             			td1.setAttribute("colspan", "2");
             			td2.setAttribute("valign", "middle");
@@ -101,6 +106,7 @@ function activityList() {
                			var td2 = document.createElement('td');
             			var img = document.createElement('img');
             			
+            			txt.setAttribute("href", "javascript: openContent(lists.feed[i].content_idx, ${sessionScope.useridx })");
             			td1.setAttribute("valign", "middle");
             			td1.setAttribute("colspan", "2");
             			td2.setAttribute("valign", "middle");
