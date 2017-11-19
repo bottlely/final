@@ -372,7 +372,7 @@ to {
                        for(var i = 0; i < lists.find.length; i++){
                           var l = lists.find[i];
                          
-                         str += '<input type="hidden" id="category_'+ l.content_idx +'" value="'+l.category+'"><input type="hidden" id="path_'+l.content_idx+'" value="myHomeFolder/content/'+l.path+'"><input type="hidden" id="profile_'+l.content_idx+'" value="'+l.profile+'"><input type="hidden" id="writer_'+l.content_idx+'" value="'+l.writer+'"><input type="hidden" id="content_'+l.content_idx+'" value="'+l.content+'"><input type="hidden" id="memberidx_'+ l.content_idx +'" value="'+l.member_idx+'"> <div class="col-md-4 col-sm-4 col-xs-12"> <div class="works" style="height: 431px; width:360px;"> <img src="myHomeFolder/content/' + l.path + ' alt="" style="width: 431px; height: 431px;"> <div class="work-overlay text-center"> <div class="overlay-caption"> <h4>HASH</h4> <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="' + l.path + '" onclick="openpic(' + l.content_idx + ')"><p>' + l.content + '</p></div></div></div> </div> ';
+                         str += '<input type="hidden" id="category_'+ l.content_idx +'" value="'+l.category+'"><input type="hidden" id="date_'+ l.content_idx +'" value="'+l.writetime+'"><input type="hidden" id="path_'+l.content_idx+'" value="myHomeFolder/content/'+l.path+'"><input type="hidden" id="profile_'+l.content_idx+'" value="myHomeFolder/profile_img/'+l.profile+'"><input type="hidden" id="writer_'+l.content_idx+'" value="'+l.writer+'"><input type="hidden" id="content_'+l.content_idx+'" value="'+l.content+'"><input type="hidden" id="memberidx_'+ l.content_idx +'" value="'+l.member_idx+'"> <div class="col-md-4 col-sm-4 col-xs-12"> <div class="works" style="height: 431px; width:360px;"> <img src="myHomeFolder/content/' + l.path + ' alt="" style="width: 431px; height: 431px;"> <div class="work-overlay text-center"> <div class="overlay-caption"> <h4>HASH</h4> <a href="#galleryModal" class="gallery-box" data-toggle="modal" data-src="' + l.path + '" onclick="openpic(' + l.content_idx + ')"><p>' + l.content + '</p></div></div></div> </div> ';
                          }
                    }
                     
@@ -505,11 +505,10 @@ to {
                 	 document.getElementById('c_idx').value=content_idx;
                      var category = document.getElementById('category_'+content_idx).value;
                      var path = document.getElementById('path_'+content_idx).value;
-                     
+                     var date = document.getElementById('date_'+content_idx).value;
                      var profile = document.getElementById('profile_'+content_idx).value;
                      var session_idx = '${sessionScope.useridx}';
                      
-        			             
                      var writer = document.getElementById('writer_'+content_idx).value;
                      var content = document.getElementById('content_'+content_idx).value;
                      
@@ -550,14 +549,19 @@ to {
                     		 $('#detail_media').children().remove();
                      	}
                     	 
-                    	 var label = document.createElement('label');
-                    	 label.innerHTML = content;
-                    	 detail_media.appendChild(label);
+                    	 var h3 = document.createElement('h3');
+                         h3.style.backgroundColor = 'pink';
+                         h3.style.height='400px';
+                         h3.style.width='800px';
+                         h3.innerHTML = content;
+                         detail_media.appendChild(h3); 
                     	 
                      }
                         
                         document.getElementById('c_writer').innerHTML = writer;
                         document.getElementById('c_content').innerHTML = content;
+                        document.getElementById('c_date').innerHTML = date;
+                        
                         $('#pf').attr("src", profile);
                     
                   //contentMore
@@ -1125,14 +1129,14 @@ to {
   
   </section>
 <!-- end main -->
-
+<!-- 
         <div class="container">
 
 			<div class="row">
 				<div class="col-xs-12" style="text-align: center;">
 					<div class="spinner" id="wait"></div>
 				</div>
-				<!-- 더보기 버튼 -->
+				더보기 버튼
 				<div class="col-xs-12" style="text-align: center;">
 					<button type="button" class="btn btn-primary" id="more">More
 						List..</button>
@@ -1140,7 +1144,7 @@ to {
 			</div>
 		</div>
 
-	</section>
+	</section> -->
 	<!-- end main -->
 	<input type="hidden" id="session_idx" value="${sessionScope.useridx }">
 	<input type="hidden" id="session_name" value="${sessionScope.username }">
@@ -1167,8 +1171,8 @@ to {
                             -khtml-border-radius: 70px;
                             -webkit-border-radius: 70px;
                             "/>
-								</span> <label id="c_writer"></label> <span>
-									<button class="btn btn-info" id="myBtn"
+								</span> &nbsp;<label id="c_writer"></label> &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id="c_date">2017</label><span>
+									&nbsp;&nbsp;<button class="btn btn-info" id="myBtn"
 										style="background: gray;">· · · </button> <!-- The Modal -->
 									<div id="myModal2" class="modal2">
 
