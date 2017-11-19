@@ -145,9 +145,7 @@ function showResult() {
 							<li><a data-scroll href="index.do">Login</a></li>
 							<li><a href="joinForm.do">Sign Up</a></li>
 							<li><a data-scroll href="index.do">About</a></li>
-							<li><a href="admin.do">admin</a></li>
-							<li><a href="myHomeForm.do">MyPage</a></li>
-							<li><a href="logout.do">Log-out</a></li>
+
 						</ul>
 					</div>
 					<!--/.nav-collapse -->
