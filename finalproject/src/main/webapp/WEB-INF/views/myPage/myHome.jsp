@@ -801,20 +801,23 @@ function openpic(content_idx){
             
             sendRequest('likeList.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
          
+            
             if(category==1){
+            	//사진
             	if($('#detail_media').children().size()>0){
-            		detail_media.removeChild(document.getElementById('detail'));
+            		$('#detail_media').children().remove();
             	}
             
             	var img_slide = document.createElement('img');
             	img_slide.src = path;
             	img_slide.id='detail';
-            	img_slide.setAttribute("width","400px");
-            	img_slide.setAttribute("height","350px");
+            	img_slide.setAttribute("width", "400px");
+            	img_slide.setAttribute("height", "350px");
             	detail_media.appendChild(img_slide);
              }else if(category==2){
+            	 //동영상
             	 if($('#detail_media').children().size()>0){
-             		detail_media.removeChild(document.getElementById('detail'));
+            		 $('#detail_media').children().remove();
              	}
             	 
             	 var video_slide = document.createElement('video');
@@ -822,18 +825,26 @@ function openpic(content_idx){
             	 video_slide.id='detail';
             	 video_slide.autoplay=true;
             	 video_slide.loop=true;
-            	 video_slide.setAttribute("width","400px");
-             	 video_slide.setAttribute("height","350px");
-            	 
+            	 video_slide.setAttribute("width", "400px");
+             	 video_slide.setAttribute("height", "350px");
             	 source.src = path;
             	 source.type = "video/mp4";
             	 
             	 video_slide.appendChild(source);
             	 detail_media.appendChild(video_slide);
+             }else if(category==3){
+            	 //텍스트
+            	 if($('#detail_media').children().size()>0){
+            		 $('#detail_media').children().remove();
+             	}
+            	 
+            	 var label = document.createElement('label');
+            	 label.innerHTML = content;
+            	 detail_media.appendChild(label);
+            	 
              }
-                
+          		document.getElementById('c_content').innerHTML = category==3? path:content;
                 document.getElementById('c_writer').innerHTML = writer;
-                document.getElementById('c_content').innerHTML = content;
                 $('#pf').attr("src", profile);
             
           //contentMore
@@ -922,16 +933,16 @@ function openpic(content_idx){
                          
                          if(l.lev == 0){
                             if(l.name == userName){
-                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; float: left;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;margin:0; float: left;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; float: left;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none; float: left;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none; float: left;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none; float: left;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')" style="width:55px;height:25px;font-size:11px;padding:0;margin-left:10px; float: left;">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
                             }else{
-                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; float: left;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;margin:0; float: left;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; float: left;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none; float: left;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none; float: left;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')" style="width:55px;height:25px;font-size:11px;padding:0;margin-left:10px;float: left;">' + '<hr>';
+                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
                             }
                             
                          }else{
                             if(l.name == userName){
-                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; float: left;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; float: left;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; float: left;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none; float: left;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
+                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
                             }else{
-                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; float: left;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; float: left;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; float: left;" readonly>' + '<hr>';
+                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<hr>';
                             }
                          }
                       }
@@ -1152,6 +1163,7 @@ function openpic(content_idx){
       <div class="works-area">
                
       <c:if test="${empty contentList}">게시글 없음</c:if>
+       <c:if test="${!empty contentList}">
         <c:forEach var="contentList" items="${contentList }">
 
 <!--사진  -->
@@ -1204,28 +1216,30 @@ function openpic(content_idx){
 		
 <!-- 텍스트 -->
 		<c:if test="${contentList.category==3 }">
-		 <div class="col-md-4 col-sm-4 col-xs-4  text">
-		  <div class="works" style="height: 200px;">
-		  <a href="#myModal" data-toggle="modal" data-target="#myModal" data-src="${contentList.path }" onclick="openpic(${contentList.content_idx})">
-			<div style="height: 200px; width:200px; display: table;">
-            <h3 style="display: table-cell; vertical-align: middle;">${contentList.path }</h3>
-            </div>
-		  <div class="work-overlay text-center">
-			<div class="overlay-caption">
-			<h4>TEXT</h4> 
-				<input type="hidden" id="category_${contentList.content_idx }" value="${contentList.category }"> 
-				<input type="hidden" id="path_${contentList.content_idx }" value="${contentList.path }"> 
-				<input type="hidden" id="writer_${contentList.content_idx }" value="${contentList.writer }"> 
-				<input type="hidden" id="profile_${contentList.content_idx }" value="myHomeFolder/profile_img/${contentList.profile }">
-				<input type="hidden" id="content_${contentList.content_idx }" value="${contentList.content }">
-				<input type="hidden" id="memberidx_${contentList.content_idx }" value="${contentList.member_idx }">
-			</div>
-			</div>
-			</a>
-		  </div>
-		</div>
-		</c:if>
+						<div class="col-md-4 col-sm-4 col-xs-4  text">
+								<div class="works" style="height: 200px;">
+								<a href="#myModal" data-toggle="modal" data-target="#myModal" data-src="${contentList.path }" onclick="openpic(${contentList.content_idx})">
+								      <div style="background-color: gray; height: 200px; width:200px; display: table; ">
+                       					 <h3 style="display: table-cell; vertical-align: middle;">${contentList.path }</h3>
+                       				 </div>
+									<div class="work-overlay text-center">
+										<div class="overlay-caption">
+											<h4>TEXT</h4>
+											 <input type="hidden" id="category_${contentList.content_idx }" value="${contentList.category }"> 
+											 <input type="hidden" id="path_${contentList.content_idx }" value="${contentList.path }"> 
+											 <input type="hidden" id="writer_${contentList.content_idx }" value="${contentList.writer }"> 
+											 <input type="hidden" id="profile_${contentList.content_idx }" value="myHomeFolder/profile_img/${contentList.profile }">
+											 <input type="hidden" id="content_${contentList.content_idx }" value="${contentList.content }">
+											 <input type="hidden" id="memberidx_${contentList.content_idx }" value="${contentList.member_idx }">
+										
+										</div>
+									</div>
+										</a>
+								</div>
+							</div>
+						</c:if>
         </c:forEach>
+        </c:if>
         </div>
        </div>
        </div>       
@@ -1257,16 +1271,9 @@ function openpic(content_idx){
                             -khtml-border-radius: 50%;
                             -webkit-border-radius: 50%;
                             "/>
-								</span> <label id="c_writer"></label> 
-		<span class="dropdown">
-		<button class="btn btn-info" id="myBtn" style="background: gray;" type="button" data-toggle="dropdown">· · ·</button> <!-- The Modal -->
-		<ul class="dropdown-menu">
-   		<li><a href="#" class="list-group-item list-group-item-success">수정</a> </li>
-   		<li> <a href="#" class="list-group-item list-group-item-info">삭제</a></li>
-   		<li><a href="#" class="list-group-item list-group-item-warning">신고</a></li>
-   		</ul>
-   		</span>
-									
+								</span> <label id="c_writer"></label> <span>
+									<button class="btn btn-info" id="myBtn"
+										style="background: gray;">· · · </button> <!-- The Modal -->
 									<div id="myModal2" class="modal2">
 
 										<!-- Modal content // contentMore -->
@@ -1329,7 +1336,10 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-
+//When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
