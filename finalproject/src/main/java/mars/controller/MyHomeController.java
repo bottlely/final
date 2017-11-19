@@ -85,15 +85,15 @@ public class MyHomeController{
 					
 					FriendDTO fdto2 = friendDao.relation(Integer.parseInt(member_idx),loginIdx);
 					if(fdto2 != null){//상대가 나를 팔로잉 한다면
-						
 						block = fdto2.getBlack_state();
-						if(block == 0){ // 차단하지 않았다면
-							
-						      HashMap<String, String> info = new HashMap<String, String>();
-						      info.put("idx", member_idx);
-						      info.put("idx_like", "%"+loginIdx+"%");
-						      contentList = cdao.contentList_ff(info);
-						}
+					}
+					
+					if(block != 1){ // 차단하지 않았다면
+						
+					      HashMap<String, String> info = new HashMap<String, String>();
+					      info.put("idx", member_idx);
+					      info.put("idx_like", "%"+loginIdx+"%");
+					      contentList = cdao.contentList_ff(info);
 					}
 					
 			}else{ //팔로잉이 아니라면
