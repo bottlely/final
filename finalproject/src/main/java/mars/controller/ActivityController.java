@@ -20,11 +20,9 @@ public class ActivityController {
 	
 	@RequestMapping("/activityList.do")
 	public ModelAndView activityListForm(@RequestParam("idx")int idx) {
-		System.out.println("idx: "+idx);
 		List<ActivityDTO> list = actDao.ac_list(idx);
 		
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("feedList", list);
+		ModelAndView mav = new ModelAndView("marsJson", "feed", list);
 		mav.setViewName("/main/feedList");
 		return mav;
 	}

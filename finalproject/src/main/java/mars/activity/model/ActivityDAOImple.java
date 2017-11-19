@@ -29,7 +29,6 @@ public class ActivityDAOImple implements ActivityDAO {
 		map.put("from_idx", String.valueOf(from_idx));
 		map.put("to_idx", String.valueOf(to_idx));
 		map.put("content_idx", String.valueOf(content_idx));
-		map.put("actdate", String.valueOf(actdate));//獄쏆룇釉섓옙�궞占쎈르 stinrg->date 占쎌굨癰귨옙占쎌넎占쎈퉸占쎈튊占쎈맙
 		map.put("name", name);
 		map.put("profile_img", profile_img);
 		

@@ -11,7 +11,7 @@
 	<insert id="ac_insert_like">
 		insert into mars_activity 
 		values(mars_activity_idx.nextval, #{from_idx}, #{to_idx}, 1, #{content_idx},
-				0, 0, #{actdate}, 0, 0, #{name}, #{profile_img}, '') 
+				0, 0, sysdate, 0, 0, #{name}, #{profile_img}, '') 
 	</insert>
 	<select id="ac_name_img" parameterType="Integer" resultType="mars.myHome.model.MyHomeDTO">
 		select * from mypage where member_idx=#{to_idx}

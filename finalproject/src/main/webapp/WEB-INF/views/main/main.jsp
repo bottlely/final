@@ -274,8 +274,7 @@ to {
 
     </script>
 </head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 
@@ -427,7 +426,7 @@ var data = [
                  
              });
          });
-               
+          
          function openpic(content_idx){
         	 document.getElementById('c_idx').value=content_idx;
              var category = document.getElementById('category_'+content_idx).value;
@@ -714,6 +713,13 @@ var data = [
              function openContent(content_idx, useridx) {
             	 location.href='main_view.do?content_idx='+content_idx+'&session_idx='+useridx;
              }
+             
+             $(document).ready(function(){
+                 $("#alertsDropdown").click(function(){
+                	 document.getElementById('activity_iframe').src="activityList.do?idx="+${sessionScope.useridx};
+                 });
+             });
+             
 </script>
 <body>
 	<header>
@@ -894,10 +900,10 @@ var data = [
 											class="fa fa-fw fa-circle"></i>
 									</span>
 								</a>
-									<div class="dropdown-menu" aria-labelledby="alertsDropdown" style="width: 400px; border: 6px; text-align: center;">
+									<div id="total_activity_iframe" class="dropdown-menu" aria-labelledby="alertsDropdown" style="width: 400px; border: 6px; text-align: center;">
 										<h6 class="dropdown-header">New Alerts:</h6>
 										<!-- 활동내역 -->
-										<iframe src="activityList.do?idx=${sessionScope.useridx}"
+										<iframe id="activity_iframe" src=""
 											width="380px" height="100%" frameborder="0" align="middle" border-top="10px"></iframe>
 
 										<!-- <div class="dropdown-divider"></div>
