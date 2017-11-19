@@ -1061,7 +1061,7 @@ var nameList = new Array();
 										
 				<div class="work-overlay text-center">
 				<div class="overlay-caption">
-				<a href="infoSetting.do?idx=${sessionScope.useridx }">선호도 조사를 먼저 해주세요~ 
+				<a href="infoSetting.do?idx=${sessionScope.useridx }" style="color: white">선호도 조사를 먼저 해주세요~ 
 				선호에 맞는 광고를 추천해 드립니당!^^</a>
 				</div>
 				</div>
