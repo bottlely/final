@@ -21,9 +21,7 @@
 
 <script>
 function openContent(content_idx, useridx) {
-	alert('hi');
-	var con_idx = document.getElementById('content_idx').value;
-	parent.openContent(con_idx, '${sessionScope.useridx}');
+	parent.openContent(content_idx, useridx);
 }
 function sender() {
 	sendRequest('activityList.do?idx=${sessionScope.useridx}', null, activityList, 'GET');
@@ -39,7 +37,8 @@ function activityList() {
            	for(var i=0; i < lists.feed.length; i++) {
            		if(lists.feed[i].flag==1) { //like
            			if(lists.feed[i].to_idx=='${sessionScope.useridx}') {
-           				var txt = document.createTextNode(lists.feed[i].name+'님이 좋아요를 눌렀습니다.');
+           				//var txt = document.createTextNode(lists.feed[i].name+'님이 좋아요를 눌렀습니다.');
+           				var txt_div = document.createElement('div');
            				var div = document.createElement('div');
            				var table = document.createElement('table');
            				var tr = document.createElement('tr');
@@ -51,7 +50,7 @@ function activityList() {
             			big_div.style["padding"]="3px";
             			big_div.style["margin-top"]="5px";
             			
-            			txt.innerHTML='<a href="javascript: openContent(lists.feed[i].content_idx, ${sessionScope.useridx})">'+lists.feed[i].name+'님이 댓글을 남겼습니다. "'+lists.feed[i].content+'"'+'</a>';
+            			txt_div.innerHTML='<a href="javascript: openContent('+lists.feed[i].content_idx+', ${sessionScope.useridx})">'+lists.feed[i].name+'님이 댓글을 남겼습니다. "'+lists.feed[i].content+'"'+'</a>';
             			
             			td1.setAttribute("valign", "middle");
             			td1.setAttribute("colspan", "2");
@@ -65,7 +64,7 @@ function activityList() {
             			tr.appendChild(td1);
             			tr.appendChild(td2);
             			td1.appendChild(img);
-            			td2.appendChild(txt);
+            			td2.appendChild(txt_div);
             			div.appendChild(table);
             			big_div.appendChild(div);
            			}
@@ -74,7 +73,8 @@ function activityList() {
            		
            		if(lists.feed[i].flag==2) { //reply
            			if(lists.feed[i].to_idx=='${sessionScope.useridx}') {
-           				var txt = document.createTextNode(lists.feed[i].name+'님이 댓글을 남겼습니다. "'+lists.feed[i].content+'"');
+           				//var txt = document.createTextNode(lists.feed[i].name+'님이 댓글을 남겼습니다. "'+lists.feed[i].content+'"');
+           				var txt_div = document.createElement('div');
            				var div = document.createElement('div');
            				var table = document.createElement('table');
            				var tr = document.createElement('tr');
@@ -86,7 +86,7 @@ function activityList() {
             			big_div.style["padding"]="3px";
             			big_div.style["margin-top"]="5px";
             			
-            			txt.innerHTML='<a href="javascript: openContent(lists.feed[i].content_idx, ${sessionScope.useridx})">'+lists.feed[i].name+'님이 댓글을 남겼습니다. "'+lists.feed[i].content+'"'+'</a>';
+            			txt_div.innerHTML='<a href="javascript: openContent('+lists.feed[i].content_idx+', ${sessionScope.useridx})">'+lists.feed[i].name+'님이 댓글을 남겼습니다. "'+lists.feed[i].content+'"'+'</a>';
             			
             			td1.setAttribute("valign", "middle");
             			td1.setAttribute("colspan", "2");
@@ -100,7 +100,7 @@ function activityList() {
             			tr.appendChild(td1);
             			tr.appendChild(td2);
             			td1.appendChild(img);
-            			td2.appendChild(txt);
+            			td2.appendChild(txt_div);
             			div.appendChild(table);
             			big_div.appendChild(div);
            			}
@@ -108,7 +108,8 @@ function activityList() {
            		
            		if(lists.feed[i].flag==3) { //follow
            			if(lists.feed[i].to_idx=='${sessionScope.useridx}') {
-           				var txt = document.createTextNode(lists.feed[i].name+'님이 회원님을 팔로우하기 시작했습니다.');
+           				//var txt = document.createTextNode(lists.feed[i].name+'님이 회원님을 팔로우하기 시작했습니다.');
+           				var txt_div = document.createElement('div');
            				var div = document.createElement('div');
            				var table = document.createElement('table');
            				var tr = document.createElement('tr');
@@ -120,7 +121,7 @@ function activityList() {
             			big_div.style["padding"]="3px";
             			big_div.style["margin-top"]="5px";
             			
-            			txt.innerHTML='<a href="javascript: openContent(lists.feed[i].content_idx, ${sessionScope.useridx})">'+lists.feed[i].name+'님이 댓글을 남겼습니다. "'+lists.feed[i].content+'"'+'</a>';
+            			txt_div.innerHTML='<a href="javascript: openContent('+lists.feed[i].content_idx+', ${sessionScope.useridx})">'+lists.feed[i].name+'님이 댓글을 남겼습니다. "'+lists.feed[i].content+'"'+'</a>';
             			
             			td1.setAttribute("valign", "middle");
             			td1.setAttribute("colspan", "2");
@@ -134,7 +135,7 @@ function activityList() {
             			tr.appendChild(td1);
             			tr.appendChild(td2);
             			td1.appendChild(img);
-            			td2.appendChild(txt);
+            			td2.appendChild(txt_div);
             			div.appendChild(table);
             			big_div.appendChild(div);
            			}
