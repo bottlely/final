@@ -67,13 +67,13 @@ function uploadData(flag){
 <body>
 
 	<div class="container">
-		<h2>프로필 사진 변경</h2>
+		<h2>커버 사진 변경</h2>
 		<button type="button" class="btn btn-warning btn-block"
 			onclick="document.getElementById('background').click();">사진
 			선택</button>
 		<div id="preview" class="col-sm-12" style="margin: 1% 35%;"></div>
 		<button type="button" class="btn btn-info btn-block"
-			onclick="uploadData(true)">프로필 설정</button>
+			onclick="uploadData(true)">커버 설정</button>
 		<button type="button" class="btn btn-info btn-block"
 			onclick="uploadData(false)">기본 사진으로 설정</button>
 		<button type="button" class="btn btn-info btn-block" onclick="back()">취소</button>
