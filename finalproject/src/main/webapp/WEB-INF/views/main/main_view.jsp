@@ -376,16 +376,41 @@ var nameList = new Array();
                          
                          if(l.lev == 0){
                             if(l.name == userName){
-                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'
+                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:20px; font-color:red;" readonly> '
+                               + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:20px; font-color:red;" readonly>'
+                               +'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">'
+                               + '<br>'
+                               + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">'
+                               + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">'
+                               + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">'
+                               + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">'
+                               + '<hr>';   
                             }else{
-                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
+                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'
+                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:20px; font-color:red;" readonly>'
+                               + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:20px; font-color:red;" readonly>'
+                               + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">'
+                               + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">'
+                               + '<hr>';
                             }
                             
                          }else{
                             if(l.name == userName){
-                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
+                               str += '=>'
+                               + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'
+                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>'
+                               +'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'
+                               +'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">'
+                               + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' 
+                               + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">'
+                               + '<hr>';
                             }else{
-                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<hr>';
+                               str += '=>'
+                               + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'
+                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> '
+                               + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'
+                               + '<hr>';
                             }
                          }
                       }
@@ -838,30 +863,31 @@ var nameList = new Array();
 		</c:if>
 		<div class="row content">
 			<div class="col-sm-2 text-center"></div>
-			<div class="col-sm-8 text-left" style="background: #f4f4f4;">
+			<div class="col-sm-8 text-left" style="background:white;">
 				<a href="#" onclick="like(${content_idx})">
 				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a>
-					<input type="button" value="발자취" onclick="like(${content_idx})" ><input type="text" id="likeCount" value="" readonly style="border: 0px;">
+				<input type="text" id="likeCount" value="" readonly style="border: 0px; font-size:17px;">
 				<%-- <img src=""><input type="button" value="발자취"
 					onclick="like(${content_idx})"> --%>
-				<hr>
 			</div>
 			<div class="col-sm-2 text-center"></div>
 		</div>
-
 		<div class="row content">
 			<div class="col-sm-2 sidenav"></div>
-			<div class="col-sm-8 text-center" style="background: #f4f4f4;">
+			<div class="col-sm-8 text-center" style="background: white;">
 
-				<img src="assets_main/images/logo.svg"
-					style="width: 60px; height: 60px; border-radius: 50%; margin: 10px;">
 				<input type="hidden" id="content_idx" name="content_idx"
-					value="${content_idx  }"> <input type="text" id="content"
-					name="content" value="" placeholder="댓글을 입력하세요." size="70"
-					style="font-size: 12pt; color: black; font-weight: bold;"><input
-					type="button" value="작성" onclick="addReply()"><br>
+					value="${content_idx  }">
+				<div class="input-group">
+					<input id="content" type="text" class="form-control" name="content"
+						placeholder="댓글을 입력하세요."> <label class="input-group-addon"
+						onclick="addReply()">작성</label>
+				</div>
+				<br>
 				<hr>
-				<h2 id="reply_List"></h2>
+				
+				<div id="reply_List" style="height:500px; overflow:auto;"></div>
+				
 				<input type="hidden" id="session_idx" value="${sessionScope.useridx }">
 				<input type="hidden" id="session_name" value="${sessionScope.username }">
 			</div>

@@ -1191,8 +1191,8 @@ var nameList = new Array();
 								width:50px; height:50px;
 								"/>
 								
-							</span> &nbsp;<label id="c_writer"></label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id="c_date"></label><span>
-                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<button class="btn btn-info" id="myBtn"
+							</span> <label id="c_writer" style="width:50px;"></label> <label id="c_date" style="width:100px; margin-left:10px;"></label><span>
+                           <button class="btn btn-info" id="myBtn"
                               style="background: #6368ff;">· · · </button> <!-- The Modal -->
                            <div id="myModal2" class="modal2">
 
