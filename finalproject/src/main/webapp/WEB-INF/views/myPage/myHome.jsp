@@ -803,6 +803,8 @@ function openpic(content_idx){
             	var img_slide = document.createElement('img');
             	img_slide.src = path;
             	img_slide.id='detail';
+            	img_slide.setAttribute("width", "620px");
+            	img_slide.setAttribute("height", "450px");
             	detail_media.appendChild(img_slide);
              }else if(category==2){
             	 //동영상
@@ -815,7 +817,8 @@ function openpic(content_idx){
             	 video_slide.id='detail';
             	 video_slide.autoplay=true;
             	 video_slide.loop=true;
-            	 
+            	 video_slide.setAttribute("width", "620px");
+             	 video_slide.setAttribute("height", "450px");
             	 source.src = path;
             	 source.type = "video/mp4";
             	 
@@ -1265,7 +1268,7 @@ function openpic(content_idx){
 						<!-- 내용 -->
 						<input type="hidden" id="c_idx" value="">
 						<div class="col-xs-12"
-							style="position: relative;margin-top: 10px; margin-bottom: 10px;">
+							style="position: relative; margin-bottom: 10px;">
 							<div class="col-sm-12" id="cntInfoBar" style="width:100%;text-align:left;">
 								<span class="avatar"> <img src="js/profile.png" alt="" id="pf" style="
                             border-radius: 50%;
@@ -1302,17 +1305,17 @@ function openpic(content_idx){
 							</div>
 
 	
-							<div class="col-sm-12" id="cntInfoBar"
-								style="overflow: auto; height: 200px;">
-								<div class="col-sm-12" id="reply_List" style="width:100%;float:left;">
-									<span class="avatar"> 
+							<div class="col-md-4 col-sm-12 col-xs-12" id="cntInfoBar"
+								style="overflow: auto; height: 200px;width:100%;float:left;">
+								<div class="col-sm-12" id="reply_List" style="width:100%;float:left;padding:0;margin:0;">
+									<span class="avatar" style="width:100%;float:left;"> 
 									</span>
 								</div>
 
 
 							</div>
 
-							<div class="col-sm-12">
+							<div class="col-md-4 col-sm-12 col-xs-12">
 								<div class="input-group">
 									<input id="content" type="text" class="form-control"
 										name="content" placeholder="댓글 입력"> <label
