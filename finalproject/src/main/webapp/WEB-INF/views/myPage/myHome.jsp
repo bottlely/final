@@ -542,7 +542,6 @@ a.btn-view {
    
    function UserHomeMore(url){
 	   var urldo = url +'.do';
-	   alert(urldo);
 	   var data = new FormData();
 	   data.append("user1_idx", '${sessionScope.useridx}');
 	   data.append("user2_idx", '${mhdto.getMember_idx()}');
