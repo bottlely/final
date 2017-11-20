@@ -59,7 +59,7 @@
        var data = new FormData();
        data.append("contentidx", content_idx);
         var xhr = new XMLHttpRequest();
-          xhr.open("POST","deleteContent_Report.do");
+          xhr.open("POST","deleteContent.do");
           xhr.send(data);
           xhr.onload = function(e) {
               if(this.status == 200) {
@@ -194,7 +194,7 @@
 										<c:if test="${dto.category == 2 }"><input type="button" value="회원 탈퇴" onclick="memberDelete('${dto.idx_to}')" class="btn btn-danger"></c:if>
 										 <script>
 					                         function memberDelete(idx){
-					                            location.href='admin_memberDelete_report.do?idx='+idx;
+					                            location.href='admin_memberDelete.do?idx='+idx;
 					                         }
 					                      </script>
 										</td>

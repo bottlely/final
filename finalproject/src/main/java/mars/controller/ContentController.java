@@ -644,79 +644,18 @@ public class ContentController {
 				                System.out.println("삭제한 파일 : "+src);
 				            }else{
 				                System.out.println("삭제 실패한 파일 : "+src);
-				               return new ModelAndView("marsJson", "result", -1);
+				               //return new ModelAndView("marsJson", "result", -1);
 				            }
 						}else{
 							System.out.println("파일이 존재하지 않습니다.");
-							return new ModelAndView("marsJson", "result", -1);
+							//return new ModelAndView("marsJson", "result", -1);
 						}
 			}
 		}
 		int result = cdao.contentDel(contentidx);
-	
+		cdao.reportDel(contentidx);
+		
 		ModelAndView mav = new ModelAndView("marsJson", "result", result);
-		return mav;
-	}
-	
-	@RequestMapping("/deleteContent_Report.do")
-	public ModelAndView deleteContent_Report(@RequestParam("contentidx")String contentidx,HttpServletRequest req){
-		
-		int type = cdao.contentOne(contentidx).getCategory();
-		
-		String realPath = req.getSession().getServletContext().getRealPath("");
-		realPath = realPath.replaceAll("\\\\","/");
-		
-		if(type < 3){
-			
-			if(type == 1){
-				
-				String list = cdao.contentOne(contentidx).getPath();
-				
-				List<String> items = new ArrayList<String>(Arrays.asList(list.split("\\?")));
-				
-				for(String src : items){
-						File file_img = new File(realPath+"/myHomeFolder/content/"+src);
-						
-						if(file_img.exists() ){ 
-								if(file_img.delete()){
-				                System.out.println("삭제한 파일 : "+src);
-				            }else{
-				                System.out.println("삭제 실패한 파일 : "+src);
-				                //return new ModelAndView("marsJson", "result", -1);
-				            }
-						}else{
-							System.out.println("파일이 존재하지 않습니다.");
-							//return new ModelAndView("marsJson", "result", -1);
-						}
-				}
-			}else{
-				
-						String src = cdao.contentOne(contentidx).getPath();
-						
-						File file_video = new File(realPath+"/myHomeFolder/content/"+src);
-
-						String img = src.substring(0, src.indexOf("."))+ ".jpg";
-						File file_img = new File(realPath+"/myHomeFolder/content/"+img);
-						
-						if(file_video.exists() && file_img.exists() ){ 
-								if(file_video.delete() && file_img.delete()){
-				                System.out.println("삭제한 파일 : "+src);
-				            }else{
-				                System.out.println("삭제 실패한 파일 : "+src);
-				               // return new ModelAndView("marsJson", "result", -1);
-				            }
-						}else{
-							System.out.println("파일이 존재하지 않습니다.");
-							//return new ModelAndView("marsJson", "result", -1);
-						}
-			}
-		}
-		int result = cdao.contentDel(contentidx);
-		int result2 = -1;
-		if(result > 0) {
-			result2 = cdao.reportDel(contentidx);
-		}
-		ModelAndView mav = new ModelAndView("marsJson", "result", result2);
 		return mav;
 	}
 	
