@@ -1299,6 +1299,7 @@ function openpic(content_idx){
 			
 			<!-- 날짜 -->
 			<label id="c_date" style="float:left;margin-bottom:0;margin-left:80px;padding-top:10px;"></label><span>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<button class="btn btn-info" id="myBtn" style="background: #ffff;padding-top:10px;">· · · </button> <!-- The Modal -->
 			<div id="myModal2" class="modal2">
 
