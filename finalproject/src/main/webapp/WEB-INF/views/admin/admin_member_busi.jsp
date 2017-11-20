@@ -236,7 +236,7 @@ function payResult(){
  	 					msg='미 결제';
  	 				}
  	 				else if(list.status==2){
- 	 					msg='<a href="#" onclick="postAd('+list.ad_idx+')">결제 완료</a>';
+ 	 					msg='<a href="#" onclick="postAd('+list.ad_idx+')">결제 완료(게시하기)</a>';
  	 				}
  	 				var newDiv3 = document.createElement('td');
  	 				newDiv3.innerHTML = msg;
