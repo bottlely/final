@@ -114,10 +114,7 @@
 					title="Tables"><a class="nav-link" href="admin_c.do"> <i
 						class="fa fa-fw fa-table"></i> <span class="nav-link-text">Customer</span>
 				</a></li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right"
-					title="Tables"><a class="nav-link" href="admin_p.do"> <i
-						class="fa fa-fw fa-table"></i> <span class="nav-link-text">Profile</span>
-				</a></li>
+
 
 
 
