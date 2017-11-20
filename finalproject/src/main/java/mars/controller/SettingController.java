@@ -62,9 +62,9 @@ public class SettingController {
 			map.put("idx", idx);
 			map.put("pwd", ch_pwd);
 			int count = settingDao.changePwd(map);
-			msg = count > 0 ? "鍮꾨�踰덊샇媛� 蹂�寃쎈릺�뿀�뒿�땲�떎." : "鍮꾨�踰덊샇 蹂�寃쎌뿉 �떎�뙣�뻽�뒿�땲�떎.";
+			msg = count > 0 ? "비밀번호가 변경되었습니다." : "비밀번호 변경에 실패하였습니다.";
 		} else {
-			msg = "�쁽�옱鍮꾨�踰덊샇媛� �씪移섑븯吏� �븡�뒿�땲�떎.";
+			msg = "현재 비밀번호가 일치하지 않습니다.";
 		}
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
@@ -81,7 +81,7 @@ public class SettingController {
 	@RequestMapping(value = "leaveMars.do", method = RequestMethod.POST)
 	public ModelAndView leaveMars(int idx) {
 		int count = settingDao.leaveMars(idx);
-		String msg = count > 0 ? "탈퇴가 처리되었습니다." : "탈퇴에 실패하였습니다.";
+		String msg = count > 0 ? "탈퇴되었습니다." : "탈퇴에 실패하였습니다.";
 		String gourl = count > 0 ? "index.do" : "leaveMars.do";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
@@ -104,7 +104,7 @@ public class SettingController {
 		ModelAndView mav = new ModelAndView();
 		ReportDTO dto = new ReportDTO(idx_from, content, category);
 		int count = settingDao.sendReport(dto);
-		String msg = count > 0 ? "�떊怨좉� �젒�닔�릺�뿀�뒿�땲�떎." : "�떎�뙣�븯���뒿�땲�떎. �떎�떆 �떆�룄�븯�뿬二쇱떗�떆�삤";
+		String msg = count > 0 ? "신고가 접수되었습니다." : "실패하였습니다. 다시 시도하여 주십시오";
 		mav.addObject("msg", msg);
 		mav.addObject("gourl", "serviceCenter.do?idx=" + idx_from);
 		mav.setViewName("setting/settingMsg");
@@ -153,7 +153,7 @@ public class SettingController {
 			}
 		}
 
-		String msg = result == idx_to.length ? "洹몃９�씠 �깮�꽦�릺�뿀�뒿�땲�떎." : "洹몃９ �깮�꽦�뿉 �떎�뙣�븯���뒿�땲�떎. �떎�떆 �떆�룄�븯�뿬二쇱떗�떆�삤";
+		String msg = result == idx_to.length ? "그룹이 생성되었습니다." : "그룹 생성에 실패하였습니다. 다시 시도하여 주십시오.";
 		mav.addObject("msg", msg);
 		mav.addObject("gourl", "friendSetting.do?idx=" + idx_from);
 		mav.setViewName("setting/popupMsg");
@@ -181,7 +181,7 @@ public class SettingController {
 		int count = settingDao.deleteGroup(idx_ff);
 		if (count > 0) {
 			count = settingDao.deleteff(idx_ff);
-			msg = count > 0 ? "�궘�젣�릺�뿀�뒿�땲�떎." : "�궘�젣�뿉 �떎�뙣�븯���뒿�땲�떎.";
+			msg = count > 0 ? "삭제되었습니다." : "삭제에 실패하였습니다.";
 		}
 
 		mav.addObject("msg", msg);
@@ -251,7 +251,7 @@ public class SettingController {
 			}
 		}
 
-		String msg = result == idx_to.length ? "洹몃９�씠 �깮�꽦�릺�뿀�뒿�땲�떎." : "洹몃９ �깮�꽦�뿉 �떎�뙣�븯���뒿�땲�떎. �떎�떆 �떆�룄�븯�뿬二쇱떗�떆�삤";
+		String msg = result == idx_to.length ? "그룹이 생성되었습니다." : "그룹 생성에 실패하였습니다. 다시 시도하여 주십시오.";
 		mav.addObject("msg", msg);
 		mav.addObject("gourl", "friendSetting.do?idx=" + idx_from);
 		mav.setViewName("setting/popupMsg");
