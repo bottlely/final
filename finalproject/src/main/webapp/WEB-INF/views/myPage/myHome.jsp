@@ -803,7 +803,7 @@ function openpic(content_idx){
             	var img_slide = document.createElement('img');
             	img_slide.src = path;
             	img_slide.id='detail';
-            	img_slide.setAttribute("width", "620px");
+            	img_slide.setAttribute("width", "520px");
             	img_slide.setAttribute("height", "450px");
             	detail_media.appendChild(img_slide);
              }else if(category==2){
@@ -817,7 +817,7 @@ function openpic(content_idx){
             	 video_slide.id='detail';
             	 video_slide.autoplay=true;
             	 video_slide.loop=true;
-            	 video_slide.setAttribute("width", "620px");
+            	 video_slide.setAttribute("width", "520px");
              	 video_slide.setAttribute("height", "450px");
             	 source.src = path;
             	 source.type = "video/mp4";
@@ -933,7 +933,7 @@ function openpic(content_idx){
                          if(l.lev == 0){
                             if(l.name == userName){
                                str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; margin-right:10px;">'
-                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px;" sixe="10" readonly >' 
+                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px;" size="10" readonly >' 
                                + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:15px;"  readonly>'
                                +'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' 
                                + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' 
@@ -941,7 +941,7 @@ function openpic(content_idx){
                                + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
                             }else{
                                str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px;">' 
-                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px;" sixe="10" readonly>' 
+                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px;" size="10" readonly>' 
                                + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:15px;" readonly>' 
                                + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' 
                                + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' 
@@ -952,7 +952,7 @@ function openpic(content_idx){
                             if(l.name == userName){
                                str += '=>' 
                                + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px;">' 
-                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; width:30px;" sixe="10" readonly>'
+                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; width:30px;" size="10" readonly>'
                                +'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:15px; width:100px;" readonly>'
                                +'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">'
                                + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' 
@@ -961,7 +961,7 @@ function openpic(content_idx){
                             }else{
                                str += '=>'
                                + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px;">'
-                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; width:50px;" sixe="10" readonly> ' 
+                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; width:50px;" size="10" readonly> ' 
                                + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:15px; width:150px;" readonly>' 
                                + '<hr>';
                             }
@@ -1286,20 +1286,20 @@ function openpic(content_idx){
 
 		<!-- 내용 -->
 		<input type="hidden" id="c_idx" value="">
-		<div class="col-xs-12" style="position: relative; margin-bottom: 10px;">
-		 <div class="col-sm-12" id="cntInfoBar" style="width:100%;hieght:90px;text-align:left;margin-bottom:0;">
+		<div class="col-xs-12" style="margin-bottom: 10px;">
+		 <div class="col-sm-12" id="cntInfoBar" style="width:100%;height:80px;text-align:left;margin-bottom:0;padding-top:10px;">
 			<!-- 프로필사진 -->
 			<span class="avatar"> 
 			<img src="js/profile.png" alt="" id="pf" style="border-radius: 50%;-moz-border-radius: 50%;-khtml-border-radius: 50%;
-                            -webkit-border-radius: 50%;float:left;width:50px;height:50px;"/>
+                            -webkit-border-radius: 50%;float:left;width:50px;height:55px;"/>
 			</span> &nbsp;
 			
 			<!-- 작성자 -->
 			<label id="c_writer" style="float:left; width:150px;margin:0;padding-left:15px;padding-top:10px;"></label> 
 			
 			<!-- 날짜 -->
-			<label id="c_date" style="float:left;margin-bottom:0;margin-left:120px;padding-top:10px;"></label><span>
-			<button class="btn btn-info" id="myBtn" style="background: #ffff;">· · · </button> <!-- The Modal -->
+			<label id="c_date" style="float:left;margin-bottom:0;margin-left:110px;padding-top:10px;"></label><span>
+			<button class="btn btn-info" id="myBtn" style="background: #ffff;padding-top:10px;">· · · </button> <!-- The Modal -->
 			<div id="myModal2" class="modal2">
 
 			<!-- Modal content // contentMore -->
@@ -1312,13 +1312,13 @@ function openpic(content_idx){
 		
 		
 			<!-- 본문 -->
-	  		<div class="col-sm-12" id="cntInfoBar" style="overflow: auto; height: 70px;">
-			<span><label id="c_content" style="margin-bottom:0;"></label></span>
+	  		<div class="col-sm-12" id="cntInfoBar" style="overflow: auto;">
+			<span><label id="c_content" style="margin-bottom:0;padding-top:30px; height: 80px;"></label></span>
 							</div>
 							
 							<div class="col-sm-12" id="cntInfoBar">
 								<span><a href="#" onclick="like()">
-				<img src="" id="like_Img" width="20px" height="20px;"></a><input type="button" value="발자취" onclick="like()" style="width:55px;height:25px;font-size:11px;padding:0;margin-left:10px;"></span>
+				<img src="" id="like_Img" width="30px" height="30px;"></a></span>
 							</div>
 
 	
