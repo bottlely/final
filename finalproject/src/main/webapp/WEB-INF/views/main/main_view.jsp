@@ -300,12 +300,6 @@ function openContent(content_idx, useridx) {
 
 								<!-- 다운 음성인식 -->
 
-								<li>
-									<div id="speechbbbbox"></div>
-									<button onClick="startConverting();" type="button" style="margin-top: 14px;">
-										<i class="fa fa-microphone"></i>
-									</button>
-								</li>
 
 
 								<script type="text/javascript">
@@ -348,12 +342,27 @@ function openContent(content_idx, useridx) {
 
 								<!--  -->
 
-								<li style="margin-top: 15px;">
-									<form name="search" action="membersearch.do">
-										<input type="text" name="name" id='searchForm' value=""
-											autocomplete="on" placeholder="Search...">
-									</form>
-								</li>
+			<li>
+									<form name="search" action="membersearch.do"
+                      class="navbar-form navbar-right navbar-search-form">
+ 							<div id="speechbbbbox"></div>
+								<a href="#" onClick="startConverting();">
+										<i class="pe-7s-micro"></i>
+									</a>	
+                      <div class="form-group">
+                         <input type="text" name="name" class="form-control" id='searchForm' autocomplete="on" value=""
+                            placeholder="Search...">
+ 							
+ 
+                      </div>
+ 						
+                   </form>
+                   	
+                   </li>
+								 <li><a href="javascript:void(0);" data-toggle="search"
+                           class="hidden-xs"> <i class="pe-7s-search"></i>
+                           </a>
+                           </li>
 								<li><a href="#" id="mypage1"> <i class="pe-7s-home"></i>
 
 								</a></li>
@@ -379,23 +388,7 @@ function openContent(content_idx, useridx) {
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item small" href="#">View all alerts</a>
 									</div></li>
-								<li class="nav-item dropdown"><a
-									class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown"
-									href="#" data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false"> <i class="pe-7s-mail"></i> <span
-										class="d-lg-none"> <span
-											class="badge badge-pill badge-primary">12 New</span>
-									</span> <span class="indicator text-primary d-none d-lg-block">
-											<i class="fa fa-fw fa-circle"></i>
-									</span>
-								</a>
-									<div class="dropdown-menu" aria-labelledby="messagesDropdown">
-										<h6 class="dropdown-header">New Messages:</h6>
-										<%@include file="msgList.jsp"%>
-
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item small" href="#">View all messages</a>
-									</div></li>
+	
 
 
 								<li>

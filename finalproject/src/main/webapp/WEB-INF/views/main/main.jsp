@@ -913,23 +913,7 @@ var nameList = new Array();
 										<!-- <div class="dropdown-divider"></div>
 										<a class="dropdown-item small" href="#">View all alerts</a> -->
 									</div></li>
-								<li class="nav-item dropdown"><a
-									class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown"
-									href="#" data-toggle="dropdown" aria-haspopup="true"
-									aria-expanded="false"> <i class="pe-7s-mail"></i> <span
-										class="d-lg-none"> <span
-											class="badge badge-pill badge-primary">12 New</span>
-									</span> <span class="indicator text-primary d-none d-lg-block">
-											<i class="fa fa-fw fa-circle"></i>
-									</span>
-								</a>
-									<div class="dropdown-menu" aria-labelledby="messagesDropdown">
-										<h6 class="dropdown-header">New Messages:</h6>
-										<%@include file="msgList.jsp"%>
 
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item small" href="#">View all messages</a>
-									</div></li>
 
 								<!-- d -->
 								<li>
