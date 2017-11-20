@@ -1182,7 +1182,7 @@ function openpic(content_idx){
 
 <!--  전체 피드 목록 -->
       <div class="works-area" id="myfeed">
-  <div id="myfeedtable">
+  <!--  <div id="myfeedtable">-->
                
       <c:if test="${empty contentList}"><div style="margin-left: 330px;">게시글 없음</div></c:if>
      
@@ -1267,7 +1267,7 @@ function openpic(content_idx){
         </c:forEach>
         </c:if>
         </div>
-        </div>
+       <!-- </div>  -->
        </div>
        </div>       
 
