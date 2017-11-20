@@ -932,16 +932,38 @@ function openpic(content_idx){
                          
                          if(l.lev == 0){
                             if(l.name == userName){
-                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; float:left;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; float:left;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; margin-right:10px;">'
+                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px;" sixe="10" readonly >' 
+                               + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:15px;"  readonly>'
+                               +'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' 
+                               + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' 
+                               + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' 
+                               + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
                             }else{
-                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; float:left;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; float:left;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
+                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px;">' 
+                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px;" sixe="10" readonly>' 
+                               + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:15px;" readonly>' 
+                               + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' 
+                               + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' 
+                               + '<hr>';
                             }
                             
                          }else{
                             if(l.name == userName){
-                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; float:left;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; float:left;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
+                               str += '=>' 
+                               + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px;">' 
+                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; width:30px;" sixe="10" readonly>'
+                               +'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:15px; width:100px;" readonly>'
+                               +'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">'
+                               + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' 
+                               + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' 
+                               + '<hr>';
                             }else{
-                               str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; float:left;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; float:left;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<hr>';
+                               str += '=>'
+                               + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px;">'
+                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; width:50px;" sixe="10" readonly> ' 
+                               + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:15px; width:150px;" readonly>' 
+                               + '<hr>';
                             }
                          }
                       }
@@ -952,7 +974,6 @@ function openpic(content_idx){
                 }
              }
           }
-         
 	     function re_Reply(idx){
 	            var re_content = document.getElementById(idx+"text")
 	            var re_ok = document.getElementById(idx+"btn")
@@ -1133,7 +1154,7 @@ function openpic(content_idx){
 <!-- 캘린더아이콘 -->
 <div class="calendaricon" style="width:300px;height:50px;">
    <input type='text' name="calendar" class="datepicker-here" style="width: 150px; float: left;">
-   <button style="dispaly:flex;width:50px;border:0px;padding: none;border-color: #ffffff;" onclick="contentDate()">
+   <button style="dispaly:flex;margin-left:-100px;border:0px;padding: none;border-color: #ffffff;" onclick="contentDate()">
    <i class="fa fa-calendar" style="font-align: center;font-size: 25px;color: #BDBDBD;padding: none;"></i></button>
 </div>
 
@@ -1257,47 +1278,42 @@ function openpic(content_idx){
 	 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-hidden="true" style="border: solid; overflow: auto; background-color: rgba(0, 0, 0, 0.2);">
 	  <div style="margin: 20% 10%;">
-		<section id="viewForm" style="overflow: auto;">
+		<section id="viewForm" style="overflow: auto;height:auto;">
 			<div class="container" style="width: 100%; font-size: 15px; overflow: hidden;">
 			
-						<!-- 사진 -->
-						<div style="margin:10px auto 100px;float: middle;overflow: hidden;" id="detail_media">
-							
-						</div>
+		<!-- 사진 -->
+		<div style="margin:10px auto;float: middle;overflow: hidden;" id="detail_media"></div>
 
-						<!-- 내용 -->
-						<input type="hidden" id="c_idx" value="">
-						<div class="col-xs-12"
-							style="position: relative; margin-bottom: 10px;">
-							<div class="col-sm-12" id="cntInfoBar" style="width:100%;text-align:left;">
-								<span class="avatar"> <img src="js/profile.png" alt="" id="pf" style="
-                            border-radius: 50%;
-                            -moz-border-radius: 50%;
-                            -khtml-border-radius: 50%;
-                            -webkit-border-radius: 50%;
-                            float:left;
-                            "/>
-								</span> &nbsp;<label id="c_writer" style="float:left; width:150px;"></label> <label id="c_date" style="float:left;"></label><span>
-									<button class="btn btn-info" id="myBtn"
-										style="background: gray;">· · · </button> <!-- The Modal -->
-									<div id="myModal2" class="modal2">
+		<!-- 내용 -->
+		<input type="hidden" id="c_idx" value="">
+		<div class="col-xs-12" style="position: relative; margin-bottom: 10px;">
+		 <div class="col-sm-12" id="cntInfoBar" style="width:100%;hieght:90px;text-align:left;margin-bottom:0;">
+			<!-- 프로필사진 -->
+			<span class="avatar"> 
+			<img src="js/profile.png" alt="" id="pf" style="border-radius: 50%;-moz-border-radius: 50%;-khtml-border-radius: 50%;
+                            -webkit-border-radius: 50%;float:left;width:50px;height:50px;"/>
+			</span> &nbsp;
+			
+			<!-- 작성자 -->
+			<label id="c_writer" style="float:left; width:150px;margin:0;padding-left:15px;padding-top:10px;"></label> 
+			
+			<!-- 날짜 -->
+			<label id="c_date" style="float:left;margin-bottom:0;margin-left:120px;padding-top:10px;"></label><span>
+			<button class="btn btn-info" id="myBtn" style="background: #ffff;">· · · </button> <!-- The Modal -->
+			<div id="myModal2" class="modal2">
 
-										<!-- Modal content // contentMore -->
-										<div class="list-group" style="width: 20%; margin: 5% auto;"
-											id="contentMore">
-											<span class="close">&times;</span>
-										</div>
-
-									</div>
-								</span>
-
-							</div>
+			<!-- Modal content // contentMore -->
+			<div class="list-group" style="width: 20%; margin: 5% auto;" id="contentMore">
+			<span class="close">&times;</span>
+			</div>
+			</div>
+			</span>
+			</div>
 		
 		
-		
-	  <div class="col-sm-12" id="cntInfoBar"
-								style="overflow: auto; height: 70px;">
-								<span><label id="c_content"></label></span>
+			<!-- 본문 -->
+	  		<div class="col-sm-12" id="cntInfoBar" style="overflow: auto; height: 70px;">
+			<span><label id="c_content" style="margin-bottom:0;"></label></span>
 							</div>
 							
 							<div class="col-sm-12" id="cntInfoBar">
