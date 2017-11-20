@@ -10,7 +10,7 @@
 		from mars_activity
 		where to_idx=#{to_idx} and from_idx!=#{to_idx} order by actdate desc
 	</select>
-	<select id="ac_list_count">
+	<select id="ac_list_count" resultType="Integer">
 		select count(*)
 		from mars_activity
 		where to_idx=#{to_idx} and from_idx!=#{to_idx} order by actdate desc

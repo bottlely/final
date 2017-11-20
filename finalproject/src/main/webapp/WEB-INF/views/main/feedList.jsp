@@ -50,7 +50,7 @@ function activityList() {
             			big_div.style["padding"]="3px";
             			big_div.style["margin-top"]="5px";
             			
-            			txt_div.innerHTML='<a href="javascript: openContent('+lists.feed[i].content_idx+', ${sessionScope.useridx})">'+lists.feed[i].name+'님이 댓글을 남겼습니다. "'+lists.feed[i].content+'"'+'</a>';
+            			txt_div.innerHTML='<a href="javascript: openContent('+lists.feed[i].content_idx+', ${sessionScope.useridx})">'+lists.feed[i].name+'님이 좋아요를 눌렀습니다.'+'</a>';
             			
             			td1.setAttribute("valign", "middle");
             			td1.setAttribute("colspan", "2");
@@ -121,7 +121,7 @@ function activityList() {
             			big_div.style["padding"]="3px";
             			big_div.style["margin-top"]="5px";
             			
-            			txt_div.innerHTML='<a href="javascript: openContent('+lists.feed[i].content_idx+', ${sessionScope.useridx})">'+lists.feed[i].name+'님이 댓글을 남겼습니다. "'+lists.feed[i].content+'"'+'</a>';
+            			txt_div.innerHTML='<a href="javascript: openContent('+lists.feed[i].content_idx+', ${sessionScope.useridx})">'+lists.feed[i].name+'님이 회원님을 팔로우하기 시작했습니다.'+'</a>';
             			
             			td1.setAttribute("valign", "middle");
             			td1.setAttribute("colspan", "2");
