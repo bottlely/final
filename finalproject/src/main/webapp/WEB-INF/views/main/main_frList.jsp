@@ -24,6 +24,7 @@
           });
       });
       
+      
       $(document).ready(function(){
              $("#following").click(function(){
               $("#follower1").fadeOut();
