@@ -416,7 +416,6 @@ var nameList = new Array();
             	 htag= document.getElementById('htag_'+content_idx).value;
              }
 			             
-            window.alert(htag);
              var writer = document.getElementById('writer_'+content_idx).value;
              var content = document.getElementById('content_'+content_idx).value;
              
