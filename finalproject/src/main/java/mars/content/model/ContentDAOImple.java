@@ -85,4 +85,9 @@ public class ContentDAOImple implements ContentDAO {
 		List<ContentDTO> list = sqlMap.selectList("contentList_other", idx);
 		return list;
 	}
+
+	public int reportDel(String content_idx) {
+		int result = sqlMap.delete("reportDel", content_idx);
+		return result;
+	}
 }

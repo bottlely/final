@@ -59,7 +59,7 @@
        var data = new FormData();
        data.append("contentidx", content_idx);
         var xhr = new XMLHttpRequest();
-          xhr.open("POST","deleteContent.do");
+          xhr.open("POST","deleteContent_Report.do");
           xhr.send(data);
           xhr.onload = function(e) {
               if(this.status == 200) {

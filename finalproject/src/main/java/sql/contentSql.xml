@@ -52,6 +52,10 @@
 		delete content where content_idx = #{content_idx}
 	</delete>
 	
+	<delete id="reportDel" parameterType="String">
+		delete mars_report where idx_to = #{content_idx}
+	</delete>
+	
 	<select id="coverageOne" parameterType="String" resultType="mars.coverage.model.CoverageDTO">
 		select * from coverage where content_idx = #{content_idx}
 	</select>

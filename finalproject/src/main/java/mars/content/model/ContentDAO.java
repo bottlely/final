@@ -29,6 +29,7 @@ public interface ContentDAO {
 	public int coverageInsert(CoverageDTO dto);
 	public List<CoverageDTO> coverageList(String member_idx);
 	public int contentDel (String content_idx);
+	public int reportDel (String content_idx);
 	public ContentDTO contentOne (String content_idx);
 	public CoverageDTO coverageOne (String content_idx);
 	public int profileUpdate (HashMap<String, String> info);
