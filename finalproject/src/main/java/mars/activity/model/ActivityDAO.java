@@ -1,6 +1,7 @@
 package mars.activity.model;
 
 import java.sql.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import mars.activity.model.ActivityDTO;
@@ -26,5 +27,5 @@ public interface ActivityDAO {
 	 public int ac_re_reply_delete(int ref, int content_idx);
 	 public List<ActivityDTO> ac_list(int to_idx);
 	 public int ac_list_count(int to_idx);
-	 
+	 public int ac_profileUpdate(HashMap<String, String> info);
 }

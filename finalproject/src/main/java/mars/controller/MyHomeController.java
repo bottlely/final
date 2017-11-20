@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import mars.activity.model.ActivityDAO;
 import mars.content.model.ContentDAO;
 import mars.content.model.ContentDTO;
 import mars.coverage.model.CoverageDTO;
@@ -47,6 +48,9 @@ public class MyHomeController{
 	
 	@Autowired
 	private FriendDAO friendDao;
+	
+	@Autowired
+	private ActivityDAO actDao;
 	
 	@RequestMapping(value="/myHomeForm.do")
 	public ModelAndView myHomeForm(@RequestParam("useridx")String member_idx,
@@ -205,7 +209,8 @@ public class MyHomeController{
 		
 		int result = mhdao.profileUpload(info);
 		cdao.profileUpdate(info);
-		 ModelAndView mav = new ModelAndView("marsJson","result",result);
+		actDao.ac_profileUpdate(info);
+		ModelAndView mav = new ModelAndView("marsJson","result",result);
 		return mav;
 	}
 

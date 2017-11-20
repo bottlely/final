@@ -67,5 +67,7 @@
    		delete from mars_activity 
 		where content_idx=#{content_idx} and numtype1=#{ref}
    </delete>
-   
+   	<update id="ac_profileUpdate" parameterType="HashMap">
+		update mars_activity set profile_img = #{path} where from_idx = #{member_idx}
+	</update>
 </mapper>
