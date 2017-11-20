@@ -127,56 +127,8 @@ public class AdminController {
          @RequestParam(value="woman", required=true, defaultValue="0")int woman){
       ModelAndView mav = new ModelAndView();
       
-      String movie = "favorite_movie";
-      String sport = "favorite_sport";
-      String food = "favorite_food";
-      String fashion = "favorite_fashion";
-      String music = "favorite_music";
-      String dance = "favorite_dance";
-      String travel = "favorite_travel";
-      String beauty = "favorite_beauty";
-      
-      int moviecount=0;
-      int sportcount=0;
-      int foodcount=0;
-      int fashioncount=0;
-      int musiccount=0;
-      int dancecount=0;
-      int travelcount=0;
-      int beautycount=0;
-      
-      for(int i = 0; i < hobby.length; i++){
-         if(movie.equals(hobby[i])){
-            moviecount = 1;
-         }
-         
-         if(sport.equals(hobby[i])){
-            sportcount = 1;
-         }
-         
-         if(beauty.equals(hobby[i])){
-            beautycount = 1;
-         }
-         
-         if(fashion.equals(hobby[i])){
-            fashioncount = 1;
-         }
-         
-         if(music.equals(hobby[i])){
-            musiccount = 1;
-         }
-         
-         if(dance.equals(hobby[i])){
-            dancecount = 1;
-         }
-         
-         if(travel.equals(hobby[i])){
-            travelcount = 1;
-         }
-         
-         if(food.equals(hobby[i])){
-            foodcount = 1;
-         }
+      for(int i = 0; i < hobby.length; i++) {
+    	  System.out.println(hobby[i] + "dd");
       }
       
       HashMap map = new HashMap<String, String>();
@@ -187,14 +139,6 @@ public class AdminController {
       map.put("woman", woman);
       map.put("city", city);
       map.put("hobby", hobby);
-      map.put("moviecount", moviecount);
-      map.put("sportcount", sportcount);
-      map.put("foodcount", foodcount);
-      map.put("travelcount", travelcount);
-      map.put("beautycount", beautycount);
-      map.put("musiccount", musiccount);
-      map.put("dancecount", dancecount);
-      map.put("fashioncount", fashioncount);
       
       List<MemberDTO> list = aDao.detail_Search(map);
      

@@ -33,9 +33,10 @@
       <if test="city != city">
          and city=#{city}
       </if>
-      and   favorite_movie=#{moviecount} and favorite_music=#{musiccount} and favorite_food=#{foodcount} and
-      favorite_travel=#{travelcount} and favorite_beauty=#{beautycount} and favorite_sport=#{sportcount} and
-      favorite_dance=#{dancecount} and favorite_fashion=#{fashioncount}
+     
+      
+      	and ${hobby[0]} = 1 
+      
       <if test="man == 0 and woman != 0">
             and gender=#{woman}
         </if>

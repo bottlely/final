@@ -22,6 +22,7 @@ import mars.reply.model.ReplyDTO;
 import mars.ad.model.ApplyAdDAO;
 import mars.ad.model.ApplyAdDTO;
 import mars.content.model.ContentDAO;
+import mars.htag.model.htagDAO;
 import mars.htag.model.htagDTO;
 
 @Controller
@@ -40,6 +41,9 @@ public class MainController {
    
    @Autowired
    private MemberDAO mdao;
+   
+   @Autowired
+	private htagDAO htagdao;
 
    @RequestMapping("main.do")
    public ModelAndView mainPage(int idx) {
@@ -83,11 +87,14 @@ public class MainController {
       
       int result = replydao.likeSelect(map);
       
+      List<htagDTO> htagList = htagdao.htagList(content_idx);
+      
       ModelAndView mav = new ModelAndView();
       mav.addObject("content",dto);
       mav.addObject("list", list);
       mav.addObject("result", result);
       mav.addObject("content_idx", content_idx);
+      mav.addObject("htagList", htagList);
       
       mav.setViewName("main/main_view");
       

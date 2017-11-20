@@ -824,10 +824,7 @@ var nameList = new Array();
 					<div style="text-align: left; margin: 10px;">
 						<font size="3px;"><b>${content.content }</b></font>
 					</div>
-					<hr>
-					<div style="text-align: left; margin: 10px;">
-						<font size="3px;"><b id="pf">연수야 해쉬태그</b></font>
-					</div>
+					
 					<hr>
 					<img src="myHomeFolder/content/${content.path }" alt="" style="margin: 1%; width: 600px;height: 600px;"
 						class="img-thumbnail" >
@@ -947,47 +944,50 @@ var nameList = new Array();
 		         }
 		         
 		         function replyList(){
-		             if(XHR.readyState==4){
-		                if(XHR.status==200){
-		                   var data = XHR.responseText;
-		                   var lists = eval('('+data+')');
-		                   var reply_list = document.all.reply_List;
-		                   var str='';
-		                   var userName = document.getElementById("session_name").value;
-		                   var likeResult = ${result};
-		                   if(likeResult == 0){
-		                      document.getElementById('like_Img').src='likeImg/unlike.png';
-		                   }else{
-		                      document.getElementById('like_Img').src='likeImg/like.png';
-		                   }
+	                   if(XHR.readyState==4){
+	                      if(XHR.status==200){
+	                         var data = XHR.responseText;
+	                         var lists = eval('('+data+')');
+	                         var reply_list = document.all.reply_List;
+	                         var str='';
+	                         var userName = document.getElementById("session_name").value;
+	                         var content_idx = '${content_idx}';
+	                         var likeResult = ${result};
+	                         if(likeResult == 0){
+	                            document.getElementById('like_Img').src='likeImg/unlike.png';
+	                         }else{
+	                            document.getElementById('like_Img').src='likeImg/like.png';
+	                         }
 
-		                   if(lists.replyList.length==0){
-		                       str = '댓글 없습니다.'
-		                       reply_list.innerHTML = str;
-		                    }else{
-		                       for(var i=0; i<lists.replyList.length; i++){
-		                          var l = lists.replyList[i];
-		                          
-		                          if(l.lev == 0){
-		                             if(l.name == userName){
-		                                str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
-		                             }else{
-		                                str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
-		                             }
-		                             
-		                          }else{
-		                             if(l.name == userName){
-		                                str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
-		                             }else{
-		                                str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<hr>';
-		                             }
-		                          }
-		                       }
-		                       reply_list.innerHTML = str;
-		                    }
-		                }
-		             }
-		          }
+	                         if(lists.replyList.length==0){
+	                             str = '댓글 없습니다.'
+	                             reply_list.innerHTML = str;
+	                          }else{
+	                             for(var i=0; i<lists.replyList.length; i++){
+	                                var l = lists.replyList[i];
+	                                
+	                                if(l.lev == 0){
+	                                   if(l.name == userName){
+	                                      str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+	                                   }else{
+	                                      str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
+	                                   }
+	                                   
+	                                }else{
+	                                   if(l.name == userName){
+	                                      str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
+	                                   }else{
+	                                      str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<hr>';
+	                                   }
+	                                }
+	                             }
+	                             reply_list.innerHTML = str;
+	                             
+	                             sendRequest('likeCount.do?content_idx='+content_idx, null, likeCount, 'GET');
+	                          }
+	                      }
+	                   }
+	                }
 		         
 		         function re_Reply(idx){
 		            var content = document.getElementById(idx+"text").value;

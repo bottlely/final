@@ -11,4 +11,7 @@
    <select id="content_idx" parameterType="Integer" resultType="mars.content.model.ContentDTO">
    		select max(content_idx) from content where member_idx = #{member_idx}
    </select>
+   <select id="htagList" parameterType="Integer" resultType="mars.htag.model.htagDTO">
+   		select * from mars_htag where content_idx = #{content_idx}
+   </select>
 </mapper>

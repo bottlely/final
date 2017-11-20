@@ -616,6 +616,7 @@ var nameList = new Array();
                    var reply_list = document.all.reply_List;
                    var str='';
                    var userName = document.getElementById("session_name").value;
+                   var content_idx = document.getElementById("c_idx").value;
 
                    if(lists.replyList.length==0){
                       str = '댓글 없습니다.'
@@ -662,11 +663,29 @@ var nameList = new Array();
                          }
                       }
                       reply_list.innerHTML = str;
+                      
+                     
+
                    }
                    
-                   XHR = getXHR();
+                   sendRequest('likeCount.do?content_idx='+content_idx, null, likeCount, 'GET');
                 }
              }
+          }
+	     
+	     function likeCount(){
+             if(XHR.readyState==4){
+                   if(XHR.status==200){
+                      var data = XHR.responseText;
+                      var lists = eval('('+data+')');
+                   
+                      if(lists.count == null){
+                       document.getElementById('likeCount').value = '발자취 ' + lists.count + '개';  
+                      }else{
+                      document.getElementById('likeCount').value = '발자취 ' + lists.count + '개';
+                      }
+                   }
+                } 
           }
          
 	     function re_Reply(idx){
@@ -1285,7 +1304,7 @@ var nameList = new Array();
 							
 							<div class="col-sm-12" id="cntInfoBar">
 								<span><a href="#" onclick="like()">
-				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px; width: 30px; height: 30px;"></a></span>
+				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px; width: 30px; height: 30px;"></a><input type="text" id="likeCount" value="" readonly style="border: 0px;"></span>
 							</div>
 
 	

@@ -30,4 +30,10 @@ public class htagDAOImple implements htagDAO {
 		
 		return content_idx;
 	}
+
+	public List<htagDTO> htagList(int content_idx) {
+		List<htagDTO> list = sqlMap.selectList("htagList", content_idx);
+		
+		return list;
+	}
 }
