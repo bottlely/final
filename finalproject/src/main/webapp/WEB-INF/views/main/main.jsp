@@ -274,7 +274,53 @@ to {
         
 
     </script>
+     <style type="text/css">
+ /* Button */
+
+  .btn_more_ohk{
+      
+      -moz-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+      -webkit-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+      -ms-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+      transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+      display: inline-block;
+      height: 2.75em;
+      line-height: 2.75em;
+      padding: 0 1.5em;
+      background-color: transparent;
+      border-radius: 4px;
+      border: solid 1px #c8cccf;
+      color: #414f57 !important;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      white-space: nowrap;
+   }
+ {
+         border-color: #ff7496;
+         color: #ff7496 !important;
+      }
+{
+         padding-left: 1.35em;
+      }
+{
+            margin-right: 0.5em;
+         }
+{
+         display: block;
+         width: 100%;
+         margin: 0 0 0.75em 0;
+      }
+
+      {
+         font-size: 0.8em;
+      }
+{
+         font-size: 1.35em;
+      }
+ </style>
 </head>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
@@ -786,55 +832,55 @@ var nameList = new Array();
 				</div>
 			</span>
 
-<!-- 개인설정 창 부분(more)___followingList -->
-         <div id="more2"
-            style="background: #f2fdff; height: 40%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%; border:0.3px solid gray;">
+		<!-- 개인설정 창 부분(more)___followingList -->
+			<div id="more2"
+				style="background: #f2fdff; height: 50%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%; border:0.3px solid gray;">
 
-            <div style="text-align: center; border: thick; margin-top:20px;">
-               <img src="" id="following_img_id" alt=""
-                  style="border-radius: 50%; width: 50px; height:50px;">
-            </div>
-            <br>
-            <p
-               style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
-               id="following_name_id"></p>
-            <div style="text-align: center;">
-            <button type="button" class="btn btn-success" onclick="unfollowing()" style="background-color: #efa8b0; width:150px;">팔로우취소</button>
-               <br> <br> 
-               <button type="button" class="btn btn-success" onclick="settingGroup()" style="background-color: #efa8b0; width:150px;">그룹설정</button>
-               <br>
-               <br>
-               <button type="button" class="btn btn-success" onclick="btn_cancle1()" style="background-color: #efa8b0; width:150px;">닫기</button>
-                <br>
-            </div>
-         </div>
+				<div style="text-align: center; border: thick; margin-top:20px;">
+					<img src="" id="following_img_id" alt=""
+						style="border-radius: 50%; width: 50px; height:50px;">
+				</div>
+				<br>
+				<p
+					style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
+					id="following_name_id"></p>
+				<div style="text-align: center;">
+				<button type="button" class="btn_more_ohk" onclick="unfollowing()" style="width:150px;">팔로우취소</button>
+					<br> <br> 
+					<button type="button" class="btn_more_ohk" onclick="settingGroup()" style="width:150px;">그룹설정</button>
+					<br>
+					<br>
+					<button type="button" class="btn_more_ohk" onclick="btn_cancle1()" style="width:150px;">닫기</button>
+					 <br>
+				</div>
+			</div>
 
-         <!-- 개인설정 창 부분(more)___followerList -->
-         <div id="more3"
-            style="background: #f2fdff; height: 50%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%; border:0.3px solid gray;">
+			<!-- 개인설정 창 부분(more)___followerList -->
+			<div id="more3"
+				style="background: #f2fdff; height: 20%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%; border:0.3px solid gray;">
 
-            <div style="text-align: center; border: thick; margin-top:20px;">
-               <img src="" id="follower_img_id" alt=""
-                  style="border-radius: 50%; width: 50px; height:50px;">
-            </div>
-            <br>
-            <p
-            dropdown-toggle   style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
-               id="follower_name_id"></p>
-            <div style="text-align: center;">
-               <button type="button" class="btn btn-success" onclick="following()" style="background-color: #efa8b0; width:150px;">팔로우</button>
-               
-               <br> <br> 
-               <button type="button" class="btn btn-success" onclick="removeFollower()" style="background-color: #efa8b0; width:150px;">팔로워 삭제</button>
-               <br> <br> 
-               <button type="button" class="btn btn-success" onclick="block()" style="background-color: #efa8b0; width:150px;">차단하기</button>
-               <br> <br>
-               <button type="button" class="btn btn-success" onclick="settingGroup()" style="background-color: #efa8b0; width:150px;">그룹설정</button>
-               <br> <br> 
-               <button type="button" class="btn btn-success" onclick="btn_cancle2()" style="background-color: #efa8b0; width:150px;">닫기</button>
-               <br>
-            </div>
-         </div>
+				<div style="text-align: center; border: thick; margin-top:20px;">
+					<img src="" id="follower_img_id" alt=""
+						style="border-radius: 50%; width: 50px; height:50px;">
+				</div>
+				<br>
+				<p
+				dropdown-toggle	style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
+					id="follower_name_id"></p>
+				<div style="text-align: center;">
+					<button type="button" class="btn_more_ohk" onclick="following()" style="width:150px;">팔로우</button>
+					
+					<br> <br> 
+					<button type="button" class="btn_more_ohk" onclick="removeFollower()" style="width:150px;">팔로워 삭제</button>
+					<br> <br> 
+					<button type="button" class="btn_more_ohk" onclick="block()" style="width:150px;">차단하기</button>
+					<br> <br>
+					<button type="button" class="btn_more_ohk" onclick="settingGroup()" style="width:150px;">그룹설정</button>
+					<br> <br> 
+					<button type="button" class="btn_more_ohk" onclick="btn_cancle2()" style="width:150px;">닫기</button>
+					<br>
+				</div>
+			</div>
 
 
 			<div id="navbar-blue">

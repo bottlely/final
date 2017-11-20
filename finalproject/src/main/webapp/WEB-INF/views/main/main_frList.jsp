@@ -73,7 +73,7 @@
     	 div_2.innerHTML=other_name;
     	 
     	 var div = $('#more3', parent.document);
-         div.animate({height: '45%'}, "slow");
+         div.animate({height: '35%'}, "slow");
          div.animate({width:'toggle'}, "slow"); 
          
          parent.fwer(other_idx, other_name, other_profile_img);
@@ -90,7 +90,7 @@
     	 div_2.innerHTML=other_name;
     	 
     	 var div = $('#more2', parent.document);
-         div.animate({height: '45%'}, "slow");
+         div.animate({height: '25%'}, "slow");
          div.animate({width:'toggle'}, "slow");
          
          parent.fwing(other_idx, other_name, other_profile_img);
@@ -104,7 +104,7 @@
      
      //ip
      function chatting(other_idx, other_name, other_profile_img) {
-    	 window.open("http://192.168.20.174:9090/finalproject/chat.do?&user2_name="+other_name+"&user2_idx="+other_idx+"&user2_profile_img="+other_profile_img,'chat','width=350, height=320, scrollbars=no, resizable=no, toolbars=no, menubar=no');
+    	 window.open("http://192.168.110.40:9090/finalproject/chat.do?&user2_name="+other_name+"&user2_idx="+other_idx+"&user2_profile_img="+other_profile_img,'chat','width=350, height=320, scrollbars=no, resizable=no, toolbars=no, menubar=no');
      }
      
      
