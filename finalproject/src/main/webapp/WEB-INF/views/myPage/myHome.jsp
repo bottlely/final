@@ -1139,7 +1139,7 @@ var div = document.createElement('div');
           <tr onclick="moreOpen(1)"><td colspan="2">커버사진</td></tr>
           <tr onclick="moreOpen(2)"><td colspan="2">프로필사진</td></tr>
           <tr onclick="moreOpen(3)"><td colspan="2">소개글</td></tr>
-          <tr><td align="center">공개설정</td>
+          <tr><td align="center">비공개설정</td>
              <td style="padding-top:10px;"><label class="switch">
              <input id="openCoverage" type="checkbox" onchange="openCoverage()">
            <span class="slider round"></span>
