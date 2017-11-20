@@ -19,8 +19,10 @@ import mars.activity.model.ActivityDAO;
 import mars.content.model.ContentDAO;
 import mars.content.model.ContentDTO;
 import mars.coverage.model.CoverageDTO;
+import mars.feed.model.FeedDAO;
 import mars.friend.model.FriendDAO;
 import mars.friend.model.FriendDTO;
+import mars.htag.model.htagDTO;
 import mars.member.model.MemberDAO;
 import mars.member.model.MemberDTO;
 import mars.myHome.model.*;
@@ -52,6 +54,9 @@ public class MyHomeController{
 	@Autowired
 	private ActivityDAO actDao;
 	
+	@Autowired
+	private FeedDAO  feedDao;
+	
 	@RequestMapping(value="/myHomeForm.do")
 	public ModelAndView myHomeForm(@RequestParam("useridx")String member_idx,
 			@RequestParam(value="cp",defaultValue="1")int cp,
@@ -71,6 +76,7 @@ public class MyHomeController{
 		int userType = mdao.getUserInfo_idx(Integer.parseInt(member_idx)).getUsertype();
 		
 		List<ContentDTO> contentList = null;
+		 List<htagDTO> hlist = feedDao.getHtag();
 
 		int following = 0; //친구 아님
 		int block = -1;
@@ -112,6 +118,7 @@ public class MyHomeController{
 		mav.addObject("cdao", cdao);
 		mav.addObject("userType", userType);
 		mav.addObject("contentList", contentList);
+		mav.addObject("hlist", hlist);
 		mav.setViewName("myPage/myHome");
 		return mav;
 	}

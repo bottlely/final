@@ -799,13 +799,13 @@ function openpic(content_idx){
              var date = document.getElementById('date_'+content_idx).value;
              var profile = document.getElementById('profile_'+content_idx).value;
              var session_idx = '${sessionScope.useridx}';
-            // var htag;
+             var htag;
             
-           /*  if(document.getElementById('htag_'+content_idx)==null){
+         	 if(document.getElementById('htag_'+content_idx)==null){
             	 htag='';
              }else{
             	 htag= document.getElementById('htag_'+content_idx).value;
-             } */
+             } 
 			             
              var writer = document.getElementById('writer_'+content_idx).value;
              var content = document.getElementById('content_'+content_idx).value;
@@ -862,9 +862,9 @@ function openpic(content_idx){
           		document.getElementById('c_content').innerHTML = category==3? path:content;
                 document.getElementById('c_writer').innerHTML = writer;
                 document.getElementById('c_date').innerHTML = date;
-               // document.getElementById('c_htag').innerHTML = '#'+htag;
+                document.getElementById('c_htag').innerHTML = '#'+htag;
                 
-              //  $('#c_htag').attr("href",'membersearch.do?name='+htag);
+                $('#c_htag').attr("href",'membersearch.do?name='+htag);
                 $('#pf').attr("src", profile);
             
           //contentMore
@@ -1312,6 +1312,9 @@ function openpic(content_idx){
 						</c:if>
         </c:forEach>
         </c:if>
+        <c:forEach var="hlist" items="${hlist }">
+					<input type="hidden" id="htag_${hlist.content_idx }" value="${hlist.content }">
+					</c:forEach>
         </div>
        <!-- </div>  -->
        </div>
@@ -1363,6 +1366,10 @@ function openpic(content_idx){
 			<span><label id="c_content" style="margin-bottom:0;padding-top:30px; height: 80px;"></label></span>
 							</div>
 							
+							<div class="col-sm-12" id="cntInfoBar"
+								style="overflow: auto; height: 70px;">
+								<span><a id="c_htag"></a></span>
+							</div>
 							<div class="col-sm-12" id="cntInfoBar">
 								<span><a href="#" onclick="like()">
 				<img src="" id="like_Img" width="30px" height="30px;"></a><input type="text" id="likeCount" value="" readonly style="border: 0px;"></span>
