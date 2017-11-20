@@ -657,19 +657,41 @@ to {
                                  var l = lists.replyList[i];
                                  
                                  if(l.lev == 0){
-                                    if(l.name == userName){
-                                       str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
-                                    }else{
-                                       str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
-                                    }
-                                    
-                                 }else{
-                                    if(l.name == userName){
-                                       str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
-                                    }else{
-                                       str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<hr>';
-                                    }
-                                 }
+                                     if(l.name == userName){
+                                        str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; margin-right:10px;">'
+                                        + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; width:50px;" readonly >' 
+                                        + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:13px; width:150px;"  readonly>'
+                                        +'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' 
+                                        + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' 
+                                        + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' 
+                                        + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+                                     }else{
+                                        str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px;">' 
+                                        + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; width:50px;" readonly>' 
+                                        + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:13px; width:150px;" readonly>' 
+                                        + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' 
+                                        + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' 
+                                        + '<hr>';
+                                     }
+                                     
+                                  }else{
+                                     if(l.name == userName){
+                                        str += '=>' 
+                                        + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px;">' 
+                                        + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; width:50px;" readonly>'
+                                        +'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:13px; width:150px;" readonly>'
+                                        +'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">'
+                                        + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' 
+                                        + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' 
+                                        + '<hr>';
+                                     }else{
+                                        str += '=>'
+                                        + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px;">'
+                                        + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; width:50px;" readonly> ' 
+                                        + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:13px; width:150px;" readonly>' 
+                                        + '<hr>';
+                                     }
+                                  }
                               }
                               reply_list.innerHTML = str;
                            }
@@ -1142,13 +1164,12 @@ to {
 	<input type="hidden" id="session_name" value="${sessionScope.username }">
 	<div id="galleryModal" class="modal fade" tabindex="-1" role="dialog"
 		aria-hidden="true" style="border: solid; overflow: auto; background-color: rgba(0, 0, 0, 0.2);">
-		<div style="margin: 2% 10%;">
-			<section id="viewForm" style="overflow: auto;">
-				<div class="container" style="width: 100%; font-size: 15px; overflow: hidden;">
+		<div style="margin: 10% 10%;">
+				<div class="container" style="width: 100%; height:100%; font-size: 15px; overflow: hidden; background-color:white;">
 					<div class="row">
 						<!-- 사진 -->
-						<div class="col-xs-7"
-							style="margin-top: 10px; float: left; margin-bottom: 10px; overflow: hidden; height:440px;" id="detail_media">
+						<div class="col-xs-7" align="center"
+							style="margin-top: 10px; float: left; margin-bottom: 10px; overflow: hidden;" id="detail_media">
 							
 						</div>
 
@@ -1157,14 +1178,17 @@ to {
 						<div class="col-xs-5"
 							style="margin-top: 10px; margin-bottom: 10px;">
 							<div class="col-sm-12" id="cntInfoBar">
-								<span class="avatar"> <img src="js/profile.png" alt="" id="pf" style="
-                            border-radius: 70px;
-                            -moz-border-radius: 70px;
-                            -khtml-border-radius: 70px;
-                            -webkit-border-radius: 70px;
-                            "/>
-								</span> &nbsp;<label id="c_writer"></label> &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id="c_date">2017</label><span>
-									&nbsp;&nbsp;<button class="btn btn-info" id="myBtn"
+								<span class="avatar">
+								<img src="js/profile.png" alt="" id="pf" style="
+								border-radius: 70px; 
+								-moz-border-radius: 70px;
+								-khtml-border-radius: 70px;
+								-webkit-border-radius: 70px;
+								width:50px; height:50px;
+								"/>
+								
+							</span><label id="c_writer" style="width:50px;"></label><label id="c_date" style="width:100px; margin-left:10px;"></label><span>
+									<button class="btn btn-info" id="myBtn"
 										style="background: gray;">· · · </button> <!-- The Modal -->
 									<div id="myModal2" class="modal2">
 
@@ -1181,13 +1205,18 @@ to {
 							
 
 							<div class="col-sm-12" id="cntInfoBar"
-								style="overflow: auto; height: 70px;">
+								style="overflow: auto; height: 50px;">
 								<span><label id="c_content"></label></span>
+							</div>
+							
+							<div class="col-sm-12" id="cntInfoBar"
+								style="overflow: auto;">
+								<span><a id="c_htag"></a></span>
 							</div>
 							
 							<div class="col-sm-12" id="cntInfoBar">
 								<span><a href="#" onclick="like()">
-				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a><input type="button" value="발자취" onclick="like()"><input type="text" id="likeCount" value="" readonly style="border: 0px;"></span>
+				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a></span>
 							</div>
 
 	
@@ -1212,7 +1241,6 @@ to {
 						</div>
 					</div>
 				</div>
-			</section>
 		</div>
 	</div>
 </body>
