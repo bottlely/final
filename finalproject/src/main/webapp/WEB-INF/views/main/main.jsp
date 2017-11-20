@@ -1105,7 +1105,7 @@ var nameList = new Array();
 		</c:if>
 			<c:forEach var="list" items="${list }">
 					
-		<div class="col-md-4 col-sm-6 col-xs-12  ad">
+		<div class="col-md-4 col-sm-4 col-xs-4  ad">
 			<div class="works" style="height: 431px;">
 				<img src="${list.ad_content} " alt="" style="width: 431px; height: 431px;">
 					<div class="work-overlay text-center">
@@ -1220,7 +1220,7 @@ var nameList = new Array();
 							
 							<div class="col-sm-12" id="cntInfoBar">
 								<span><a href="#" onclick="like()">
-				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a></span>
+				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px; width: 30px; height: 30px;"></a></span>
 							</div>
 
 	
