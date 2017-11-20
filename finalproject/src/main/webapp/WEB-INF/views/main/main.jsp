@@ -917,7 +917,7 @@ var nameList = new Array();
 									class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown"
 									href="#" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false"> <i class="pe-7s-global"></i> <span
-										class="badge badge-pill badge-warning"><div id="count"></div> New</span> <span
+										class="badge badge-pill badge-warning"><div id="count"></div>New</span> <span
 										class="indicator text-warning d-none d-lg-block"> <i
 											class="fa fa-fw fa-circle"></i>
 									</span>
