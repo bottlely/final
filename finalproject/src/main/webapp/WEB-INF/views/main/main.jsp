@@ -28,6 +28,7 @@
 <script type="text/javascript" src="js/httpRequest.js"></script>
 
 <style>
+
 .frbutton {
 	-moz-appearance: none;
 	-webkit-appearance: none;
@@ -563,16 +564,16 @@ var nameList = new Array();
                                str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; margin-right:10px;">'
                                + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; width:50px;" readonly >' 
                                + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:15px; width:150px;"  readonly>'
-                               +'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' 
-                               + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' 
-                               + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' 
-                               + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+                               +'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none; background:#ffffff;" onclick="update_Reply(' + l.idx + ')">' 
+                               + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none; "><input type="button" background:#ffffff; value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' 
+                               + '<input type="button" value="답글" style= "background:#ffffff; border-radius:  25px 0 0 25px ;    " onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" style="background:#ffffff;   " onclick="updateDisplay('+l.idx+')">' 
+                               + '<input type="button" value="삭제" style=" background:#ffffff; border-radius: 0 25px 25px 0;   " onclick="delete_Reply('+l.idx+')">' + '<hr>';   
                             }else{
                                str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px;">' 
                                + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; width:50px;" readonly>' 
                                + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:15px; width:150px;" readonly>' 
-                               + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' 
-                               + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' 
+                               + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none; background:#ffffff;  ">' 
+                               + '<input type="button" value="답글" style="background:#ffffff;     " onclick="ondisplay('+l.idx+')">' 
                                + '<hr>';
                             }
                             
@@ -785,55 +786,55 @@ var nameList = new Array();
 				</div>
 			</span>
 
-			<!-- 개인설정 창 부분(more)___followingList -->
-			<div id="more2"
-				style="background: #f2fdff; height: 50%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%; border:0.3px solid gray;">
+<!-- 개인설정 창 부분(more)___followingList -->
+         <div id="more2"
+            style="background: #f2fdff; height: 40%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%; border:0.3px solid gray;">
 
-				<div style="text-align: center; border: thick; margin-top:20px;">
-					<img src="" id="following_img_id" alt=""
-						style="border-radius: 50%; width: 50px; height:50px;">
-				</div>
-				<br>
-				<p
-					style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
-					id="following_name_id"></p>
-				<div style="text-align: center;">
-				<button type="button" class="btn btn-success" onclick="unfollowing()" style="background-color:green; width:150px;">팔로우취소</button>
-					<br> <br> 
-					<button type="button" class="btn btn-success" onclick="settingGroup()" style="background-color:green; width:150px;">그룹설정</button>
-					<br>
-					<br>
-					<button type="button" class="btn btn-success" onclick="btn_cancle1()" style="background-color:green; width:150px;">닫기</button>
-					 <br>
-				</div>
-			</div>
+            <div style="text-align: center; border: thick; margin-top:20px;">
+               <img src="" id="following_img_id" alt=""
+                  style="border-radius: 50%; width: 50px; height:50px;">
+            </div>
+            <br>
+            <p
+               style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
+               id="following_name_id"></p>
+            <div style="text-align: center;">
+            <button type="button" class="btn btn-success" onclick="unfollowing()" style="background-color: #efa8b0; width:150px;">팔로우취소</button>
+               <br> <br> 
+               <button type="button" class="btn btn-success" onclick="settingGroup()" style="background-color: #efa8b0; width:150px;">그룹설정</button>
+               <br>
+               <br>
+               <button type="button" class="btn btn-success" onclick="btn_cancle1()" style="background-color: #efa8b0; width:150px;">닫기</button>
+                <br>
+            </div>
+         </div>
 
-			<!-- 개인설정 창 부분(more)___followerList -->
-			<div id="more3"
-				style="background: #f2fdff; height: 20%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%; border:0.3px solid gray;">
+         <!-- 개인설정 창 부분(more)___followerList -->
+         <div id="more3"
+            style="background: #f2fdff; height: 50%; width: 20%; position: absolute; float: right; display: none; z-index: 6; margin-top: 10%; margin-left: 10%; border:0.3px solid gray;">
 
-				<div style="text-align: center; border: thick; margin-top:20px;">
-					<img src="" id="follower_img_id" alt=""
-						style="border-radius: 50%; width: 50px; height:50px;">
-				</div>
-				<br>
-				<p
-				dropdown-toggle	style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
-					id="follower_name_id"></p>
-				<div style="text-align: center;">
-					<button type="button" class="btn btn-success" onclick="following()" style="background-color:green; width:150px;">팔로우</button>
-					
-					<br> <br> 
-					<button type="button" class="btn btn-success" onclick="removeFollower()" style="background-color:green; width:150px;">팔로워 삭제</button>
-					<br> <br> 
-					<button type="button" class="btn btn-success" onclick="block()" style="background-color:green; width:150px;">차단하기</button>
-					<br> <br>
-					<button type="button" class="btn btn-success" onclick="settingGroup()" style="background-color:green; width:150px;">그룹설정</button>
-					<br> <br> 
-					<button type="button" class="btn btn-success" onclick="btn_cancle2()" style="background-color:green; width:150px;">닫기</button>
-					<br>
-				</div>
-			</div>
+            <div style="text-align: center; border: thick; margin-top:20px;">
+               <img src="" id="follower_img_id" alt=""
+                  style="border-radius: 50%; width: 50px; height:50px;">
+            </div>
+            <br>
+            <p
+            dropdown-toggle   style="text-align: center; font-size: 8pt; font-family: Sans-Serif;"
+               id="follower_name_id"></p>
+            <div style="text-align: center;">
+               <button type="button" class="btn btn-success" onclick="following()" style="background-color: #efa8b0; width:150px;">팔로우</button>
+               
+               <br> <br> 
+               <button type="button" class="btn btn-success" onclick="removeFollower()" style="background-color: #efa8b0; width:150px;">팔로워 삭제</button>
+               <br> <br> 
+               <button type="button" class="btn btn-success" onclick="block()" style="background-color: #efa8b0; width:150px;">차단하기</button>
+               <br> <br>
+               <button type="button" class="btn btn-success" onclick="settingGroup()" style="background-color: #efa8b0; width:150px;">그룹설정</button>
+               <br> <br> 
+               <button type="button" class="btn btn-success" onclick="btn_cancle2()" style="background-color: #efa8b0; width:150px;">닫기</button>
+               <br>
+            </div>
+         </div>
 
 
 			<div id="navbar-blue">
@@ -1219,7 +1220,7 @@ var nameList = new Array();
 							
 							<div class="col-sm-12" id="cntInfoBar">
 								<span><a href="#" onclick="like()">
-				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a><input type="button" value="발자취" onclick="like()"></span>
+				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a></span>
 							</div>
 
 	
