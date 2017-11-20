@@ -448,21 +448,36 @@ var nameList = new Array();
              });
          });
           
+         var div = document.createElement('div');
+         div.id = "c_htag_div";
          function openpic(content_idx){
-        	 document.getElementById('c_idx').value=content_idx;
+            document.getElementById('c_idx').value=content_idx;
              var category = document.getElementById('category_'+content_idx).value;
              var path = document.getElementById('path_'+content_idx).value;
              var date = document.getElementById('date_'+content_idx).value;
              var profile = document.getElementById('profile_'+content_idx).value;
              var session_idx = '${sessionScope.useridx}';
-             var htag;
+             var htag = new Array();
+             var htag_idx = new Array();
+             
+            <c:forEach var="hlist" items="${hlist }">
+             htag_idx.push("${hlist.content_idx}");
+            htag.push("${hlist.content}");
+            </c:forEach>
             
-            if(document.getElementById('htag_'+content_idx)==null){
-            	 htag='';
-             }else{
-            	 htag= document.getElementById('htag_'+content_idx).value;
-             }
-			             
+            var htagList = htag.toString();
+            
+            var htagList1 = htagList.split(',');
+            
+            var htag_idxList = htag_idx.toString();
+            var htag_content = new Array();
+            
+           for(var i = 0; i < htag.length; i++){
+              if(htag_idx[i] == content_idx){
+                 htag_content.push(htagList1[i]);
+              }
+           }
+           
              var writer = document.getElementById('writer_'+content_idx).value;
              var content = document.getElementById('content_'+content_idx).value;
              
@@ -470,55 +485,61 @@ var nameList = new Array();
             
             sendRequest('likeList.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
          
-            
             if(category==1){
-            	//사진
-            	if($('#detail_media').children().size()>0){
-            		$('#detail_media').children().remove();
-            	}
+               //사진
+               if($('#detail_media').children().size()>0){
+                  $('#detail_media').children().remove();
+               }
             
-            	var img_slide = document.createElement('img');
-            	img_slide.src = path;
-            	img_slide.id='detail';
-            	detail_media.appendChild(img_slide);
+               var img_slide = document.createElement('img');
+               img_slide.src = path;
+               img_slide.id='detail';
+               detail_media.appendChild(img_slide);
              }else if(category==2){
-            	 //동영상
-            	 if($('#detail_media').children().size()>0){
-            		 $('#detail_media').children().remove();
-             	}
-            	 
-            	 var video_slide = document.createElement('video');
-            	 var source = document.createElement('source');
-            	 video_slide.id='detail';
-            	 video_slide.autoplay=true;
-            	 video_slide.loop=true;
-            	 video_slide.muted=true;
-            	 
-            	 source.src = path;
-            	 source.type = "video/mp4";
-            	 
-            	 video_slide.appendChild(source);
-            	 detail_media.appendChild(video_slide);
+                //동영상
+                if($('#detail_media').children().size()>0){
+                   $('#detail_media').children().remove();
+                }
+                
+                var video_slide = document.createElement('video');
+                var source = document.createElement('source');
+                video_slide.id='detail';
+                video_slide.autoplay=true;
+                video_slide.loop=true;
+                
+                source.src = path;
+                source.type = "video/mp4";
+                
+                video_slide.appendChild(source);
+                detail_media.appendChild(video_slide);
              }else if(category==3){
-            	 //텍스트
-            	 if($('#detail_media').children().size()>0){
-            		 $('#detail_media').children().remove();
-             	}
-            	 
-            	 var h3 = document.createElement('h3');
+                //텍스트
+                if($('#detail_media').children().size()>0){
+                   $('#detail_media').children().remove();
+                }
+                
+                var h3 = document.createElement('h3');
                  h3.style.backgroundColor = 'pink';
                  h3.style.height='400px';
                  h3.style.width='800px';
                  h3.innerHTML = content;
                  detail_media.appendChild(h3); 
-            	 
+                
              }
-          		document.getElementById('c_content').innerHTML = category==3? path:content;
+                document.getElementById('c_content').innerHTML = category==3? path:content;
                 document.getElementById('c_writer').innerHTML = writer;
                 document.getElementById('c_date').innerHTML = date;
-                document.getElementById('c_htag').innerHTML = '#'+htag;
                 
-                $('#c_htag').attr("href",'membersearch.do?name='+htag);
+                if($('#c_htag_div').children().size()>0){
+                  $('#c_htag_div').children().remove();
+               }
+                
+                
+                for(var i = 0; i < htag_content.length; i++){
+                   div.innerHTML += '<a href="gogi.do?name='+htag_content[i]+'">#'+htag_content[i]+'</a>';
+                }
+                document.getElementById('c_htag').appendChild(div);
+                
                 $('#pf').attr("src", profile);
             
           //contentMore
@@ -1261,7 +1282,7 @@ var nameList = new Array();
 							
 							<div class="col-sm-12" id="cntInfoBar"
 								style="overflow: auto; height: 70px;">
-								<span><a id="c_htag"></a></span>
+								<span id="c_htag"></span>
 							</div>
 							
 							<div class="col-sm-12" id="cntInfoBar">
