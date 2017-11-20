@@ -1250,7 +1250,7 @@ function openpic(content_idx){
 	
 	 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-hidden="true" style="border: solid; overflow: auto; background-color: rgba(0, 0, 0, 0.2);">
-	  <div style="margin: 20% 10%;">
+	  <div style="margin: 10% 17%; width:450px;">
 			<section id="viewForm" style="overflow: auto;">
 				<div class="container" style="width: 100%; font-size: 15px; overflow: hidden;">
 					<div class="row">
@@ -1270,8 +1270,9 @@ function openpic(content_idx){
                             -moz-border-radius: 50%;
                             -khtml-border-radius: 50%;
                             -webkit-border-radius: 50%;
+                            float:left;
                             "/>
-								</span> <label id="c_writer"></label> <span>
+								</span> <label id="c_writer" style="float:left; width:150px;"></label> <span>
 									<button class="btn btn-info" id="myBtn"
 										style="background: gray;">· · · </button> <!-- The Modal -->
 									<div id="myModal2" class="modal2">

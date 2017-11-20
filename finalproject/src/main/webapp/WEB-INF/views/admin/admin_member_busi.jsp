@@ -267,15 +267,18 @@ function postAd(data){
 </script>
 
 <div class="container">
-  <br><br>
-  <h2>광고 관리</h2>
-  <br><br>
-  <div class="btn-group btn-group-justified" id="re">
-    <input type="button" value="광고주 관리" class="btn btn-primary" onclick="request()">
-    <input type="button" value="결제 관리" class="btn btn-primary" onclick="pay()"> 
+  <div class="row">
+  	<h2>광고 관리</h2>
   </div>
+  <div class="row">
+	  <div class="btn-group btn-group-justified" id="re">
+	    <input type="button" value="광고주 관리" class="btn btn-primary" onclick="request()">
+	    <input type="button" value="결제 관리" class="btn btn-primary" onclick="pay()"> 
+	  </div>
+  </div>
+  <br>
 </div>
-
+<div class="row">
  <table class="table table-striped">
   <thead>
       <tr>
@@ -289,7 +292,7 @@ function postAd(data){
     	
    </tbody>
  </table>
-
+</div>
    
     <!-- 다운 끝 -->
       
