@@ -814,8 +814,8 @@ to {
                      function openContent(content_idx, useridx) {
                     	 location.href='main_view.do?content_idx='+content_idx+'&session_idx='+useridx;
                      }
-         
-
+                     
+                   
 </script> 
 <body onload="mtag('${name}')">
 <header>
@@ -919,7 +919,7 @@ to {
 
 						</ul>
     
-        <!-- Collect the nav links, forms, and other content for toggling -->
+       <!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse"
 							id="bs-example-navbar-collapse-1">
 
@@ -927,7 +927,7 @@ to {
 
 								<!-- 다운 음성인식 -->
 
-				
+
 
 
 								<script type="text/javascript">
@@ -964,10 +964,11 @@ to {
 						        }
 						    }
 						</script>
-						
-              <!--  -->
-              
-                   <!--  -->
+
+
+
+
+								<!--  -->
 
 						<li>
 									<form name="search" action="membersearch.do"
@@ -1001,24 +1002,23 @@ to {
 									class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown"
 									href="#" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false"> <i class="pe-7s-global"></i> <span
-										class="badge badge-pill badge-warning">6 New</span> <span
-										class="indicator text-warning d-none d-lg-block"> <i
-											class="fa fa-fw fa-circle"></i>
+										class="badge badge-pill badge-warning"><div id="count"></div>New</span> <span
+										class="indicator text-warning d-none d-lg-block">
 									</span>
 								</a>
-									<div class="dropdown-menu" aria-labelledby="alertsDropdown">
+									<div id="total_activity_iframe" class="dropdown-menu" aria-labelledby="alertsDropdown" style="width: 400px; border: 6px; text-align: center;">
 										<h6 class="dropdown-header">New Alerts:</h6>
+										<!-- 활동내역 -->
+										<iframe id="activity_iframe" src=""
+											width="380px" height="100%" frameborder="0" align="middle" border-top="10px"></iframe>
 
-										<iframe src="main_feedList.do?idx=${sessionScope.useridx}"
-											width="100%" height="100%" frameborder="0"></iframe>
-
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item small" href="#">View all alerts</a>
+										<!-- <div class="dropdown-divider"></div>
+										<a class="dropdown-item small" href="#">View all alerts</a> -->
 									</div></li>
-	
+  
 
-                    
-                                        <li>
+								<!-- d -->
+								<li>
 									<div class="dropdown">
 										<a class="btn btn-default dropdown-toggle"
 											data-toggle="dropdown"> <i class="pe-7s-menu"></i> <span
@@ -1029,8 +1029,8 @@ to {
 											<li><a
 												href="serviceCenter.do?idx=${sessionScope.useridx }">CUSTOMER
 													CENTER</a></li>
-											<li><a href="#">Logout</a></li>
-								
+											<li><a href="logout.do">Logout</a></li>
+										
 
 										</ul>
 									</div>

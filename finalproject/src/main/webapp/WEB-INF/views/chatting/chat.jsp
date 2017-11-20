@@ -28,7 +28,7 @@
 	var strTime;
 	
 	//웹소켓 설정 //ip
-	var webSocket = new WebSocket('ws://192.168.110.40:9090/finalproject/broadcasting');
+	var webSocket = new WebSocket('ws://192.168.20.174:9090/finalproject/broadcasting');
 	//var webSocket = new WebSocket('ws://localhost:8080/프로젝트명/broadcasting');
 	var inputMessage = document.getElementById('inputMessage');
 	//같은 이가 여러번 보낼때 이름 판별할 변수
