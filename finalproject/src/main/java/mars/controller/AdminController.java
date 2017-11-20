@@ -78,26 +78,6 @@ public class AdminController {
       
       if(result > 0){
          aDao.ff_delete(idx);
-      }
-      
-      String msg = result > 0 ? "성공!" : "실패!";
-      
-      mav.addObject("msg", msg);
-      
-      mav.setViewName("admin/admin_Msg");
-      
-      return mav;
-   }
-   
-   @RequestMapping("/admin_memberDelete_report.do")
-   public ModelAndView admin_memberDelete_report(int idx){
-	  
-      ModelAndView mav = new ModelAndView();
-      
-      int result = aDao.admin_memberDelete(idx);
-      
-      if(result > 0){
-         aDao.ff_delete(idx);
          cdao.reportDel(Integer.toString(idx));
       }
       
