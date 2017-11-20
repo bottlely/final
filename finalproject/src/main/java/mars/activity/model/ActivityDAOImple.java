@@ -178,5 +178,10 @@ public class ActivityDAOImple implements ActivityDAO {
 		int res = sqlMap.delete("ac_re_reply_delete", map);
 		return res;
 	}
+
+	public int ac_profileUpdate(HashMap<String, String> info) {
+		int result = sqlMap.update("ac_profileUpdate", info);
+		return result;
+	}
 	
 }
