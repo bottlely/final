@@ -734,15 +734,35 @@ function showResult(){
    if(XHR.readyState==4){
       if(XHR.status==200){
          var data=eval('('+XHR.responseText+')');
-         var myFeedTable=document.all.myfeedtable;
          var myFeedDiv=document.all.myfeed;
          var str='';
          var paths='';
          if(data.list.length==0){
             str='<table><tr><td>검색결과가 없습니다.</td></tr></table>';
-            myFeedTable.innerHTML=str;
+            myFeedDiv.innerHTML=str;
          }else{
-        	 myFeedDiv.removeChild(myFeedTable);
+        	 
+        	 for(var i=0;i<data.list.length;i++){
+        		 var c = data.list[i];
+        		 	if(c.category==1){
+        		         	str += '<div class="col-md-4 col-sm-4 col-xs-4  photo">'
+        		               +'<div class="works" style="height: 200px;">'
+        		               +'<a href="#myModal" data-toggle="modal" data-target="#myModal" data-src="'+c.path+'" onclick="openpic('+c.content_idx+')">'
+        		               +'<img src="myHomeFolder/content/'+c.path+'" alt="" style="width: 200px; height: 200px;">'
+        		               +'<div class="work-overlay text-center">'
+        		               +'<div class="overlay-caption">'
+        		               +'<h4>PHOTO</h4>'
+        		               +'<input type="hidden" id="category_'+c.content_idx+'" value="'+c.category+'">'
+        		               +'<input type="hidden" id="date_'+c.content_idx+'" value="'+c.writetime+'">'
+        		      	      +'<input type="hidden" id="path_'+c.content_idx+'" value="myHomeFolder/content/'+c.path+'">'
+        		      	      +'<input type="hidden" id="profile_'+c.content_idx+'" value="myHomeFolder/profile_img/'+c.profile+'">'
+        		      	      +'<input type="hidden" id="writer_'+c.content_idx+'" value="'+c.writer+'">'
+        		               +'<input type="hidden" id="content_'+c.content_idx+'" value="'+c.content+'">'
+        		      	      +'<input type="hidden" id="memberidx_'+c.content_idx+'" value="'+c.member_idx+'">'           
+        		               +'<p>'+c.content+'</p>'
+        		               +'</div></div></a></div></div>'
+        		         	 }
+        	/*  myFeedDiv.removeChild(myFeedTable);
          	var table=document.createElement('table');
          		table.setAttribute("id", "myfeedtable");
          		table.style.cellSpacing="10px";
@@ -762,11 +782,12 @@ function showResult(){
         			td.appendChild(img);
         			tr.appendChild(td);
         				
-        			}myFeedDiv.appendChild(table); 
+        			}myFeedDiv.appendChild(table);  */
        
-         }
+         }myFeedDiv.innerHTML = str;
       }
    }
+}
 }
 </script>
 <script>
@@ -862,6 +883,21 @@ function openpic(content_idx){
            
               sendRequest('like.do?session_idx='+session_idx+'&content_idx='+content_idx, null, likeList, 'GET');
           }
+         
+         function likeCount(){
+             if(XHR.readyState==4){
+                   if(XHR.status==200){
+                      var data = XHR.responseText;
+                      var lists = eval('('+data+')');
+                   
+                      if(lists.count == null){
+                       document.getElementById('likeCount').value = '발자취 ' + lists.count + '개';  
+                      }else{
+                      document.getElementById('likeCount').value = '발자취 ' + lists.count + '개';
+                      }
+                   }
+                } 
+          }
           
           function likeList(){
               if(XHR.readyState==4){
@@ -922,6 +958,7 @@ function openpic(content_idx){
                    var reply_list = document.all.reply_List;
                    var str='';
                    var userName = document.getElementById("session_name").value;
+                   var content_idx = document.getElementById("c_idx").value;
 
                    if(lists.replyList.length==0){
                       str = '댓글 없습니다.'
@@ -969,9 +1006,10 @@ function openpic(content_idx){
                           }
                        }
                       reply_list.innerHTML = str;
+                      
+                      sendRequest('likeCount.do?content_idx='+content_idx, null, likeCount, 'GET');
                    }
                    
-                   XHR = getXHR();
                 }
              }
           }
@@ -1327,7 +1365,7 @@ function openpic(content_idx){
 							
 							<div class="col-sm-12" id="cntInfoBar">
 								<span><a href="#" onclick="like()">
-				<img src="" id="like_Img" width="30px" height="30px;"></a></span>
+				<img src="" id="like_Img" width="30px" height="30px;"></a><input type="text" id="likeCount" value="" readonly style="border: 0px;"></span>
 							</div>
 
 	
