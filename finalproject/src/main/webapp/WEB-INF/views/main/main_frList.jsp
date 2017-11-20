@@ -24,7 +24,6 @@
           });
       });
       
-      
       $(document).ready(function(){
              $("#following").click(function(){
               $("#follower1").fadeOut();
@@ -164,7 +163,7 @@
                   
                            <form id="search" method="get" action="friend_search.do">
                               <input type="hidden" name="member_idx" value="${sessionScope.useridx }">
-                              <input type="text" name="search_name" placeholder="Search" style="width: 80%; float: left;" />
+                              <input type="text" name="search_name" placeholder="Search" style="width: 70%; float: left;" />
                               <a href="#intro" id="search"><input type="submit" value="찾기" id="search_btn"></a>
                            </form>
                      

@@ -25,5 +25,6 @@ public interface ActivityDAO {
 	 public int ac_reply_delete(int reply_idx, int ref, int content_idx, int lev);
 	 public int ac_re_reply_delete(int ref, int content_idx);
 	 public List<ActivityDTO> ac_list(int to_idx);
+	 public int ac_list_count(int to_idx);
 	 
 }

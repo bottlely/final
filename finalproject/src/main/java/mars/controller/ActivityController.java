@@ -31,4 +31,12 @@ public class ActivityController {
 		return mav;
 	}
 	
+	@RequestMapping("/activityCount.do")
+	public ModelAndView activityCount(@RequestParam("idx")int idx) {
+		int count  = actDao.ac_list_count(idx);
+		
+		ModelAndView mav = new ModelAndView("marsJson", "count", count);
+		return mav;
+	}
+	
 }

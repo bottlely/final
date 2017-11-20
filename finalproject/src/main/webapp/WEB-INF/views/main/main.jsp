@@ -445,6 +445,7 @@ var nameList = new Array();
             	 video_slide.id='detail';
             	 video_slide.autoplay=true;
             	 video_slide.loop=true;
+            	 video_slide.muted=true;
             	 
             	 source.src = path;
             	 source.type = "video/mp4";
@@ -629,12 +630,7 @@ var nameList = new Array();
                   div.animate({right: '0px'}, "fast");
                   div.animate({height: '100%'}, "slow");
                   div.animate({width:'toggle'}, "slow");
-                  /* if(div.height() == '0%'){
-                  div.animate({width:'toggle'},"slow"); 
-                  }
-                  else{
-                     div.animate({width:'60%'},"slow");
-                  } */
+                  
                }
          
             function addReply(){
@@ -709,8 +705,30 @@ var nameList = new Array();
                  });
              });
              
+             function ActivityCount() {
+            	 
+            	 var data = new FormData();
+                 
+                 data.append("idx", '${sessionScope.useridx}');
+                 
+            	 var xhr = new XMLHttpRequest();
+                 xhr.open("POST","activityCount.do");
+                 xhr.send(data);
+                 xhr.onload = function(e) {
+                     if(this.status == 200) {
+                        var jsonResponse = JSON.parse(e.currentTarget.responseText);
+                         if(jsonResponse["count"] > 0){
+                        	var div = document.createElement('div');
+                        	div.innerHTML=jsonResponse["count"];
+                            document.getElementById('count').appendChild(div);
+                         }else{
+                            
+                         }
+                     }
+                 }
+             }
 </script>
-<body>
+<body onload="ActivityCount()">
 	<header>
 		<form name="hidden_value">
 			<input type="hidden" name="hidden_other_idx" id="hidden_other_idx"
@@ -722,11 +740,11 @@ var nameList = new Array();
 		<div id="navbar-full">
 			<span style="float: left;">
 				<div id="friends2"
-					style="background: #935d8c; height: 100%; width: 28%; position: absolute; float: left; display: none; z-index: 4">
+					style="background: #935d8c; height: 100%; width: 30%; position: absolute; float: left; display: none; z-index: 4">
 					<div
 						style="background-color: white; align-content: center; text-align: right;">
 						<a href="#" id="cl1">Close <i class="pe-7s-close"></i></a>
-						<button id="cl1">Close</button>
+						
 					</div>
 					<c:url var="frListUrl" value="main_frList.do">
 						<c:param name="member_idx" value="${sessionScope.useridx }" />
@@ -899,7 +917,7 @@ var nameList = new Array();
 									class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown"
 									href="#" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false"> <i class="pe-7s-global"></i> <span
-										class="badge badge-pill badge-warning">6 New</span> <span
+										class="badge badge-pill badge-warning"><div id="count"></div> New</span> <span
 										class="indicator text-warning d-none d-lg-block"> <i
 											class="fa fa-fw fa-circle"></i>
 									</span>
@@ -1071,8 +1089,8 @@ var nameList = new Array();
 					<div class="work-overlay text-center">
 						<div class="overlay-caption">
 							<h4>Ad</h4>
-							<a href="${list.link}" onclick="goCount(${list.ad_idx})">
-							${list.ad_name}</a>
+							<h2><a href="${list.link}" onclick="goCount(${list.ad_idx})">
+							${list.ad_name}</a></h2>
 							
 						</div>
 					</div>

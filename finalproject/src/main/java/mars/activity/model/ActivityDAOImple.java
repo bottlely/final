@@ -24,6 +24,11 @@ public class ActivityDAOImple implements ActivityDAO {
 		return list;
 	}
 	
+	public int ac_list_count(int to_idx) {
+		int count = sqlMap.selectOne("ac_list_count", to_idx);
+		return count;
+	}
+	
 	public void ac_insert_like(int from_idx, int to_idx, int content_idx, Date actdate, String name, String profile_img) {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("from_idx", String.valueOf(from_idx));

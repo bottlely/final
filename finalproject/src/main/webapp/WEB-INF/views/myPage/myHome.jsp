@@ -727,7 +727,6 @@ $(document).ready(function(){
 //날짜검색function
 function contentDate(){
        var uploadDate=$('.datepicker-here').val();
-       window.alert(uploadDate);
        sendRequest('uploadDateContent.do?uploadDate='+uploadDate+'&member_idx=${mhdto.getMember_idx()}', null ,showResult,'POST');
 }
 
@@ -1132,7 +1131,7 @@ function openpic(content_idx){
 
 <!-- 캘린더아이콘 -->
 <div class="calendaricon" style="width:300px;height:50px;">
-   <input type='text' name="calendar" class="datepicker-here" style="width: 150px;">
+   <input type='text' name="calendar" class="datepicker-here" style="width: 150px; float: left;">
    <button style="dispaly:flex;width:50px;border:0px;padding: none;border-color: #ffffff;" onclick="contentDate()">
    <i class="fa fa-calendar" style="font-align: center;font-size: 25px;color: #BDBDBD;padding: none;"></i></button>
 </div>
