@@ -837,6 +837,8 @@ var div = document.createElement('div');
                var img_slide = document.createElement('img');
                img_slide.src = path;
                img_slide.id='detail';
+               img_slide.setAttribute("width", "520px");
+               img_slide.setAttribute("height", "450px");
                detail_media.appendChild(img_slide);
              }else if(category==2){
                 //동영상
@@ -849,7 +851,8 @@ var div = document.createElement('div');
                 video_slide.id='detail';
                 video_slide.autoplay=true;
                 video_slide.loop=true;
-                
+                video_slide.setAttribute("width", "520px");
+                video_slide.setAttribute("height", "450px");
                 source.src = path;
                 source.type = "video/mp4";
                 
