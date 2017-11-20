@@ -825,6 +825,10 @@ var nameList = new Array();
 						<font size="3px;"><b>${content.content }</b></font>
 					</div>
 					<hr>
+					<div style="text-align: left; margin: 10px;">
+						<font size="3px;"><b id="pf">연수야 해쉬태그</b></font>
+					</div>
+					<hr>
 					<img src="myHomeFolder/content/${content.path }" alt="" style="margin: 1%; width: 600px;height: 600px;"
 						class="img-thumbnail" >
 				</div>
