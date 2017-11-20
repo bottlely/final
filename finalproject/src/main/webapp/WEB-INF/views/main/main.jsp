@@ -336,8 +336,6 @@ var nameList = new Array();
 
 		function showList(){
 			  var dd = document.getElementById("content").value;
-			  window.alert(dd);
-	
 			}
 
 			/**해쉬태그*/
