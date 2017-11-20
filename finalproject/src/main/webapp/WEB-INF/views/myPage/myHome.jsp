@@ -743,40 +743,27 @@ function showResult(){
             myFeedTable.innerHTML=str;
          }else{
         	 myFeedDiv.removeChild(myFeedTable);
-        	var table=document.createElement('table');
-        		table.setAttribute("border-spacing", "10px");
-        	var tr=document.createElement('tr');
-        	table.appendChild(tr);
-        	var count=0;
-        	for(var i=0; i<data.list.length; i++){
-        		count++;
-        		var td=document.createElement('td');
-        		var patharr=data.list[i].path.split('?');
-        		//var indexnum=patharr[0].lastIndexOf(".");
-        		//var pathname=patharr[0].substring(0,indexnum+1);
-       			var img=document.createElement('img');
-       				img.setAttribute("src", "myHomeFolder/content/"+patharr[0]);
-       				img.setAttribute("width", "180px");
-       				img.setAttribute("height", "180px");
-       			td.appendChild(img);
-       			tr.appendChild(td);
-       				if(count>3){
-       					count=0;
-       					table.appenChild(tr);
-       				}
-       				
-       				if(data.list.length/i==1){
-       					table.appenChild(tr);
-       				}
-       			}myFeedDiv.appendChild(table);
-        	/*str='<tr><td><img src="myHomeFolder/content/'+data.list[0].path+'" width="180",height="180"></td>'
-        	+'<td><img src="myHomeFolder/content/'+data.list[1].path+'" width="180",height="180"></td>'
-        	+'<td><img src="myHomeFolder/content/'+data.list[2].path+'" width="180",height="180"></td></tr>';
-        	myFeedTable.innerHTML=str;*/
-        	//if(i%3==0){
-        		
-        	//}
-          //}
+         	var table=document.createElement('table');
+         		table.setAttribute("id", "myfeedtable");
+         		table.style.cellSpacing="10px";
+         		table.style.margin="0px auto";
+         	var tr=document.createElement('tr');
+         	table.appendChild(tr);
+         	var count=0;
+         	for(var i=0; i<data.list.length; i++){
+         		count++;
+         		var td=document.createElement('td');
+         			td.style.marginRight="10px";
+         		var patharr=data.list[i].path.split('?');
+        			var img=document.createElement('img');
+        				img.setAttribute("src", "myHomeFolder/content/"+patharr[0]);
+        				img.setAttribute("width", "200px");
+        				img.setAttribute("height", "200px");
+        			td.appendChild(img);
+        			tr.appendChild(td);
+        				
+        			}myFeedDiv.appendChild(table); 
+       
          }
       }
    }
@@ -788,10 +775,16 @@ function openpic(content_idx){
         	 document.getElementById('c_idx').value=content_idx;
              var category = document.getElementById('category_'+content_idx).value;
              var path = document.getElementById('path_'+content_idx).value;
-             
+             var date = document.getElementById('date_'+content_idx).value;
              var profile = document.getElementById('profile_'+content_idx).value;
              var session_idx = '${sessionScope.useridx}';
-             
+            // var htag;
+            
+           /*  if(document.getElementById('htag_'+content_idx)==null){
+            	 htag='';
+             }else{
+            	 htag= document.getElementById('htag_'+content_idx).value;
+             } */
 			             
              var writer = document.getElementById('writer_'+content_idx).value;
              var content = document.getElementById('content_'+content_idx).value;
@@ -810,8 +803,6 @@ function openpic(content_idx){
             	var img_slide = document.createElement('img');
             	img_slide.src = path;
             	img_slide.id='detail';
-            	img_slide.setAttribute("width", "400px");
-            	img_slide.setAttribute("height", "350px");
             	detail_media.appendChild(img_slide);
              }else if(category==2){
             	 //동영상
@@ -824,8 +815,7 @@ function openpic(content_idx){
             	 video_slide.id='detail';
             	 video_slide.autoplay=true;
             	 video_slide.loop=true;
-            	 video_slide.setAttribute("width", "400px");
-             	 video_slide.setAttribute("height", "350px");
+            	 
             	 source.src = path;
             	 source.type = "video/mp4";
             	 
@@ -837,13 +827,20 @@ function openpic(content_idx){
             		 $('#detail_media').children().remove();
              	}
             	 
-            	 var label = document.createElement('label');
-            	 label.innerHTML = content;
-            	 detail_media.appendChild(label);
+            	 var h3 = document.createElement('h3');
+                 h3.style.backgroundColor = 'pink';
+                 h3.style.height='400px';
+                 h3.style.width='800px';
+                 h3.innerHTML = content;
+                 detail_media.appendChild(h3); 
             	 
              }
           		document.getElementById('c_content').innerHTML = category==3? path:content;
                 document.getElementById('c_writer').innerHTML = writer;
+                document.getElementById('c_date').innerHTML = date;
+               // document.getElementById('c_htag').innerHTML = '#'+htag;
+                
+              //  $('#c_htag').attr("href",'membersearch.do?name='+htag);
                 $('#pf').attr("src", profile);
             
           //contentMore
@@ -1011,13 +1008,14 @@ function openpic(content_idx){
                }
          
             function addReply(){
-	                var session_idx = document.getElementById('session_idx').value;
-	                var c_idx = document.getElementById('c_idx').value;
-	                var content = document.getElementById('content').value;
-	                   
-	                sendRequest("reply.do?content="+content+"&content_idx="+c_idx+"&session_idx="+session_idx, null, replyList, 'GET');
-	           }
-         
+                var session_idx = document.getElementById('session_idx').value;
+                var c_idx = document.getElementById('c_idx').value;
+                var content = document.getElementById('content').value;
+                   
+                sendRequest("reply.do?content="+content+"&content_idx="+c_idx+"&session_idx="+session_idx, null, replyList, 'GET');
+                
+                document.getElementById("content").value = "";
+           }
 </script>
 </head>
 <body onload="check()">
@@ -1145,9 +1143,9 @@ function openpic(content_idx){
 </header>
 </section>
    <!-- 내피드 -->         
-   <div class="container">
+  <div class="container">
     <div class="row"></div>
-     <div class="row text-center">
+     <div class="row text-center" >
       <div class="works-category" data-sr='enter top, wait 0.2s'>
         <ul class="statistics">
           <li class="style1"><a href="#" data-filter="*" class="current">All</a></li>
@@ -1159,9 +1157,11 @@ function openpic(content_idx){
 
 
 <!--  전체 피드 목록 -->
-      <div class="works-area">
+      <div class="works-area" id="myfeed">
+  <div id="myfeedtable">
                
       <c:if test="${empty contentList}">게시글 없음</c:if>
+     
        <c:if test="${!empty contentList}">
         <c:forEach var="contentList" items="${contentList }">
 
@@ -1175,6 +1175,7 @@ function openpic(content_idx){
                 <div class="overlay-caption">
                 <h4>PHOTO</h4>
                  <input type="hidden" id="category_${contentList.content_idx }" value="${contentList.category }"> 
+                 <input type="hidden" id="date_${contentList.content_idx }" value="${contentList.writetime }"> 
 				 <input type="hidden" id="path_${contentList.content_idx }" value="myHomeFolder/content/${contentList.path }"> 
 				 <input type="hidden" id="profile_${contentList.content_idx }" value="myHomeFolder/profile_img/${contentList.profile }">
 				 <input type="hidden" id="writer_${contentList.content_idx }" value="${contentList.writer }"> 
@@ -1200,6 +1201,7 @@ function openpic(content_idx){
 			<div class="overlay-caption">
 				<h4>VIDEO</h4>
 				<input type="hidden" id="category_${contentList.content_idx }" value="${contentList.category }"> 
+                 <input type="hidden" id="date_${contentList.content_idx }" value="${contentList.writetime }"> 
 				<input type="hidden" id="path_${contentList.content_idx }" value="myHomeFolder/content/${contentList.path }"> 
 				<input type="hidden" id="writer_${contentList.content_idx }" value="${contentList.writer }"> 
 				<input type="hidden" id="profile_${contentList.content_idx }" value="myHomeFolder/profile_img/${contentList.profile }">
@@ -1225,6 +1227,7 @@ function openpic(content_idx){
 										<div class="overlay-caption">
 											<h4>TEXT</h4>
 											 <input type="hidden" id="category_${contentList.content_idx }" value="${contentList.category }"> 
+                 <input type="hidden" id="date_${contentList.content_idx }" value="${contentList.writetime }"> 
 											 <input type="hidden" id="path_${contentList.content_idx }" value="${contentList.path }"> 
 											 <input type="hidden" id="writer_${contentList.content_idx }" value="${contentList.writer }"> 
 											 <input type="hidden" id="profile_${contentList.content_idx }" value="myHomeFolder/profile_img/${contentList.profile }">
@@ -1240,6 +1243,7 @@ function openpic(content_idx){
         </c:forEach>
         </c:if>
         </div>
+        </div>
        </div>
        </div>       
 
@@ -1249,13 +1253,12 @@ function openpic(content_idx){
 	
 	 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-hidden="true" style="border: solid; overflow: auto; background-color: rgba(0, 0, 0, 0.2);">
-	  <div style="margin: 10% 17%; width:450px;">
-			<section id="viewForm" style="overflow: auto;">
-				<div class="container" style="width: 100%; font-size: 15px; overflow: hidden;">
-					<div class="row">
+	  <div style="margin: 20% 10%;">
+		<section id="viewForm" style="overflow: auto;">
+			<div class="container" style="width: 100%; font-size: 15px; overflow: hidden;">
+			
 						<!-- 사진 -->
-						<div class="col-xs-12"
-							style="margin:10px auto;float: left;overflow: hidden;" id="detail_media">
+						<div style="margin:10px auto 100px;float: middle;overflow: hidden;" id="detail_media">
 							
 						</div>
 
@@ -1269,9 +1272,8 @@ function openpic(content_idx){
                             -moz-border-radius: 50%;
                             -khtml-border-radius: 50%;
                             -webkit-border-radius: 50%;
-                            float:left;
                             "/>
-								</span> <label id="c_writer" style="float:left; width:150px;"></label> <span>
+								</span> &nbsp;<label id="c_writer"></label> <label id="c_date"></label><span>
 									<button class="btn btn-info" id="myBtn"
 										style="background: gray;">· · · </button> <!-- The Modal -->
 									<div id="myModal2" class="modal2">
@@ -1319,7 +1321,7 @@ function openpic(content_idx){
 								</div>
 							</div>
 						</div>
-					</div>
+					
 				</div>
 			</section>
 		</div>
