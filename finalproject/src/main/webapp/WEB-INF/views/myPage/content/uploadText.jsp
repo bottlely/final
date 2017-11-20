@@ -216,7 +216,7 @@ $(document).ready(function(){
       <div class="col-sm-12">
          <span class="avatar">
          <img src="myHomeFolder/profile_img/${profile}" alt="" id="pf"
-					style="border-radius: 70px; -moz-border-radius: 70px; -khtml-border-radius: 70px; -webkit-border-radius: 70px;" />
+					style="border-radius: 70px; -moz-border-radius: 70px; -khtml-border-radius: 70px; -webkit-border-radius: 70px; width: 50px; height: 50px;" />
 				</span>
           <label id="name">${writer}</label>
           <select id="coverage_state" name="coverage" onclick="fflist(this)">

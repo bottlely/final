@@ -171,7 +171,7 @@
 							</thead>
 							<tbody>
 								<c:if test="${empty lists }"> </c:if>
-								<c:forEach var="dto" items="${lists }">
+								<c:forEach var="dto" items="${lists}">
 									<tr id="${dto.category }">
 										<td>${dto.name}</td>
 										<td>${dto.content}
@@ -191,6 +191,12 @@
 										</td>
 										<td>${dto.reportdate}
 										<c:if test="${dto.category == 3 }"><input type="button" value="Delete" onclick="deleteContent(${dto.idx_to})" class="btn btn-primary"></c:if>
+										<c:if test="${dto.category == 2 }"><input type="button" value="회원 탈퇴" onclick="memberDelete('${dto.idx_to}')" class="btn btn-danger"></c:if>
+										 <script>
+					                         function memberDelete(idx){
+					                            location.href='admin_memberDelete_report.do?idx='+idx;
+					                         }
+					                      </script>
 										</td>
 									</tr>
 								</c:forEach>

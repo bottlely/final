@@ -204,9 +204,8 @@ public class MyHomeController{
 		}
 		
 		int result = mhdao.profileUpload(info);
-		int result2 = result > 0 ? cdao.profileUpdate(info): -1;
-		System.out.println(cdao.profileUpdate(info));
-		 ModelAndView mav = new ModelAndView("marsJson","result",result2);
+		cdao.profileUpdate(info);
+		 ModelAndView mav = new ModelAndView("marsJson","result",result);
 		return mav;
 	}
 

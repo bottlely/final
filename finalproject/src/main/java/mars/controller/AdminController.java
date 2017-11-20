@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import mars.admin.model.AdminDAO;
+import mars.content.model.ContentDAO;
 import mars.friend.model.FriendDAO;
 import mars.member.model.MemberDAO;
 import mars.member.model.MemberDTO;
@@ -23,6 +24,9 @@ public class AdminController {
    
    @Autowired
    private ReportDAO rDao;
+   
+	@Autowired
+	private ContentDAO cdao;
    
    @RequestMapping("/admin.do")
    public ModelAndView adminMain() {
@@ -67,6 +71,7 @@ public class AdminController {
 
    @RequestMapping("/admin_memberDelete.do")
    public ModelAndView admin_memberDelete(int idx){
+	  System.out.println(idx);
       ModelAndView mav = new ModelAndView();
       
       int result = aDao.admin_memberDelete(idx);
@@ -75,7 +80,7 @@ public class AdminController {
          aDao.ff_delete(idx);
       }
       
-      String msg = result > 0 ? "�깉�눜 �꽦怨�" : "�깉�눜 �떎�뙣";
+      String msg = result > 0 ? "성공!" : "실패!";
       
       mav.addObject("msg", msg);
       
@@ -83,6 +88,28 @@ public class AdminController {
       
       return mav;
    }
+   
+   @RequestMapping("/admin_memberDelete_report.do")
+   public ModelAndView admin_memberDelete_report(int idx){
+	  
+      ModelAndView mav = new ModelAndView();
+      
+      int result = aDao.admin_memberDelete(idx);
+      
+      if(result > 0){
+         aDao.ff_delete(idx);
+         cdao.reportDel(Integer.toString(idx));
+      }
+      
+      String msg = result > 0 ? "성공!" : "실패!";
+      
+      mav.addObject("msg", msg);
+      
+      mav.setViewName("admin/admin_Msg");
+      
+      return mav;
+   }
+   
    
    @RequestMapping("/admin_nameSearch.do")
    public ModelAndView admin_nameSearch(@RequestParam("txt")String name){
