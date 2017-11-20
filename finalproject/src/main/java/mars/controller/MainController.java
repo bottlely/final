@@ -75,11 +75,11 @@ public class MainController {
                                @RequestParam("session_idx")int session_idx) {
       List<MyHomeReplyDTO> list = replydao.replyList(content_idx);
       
-      HashMap map = new HashMap<String, String>();
+      HashMap<String, String> map = new HashMap<String, String>();
      String str = String.valueOf(content_idx);
      ContentDTO dto = cDao.contentOne(str);
-      map.put("content_idx", content_idx);
-      map.put("session_idx", session_idx);
+      map.put("content_idx",  String.valueOf(content_idx));
+      map.put("session_idx",  String.valueOf(session_idx));
       
       int result = replydao.likeSelect(map);
       

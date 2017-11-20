@@ -726,7 +726,8 @@ var nameList = new Array();
 					style="background: #935d8c; height: 100%; width: 28%; position: absolute; float: left; display: none; z-index: 4">
 					<div
 						style="background-color: white; align-content: center; text-align: right;">
-						<a href="#" id="cl1">Close</a>
+						<a href="#" id="cl1">Close <i class="pe-7s-close"></i></a>
+						<button id="cl1">Close</button>
 					</div>
 					<c:url var="frListUrl" value="main_frList.do">
 						<c:param name="member_idx" value="${sessionScope.useridx }" />
@@ -738,7 +739,7 @@ var nameList = new Array();
 				<div id="mypage2"
 					style="background: #935d8c; height: 100%; width: 60%; position: absolute; float: right; display: none; z-index: 4">
 					<div style="background-color: white; align-content: center;">
-						<a href="#" id="cl2">Close</a>
+						<a href="#" id="cl2">Close <i class="pe-7s-close"></i></a>
 					</div>
 					<iframe src="myHomeForm.do?useridx=${sessionScope.useridx}"
 						width="100%" height="100%" name="ppp" id="ppp" frameborder="0"></iframe>

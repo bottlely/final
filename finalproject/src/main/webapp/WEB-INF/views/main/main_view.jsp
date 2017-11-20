@@ -467,6 +467,21 @@ function openContent(content_idx, useridx) {
 				<div class="col-sm-2 sidenav"></div>
 			</div>
 		</c:if>
+		<c:if test="${content.category==3 }">
+			<div class="row content">
+				<div class="col-sm-2 sidenav"></div>
+				<div class="col-sm-8 text-center" style="background-color: white;">
+					<div style="text-align: left; margin: 10px;">
+						<font size="3px;"><b>${content.content }</b></font>
+					</div>
+					<hr>
+		   <div style="background-color: white; height: 431px; width:100%; display: table; ">
+                       					 <h3 style="display: table-cell; vertical-align: middle;">${content.path }</h3>
+                       				 </div>
+				</div>
+				<div class="col-sm-2 sidenav"></div>
+			</div>
+		</c:if>
 		<div class="row content">
 			<div class="col-sm-2 text-center"></div>
 			<div class="col-sm-8 text-left" style="background: #f4f4f4;">

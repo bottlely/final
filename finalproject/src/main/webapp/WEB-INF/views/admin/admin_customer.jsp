@@ -50,7 +50,7 @@
 	
 	function View(i) {
 		
-		location.href="main_view.do?content_idx="+i;
+		location.href="main_view.do?content_idx="+i+"&session_idx=${sessionScope.useridx}";
 	}
 	
 	 //contentMore
