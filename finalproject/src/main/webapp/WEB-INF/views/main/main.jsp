@@ -1191,21 +1191,21 @@ var nameList = new Array();
 								width:50px; height:50px;
 								"/>
 								
-							</span> &nbsp;<label id="c_writer"></label> &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id="c_date"></label><span>
-									&nbsp;&nbsp;<button class="btn btn-info" id="myBtn"
-										style="background: gray;">· · · </button> <!-- The Modal -->
-									<div id="myModal2" class="modal2">
+							</span> &nbsp;<label id="c_writer"></label> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label id="c_date"></label><span>
+                           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;<button class="btn btn-info" id="myBtn"
+                              style="background: #6368ff;">· · · </button> <!-- The Modal -->
+                           <div id="myModal2" class="modal2">
 
-										<!-- Modal content // contentMore -->
-										<div class="list-group" style="width: 20%; margin: 5% auto;"
-											id="contentMore">
-											<span class="close">&times;</span>
-										</div>
+                              <!-- Modal content // contentMore -->
+                              <div class="list-group" style="width: 20%; margin: 5% auto;"
+                                 id="contentMore">
+                                 <span class="close">&times;</span>
+                              </div>
 
-									</div>
-								</span>
+                           </div>
+                        </span>
 
-							</div>
+                     </div>
 							
 
 							<div class="col-sm-12" id="cntInfoBar"
