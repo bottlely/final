@@ -927,6 +927,7 @@ function openpic(content_idx){
                       str = '댓글 없습니다.'
                       reply_list.innerHTML = str;
                    }else{
+                	 
                       for(var i=0; i<lists.replyList.length; i++){
                          var l = lists.replyList[i];
                          
