@@ -307,7 +307,6 @@ select {
     		var text = document.getElementById("mtag").value;
     		
     		if(text == '@'){
-    			window.alert(text);
     		$(document).ready(function() {
     			  $("#mtag").autocomplete(nameList, {
     			    matchContains: true,

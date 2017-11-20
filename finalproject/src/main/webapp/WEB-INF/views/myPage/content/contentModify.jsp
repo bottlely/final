@@ -131,12 +131,6 @@ select {
     			 
     			 data.append("content_idx", '${contentidx}');
     			 
-    			 var htag =  document.getElementById("htag").value;
-    			 data.append("htag",htag);
-            	 
-    			 var mtag =  document.getElementById("mtag").value;
-    			 data.append("mtag",mtag);
-    			 
     			 var content =document.getElementById("content").value;
     			 data.append("content",content);
     			 
@@ -201,13 +195,11 @@ select {
         	     if(!Flag){
         	  		for(var i=0, len=sel_list.length; i<len; i++) {
         		 		 if(idx == sel_list[i]){
-        		 			 alert(idx);
         			  		sel_list.splice(i, 1);
         				 }
         			}
         		}else{
         			for(var i=0, len=sel_list_group.length; i<len; i++) {
-        				 	alert(idx);
 	       		 		 if(idx == sel_list_group[i]){
 	       		 			sel_list_group.splice(i, 1);
 	       				 }
@@ -265,7 +257,7 @@ select {
 			<div class="col-sm-12">
 				<span class="avatar"> <img
 					src="myHomeFolder/profile_img/${profile}" alt="" id="pf"
-					style="border-radius: 70px; -moz-border-radius: 70px; -khtml-border-radius: 70px; -webkit-border-radius: 70px;" />
+					style="border-radius: 70px; -moz-border-radius: 70px; -khtml-border-radius: 70px; -webkit-border-radius: 70px; width: 50px; height: 50px;" />
 				</span> <label id="name">${cdto.writer}</label> <select id="coverage_state"
 					name="coverage" onclick="fflist(this)">
 					<option value="0">전체공개</option>
@@ -278,16 +270,6 @@ select {
 		</div>
 		<hr>
 		<div class="row">
-			<div class="col-sm-12">
-				<input type="text" class="form-control" id="mtag" name="mtag"
-					placeholder="친구태그" onFocus="clearText(this)"
-					onBlur="clearText(this)">
-			</div>
-			<div class="col-sm-12">
-				<input type="text" class="form-control" id="htag" name="htag"
-					placeholder="해시태그" onFocus="clearText(this)"
-					onBlur="clearText(this)">
-			</div>
 			<div class="col-sm-12">
 				<div class="form-group">
 					<textarea class="form-control" rows="5" id="content" name="content">${cdto.content}</textarea>

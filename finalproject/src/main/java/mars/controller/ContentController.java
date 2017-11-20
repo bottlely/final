@@ -623,11 +623,11 @@ public class ContentController {
 				                System.out.println("삭제한 파일 : "+src);
 				            }else{
 				                System.out.println("삭제 실패한 파일 : "+src);
-				                return new ModelAndView("marsJson", "result", -1);
+				                //return new ModelAndView("marsJson", "result", -1);
 				            }
 						}else{
 							System.out.println("파일이 존재하지 않습니다.");
-							return new ModelAndView("marsJson", "result", -1);
+							//return new ModelAndView("marsJson", "result", -1);
 						}
 				}
 			}else{
@@ -654,7 +654,6 @@ public class ContentController {
 		}
 		int result = cdao.contentDel(contentidx);
 		cdao.reportDel(contentidx);
-		
 		ModelAndView mav = new ModelAndView("marsJson", "result", result);
 		return mav;
 	}
@@ -731,8 +730,6 @@ public class ContentController {
 	
 	@RequestMapping("/contentModify.do")
 	public ModelAndView contentModify(@RequestParam("content_idx")String content_idx,
-			@RequestParam("htag")String htag,
-			@RequestParam("mtag")String mtag,
 			@RequestParam(value="coverage_list_group",required=false)String cl_group,
 			@RequestParam(value="coverage_list",required=false)String cl,
 			@RequestParam("coverage_state")String cs,
