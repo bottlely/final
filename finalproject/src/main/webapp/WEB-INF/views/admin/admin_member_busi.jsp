@@ -64,12 +64,7 @@
             <span class="nav-link-text">Customer</span>
           </a>
         </li>
-        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
-          <a class="nav-link" href="admin_p.do">
-            <i class="fa fa-fw fa-table"></i>
-            <span class="nav-link-text">Profile</span>
-          </a>
-        </li>
+
 
     
 
@@ -267,15 +262,18 @@ function postAd(data){
 </script>
 
 <div class="container">
-  <br><br>
-  <h2>광고 관리</h2>
-  <br><br>
-  <div class="btn-group btn-group-justified" id="re">
-    <input type="button" value="광고주 관리" class="btn btn-primary" onclick="request()">
-    <input type="button" value="결제 관리" class="btn btn-primary" onclick="pay()"> 
+  <div class="row">
+  	<h2>광고 관리</h2>
   </div>
+  <div class="row">
+	  <div class="btn-group btn-group-justified" id="re">
+	    <input type="button" value="광고주 관리" class="btn btn-primary" onclick="request()">
+	    <input type="button" value="결제 관리" class="btn btn-primary" onclick="pay()"> 
+	  </div>
+  </div>
+  <br>
 </div>
-
+<div class="row">
  <table class="table table-striped">
   <thead>
       <tr>
@@ -289,7 +287,7 @@ function postAd(data){
     	
    </tbody>
  </table>
-
+</div>
    
     <!-- 다운 끝 -->
       
@@ -308,23 +306,27 @@ function postAd(data){
       <i class="fa fa-angle-up"></i>
     </a>
     <!-- Logout Modal-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
+    			<!-- Logout Modal-->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">관리자 로그아웃 하시겠습니까?</h5>
+							<button class="close" type="button" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body">로그아웃 하시려면 아래 로그아웃 버튼을 눌러주세요</div>
+						<div class="modal-footer">
+							<button class="btn btn-secondary" type="button"
+								data-dismiss="modal">취소</button>
+							<a class="btn btn-primary" href="logout.do">Logout</a>
+						</div>
+					</div>
+				</div>
+			</div>
     <!-- Bootstrap core JavaScript-->
     <script src="assets_admin/vendor/jquery/jquery.min.js"></script>
     <script src="assets_admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

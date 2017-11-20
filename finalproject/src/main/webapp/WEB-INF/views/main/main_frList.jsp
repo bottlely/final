@@ -24,6 +24,7 @@
           });
       });
       
+      
       $(document).ready(function(){
              $("#following").click(function(){
               $("#follower1").fadeOut();
@@ -41,7 +42,7 @@
       
       $(document).ready(function(){
              $("#search").click(function(){
-                $('#search1').fadeOut();
+                //$('#search1').fadeOut();
               $("#search1").slideToggle();
              });
          });
@@ -63,7 +64,6 @@
       
       
      function fwer_more(other_idx, other_name, other_profile_img) {
-    	 //alert(other_idx);
     	 
     	 $('#more2').fadeOut();
          $('#more3').fadeOut();
@@ -81,7 +81,6 @@
      }
      
      function fwing_more(other_idx, other_name, other_profile_img) {
-    	 //alert(other_idx);
     	 
     	 $('#more2').fadeOut();
     	 $('#more3').fadeOut();
@@ -103,10 +102,6 @@
          ppp.location.reload();
      }
      
-     /* function chatting(other_name, other_profile_img) {
-    	 //parent.chatting(other_name, other_profile_img);
-    	 window.open("");
-     } */
      
      //ip
      function chatting(other_idx, other_name, other_profile_img) {
@@ -122,7 +117,7 @@
 
             <!-- Header -->
                <header id="header">
-                  <h1><a href="main_frList.do?user_idx=${sessionScope.useridx }">Follow & Black</a></h1>
+                  <h1><a href="main_frList.do?member_idx=${sessionScope.useridx }">Follow & Black</a></h1>
 
                </header>
 
@@ -162,15 +157,15 @@
                         
                         
                      </section>
-
+					<br><br>
                   <!-- Search -->
                      <section>
                   <div>
                   
                            <form id="search" method="get" action="friend_search.do">
                               <input type="hidden" name="member_idx" value="${sessionScope.useridx }">
-                              <input type="text" name="search_name" placeholder="Search" />
-                              <a href="#intro" id="search"><input type="submit" value="찾기"></a>
+                              <input type="text" name="search_name" placeholder="Search" style="width: 80%; float: left;" />
+                              <a href="#intro" id="search"><input type="submit" value="찾기" id="search_btn"></a>
                            </form>
                      
                   </div>
@@ -251,11 +246,11 @@
                         </ul>
                      </section>
                      
-                     <!-- Pagination -->
-                     <ul class="actions pagination">
+                      <!-- Pagination -->
+                     <!--<ul class="actions pagination">
                         <li><a href="" class="disabled button big previous">Previous Page</a></li>
                         <li><a href="#" class="button big next">Next Page</a></li>
-                     </ul>
+                     </ul> -->
                      
                      <section>
                      <input type="button" value="차단목록" id="black">
@@ -276,10 +271,7 @@
                            </li>
                         </c:forEach>
                         </ul>
-                     </section>
-
-
-
+                        </section>
          </div>
 
       <!-- Scripts -->

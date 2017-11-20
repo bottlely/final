@@ -416,7 +416,6 @@ var nameList = new Array();
             	 htag= document.getElementById('htag_'+content_idx).value;
              }
 			             
-            window.alert(htag);
              var writer = document.getElementById('writer_'+content_idx).value;
              var content = document.getElementById('content_'+content_idx).value;
              
@@ -944,8 +943,7 @@ var nameList = new Array();
 												href="serviceCenter.do?idx=${sessionScope.useridx }">CUSTOMER
 													CENTER</a></li>
 											<li><a href="logout.do">Logout</a></li>
-											<li><a href="#" id="msgTest1">MSGTEST</a></li>
-											<li><a href="#" id="more1">MORETEST</a></li>
+										
 
 										</ul>
 									</div>
