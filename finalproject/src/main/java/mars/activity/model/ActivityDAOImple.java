@@ -31,8 +31,8 @@ public class ActivityDAOImple implements ActivityDAO {
 	
 	public void ac_insert_like(int from_idx, int to_idx, int content_idx, Date actdate, String name, String profile_img) {
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("from_idx", String.valueOf(from_idx));
-		map.put("to_idx", String.valueOf(to_idx));
+		map.put("to_idx", String.valueOf(from_idx));
+		map.put("from_idx", String.valueOf(to_idx));
 		map.put("content_idx", String.valueOf(content_idx));
 		map.put("name", name);
 		map.put("profile_img", profile_img);
