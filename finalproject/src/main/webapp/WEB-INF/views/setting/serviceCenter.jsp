@@ -109,10 +109,10 @@
 									<hr>
 									<form name="serviceCenter" action="sendReport.do" method="post">
 										<input type="hidden" name="idx_from" value="${dto.idx }">
-										<table cell-spacing="0" width="800" height="600" border="1">
+										<table cell-spacing="0" width="550" height="600" border="1" style="margin: 0px auto;">
 											<tr>
-												<th>Category</th>
-												<td><select id="category" name="category">
+												<th style="text-align: center;">Category</th>
+												<td>&nbsp;<select id="category" name="category">
 														<option value="11">검색/인기 태그</option>
 														<option value="12">공개범위</option>
 														<option value="13">친구</option>
@@ -120,13 +120,13 @@
 														<option value="15">게시물 작성</option>
 														<option value="16">알림</option>
 												</select></td>
-												<th>Writer</th>
+												<th style="text-align: center;">Writer</th>
 												<td><label>${dto.name }</label></td>
 											</tr>
 											<tr>
-												<th>Content</th>
+												<th style="text-align: center;">Content</th>
 												<td colspan="3"><textarea name="content" cols="40"
-														rows="15" style="width: 600px;"></textarea></td>
+														rows="15" style="width: 580px;"></textarea></td>
 											</tr>
 											<tr>
 												<td colspan="4" align="center"><input type="submit"
