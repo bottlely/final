@@ -1258,9 +1258,9 @@ var nameList = new Array();
 								width:50px; height:50px;
 								"/>
 								
-							</span> <label id="c_writer" style="width:50px;"></label> <label id="c_date" style="width:100px; margin-left:10px;"></label><span>
+	                     </span> <label id="c_writer" style="width:50px;"></label> <label id="c_date" style="width:100px; margin-left:10px;"></label><span>
                            <button class="btn btn-info" id="myBtn"
-                              style="background: #6368ff;">· · · </button> <!-- The Modal -->
+                              style="background: #4ca0ff;">· · · </button> <!-- The Modal -->
                            <div id="myModal2" class="modal2">
 
                               <!-- Modal content // contentMore -->
