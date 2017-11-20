@@ -38,7 +38,7 @@ public class SettingController {
 	public ModelAndView infoSetting(MemberDTO dto) {
 		ModelAndView mav = new ModelAndView();
 		int count = settingDao.updateMyInfo(dto);
-		String msg = count > 0 ? "�닔�젙�릺�뿀�뒿�땲�떎." : "�닔�젙�뿉 �떎�뙣�븯���뒿�땲�떎.";
+		String msg = count > 0 ? "정보가 수정되었습니다." : "정보수정에 실패하였습니다.";
 		String gourl = "infoSetting.do?idx="+dto.getIdx();
 		mav.addObject("msg", msg);
 		mav.addObject("gourl", gourl);
@@ -81,7 +81,7 @@ public class SettingController {
 	@RequestMapping(value = "leaveMars.do", method = RequestMethod.POST)
 	public ModelAndView leaveMars(int idx) {
 		int count = settingDao.leaveMars(idx);
-		String msg = count > 0 ? "�깉�눜�릺�뿀�뒿�땲�떎." : "�깉�눜�뿉 �떎�뙣�븯���뒿�땲�떎.";
+		String msg = count > 0 ? "탈퇴가 처리되었습니다." : "탈퇴에 실패하였습니다.";
 		String gourl = count > 0 ? "index.do" : "leaveMars.do";
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("msg", msg);
