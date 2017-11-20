@@ -1184,7 +1184,7 @@ function openpic(content_idx){
       <div class="works-area" id="myfeed">
   <div id="myfeedtable">
                
-      <c:if test="${empty contentList}">게시글 없음</c:if>
+      <c:if test="${empty contentList}"><div style="margin-left: 330px;">게시글 없음</div></c:if>
      
        <c:if test="${!empty contentList}">
         <c:forEach var="contentList" items="${contentList }">
