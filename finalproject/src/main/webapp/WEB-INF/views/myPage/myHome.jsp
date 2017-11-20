@@ -931,42 +931,42 @@ function openpic(content_idx){
                          var l = lists.replyList[i];
                          
                          if(l.lev == 0){
-                            if(l.name == userName){
-                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; margin-right:10px; float:left;">'
-                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; float:left;" size="10" readonly >' 
-                               + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:13px; float:left;"  readonly>'
-                               +'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' 
-                               + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' 
-                               + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' 
-                               + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
-                            }else{
-                               str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px; float:left;">' 
-                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; float:left;" size="10" readonly>' 
-                               + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:13px;" readonly>' 
-                               + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' 
-                               + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' 
-                               + '<hr>';
-                            }
-                            
-                         }else{
-                            if(l.name == userName){
-                               str += '=>' 
-                               + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px; float:left;">' 
-                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; width:30px; float:left;" size="10" readonly>'
-                               +'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:13px; width:100px;" readonly>'
-                               +'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">'
-                               + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' 
-                               + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' 
-                               + '<hr>';
-                            }else{
-                               str += '=>'
-                               + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px; float:left;">'
-                               + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:13px; width:50px; float:left;" size="10" readonly> ' 
-                               + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:15px; width:150px;" readonly>' 
-                               + '<hr>';
-                            }
-                         }
-                      }
+                             if(l.name == userName){
+                                str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px; margin-right:10px;">'
+                                + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:12px;" size="15" readonly >' 
+                                + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:13px; width:150px;"  readonly>'
+                                +'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;padding:0;font-size:11px;" onclick="update_Reply(' + l.idx + ')">' 
+                                + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none; "><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;padding:0px 5px 0px 5px;font-size:11px;">' 
+                                + '<input type="button" value="답글" style= "padding:0px 5px 0px 5px;font-size:11px;" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" style="padding:0px 5px 0px 5px;font-size:11px;" onclick="updateDisplay('+l.idx+')">' 
+                                + '<input type="button" value="삭제" style="padding:0px 5px 0px 5px;font-size:11px;" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+                             }else{
+                                str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px;">' 
+                                + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:12px; width:50px;" readonly>' 
+                                + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:13px; width:150px;" readonly>' 
+                                + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="padding:0px 5px 0px 5px;font-size:11px;">' 
+                                + '<input type="button" value="답글" style="padding:0px 5px 0px 5px;font-size:11px;" onclick="ondisplay('+l.idx+')">' 
+                                + '<hr>';
+                             }
+                             
+                          }else{
+                             if(l.name == userName){
+                                str += '=>' 
+                                + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px;">' 
+                                + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:12px; width:50px;" readonly>'
+                                +'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:13px; width:150px;" readonly>'
+                                +'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="padding:0px 5px 0px 5px;font-size:11px;" onclick="update_Reply(' + l.idx + ')">'
+                                + '<br>' + '<input type="button" value="수정" style="padding:0px 5px 0px 5px;font-size:11px;" onclick="updateDisplay('+l.idx+')">' 
+                                + '<input type="button" value="삭제" style="padding:0px 5px 0px 5px;font-size:11px;" onclick="delete_Reply('+l.idx+')">' 
+                                + '<hr>';
+                             }else{
+                                str += '=>'
+                                + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;  margin-right:10px;">'
+                                + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px; font-size:11px; width:50px;" readonly> ' 
+                                + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px; font-size:13px; width:150px;" readonly>' 
+                                + '<hr>';
+                             }
+                          }
+                       }
                       reply_list.innerHTML = str;
                    }
                    
@@ -1040,6 +1040,13 @@ function openpic(content_idx){
                 
                 document.getElementById("content").value = "";
            }
+            function openContent(content_idx, useridx) {
+                location.href='main_view.do?content_idx='+content_idx+'&session_idx='+useridx;
+             }
+             
+             
+             
+             
 </script>
 </head>
 <body onload="check()">
