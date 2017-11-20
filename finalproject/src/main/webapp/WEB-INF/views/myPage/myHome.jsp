@@ -738,7 +738,7 @@ function showResult(){
          var str='';
          var paths='';
          if(data.list.length==0){
-            str='<table><tr><td>검색결과가 없습니다.</td></tr></table>';
+            str='<table style="margin:0px auto;"><tr><td>검색결과가 없습니다.</td></tr></table>';
             myFeedDiv.innerHTML=str;
          }else{
         	 
