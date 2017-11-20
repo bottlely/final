@@ -740,7 +740,7 @@ var nameList = new Array();
 		<div id="navbar-full">
 			<span style="float: left;">
 				<div id="friends2"
-					style="background: #935d8c; height: 100%; width: 30%; position: absolute; float: left; display: none; z-index: 4">
+					style="background: #935d8c; height: 100%; width: 34%; position: absolute; float: left; display: none; z-index: 4">
 					<div
 						style="background-color: white; align-content: center; text-align: right;">
 						<a href="#" id="cl1">Close <i class="pe-7s-close"></i></a>
@@ -918,8 +918,7 @@ var nameList = new Array();
 									href="#" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false"> <i class="pe-7s-global"></i> <span
 										class="badge badge-pill badge-warning"><div id="count"></div>New</span> <span
-										class="indicator text-warning d-none d-lg-block"> <i
-											class="fa fa-fw fa-circle"></i>
+										class="indicator text-warning d-none d-lg-block">
 									</span>
 								</a>
 									<div id="total_activity_iframe" class="dropdown-menu" aria-labelledby="alertsDropdown" style="width: 400px; border: 6px; text-align: center;">
