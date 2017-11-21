@@ -761,6 +761,25 @@ function showResult(){
         		               +'<p>'+c.content+'</p>'
         		               +'</div></div></a></div></div>'
         		         	 }
+        		 	if(c.category==2){
+        		 		str += '<div class="col-md-4 col-sm-4 col-xs-4  video">'
+     		               +'<div class="works" style="height: 200px;">'
+     		               +'<a href="#myModal" data-toggle="modal" data-target="#myModal" data-src="'+c.path+'" onclick="openpic('+c.content_idx+')">'
+     		               +'<video autoplay="autoplay" loop="loop" style="width:200px; height:200px;">'
+     					   +'<source src="myHomeFolder/content/'+c.path+'" type="video/mp4"></video>'
+     		               +'<div class="work-overlay text-center">'
+     		               +'<div class="overlay-caption">'
+     		               +'<h4>VIDEO</h4>'
+     		               +'<input type="hidden" id="category_'+c.content_idx+'" value="'+c.category+'">'
+     		               +'<input type="hidden" id="date_'+c.content_idx+'" value="'+c.writetime+'">'
+     		      	      +'<input type="hidden" id="path_'+c.content_idx+'" value="myHomeFolder/content/'+c.path+'">'
+     		      	      +'<input type="hidden" id="profile_'+c.content_idx+'" value="myHomeFolder/profile_img/'+c.profile+'">'
+     		      	      +'<input type="hidden" id="writer_'+c.content_idx+'" value="'+c.writer+'">'
+     		               +'<input type="hidden" id="content_'+c.content_idx+'" value="'+c.content+'">'
+     		      	      +'<input type="hidden" id="memberidx_'+c.content_idx+'" value="'+c.member_idx+'">'           
+     		               +'<p>'+c.content+'</p>'
+     		               +'</div></div></a></div></div>'
+        		 	}
         	/*  myFeedDiv.removeChild(myFeedTable);
          	var table=document.createElement('table');
          		table.setAttribute("id", "myfeedtable");
