@@ -135,18 +135,21 @@ function checkPwd(){
 		<table>
 			<tr>
 				<th>현재 비밀번호</th>
-				<td><input type="password" name="cur_pwd"></td>
+				<td>&emsp;<input type="password" name="cur_pwd"></td>
 			</tr>
 			<tr>
 				<th>새 비밀번호</th>
-				<td><input type="password" id="pwd" name="ch_pwd" onkeyup="checkPwd()"></td>
+				<td>&emsp;<input type="password" id="pwd" name="ch_pwd" onkeyup="checkPwd()"></td>
 			</tr>
 			<tr>
 				<th>새 비밀번호 재입력</th>
-				<td><input type="password" id="pwdCheck" onkeyup="checkPwd()"></td>
+				<td>&emsp;<input type="password" id="pwdCheck" onkeyup="checkPwd()"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center" id="pwsame"></td>
+			</tr>
+			<tr>
+				<td colspan="2">&nbsp;</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="submit" value="수정하기" id="btn_ok" disabled="disabled"  class="btn btn-default">   <input type="reset" value="다시 작성"  class="btn btn-default"></td>

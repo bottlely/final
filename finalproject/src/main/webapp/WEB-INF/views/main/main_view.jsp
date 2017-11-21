@@ -869,7 +869,7 @@ var nameList = new Array();
 			<div class="col-sm-8 text-left" style="background:white;float:left;position:relative;">
 				<a href="#" onclick="like(${content_idx})">
 				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 30px;"></a>
-				<input type="text" id="likeCount" value="" readonly style="border: 0px; font-size:14px;">
+				<input type="text" id="likeCount" value="" readonly style="border: 0px; font-size:14px;"><br>
 				<%-- <img src=""><input type="button" value="발자취"
 					onclick="like(${content_idx})"> --%>
 			</div>
@@ -883,7 +883,7 @@ var nameList = new Array();
 					value="${content_idx  }">
 				<div class="input-group">
 					<input id="content" type="text" class="form-control" name="content"
-						placeholder="댓글을 입력하세요." style="width:500px;float:right;"> <label class="input-group-addon"
+						placeholder="댓글을 입력하세요." style="width:700px;float:right;"> <label class="input-group-addon"
 						onclick="addReply()">작성</label>
 				</div>
 				<br>

@@ -121,12 +121,12 @@
 														<option value="16">알림</option>
 												</select></td>
 												<th style="text-align: center;">Writer</th>
-												<td><label>${dto.name }</label></td>
+												<td>&nbsp;<label>${dto.name }</label></td>
 											</tr>
 											<tr>
 												<th style="text-align: center;">Content</th>
 												<td colspan="3"><textarea name="content" cols="40"
-														rows="15" style="width: 580px;"></textarea></td>
+														rows="20" style="width: 580px;"></textarea></td>
 											</tr>
 											<tr>
 												<td colspan="4" align="center"><input type="submit"

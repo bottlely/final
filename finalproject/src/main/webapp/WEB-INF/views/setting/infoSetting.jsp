@@ -122,15 +122,15 @@
 										<table>
 											<tr>
 												<th>Name</th>
-												<td><input type="text" name="name" value="${dto.name}"></td>
+												<td>&emsp;<input type="text" name="name" value="${dto.name}"></td>
 											</tr>
 											<tr>
 												<th>E-Mail
-												<td><input type="text" name="id" value="${dto.id}"></td>
+												<td>&emsp;<input type="text" name="id" value="${dto.id}"></td>
 											</tr>
 											<tr>
 												<th>Gender</th>
-												<td><input type="checkbox" name="gender" value="1"
+												<td>&emsp;<input type="checkbox" name="gender" value="1"
 													onclick="checkOne(this);" ${dto.gender==1? 'checked':'' }>Man
 													<input type="checkbox" name="gender" value="2"
 													onclick="checkOne(this);" ${dto.gender==2? 'checked':''}>Woman
@@ -138,14 +138,14 @@
 											</tr>
 											<tr>
 												<th>Birth</th>
-												<td><input type="text" name="birth_y"
+												<td>&emsp;<input type="text" name="birth_y"
 													value="${dto.birth_y}"> - <input type="text"
 													name="birth_m" value="${dto.birth_m}"> - <input
 													type="text" name="birth_d" value="${dto.birth_d}"></td>
 											</tr>
 											<tr>
 												<th>Tel</th>
-												<td><input type="text" name="tel" value="${dto.tel }"></td>
+												<td>&emsp;<input type="text" name="tel" value="${dto.tel }"></td>
 											</tr>
 										</table>
 										<h3>Add <small>Settings</small></h3>
@@ -153,7 +153,7 @@
 										<table>
 											<tr>
 												<th>City</th>
-												<td><select name="city" id="city">
+												<td>&emsp;<select name="city" id="city">
 														<option value="seoul"
 															${dto.city eq 'Seoul'?'selected':'' }>Seoul</option>
 														<option value="Incheon"
@@ -171,7 +171,7 @@
 											</tr>
 											<tr>
 												<th>Favor</th>
-												<td><input type="checkbox" name="favorite_movie"
+												<td>&emsp;<input type="checkbox" name="favorite_movie"
 													value="1" ${dto.favorite_movie==1? 'checked':''}>Movie
 													<input type="checkbox" name="favorite_sport" value="1"
 													${dto.favorite_sport==1? 'checked':''}>Sport <input
@@ -189,7 +189,7 @@
 													${dto.favorite_food==1? 'checked':''}>Food</td>
 											</tr>
 										</table>
-										<p>
+										<p style="text-align: center;">
 											<input type="submit" value="수정"  class="btn btn-default">
 										</p>
 									</form>

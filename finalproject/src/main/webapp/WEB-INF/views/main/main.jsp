@@ -1024,7 +1024,7 @@ var nameList = new Array();
 									class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown"
 									href="#" data-toggle="dropdown" aria-haspopup="true"
 									aria-expanded="false"> <i class="pe-7s-global"></i> <span
-										class="badge badge-pill badge-warning"><div id="count"></div>New</span> <span
+										class="badge badge-pill badge-warning"><div id="count" style="color: pink;"></div>New</span> <span
 										class="indicator text-warning d-none d-lg-block">
 									</span>
 								</a>
@@ -1038,7 +1038,7 @@ var nameList = new Array();
 										<a class="dropdown-item small" href="#">View all alerts</a> -->
 									</div></li>
 
-
+								<li><div></div></li>
 								<!-- d -->
 								<li>
 									<div class="dropdown">
@@ -1187,22 +1187,21 @@ var nameList = new Array();
 			</div>
 		</div>
 		</c:if>
-			<c:forEach var="list" items="${list }">
-					
-		<div class="col-md-4 col-sm-4 col-xs-4  ad">
-			<div class="works" style="height: 431px;">
-				<img src="${list.ad_content} " alt="" style="width: 431px; height: 431px;">
-					<div class="work-overlay text-center">
-						<div class="overlay-caption">
-							<h4>Ad</h4>
-							<h2><a href="${list.link}" onclick="goCount(${list.ad_idx})">
-							${list.ad_name}</a></h2>
-							
+		
+		<c:forEach var="list" items="${list }">
+			<div class="col-md-4 col-sm-4 col-xs-4  ad">
+				<div class="works" style="height: 431px;">
+					<img src="${list.ad_content} " alt="" style="width: 431px; height: 431px; float:left;">
+						<div class="work-overlay text-center">
+							<div class="overlay-caption">
+								<h4>Ad</h4>
+								<h2><a href="${list.link}" onclick="goCount(${list.ad_idx})">
+								${list.ad_name}</a></h2>
+							</div>
 						</div>
-					</div>
 				</div>
 			</div>
-			</c:forEach>
+		</c:forEach>
 				</div>
 			</div>
 		</div>

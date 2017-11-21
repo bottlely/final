@@ -860,8 +860,8 @@ var div = document.createElement('div');
                var img_slide = document.createElement('img');
                img_slide.src = path;
                img_slide.id='detail';
-               img_slide.setAttribute("width", "520px");
-               img_slide.setAttribute("height", "450px");
+               img_slide.setAttribute("width", "550px");
+               img_slide.setAttribute("height", "480px");
                detail_media.appendChild(img_slide);
              }else if(category==2){
                 //동영상
@@ -874,8 +874,8 @@ var div = document.createElement('div');
                 video_slide.id='detail';
                 video_slide.autoplay=true;
                 video_slide.loop=true;
-                video_slide.setAttribute("width", "520px");
-                video_slide.setAttribute("height", "450px");
+                video_slide.setAttribute("width", "550px");
+                video_slide.setAttribute("height", "460px");
                 source.src = path;
                 source.type = "video/mp4";
                 
@@ -1418,7 +1418,7 @@ var div = document.createElement('div');
 							</div>
 							<div class="col-sm-12" id="cntInfoBar">
 								<span><a href="#" onclick="like()">
-				<img src="" id="like_Img" width="30px" height="30px;"></a><input type="text" id="likeCount" value="" readonly style="border: 0px;"></span>
+				<img src="" id="like_Img" width="30px" height="30px; float:left;"></a><input type="text" id="likeCount" value="" readonly style="border: 0px; margin-left:-10px;"></span>
 							</div>
 
 	
