@@ -229,8 +229,9 @@ public class ReplyController {
    
    @RequestMapping("likeCount.do")
    public ModelAndView likeCount(@RequestParam("content_idx")int content_idx){
+	   System.out.println(content_idx);
 	   int count = replydao.likeCount(content_idx);
-	   
+	   System.out.println(count);
 	   ModelAndView mav = new ModelAndView("marsJson", "count", count);
 	   
 	   return mav;

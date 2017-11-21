@@ -45,7 +45,7 @@ public class SearchController {
       List<Object> list1 = new ArrayList<Object>();
       
       for(int i = 1; i < nameList.size(); i++){
-    	  list1.add(nameList.get(i).getName());
+         list1.add(nameList.get(i).getName());
       }
       
       
@@ -72,9 +72,21 @@ public class SearchController {
    @RequestMapping("/search.do")
    public ModelAndView search(@RequestParam("name")String name){
       List<ContentDTO> list = htagdao.htagSearch(name);
+      
+      System.out.println(name + "dd");
 
       ModelAndView mav = new ModelAndView("marsJson", "find", list);
       
+      return mav;
+   }
+   
+   @RequestMapping("/gogi.do")
+   public ModelAndView gogi(@RequestParam("name")String name){
+      ModelAndView mav = new ModelAndView();
+      
+      mav.addObject("name", name);
+	   
+	   mav.setViewName("search/htagSearch");
       return mav;
    }
 }
