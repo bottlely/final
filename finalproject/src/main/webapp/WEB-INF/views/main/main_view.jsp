@@ -13,6 +13,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="js/httpRequest.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <title>MARS</title>
 <!--     Font Awesome     -->
@@ -864,10 +866,10 @@ var nameList = new Array();
 		</c:if>
 		<div class="row content">
 			<div class="col-sm-2 text-center"></div>
-			<div class="col-sm-8 text-left" style="background:white;">
+			<div class="col-sm-8 text-left" style="background:white;float:left;position:relative;">
 				<a href="#" onclick="like(${content_idx})">
-				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 15px; margin-top: 10px;"></a>
-				<input type="text" id="likeCount" value="" readonly style="border: 0px; font-size:17px;">
+				<img src="" id="like_Img" width="40px" height="40px;" style="margin-left: 30px;"></a>
+				<input type="text" id="likeCount" value="" readonly style="border: 0px; font-size:14px;">
 				<%-- <img src=""><input type="button" value="발자취"
 					onclick="like(${content_idx})"> --%>
 			</div>
@@ -881,7 +883,7 @@ var nameList = new Array();
 					value="${content_idx  }">
 				<div class="input-group">
 					<input id="content" type="text" class="form-control" name="content"
-						placeholder="댓글을 입력하세요."> <label class="input-group-addon"
+						placeholder="댓글을 입력하세요." style="width:500px;float:right;"> <label class="input-group-addon"
 						onclick="addReply()">작성</label>
 				</div>
 				<br>
@@ -968,16 +970,16 @@ var nameList = new Array();
 	                                
 	                                if(l.lev == 0){
 	                                   if(l.name == userName){
-	                                      str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';   
+	                                      str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;float:left;margin-left:20px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;font-size:13px;float:left;width:70px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;font-size:15px;float:left;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;border: solid 1px #c8cccf;float:left;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="text" id="'+l.idx+'text" style="display: none;float:left;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;border-color: #ff7496;color: #ff7496 !important;background-color:#ffff;width:45px;height:25px;font-size:12px;padding:0;float:right;">' + '<input type="button" value="답글" style="border-color: #ff7496;color: #ff7496 !important;background-color:#ffff;width:45px;height:25px;font-size:12px;padding:0;float:right;" onclick="ondisplay('+l.idx+')">' + '<input type="button" value="수정" style="border-color: #ff7496;color: #ff7496 !important;background-color:#ffff;width:45px;height:25px;font-size:12px;padding:0;float:right;" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" style="border-color: #ff7496;color: #ff7496 !important;background-color:#ffff;width:45px;height:25px;font-size:12px;padding:0;float:right;" onclick="delete_Reply('+l.idx+')">' + '<br><hr>';   
 	                                   }else{
-	                                      str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;">' + '<input type="button" value="답글" onclick="ondisplay('+l.idx+')">' + '<hr>';
+	                                      str += '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;float:left;margin-left:20px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;font-size:13px;float:left;width:70px;" readonly>' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;font-size:15px;float:left;" readonly>' + '<br><input type="text" id="'+l.idx+'text" style="display: none;float:left;"><input type="button" value="작성" id="'+l.idx+'btn" onclick="re_Reply('+l.idx+')"  style="display: none;border-color: #ff7496;color: #ff7496 !important;background-color:#ffff;width:45px;height:25px;font-size:12px;padding:0;float:right;">' + '<input type="button" value="답글"  style="border-color: #ff7496;color: #ff7496 !important;background-color:#ffff;width:45px;height:25px;font-size:12px;padding:0;float:right;margin:0;" onclick="ondisplay('+l.idx+')">' + '<br><hr>';
 	                                   }
 	                                   
 	                                }else{
 	                                   if(l.name == userName){
-	                                      str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')">' + '<hr>';
+	                                      str += '<i class="material-icons" style="float:left;margin-left:40px;">subdirectory_arrow_right</i>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;float:left;">' + '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;font-size:13px;float:left;width:70px;" readonly>'+'<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;font-size:15px;float:left;width:200px;" readonly>'+'<input type="button" id="' + l.idx + 'update_ok" value="수정" style="display: none;border-color: #ff7496;color: #ff7496 !important;background-color:#ffff;width:45px;height:25px;font-size:12px;padding:0;margin:0;float:right;" onclick="update_Reply(' + l.idx + ')">' + '<br>' + '<input type="button" value="수정" style="border-color: #ff7496;color: #ff7496 !important;background-color:#ffff;width:45px;height:25px;font-size:12px;padding:0;float:right;" onclick="updateDisplay('+l.idx+')">' + '<input type="button" value="삭제" onclick="delete_Reply('+l.idx+')" style="border-color: #ff7496;color: #ff7496 !important;background-color:#ffff;width:45px;height:25px;font-size:12px;padding:0;float:right;">' + '<br><hr>';
 	                                   }else{
-	                                      str += '=>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;" readonly>' + '<hr>';
+	                                      str += '<i class="material-icons" style="float:left;margin-left:40px;">subdirectory_arrow_right</i>' + '<img src="myHomeFolder/profile_img/'+l.profile_img+'" style="border-radius: 50%; height: 30px; width: 30px;float:left;">'+ '<input type="text" name="reply_name" value="'+l.name+'" style="border: 0px;font-size:13px;float:left;width:70px;" readonly> ' + '<input type="text" id="' + l.idx + 'update_content" value="'+l.content+'" style="border: 0px;font-size:15px;float:left;width:200px;;" readonly>' + '<hr>';
 	                                   }
 	                                }
 	                             }
