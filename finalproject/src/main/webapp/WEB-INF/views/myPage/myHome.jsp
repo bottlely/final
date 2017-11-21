@@ -596,7 +596,7 @@ a.btn-view {
             xhr.onload = function(e) {
                if(this.status == 200){
                   var jsonResponse = JSON.parse(e.currentTarget.responseText);
-               if(jsonResponse["result"] > 1){
+               if(jsonResponse["result"] > 0){
                      alert('비공개 해제 완료!');
                   }else{
                      alert('비공개 해제 실패!');
