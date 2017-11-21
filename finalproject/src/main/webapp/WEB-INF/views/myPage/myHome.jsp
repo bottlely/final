@@ -533,6 +533,10 @@ a.btn-view {
          
 <script type="text/javascript">
 
+	function f5(){
+		window.location.reload();
+	}
+	
    function check(){
       var openCoverage = '${mhdto.getOpen_coverage()}';
       if(openCoverage == 1){
@@ -1144,7 +1148,7 @@ var div = document.createElement('div');
 <header style="margin-top:9em;">
                
 <!-- 프로필사진 -->
-<span class="avatar"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}"alt="" /></span>
+<span class="avatar"><img src="myHomeFolder/profile_img/${mhdto.getProfile_img()}"alt="" onclick="f5()"/></span>
    
 <div style="width:200px;height:50px;float:right;">                     
 <!-- 더보기아이콘 -->
