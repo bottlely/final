@@ -743,6 +743,7 @@ function showResult(){
         	 
         	 for(var i=0;i<data.list.length;i++){
         		 var c = data.list[i];
+        		 		str = '[ 총 '+c.length+'개의 게시물]';
         		 	if(c.category==1){
         		         	str += '<div class="col-md-4 col-sm-4 col-xs-4  photo">'
         		               +'<div class="works" style="height: 200px;">'

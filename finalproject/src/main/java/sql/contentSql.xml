@@ -27,7 +27,7 @@
 	</select>
 	
 	<select id="contentList" parameterType="String" resultType="mars.content.model.ContentDTO">
-		select * from content where member_idx = #{member_idx} order by content_idx desc
+		select * from content where member_idx = #{member_idx} order by writetime desc
 	</select>
 	
 	<select id="contentList_ff" parameterType="HashMap" resultType="mars.content.model.ContentDTO">
