@@ -153,7 +153,7 @@
 							</div>
 							<div class="card-body" style="text-align: center;">
 								<div>
-								<img src="myHomeFolder/background_img/${userInfo1.profile_img}"style="width: 50px; height: 50px; border-radius: 50%;"></div>
+								<img src="myHomeFolder/profile_img/${userInfo1.profile_img}"style="width: 50px; height: 50px; border-radius: 50%;"></div>
 								</div>
 								<p style="text-align: center;">${userInfo1.name}</p>
 								<p style="text-align: center;">Follower : ${ranksize1}명</p>
@@ -171,7 +171,7 @@
 							</div>
 							<div class="card-body" style="text-align: center;">
 								<div>
-								<img src="myHomeFolder/background_img/${userInfo2.profile_img}"style="width: 50px; height: 50px; border-radius: 50%;"></div>
+								<img src="myHomeFolder/profile_img/${userInfo2.profile_img}"style="width: 50px; height: 50px; border-radius: 50%;"></div>
 								</div>
 								<p style="text-align: center;">${userInfo2.name}</p>
 								<p style="text-align: center;">Follower : ${ranksize2}명</p>
@@ -189,7 +189,7 @@
 							</div>
 							<div class="card-body" style="text-align: center;">
 								<div>
-								<img src="myHomeFolder/background_img/${userInfo3.profile_img}"style="width: 50px; height: 50px; border-radius: 50%;"></div>
+								<img src="myHomeFolder/profile_img/${userInfo3.profile_img}"style="width: 50px; height: 50px; border-radius: 50%;"></div>
 								</div>
 								<p style="text-align: center;">${userInfo3.name}</p>
 								<p style="text-align: center;">Follower : ${ranksize3}명</p>
